@@ -27,7 +27,7 @@ int main(int argc, char** argv){
     int* pass = 0;
 
 	// int defining number of tests
-	int numTests = 3;
+	int numTests = 4;
 	
 	// int store the current player
     int currentPlayer;
@@ -35,14 +35,14 @@ int main(int argc, char** argv){
     // int storing the number of played cards
     int playedCardCount;
     
-    // int storing the number of cards in players hand
-    int playerHandCount;
-    
     // int storing the card that was played
     int playedCard;
     
     // int stores the number of actions a player has
     int numActions;
+    
+    // int stores number of cards in players hand
+    int handCount;
     
     currentPlayer = game.whoseTurn;
 	
@@ -52,18 +52,51 @@ int main(int argc, char** argv){
 	// call the function to test
 	playVillage(&game, 0, 0);
 	
+	//======================================================================================
+	
+	/* Test Case 1
+	 * Description: playedCardCount should be 1 after calling playVillage()
+	 * This test should PASS.
+	 */
+	
 	playedCardCount = game.playedCardCount;
 	
 	assertTrue(playedCardCount, 1, "CARD TEST 1", "village", 1, numTests, &pass);
-		
+
+	//======================================================================================
+
+	/* Test Case 2
+	 * Description: the first card played should be village after calling playvillage()
+	 * This test should PASS.
+	 */
+	
 	playedCard = game.playedCards[0];
 	
 	assertTrue(playedCard, 14, "CARD TEST 1", "village", 2, numTests, &pass);
-			
+	
+	//======================================================================================
+	
+	/* Test Case 3
+	 * Description: the player should have 2 actions after calling playvillage()
+	 * This test should FAIL.
+	 */
+				
 	numActions = game.numActions;
 	
 	assertTrue(numActions, 2, "CARD TEST 1", "village", 3, numTests, &pass);
 		
+	//======================================================================================
+
+	/* Test Case 4
+	 * Description: the player should have 5 cards in their hand after calling playvillage()
+	 * This test should PASS.
+	 */
+				
+	handCount = game.handCount[currentPlayer];
+		
+	assertTrue(handCount, 5, "CARD TEST 1", "village", 4, numTests, &pass);
+		
+	//======================================================================================
     if( pass == 0){
     	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
     }

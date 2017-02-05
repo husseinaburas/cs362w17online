@@ -182,7 +182,7 @@ int shuffle(int player, struct gameState *state) {
 	/* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
 
 	while (state->deckCount[player] > 0) {
-		card = floor(Random() * state->deckCount[player]);
+		card = (int)floor(Random() * state->deckCount[player]);
 		newDeck[newDeckPos] = state->deck[player][card];
 		newDeckPos++;
 		for (i = card; i < state->deckCount[player]-1; i++) {
@@ -352,12 +352,12 @@ int isGameOver(struct gameState *state) {
 	int i;
 	int j;
 	
-	// Iif stack of Province cards is empty, the game ends.
+	// If stack of Province cards is empty, the game ends.
 	if (state->supplyCount[province] == 0) {
 		return 1;
 	}
 
-	// If three supply pile are at 0, the game ends.
+	// If three supply piles are at 0, the game ends.
 	j = 0;
 	for (i = 0; i < 25; i++) {
 		if (state->supplyCount[i] == 0) {
@@ -408,6 +408,8 @@ int scoreFor(int player, struct gameState *state) {
 
 	return score;
 }
+
+#define TEST4 1
 
 int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 	int i;	
@@ -553,11 +555,7 @@ int getCost(int cardNumber) {
 }
 
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus) {
-	int i;
-	int j;
-	int k;
-	int x;
-	int index;
+	int i, j, k, x, index;
 	int currentPlayer = whoseTurn(state);
 	int nextPlayer = currentPlayer + 1;
 //	int tributeRevealedCards[2] = {-1, -1};
@@ -920,11 +918,9 @@ void runAdventurer(struct gameState *state, int currentPlayer, int *temphand) {
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1]; // Top card of hand is most recently drawn card.
-		cardDrawn++;
-		if (cardDrawn == copper-1|| cardDrawn == silver || cardDrawn == gold)
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 			drawntreasure++;
 		else {
-			if (cardDrawn > treasure_map) cardDrawn--;
 			temphand[z] = cardDrawn;
 			state->handCount[currentPlayer]--; // This should just remove the top card (the most recently drawn one).
 			z++;
@@ -944,7 +940,7 @@ void runSmithy(struct gameState* state, int currentPlayer, int handPos) {
 		drawCard(currentPlayer, state);
 	}
 	// Discard card from hand.
-	discardCard(handPos--, currentPlayer, state, 1);
+	discardCard(handPos--, currentPlayer, state, 0);
 }
 
 
@@ -993,14 +989,14 @@ void runTribute(struct gameState* state, int nextPlayer, int currentPlayer) {
 	}
 	for (i = 0; i <= 2; i++) {
 		if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver ||
-			tributeRevealedCards[i] == gold-1) {	// Treasure cards.
+			tributeRevealedCards[i] == gold) {	// Treasure cards.
 			state->coins += 2;
 		}
 		else if (tributeRevealedCards[i] == estate || tributeRevealedCards[i] == duchy ||
 			tributeRevealedCards[i] == province || tributeRevealedCards[i] == gardens ||
 			tributeRevealedCards[i] == great_hall) {  // Victory Card Found.
-				drawCard(currentPlayer, state);
-				drawCard(currentPlayer, state);
+			drawCard(currentPlayer, state);
+			drawCard(currentPlayer, state);
 		}
 		else {  // Action Card.
 			state->numActions = state->numActions + 2;
@@ -1024,7 +1020,7 @@ void runMinion(struct gameState *state, int choice1, int choice2, int currentPla
 			discardCard(handPos, currentPlayer, state, 0);
 		}
 		// Draw 4.
-		for (i = 0; i <= 4; i++) {
+		for (i = 0; i < 4; i++) {
 			drawCard(currentPlayer, state);
 		}
 		// Other players discard hand and redraw if hand size > 4.
@@ -1053,7 +1049,7 @@ void runSea_hag(struct gameState *state, int currentPlayer) {
 			state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
 			state->deckCount[i]--;
 			state->discardCount[i]++;
-			state->deck[i][state->deckCount[i]--] = ++curse; // Top card now a curse.
+			state->deck[i][state->deckCount[i]--] = curse; // Top card now a curse.
 		}
 	}
 }

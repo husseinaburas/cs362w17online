@@ -129,4 +129,9 @@ void runTribute(struct gameState *state, int nextPlayer, int currentPlayer);
 void runMinion(struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos);
 void runSea_hag(struct gameState *state, int currentPlayer);
 
+// Added to enable calls to the various functions and cardEffect() from testing progs.
+int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
+int getCost(int cardNumber);
+int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag);
 #endif

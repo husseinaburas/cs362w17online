@@ -67,7 +67,7 @@ int main () {
 	}
 
 	printf ("ALL TESTS OK\n");
-//	exit(0);	// ?? Code below never executes... Comment out for now...
+	exit(0);	// ?? Code below never executes... Comment out for now...
   
 	printf ("SIMPLE FIXED TESTS.\n");
 	for (p = 0; p < 2; p++) {

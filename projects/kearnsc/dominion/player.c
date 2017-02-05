@@ -102,9 +102,10 @@ int main(int argc, char* argv[]) {
 			getWinners(players, game);
 			printf("After %d turns, the winner(s) are:\n", turnNum);
 			for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
-				if(players[playerNum] == WINNER) printf("Player %d\n", playerNum);
+				if(players[playerNum] == WINNER)
+					printf("Player %d\n", playerNum);
 			}
-		for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
+			for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
 				printHand(playerNum, game);
 				printPlayed(playerNum, game);
 				printDiscard(playerNum, game);

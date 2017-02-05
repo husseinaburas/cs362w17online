@@ -143,6 +143,11 @@ int cardEffectCouncil_Room(int handPos, int currentPlayer, struct gameState *sta
 int cardEffectCutpurse(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3);
 int cardEffectMinion(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3);
 
-
+void asserttrue(int condition, int* r_main);
+char* getCardName(int card);
+void printCurrentPlayer(int player, struct gameState* state);
+int getNumCardsHand(int player, int card, struct gameState* state);
+int getNumCardsDeck(int player, int card, struct gameState* state);
+int getNumCardsDiscard(int player, int card, struct gameState* state);
 
 #endif

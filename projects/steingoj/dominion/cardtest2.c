@@ -127,6 +127,7 @@ int main () {
 	//printf("Post: %d\n", b);
 	assertTrue(a+2==b, "Cards not discarded properly");
 
+	printf("\n\n");	
 
 	return 0;
 }

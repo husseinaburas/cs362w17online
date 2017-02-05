@@ -54,18 +54,19 @@ int main () {
 	memcpy (&pre, &post, sizeof(struct gameState));
 	post.hand[0][0] = copper;
 	discardCard(0, 0, &post, 0);
-	a = pre.handCount[0] - 1;
+	a = pre.handCount[0];
 	b = post.handCount[0];
-	assertTrue(a==b, "Hand count was not decremented");	
+	assertTrue(a-1==b, "Hand count was not decremented");	
 
 	/************************************************************
  	//Check if card discarded is last in array
  	************************************************************/	 
 	initializeGame(2, k, 1, &pre);
 	memcpy (&pre, &post, sizeof(struct gameState));
-	post.hand[0][post.handCount[0]] = copper; //place copper in last position
-	discardCard(post.handCount[0], 0, &post, 0);
-	a = post.hand[0][post.handCount[0]];
+	post.handCount[0] = 5;
+	post.hand[0][4] = copper; //place copper in last position
+	discardCard(4, 0, &post, 0);
+	a = post.hand[0][4];
 	assertTrue(a==-1, "Last in array didn't get replaced"); 	
 	/***********************************************************
  	//Check if card is last card in hand
@@ -75,14 +76,17 @@ int main () {
 	for(i = 0; i < post.handCount[0]; i++){ //Remove all cards in hand
 		post.hand[0][i] = -1;
 	}
-	post.handCount[0] = 0;
-	post.hand[0][0] = copper; //Add one lone card
-	post.handCount[0]++; //Add to count 
-	discardCard(0, 0, &post, 0);
+	post.handCount[0] = 1;
+	post.hand[0][4] = copper; //Add one lone card
+	discardCard(4, 0, &post, 0);
 	a = post.handCount[0];
 	b = post.hand[0][0];
-	assertTrue(a==0, "Remove last card didn't work");
+	assertTrue(a==0, "Last card hand count not decremented");
 	assertTrue(b==-1, "Last card not changed to -1");	
+
+	//printf("Post handcount: %d", a);
+	//printf("Post hand: %d", b);
+
 
 	/******************************************************
 	//Test for non special case card discard
@@ -96,13 +100,15 @@ int main () {
 	assertTrue(a==b, "Card not replaced by the one before it");
 	
 
-	//NOTE: discardCount is not incremented in the function, but if a card 
-/*	
+	//NOTE: discardCount is not incremented in the function 
+	
+	/********************************************************
 	//Check that discardCount was incremented
-	a = pre.discardCount[p] + 1;
-	b = post->discardCount[p];
-	assertTrue(a==b, "Discard Count was not incremented");
-*/
+	********************************************************/
+	a = pre.discardCount[0] + 1;
+	b = post.discardCount[0];
+	assertTrue(a==b, "\nDiscard Count was not incremented\n");
+
 
 
   return 0;

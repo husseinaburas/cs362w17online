@@ -40,6 +40,7 @@ int main () {
 	/**********************************************************
 	//Test if there are no cards in supply of that type 	
 	**********************************************************/
+	post.numBuys = 1;
 	post.supplyCount[estate] = 0;
 	r = buyCard(estate, &post);
 	assertTrue(r==-1, "No cards left, but no error");
@@ -47,6 +48,8 @@ int main () {
 	/***********************************************************
 	//Test if there are not sufficient coins
 	**********************************************************/
+	post.numBuys = 1;
+	post.supplyCount[estate] = 1;
 	post.coins = 0;
 	r = buyCard(estate, &post);
 	assertTrue(r==-1, "Insufficient funds, but no error");

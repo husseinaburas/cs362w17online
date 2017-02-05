@@ -103,33 +103,34 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   state->supplyCount[gold] = 30;
 
   //set number of Kingdom cards
-  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-    {
-      for (j = 0; j < 10; j++)           		//loop chosen cards
-	{
-	  if (kingdomCards[j] == i)
-	    {
+  //loop all cards
+  for (i = adventurer; i <= treasure_map; i++) {
+    //loop chosen cards
+    for (j = 0; j < 10; j++) {
+      if (kingdomCards[j] == i) {
 	      //check if card is a 'Victory' Kingdom card
-	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-		{
-		  if (numPlayers == 2){
-		    state->supplyCount[i] = 8;
-		  }
-		  else{ state->supplyCount[i] = 12; }
-		}
-	      else
-		{
-		  state->supplyCount[i] = 10;
-		}
+	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens) {
+          // if two players, there are 8 great hall and gardens cards
+		      if (numPlayers == 2) {
+		        state->supplyCount[i] = 8;
+		      }
+          // more than 2 players, set 12 great hall and gardens cards
+		      else {
+            state->supplyCount[i] = 12;
+          }
+		    }
+	      else {
+          // all other kingdom card types there are always 10 cards
+		      state->supplyCount[i] = 10;
+		    }
 	      break;
 	    }
-	  else    //card is not in the set choosen for the game
-	    {
+      //card is not in the set chosen for the game
+	    else {
 	      state->supplyCount[i] = -1;
 	    }
-	}
-
-    }
+	  }
+  }
 
   ////////////////////////
   //supply intilization complete

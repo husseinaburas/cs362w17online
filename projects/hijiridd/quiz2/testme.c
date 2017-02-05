@@ -79,23 +79,24 @@ char *inputString()
 	}
 	//printf ("testCase = %d\n", testCase);
 
+	int i;
 	switch (testCase) {
 		case 0 :
 			// Case 0: fill all positions with random characters
-			for (int i = 0; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 0; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 1:
 			// Case 1: fill first position with 'r' and the rest with random characters
 			randString[0] = 'r';
-			for (int i = 1; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 1; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 2:
 			// Case 2: fill first 2 with 'r', 'e' and the rest with random characters
 			randString[0] = 'r';
 			randString[1] = 'e';
-			for (int i = 2; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 2; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 3:
@@ -103,7 +104,7 @@ char *inputString()
 			randString[0] = 'r';
 			randString[1] = 'e';
 			randString[2] = 's';
-			for (int i = 3; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 3; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 4:
@@ -112,7 +113,7 @@ char *inputString()
 			randString[1] = 'e';
 			randString[2] = 's';
 			randString[3] = 'e';
-			for (int i = 4; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 4; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 5:
@@ -122,7 +123,7 @@ char *inputString()
 			randString[2] = 's';
 			randString[3] = 'e';
 			randString[4] = 't';
-			for (int i = 5; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 5; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 		case 6:
@@ -133,7 +134,7 @@ char *inputString()
 			randString[3] = 'e';
 			randString[4] = 't';
 			randString[5] = '\0';
-			for (int i = 6; i<maxCharsInString; i++) { randString[i] = randChar (); }
+			for (i = 6; i<maxCharsInString; i++) { randString[i] = randChar (); }
 			randString[maxCharsInString+1] = '\0'; // add the end of string
 			break;
 	}

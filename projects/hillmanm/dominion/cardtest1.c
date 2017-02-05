@@ -1,6 +1,6 @@
 /*
  * cardtest1.c (smithy)
- *
+ * bug: changed for (i = 0; i < 3; i++) to for (i = 0; i < 2; i++)
   */
 
   
@@ -23,7 +23,8 @@ void my_assert(int test, char* msg)
 }
 
 int main() {
-    int newCards = 0;
+    int i;
+	int newCards = 0;
     int discarded = 1;
     int xtraCoins = 0;
     int shuffledCards = 0;
@@ -43,6 +44,13 @@ int main() {
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
+		
+	printf("BFhand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+	printf("BFdeck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
+	printf("BFcoins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
+
+	
+	
 	cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
 
 	newCards = 3;
@@ -54,6 +62,23 @@ int main() {
 	my_assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards + shuffledCards, "msg 2");
 	my_assert(testG.coins == G.coins + xtraCoins, "msg 3");
 
+	//check no change to supply card piles
+    printf("Verify no change to the supply card piles\n");
+
+    for (i=0; i<sizeof(testG.supplyCount)/sizeof(int); i++) {
+        printf("supply card count = %d, expected = %d\n", testG.supplyCount[i], G.supplyCount[i]);
+        my_assert(testG.supplyCount[i] == G.supplyCount[i], "msg 7"); 
+    }
+	
+	//check no change to other players deck
+    printf("other players deck count = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1]);
+    my_assert(testG.deckCount[thisPlayer + 1] == G.deckCount[thisPlayer + 1], "msg 6");
+       
+	//check no change to other players hand
+	printf("other players hand count = %d, expected %d\n", testG.handCount[thisPlayer + 1], G.handCount[thisPlayer + 1]);
+    my_assert(testG.handCount[thisPlayer + 1] == G.handCount[thisPlayer + 1], "msg 5");
+       
+	 	
 	
 	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
 
