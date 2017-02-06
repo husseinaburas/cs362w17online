@@ -12,7 +12,7 @@ void smithyCard(int handPos, struct gameState *state, int currentPlayer)
 	int i;
 
 	//Bug introduced.....iteration to 6 rather than 3
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -117,6 +117,8 @@ void villageCard(struct gameState* state, int handPos, int currentPlayer)
 
 	//+2 Actions
 
+
+	// 2/1/2017, remove bug for code understanding...
 	//Introduce bug here....
 	state->numActions = state->numActions++;
 
@@ -125,7 +127,16 @@ void villageCard(struct gameState* state, int handPos, int currentPlayer)
 
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
+
+
+
+
+
+
 }
+
+
+
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)

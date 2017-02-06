@@ -1374,7 +1374,7 @@ int great_hall_refact(struct gameState *state, int handPos) {
 void testAssert(int testNum, int *pass_count, int cmp) {
   if (cmp == 1) {
     *pass_count = *pass_count + 1;
-    printf(" >>> TEST %d PASSED\n", testNum);
+    printf("    STATUS: TEST %d PASSED\n", testNum);
   }
-  else {printf(" >>> TEST %d FAILED\n", testNum);}
+  else {printf("    STATUS: TEST %d FAILED\n", testNum);}
 }

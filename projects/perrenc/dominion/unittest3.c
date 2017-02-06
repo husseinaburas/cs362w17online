@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
 
 int testing_assert(int expression) {
     if (expression) {
-        printf("TEST SUCEEDED!\n");
+        printf("TEST SUCCEEDED!\n");
         return 1;
     } else {
         printf("TEST FAILED!\n");

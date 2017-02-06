@@ -399,15 +399,15 @@ int isGameOver(struct gameState *state) {
     }
 
   //if three supply pile are at 0, the game ends
-  j = 0;
-  for (i = 0; i < 25; i++)
+    j = 0;
+    for (i = 0; i < 25; i++)
     {
       if (state->supplyCount[i] == 0)
-	{
-	  j++;
-	}
+        {
+          j++;
+        }
     }
-  if ( j >= 3)
+    if ( j >= 3)
     {
       return 1;
     }
@@ -1176,7 +1176,7 @@ int playAdventurer(struct gameState *state){
     int z = 0;// this is the counter for the temp hand
 
 	
-	while(drawntreasure<2){
+	while(drawntreasure<3){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		  shuffle(currentPlayer, state);
 		}
@@ -1191,7 +1191,7 @@ int playAdventurer(struct gameState *state){
 		}
 	  }
 	  while(z-1>=0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z++-1]; // discard all cards in play that have been drawn
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	   z=z-1;
 	  }
 	  

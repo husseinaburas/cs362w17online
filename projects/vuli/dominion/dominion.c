@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -1212,6 +1214,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 
+
 int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3) {
   int temphand[MAX_HAND];
   int drawntreasure=0;
@@ -1265,7 +1268,7 @@ int cardEffectCouncil_Room(int handPos, int currentPlayer, struct gameState *sta
   state->numBuys++;
       
   //Each other player draws a card
-  for (i=i; i < state->numPlayers; i++) {
+  for (i=0; i < state->numPlayers; i++) {
     drawCard(i, state);
   }
       
@@ -1352,6 +1355,130 @@ int cardEffectMinion(int handPos, int currentPlayer, struct gameState *state, in
   }
   return 0;
 }
+
+
+
+/*********************************************************************
+* asserttrue()
+* Params:
+*     condition: statement to check validity; true if > 0
+*     r_main: increments if pass condition
+* Returns: None.
+*********************************************************************/
+void asserttrue(int condition, int* r_main) {
+  if (condition > 0) {
+    printf("Passed!\n");
+    (*r_main)++;
+  } else {
+    printf("FAILED!\n");
+  }
+}
+
+
+/*********************************************************************
+* getCardName()
+* Returns: String of card name.
+*********************************************************************/
+char* getCardName(int card) {
+  /* Array of card names, same order as enum CARD */
+  char* cardNames[] = 
+    {"curse",
+     "estate",
+     "duchy",
+     "province",
+
+     "copper",
+     "silver",
+     "gold",
+
+     "adventurer",
+     "council_room",
+     "feast",
+     "gardens",
+     "mine",
+     "remodel",
+     "smithy",
+     "village",
+
+     "baron",
+     "great_hall",
+     "minion",
+     "steward",
+     "tribute",
+
+     "ambassador",
+     "cutpurse",
+     "embargo",
+     "outpost",
+     "salvager",
+     "sea_hag",
+     "treasure_map"
+    };
+
+    return cardNames[card];
+}
+
+
+/********************************************************************
+* printCurrentPlayer()
+* Returns: Print current player's deck, hand, discard pile
+********************************************************************/
+void printCurrentPlayer(int currentPlayer, struct gameState* state) {
+  int i;
+  printf("Hand:\t");
+  for (i=0; i<state->handCount[currentPlayer]; i++)
+    printf("%s\t", getCardName(state->hand[currentPlayer][i]));
+  printf("\n");
+  printf("Deck:\t");
+  for (i=0; i<state->deckCount[currentPlayer]; i++)
+    printf("%s\t", getCardName(state->deck[currentPlayer][i]));
+  printf("\n");
+  printf("Discard:\t");
+  for (i=0; i<state->discardCount[currentPlayer]; i++)
+    printf("%s\t", getCardName(state->discard[currentPlayer][i]));
+  printf("\n");
+}
+
+
+/*********************************************************************
+* getNumCardsHand()
+* Returns: Return number of specific card in player's Hand
+*********************************************************************/
+int getNumCardsHand(int player, int card, struct gameState* state) {
+    int count=0, i;
+    for (i=0; i<state->handCount[player]; i++) {
+        if (state->hand[player][i] == card) count++;
+    }
+    return count;
+}
+
+
+/*********************************************************************
+* getNumCardsDeck()
+* Returns: Return number of specific card in player's Deck
+*********************************************************************/
+int getNumCardsDeck(int player, int card, struct gameState* state) {
+    int count=0, i;
+    for (i=0; i<state->deckCount[player]; i++) {
+        if (state->deck[player][i] == card) count++;
+    }
+    return count;
+}
+
+
+/*********************************************************************
+* getNumCardsDiscard()
+* Returns: Return number of specific card in player's Discard
+*********************************************************************/
+int getNumCardsDiscard(int player, int card, struct gameState* state) {
+    int count=0, i;
+    for (i=0; i<state->discardCount[player]; i++) {
+        if (state->discard[player][i] == card) count++;
+    }
+    return count;
+}
+
+
 
 //end of dominion.c
 

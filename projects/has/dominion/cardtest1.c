@@ -27,7 +27,7 @@ int main(int argc, char** argv){
     int* pass = 0;
 
 	// int defining number of tests
-	int numTests = 3;
+	int numTests = 4;
 	
 	// int store the current player
     int currentPlayer;
@@ -43,23 +43,67 @@ int main(int argc, char** argv){
     
     currentPlayer = game.whoseTurn;
 	
-	// set the first card in the current player's hand to smithy
+	// set the first card in the current player's hand to smithy and the rest to gold
 	game.hand[currentPlayer][0] = smithy;
+	game.hand[currentPlayer][1] = gold;
+	game.hand[currentPlayer][2] = gold;
+	game.hand[currentPlayer][3] = gold;
+	game.hand[currentPlayer][4] = gold;
+	
+	// set the deck to contain all sea hags
+	game.deck[currentPlayer][0] = sea_hag;
+	game.deck[currentPlayer][1] = sea_hag;
+	game.deck[currentPlayer][2] = sea_hag;
+	game.deck[currentPlayer][3] = sea_hag;
 			
 	// call the function to test
 	playSmithy(&game, 0, 0);
 	
+	//======================================================================================
+	
+	/* Test Case 1
+	 * Description: playedCardCount should be 1 after calling playsmithy()
+	 * This test should PASS.
+	 */
+	 
 	playedCardCount = game.playedCardCount;
 	
 	assertTrue(playedCardCount, 1, "CARD TEST 1", "smithy", 1, numTests, &pass);
+
+	//======================================================================================
 	
+	/* Test Case 2
+	 * Description: the first played card should be smithy after calling playsmithy()
+	 * This test should PASS.
+	 */
+	 	
 	playedCard = game.playedCards[0];
 	
 	assertTrue(playedCard, smithy, "CARD TEST 1", "smithy", 2, numTests, &pass);
+
+	//======================================================================================
+	
+	/* Test Case 3
+	 * Description: the player should have 7 cards in their hand after calling playsmithy()
+	 * This test should FAIL.
+	 */
 	
 	playerHandCount = game.handCount[currentPlayer];
-		
+			
 	assertTrue(playerHandCount, 7, "CARD TEST 1", "smithy", 3, numTests, &pass);
+	
+	//======================================================================================
+	
+	/* Test Case 4
+	 * Description: the first card in the players hand should be seahag after calling playsmithy()
+	 * This test should PASS
+	 */
+	
+	playerHandCount = game.hand[currentPlayer][0];
+				
+	assertTrue(playerHandCount, sea_hag, "CARD TEST 1", "smithy", 4, numTests, &pass);
+	
+	//======================================================================================
 	
     if( pass == 0){
     	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");

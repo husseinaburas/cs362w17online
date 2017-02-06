@@ -1,0 +1,11 @@
+Patrick Levy
+CS362 - Software Engineering II
+Random Testing Quiz 2
+
+My implementation of my random tester was primarily based off the idea that my inputChar() and inputString() functions should generate random possibilities as their return values.  This allows the testme() function to be run under many input values to see if the error condition is ever met.
+
+The inputChar() function returns a single character.  I created an array of possible chars to be returned from this function and then randomly chose one of them each time that the function was called.  Initially I only allowed this list of possible of chars to consist of values that could lead to the error condition in the testme() function.
+
+The inputString() function needs to return a string.  Like my implementation of the inputChar() function, I created an array of possible chars to build up the string and then randomly chose them until the string was the correct length.  My initial implementation only drew from characters that could be used to throw the error condition in testme().
+
+After successfully demonstrating that my implemation was able to throw the error condition in testme(), I began experimenting with the list of chars that the inputChar() and inputString() functions could use to build up their return values.  I found that expanding the list of possible return chars in inputChar() had a relatively insignificant effect on the time required for the testme() function to find the error condition.  Expanding the list of possible return chars in the inputString() function however had an extremely large impact on the time required to find the error condition.  In fact, when I expanded the list of possible chars to include the entire alphabet, the program didn't finish even after waiting about an hour.

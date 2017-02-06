@@ -259,8 +259,6 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     {
       return -1;
     }
-
-  cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus); 
 	
   //reduce number of actions
   state->numActions--;

@@ -28,7 +28,7 @@ int main () {
 	memcpy (&pre, &post, sizeof(struct gameState));
 
 	
-	//MAYBE REMOVE
+	
 	/*******************************************************
 	//Test for when the method is called and no card exists	
 	*******************************************************/
@@ -50,7 +50,7 @@ int main () {
 	//Test that checks if deckCount  is unchanged
 	a = pre.deckCount[0];
 	b = post.deckCount[0];
-	assertTrue(a==b,"deckCount was changed\n");
+	assertTrue(a-3==b,"deckCount did not decrement properly\n");
 
 	//Test if discardCount is incremented by 1
 	a = pre.discardCount[0];
@@ -62,6 +62,7 @@ int main () {
 	a = pre.handCount[0];
 	b = post.handCount[0];
 	assertTrue(a+2==b, "handCount did not increase\n");
-	
+
+	printf("\n\n");	
 	return 0;
 }	

@@ -35,9 +35,6 @@ int main(int argc, char** argv){
     // int storing the number of played cards
     int playedCardCount;
     
-    // int storing the number of cards in players hand
-    int playerHandCount;
-    
     // int storing the card that was played
     int playedCard;
     
@@ -49,27 +46,57 @@ int main(int argc, char** argv){
     
     currentPlayer = game.whoseTurn;
 	
-	// set the first card in the current player's hand to smithy
-	game.hand[currentPlayer][0] = village;
+	// set the first card in the current player's hand to great_hall
+	game.hand[currentPlayer][0] = great_hall;
 			
 	// call the function to test
 	playGreatHall(&game, 0, 0);
 	
+	//======================================================================================
+	
+	/* Test Case 1
+	 * Description: playedCardCount should be 1 after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
 	playedCardCount = game.playedCardCount;
 	
 	assertTrue(playedCardCount, 1, "CARD TEST 1", "great hall", 1, numTests, &pass);
-		
+	
+	//======================================================================================
+	
+	/* Test Case 2
+	 * Description: the first played card should be greathall after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
 	playedCard = game.playedCards[0];
 	
 	assertTrue(playedCard, great_hall, "CARD TEST 1", "great hall", 2, numTests, &pass);
-			
+
+	//======================================================================================
+	
+	/* Test Case 3
+	 * Description: number of actions should be 1 after calling playgreathall()
+	 * This test should FAIL.
+	 */
+	 
 	numActions = game.numActions;
 	
 	assertTrue(numActions, 1, "CARD TEST 1", "great hall", 3, numTests, &pass);
 	
+	//======================================================================================
+	
+	/* Test Case 4
+	 * Description: player's handcount should be 5 after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
 	numCards = game.handCount[currentPlayer];
 	
 	assertTrue(numCards, 5, "CARD TEST 1", "great hall", 4, numTests, &pass);
+		
+	//======================================================================================
 		
     if( pass == 0){
     	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
