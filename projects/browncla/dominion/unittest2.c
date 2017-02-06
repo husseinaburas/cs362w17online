@@ -36,7 +36,7 @@ int main(){
 	G.phase = 1; // setting phase to 1 for buying phase
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
-
+	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
 	preBuys = testG.numBuys;
 	preCoins = testG.coins;
 	result = buyCard(testCard1, &testG);
@@ -44,7 +44,6 @@ int main(){
 	postCoins = testG.coins;
 	// verify that buy happened
 	if (result == 0){
-
 		// testing only on inputs where buy is successful
 		printf("TESTS ON SUCCESSFUL BUY OF SILVER\n");
 
