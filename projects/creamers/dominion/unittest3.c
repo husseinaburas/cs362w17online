@@ -1,7 +1,7 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
- * unittest3.c - Testing isGameOver function
+ * unittest3.c - Testing fullDeckCount() function
  * Test 1: Province cards and supply cards are full
  * Test 2: Supply cards are depleted, province cards are not
  * Test 3: Province cards are depleted and supply cards are not
