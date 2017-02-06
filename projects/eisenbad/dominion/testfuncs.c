@@ -18,6 +18,15 @@
 #include "rngs.h"
 #include <stdlib.h>
 
+// custom assert function that increments the number of tests passed for a specific card/function
+void testAssert(int testNum, int *pass_count, int cmp) {
+  if (cmp == 1) {
+    *pass_count = *pass_count + 1;
+    printf("    STATUS: TEST %d PASSED\n", testNum);
+  }
+  else {printf("    STATUS: TEST %d FAILED\n", testNum);}
+}
+
 int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G) {
   struct gameState testG;
 
@@ -30,10 +39,10 @@ int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G
   memcpy(&testG, &G, sizeof(struct gameState));
   cardEffect(cutpurse, card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
 
-  printf("   bonus coins = %d, expected = %d\n", testG.coins, G.coins + card_state[5]);
+  printf("   bonus coins = %d, expected = %d\n", testG.coins - G.coins, xtraCoins);
 
   // assert test passed
-  if (testG.coins == G.coins + xtraCoins) {return 1;}
+  if (testG.coins - G.coins == xtraCoins) {return 1;}
   else {return 0;}
 }
 
