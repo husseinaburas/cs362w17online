@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 #define TESTCARD sea_hag
-#define TESTCARD_NAME "sea hag"
+#define TESTCARD_NAME "sea_hag"
 
 int main() {
   int pass_count = 0;

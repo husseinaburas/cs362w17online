@@ -1,4 +1,4 @@
-/******************************************************************************
+/****************************************************************************** 
 * cardtest 1: function runAdventure() tests dominion.c::cardEffect::adventurer.
 * cardtest1.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.

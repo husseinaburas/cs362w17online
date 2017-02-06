@@ -1,6 +1,6 @@
-/*
+/* matthew hillman
  * cardtest1.c (smithy)
- * bug: changed for (i = 0; i < 3; i++) to for (i = 0; i < 2; i++)
+ * bug: changed: for (i = 0; i < 3; i++) to: for (i = 0; i < 2; i++)
   */
 
   
