@@ -20,7 +20,6 @@
                     state->numBuys should be increased by 1
                     The card represented by choice1 should not be in the players deck
                     The salvager card should be the last discarded card
-*/
 int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos, int card){
    
 
@@ -53,4 +52,35 @@ int inHand(struct gameState *state, int currentPlayer, int choice1){
       }
     }
     return 1;
+}
+*/
+
+int main(){
+
+	int i;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+    int otherPlayer = 1;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 1: Test phase before and after is 0 -----------
+	// ----------- TEST 2: Test number of actions before is > 1 -----------
+	// ----------- TEST 3: Test number of actions after decreased by 1 -----------
+	// ----------- TEST 4: Test number of actions after is greater than 0 -----------
+	// ----------- TEST 5: Test handCount of player decreased by 2 -----------
+	// ----------- TEST 6: Test that the Salvager card is in the discard pile -----------
+	// ----------- TEST 7: Test that the players total number of cards has decreased by 1 -----------
+	// ----------- TEST 8: Test that the number of coins has increased by the value of choice 1 -----------
+	// ----------- TEST 9: Test that the number of buys has increased by 1 -----------
+	// ----------- TEST 10: Test that the number of victory (province, estate, duchy) cards has not changed -----------
+	// ----------- TEST 11: Test that number of kingdom cards (supply...) has not changed -----------
+	return 0;
 }
