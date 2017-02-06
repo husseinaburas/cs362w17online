@@ -4,6 +4,10 @@
     <df root="." name="0">
       <in>badTestDrawCard.c</in>
       <in>betterTestDrawCard.c</in>
+      <in>cardtest1.c</in>
+      <in>cardtest2.c</in>
+      <in>cardtest3.c</in>
+      <in>cardtest4.c</in>
       <in>dominion.c</in>
       <in>interface.c</in>
       <in>playdom.c</in>
@@ -16,7 +20,6 @@
       <in>testInit.c</in>
       <in>testShuffle.c</in>
       <in>testingtools.c</in>
-      <in>testingtools.h</in>
       <in>unittest1.c</in>
       <in>unittest2.c</in>
       <in>unittest3.c</in>
@@ -43,7 +46,7 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-g -fpic"/>
+        <element flagsID="0" commonFlags="-g -fpic -std=c99"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -68,7 +71,25 @@
       </item>
       <item path="betterTestDrawCard.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="dominion.c" ex="false" tool="0" flavor2="2">
+      <item path="cardtest1.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="cardtest2.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="cardtest3.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="cardtest4.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="dominion.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
       <item path="interface.c" ex="false" tool="0" flavor2="2">
       </item>
@@ -76,7 +97,7 @@
       </item>
       <item path="player.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="rngs.c" ex="false" tool="0" flavor2="0">
+      <item path="rngs.c" ex="false" tool="0" flavor2="3">
         <cTool flags="0">
         </cTool>
       </item>
@@ -92,17 +113,25 @@
       </item>
       <item path="testShuffle.c" ex="false" tool="0" flavor2="2">
       </item>
-      <item path="testingtools.c" ex="false" tool="0" flavor2="0">
+      <item path="testingtools.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
-      <item path="testingtools.h" ex="false" tool="3" flavor2="0">
+      <item path="unittest1.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
-      <item path="unittest1.c" ex="false" tool="0" flavor2="0">
+      <item path="unittest2.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
-      <item path="unittest2.c" ex="false" tool="0" flavor2="0">
+      <item path="unittest3.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
-      <item path="unittest3.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="unittest4.c" ex="false" tool="0" flavor2="0">
+      <item path="unittest4.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+        </cTool>
       </item>
     </conf>
   </confs>

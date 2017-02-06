@@ -29,11 +29,36 @@ int isGameOver(struct gameState *state) {
 }
 */
 
-// Test during the game
-// Test when game is expected to be over
-// Test province cards are empty/not empty
-// Test three supply piles empty/not empty
-//
+
+
+// DURING THE GAME
+// ----------- TEST 1: Test supplyCount[province] doesn't change -----------
+// ----------- TEST 2: Test supplyCount[province] is not equal to 0 -----------
+// ----------- TEST 3: Test supplyCounts do not change -----------
+// ----------- TEST 4: Test no three supply counts are 0 -----------
+
+// NO PROVINCE CARDS
+// ----------- TEST 5: Test supplyCount doesn't change for any cards -----------
+// ----------- TEST 6: Test supplyCount[province] = 0 -----------
+
+// 3 SUPPLY PILES AT 0
+// ----------- TEST 7: Test supplyCount doesn't change for any cards -----------
+// ----------- TEST 8: Test 3 piles have a count of 0 -----------
+
 int main(){
+
+	int i;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+    int otherPlayer = 1;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
 	return 0;
 }

@@ -212,7 +212,7 @@ int shuffle(int player, struct gameState *state) {
   /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
 
   while (state->deckCount[player] > 0) {
-    card = floor(Random() * state->deckCount[player]);
+    card = (int)(Random() * state->deckCount[player]);
     newDeck[newDeckPos] = state->deck[player][card];
     newDeckPos++;
     for (i = card; i < state->deckCount[player]-1; i++) {
@@ -1257,6 +1257,7 @@ int playAdventurer(struct gameState *state) {
 }
 
 int playSmithy(struct gameState *state, int handPos) {
+  int i;
   int currentPlayer = whoseTurn(state);
   //+3 Cards
   for (i = 1; i < 3; i++) {
@@ -1283,6 +1284,7 @@ int playVillage(struct gameState *state, int handPos) {
 }
 
 int playFeast(struct gameState *state, int choice1) {
+  int i;
   int currentPlayer = whoseTurn(state);
   int temphand[MAX_HAND];
   //gain card with cost up to 5
@@ -1295,7 +1297,7 @@ int playFeast(struct gameState *state, int choice1) {
 
   //Update Coins for Buy
   updateCoins(currentPlayer, state, 5);
-  x = 1;//Condition to loop on
+  int x = 1;//Condition to loop on
 
   while( x == 1) {//Buy one card
     if (supplyCount(choice1, state) <= 0){
@@ -1339,6 +1341,7 @@ int playFeast(struct gameState *state, int choice1) {
 }
 
 int playCouncil_Room(struct gameState *state, int handPos) {
+  int i;
   int currentPlayer = whoseTurn(state);
   //+4 Cards
   for (i = 0; i < 4; i++) {

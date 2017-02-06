@@ -44,7 +44,19 @@ unittest3.o: unittest3.c
 unittest4.o: unittest4.c
 	gcc -c unittest4.c -g $(CFLAGS)
 
-unittestresults.out: dominion.o rngs.o unittest1.o unittest2.o unittest3.o unittest4.o testingtools.o 
+cardtest1.o: cardtest1.c
+	gcc -c cardtest1.c -g $(CFLAGS)
+
+cardtest2.o: cardtest2.c
+	gcc -c cardtest2.c -g $(CFLAGS)
+
+cardtest3.o: cardtest3.c
+	gcc -c cardtest3.c -g $(CFLAGS)
+
+cardtest4.o: cardtest4.c
+	gcc -c cardtest4.c -g $(CFLAGS)
+
+unittestresults.out: dominion.o rngs.o unittest1.o unittest2.o unittest3.o unittest4.o cardtest1.o cardtest2.o cardtest3.o cardtest4.o testingtools.o 
 	gcc -o test.run -g dominion.o rngs.o unittest1.o testingtools.o $(CFLAGS)
 	./test.run 1234
 	./test.run 1234 > unittestresults.out
@@ -61,6 +73,26 @@ unittestresults.out: dominion.o rngs.o unittest1.o unittest2.o unittest3.o unitt
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 	gcc -o test.run -g dominion.o rngs.o unittest4.o testingtools.o $(CFLAGS)
+	./test.run 1234
+	./test.run 1234 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o test.run -g dominion.o rngs.o cardtest1.o testingtools.o $(CFLAGS)
+	./test.run 1234
+	./test.run 1234 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o test.run -g dominion.o rngs.o cardtest2.o testingtools.o $(CFLAGS)
+	./test.run 1234
+	./test.run 1234 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o test.run -g dominion.o rngs.o cardtest3.o testingtools.o $(CFLAGS)
+	./test.run 1234
+	./test.run 1234 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	gcc -o test.run -g dominion.o rngs.o cardtest4.o testingtools.o $(CFLAGS)
 	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
