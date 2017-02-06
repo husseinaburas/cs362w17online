@@ -18,6 +18,15 @@
 #include "rngs.h"
 #include <stdlib.h>
 
+// custom assert function that increments the number of tests passed for a specific card/function
+void testAssert(int testNum, int *pass_count, int cmp) {
+  if (cmp == 1) {
+    *pass_count = *pass_count + 1;
+    printf("    STATUS: TEST %d PASSED\n", testNum);
+  }
+  else {printf("    STATUS: TEST %d FAILED\n", testNum);}
+}
+
 int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G) {
   struct gameState testG;
 
