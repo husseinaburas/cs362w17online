@@ -20,10 +20,10 @@
 //Own assert function
 int asserttrue(int input, int number){
 	if (input){
-		printf("TEST %d SUCCESSFUL\n", number);
+		printf("\tTEST %d SUCCESSFUL\n", number);
 	}
 	else
-		printf("TEST %d FAILED\n", number);
+		printf("\tTEST %d FAILED\n", number);
 	return 0;
 }
 
