@@ -8,7 +8,7 @@
    Pass Conditions:
      1. Returns one if province supply is zero
      2. Returns one if three supply piles are zero
-	 3. First and last cards in card array are in range of isGameOver() supply checks
+     3. First and last cards in card array are in range of isGameOver() supply checks
      4. Returns zero if the province supply, and less than three supply piles, aren't zero
 */
 
