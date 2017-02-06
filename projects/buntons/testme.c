@@ -1,3 +1,9 @@
+/*********************************
+Name: Shirley Bunton
+Date: 02/05/2017
+Assignment: Random Test Quiz (Quiz 2)
+Course: CS362 Software Engineering II
+*********************************/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
