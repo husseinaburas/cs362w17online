@@ -35,7 +35,16 @@ player: player.c interface.o
 unittest1: unittest1.c
 	gcc -o unittest1 unittest1.c
 
+unittest2: unittest2.c
+	gcc -o unittest2 unittest2.c
+
+unittest3: unittest3.c
+	gcc -o unittest3 unittest3.c
+
+unittest4: unittest4.c
+	gcc- o unittest4 unittest4.c
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1 unittest2 unittest3
