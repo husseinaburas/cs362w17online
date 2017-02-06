@@ -5,7 +5,7 @@
 
 char inputChar()
 {
-    char returnChar = (rand() % 95) + 32;
+    char returnChar = (rand() % 128-33) + 32;
     return returnChar;
 }
 
