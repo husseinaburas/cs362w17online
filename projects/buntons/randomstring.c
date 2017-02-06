@@ -4,15 +4,6 @@ Date: 02/05/2017
 Assignment: Random Test Quiz (Quiz 2)
 Course: CS362 Software Engineering II
 
-----------------------------------------
-gcov results:
-----------------------------------------
-File 'testme.c'
-Lines executed:97.22% of 36
-Branches executed:100.00% of 52
-Taken at least once:96.15% of 52
-Calls executed:100.00% of 10
-Creating 'testme.c.gcov'
 
 ----------------------------------------
 char* inputString();
