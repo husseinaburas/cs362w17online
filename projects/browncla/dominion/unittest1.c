@@ -13,6 +13,7 @@
 
 
 // Test that the deck count before and after are the same
+// Test that the deck is in a different order
 // Test that all the same cards are still in the deck
 // Test that it only affects the deck of the current player
 
@@ -59,8 +60,7 @@ int main() {
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
-
-	// ----------- TEST 1: Same number of cards before and after --------------
+	printf("\nTESTS WITH INITIALIZED CARDS\n");
 	printf("TEST 1: Same number of cards before and after\n");
 
 	// copy the game state to a test case
@@ -71,42 +71,27 @@ int main() {
 	asserttrue(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer], 1);
 
 
-	// ----------- TEST 2: Same cards are still in the deck with right counts --------------
-	printf("TEST 2: Same cards are still in the deck with right counts\n");
+	// ----------- TEST 2: Cards are in a different order --------------
 
-	qsort ((void*)(testG.deck[thisPlayer]), testG.deckCount[thisPlayer], sizeof(int), cmpfunc); 
-	qsort ((void*)(	G.deck[thisPlayer]), G.deckCount[thisPlayer], sizeof(int), cmpfunc); 
-
+	printf("TEST 2: Cards are in a different order\n");
 	for (i = 0; i < testG.deckCount[thisPlayer]; i++){
-			if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]){
-
-				asserttrue(0, 2);
-				success = 0;
-			    break;
-			}
-			else {
-				success = 1;
-			}
-	}
-	if (success == 1)
+		if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]){
 			asserttrue(1, 2);
+			success = 0;
+			break;
+		}
+		else{
+			success = 1;
+		}
+		
+	}
+	if (success == 1){
+			asserttrue(0, 2);
+		}
 
 
-	// ----------- TEST 3: Changing 3 cards and testing count  -----------
-	printf("TEST 3: Changing 3 cards and testing count\n");
-
-	G.deck[thisPlayer][2] = 8;
-	G.deck[thisPlayer][1] = 3;
-	G.deck[thisPlayer][4] = 9;
-
-	memcpy(&testG, &G, sizeof(struct gameState));
-
-	shuffle(thisPlayer, &testG);
-
-	asserttrue(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer], 3);
-
-	// ---------- TEST 4: Changing 3 cards and testing all cards still in deck -----------
-	printf("TEST 4: Changing 3 cards and testing all cards still in deck\n");
+	// ----------- TEST 3: Same cards are still in the deck with right counts --------------
+	printf("TEST 3: Same cards are still in the deck with right counts\n");
 
 	qsort ((void*)(testG.deck[thisPlayer]), testG.deckCount[thisPlayer], sizeof(int), cmpfunc); 
 	qsort ((void*)(	G.deck[thisPlayer]), G.deckCount[thisPlayer], sizeof(int), cmpfunc); 
@@ -114,7 +99,7 @@ int main() {
 	for (i = 0; i < testG.deckCount[thisPlayer]; i++){
 			if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]){
 
-				asserttrue(0, 4);
+				asserttrue(0, 3);
 				success = 0;
 			    break;
 			}
@@ -122,11 +107,12 @@ int main() {
 				success = 1;
 			}
 	}
-	if (success == 1)
-			asserttrue(1, 4);
+	if (success == 1){
+		asserttrue(1, 3);
+	}
 
-	// ----------- TEST 5: Testing deck of other player stays the same -----------
-	printf("TEST 5: Testing deck of other player stays the same\n");
+		// ----------- TEST 4: Testing deck of other player stays the same -----------
+	printf("TEST 4: Testing deck of other player stays the same\n");
 	memcpy(&testG, &G, sizeof(struct gameState));
 	
 	shuffle(thisPlayer, &testG);
@@ -142,6 +128,79 @@ int main() {
 			}
 	}
 	if (success == 1)
-		asserttrue(1, 5);
+		asserttrue(1, 4);
+
+	printf("\nTESTS AFTER ADDING 3 CARDS TO PLAYER 1\n");
+	// ----------- TEST 5: Adding 3 cards and testing count  -----------
+	printf("TEST 5: Same number of cards before and after\n");
+
+	G.deckCount[thisPlayer] += 3;
+
+	G.deck[thisPlayer][5] = 8;
+	G.deck[thisPlayer][6] = 3;
+	G.deck[thisPlayer][7] = 9;
+
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	shuffle(thisPlayer, &testG);
+
+	asserttrue(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer], 5);
+
+		// ----------- TEST 6: Adding 3 cards and testing cards are in a different order --------------
+
+	printf("TEST 6: Cards are in a different order\n");
+	for (i = 0; i < testG.deckCount[thisPlayer]; i++){
+		if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]){
+			asserttrue(1, 2);
+			success = 0;
+			break;
+		}
+		else{
+			success = 1;
+		}
+		
+	}
+	if (success == 1){
+			asserttrue(0, 6);
+		}
+
+	// ---------- TEST 7: Adding 3 cards and testing all cards still in deck -----------
+	printf("TEST 7: Same cards are still in the deck with right counts\n");
+
+	qsort ((void*)(testG.deck[thisPlayer]), testG.deckCount[thisPlayer], sizeof(int), cmpfunc); 
+	qsort ((void*)(	G.deck[thisPlayer]), G.deckCount[thisPlayer], sizeof(int), cmpfunc); 
+
+	for (i = 0; i < testG.deckCount[thisPlayer]; i++){
+			if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]){
+
+				asserttrue(0, 7);
+				success = 0;
+			    break;
+			}
+			else {
+				success = 1;
+			}
+	}
+	if (success == 1)
+			asserttrue(1, 7);
+
+	// ----------- TEST 8: Testing deck of other player stays the same -----------
+	printf("TEST 8: Testing deck of other player stays the same\n");
+	memcpy(&testG, &G, sizeof(struct gameState));
+	
+	shuffle(thisPlayer, &testG);
+	for (i = 0; i < testG.deckCount[otherPlayer]; i++){
+		if (testG.deck[otherPlayer][i] != G.deck[otherPlayer][i]){
+
+				asserttrue(0, 8);
+				success = 0;
+			    break;
+			}
+			else {
+				success = 1;
+			}
+	}
+	if (success == 1)
+		asserttrue(1, 8);
 	return 0;
 }

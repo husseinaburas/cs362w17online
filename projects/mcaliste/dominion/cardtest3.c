@@ -2,12 +2,10 @@
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -19,8 +17,6 @@ int main() {
   int kingdom[10] = {adventurer, council_room, steward, gardens, mine, remodel,
     smithy, village, baron, great_hall};
   int result, currentPlayer, actions, oldHandCount, oldDeckCount, oldCoinCount;
-  int choice1, choice2, choice3;
-  int testHand[MAX_HAND];
 
   printf("*** Unit testing stewardCard() ***\n");
   result = initializeGame(numPlayers, kingdom, seed, &state);

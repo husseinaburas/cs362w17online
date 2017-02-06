@@ -7,9 +7,9 @@
    be placed into the players hand. The remaining revealed cards are discarded.
 
    Pass Conditions:
-     1. No extra coins are awarded to the current player
+     1. No extra coins are awarded to current player
      2. No extra actions are gained
-     3. No state change occurs to the victory card piles or kingdom card piles
+     3. No state change occurs to victory card piles or kingdom card piles
      4. No state change occurs for other players
      5. Current player receives up to two treasures from their deck
      6. Cards revealed while searching for treasures are in the discard pile
@@ -30,7 +30,6 @@ int main() {
   int pass_count = 0;
 
   // variables for comparing player's state after playing card
-  int newCards = 0;
   int discarded = 1;
   int xtraCoins = 0;
   int xtraActions = 0;
@@ -56,7 +55,6 @@ int main() {
   initializeGame(numPlayers, k, seed, &G);
 	
   int thisPlayer = G.whoseTurn;
-  int nextPlayer = thisPlayer + 1;
 	
   // put testcard in 0th position of player's hand
   G.supplyCount[G.hand[thisPlayer][0]]++; // restore supply of card to be removed from hand

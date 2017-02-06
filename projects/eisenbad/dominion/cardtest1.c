@@ -6,9 +6,9 @@
    and when played lets the player draw three additional cards from the top of their deck into their hand.
 
    Pass Conditions:
-     1. No extra coins are awarded to the current player
+     1. No extra coins are awarded to current player
      2. No extra actions are gained
-     3. No state change occurs to the victory card piles or kingdom card piles
+     3. No state change occurs to victory card piles or kingdom card piles
      4. No state change occurs for other players
      5. Current player receives exactly three cards
      6. Extra three cards come from player's own deck
@@ -39,7 +39,6 @@ int main() {
   card_state[0] = TESTCARD; card_state[1] = choice1; card_state[2] = choice2;
   card_state[3] = choice3; card_state[4] = handpos; card_state[5] = bonus;
 	
-  int i;
   int seed = 1000;  // sets the state of the current random number generator stream, bc seed > 0; used in shuffle()
   int numPlayers = 2;
   struct gameState G, testG;
@@ -50,7 +49,6 @@ int main() {
   initializeGame(numPlayers, k, seed, &G);
 	
   int thisPlayer = G.whoseTurn;
-  int nextPlayer = thisPlayer + 1;
 	
   // put testcard in 0th position of player's hand
   G.supplyCount[G.hand[thisPlayer][0]]++; // restore supply of card to be removed from hand
@@ -60,7 +58,7 @@ int main() {
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
   /**************************************** TEST 1 ****************************************************/
-  // verify that no extra coins are awarded to the current player
+  // verify that no extra coins are awarded to current player
   testAssert(1, &pass_count, checkCoins(1, card_state, xtraCoins, G));
 
   /**************************************** TEST 2 ****************************************************/
@@ -68,7 +66,7 @@ int main() {
   testAssert(2, &pass_count, checkActions(2, card_state, xtraActions, G));
 
   /**************************************** TEST 3 ****************************************************/
-  // verify that no state change occurs to the victory card piles or kingdom card piles
+  // verify that no state change occurs to victory card piles or kingdom card piles
   testAssert(3, &pass_count, checkSupplyCount(3, card_state, G));
 
   /**************************************** TEST 4 ****************************************************/

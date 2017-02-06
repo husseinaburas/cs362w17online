@@ -5,35 +5,33 @@
 
 char inputChar()
 {
-  // TODO: rewrite this function
+    // TODO: rewrite this function
+    char c;
 
-  //Returns a random printable ASCII character
-  //ASCII printable characters range from 32 to 127
-  return (char) (32 + (rand() % 96));
+    char randomChar [13]= {'[','(','{',' ','a','x','}',')',']','d','e','t','y'};
+    int randomNumGene = rand() % 13;
+
+    c = randomChar[randomNumGene];
+
+    return c;
 }
 
 char *inputString()
 {
-  // TODO: rewrite this function
+    // TODO: rewrite this function
+    char *randomString = malloc(6);
 
-  //For simplification purposes, string length is hard coded to 5 (plus the '\0')
-  //See writeString.c for more details
-  int strLen = 5;
-  //Length of string is increased by 1 to account for the extra '\0'
-  char *newStr = malloc( (strLen + 1) * sizeof(char) );
-
-  int i;
-  for (i = 0; i < strLen;  i++)
-  {
-    newStr[i] = inputChar();
-
-  } 
-
-  //Remember to terminate string 
-  newStr[strLen] = '\0';
-
-  return newStr;
-
+    char ch;
+    char randomChar [8]= {'r','e','s','t',']','{','x','y'}; 
+       
+    int i;
+    for(i = 0; i < 5; i++)
+    {
+      int randomNumGene = rand() % 8;
+      randomString[i] = randomChar[randomNumGene];
+    }
+    randomString[5] = '\0';
+    return randomString;
 }
 
 void testme()
@@ -58,10 +56,7 @@ void testme()
     if (c == '}' && state == 6) state = 7;
     if (c == ')' && state == 7) state = 8;
     if (c == ']' && state == 8) state = 9;
-    if (s[0] == 'r' && s[1] == 'e'
-       && s[2] == 's' && s[3] == 'e'
-       && s[4] == 't' && s[5] == '\0'
-       && state == 9)
+    if (s[0] == 'r' && s[1] == 'e' && s[2] == 's' && s[3] == 'e' && s[4] == 't' && s[5] == '\0' && state == 9)
     {
       printf("error ");
       exit(200);
