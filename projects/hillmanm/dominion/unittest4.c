@@ -1,5 +1,5 @@
 /*
- * unittest4.c (supplyCount)
+ * unittest4.c supplyCount()
  * 
  */
 
