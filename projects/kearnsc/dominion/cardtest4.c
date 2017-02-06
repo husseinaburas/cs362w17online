@@ -1,6 +1,6 @@
 /****************************************************************************** 
-* cardtest 2: mine() tests dominion.c::cardEffect::mine.
-* cardtest2.c is a unit testing program for the above function contained within
+* cardtest 4: mine() tests dominion.c::cardEffect::mine.
+* cardtest4.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017
 ******************************************************************************/
