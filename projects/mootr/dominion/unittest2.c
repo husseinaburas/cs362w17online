@@ -8,20 +8,20 @@
  * it
  * 	should return 0.
  */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "dominion.c"
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.c"
 #include "rngs.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-#define UNIT_ASSERT(conditional, message)                                      \
-  if (!conditional) {                                                          \
-    printf("%s FAIL\n", message);                                              \
-  } else {                                                                     \
-    printf("%s PASS\n", message);                                              \
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
   }
 
 int main(int argv, char **argc) {
