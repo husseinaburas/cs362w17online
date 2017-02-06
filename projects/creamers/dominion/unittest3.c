@@ -2,10 +2,9 @@
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
  * unittest3.c - Testing fullDeckCount() function
- * Test 1: Province cards and supply cards are full
- * Test 2: Supply cards are depleted, province cards are not
- * Test 3: Province cards are depleted and supply cards are not
- * Test 4: Province and supply cards are depleted
+ * Test 1: Number of players is 2
+ * Test 2: Number of players is 3
+ * Test 3: Number of players is 4
  *
  * Include the following lines in your makefile:
  *
