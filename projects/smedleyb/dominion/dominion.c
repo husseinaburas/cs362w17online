@@ -5,6 +5,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+
+
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -387,6 +389,7 @@ int endTurn(struct gameState *state) {
   return 0;
 }
 
+// returns 1 if game is over; 0 otherwise
 int isGameOver(struct gameState *state) {
   int i;
   int j;
@@ -654,10 +657,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int nextPlayer = currentPlayer + 1;
 
   int tributeRevealedCards[2] = {-1, -1};
-  int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,13 +666,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      return playAdventurer(state, drawntreasure, currentPlayer, cardDrawn, temphand, z);
+      return playAdventurer(state, currentPlayer);
 			
     case council_room:
       return playCouncil_Room(state, handPos, currentPlayer);
 			
     case feast:
-      return playFeast(state, choice1, temphand, currentPlayer);
+      return playFeast(state, choice1, currentPlayer);
 			
     case gardens:
       return -1;
@@ -1238,11 +1237,14 @@ int playSmithy(struct gameState *state, int handPos, int currentPlayer){
   return 0;
 }
 
-int playAdventurer(struct gameState *state, int drawntreasure, int currentPlayer, int cardDrawn, int *temphand, int z){
+int playAdventurer(struct gameState *state, int currentPlayer){
+  int drawntreasure = 0, z = 0, cardDrawn;
+  int temphand[MAX_HAND];
   while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
+
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
@@ -1250,7 +1252,7 @@ int playAdventurer(struct gameState *state, int drawntreasure, int currentPlayer
 	else{
 	  temphand[z]=cardDrawn;
 	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	  z += 2;
+	  z += 2;//is adding 2
 	}
   }
   while(z-1>=0){
@@ -1272,10 +1274,11 @@ int playVillage(struct gameState *state, int handPos, int currentPlayer){
       	return 0;
 }
 
-int playFeast(struct gameState *state, int choice1, int *temphand, int currentPlayer){
+int playFeast(struct gameState *state, int choice1, int currentPlayer){
 //gain card with cost up to 5
       //Backup hand
       int i;
+      int temphand[MAX_HAND];
       for (i = 0; i <= state->handCount[currentPlayer]; i++){
 	temphand[i] = state->hand[currentPlayer][i];//Backup card
 	state->hand[currentPlayer][i] = -1;//Set to nothing
@@ -1352,4 +1355,3 @@ int playCouncil_Room(struct gameState *state, int handPos, int currentPlayer){
       return 0;
 }
 //end of dominion.c
-

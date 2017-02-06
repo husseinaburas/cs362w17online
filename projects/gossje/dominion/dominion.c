@@ -709,7 +709,13 @@ int playFeast(struct gameState *state, int choice1){
 				printf("None of that card left, sorry!\n");
 				printf("Cards Left: %d\n", supplyCount(choice1, state));
 			}
+<<<<<<< HEAD
 		        x = 0;
+=======
+			
+			x = 0;
+		
+>>>>>>> 7497e495f338a72c8084638639e98e4d1a2b7545
                 }
 
 		else if (state->coins < getCost(choice1)){
@@ -717,6 +723,10 @@ int playFeast(struct gameState *state, int choice1){
 				printf("That card is too expensive!\n");
 				printf("Coins: %d < %d\n", state->coins, getCost(choice1));
 			}
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 7497e495f338a72c8084638639e98e4d1a2b7545
 			x = 0;
 		}
 

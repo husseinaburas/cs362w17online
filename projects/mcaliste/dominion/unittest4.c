@@ -1,12 +1,10 @@
 // test for isGameOver()
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -29,12 +27,21 @@ int main() {
     assertResult(isGameOver(&state) == 1);
 
     state.supplyCount[province] = 8;
-    printf("Test 3 empty supply cards isGameOver():\n");
+    printf("Test 3 empty supply cards outer boundary isGameOver():\n");
     state.supplyCount[gold] = 0;
     state.supplyCount[tribute] = 0;
     state.supplyCount[sea_hag] = 0;
+    // bug: this should be true, except the test loop stops before sea hag
     assertResult(isGameOver(&state) == 1);
 
+    printf("Test 3 empty supply cards inside boundary isGameOver():\n");
+    state.supplyCount[gold] = 0;
+    state.supplyCount[tribute] = 0;
+    state.supplyCount[smithy] = 0;
+    // retested within the loop boundary
+    assertResult(isGameOver(&state) == 1);
+
+    state.supplyCount[smithy] = 8;
     printf("Test 2 empty supply cards isGameOver():\n");
     state.supplyCount[gold] = 0;
     state.supplyCount[tribute] = 0;

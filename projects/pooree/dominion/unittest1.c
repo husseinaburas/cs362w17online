@@ -75,6 +75,8 @@ int main() {
     if (G.hand[currentPlayer][testG.handCount[currentPlayer]] != -1) 
         failedTest();
 
+    /*Write tests for how discard should be changing..... */
+
 
     printf("------------ Testing complete for: %s -----------------------\n", TESTFUNCTION);
     return 0;

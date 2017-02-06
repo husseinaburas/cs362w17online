@@ -1356,7 +1356,6 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card
 
       int i;
       int startNumCards = state->handCount[currentPlayer];
-      printf("start num cards: %d\n", startNumCards);
       //+3 Cards
       for (i = 0; i <= 3; i++) //BUG
         {
@@ -1365,7 +1364,6 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card
             
       //discard smithy card from hand
       discardCard(handPos, currentPlayer, state, 0);
-      printf("end num cards: %d\n", state->handCount[currentPlayer]);
 
       return 0;
     }
@@ -1384,8 +1382,6 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card
 int playVillage(struct gameState *state, int currentPlayer, int handPos, int card){
    
 
-       int origNumActions = state->numActions;
-       int startNumCards = state->handCount[currentPlayer];
      //+1 Card
       drawCard(currentPlayer, state);
       
