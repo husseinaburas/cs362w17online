@@ -7,41 +7,6 @@
 #include "rngs.h"
 #include <stdlib.h>
 #define FUNCTION_NAME "buyCard"
-/* int buyCard(int supplyPos, struct gameState *state) {
-  int who;
-  if (DEBUG){
-    printf("Entering buyCard...\n");
-  }
-  who = state->whoseTurn;
-
-  if (state->numBuys < 1){
-    if (DEBUG)
-      printf("You do not have any buys left\n");
-    return -1;
-  } else if (supplyCount(supplyPos, state) <1){
-    if (DEBUG)
-      printf("There are not any of that type of card left\n");
-    return -1;
-  } else if (state->coins < getCost(supplyPos)){
-    if (DEBUG) 
-      printf("You do not have enough money to buy that. You have %d coins.\n", state->coins);
-    return -1;
-  } else {
-    state->phase=1;
-    //state->supplyCount[supplyPos]--;
-    gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
-  
-    state->coins = (state->coins) - (getCost(supplyPos));
-    state->numBuys--;
-    if (DEBUG)
-      printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
-  }
-
-  //state->discard[who][state->discardCount[who]] = supplyPos;
-  //state->discardCount[who]++;
-    
-  return 0;
-*/
 
 //Own assert function
 int asserttrue(int input, int number){
@@ -52,6 +17,7 @@ int asserttrue(int input, int number){
 		printf("\tTEST %d FAILED\n", number);
 	return 0;
 }
+
 
 int main(){
     int i;
@@ -152,9 +118,9 @@ int main(){
 			asserttrue(0, 6);
 		}
 		
-		// ----------- TEST 7: Test that the supply count for bought card decreased by 1 -----------
+		// ----------- TEST 7: Test that the supply count for silver decreased by 1 -----------
 
-		printf("%s TEST 7: Supply count for bought card decreases by 1\n", FUNCTION_NAME);
+		printf("%s TEST 7: Supply count for silver decreases by 1\n", FUNCTION_NAME);
 		preCount = G.supplyCount[testCard1];
 		postCount = testG.supplyCount[testCard1];
 		if (preCount - postCount == 1){
@@ -164,8 +130,8 @@ int main(){
 			asserttrue(0, 7);
 		}
 
-	// ----------- TEST 8: Test that the supply count for bought card did not go below 0 -----------
-		printf("%s TEST 8: Supply count for bought card did not go below 0\n", FUNCTION_NAME);
+	// ----------- TEST 8: Test that the supply count for silver did not go below 0 -----------
+		printf("%s TEST 8: Supply count for silver did not go below 0\n", FUNCTION_NAME);
 		if (postCount >= 0){
 			asserttrue(1, 8);
 		}
@@ -176,16 +142,140 @@ int main(){
 	else{
 		printf("Tests 1-8 could not be run due to unsuccessful buy\n");
 	}
+	printf("\nTESTS ON EXPECTED FAILURES\n");
 	// ----------- TEST 9: Test that the function cannot be called if the phase is not 1 -----------
+	printf("%s TEST 9: Function returns error when phase is not buy (1)\n", FUNCTION_NAME);
+	memcpy(&testG, &G, sizeof(struct gameState)); // resetting game state
+	testG.phase = 0; // setting phase to other than 1
+	result = buyCard(testCard1, &testG);
+	if (result == -1){
+		asserttrue(1, 9);
+	} 
+	else{
+		asserttrue(0, 9);
+	}
 
-	// ----------- TEST 10: Test that cannot buy a card if number of buys is 0 -----------
+	// ----------- TEST 10: Test state did not change after unsuccessful buy -----------
+	printf("%s TEST 10: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	if (testG.coins != G.coins){
+		asserttrue(0, 10);
+	}
+	else if (testG.numBuys != G.numBuys){
+		asserttrue(0, 10);
 
-	// ----------- TEST 11: Test that cannot buy a card if no cards of that type available -----------
+	} 
+	else if ((G.handCount[player] + G.deckCount[player] + G.discardCount[player] + G.playedCardCount) != (
+	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
+		asserttrue(0, 10);
+	}
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+		asserttrue(0, 10);
+	}
+	else{
+		asserttrue(1, 10);
+	}
 
-	// ----------- TEST 12: Test that cannot buy a card if player does not have enough money -----------
+	// ----------- TEST 11: Test that cannot buy a card if number of buys is 0 -----------
+	printf("%s TEST 11: Function returns error when number of buys is 0\n", FUNCTION_NAME);
+	memcpy(&testG, &G, sizeof(struct gameState)); // resetting game state
+	
+	testG.numBuys = 0; //settin number of buys to 0
+	preBuys = testG.numBuys;
+	result = buyCard(testCard1, &testG);
+	if (result == -1){
+		asserttrue(1, 11);
+	} 
+	else{
+		asserttrue(0, 11);
+	}
 
+	// ----------- TEST 12: Test state did not change after unsuccessful buy -----------
+	printf("%s TEST 12: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	if (testG.coins != G.coins){
+		asserttrue(0, 12);
+	}
+	else if (testG.numBuys != preBuys){
+		asserttrue(0, 12);
 
+	} 
+	else if ((G.handCount[player] + G.deckCount[player] + G.discardCount[player] + G.playedCardCount) != (
+	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
+		asserttrue(0, 12);
+	}
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+		asserttrue(0, 12);
+	}
+	else{
+		asserttrue(1, 12);
+	}
 
+	// ----------- TEST 13: Test that cannot buy a card if no cards of that type available -----------
+	printf("%s TEST 13: Function returns error if no cards of that type available\n", FUNCTION_NAME);
+	memcpy(&testG, &G, sizeof(struct gameState)); // resetting game state
+	testG.supplyCount[testCard1] = 0; // setting test card count to 0
+	result = buyCard(testCard1, &testG);
+	if (result == -1){
+		asserttrue(1, 13);
+	} 
+	else{
+		asserttrue(0, 13);
+	}
+
+	// ----------- TEST 14: Test state did not change after unsuccessful buy -----------
+	printf("%s TEST 14: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	if (testG.coins != G.coins){
+		asserttrue(0, 14);
+	}
+	else if (testG.numBuys != G.numBuys){
+		asserttrue(0, 14);
+
+	} 
+	else if ((G.handCount[player] + G.deckCount[player] + G.discardCount[player] + G.playedCardCount) != (
+	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
+		asserttrue(0, 14);
+	}
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+		asserttrue(0, 14);
+	}
+	else{
+		asserttrue(1, 14);
+	}
+	// ----------- TEST 15: Test that cannot buy a card if player does not have enough money -----------
+	printf("%s TEST 15: Function returns error if player does not have enough money\n", FUNCTION_NAME);
+	memcpy(&testG, &G, sizeof(struct gameState)); // resetting game state
+	result = buyCard(testCard2, &testG);
+	if (result == -1){
+		asserttrue(1, 15);
+	} 
+	else{
+		asserttrue(0, 15);
+	}
+
+	// ----------- TEST 16: Test state did not change after unsuccessful buy -----------
+	printf("%s TEST 16: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	if (testG.coins != G.coins){
+		asserttrue(0, 16);
+	}
+	else if (testG.numBuys != G.numBuys){
+		asserttrue(0, 16);
+
+	} 
+	else if ((G.handCount[player] + G.deckCount[player] + G.discardCount[player] + G.playedCardCount) != (
+	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
+		asserttrue(0, 16);
+	}
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+		asserttrue(0, 16);
+	}
+	else{
+		asserttrue(1, 16);
+	}
+
+	
 
 	return 0;
 }
