@@ -42,14 +42,24 @@ int main () {
   //set the current player's card to Smithy
   GS.hand[0][0] = smithy; 
 
+  //store the current deckCount
+  int priorDeckCount = GS.deckCount[0];
+
   //Play the smithy card
   //test that it works at all
   printf("TESTING - playSmithy() executes successfully\n");
   assertTrue((playSmithy(&GS, 0, 0)), 0);
 
   //test that it works as intended 
-  printf("TESTING - playSmithy()'s incrementing of handCount\n");
+  printf("TESTING - playSmithy()'s incrementing of handCount by drawing 3 cards \n");
   assertTrue(GS.handCount[0], 4);
+
+  printf("TESTING - playSmity() decreases the deckCount\n");
+  assertTrue((priorDeckCount - GS.deckCount[0]), 3);
+
+  printf("TESTING - playSmithy() discarded the smithy card\n");
+  assertTrue(GS.discard[0][0], smithy);
+
   printf("TESTING--Smithy card -- COMPLETE\n\n");
   
   return 0;

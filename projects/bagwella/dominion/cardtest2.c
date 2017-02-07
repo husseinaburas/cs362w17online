@@ -30,7 +30,9 @@ int main()
 	//set up variables for testing
 	struct gameState GS;
 	int c[10] = {adventurer, ambassador, gardens, great_hall, mine, minion, smithy, salvager, steward, village};
-	int playedCardsCount, handCount, cardPlayed, actionCount, cardsNum, treasureDrawn = 0, priorHandCount, cardsDiscounted, cardDrawn = 0, z=0;
+	//another list of cards to put on the deck for testing
+	int deckCards[6] = {silver, council_room, gold, baron, mine, copper};
+	int treasureDrawn = 0, priorHandCount, cardsDiscounted, cardDrawn = 0, z=0;
 	int tempH[MAX_HAND];
 
 	printf("*************************************\n");
@@ -46,25 +48,36 @@ int main()
 	//set the current player's card to adventurer
 	GS.hand[0][0] = adventurer;
 
-	//set up the deck
-	GS.deck[0][0] = copper;
-	GS.deck[0][1] = council_room;
-	GS.deck[0][2] = steward;
-	GS.deck[0][4] = silver; 
-	GS.deck[0][5] = minion;
+	//set up the deck with some treasure cards spaced out so card will have to be discarded
+	for (int i = 0; i < 6; i++) {
+
+		GS.deck[0][i] = deckCards[i];
+		GS.deckCount[0]++;
+	}
 	
 	priorHandCount = GS.handCount[0];
 	cardsDiscounted = GS.discardCount[0];
 	
 	printf("Calling playAdventurer..\n");
-	playAdventurer(treasureDrawn, &GS, GS.whoseTurn, &tempH, cardDrawn, z);
+	printf("TESTING - playAdventurer() executes properly\n");
+	assertTrue(playAdventurer(treasureDrawn, &GS, GS.whoseTurn, &tempH, cardDrawn, z), 0);
 
 	printf("TESTING - playAdventurer()'s incrementing of handCount\n");
 	assertTrue((GS.handCount[0] - priorHandCount), 1);
 
+	printf("TESTING - playAdventurer adding treasure cards to player's hand\n");
 
-	printf("TESTING - playAdventurer()'s incrementing of handCount\n");
-	assertTrue((GS.discardCount[0] - cardsDiscounted), 3);
+	int treasureCount = 0;
+	for (int x = 0; x < GS.handCount[0]; x++) {
+
+		if (GS.hand[0][x]==gold || GS.hand[0][x]==silver || GS.hand[0][x]==copper) 
+			treasureCount++;
+	}
+
+	assertTrue(treasureCount, 2);
+
+	printf("TESTING - playAdventurer()'s discarding until 2 treasure cards are found\n");
+	assertTrue((GS.discardCount[0] - cardsDiscounted), 2);
 
 	printf("TESTING--adventurer card -- COMPLETE\n\n");
 	

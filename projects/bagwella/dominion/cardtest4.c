@@ -36,16 +36,21 @@ int main () {
 	
 	//Standard initialization across all my tests...except you need 3 players here for testing
 	initializeGame(2, c, 5, &GS);
+	
 	//Set the current player's handcount to 1 and their numActions to 1
 	GS.handCount[0] = 1;
 	GS.numActions = 1;
 
 	printf("Calling the great_hall card..\n");
+
 	printf("TESTING - great_hall executes successfully\n");
 	assertTrue(playGreatHall(&GS, 0, 0), 0);
 
-	printf("TESTING - great_hall changes handCount -draw a card and discard great_hall\n");
+	printf("TESTING - great_hall changes handCount by drawing card\n");
 	assertTrue(GS.handCount[0], 1);
+
+	printf("TESTING - great_hall is discarded\n");
+	assertTrue(GS.discard[0][0], great_hall);
 
 	printf("TESTING - great_hall increases numActions for player +1\n");
 	assertTrue(GS.numActions, 2);

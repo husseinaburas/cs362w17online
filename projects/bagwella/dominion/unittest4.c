@@ -63,8 +63,7 @@ int main(){
 				printf("Testing - isGameOver() returns 1 if 3 Kingdom cards are 0\n"); //prints too much
 				assertTrue(isGameOver(&GS), 1);
 
-				//reset card count
-				GS.supplyCount[i] = 10;
+				GS.supplyCount[i] = 10; //reset the counts 
 				GS.supplyCount[j] = 10;
 				GS.supplyCount[k] = 10;
 				
