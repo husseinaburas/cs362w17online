@@ -21,8 +21,8 @@
     printf("%s PASS\n", message);         \
   }
 
-int main(int argv, char **argc) {
-  struct gameState *testState = newGame();
+int main(int argv, char** argc) {
+  struct gameState* testState = newGame();
   int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
                           mine,       cutpurse, sea_hag, tribute, smithy};
   int randomSeed = 1000;
@@ -32,24 +32,27 @@ int main(int argv, char **argc) {
   int currentPlayer = whoseTurn(testState);
 
   // Testing that the whoseTurn is returning the correct number from testState
-  printf("==============\tSTART\tTESTING\twhoseTurn()\t==============\n");
-  UNIT_ASSERT((currentPlayer == testState->whoseTurn),
-              "TEST CASE:\tReturn correct player's turn\t\tRESULT:");
+  printf("==============\tSTART TESTING\twhoseTurn()\t==============\n");
+  UNIT_ASSERT(
+      (currentPlayer == testState->whoseTurn),
+      "TEST CASE:\tGame initilized, return correct player's turn\t\t\tRESULT:");
 
   // Manually adjusting testState->whoseTurn to ensure correct value is being
   // returned
   currentPlayer = 1;
   UNIT_ASSERT((currentPlayer != whoseTurn(testState)),
-              "TEST CASE:\twhoseTurn() unchanged 2nd call\t\tRESULT:");
+              "TEST CASE:\tRepeat whoseTurn() call, check unchanged 2nd "
+              "call\t\tRESULT:");
 
   // Checking the after the endTurn function is run, that whoseTurn is not
   // returning the previous player
   currentPlayer = whoseTurn(testState);
   endTurn(testState);
   UNIT_ASSERT((currentPlayer != whoseTurn(testState)),
-              "TEST CASE:\tPlayer turn changed after endTurn()\tRESULT:");
+              "TEST CASE:\tPlayer turn changed, check correct player's turn is "
+              "returned\tRESULT:");
 
-  printf("==============\tEND\tTESTING\twhoseTurn()\t==============\n");
+  printf("==============\tEND TESTING\twhoseTurn()\t==============\n");
 
   return 0;
 }

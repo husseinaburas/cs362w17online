@@ -42,9 +42,18 @@ unittest3: unittest3.c
 	gcc -o unittest3 unittest3.c
 
 unittest4: unittest4.c
-	gcc- o unittest4 unittest4.c
+	gcc -o unittest4 unittest4.c
+
+unittestsuite: unittest1 unittest2 unittest3 unittest4
+
+runsuite: unittestsuite
+	./unittest1 >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	cat unittestresults.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1 unittest2 unittest3
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 unittestresults.out

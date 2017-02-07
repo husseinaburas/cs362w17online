@@ -30,9 +30,9 @@ int main(int argv, char **argc) {
   int players = 3;
   initializeGame(players, kingdomCards, randomSeed, testState);
 
-  printf("==============\tSTART\tTESTING\tgainCard()\t==============\n");
+  printf("==============\tSTART TESTING\tgainCard()\t==============\n");
 
-  printf("==============\tEND\tTESTING\tgainCard()\t==============\n");
+  printf("==============\tEND TESTING\tgainCard()\t==============\n");
 
   return 0;
 };

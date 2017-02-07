@@ -33,17 +33,17 @@ int main(int argv, char **argc) {
   initializeGame(players, kingdomCards, randomSeed, testState);
 
   // Testing that game isn't over when it is started
-  printf("==============\tSTART\tTESTING\tisGameOver()\t==============\n");
+  printf("==============\tSTART TESTING\tisGameOver()\t==============\n");
   UNIT_ASSERT(
       (isGameOver(testState) == 0),
-      "TEST CASE:\tGame initialized, test that game isn't over\t\tRESULT:");
+      "TEST CASE:\tGame initialized, test that game isn't over\t\t\tRESULT:");
 
   // Testing that game ends when province count == 0
   int provinceCount = testState->supplyCount[province];
   testState->supplyCount[province] = 0;
   UNIT_ASSERT(
       (isGameOver(testState) == 1),
-      "TEST CASE:\tSet province cards to zero, game should end\t\tRESULT:");
+      "TEST CASE:\tSet province cards to zero, game should end\t\t\tRESULT:");
 
   // Reseting province count to original value
   testState->supplyCount[province] = provinceCount;
@@ -56,7 +56,7 @@ int main(int argv, char **argc) {
   }
   UNIT_ASSERT(
       (isGameOver(testState) == 1),
-      "TEST CASE:\t3 Supply piles empty, game should be over\t\tRESULT:");
+      "TEST CASE:\t3 Supply piles empty, game should be over\t\t\tRESULT:");
 
   // Reset supply cards to original values
   for (int i = 3; i > 0; i--) {
@@ -70,7 +70,7 @@ int main(int argv, char **argc) {
   testState->supplyCount[province] = 0;
   UNIT_ASSERT(
       (isGameOver(testState) == 1),
-      "TEST CASE:\tBoth province empty & 3 supply piles empty\t\tRESULT:");
+      "TEST CASE:\tBoth province empty & 3 supply piles empty\t\t\tRESULT:");
 
   // Reset supply piles
   for (int i = 3; i > 0; i--) {
@@ -83,9 +83,9 @@ int main(int argv, char **argc) {
   }
   UNIT_ASSERT(
       (isGameOver(testState) == 0),
-      "TEST CASE:\tOnly 2 supply piles empty, game shouldn't end\t\tRESULT:");
+      "TEST CASE:\tOnly 2 supply piles empty, game shouldn't end\t\t\tRESULT:");
 
-  printf("==============\tEND\tTESTING\tisGameOver()\t==============\n");
+  printf("==============\tEND TESTING\tisGameOver()\t==============\n");
 
   return 0;
 };
