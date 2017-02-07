@@ -8,7 +8,6 @@
 #include "rngs.h"
 #include "interface.h"
 
-//unit test for the buyCard() function
 
 //Assert function, 3rd argument is operator, use: 0 for =, 1 for <, 2 for >
 int assertTrue(int arg1, int arg2, int op){

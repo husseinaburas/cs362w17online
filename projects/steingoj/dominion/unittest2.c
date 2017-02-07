@@ -93,6 +93,8 @@ int main () {
 
 	updateCoins(0, &G, 3);
 	assertTrue(G.coins == 3, "Bonus not calculated correctly");	
+
+	printf("\n\n");
 	
 	return 0;
 }

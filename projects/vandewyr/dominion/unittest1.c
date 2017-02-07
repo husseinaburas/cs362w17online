@@ -76,7 +76,7 @@ int testUpdateCoins(){
     updateCoins(player, &G, bonus);
     if(G.coins == 8){
         printf("%d -- Test Passed\n", G.coins);
-    }else if(G.coins != 8){
+    }else{
         printf("%d -- Test Failed\n", G.coins);
     }
 

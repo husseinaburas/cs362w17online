@@ -71,7 +71,7 @@ int main(){
 
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
-
+	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
 	// DURING THE GAME
 	printf("IMMEDIATELY AFTER INITIALIZATION\n");
 	result = isGameOver(&testG);

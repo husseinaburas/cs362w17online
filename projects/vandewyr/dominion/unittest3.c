@@ -5,7 +5,7 @@
 #include "rngs.h"
 
 int testGainCard();
-/*
+
 int main(){
 
     int x = testGainCard();
@@ -16,7 +16,7 @@ int main(){
         printf("Error during testGainCard() testing");
         exit(200);
     }
-}*/
+}
 
 int testGainCard() {
     struct gameState G;
