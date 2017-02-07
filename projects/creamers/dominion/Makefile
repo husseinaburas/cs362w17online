@@ -56,29 +56,15 @@ interface.o: interface.h interface.c
     
 runA3tests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 &> unittest.out
-	gcov -b -f dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./unittest2 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./unittest3 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./unittest4 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./cardtest1 &> cardtest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./cardtest2 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./cardtest3 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
 	./cardtest4 &> unittest.out
-	gcov -b -f  dominion.c >> unittest.out
-	cat dominion.c.gcov >> A3testresults.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
     
 
 runtests: testDrawCard 
