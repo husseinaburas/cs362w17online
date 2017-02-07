@@ -10,34 +10,6 @@
 #define TESTCARD "smithy"
 
 
-/*Pre-Conditions: state->phase == 0, the player must be in the action phase
-                   state->numActions > 0, the player must have an action to play
-                   The name of the card must be smithy and the value must be between 7 and 26
-   Post-Conditions: state->handCount[currentPlayer] should have increased by 2
-                    state->numActions must be >= 0 because the number of actions is not changed in this function
-                    The smithy card should be discarded
-
-
-int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card){
-
-
-      int i;
-      int startNumCards = state->handCount[currentPlayer];
-      printf("start num cards: %d\n", startNumCards);
-      //+3 Cards
-      for (i = 0; i <= 3; i++) //BUG
-        {
-          drawCard(currentPlayer, state);
-        }
-            
-      //discard smithy card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      printf("end num cards: %d\n", state->handCount[currentPlayer]);
-
-      return 0;
-    }
-*/
-
 //Own assert function
 int asserttrue(int input, int number){
 	if (input){
@@ -103,10 +75,10 @@ int main(){
 	else{
 		printf("TEST 3 could not be run due to invalid input\n");
 	}
-	// ----------- TEST 4: Test number of actions before is > 1 -----------
-	printf("%s TEST 4: Number of actions after is decreased by 1\n", TESTCARD);
+	// ----------- TEST 4: Test number of actions is the same -----------
+	printf("%s TEST 4: Number of actions after is the same\n", TESTCARD);
 	if (result == 0){
-		if (testG.numActions == (G.numActions - 1)){
+		if (testG.numActions == G.numActions ){
 			asserttrue(1, 4);
 		}
 		else{
