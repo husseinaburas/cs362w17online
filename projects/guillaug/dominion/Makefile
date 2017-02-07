@@ -38,7 +38,7 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard
 unit1:
 	gcc -o unittest1 unittest1.c dominion.c rngs.c -g $(CFLAGS)
 	./unittest1
-	gcov unittest1.c
+	gcov dominion.c
 	
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1
