@@ -38,6 +38,8 @@ int main(int argc, char** argv){
 	// int used to record the return of the function under test
 	int ret;
 	
+	printf("///// ----- STARTING UNIT TEST 4 (endTurn) -----/////\n");
+	
     // for loop is used to iterate through each test case
     for( i = 0; i < numTests; i++){  	
     	// set test id
@@ -47,23 +49,26 @@ int main(int argc, char** argv){
     	ret = endTurn(&game);
 
     	// check results
-    	assertTrue(ret, 0, "UNIT TEST 4", "endTurn()", testID, &pass);  
+    	assertTrue(ret, 0, "UNIT TEST 4", "endTurn()", (2*i) + 1, &pass);  
     	
     	// set test id
     	testID = i + 1;
     	
     	// check if player is changed
     	if(i <= 2){
-     		assertTrue(game.whoseTurn, i+1, "UNIT TEST 4", "endTurn()", testID, &pass); 
+     		assertTrue(game.whoseTurn, i+1, "UNIT TEST 4", "endTurn()", (2*i)+2, &pass); 
     	}
     	else{
-    	    assertTrue(game.whoseTurn, i-3, "UNIT TEST 4", "endTurn()", testID, &pass); 
+    	    assertTrue(game.whoseTurn, i-3, "UNIT TEST 4", "endTurn()", (2*i)+2, &pass); 
     	}
 
     }
     
     if( pass == 0){
-    	printf("UNIT TEST 4 SUCCESSFULLY PASSED\n");
+    	printf("**UNIT TEST 4 SUCCESSFULLY PASSED**\n");
+    }
+    else{
+    	printf("**UNIT TEST 4 FAILED**\n");
     }
 	
     return 0;
@@ -82,7 +87,10 @@ int main(int argc, char** argv){
  */
 void assertTrue(int val1, int val2, char* testName, char* functionName, int testCase, int* passFlag){
 	if(val1 != val2){
-		printf("%s: Test Case %i of function '%s' FAILED\n", testName, testCase, functionName);
+		printf("%s: Test Case %i of 10 for function '%s' FAILED\n", testName, testCase, functionName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of 10 for function '%s' PASSED\n", testName, testCase, functionName);
 	}
 }

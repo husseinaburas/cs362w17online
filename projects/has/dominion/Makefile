@@ -45,15 +45,15 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 	
-unittestresults.out:
-	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest1.c rngs.c -o unittest1 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest2.c rngs.c -o unittest2 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest3.c rngs.c -o unittest3 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest4.c rngs.c -o unittest4 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest1.c rngs.c -o cardtest1 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest2.c rngs.c -o cardtest2 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest3.c rngs.c -o cardtest3 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest4.c rngs.c -o cardtest4 -lm -g
 	./unittest1 &> unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
