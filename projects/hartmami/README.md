@@ -20,23 +20,23 @@
 
 	case adventurer
 
-    	case mine
+	case mine
 			
-    	case remodel
+	case remodel
 	
-    	case smithy
+	case smithy
 
-    	case baron
+	case baron
 
 ## bugs were added to:
 
 	adventurer
 			
-    	remodel
+	remodel
 	
-    	smithy
+	smithy
 
-    	baron
+	baron
 
 ## udpated README
 
