@@ -7,6 +7,7 @@ Requirements:
 -- Does not change game state after execution
 
 The following cases are tested:
+-- Current player between 0..MAX_PLAYERS
 
 */
 
@@ -26,7 +27,7 @@ The following cases are tested:
 /*********************************************************************/
 /* Main */
 int main() {
-    int seed = 1001;
+    int seed = 1000;
     struct gameState G, preG;
     int numPlayer = MAX_PLAYERS;
     int k[10] = {adventurer, council_room, feast, gardens, mine, 
