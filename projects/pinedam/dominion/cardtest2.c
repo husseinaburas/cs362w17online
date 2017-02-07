@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "assert.h"
 
 /* Unit test for the Smithy card:
 *		int smithyCard(
@@ -62,15 +63,15 @@ int main()
 	int initvictoryCount[3];
 	int victoryCount[3];
 	int v[3] = { estate , duchy, province };
-
+	int i; 
 	// save the number of each kingdom cards 
-	for (int i=0; i < 10; i++)
+	for ( i=0; i < 10; i++)
 	{
 		initKingdomCount[i] = G.supplyCount[k[i]];
 		
 	}
 	// save the number of victory cards
-	for (int i=0; i < 3; i++)
+	for ( i=0; i < 3; i++)
 	{
 		initvictoryCount[i] = G.supplyCount[v[i]];
 
@@ -78,7 +79,7 @@ int main()
 
 	// create a hand full of smithy's 
 	int inithandcount = G.handCount[player];
-	for (int i = 0; i < inithandcount; ++i)
+	for ( i = 0; i < inithandcount; ++i)
 		smithyHand[i] = smithy;
 	printf("-------------------------------------------Test 1: Current player should receive exact 3 cards. ----------------------------------------------\n");
 	// test that the player recieved exactly 3 cards
@@ -97,7 +98,7 @@ int main()
 
 		printf("-------------------------------------------Test 4: No state change should occur to the kingdom card piles. ------------\n");
 		
-		for (int i=0; i < 10; i++)
+		for ( i=0; i < 10; i++)
 		{
 			kingdomCount[i] = G.supplyCount[k[i]];
 			assert(kingdomCount[i] == initKingdomCount[i]);
@@ -106,12 +107,14 @@ int main()
 		printf("-------------------------------------------Test 5: No state change should occur to the Victory card piles. ------------\n");
 
 		
-		for (int i=0; i < 10; i++)
+		for ( i=0; i < 3; i++)
 		{
 			victoryCount[i] = G.supplyCount[v[i]];
 			assert(victoryCount[i] == initvictoryCount[i]);
 		}
 
-printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR Smithy CARD-----------------------------------------\n\n");
+		printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR Smithy CARD-----------------------------------------\n\n");
+
+		return 0;
 
 }

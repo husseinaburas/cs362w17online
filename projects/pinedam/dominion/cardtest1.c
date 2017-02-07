@@ -1,6 +1,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
+#include "assert.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -69,32 +70,32 @@ int main()
 	int goldDeck[5];
 	int noneDeck[5];
 	int emptyDeck[5];
-
+	int i;
 	// Initialize the test decks. All single treasure decks
 	// are designed to check that the particualr treasure is flagged 
 	// in the adventurerCard routine
 	int initDeckCount = G.deckCount[player];
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		copperDeck[i] = copper;
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		silverDeck[i] = silver;
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for (i = 0; i < initDeckCount; ++i)
 		goldDeck[i] = gold;
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for (i = 0; i < initDeckCount; ++i)
 		noneDeck[i] = estate; // any non-treasure card
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		emptyDeck[i] = -1; // no cards left in deck
 	
 	// First, test all copper deck****
 	initHandCount = G.handCount[player];
-	for (int i = 0; i < initHandCount; ++i)
+	for (i = 0; i < initHandCount; ++i)
 		initHand[i] = G.hand[player][i];
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = copperDeck[i];
 
 	adventureCheck = adventurerCard(&G, player);
@@ -104,7 +105,7 @@ int main()
 	// Hand should have 2 new coppers
 	assert(G.handCount[player] == initHandCount + 2); // only 2 new cards should be added
 	printf("-------------------------------------------Test 2: Last two cards in hand should be copper--------------------------------------------------------------------------\n");
-	asssert((G.hand[player][G.handCount[player] - 1] == copper) && (G.hand[player][G.handCount[player] - 2] == copper)); // last two cards in hand should be coppers
+	assert((G.hand[player][G.handCount[player] - 1] == copper) && (G.hand[player][G.handCount[player] - 2] == copper)); // last two cards in hand should be coppers
 	printf("-------------------------------------------Test 3: No cards should be discarded-------------------------------------------------------------------------------------\n");
 	assert(G.discard[player] == 0); //no cards should have been discarded
 
@@ -113,10 +114,10 @@ int main()
 	assert(initCheck == 0);
 
 	initHandCount = G.handCount[player];
-	for (int i = 0; i < initHandCount; ++i)
+	for ( i = 0; i < initHandCount; ++i)
 		initHand[i] = G.hand[player][i];
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = silverDeck[i];
 
 	adventureCheck = adventurerCard(&G, player);
@@ -139,10 +140,10 @@ int main()
 	assert(initCheck == 0);
 
 	initHandCount = G.handCount[player];
-	for (int i = 0; i < initHandCount; ++i)
+	for ( i = 0; i < initHandCount; ++i)
 		initHand[i] = G.hand[player][i];
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = goldDeck[i];
 
 	adventureCheck = adventurerCard(&G, player);
@@ -164,10 +165,10 @@ int main()
 	assert(initCheck == 0);
 
 	initHandCount = G.handCount[player];
-	for (int i = 0; i < initHandCount; ++i)
+	for ( i = 0; i < initHandCount; ++i)
 		initHand[i] = G.hand[player][i];
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = noneDeck[i];
 
 	adventureCheck = adventurerCard(&G, player);
@@ -188,10 +189,10 @@ int main()
 	assert(initCheck == 0);
 
 	initHandCount = G.handCount[player];
-	for (int i = 0; i < initHandCount; ++i)
+	for ( i = 0; i < initHandCount; ++i)
 		initHand[i] = G.hand[player][i];
 
-	for (int i = 0; i < initDeckCount; ++i)
+	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = emptyDeck[i];
 
 	adventureCheck = adventurerCard(&G, player);
@@ -204,4 +205,6 @@ int main()
 
 
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR Adventurer CARD-----------------------------------------\n\n");
+
+	return 0;
 }

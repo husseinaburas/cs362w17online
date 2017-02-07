@@ -18,6 +18,7 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
+#include "assert.h"
 #include <math.h>
 #include <stdlib.h>
 //int buyCard(int supplyPos, struct gameState *state) {
@@ -119,8 +120,9 @@ int main()
 	printf("------------------------------------------Test 4: Valid buy-----------------------------------------\n");
 	//check for post conditions during a valid buy
 	G.coins = 4;
+	G.numBuys = 1;
 	buyCardCheck = buyCard(smithy, &G);
-	assert(buyCardCheck = 0);
+	assert(buyCardCheck == 0);
 	
 	printf("------------------------------------------Test 4.1: Discard increases with new card in a Valid buy-----------------------------------------\n");
 	//check that the new card was discarded 
@@ -134,4 +136,6 @@ int main()
 	//check that number of buys goes down after it buys 
 	assert(G.numBuys == initNumBuy - 1);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR buyCard FUNCTION-----------------------------------------\n\n");
+
+	return 0;
 }
