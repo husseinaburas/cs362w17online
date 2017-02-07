@@ -67,6 +67,31 @@
 #include <math.h>
 #include <stdlib.h>
 
+int assertTrue(int actual, int expected, int isEqual)
+{
+	if (isEqual)
+	{
+		if (actual == expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+	else
+	{
+		if (actual != expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+
+}
+
 int main()
 {
 	printf("-------------------------------------------Testing Funtion: gainCard-----------------------------------------\n");
@@ -78,7 +103,7 @@ int main()
 	int seed = 1234;
 
 	int initCheck = initializeGame(numPlayers, k, seed, &G);
-	assert(initCheck == 0);
+	assertTrue(initCheck, 0, 1);
 	int i = 0 ;
 	int* toFlag[3];
 	for ( i; i < 3; i++)
@@ -94,35 +119,35 @@ int main()
 	printf("------------------------------------------Test 1: That a card NOT in the game cannot be gained----------------------------------------\n");
 	//test that a card NOT in the game cannot be gained
 	gainCardCheck = gainCard(steward, &G, toFlag[0], player);
-	assert(gainCardCheck != 0);
+	assertTrue(gainCardCheck, 0, 0);
 	printf("------------------------------------------Test 2: That the players discard pile gained a card----------------------------------------\n");
 	//test the player discard pile gaining a card
 	gainCardCheck = gainCard(village, &G, toFlag[0], player);
-	assert(gainCardCheck == 0);
+	assertTrue(gainCardCheck, 0, 1);
 
-	assert(G.discard[player][G.discardCount[player] - 1] == village);
-	assert(G.discardCount[player] == 1);
+	assertTrue(G.discard[player][G.discardCount[player] - 1], village, 1);
+	assertTrue(G.discardCount[player], 1, 1);
 
 	printf("------------------------------------------Test 3: That the players deck gained a card----------------------------------------\n");
 	//test the player deck gaining a card
 	gainCardCheck = gainCard(village, &G, toFlag[1], player);
-	assert(gainCardCheck == 0);
+	assertTrue(gainCardCheck, 0, 1);
 
-	assert(G.deck[player][G.deckCount[player] - 1] == village);
-	assert(G.deckCount[player] == initPlayerDeckCount + 1);
+	assertTrue(G.deck[player][G.deckCount[player] - 1], village, 1);
+	assertTrue(G.deckCount[player], initPlayerDeckCount + 1, 1);
 
 	printf("------------------------------------------Test 4: That the players hand gained a card----------------------------------------\n");
 	//test the player hand gaining a card
 	gainCardCheck = gainCard(village, &G, toFlag[2], player);
-	assert(gainCardCheck == 0);
+	assertTrue(gainCardCheck, 0, 1);
 
-	assert(G.hand[player][G.handCount[player] - 1] == village);
-	assert(G.handCount[player] == initPlayerHandCount + 1);
+	assertTrue(G.hand[player][G.handCount[player] - 1], village, 1);
+	assertTrue(G.handCount[player], initPlayerHandCount + 1, 1);
 
 	printf("------------------------------------------Test 5: That the supply count is correct----------------------------------------\n");
 	//Three village cards were taken from supply
 	//so check to make sure correct number have been taken
-	assert(G.supplyCount[village] == initVillageSupply - 3);
+	assertTrue(G.supplyCount[village], initVillageSupply - 3, 1);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR gainCard FUNCTION-----------------------------------------\n\n");
 	
 	return 0;

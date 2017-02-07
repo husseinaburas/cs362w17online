@@ -46,6 +46,30 @@
 #include <math.h>
 #include <stdlib.h>
 
+int assertTrue(int actual, int expected, int isEqual)
+{
+	if (isEqual)
+	{
+		if (actual == expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+	else
+	{
+		if (actual != expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+
+}
 
 int main()
 {
@@ -95,11 +119,11 @@ int main()
 		G.hand[player][i] = copperHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
-	assert(updatecoinsCheck == 0);
+	assertTrue(updatecoinsCheck , 0, 1);
 	
 	//check if coin is equal to the whole copper hand 
 	coinCheck = G.coins;
-	assert(coinCheck == inithandcount*1);
+	assertTrue(coinCheck , inithandcount*1, 1);
 	
 	printf("------------------------------------------Test 2: Hand full of silvers sets coins to the handCount*2----------------------------------------\n");
 	//set the current hand to all silver
@@ -108,11 +132,11 @@ int main()
 		G.hand[player][i] = silverHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
-	assert(updatecoinsCheck == 0);
+	assertTrue(updatecoinsCheck, 0, 1);
 
 	//check if coin is equal to the whole silver hand 
 	coinCheck = G.coins;
-	assert(coinCheck == inithandcount * 2);
+	assertTrue(coinCheck, inithandcount * 2, 1);
 	
 	printf("------------------------------------------Test 3: Hand full of gold sets coins to the handCount*3----------------------------------------\n");
 	//set the current hand to all gold
@@ -121,11 +145,11 @@ int main()
 		G.hand[player][i] = goldHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
-	assert(updatecoinsCheck == 0);
+	assertTrue(updatecoinsCheck, 0, 1);
 
 	//check if coin is equal to the whole gold hand 
 	coinCheck = G.coins;
-	assert(coinCheck == inithandcount * 3);
+	assertTrue(coinCheck, inithandcount * 3, 1);
 	
 	printf("------------------------------------------Test 4: Hand with no treasure sets coins to 0 ----------------------------------------\n");
 	//set the current hand to the no treasure hand 
@@ -134,11 +158,11 @@ int main()
 		G.hand[player][i] = nonTreasureHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
-	assert(updatecoinsCheck == 0);
+	assertTrue(updatecoinsCheck, 0, 1);
 
 	//check if coin is equal to the no treasure hand 
 	coinCheck = G.coins;
-	assert(coinCheck == inithandcount * 0);
+	assertTrue(coinCheck, inithandcount * 0, 1);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR updateCoins FUNCTION-----------------------------------------\n\n");
 
 	return 0;

@@ -73,6 +73,30 @@
 //	return 0;
 //}
 
+int assertTrue(int actual, int expected, int isEqual)
+{
+	if (isEqual)
+	{
+		if (actual == expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+	else
+	{
+		if (actual != expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+
+}
 
 int main()
 {
@@ -97,29 +121,29 @@ int main()
 
 	drawCardCheck = drawCard(player, &G);
 	printf("------------------------------------------Test 1.0: Draw card with initial game state -----------------------------------------\n");
-	assert(drawCardCheck == 0);
+	assertTrue(drawCardCheck, 0, 1);
 	//check the deck count 
 	//assert(initDeck == G.deckCount[player]);
 
 	printf("------------------------------------------Test 1.1: Discard = 0 -----------------------------------------\n");
 	//check the discard =0
-	assert(G.discardCount[player]==0);
+	assertTrue(G.discardCount[player], 0, 1);
 
-	printf("------------------------------------------Test 1.2: Deck count >0 -----------------------------------------\n");
-	//check the deck count is >0
-	assert(G.deckCount[player]>0);
+	//printf("------------------------------------------Test 1.2: Deck count - 1 -----------------------------------------\n");
+	////check the deck count is >0
+	//assertTrue(G.deckCount[player], initDeck - 1, 1);
 
-	printf("------------------------------------------Test 1.3: HandCount > 0 -----------------------------------------\n");
-	//check the hand count 
-	assert(G.handCount[player]>0);
+	//printf("------------------------------------------Test 1.3: HandCount + 1 -----------------------------------------\n");
+	////check the hand count 
+	//assertTrue(G.handCount[player], initHandCount + 1, 1);
 
-	printf("------------------------------------------Test 1.4: Initial hand count has been increased  -----------------------------------------\n");
+	printf("------------------------------------------Test 1.2: Initial hand count has been increased  -----------------------------------------\n");
 	//check the hand count has been increased
-	assert(G.handCount[player]==initHandCount+1);
+	assertTrue(G.handCount[player], initHandCount + 1, 1);
 	
-	printf("------------------------------------------Test 1.5: Deck count has been decreased -----------------------------------------\n");
+	printf("------------------------------------------Test 1.3: Deck count has been decreased -----------------------------------------\n");
 	//check the deck count has been decreased
-	assert(G.deckCount[player] == initDeck - 1);
+	assertTrue(G.deckCount[player],  initDeck - 1, 1);
 
 	printf("------------------------------------------Test 2.0: Draw from an empty deck after discard -----------------------------------------\n");
 	initCheck = initializeGame(numPlayers, k, seed, &G);
@@ -140,12 +164,12 @@ int main()
 	G.deckCount[player] = 0;//Reset deck count
 
 	drawCardCheck = drawCard(player, &G);
-	assert(drawCardCheck == 0);
+	assertTrue(drawCardCheck, 0, 1);
 	printf("------------------------------------------Test 2.1: Hand count == 1 -----------------------------------------\n");
-	assert(G.handCount[player] == 1);
+	assertTrue(G.handCount[player], 1, 1);
 
 	printf("------------------------------------------Test 2.2: Deck should be one less than total number of cards owned -----------------------------------------\n");
-	assert(G.deckCount[player] == initHandCount + initDeck - 1);
+	assertTrue(G.deckCount[player] , initHandCount + initDeck - 1, 1);
 
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR drawCard FUNCTION-----------------------------------------\n\n");
 
