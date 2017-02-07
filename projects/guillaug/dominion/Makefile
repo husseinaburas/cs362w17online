@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -coverage -lm -w
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -35,5 +35,10 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
+unit1:
+	gcc -o unittest1 unittest1.c dominion.c rngs.c -g $(CFLAGS)
+	./unittest1
+	gcov unittest1.c
+	
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1
