@@ -1,5 +1,5 @@
 /******************************************************************************
-* Unittest 2: function getWinners() tests dominion.c::getWinners().
+* Unittest 2: function getWinners() tests dominion.c::getWinners(). 
 * unittest2.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017

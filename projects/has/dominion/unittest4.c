@@ -42,12 +42,24 @@ int main(int argc, char** argv){
     for( i = 0; i < numTests; i++){  	
     	// set test id
     	testID = i + 1;
-    	
+    	    	
     	// get the return
     	ret = endTurn(&game);
 
     	// check results
-    	assertTrue(ret, 0, "UNIT TEST 4", "endTurn()", testID, &pass);    	
+    	assertTrue(ret, 0, "UNIT TEST 4", "endTurn()", testID, &pass);  
+    	
+    	// set test id
+    	testID = i + 1;
+    	
+    	// check if player is changed
+    	if(i <= 2){
+     		assertTrue(game.whoseTurn, i+1, "UNIT TEST 4", "endTurn()", testID, &pass); 
+    	}
+    	else{
+    	    assertTrue(game.whoseTurn, i-3, "UNIT TEST 4", "endTurn()", testID, &pass); 
+    	}
+
     }
     
     if( pass == 0){

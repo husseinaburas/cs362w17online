@@ -1,8 +1,7 @@
-/*
- * cardtest1.c (Adventurer)
+/* Matthew Hillman
+ * cardtest4.c (Adventurer)
  *
   */
-
   
 #include "dominion.h"
 #include "dominion_helpers.h"

@@ -55,10 +55,11 @@ int main(int argc, char** argv){
 	game.deck[currentPlayer][1] = sea_hag;
 	game.deck[currentPlayer][2] = sea_hag;
 	game.deck[currentPlayer][3] = sea_hag;
+	game.deck[currentPlayer][4] = sea_hag;
 			
 	// call the function to test
 	playSmithy(&game, 0, 0);
-	
+		
 	//======================================================================================
 	
 	/* Test Case 1
@@ -100,13 +101,13 @@ int main(int argc, char** argv){
 	 */
 	
 	playerHandCount = game.hand[currentPlayer][0];
-				
+
 	assertTrue(playerHandCount, sea_hag, "CARD TEST 1", "smithy", 4, numTests, &pass);
 	
 	//======================================================================================
 	
     if( pass == 0){
-    	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
+    	printf("CARD TEST 1 SUCCESSFULLY PASSED\n");
     }
 	
     return 0;

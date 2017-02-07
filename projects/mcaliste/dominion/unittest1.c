@@ -1,12 +1,10 @@
 // test for supplyCount()
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -28,7 +26,7 @@ int main() {
   // 60 copper treasure cards, where each player gets 7 to start
   // any cards not in play are set to -1
 
-  printf("Unit testing supplyCount(), initial state:\n");
+  printf("*** Unit testing supplyCount(), initial state: ***\n");
   // sum of all cards available in this implementation of the game is 27
   //for (int i = 0; i < 26; i++) {
     //printf("Card %d count: %d \n", i+1, supplyCount(i, &state));

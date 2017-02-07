@@ -84,6 +84,6 @@ Should there be other words to try out then the switch could be adapted for this
 Found a random character generation discussion in C online at: http://stackoverflow.com/questions/19724346/generate-random-characters-in-c
 So it was adapted to allow for a range of ASCII Chars from 32 - 126 to take in All Alphas and Grammatical elements that the code could allow for.
 
-
+Used GDB for some basic debugging and to find a pointer NULL reference.
 
 END Discussion of testing */

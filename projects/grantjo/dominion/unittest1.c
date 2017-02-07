@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "dominion.h"
+#include "dominion_helpers.h"
 #include "rngs.h"
 
 int asserttrue(int condition, char* message)
@@ -17,11 +18,16 @@ int asserttrue(int condition, char* message)
 
 int main(int argc, char** argv) 
 {
+  // Testing getCost Function
+  // Test Suite contains tests of all valid inputs along with
+  // a very large out of range input and a negative out of range input
+
   int error_count = 0,
       error_total = 0;
  printf("------------------------ Testing getCost Function ----------------------\n");
 
  printf("Testing Valid Inputs to getCost\n");
+ // Test values taken from wiki.dominionstrategy.com
 
   error_count += asserttrue(getCost(curse) == 0, "Curse Cost Incorrect");
 
@@ -77,21 +83,23 @@ int main(int argc, char** argv)
   
   error_count += asserttrue(getCost(treasure_map) == 4, "Treasure Map Cost Incorrect");
 
+  // Print all tests successfull if no errors, else report num errors
   if (error_count == 0)
-    printf("\tAll Tests Successful: getCost (valid inputs)\n\n");
+    printf("\n\tAll Tests Successful: getCost (valid inputs)\n\n");
   else
-    printf("\t%d Tests Failed: getCost (valid inputs)\n\n", error_count);
+    printf("\n\t%d Tests Failed: getCost (valid inputs)\n\n", error_count);
   
   error_total = error_count;
   error_count = 0;
 
+  // Test a large number and a negative number
   printf("Testing Invalid Input to getCost\n");
 
   error_count += asserttrue(getCost(1000) == -1, "Expected -1 on Invalid Large Input");
  
   error_count += asserttrue(getCost(-10) == -1, "Expected -1 on Invalid Negative Input");
 
-
+  // Check if all tests passed or only a subset
   if (error_count == 0)
     printf("\tAll Tests Successful: getCost (invalid inputs)\n\n");
   else
@@ -99,6 +107,8 @@ int main(int argc, char** argv)
  
   error_total += error_count;
 
+  // Check if all tests for entire unittest were successful, if not print out
+  // total errors
   if (error_total == 0)
     printf("ALL TESTS SUCCESSFUL getCost\n");
   else
