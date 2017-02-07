@@ -1,3 +1,11 @@
+## Assignment 3
+
+	added unittests
+
+	modified makefile
+	
+	added testAssert function to dominion.c and dominion.h
+
 ## Random Testing Quiz
 
 	added testme.c
