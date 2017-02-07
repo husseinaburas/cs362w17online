@@ -8,8 +8,8 @@
  *
  * Include the following lines in your makefile:
  *
- * testGetWinners: testGetWinners.c dominion.o rngs.o
- *      gcc -o testGetWinners -g  testGetWinners.c dominion.o rngs.o $(CFLAGS)
+ * unittest1: unittest1.c dominion.o rngs.o
+ *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 

@@ -27,7 +27,7 @@ int main(int argc, char** argv){
     int* pass = 0;
 
 	// int defining number of tests
-	int numTests = 4;
+	int numTests = 5;
 	
 	// int store the current player
     int currentPlayer;
@@ -44,11 +44,24 @@ int main(int argc, char** argv){
     // int stores number of cards in players hand
     int handCount;
     
+    // int stores the card
+    int card;
+    
     currentPlayer = game.whoseTurn;
 	
 	// set the first card in the current player's hand to village
 	game.hand[currentPlayer][0] = village;
-			
+	game.hand[currentPlayer][1] = copper;
+	game.hand[currentPlayer][2] = copper;	
+	game.hand[currentPlayer][3] = copper;
+	game.hand[currentPlayer][4] = copper;
+
+	game.deck[currentPlayer][0] = sea_hag;
+	game.deck[currentPlayer][1] = sea_hag;
+	game.deck[currentPlayer][2] = sea_hag;
+	game.deck[currentPlayer][3] = sea_hag;
+	game.deck[currentPlayer][4] = sea_hag;
+	
 	// call the function to test
 	playVillage(&game, 0, 0);
 	
@@ -61,7 +74,7 @@ int main(int argc, char** argv){
 	
 	playedCardCount = game.playedCardCount;
 	
-	assertTrue(playedCardCount, 1, "CARD TEST 1", "village", 1, numTests, &pass);
+	assertTrue(playedCardCount, 1, "CARD TEST 2", "village", 1, numTests, &pass);
 
 	//======================================================================================
 
@@ -72,7 +85,7 @@ int main(int argc, char** argv){
 	
 	playedCard = game.playedCards[0];
 	
-	assertTrue(playedCard, 14, "CARD TEST 1", "village", 2, numTests, &pass);
+	assertTrue(playedCard, 14, "CARD TEST 2", "village", 2, numTests, &pass);
 	
 	//======================================================================================
 	
@@ -83,7 +96,7 @@ int main(int argc, char** argv){
 				
 	numActions = game.numActions;
 	
-	assertTrue(numActions, 2, "CARD TEST 1", "village", 3, numTests, &pass);
+	assertTrue(numActions, 2, "CARD TEST 2", "village", 3, numTests, &pass);
 		
 	//======================================================================================
 
@@ -94,11 +107,23 @@ int main(int argc, char** argv){
 				
 	handCount = game.handCount[currentPlayer];
 		
-	assertTrue(handCount, 5, "CARD TEST 1", "village", 4, numTests, &pass);
+	assertTrue(handCount, 5, "CARD TEST 2", "village", 4, numTests, &pass);
 		
 	//======================================================================================
+	
+	/* Test Case 5
+	 * Description: the player's first card in their hand should be smithy after calling playvillage()
+	 * This test should PASS.
+	 */
+				
+	card = game.hand[currentPlayer][0];
+				
+	assertTrue(card, sea_hag, "CARD TEST 2", "village", 5, numTests, &pass);
+		
+	//======================================================================================
+	
     if( pass == 0){
-    	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
+    	printf("CARD TEST 2 SUCCESSFULLY PASSED\n");
     }
 	
     return 0;

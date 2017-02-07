@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm -std=gnu99
+CFLAGS = -Wall -fpic -coverage -lm -std=gnu99 -ftest-coverage -fprofile-arcs
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -11,6 +11,24 @@ unittest2: unittest2.c dominion.o devassert.o rngs.o
 
 unittest3: unittest3.c dominion.o devassert.o rngs.o
 	gcc -o unittest3 -g unittest3.c dominion.o rngs.o devassert.o $(CFLAGS)
+    
+unittest4: unittest4.c dominion.o devassert.o rngs.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o devassert.o $(CFLAGS)
+
+cardtest1: cardtest1.c dominion.o devassert.o rngs.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o devassert.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o devassert.o rngs.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o devassert.o $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o devassert.o rngs.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o devassert.o $(CFLAGS)
+    
+cardtest4: cardtest4.c dominion.o devassert.o rngs.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o devassert.o $(CFLAGS)
+    
+test: test.c dominion.o devassert.o rngs.o
+	gcc -o test -g test.c dominion.o rngs.o devassert.o $(CFLAGS)
     
 devassert.o: devassert.h devassert.c
 	gcc -c devassert.c -g $(CFLAGS)
@@ -35,6 +53,19 @@ testAll: dominion.o testSuite.c
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
+    
+runA3tests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	./unittest1 &> unittest.out
+	./unittest2 &> unittest.out
+	./unittest3 &> unittest.out
+	./unittest4 &> unittest.out
+	./cardtest1 &> cardtest.out
+	./cardtest2 &> unittest.out
+	./cardtest3 &> unittest.out
+	./cardtest4 &> unittest.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+    
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
@@ -44,7 +75,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
     
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

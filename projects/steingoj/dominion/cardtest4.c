@@ -13,7 +13,7 @@
 
 int main () {
 	printf("Starting card test 4\n");
-	printf("Subject: playcouncil_Room\n");
+	printf("Subject: playCouncil_Room\n");
 		
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 	       remodel, smithy, village, baron, great_hall};
@@ -30,12 +30,16 @@ int main () {
 	/***********************************************
 	//Test to see if 4 cards were added
 	***********************************************/
-	playcouncil_Room(&post, 0);	
+	post.deckCount[0] = 10;
+	pre.deckCount[0] = 10;
+	post.deckCount[1] = 10; //So drawCard works properly
+	pre.deckCount[1] = 10; 
+	post.whoseTurn = 0;
+	post.numPlayers = 2;
+	playCouncil_Room(&post, 0);	
 	a = pre.handCount[0];
 	b = post.handCount[0];
 
-	printf("Pre: %d\n", a);
-	printf("Post: %d\n", b);
 	//3 because the original card is discarded
 	assertTrue(a+3==b, "cards were not added properly"); 
 
@@ -54,6 +58,11 @@ int main () {
 	a = pre.handCount[1];
 	b = post.handCount[1];
 	assertTrue(a+1==b, "Other player didn't get a card");
+
+	//printf("Pre: %d\n", a);
+	//printf("Post: %d\n", b);
+
+	printf("\n\n");	
 
 	return 0;
 }

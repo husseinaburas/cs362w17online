@@ -143,6 +143,4 @@ int cardEffectCouncil_Room(int handPos, int currentPlayer, struct gameState *sta
 int cardEffectCutpurse(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3);
 int cardEffectMinion(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3);
 
-
-
 #endif

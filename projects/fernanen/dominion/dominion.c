@@ -407,9 +407,10 @@ int isGameOver(struct gameState *state) {
 	}
     }
   if ( j >= 3)
-    {
-      return 1;
-    }
+  {
+	return 1;
+  } 
+	
 
   return 0;
 }
@@ -453,7 +454,6 @@ int scoreFor (int player, struct gameState *state) {
 
   return score;
 }
-
 int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   int i;	
   int j;

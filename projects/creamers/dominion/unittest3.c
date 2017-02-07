@@ -1,16 +1,15 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
- * unittest2.c - Testing isGameOver function
- * Test 1: Province cards and supply cards are full
- * Test 2: Supply cards are depleted, province cards are not
- * Test 3: Province cards are depleted and supply cards are not
- * Test 4: Province and supply cards are depleted
+ * unittest3.c - Testing fullDeckCount() function
+ * Test 1: Number of players is 2
+ * Test 2: Number of players is 3
+ * Test 3: Number of players is 4
  *
  * Include the following lines in your makefile:
  *
- * unittest2: unittest2.c dominion.o devassert.o rngs.o
- *      gcc -o unittest2 -g unittest2.c dominion.o rngs.o devassert.o $(CFLAGS)
+ * unittest3: unittest3.c dominion.o devassert.o rngs.o
+ *      gcc -o unittest3 -g unittest3.c dominion.o rngs.o devassert.o $(CFLAGS)
 
  * -----------------------------------------------------------------------
  */
