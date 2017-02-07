@@ -44,7 +44,7 @@ int main() {
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
-	printf("\nTESTS WITH INITIALIZED CARDS\n");
+	printf("TESTS WITH INITIALIZED CARDS\n");
 	printf("%s TEST 1: Same number of cards before and after\n", FUNCTION_NAME);
 
 	// copy the game state to a test case

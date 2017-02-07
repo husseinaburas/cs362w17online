@@ -37,7 +37,7 @@ int main(){
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
-
+	printf("----------------- Card: %s ----------------\n", TESTCARD);
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
 	result = playSalvager(&testG, currentPlayer, choice1, 2);

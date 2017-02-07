@@ -86,7 +86,7 @@ int main(){
 	priorHandCount = testG.handCount[priorPlayer];
 	priorDiscard = testG.discardCount[priorPlayer];
 	i = endTurn(&testG);
-
+	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
 	// ----------- TEST 1: Test that prior player discard pile increased by handCount  -----------
 	printf("%s TEST 1: Prior player discard pile has increased by handCount\n", FUNCTION_NAME);
 	
