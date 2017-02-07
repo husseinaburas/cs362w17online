@@ -56,7 +56,7 @@ void testIsGameOver(){
     else
         printf("isGameOver(): FAIL TEST 3. ReturnValue = %i\n", ReturnValue);
     /* --- TEST 3: Initialize for three player  ---  */
-    printf("=== COMPLETED UNIT TESTS for isGameOver()\n\n");
+    printf("\n=== COMPLETED UNIT TESTS for isGameOver()\n\n");
 
 	return;
 }

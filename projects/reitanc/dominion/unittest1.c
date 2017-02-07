@@ -64,7 +64,7 @@ void testInitializeGame(){
     else
         printf("initializeGame(): FAIL when testing 5 player setup.\n");
 	/* --- TEST 1: Initialize for one player  ---  */
-    printf("=== COMPLETED UNIT TESTS for initializeGame()\n\n");
+    printf("\n=== COMPLETED UNIT TESTS for initializeGame()\n\n");
 
 	return;
 }
