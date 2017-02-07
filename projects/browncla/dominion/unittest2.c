@@ -155,7 +155,7 @@ int main(){
 	}
 
 	// ----------- TEST 10: Test state did not change after unsuccessful buy -----------
-	printf("%s TEST 10: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	printf("%s TEST 10: State does not change after unsuccessful buy(wrong phase)\n", FUNCTION_NAME);
 	if (testG.coins != G.coins){
 		asserttrue(0, 10);
 	}
@@ -190,7 +190,7 @@ int main(){
 	}
 
 	// ----------- TEST 12: Test state did not change after unsuccessful buy -----------
-	printf("%s TEST 12: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	printf("%s TEST 12: State does not change after unsuccessful buy (no buys left)\n", FUNCTION_NAME);
 	if (testG.coins != G.coins){
 		asserttrue(0, 12);
 	}
@@ -223,7 +223,7 @@ int main(){
 	}
 
 	// ----------- TEST 14: Test state did not change after unsuccessful buy -----------
-	printf("%s TEST 14: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	printf("%s TEST 14: State does not change after unsuccessful buy (no cards available)\n", FUNCTION_NAME);
 	if (testG.coins != G.coins){
 		asserttrue(0, 14);
 	}
@@ -254,7 +254,7 @@ int main(){
 	}
 
 	// ----------- TEST 16: Test state did not change after unsuccessful buy -----------
-	printf("%s TEST 16: State does not change after unsuccessful buy\n", FUNCTION_NAME);
+	printf("%s TEST 16: State does not change after unsuccessful buy (not enough money)\n", FUNCTION_NAME);
 	if (testG.coins != G.coins){
 		asserttrue(0, 16);
 	}
