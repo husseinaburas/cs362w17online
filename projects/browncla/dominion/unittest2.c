@@ -167,8 +167,8 @@ int main(){
 	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
 		asserttrue(0, 10);
 	}
-	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
-	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
 		asserttrue(0, 10);
 	}
 	else{
@@ -202,8 +202,8 @@ int main(){
 	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
 		asserttrue(0, 12);
 	}
-	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
-	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] )){
 		asserttrue(0, 12);
 	}
 	else{
@@ -235,8 +235,8 @@ int main(){
 	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
 		asserttrue(0, 14);
 	}
-	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
-	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] ) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] )){
 		asserttrue(0, 14);
 	}
 	else{
@@ -266,8 +266,8 @@ int main(){
 	testG.handCount[player] + testG.deckCount[player] + testG.discardCount[player] + testG.playedCardCount))	{
 		asserttrue(0, 16);
 	}
-	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] + G.playedCardCount) != (
-	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] + testG.playedCardCount)){
+	else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer] ) != (
+	testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] )){
 		asserttrue(0, 16);
 	}
 	else{

@@ -665,7 +665,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     {
 
     case adventurer: 
-    playAdventurer(state, currentPlayer, handPos, card); 
+    playAdventurer(state, currentPlayer, handPos); 
     return 0;
       
     case council_room:
@@ -809,11 +809,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
       return 0;
     case smithy:
-      playSmithy(state, currentPlayer, handPos, card);
+      playSmithy(state, currentPlayer, handPos);
       return 0;
     
     case village:
-      playVillage(state, currentPlayer, handPos, card);
+      playVillage(state, currentPlayer, handPos);
       return 0;
     
     case baron:
@@ -930,7 +930,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
     
     case steward:
-      playSteward(state, currentPlayer, choice1, choice2, choice3, handPos, card);
+      playSteward(state, currentPlayer, choice1, choice2, choice3, handPos);
     
     case tribute:
       if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1){
@@ -1110,7 +1110,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
     
     case salvager:
-     playSalvager(state, currentPlayer, choice1, handPos, card);
+     playSalvager(state, currentPlayer, choice1, handPos);
     
     case sea_hag:
       for (i = 0; i < state->numPlayers; i++){
@@ -1300,13 +1300,13 @@ int updateCoins(int player, struct gameState *state, int bonus)
                           state->numActions must be >= 0 because the number of actions is not changed in this function
                           The adventurer card should be discarded
       */
-int playAdventurer(struct gameState *state, int currentPlayer, int handPos, int card){
+int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
        int z=0;
        int drawntreasure = 0;
        int temphand[MAX_HAND];
        //int startNumCards = state->handCount[currentPlayer]; // storing the starting number of cards for test
-       if (card != adventurer){
+       if (state->hand[currentPlayer][handPos] != adventurer){
         return -1;
        }
       // drawn treasure is the number of cards that have been drawn that are treasure cards
@@ -1350,9 +1350,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos, int 
                     The smithy card should be discarded
 */
 
-int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card){
+int playSmithy(struct gameState *state, int currentPlayer, int handPos){
 
-      if (card != smithy){
+      if (state->hand[currentPlayer][handPos] != smithy){
         return -1;
       }
       int i;
@@ -1380,9 +1380,9 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card
                     state->numActions must be increased by 2 and must be >= 0 because player gained 2 action cardss
                     The village card should be discarded
 */
-int playVillage(struct gameState *state, int currentPlayer, int handPos, int card){
+int playVillage(struct gameState *state, int currentPlayer, int handPos){
    
-      if (card != village){
+      if (state->hand[currentPlayer][handPos] != village){
         return -1;
       }
 
@@ -1411,9 +1411,9 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos, int car
                     state->numActions must be >= 0 because the number of actions isn't changed in this function
                     The steward card should be discarded
 */
-int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos, int card){
+int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos){
 
-  if (card != steward){
+  if (state->hand[currentPlayer][handPos] != steward){
     return -1;
   }
   if (choice1 == 1){
@@ -1452,9 +1452,9 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
                     The card represented by choice1 should not be in the players deck
                     The salvager card should be the last discarded card
 */
-int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos, int card){
+int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos){
    
-    if (card != salvager){
+    if (state->hand[currentPlayer][handPos] != salvager){
       return -1;
     }
    //+1 buy
