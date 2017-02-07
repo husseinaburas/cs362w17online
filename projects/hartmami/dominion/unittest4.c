@@ -47,8 +47,8 @@ int main()
 
 		G.handCount[0] = 5;  // player 1 has 5 cards in their hand
 		G.deckCount[0] = 7;  // player 1 has 7 cards in their deck
-		G.handCount[1] = 5;  // player 1 has 5 cards in their hand
-		G.deckCount[1] = 7;  // player 1 has 7 cards in their deck
+		G.handCount[1] = 5;  // player 2 has 5 cards in their hand
+		G.deckCount[1] = 7;  // player 2 has 7 cards in their deck
 		G.coins = 5;  // player 1 has 5 coins
 		G.numBuys = 1;
 
