@@ -111,7 +111,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
     
 
     printf("\nTEST 2: Trash a Smithy, three cards in hand\n\n");
@@ -192,7 +192,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
     
 
     printf("\nTEST 3: Trash a Curse, three cards in hand\n\n");
@@ -273,7 +273,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
     
 
     printf("\nTEST 4: Empty hand, don't trash anything\n\n");
