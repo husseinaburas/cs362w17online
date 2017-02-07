@@ -1,3 +1,24 @@
+/***********************************************************************************************
+**
+**  Author:       Michael Hartman
+**
+**  Date:           2017-02-06
+**
+**  Filename:       unittest1.c
+**
+**  Description:    unittest for the function isGameOver() in dominion tests:
+**
+**  verify preconditions
+**  verify treasure_map is 26
+**  verify game isn't over when proviences = 8 and 0 supply piles are empty
+**  verify game isn't over when proviences = 8 and 1 supply piles are empty
+**  verify game isn't over when proviences = 8 and 2 supply piles are empty
+**  verify game is over when proviences = 8 and 3 supply piles are empty
+**  verify game isn't over when proviences = 8 and 2 supply piles are empty
+**  verify game isn't over when proviences = 1 and 2 supply piles are empty
+**  verify game is over when proviences = 0 and 2 supply piles are empty
+**
+***********************************************************************************************/
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -22,6 +43,10 @@ int main()
 
 	printf("	PRECONDITION TESTS\n\n");
 
+		printf("Verify treasure_map is 26:  ");  // verify provinces are all present
+		testAssert(treasure_map == 26);  // run testAssert
+		printf("\n");
+
 		G.supplyCount[province] = 8;
 		printf("Verify there are 8 provinces:  ");  // verify provinces are all present
 		testAssert(G.supplyCount[province] == 8);  // run testAssert
@@ -39,6 +64,7 @@ int main()
 		testAssert(emptyPile < 3);  // run testAssert
 		printf("\n");
 		emptyPile = 0;  // return emptyPile to 0
+		i = 0; // return i to 0
 
 		printf("Verify the count of empty piles is 0:  ");
 		testAssert(emptyPile == 0);  // run testAssert
@@ -72,6 +98,7 @@ int main()
 		testAssert(emptyPile < 3);  // run testAssert
 		printf("\n");
 		emptyPile = 0;  // return emptyPile to 0
+		i = 0; // return i to 0
 
 		printf("Verify game is over with 3 empty piles:  ");
 		G.supplyCount[adventurer] = 0;
@@ -90,12 +117,11 @@ int main()
 		testAssert(emptyPile == 3);  // run testAssert
 		printf("\n");
 		emptyPile = 0;  // return emptyPile to 0
+		i = 0; // return i to 0
 
 	printf("	PROVINCE PILE TESTS\n\n");
 
-		G.supplyCount[duchy] = 1;
-		G.supplyCount[estate] = 1;
-		G.supplyCount[adventurer] = 1;  // return piles
+		G.supplyCount[adventurer] = 1;  // return 1 pile
 
 		printf(":Verify there are 8 provinces:  ");
 		G.supplyCount[province] = 8;
