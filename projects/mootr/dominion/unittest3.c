@@ -1,5 +1,5 @@
 /**
- * Title:	Unit test for handOver() function
+ * Title:	Unit test for handCard() function
  * Author: Richard Moot
  * Description:	Tests proper functionality of handOver function. Runs through
  * 	several scenarios to test whether handOver correctly places card in a
@@ -31,6 +31,12 @@ int main(int argv, char **argc) {
   initializeGame(players, kingdomCards, randomSeed, testState);
 
   printf("==============\tSTART\tTESTING\thandCard()\t==============\n");
+
+  // Copying first player's hand to compare to result of handCard
+  int currentPlayerHand[5] = {0};
+  for (int i = 4; i > 0; i--) {
+    currentPlayerHand[i] = testState->hand[0][i];
+  }
 
   printf("==============\tEND\tTESTING\thandCard()\t==============\n");
 
