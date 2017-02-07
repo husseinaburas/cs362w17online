@@ -75,6 +75,7 @@ int main(){
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
 	G.hand[currentPlayer][2] = adventurer;
+	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
@@ -236,6 +237,7 @@ int main(){
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
 	G.hand[currentPlayer][2] = adventurer;
+	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
@@ -243,15 +245,14 @@ int main(){
 	printf("%s TEST 11: Correct return statements for invalid input\n", TESTCARD);
 	result = playAdventurer(&testG, currentPlayer, 4);
 	if (result == -1){
-		asserttrue(1, 1);
+		asserttrue(1, 11);
 	}
 	else{
-		asserttrue(0, 1);
+		asserttrue(0, 11);
 	}
 
 	// ----------- TEST 12: Test state stays same invalid input -----------
 	printf("%s TEST 12: State says the same with invalid input\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 4);
 	
 	if (result == -1){
 
