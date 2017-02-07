@@ -90,38 +90,38 @@ int main()
 	int inithandcount = G.handCount[player];
 	for ( i = 0; i < inithandcount; ++i)
 		councilRoomHand[i] = council_room;
-	printf("-------------------------------------------Test 1: Current player should receive exact 4 card. ----------------------------------------------\n");
+	printf("-------------------------------------------Test 1.0: Current player should receive exact 4 card. ----------------------------------------------\n");
 	// test that the player recieved exactly 1 cards
 	councilRoomCheck = cardEffect(council_room, 0, 0, 0, &G, 1, 0);
 	assert(councilRoomCheck == 0);//check that smithy ran ok
 	assert(G.handCount[player] == initDeckCount +3 );//check the player recieved the 3 new cards and discarded the council room
 
-	printf("-------------------------------------------Test 2: 4 card should come from the players own pile. ------------------------------------------\n");
+	printf("-------------------------------------------Test 1.1: 4 card should come from the players own pile. ------------------------------------------\n");
 
 	assert(G.deckCount[player] == initDeckCount - 4); // check that the 4 cards came from the players deck
 	
-	printf("-------------------------------------------Test 3: Number of discards goes up by 1. ------------\n");
+	printf("-------------------------------------------Test 1.2: Number of discards goes up by 1. ------------\n");
 	assert(1 == G.playedCardCount);// discard goes up by 1 
 
-	printf("-------------------------------------------Test 4: Other players should have exactly 1 more card in hand and 1 less in deck. -----------------------------------------\n");
+	printf("-------------------------------------------Test 1.3: Other players should have exactly 1 more card in hand and 1 less in deck. -----------------------------------------\n");
 	assert(inithandCountPlayer2 + 1 == G.handCount[1]);//checking other players hand 
 	assert(initdeckCountPlayer2 - 1 == G.deckCount[1]);//checking other players deck
 	assert(initdiscardPlayer2 == G.discardCount[1]); //checking other players discard
 
-	printf("-------------------------------------------Test 5: No state change should occur to the kingdom card piles. ------------\n");
+	printf("-------------------------------------------Test 1.4: No state change should occur to the kingdom card piles. ------------\n");
 	for ( i = 0; i < 10; i++)// checking the kingdom cards havent changed 
 	{
 		kingdomCount[i] = G.supplyCount[k[i]];
 		assert(kingdomCount[i] == initKingdomCount[i]);
 	}
 
-	printf("-------------------------------------------Test 6: No state change should occur to the Victory card piles. ------------\n");
+	printf("-------------------------------------------Test 1.5: No state change should occur to the Victory card piles. ------------\n");
 	for ( i = 0; i < 3; i++)//checking the victory cards havent changed
 	{
 		victoryCount[i] = G.supplyCount[v[i]];
 		assert(victoryCount[i] == initvictoryCount[i]);
 	}
-	printf("-------------------------------------------Test 7: Number of Actions goes up by 2. ------------\n");
+	printf("-------------------------------------------Test 1.6: Number of Actions goes up by 2. ------------\n");
 	assert(initNumbuys+1 == G.numBuys);//checking that actions go up by 1
 
 

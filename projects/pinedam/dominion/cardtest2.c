@@ -81,22 +81,22 @@ int main()
 	int inithandcount = G.handCount[player];
 	for ( i = 0; i < inithandcount; ++i)
 		smithyHand[i] = smithy;
-	printf("-------------------------------------------Test 1: Current player should receive exact 3 cards. ----------------------------------------------\n");
+	printf("-------------------------------------------Test 1.0: Current player should receive exact 3 cards. ----------------------------------------------\n");
 	// test that the player recieved exactly 3 cards
 	smithyCheck = smithyCard(&G, 0, player);
 		assert(smithyCheck == 0);//check that smithy ran ok
 		assert(G.handCount[player] == initDeckCount + 2);//check the player recieved the 3 new cards and discarded the smithy
 		
-		printf("-------------------------------------------Test 2: 3 cards should come from the playerws own pile. ------------------------------------------\n");
+		printf("-------------------------------------------Test 1.1: 3 cards should come from the playerws own pile. ------------------------------------------\n");
 
 		assert(G.deckCount[player] == initDeckCount - 3); // check that the 3 cards came from the players deck
 
-		printf("-------------------------------------------Test 3: No state change should occur for other players. -----------------------------------------\n");
+		printf("-------------------------------------------Test 1.2: No state change should occur for other players. -----------------------------------------\n");
 		assert(inithandCountPlayer2 == G.handCount[1]);//checking other players hand 
 		assert(initdeckCountPlayer2 == G.deckCount[1]);//checking other players deck
 		assert(initdiscardPlayer2 == G.discardCount[1]); //checking other players discard
 
-		printf("-------------------------------------------Test 4: No state change should occur to the kingdom card piles. ------------\n");
+		printf("-------------------------------------------Test 1.3: No state change should occur to the kingdom card piles. ------------\n");
 		
 		for ( i=0; i < 10; i++)
 		{
@@ -104,7 +104,7 @@ int main()
 			assert(kingdomCount[i] == initKingdomCount[i]);
 		}
 		
-		printf("-------------------------------------------Test 5: No state change should occur to the Victory card piles. ------------\n");
+		printf("-------------------------------------------Test 1.4: No state change should occur to the Victory card piles. ------------\n");
 
 		
 		for ( i=0; i < 3; i++)

@@ -127,7 +127,7 @@ int main()
 	coinCheck = G.coins;
 	assert(coinCheck == inithandcount * 3);
 	
-	printf("------------------------------------------Test 1: Hand with no treasure sets coins to 0 ----------------------------------------\n");
+	printf("------------------------------------------Test 4: Hand with no treasure sets coins to 0 ----------------------------------------\n");
 	//set the current hand to the no treasure hand 
 	i = 0;
 	for ( i ; i < inithandcount; ++i)

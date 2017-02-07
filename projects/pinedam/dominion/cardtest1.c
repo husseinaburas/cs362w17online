@@ -98,15 +98,16 @@ int main()
 	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = copperDeck[i];
 
+	printf("-------------------------------------------Test 1.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
 	adventureCheck = adventurerCard(&G, player);
 	assert(adventureCheck == 0);
 	// Check post-conditions
-	printf("-------------------------------------------Test 1: Current Player should have two new coppers from a full copper deck ----------------------------------------------\n");
+	printf("-------------------------------------------Test 1.1: Current Player should have two new coppers from a full copper deck ----------------------------------------------\n");
 	// Hand should have 2 new coppers
 	assert(G.handCount[player] == initHandCount + 2); // only 2 new cards should be added
-	printf("-------------------------------------------Test 2: Last two cards in hand should be copper--------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 1.2: Last two cards in hand should be copper--------------------------------------------------------------------------\n");
 	assert((G.hand[player][G.handCount[player] - 1] == copper) && (G.hand[player][G.handCount[player] - 2] == copper)); // last two cards in hand should be coppers
-	printf("-------------------------------------------Test 3: No cards should be discarded-------------------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 1.3: No cards should be discarded-------------------------------------------------------------------------------------\n");
 	assert(G.discard[player] == 0); //no cards should have been discarded
 
 	// Next, re-init and test all silver deck****
@@ -120,18 +121,19 @@ int main()
 	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = silverDeck[i];
 
+	printf("-------------------------------------------Test 2.0: Game state set to full silver deck for player 0 ----------------------------------------------\n");
 	adventureCheck = adventurerCard(&G, player);
 	assert(adventureCheck == 0);
 	// Check post-conditions
 
-	printf("-------------------------------------------Test 4: Current Player should have two new silvers from a full silver deck ----------------------------------------------\n");
+	printf("-------------------------------------------Test 2.1: Current Player should have two new silvers from a full silver deck ----------------------------------------------\n");
 	// Hand should have 2 new silvers
 	assert(G.handCount[player] == initHandCount + 2); // only 2 new cards should be added
 
-	printf("-------------------------------------------Test 5: Last two cards in hand should be silver--------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 2.2: Last two cards in hand should be silver--------------------------------------------------------------------------\n");
 	asssert((G.hand[player][G.handCount[player] - 1] == silver) && (G.hand[player][G.handCount[player] - 2] == silver)); // last two cards in hand should be silvers
 
-	printf("-------------------------------------------Test 6: No cards should be discarded-------------------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 2.3: No cards should be discarded-------------------------------------------------------------------------------------\n");
 	assert(G.discard[player] == 0); //no cards should have been discarded
 
 
@@ -146,18 +148,19 @@ int main()
 	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = goldDeck[i];
 
+	printf("-------------------------------------------Test 3.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
 	adventureCheck = adventurerCard(&G, player);
 	assert(adventureCheck == 0);
 	// Check post-conditions
 	
-	printf("-------------------------------------------Test 7: Current Player should have two new gold from a full gold deck---------------------------------------------------\n");
+	printf("-------------------------------------------Test 3.1: Current Player should have two new gold from a full gold deck---------------------------------------------------\n");
 	// Hand should have 2 new golds
 	assert(G.handCount[player] == initHandCount + 2); // only 2 new cards should be added
 
-	printf("-------------------------------------------Test 8: Last two cards in hand should be gold--------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 3.2: Last two cards in hand should be gold--------------------------------------------------------------------------\n");
 	asssert((G.hand[player][G.handCount[player] - 1] == gold) && (G.hand[player][G.handCount[player] - 2] == gold)); // last two cards in hand should be golds
 	
-	printf("-------------------------------------------Test 9: No cards should be discarded-----------------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 3.3: No cards should be discarded-----------------------------------------------------------------------------------\n");
 	assert(G.discard[player] == 0); //no cards should have been discarded
 
 	// Next, re-init and test no tresaure deck****
@@ -171,15 +174,16 @@ int main()
 	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = noneDeck[i];
 
+	printf("-------------------------------------------Test 4.0: Game state set to no treasure deck for player 0 ----------------------------------------------\n");
 	adventureCheck = adventurerCard(&G, player);
 	assert(adventureCheck == 0);
 	// Check post-conditions
 	
-	printf("-------------------------------------------Test 10: Current Player should have no new cards since there are no treasure cards in the deck----------------------------\n");
+	printf("-------------------------------------------Test 4.1: Current Player should have no new cards since there are no treasure cards in the deck----------------------------\n");
 
 	// Hand should have no new cards
 	assert(G.handCount[player] == initHandCount); // no new cards should be added
-	printf("-------------------------------------------Test 11: All cards in the deck should be discarded------------------------------------------------------------------------\n");
+	printf("-------------------------------------------Test 4.2: All cards in the deck should be discarded------------------------------------------------------------------------\n");
 
 	assert(G.discard[player] == initDeckCount); //all cards in deck should have been discarded
 
@@ -195,11 +199,12 @@ int main()
 	for ( i = 0; i < initDeckCount; ++i)
 		G.deck[player][i] = emptyDeck[i];
 
+	printf("-------------------------------------------Test 5.0: Game state set to empty deck for player 0 ----------------------------------------------\n");
 	adventureCheck = adventurerCard(&G, player);
 	assert(adventureCheck == 0);
 	// Check post-conditions
 
-	printf("-------------------------------------------Test 12: Current Player should have no new cards since there are no cards in the deck----------------------------\n");
+	printf("-------------------------------------------Test 5.1: Current Player should have no new cards since there are no cards in the deck----------------------------\n");
 	// Hand should have no new cards
 	assert(G.handCount[player] == initHandCount); // no new cards should be added
 
