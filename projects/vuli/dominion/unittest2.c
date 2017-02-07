@@ -16,10 +16,9 @@ Requirements:
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "test_helpers.h"
+#include "unittests_helpers.h"
 
 #define FUNC_NAME "shuffle()"
-#define NOISY_TEST 0
 
 
 /*********************************************************************/
@@ -66,7 +65,7 @@ int main() {
             if (G.deck[player][i] == card) count++;
             if (testG.deck[player][i] == card) count2++;
         }
-        if (NOISY_TEST) printf("Card=%d\tCount before shuffling=%d\tCount after shuffling=%d\n", card, count, count2);
+        if (NOISY_TEST) printf("Card %s:\nCount before shuffling=%d\tCount after shuffling=%d\n", getCardName(card), count, count2);
         if (count != count2) {
             r = -1;
             break;

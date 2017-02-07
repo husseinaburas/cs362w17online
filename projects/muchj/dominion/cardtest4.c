@@ -83,6 +83,7 @@ int main() {
 	printf("TEST 6: Current player's actions should increase by one.\n");	
 	printf("number of actions = %d, expected = %d\n\n", testG.numActions, G.numActions + 1);
 	
+	
 	// Throw in some asserts just for fun.
 	assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded);
 	assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards + shuffledCards);

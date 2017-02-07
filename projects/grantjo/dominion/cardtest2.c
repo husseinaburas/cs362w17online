@@ -2,34 +2,81 @@
 #include <string.h>
 #include <stdlib.h>
 #include "dominion.h"
+#include "dominion_helpers.h"
 #include "rngs.h"
 
 int asserttrue(int condition, char* message)
 {
   if (!condition) {
-    printf("\tError: %s\n", message);
+    printf("\t\tError: %s\n", message);
     return 1;
   }
 
   return 0;
 }
 
+// shuffle requires full deck
+// moves all cards from discard to deck and clears discardCount
+int shuffle_prepare(int player, struct gameState *state) {
+	
+    int i;
+    //Move all cards from discard to deck
+    for (i = 0; i < state->discardCount[player];i++){
+      state->deck[player][i] = state->discard[player][i];
+      state->discard[player][i] = -1;
+    }
+
+	// set deck size and clear discardCount
+    state->deckCount[player] = state->discardCount[player];
+    state->discardCount[player] = 0;
+	
+	return 0;
+}
 
 int main(int argc, char** argv) 
 {
-  struct gameState G,
-                   testG;
+  struct gameState G,		//used as reference Game state
+                   testG;	//used as test Game state
   int i = 0,
-      success = 1, 
-      error_count = 0,
-      copper_count = 0,
-      estate_count = 0, 
-      seed = 0,
-      k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+      success = 1, 			//used to assert function returns success
+      error_count = 0,		// used to count errors in current test
+      error_total = 0,		// used to keep track of total errors in Unit test
+      copper_count = 0,		// used to count copper in init game test
+      estate_count = 0, 	// used to count estate in init game test
+      seed = 0,				// used to seed init game at the beginning, used later as count variable for some tests
+      k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy},
+      bonus = 0;			// passed to initializeGame
 
+  // smithy reference logic helper variables
+  int currentPlayer = 1,	// track current player
+      z = 0,				// track size of temphand
+	  handPos = 0;			// position of smithy card
+
+	  
+  //Variables to check alternate players deck remains intact and gameState.
+  int alternatePlayer = 0,
+	  altHandCount = 0,
+	  altDeckCount = 0,
+	  altDiscardCount = 0,
+	  altHand[MAX_HAND],
+	  altDeck[MAX_DECK],
+	  altDiscard[MAX_DECK],
+	  numPlayers, //number of players,
+	  supplyCount[treasure_map+1],
+	  embargoTokens[treasure_map+1],
+	  outpostPlayed,
+	  outpostTurn,
+	  whoseTurn,
+	  phase,
+	  numActions, /* Starts at 1 each turn */
+	  coins, /* Use as you see fit! */
+	  numBuys; /* Starts at 1 each turn */
+  
+  printf("------------------------ Testing Smithy Card ------------------------------\n");
+  
   seed = 1 + rand() % 10;
   // BEGIN INITIALIZATION TEST to gameState is correct
-  printf("------------------------ Initializing Game----------------------\n");
+  printf("\n------------------------ Initializing Game----------------------\n");
   // Make sure initialize game returns success, if not exit
   success = initializeGame(2, k, seed, &G);
   asserttrue(success == 0, "Failed to Initialize Game");
@@ -119,15 +166,821 @@ int main(int argc, char** argv)
   else
     printf("Game Initialization encountered %d errors\n", error_count); 
 
-  printf("------------------------ Finished Initialization Section ----------------------\n");
+  printf("------------------------ Finished Initialization Section ----------------------\n\n");
 
-  printf("------------------------ Testing Adventurer Card ------------------------------\n");
+  error_count = 0;
 
-
+//******************************* TEST 1 - Default Deck (Just Initialized) Smithy on player 2 *********************************
+  printf("Test 1 Smithy, Player 2 default deck, 10 cards in deck, 0 in discard, and only smithy in hand\n");
+  
+  // Add smithy to player 2's hand
+  G.hand[currentPlayer][0] = smithy;
+  G.handCount[currentPlayer] = 1;
+  handPos = 0;
+  
+  G.whoseTurn = 1;  // mark it as player 2's turn
   memcpy(&testG, &G, sizeof(struct gameState));
+  
+  // Store altPlayers hand to check after call to Smithy
+  memcpy(&altDeck, &testG.deck[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altDiscard, &testG.discard[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altHand, &testG.hand[alternatePlayer], MAX_HAND * sizeof(int));
+  //memcpy(&supplyCount, &testG.supplyCount, treasure_map+1 * sizeof(int));
+  for (i = 0; i < treasure_map+1; i++) 
+	  supplyCount[i] = testG.supplyCount[i];
+  memcpy(&embargoTokens, &testG.embargoTokens, treasure_map+1 * sizeof(int));
+  altDeckCount = testG.deckCount[alternatePlayer];
+  altHandCount = testG.handCount[alternatePlayer];
+  altDiscardCount = testG.discardCount[alternatePlayer];
+  numPlayers = testG.numPlayers;
+  outpostPlayed = testG.outpostPlayed;
+  outpostTurn = testG.outpostTurn;
+  whoseTurn = testG.whoseTurn;
+  phase = testG.phase;
+  numActions = testG.numActions;
+  coins  = testG.coins;
+  numBuys = testG.numBuys;
+
+  //call cardEffect for smithy on player 
+  success = cardEffect(smithy, -1, -1, -1, &testG, handPos, &bonus);
+
+  //******************************* APPLY Smithy LOGIC TO REFERENCE STATE *********************************
+  // Here we implement the logic of Smithy
+  // Draw 3 cards into hand
+  
+  //+3 Cards to hand
+  for (i = 0; i < 3; i++)
+  {
+    drawCard(currentPlayer, &G);
+  }
+
+  //discard smithy from hand to played
+  discardCard(handPos, currentPlayer, &G, 0);
+  //******************************* END Smithy LOGIC TO REFERENCE  *********************************
+  
+  // assert that reference smithy logic is working correctly. 
+  // Does not count towards error_count for dominion.c code
+  asserttrue(G.handCount[currentPlayer] == 3, "Expected handCount to be 3 after reference smithy logic, check test");
+  asserttrue(G.playedCards[G.playedCardCount-1] == smithy, "Smithy should be in played pile");
+  // make sure smithy is not in hand
+  z = 0;
+  for (i = 0; i < G.handCount[currentPlayer]; i++ ) {
+	  if (G.hand[currentPlayer][i] == smithy)
+		  z++;
+  }
+  asserttrue(z == 0, "Smithy should not be in hand, check reference logic");
+  
+  // ********** End checking reference Smithy logic
+
+  //*********************** LOGIC TO CHECK SMITHY doesnt effect other players deck or other gamestate vars **************/
+  printf("\tExpecting Smithy does not alter other players deck or irrelevent game state variables\n");
+  // check altPlayers hand matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altHandCount; i++)
+	  if (altHand[i] == testG.hand[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altHandCount, "Smithy changed another players hand");
+  
+  // check altPlayers deck matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDeckCount; i++)
+	  if (altDeck[i] == testG.deck[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altDeckCount, "Smithy changed another players deck");
+  
+  // check altPlayers discard matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDiscardCount; i++)
+	  if (altDiscard[i] == testG.discard[alternatePlayer][i])
+		  z++;
+	  
+  error_count += asserttrue(z == altDiscardCount, "Smithy changed another players discard");
+  
+  // check supplyCounts match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (supplyCount[i] == testG.supplyCount[i])
+		  z++;
+  
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed supplyCount");
+  
+  // check embargoTokens match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (embargoTokens[i] == testG.embargoTokens[i])
+		  z++;
+	  
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed embargoTokens");
+  
+  // Assert altHandCount, altDeckCount, and altDiscardCount match current alternate players counts
+  error_count += asserttrue(testG.handCount[alternatePlayer] == altHandCount, "Smithy changed another players handCount");
+  error_count += asserttrue(testG.deckCount[alternatePlayer] == altDeckCount, "Smithy changed another players deckCount");
+  error_count += asserttrue(testG.discardCount[alternatePlayer] == altDiscardCount, "Smithy changed another players handCount");
+  // assert that other gameState variables have not changed
+  error_count += asserttrue(numPlayers == testG.numPlayers, "Smithy change numPlayers");
+  error_count += asserttrue(outpostPlayed == testG.outpostPlayed, "Smithy change outpostPlayed");
+  error_count += asserttrue(outpostTurn == testG.outpostTurn, "Smithy change outpostTurn");
+  error_count += asserttrue(whoseTurn == testG.whoseTurn, "Smithy change whoseTurn");
+  error_count += asserttrue(phase == testG.phase, "Smithy change phase");
+  error_count += asserttrue(coins == testG.coins, "Smithy change coins");
+  error_count += asserttrue(numBuys == testG.numBuys, "Smithy change numBuys");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: Smithy does not change other players hand or irrelevant game state variables\n");
+  //*********************** END OF LOGIC TO CHECK Smithy doesnt effect other players deck **************/
+  
+  // assert cardEffect returns 0
+  error_count += asserttrue(success == 0, "Call to cardEffect for Smithy returned status failed");
+  
+  // assert handCounts matches reference
+  printf("\tExpecting handCount %d and received %d\n", G.handCount[currentPlayer], testG.handCount[currentPlayer]);
+  error_count += asserttrue(G.handCount[currentPlayer] == testG.handCount[currentPlayer], 
+      "handCount does not match reference");
+  
+  // keep track of whether reference matches returned hand cards
+  seed = 0;
+  // Check is top two cards in hand are the same as the reference and are
+  // currency
+  for (i = 0; i < testG.handCount[currentPlayer]; i++) {
+    if (G.hand[currentPlayer][i] == testG.hand[currentPlayer][i])
+      seed++;
+  }
+  
+  // print expected result of reference comparison and assert it is as expected
+  printf("\tExpects 3 if cards drawn in reference and returned are the same got %d\n", seed);
+  error_count += asserttrue(seed == 3, "Reference and returned hand should match");
+  
+  // keep track of whether returned hand has smithy
+  seed = 0;
+  // Check returned hand doesnt have smithy
+  for (i = 0; i < testG.handCount[currentPlayer]; i++) {
+    if (testG.hand[currentPlayer][i] == smithy)
+      seed++;
+  }
+  // print expected value of smithy card in hand
+  printf("\tExpects 0 if returned hand doesnt have smithy card and got%d\n", seed);
+  error_count += asserttrue(seed == 0, "Smithy should not be in hand");
+  
+  // keep track of whether returned deck matches reference
+  seed = 0;
+  // Check returned deck matches reference
+  for (i = 0; i < testG.deckCount[currentPlayer]; i++) {
+    if (testG.deck[currentPlayer][i] == G.deck[currentPlayer][i])
+      seed++;
+  }
+  
+  // print expected value of smithy card in hand
+  printf("\tExpects %d if returned deck matches reference and got %d\n", G.deckCount[currentPlayer], seed);
+  error_count += asserttrue(seed == G.deckCount[currentPlayer], "Reference deck should match returned");
+  
+  // print comparison of expected deckCount and reference and assert it is as expected
+  printf("\tExpects %d if reference deckCount matches returned got %d\n", 
+      G.deckCount[currentPlayer], testG.deckCount[currentPlayer]);
+  error_count += asserttrue(G.deckCount[currentPlayer] == testG.deckCount[currentPlayer],
+      "deckCount does not match reference");
+  
+  // print comparison of expected discardCount and reference and assert it is as expected
+  printf("\tExpects %d if reference discardCount matches returned got %d\n", 
+      G.discardCount[currentPlayer], testG.discardCount[currentPlayer]);
+  error_count += asserttrue(G.discardCount[currentPlayer] == testG.discardCount[currentPlayer],
+      "discardCount does not match reference");
+	  
+	
+
+  if (error_count == 0)
+    printf("\n\tAll Tests Successful, Player 2 default deck\n\n");
+  else
+    printf("\n\t%d Tests Failed, Player 2 default deck\n\n", error_count);
+  
+  error_total += error_count;
+  error_count = 0;
+/*
+  //******************************* TEST 2 - EMPTY DECK, 12 non-currency cards in Discard with 2 copper} ***********************
+  printf("Test 2 Smithy, Player1 deck empty, discard has 12 cards with 2 copper, 5 cards in hand\n");
+
+  // clear Smithy variables and make currentPlayer player 1
+  currentPlayer = 0;
+  shuffle_occurred = 0;
+  drawntreasure = 0;
+  cardDrawn = -1;
+  z = 0,
+  check_discard = 0,
+  count_discard_matches = 0;
+  
+  // clear altPlayer variables
+  alternatePlayer = 1;
+  altHandCount = 0;
+  altDeckCount = 0;
+  altDiscardCount = 0;
+	  
+	  
+  // make it player 1's turn
+  G.whoseTurn = 0;
+  // empty player 1 deck and fill discard with two copper
+  G.deckCount[currentPlayer] = 0;
+  G.discardCount[currentPlayer] = 0;
+
+  // add 10 non-currency cards
+  for (i = 7; i < 17; i++) 
+      G.discard[currentPlayer][G.discardCount[currentPlayer]++] = i;
+  // add two copper
+  G.discard[currentPlayer][G.discardCount[currentPlayer]++] = 4;
+  G.discard[currentPlayer][G.discardCount[currentPlayer]++] = 4;
+  
+  // copy new player 1 state into
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
+  // Store altPlayers hand to check after call to Smithy
+  memcpy(&altDeck, &testG.deck[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altDiscard, &testG.discard[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altHand, &testG.hand[alternatePlayer], MAX_HAND * sizeof(int));
+  //memcpy(&supplyCount, &testG.supplyCount, treasure_map+1 * sizeof(int));
+  for (i = 0; i < treasure_map+1; i++) 
+	  supplyCount[i] = testG.supplyCount[i];
+  memcpy(&embargoTokens, &testG.embargoTokens, treasure_map+1 * sizeof(int));
+  altDeckCount = testG.deckCount[alternatePlayer];
+  altHandCount = testG.handCount[alternatePlayer];
+  altDiscardCount = testG.discardCount[alternatePlayer];
+  numPlayers = testG.numPlayers;
+  outpostPlayed = testG.outpostPlayed;
+  outpostTurn = testG.outpostTurn;
+  whoseTurn = testG.whoseTurn;
+  phase = testG.phase;
+  numActions = testG.numActions;
+  coins  = testG.coins;
+  numBuys = testG.numBuys;
+  
+  //call cardEffect for Smithy on player
+  success = cardEffect(smithy, -1, -1, -1, &testG, handPos, &bonus);
+
+  //******************************* APPLY Smithy LOGIC TO REFERENCE STATE *********************************
+  // Here we implement the logic of Smithy
+  // Draw 3 cards into hand
+  
+  i = 0;
+  //+3 Cards
+  for (i = 0; i < 3; i++)
+  {
+    drawCard(currentPlayer, &G);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  //******************************* END Smithy LOGIC TO REFERENCE STATE *********************************
+  
+  
+  // assert that reference Smithy logic is working correctly. 
+  // Does not count towards error_count for dominion.c code
+  asserttrue(z == 0, "TempHand Should be 0, Check reference logic");
+  asserttrue(check_discard == G.discardCount[currentPlayer], 
+		"Discard count does not match drawn cards, check reference logic");
+  // check that top of reference hand is drawntreasure amount of currency cards
+  z = 0;
+  for (i = G.handCount[currentPlayer]-1; i > G.handCount[currentPlayer]- (1 + drawntreasure); i--) {
+	  if (G.hand[currentPlayer][i] >= 3 && G.hand[currentPlayer][i] <= 6)
+		z++;
+  }
+  asserttrue(z == drawntreasure, "Reference adventurur logic drew non-currncy into hand, check reference logic");
+  // walk backwards though discard and forwards through tempHand and confirm they match
+  // (this is because tempHand is added to discard in revers order)
+  // This makes sure that all drawn non-currency cards are added to discard.
+  // Also assert that no currency cards were discarded
+  z = 0;
+  while (check_discard >= seed) {
+	  if (G.discard[currentPlayer][check_discard-1] == temphand[z] && (temphand[z] < 4 || temphand[z] > 6))
+		  count_discard_matches++;
+	  z++;
+	  check_discard--;
+  } 
+  asserttrue(count_discard_matches == z, "Cards added to discard should match non-currency cards drawn, check reference logic");
+  // ********** End checking reference Smithy logic
+  
+  //*********************** LOGIC TO CHECK Smithy doesnt effect other players deck or other gamestate vars **************%%%
+  printf("\tExpecting Smithy does not alter other players deck or irrelevent game state variables\n");
+  // check altPlayers hand matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altHandCount; i++)
+	  if (altHand[i] == testG.hand[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altHandCount, "Smithy changed another players hand");
+  
+  // check altPlayers deck matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDeckCount; i++)
+	  if (altDeck[i] == testG.deck[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altDeckCount, "Smithy changed another players deck");
+  
+  // check altPlayers discard matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDiscardCount; i++)
+	  if (altDiscard[i] == testG.discard[alternatePlayer][i])
+		  z++;
+	  
+  error_count += asserttrue(z == altDiscardCount, "Smithy changed another players discard");
+  
+  // check supplyCounts match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (supplyCount[i] == testG.supplyCount[i])
+		  z++;
+  
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed supplyCount");
+  
+  // check embargoTokens match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (embargoTokens[i] == testG.embargoTokens[i])
+		  z++;
+	  
+    
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed embargoTokens");
+  
+  // Assert altHandCount, altDeckCount, and altDiscardCount match current alternate players counts
+  error_count += asserttrue(testG.handCount[alternatePlayer] == altHandCount, "Smithy changed another players handCount");
+  error_count += asserttrue(testG.deckCount[alternatePlayer] == altDeckCount, "Smithy changed another players deckCount");
+  error_count += asserttrue(testG.discardCount[alternatePlayer] == altDiscardCount, "Smithy changed another players handCount");
+  // assert that other gameState variables have not changed
+  error_count += asserttrue(numPlayers == testG.numPlayers, "Smithy change numPlayers");
+  error_count += asserttrue(outpostPlayed == testG.outpostPlayed, "Smithy change outpostPlayed");
+  error_count += asserttrue(outpostTurn == testG.outpostTurn, "Smithy change outpostTurn");
+  error_count += asserttrue(whoseTurn == testG.whoseTurn, "Smithy change whoseTurn");
+  error_count += asserttrue(phase == testG.phase, "Smithy change phase");
+  error_count += asserttrue(coins == testG.coins, "Smithy change coins");
+  error_count += asserttrue(numBuys == testG.numBuys, "Smithy change numBuys");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: Smithy does not change irrelevant game state variables\n");
+  //*********************** END OF LOGIC TO CHECK Smithy doesnt effect other players deck **************%%%
+
+   // assert cardEffect returns 0
+  error_count += asserttrue(success == 0, "Call to cardEffect for Smithy returned status failed");
+  // assert handCounts matches reference
+  printf("\tExpecting handCount %d and received %d\n", G.handCount[currentPlayer], testG.handCount[currentPlayer]);
+  error_count += asserttrue(G.handCount[currentPlayer] == testG.handCount[currentPlayer], 
+      "handCount does not match reference");
+  
+  // keep track of whether reference matches returned hand cards
+  seed = 0;
+  // keep track of whether returned cards in hand are currency
+  copper_count = 0;
+  // Check is top two cards in hand are the same as the reference and are
+  // currency
+  for (i = G.handCount[currentPlayer]-1; i > G.handCount[currentPlayer]-3; i--) {
+    if (G.hand[currentPlayer][i] == testG.hand[currentPlayer][i])
+      seed++;
+
+    cardDrawn = testG.hand[currentPlayer][i];
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+      copper_count++;
+  }
+  
+  // print expected result of reference comparison and assert it is as expected
+  printf("\tExpects 2 if top two cards are same in reference and returned hand got %d\n", seed);
+  error_count += asserttrue(seed == 2, "Top two cards in hand do not match reference");
+  // print expected value of currncy cards obtained and assert it is as expected
+  printf("\tExpects 2 if top two cards are currency in returned hand and got %d\n", copper_count);
+  error_count += asserttrue(copper_count == 2, "Top two cards in hand are not currency");
+  // print comparison of expected discardCount and reference and assert it is as expected
+  printf("\tExpects discardCount and deckCount sum to be %d got  %d\n", 
+      G.discardCount[currentPlayer] + G.deckCount[currentPlayer], 
+      testG.discardCount[currentPlayer] + testG.deckCount[currentPlayer]);
+  error_count += asserttrue(G.discardCount[currentPlayer] + G.deckCount[currentPlayer] == 
+      testG.discardCount[currentPlayer] + testG.deckCount[currentPlayer],
+      "Two copper should have been placed in hand, sum of discard and deck counts should be equal");
+
+  if (error_count == 0)
+    printf("\n\tAll Tests Successful, Player 1 deck empty discard full, contains 2 copper\n\n");
+  else
+    printf("\n\t%d Tests Failed, Player 1 deck empty discard full, contains 2 copper\n\n", error_count);
+  
+  error_total += error_count;
+  error_count = 0;
+
+	//******************************* TEST 3 - Player2 10 cards in discard with 1 silver, 5 non-currency in deck, 0 in hand ***********************
+  printf("Test 3 Smithy, Player2 10 cards in discard with 1 silver, 5 non-currency in deck, 0 in hand\n");
+
+  // clear Smithy variables and make currentPlayer player 2
+  currentPlayer = 1;
+  shuffle_occurred = 0;
+  drawntreasure = 0;
+  cardDrawn = -1;
+  z = 0,
+  check_discard = 0,
+  count_discard_matches = 0;
+  
+  // clear altPlayer variables
+  alternatePlayer = 0;
+  altHandCount = 0;
+  altDeckCount = 0;
+  altDiscardCount = 0;
+  
+  // make it player 2's turn
+  G.whoseTurn = 1;
+  // empty player 2 deck and fill discard with two copper
+  G.deckCount[currentPlayer] = 0;
+  G.discardCount[currentPlayer] = 0;
+  G.handCount[currentPlayer] = 0;
+
+  // add 10 non-currency cards
+  for (i = 7; i < 17; i++) 
+      G.discard[currentPlayer][G.discardCount[currentPlayer]++] = i;
+  // add one silver
+  G.discard[currentPlayer][G.discardCount[currentPlayer]++] = 5;
+  // add 5 non-currency cards to deck
+  for (i = 20; i < 25; i++)
+    G.deck[currentPlayer][G.deckCount[currentPlayer]++] = i;
+
+  // copy new player 2 state into
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
+  // Store altPlayers hand to check after call to Smithy
+  memcpy(&altDeck, &testG.deck[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altDiscard, &testG.discard[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altHand, &testG.hand[alternatePlayer], MAX_HAND * sizeof(int));
+  //memcpy(&supplyCount, &testG.supplyCount, treasure_map+1 * sizeof(int));
+  for (i = 0; i < treasure_map+1; i++) 
+	  supplyCount[i] = testG.supplyCount[i];
+  memcpy(&embargoTokens, &testG.embargoTokens, treasure_map+1 * sizeof(int));
+  altDeckCount = testG.deckCount[alternatePlayer];
+  altHandCount = testG.handCount[alternatePlayer];
+  altDiscardCount = testG.discardCount[alternatePlayer];
+  numPlayers = testG.numPlayers;
+  outpostPlayed = testG.outpostPlayed;
+  outpostTurn = testG.outpostTurn;
+  whoseTurn = testG.whoseTurn;
+  phase = testG.phase;
+  numActions = testG.numActions;
+  coins  = testG.coins;
+  numBuys = testG.numBuys;
+  
+  //call cardEffect for smithy on player 
+  success = cardEffect(smithy, -1, -1, -1, &testG, handPos, &bonus);
+
+  //******************************* APPLY Smithy LOGIC TO REFERENCE STATE *********************************
+  // Here we implement the logic of Smithy
+  // Draw 3 cards into hand
+  
+  i = 0;
+  //+3 Cards
+  for (i = 0; i < 3; i++)
+  {
+    drawCard(currentPlayer, &G);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  //******************************* END Smithy LOGIC TO REFERENCE STATE *********************************
+  
+  // assert that reference Smithy logic is working correctly. 
+  // Does not count towards error_count for dominion.c code
+  asserttrue(z == 0, "TempHand Should be 0, Check reference logic");
+  asserttrue(check_discard == G.discardCount[currentPlayer], 
+		"Discard count does not match drawn cards, check reference logic");
+  // check that top of reference hand is drawntreasure amount of currency cards
+  z = 0;
+  for (i = G.handCount[currentPlayer]-1; i > G.handCount[currentPlayer]- (1 + drawntreasure); i--) {
+	  if (G.hand[currentPlayer][i] >= 3 && G.hand[currentPlayer][i] <= 6)
+		z++;
+  }
+  asserttrue(z == drawntreasure, "Reference adventurur logic drew non-currncy into hand, check reference logic");
+  // walk backwards though discard and forwards through tempHand and confirm they match
+  // (this is because tempHand is added to discard in revers order)
+  // This makes sure that all drawn non-currency cards are added to discard.
+  // Also assert that no currency cards were discarded
+  z = 0;
+  while (check_discard >= seed) {
+	  if (G.discard[currentPlayer][check_discard-1] == temphand[z] && (temphand[z] < 4 || temphand[z] > 6))
+		  count_discard_matches++;
+	  z++;
+	  check_discard--;
+  } 
+  asserttrue(count_discard_matches == z, "Cards added to discard should match non-currency cards drawn, check reference logic");
+  // ********** End checking reference Smithy logic
+  
+  //*********************** LOGIC TO CHECK Smithy doesnt effect other players deck or other gamestate vars **************%%%
+  printf("\tExpecting Smithy does not alter other players deck or irrelevent game state variables\n");
+  // check altPlayers hand matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altHandCount; i++)
+	  if (altHand[i] == testG.hand[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altHandCount, "Smithy changed another players hand");
+  
+  // check altPlayers deck matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDeckCount; i++)
+	  if (altDeck[i] == testG.deck[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altDeckCount, "Smithy changed another players deck");
+  
+  // check altPlayers discard matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDiscardCount; i++)
+	  if (altDiscard[i] == testG.discard[alternatePlayer][i])
+		  z++;
+	  
+  error_count += asserttrue(z == altDiscardCount, "Smithy changed another players discard");
+  
+  // check supplyCounts match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (supplyCount[i] == testG.supplyCount[i])
+		  z++;
+  
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed supplyCount");
+  
+  // check embargoTokens match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (embargoTokens[i] == testG.embargoTokens[i])
+		  z++;
+	  
+    
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed embargoTokens");
+  
+  // Assert altHandCount, altDeckCount, and altDiscardCount match current alternate players counts
+  error_count += asserttrue(testG.handCount[alternatePlayer] == altHandCount, "Smithy changed another players handCount");
+  error_count += asserttrue(testG.deckCount[alternatePlayer] == altDeckCount, "Smithy changed another players deckCount");
+  error_count += asserttrue(testG.discardCount[alternatePlayer] == altDiscardCount, "Smithy changed another players handCount");
+  // assert that other gameState variables have not changed
+  error_count += asserttrue(numPlayers == testG.numPlayers, "Smithy change numPlayers");
+  error_count += asserttrue(outpostPlayed == testG.outpostPlayed, "Smithy change outpostPlayed");
+  error_count += asserttrue(outpostTurn == testG.outpostTurn, "Smithy change outpostTurn");
+  error_count += asserttrue(whoseTurn == testG.whoseTurn, "Smithy change whoseTurn");
+  error_count += asserttrue(phase == testG.phase, "Smithy change phase");
+  error_count += asserttrue(coins == testG.coins, "Smithy change coins");
+  error_count += asserttrue(numBuys == testG.numBuys, "Smithy change numBuys");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: Smithy does not change irrelevant game state variables\n");
+  //*********************** END OF LOGIC TO CHECK Smithy doesnt effect other players deck **************%%%
+
+   // assert cardEffect returns 0
+  error_count += asserttrue(success == 0, "Call to cardEffect for Smithy returned status failed");
+  // assert handCounts matches reference
+  printf("\tExpecting handCount %d and received %d\n", G.handCount[currentPlayer], testG.handCount[currentPlayer]);
+  error_count += asserttrue(G.handCount[currentPlayer] == testG.handCount[currentPlayer], 
+      "handCount does not match reference");
+  
+  // keep track of whether reference matches returned hand cards
+  seed = 0;
+  // keep track of whether returned cards in hand are currency
+  copper_count = 0;
+  // Check if top  cards in hand are the same as the reference and are
+  // currency
+  for (i = 0; i < testG.handCount[currentPlayer]; i++) {
+    if (G.hand[currentPlayer][i] == testG.hand[currentPlayer][i])
+      seed++;
+
+    cardDrawn = testG.hand[currentPlayer][i];
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+      copper_count++;
+  }
+  
+  // print expected result of reference comparison and assert it is as expected
+  printf("\tExpects 1 if top cards are same in reference and returned hand got %d\n", seed);
+  error_count += asserttrue(seed == 1, "top cards in hand do not match reference");
+  // print expected value of currncy cards obtained and assert it is as expected
+  printf("\tExpects 1 if top cards are currency in returned hand and got %d\n", copper_count);
+  error_count += asserttrue(copper_count == 1, "Top two cards in hand are not currency");
+  // print comparison of expected discardCount and reference and assert it is as expected
+  printf("\tExpects discardCount and deckCount sum to be %d got  %d\n", 
+      G.discardCount[currentPlayer] + G.deckCount[currentPlayer], 
+      testG.discardCount[currentPlayer] + testG.deckCount[currentPlayer]);
+  error_count += asserttrue(G.discardCount[currentPlayer] + G.deckCount[currentPlayer] == 
+      testG.discardCount[currentPlayer] + testG.deckCount[currentPlayer],
+      "Two copper should have been placed in hand, sum of discard and deck counts should be equal");
+
+  if (error_count == 0)
+    printf("\n\tAll Tests Successful,  Player2 only 1 currency (silver) in discard, none in deck\n\n");
+  else
+    printf("\n\t%d Tests Failed, Player2 only 1 currency (silver) in discard, none in deck\n\n", error_count);
+  
+  error_total += error_count;
+  error_count = 0;
+  
+  
+  //******************************* TEST 4 - EMPTY Discard, 12 non-currency cards in Deck with 2 gold} ***********************
+  printf("Test 4 Smithy, Player1 empty discard, 5 non-currency in hand, and 12 cards in deck with 2 gold at bottom\n");
+
+  // clear Smithy variables and make currentPlayer player 1
+  currentPlayer = 0;
+  shuffle_occurred = 0;
+  drawntreasure = 0;
+  cardDrawn = -1;
+  z = 0,
+  check_discard = 0,
+  count_discard_matches = 0;
+  
+  // clear altPlayer variables
+  alternatePlayer = 1;
+  altHandCount = 0;
+  altDeckCount = 0;
+  altDiscardCount = 0;
+	  
+	  
+  // make it player 1's turn
+  G.whoseTurn = 0;
+  // empty player 1 discard and fill deck with 10 non currency and two gold
+  G.deckCount[currentPlayer] = 0;
+  G.discardCount[currentPlayer] = 0;
+  // add 5 non-currency to hand
+  for (i = 0; i < 5; i++)
+	  G.hand[currentPlayer][i] = i+10; // add non-currency cards
+  G.handCount[currentPlayer] = i;
+  
+  // add two gold to deck
+  G.deck[currentPlayer][G.deckCount[currentPlayer]++] = 6;
+  G.deck[currentPlayer][G.deckCount[currentPlayer]++] = 6;
+  // add 10 non-currency cards
+  for (i = 7; i < 17; i++) 
+      G.deck[currentPlayer][G.deckCount[currentPlayer]++] = i;
+  
+  
+  // copy new player 1 state into
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
+  // Store altPlayers hand to check after call to Smithy
+  memcpy(&altDeck, &testG.deck[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altDiscard, &testG.discard[alternatePlayer], MAX_DECK * sizeof(int));
+  memcpy(&altHand, &testG.hand[alternatePlayer], MAX_HAND * sizeof(int));
+  //memcpy(&supplyCount, &testG.supplyCount, treasure_map+1 * sizeof(int));
+  for (i = 0; i < treasure_map+1; i++) 
+	  supplyCount[i] = testG.supplyCount[i];
+  memcpy(&embargoTokens, &testG.embargoTokens, treasure_map+1 * sizeof(int));
+  altDeckCount = testG.deckCount[alternatePlayer];
+  altHandCount = testG.handCount[alternatePlayer];
+  altDiscardCount = testG.discardCount[alternatePlayer];
+  numPlayers = testG.numPlayers;
+  outpostPlayed = testG.outpostPlayed;
+  outpostTurn = testG.outpostTurn;
+  whoseTurn = testG.whoseTurn;
+  phase = testG.phase;
+  numActions = testG.numActions;
+  coins  = testG.coins;
+  numBuys = testG.numBuys;
+  
+  //call cardEffect for smithy on player 
+  success = cardEffect(smithy, -1, -1, -1, &testG, handPos, &bonus);
+
+  //******************************* APPLY Smithy LOGIC TO REFERENCE STATE *********************************
+  // Here we implement the logic of Smithy
+  // Draw 3 cards into hand
+  
+  i = 0;
+  //+3 Cards
+  for (i = 0; i < 3; i++)
+  {
+    drawCard(currentPlayer, &G);
+  }
+
+  //discard card from hand
+  discardCard(handPos, currentPlayer, state, 0);
+  //******************************* END Smithy LOGIC TO REFERENCE STATE *********************************
+  
+  // assert that reference Smithy logic is working correctly. 
+  // Does not count towards error_count for dominion.c code
+  asserttrue(z == 0, "TempHand Should be 0, Check reference logic");
+  asserttrue(check_discard == G.discardCount[currentPlayer], 
+		"Discard count does not match drawn cards, check reference logic");
+  // check that top of reference hand is drawntreasure amount of currency cards
+  z = 0;
+  for (i = G.handCount[currentPlayer]-1; i > G.handCount[currentPlayer]- (1 + drawntreasure); i--) {
+	  if (G.hand[currentPlayer][i] >= 3 && G.hand[currentPlayer][i] <= 6)
+		z++;
+  }
+  asserttrue(z == drawntreasure, "Reference adventurur logic drew non-currncy into hand, check reference logic");
+  // walk backwards though discard and forwards through tempHand and confirm they match
+  // (this is because tempHand is added to discard in revers order)
+  // This makes sure that all drawn non-currency cards are added to discard.
+  // Also assert that no currency cards were discarded
+  z = 0;
+  while (check_discard > seed) {
+	  if (G.discard[currentPlayer][check_discard-1] == temphand[z] && (temphand[z] < 4 || temphand[z] > 6))
+		  count_discard_matches++;
+	  z++;
+	  check_discard--;
+  } 
+  asserttrue(count_discard_matches == z, "Cards added to discard should match non-currency cards drawn, check reference logic");
+  // ********** End checking reference Smithy logic
+  
+  //*********************** LOGIC TO CHECK Smithy doesnt effect other players deck or other gamestate vars **************%%%
+  printf("\tExpecting Smithy does not alter other players deck or irrelevent game state variables\n");
+  // check altPlayers hand matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altHandCount; i++)
+	  if (altHand[i] == testG.hand[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altHandCount, "Smithy changed another players hand");
+  
+  // check altPlayers deck matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDeckCount; i++)
+	  if (altDeck[i] == testG.deck[alternatePlayer][i])
+		  z++;
+  error_count += asserttrue(z == altDeckCount, "Smithy changed another players deck");
+  
+  // check altPlayers discard matches copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < altDiscardCount; i++)
+	  if (altDiscard[i] == testG.discard[alternatePlayer][i])
+		  z++;
+	  
+  error_count += asserttrue(z == altDiscardCount, "Smithy changed another players discard");
+  
+  // check supplyCounts match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (supplyCount[i] == testG.supplyCount[i])
+		  z++;
+  
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed supplyCount");
+  
+  // check embargoTokens match copy
+  z = 0;	// z used to count matches
+  for (i = 0; i < treasure_map+1; i++) 
+	  if (embargoTokens[i] == testG.embargoTokens[i])
+		  z++;
+	  
+    
+  error_count += asserttrue(z == treasure_map+1, "Smithy changed embargoTokens");
+  
+  // Assert altHandCount, altDeckCount, and altDiscardCount match current alternate players counts
+  error_count += asserttrue(testG.handCount[alternatePlayer] == altHandCount, "Smithy changed another players handCount");
+  error_count += asserttrue(testG.deckCount[alternatePlayer] == altDeckCount, "Smithy changed another players deckCount");
+  error_count += asserttrue(testG.discardCount[alternatePlayer] == altDiscardCount, "Smithy changed another players handCount");
+  // assert that other gameState variables have not changed
+  error_count += asserttrue(numPlayers == testG.numPlayers, "Smithy change numPlayers");
+  error_count += asserttrue(outpostPlayed == testG.outpostPlayed, "Smithy change outpostPlayed");
+  error_count += asserttrue(outpostTurn == testG.outpostTurn, "Smithy change outpostTurn");
+  error_count += asserttrue(whoseTurn == testG.whoseTurn, "Smithy change whoseTurn");
+  error_count += asserttrue(phase == testG.phase, "Smithy change phase");
+  error_count += asserttrue(coins == testG.coins, "Smithy change coins");
+  error_count += asserttrue(numBuys == testG.numBuys, "Smithy change numBuys");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: Smithy does not change irrelevant game state variables\n");
+  //*********************** END OF LOGIC TO CHECK Smithy doesnt effect other players deck **************%%%
+
+   // assert cardEffect returns 0
+  error_count += asserttrue(success == 0, "Call to cardEffect for Smithy returned status failed");
+  // assert handCounts matches reference
+  printf("\tExpecting handCount %d and received %d\n", G.handCount[currentPlayer], testG.handCount[currentPlayer]);
+  error_count += asserttrue(G.handCount[currentPlayer] == testG.handCount[currentPlayer], 
+      "handCount does not match reference");
+  
+  // keep track of whether reference matches returned hand cards
+  seed = 0;
+  // keep track of whether returned cards in hand are currency
+  copper_count = 0;
+  // Check is top two cards in hand are the same as the reference and are
+  // currency
+  for (i = G.handCount[currentPlayer]-1; i > G.handCount[currentPlayer]-3; i--) {
+    if (G.hand[currentPlayer][i] == testG.hand[currentPlayer][i])
+      seed++;
+
+    cardDrawn = testG.hand[currentPlayer][i];
+    if (cardDrawn == gold)
+      copper_count++;
+  }
+  
+  // print expected result of reference comparison and assert it is as expected
+  printf("\tExpects 2 if top two cards are same in reference and returned hand got %d\n", seed);
+  error_count += asserttrue(seed == 2, "Top two cards in hand do not match reference");
+  // print expected value of currncy cards obtained and assert it is as expected
+  printf("\tExpects 2 if top two cards are currency in returned hand and got %d\n", copper_count);
+  error_count += asserttrue(copper_count == 2, "Top two cards in hand are not currency");
+  // print comparison of expected discardCount and reference and assert it is as expected
+  printf("\tExpects discardCount to be %d got  %d\n", 
+      G.discardCount[currentPlayer], testG.discardCount[currentPlayer]);
+  error_count += asserttrue(G.discardCount[currentPlayer] == testG.discardCount[currentPlayer],
+      "Returned discardCount should match reference discardCount");
+	  
+  printf("\tExpects deckCount to be %d got %d\n", 
+      G.deckCount[currentPlayer], testG.deckCount[currentPlayer]);
+  error_count += asserttrue(G.deckCount[currentPlayer] == testG.deckCount[currentPlayer],
+      "Returned deckCount should match reference deckCount");
+	  
+
+  if (error_count == 0)
+    printf("\n\tAll Tests Successful, Player1 empty discard, 5 non-currency in hand, and 12 cards in deck with 2 gold at bottom\n\n");
+  else
+    printf("\n\t%d Tests Failed, Player1 empty discard, 5 non-currency in hand, and 12 cards in deck with 2 gold at bottom\n\n", error_count);
+  
+  error_total += error_count;
+  error_count = 0;
 
 
+  error_total += error_count;*/
 
+  if (error_total == 0)
+    printf("ALL TESTS SUCCESSFUL, Smithy\n");
+  else
+    printf("%d TESTS FAILED, Smithy\n", error_total);
+
+  printf("------------------------ END Test Smithy Card ------------------------------\n");
+  
   return 0; 
 }
 

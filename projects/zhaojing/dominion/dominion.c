@@ -661,8 +661,8 @@ int adventurerCard(struct gameState *state){
       shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
-    //cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
+	//cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
       drawntreasure++;
     else{
