@@ -53,25 +53,25 @@ unittestresults.out: unittests cardtests dominion.o
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	./unittest4 >> unittestresults.out
-	echo ----------------- cardtest1.c gcov results ---------------- >> unittestresults.out
+	echo --------------------- cardtest1.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f cardtest1.c >> unittestresults.out
-	echo ----------------- cardtest2.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- cardtest2.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f cardtest2.c >> unittestresults.out
-	echo ----------------- cardtest3.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- cardtest3.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f cardtest3.c >> unittestresults.out
-	echo ----------------- cardtest4.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- cardtest4.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f cardtest4.c >> unittestresults.out
-	echo ----------------- unittest1.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- unittest1.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f unittest1.c >> unittestresults.out
-	echo ----------------- unittest2.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- unittest2.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f unittest2.c >> unittestresults.out
-	echo ----------------- unittest3.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- unittest3.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f unittest3.c >> unittestresults.out
-	echo ----------------- unittest4.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- unittest4.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f unittest4.c >> unittestresults.out
-	echo ----------------- dominion.c gcov results ---------------- >> unittestresults.out
+	echo ------------------- dominion.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f dominion.c >> unittestresults.out
-	echo ----------------- dominion.gcov results ---------------- >> unittestresults.out
+	echo ------------------- dominion.c.gcov results ------------------ >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out  
 
 player: player.c interface.o

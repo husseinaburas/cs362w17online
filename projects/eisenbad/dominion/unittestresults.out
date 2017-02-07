@@ -413,7 +413,7 @@
 
  >>>>> TESTS COMPLETE. SUCCESS: All fullDeckCount() tests passed. <<<<<
 
------------------ cardtest1.c gcov results ----------------
+--------------------- cardtest1.c gcov results ------------------
 Function 'main'
 Lines executed:100.00% of 35
 Branches executed:100.00% of 2
@@ -427,7 +427,7 @@ Taken at least once:50.00% of 2
 Calls executed:95.00% of 20
 Creating 'cardtest1.c.gcov'
 
------------------ cardtest2.c gcov results ----------------
+------------------- cardtest2.c gcov results ------------------
 Function 'main'
 Lines executed:95.86% of 145
 Branches executed:95.83% of 96
@@ -441,7 +441,7 @@ Taken at least once:71.88% of 96
 Calls executed:98.11% of 53
 Creating 'cardtest2.c.gcov'
 
------------------ cardtest3.c gcov results ----------------
+------------------- cardtest3.c gcov results ------------------
 Function 'main'
 Lines executed:100.00% of 38
 Branches executed:100.00% of 2
@@ -455,7 +455,7 @@ Taken at least once:50.00% of 2
 Calls executed:95.00% of 20
 Creating 'cardtest3.c.gcov'
 
------------------ cardtest4.c gcov results ----------------
+------------------- cardtest4.c gcov results ------------------
 Function 'main'
 Lines executed:98.15% of 54
 Branches executed:80.00% of 20
@@ -469,7 +469,7 @@ Taken at least once:50.00% of 20
 Calls executed:96.00% of 25
 Creating 'cardtest4.c.gcov'
 
------------------ unittest1.c gcov results ----------------
+------------------- unittest1.c gcov results ------------------
 Function 'main'
 Lines executed:97.76% of 134
 Branches executed:100.00% of 98
@@ -483,7 +483,7 @@ Taken at least once:62.24% of 98
 Calls executed:98.28% of 58
 Creating 'unittest1.c.gcov'
 
------------------ unittest2.c gcov results ----------------
+------------------- unittest2.c gcov results ------------------
 Function 'main'
 Lines executed:98.48% of 66
 Branches executed:100.00% of 56
@@ -497,7 +497,7 @@ Taken at least once:50.00% of 56
 Calls executed:98.91% of 92
 Creating 'unittest2.c.gcov'
 
------------------ unittest3.c gcov results ----------------
+------------------- unittest3.c gcov results ------------------
 Function 'main'
 Lines executed:100.00% of 38
 Branches executed:100.00% of 4
@@ -511,7 +511,7 @@ Taken at least once:50.00% of 4
 Calls executed:96.30% of 27
 Creating 'unittest3.c.gcov'
 
------------------ unittest4.c gcov results ----------------
+------------------- unittest4.c gcov results ------------------
 Function 'main'
 Lines executed:94.34% of 53
 Branches executed:90.00% of 20
@@ -525,7 +525,7 @@ Taken at least once:55.00% of 20
 Calls executed:96.67% of 30
 Creating 'unittest4.c.gcov'
 
------------------ dominion.c gcov results ----------------
+------------------- dominion.c gcov results ------------------
 Function 'great_hall_refact'
 Lines executed:0.00% of 6
 No branches
@@ -687,7 +687,7 @@ Taken at least once:37.89% of 417
 Calls executed:36.63% of 101
 Creating 'dominion.c.gcov'
 
------------------ dominion.gcov results ----------------
+------------------- dominion.c.gcov results ------------------
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
