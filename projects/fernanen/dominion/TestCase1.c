@@ -13,7 +13,6 @@
 #define NOISY_TEST 1
 
 int main() {
-    int provinces,eachCard,supplyCount =0;
     int i;
     int seed = 1000;
     int numPlayer = 2;
@@ -35,32 +34,35 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("TESTING isGameOver:\n");
+    printf ("TESTING updateCoins():\n");
     for (p = 2; p < 4; p++)
     {
-        for (provinces = 1; provinces >=0 ; provinces--)
+        for (provinces = 1; provinces >=0 ; province--)
         {
-            for (supplyCount = 0; supplyCount < 25; supplyCount++)
+            for (supplyCount = 0; suplycount < 25; supplyCount++)
             {
-		 memset(&G, 23, sizeof(struct gameState));   // clear the game state
-                 r = initializeGame(p, k, seed, &G);
-				for (eachCard =0; eachCard < 5; eachCard++)
-				{	
-					//memset(&G, 23, sizeof(struct gameState));   // clear the game state
-					//r = initializeGame(p, k, seed, &G); // initialize a new game
-					G.supplyCount[province] = provinces; 
-					G.supplyCount[eachCard] = 0;  
+				for (eachCard =0; eachCard < 3; eachCard++)
+				{
+					
 					#if (NOISY_TEST == 1)
-									printf("numofplayers = %d , G.province = %d , supplycards drained = %d :",p ,G.supplyCount[province],(eachCard+1));
+									printf("Test player %d with %d treasure card(s) and %d bonus.\n", p, handCount, bonus);
 					#endif
-					if(G.supplyCount[province] == 0 || eachCard > 1)
+					memset(&G, 23, sizeof(struct gameState));   // clear the game state
+					r = initializeGame(p, k, seed, &G); // initialize a new game
+					G->supplyCount[province] = provinces; 
+					G->supplyCount[eachCard] = 0;  
+					#if (NOISY_TEST == 1)
+									printf("numofplayers = %d , G.province = %d , supplycards drained = %d :",p ,G->suplycount[province],(eachCard+1));
+					#endif
+					if(provinces == 0 || eachCard ==2)
 					{
 						#if (NOISY_TEST == 1)
 									printf("should return one\n");
 						#endif
 						assert(isGameOver(&G) == 1); // checks if the game ends
 					}
-					else 
+					else
+					return 
 					{
 						#if (NOISY_TEST == 1)
 									printf("should return zero\n");
