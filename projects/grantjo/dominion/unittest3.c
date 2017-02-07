@@ -18,7 +18,8 @@ int asserttrue(int condition, char* message)
 
 int main(int argc, char** argv) 
 {
-  struct gameState G;
+  struct gameState G,
+				   testG;
   int i = 0,
       success = 1, 
       error_count = 0,
@@ -47,12 +48,25 @@ int main(int argc, char** argv)
     else if (G.hand[0][i] == gold)
       gold_count += 3;
   }
+  
+  // copy game state into reference
+  memcpy(&testG, &G, sizeof(struct gameState));
+  // give testG expected coin count.
+  testG.coins = copper_count + gold_count + silver_count;
 
   // make call to updateCOins for player 1 with 0 bonus
   success = updateCoins(0, &G, 0);
   
+  printf("\tExpecting updateCoins does not alter game state other than coins\n");
+  // assert that gameState is unaltered except coins
+  error_count += asserttrue(memcmp(&G, &testG, sizeof(struct gameState)) == 0, "gameState should match reference");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: updateCoins does not alter game state other than coins\n");
+  
   // assert that updateCoins returned successfully
   error_count += asserttrue(success == 0, "updateCoins call returns status failed");
+ 
   // assert that total coin value is the same as copper value (only currency in
   // hand)
   error_count += asserttrue(G.coins == copper_count, "Coin Count incorrect, should only contain copper");
@@ -63,7 +77,7 @@ int main(int argc, char** argv)
   error_count += asserttrue(gold_count == 0, "Gold greater than 0");
  
   if (error_count == 0)
-    printf("\tAll Tests Successful updateCoins Player 1 first draw (no bonus, only copper)\n\n");
+    printf("\tAll 6 Tests Successful updateCoins Player 1 first draw (no bonus, only copper)\n\n");
   else
     printf("\t%d Tests Failed updateCoins Player 1 first draw (no bonus, only copper\n\n)", error_count);
 
@@ -115,12 +129,25 @@ int main(int argc, char** argv)
     else if (G.hand[1][i] == gold)
       gold_count += 3;
   }
+  
+   // copy game state into reference
+  memcpy(&testG, &G, sizeof(struct gameState));
+  // give testG expected coin count.
+  testG.coins = copper_count + gold_count + silver_count;
 
   // Call updateCoins on player2's hand
   success = updateCoins(1, &G, 0);
   
+  printf("\tExpecting updateCoins does not alter game state other than coins\n");
+  // assert that gameState is unaltered except coins
+  error_count += asserttrue(memcmp(&G, &testG, sizeof(struct gameState)) == 0, "gameState should match reference");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: updateCoins does not alter game state other than coins\n");
+  
   // assert updateCoins returned success
   error_count += asserttrue(success == 0, "updateCoins call returns status failed");
+  
   // assert that total coins is correct
   error_count += asserttrue(G.coins == copper_count + gold_count + silver_count, "Coin Count incorrect");
   // assert that copper_count is correct (more of a test of the testcase)
@@ -131,7 +158,7 @@ int main(int argc, char** argv)
   error_count += asserttrue(gold_count == 9, "Expected gold to total 9");
 
   if (error_count == 0)
-    printf("\tAll Tests Successful updateCoins Player 2 three of each currency (no bonus)\n\n");
+    printf("\tAll 6 Tests Successful updateCoins Player 2 three of each currency (no bonus)\n\n");
   else
     printf("\t%d Tests Failed updateCoins Player 2 three of each currency  (no bonus)\n\n", error_count);
 
@@ -163,12 +190,25 @@ int main(int argc, char** argv)
     else if (G.hand[0][i] == gold)
       gold_count += 3;
   }
+  
+   // copy game state into reference
+  memcpy(&testG, &G, sizeof(struct gameState));
+  // give testG expected coin count.
+  testG.coins = 5;
 
   // call updateCoins on player with 5 bonus
   success = updateCoins(0, &G, 5);
+  
+  printf("\tExpecting updateCoins does not alter game state other than coins\n");
+  // assert that gameState is unaltered except coins
+  error_count += asserttrue(memcmp(&G, &testG, sizeof(struct gameState)) == 0, "gameState should match reference");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: updateCoins does not alter game state other than coins\n");
 
   // assert that updateCoins returned success
   error_count += asserttrue(success == 0, "updateCoins call returns status failed");
+  
   // assert that coin value is only worth the bonus
   error_count += asserttrue(G.coins == 5, "Coin Cunt Incorrect, expected 5 from bonus");
   // assert that copper value is 0
@@ -179,7 +219,7 @@ int main(int argc, char** argv)
   error_count += asserttrue(gold_count == 0, "Expected gold to total 0");
 
   if (error_count == 0)
-    printf("\tAll Tests Successful, Player 1 One of every non-currency card plus 5 bonus\n\n");
+    printf("\tAll 6 Tests Successful, Player 1 One of every non-currency card plus 5 bonus\n\n");
   else
     printf("\t%d Tests Failed, Player 1 One of every non-currency card plus 5 bonus\n\n", error_count);
 
@@ -187,7 +227,7 @@ int main(int argc, char** argv)
   error_count = 0;
 
   if (error_total == 0)
-    printf("ALL TESTS SUCCESSFUL updateCoins\n");
+    printf("ALL 18 TESTS SUCCESSFUL updateCoins\n");
   else
     printf("%d TESTS FAILED updateCoins\n", error_total);
   
