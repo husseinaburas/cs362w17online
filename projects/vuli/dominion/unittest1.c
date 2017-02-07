@@ -16,10 +16,9 @@ Requirements:
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "test_helpers.h"
+#include "unittests_helpers.h"
 
 #define FUNC_NAME "isGameOver()"
-#define NOISY_TEST 0
 
 // /* Returns number of empty Supply piles */
 // int countEmptySupply(struct gameState* state) {

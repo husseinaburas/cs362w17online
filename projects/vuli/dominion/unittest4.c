@@ -15,10 +15,9 @@ Requirements:
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "test_helpers.h"
+#include "unittests_helpers.h"
 
 #define FUNC_NAME "whoseTurn()"
-#define NOISY_TEST 0
 
 
 /*********************************************************************/
@@ -43,7 +42,7 @@ int main() {
     initializeGame(numPlayer, k, seed, &G);
     r = whoseTurn(&G);
     asserttrue(r == 0, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", 0, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", 0, r);
     
     /*********/
 for (i=0; i < numPlayer; i++) {
@@ -51,7 +50,7 @@ for (i=0; i < numPlayer; i++) {
     G.whoseTurn = i;
     r = whoseTurn(&G);
     asserttrue(r == i, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", i, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", i, r);
 }
     
     /*********/

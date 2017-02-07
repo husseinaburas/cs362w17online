@@ -21,7 +21,7 @@ int main(int argc, char** argv){
     int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
     
     // initialize the game
-    initializeGame(numberPlayers, &kingdomCards, numberPlayers, &game);
+    initializeGame(numberPlayers, kingdomCards, 1, &game);
     
     // unit test2 will check the updateCoins() function using 4 test cases
 	int numTests = 4;
