@@ -19,10 +19,10 @@
 *********************************************************************/
 void asserttrue(int condition, int* r_main) {
   if (condition > 0) {
-    printf("PASSED!\n");
+    printf("TEST PASSED!\n");
     (*r_main)++;
   } else {
-    printf("FAILED!\n");
+    printf("TEST FAILED -- BUG ALERT!!!\n");
   }
 }
 
