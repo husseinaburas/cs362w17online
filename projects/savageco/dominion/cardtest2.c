@@ -16,8 +16,24 @@
 void assert_true(int);
 
 int main() {
+  // Used from BetterTestCardDraw.c
+  int i, n, r, p, deckCount, discardCount, handCount;
 
+  int k[10] = {adventurer, council_room, feast, gardens, mine,
+	       remodel, smithy, village, baron, great_hall};
 
+  struct gameState G;
+
+  printf ("Testing Smithy Card.\n");
+
+  initializeGame(2, k, 10, &G);
+  
+  // Set it to testing player's turn and put the Smithy Card in the player's hand
+  G.whoseTurn = 0;
+  G.hand[0][0] = smithy;
+  
+  // play Smithy Card
+  playCard(0, -1, -1, -1, &G);
 
 }
 
