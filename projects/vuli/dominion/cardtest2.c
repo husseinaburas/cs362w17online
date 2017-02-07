@@ -74,15 +74,15 @@ int main() {
     printf("---------CASE %d: %s -- TEST %d: Hand count increased by 2\n", caseCount, casename, ++testCount);
     count1 = preG.handCount[player];
     count2 = G.handCount[player];
-    asserttrue(count2==count1+2, &r_main);
     if (NOISY_TEST) printf("Hand count before: %d\nHand count after: %d\n", count1, count2);
+    asserttrue(count2==count1+2, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Deck+Discard count decreased by 3\n", caseCount, casename, ++testCount);
     count1 = preG.deckCount[player] + preG.discardCount[player];
     count2 = G.deckCount[player] + G.discardCount[player];
-    asserttrue(count2==count1-3, &r_main);
     if (NOISY_TEST) printf("Deck+Discard count before: %d\nDeck+Discard count after: %d\n", count1, count2);
+    asserttrue(count2==count1-3, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: 3 new cards added to Hand\n", caseCount, casename, ++testCount);
@@ -179,7 +179,6 @@ int main() {
             }           
         }
     }
-    asserttrue(count1==0 && count2==0, &r_main);
     if (NOISY_TEST) {
         if (count1>0) {
             printf("Cards added to Hand but not removed from Deck+Discard: ");
@@ -196,6 +195,7 @@ int main() {
             printf("\n");
         }
     }
+    asserttrue(count1==0 && count2==0, &r_main);
 
 
 /*-------------------------------------------------------------------------*/
@@ -227,15 +227,15 @@ int main() {
     printf("---------CASE %d: %s -- TEST %d: Hand count increased by 2\n", caseCount, casename, ++testCount);
     count1 = preG.handCount[player];
     count2 = G.handCount[player];
-    asserttrue(count2==count1+2, &r_main);
     if (NOISY_TEST) printf("Hand count before: %d\nHand count after: %d\n", count1, count2);
+    asserttrue(count2==count1+2, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Deck+Discard count decreased by 3\n", caseCount, casename, ++testCount);
     count1 = preG.deckCount[player] + preG.discardCount[player];
     count2 = G.deckCount[player] + G.discardCount[player];
-    asserttrue(count2==count1-3, &r_main);
     if (NOISY_TEST) printf("Deck+Discard count before: %d\nDeck+Discard count after: %d\n", count1, count2);
+    asserttrue(count2==count1-3, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: 3 new cards added to Hand\n", caseCount, casename, ++testCount);
@@ -332,7 +332,6 @@ int main() {
             }           
         }
     }
-    asserttrue(count1==0 && count2==0, &r_main);
     if (NOISY_TEST) {
         if (count1>0) {
             printf("Cards added to Hand but not removed from Deck+Discard: ");
@@ -349,6 +348,7 @@ int main() {
             printf("\n");
         }
     }
+    asserttrue(count1==0 && count2==0, &r_main);
 
 
 /*-------------------------------------------------------------------------*/

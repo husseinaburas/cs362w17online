@@ -57,51 +57,15 @@ cardtests: cardtest1.c cardtest2.c dominion.o rngs.o unittests_helpers.o
 
 unittestresults.out: unittests cardtests
 	./unittest1 > unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./unittest2 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	
 	./unittest3 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./unittest4 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./cardtest1 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./cardtest2 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./cardtest3 >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
 	./cardtest4 >> unittestresults.out
+
 	echo "**********************************************************\n" >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
-	echo "**********************************************************\n" >> unittestresults.out
-
  

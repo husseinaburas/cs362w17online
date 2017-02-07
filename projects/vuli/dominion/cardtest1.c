@@ -84,15 +84,15 @@ int main() {
     printf("---------CASE %d: %s -- TEST %d: Hand count increased by 1\n", caseCount, casename, ++testCount);
     count1 = preG.handCount[player];
     count2 = G.handCount[player];
-    asserttrue(count2==count1+1, &r_main);
     if (NOISY_TEST) printf("Hand count before: %d\nHand count after: %d\n", count1, count2);
+    asserttrue(count2==count1+1, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Hand contains 2 more Treasure\n", caseCount, casename, ++testCount);
     count1 = getNumCardsHand(player, copper, &preG) + getNumCardsHand(player, silver, &preG) + getNumCardsHand(player, gold, &preG);
     count2 = getNumCardsHand(player, copper, &G) + getNumCardsHand(player, silver, &G) + getNumCardsHand(player, gold, &G);
-    asserttrue(count1==count2-2, &r_main);
     if (NOISY_TEST) printf("Treasure count before: %d\nTreasure count after: %d\n", count1, count2);
+    asserttrue(count1==count2-2, &r_main);
 
 
 /*-------------------------------------------------------------------------*/
@@ -127,15 +127,15 @@ int main() {
     printf("---------CASE %d: %s -- TEST %d: Hand count increased by 1\n", caseCount, casename, ++testCount);
     count1 = preG.handCount[player];
     count2 = G.handCount[player];
-    asserttrue(count2==count1+1, &r_main);
     if (NOISY_TEST) printf("Hand count before: %d\nHand count after: %d\n", count1, count2);
+    asserttrue(count2==count1+1, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Hand contains 2 more Treasure\n", caseCount, casename, ++testCount);
     count1 = getNumCardsHand(player, copper, &preG) + getNumCardsHand(player, silver, &preG) + getNumCardsHand(player, gold, &preG);
     count2 = getNumCardsHand(player, copper, &G) + getNumCardsHand(player, silver, &G) + getNumCardsHand(player, gold, &G);
-    asserttrue(count1==count2-2, &r_main);
     if (NOISY_TEST) printf("Treasure count before: %d\nTreasure count after: %d\n", count1, count2);
+    asserttrue(count1==count2-2, &r_main);
 
 
 /*-------------------------------------------------------------------------*/
@@ -165,15 +165,15 @@ int main() {
     printf("---------CASE %d: %s -- TEST %d: Hand count unchanged\n", caseCount, casename, ++testCount);
     count1 = preG.handCount[player];
     count2 = G.handCount[player];
-    asserttrue(count2==count1, &r_main);
     if (NOISY_TEST) printf("Hand count before: %d\nHand count after: %d\n", count1, count2);
+    asserttrue(count2==count1, &r_main);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Hand contains 1 more Treasure\n", caseCount, casename, ++testCount);
     count1 = getNumCardsHand(player, copper, &preG) + getNumCardsHand(player, silver, &preG) + getNumCardsHand(player, gold, &preG);
     count2 = getNumCardsHand(player, copper, &G) + getNumCardsHand(player, silver, &G) + getNumCardsHand(player, gold, &G);
-    asserttrue(count1==count2-1, &r_main);
     if (NOISY_TEST) printf("Treasure count before: %d\nTreasure count after: %d\n", count1, count2);
+    asserttrue(count1==count2-1, &r_main);
 
 
 /*-------------------------------------------------------------------------*/

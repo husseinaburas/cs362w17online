@@ -24,7 +24,7 @@ Requirements:
 /* Main */
 int main() {
     int seed = 1001;
-    struct gameState G, testG;
+    struct gameState G, preG;
     int numPlayer = MAX_PLAYERS;  // choose MAX_PLAYERS
     int k[10] = {adventurer, council_room, feast, gardens, mine, 
       remodel, smithy, village, baron, great_hall};
@@ -41,24 +41,24 @@ int main() {
     printf("---------TEST %d: Current player == 0 after initializing game\n", ++testCount);
     initializeGame(numPlayer, k, seed, &G);
     r = whoseTurn(&G);
-    asserttrue(r == 0, &r_main);
     if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", 0, r);
+    asserttrue(r == 0, &r_main);
     
     /*********/
 for (i=0; i < numPlayer; i++) {
     printf("---------TEST %d: Test current player=%d\n", ++testCount, i);
     G.whoseTurn = i;
     r = whoseTurn(&G);
-    asserttrue(r == i, &r_main);
     if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", i, r);
+    asserttrue(r == i, &r_main);
 }
     
     /*********/
-    printf("---------TEST %d: Game state unchanged after function executes\n", ++testCount);
+    printf("---------TEST %d: Game state unchanged\n", ++testCount);
     initializeGame(numPlayer, k, seed, &G);       
-    memcpy(&testG, &G, sizeof(struct gameState));
+    memcpy(&preG, &G, sizeof(struct gameState));
     r = whoseTurn(&G);
-    asserttrue(memcmp(&G, &testG, sizeof(struct gameState))==0, &r_main); 
+    asserttrue(memcmp(&G, &preG, sizeof(struct gameState))==0, &r_main); 
 
     /******** Result */
     printf("---------\n");
