@@ -1,11 +1,11 @@
 /*cardtest4.c*/
 
-#include <dominion.h>
-#include <dominion_helpers.h>
+#include "dominion.h"
+#include "dominion_helpers.h"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <rngs.h>
+#include "rngs.h"
 #include <stdlib.h>
 
 #define TESTCARD "village"
@@ -20,7 +20,7 @@
    Post-Conditions: state->handCount[currentPlayer] should stay the same
                     state->numActions must be increased by 2 and must be >= 0 because player gained 2 action cardss
                     The village card should be discarded
-*/
+
 int playVillage(struct gameState *state, int currentPlayer, int handPos, int card){
    
 
@@ -36,7 +36,17 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos, int car
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
 }
+*/
 
+//Own assert function
+int asserttrue(int input, int number){
+	if (input){
+		printf("\tTEST %d SUCCESSFUL\n", number);
+	}
+	else
+		printf("\tTEST %d FAILED\n", number);
+	return 0;
+}
 
 int main(){
 
@@ -46,7 +56,7 @@ int main(){
     int thisPlayer = 0;
     int otherPlayer = 1;
 	struct gameState G, testG;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);

@@ -1334,6 +1334,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
       }
 
       discardCard(handPos, currentPlayer, state, 0); // discard the adventure card since it has been played
+      updateCoins(currentPlayer, state, 0);
       return 0;
 
 }
@@ -1365,6 +1366,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
             
       //discard smithy card from hand
       discardCard(handPos, currentPlayer, state, 0);
+      updateCoins(currentPlayer, state, 0);
 
       return 0;
     }
@@ -1394,6 +1396,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
       
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
+      updateCoins(currentPlayer, state, 0);
       return 0;
 }
 
@@ -1433,6 +1436,7 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
       
     //discard card from hand
   discardCard(handPos, currentPlayer, state, 1); //BUG
+  updateCoins(currentPlayer, state, 0);
 
   
   return 0;
@@ -1469,6 +1473,7 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
       
     //discard  salvager card
     discardCard(handPos, currentPlayer, state, 0);
+    updateCoins(currentPlayer, state, 0);
 
 
     return 0;
