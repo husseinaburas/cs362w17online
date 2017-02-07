@@ -37,7 +37,7 @@
 #define MAX_BONUS 10
 
 
-//Unit test for: Great Hall
+//Unit test for: great_hall
 int main() {
 
 	int i;
