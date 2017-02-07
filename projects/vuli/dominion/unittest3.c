@@ -17,10 +17,9 @@ Requirements:
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-// #include "test_helpers.h"
+#include "unittests_helpers.h"
 
 #define FUNC_NAME "numHandCards()"
-#define NOISY_TEST 0
 
 
 /*********************************************************************/
@@ -47,7 +46,7 @@ int main() {
     G.handCount[player] = -2;
     r = numHandCards(&G);
     asserttrue(r == -1, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", -1, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", -1, r);
 
     /*********/
     printf("---------TEST %d: Case handCount == 0\n", ++testCount);
@@ -56,7 +55,7 @@ int main() {
     G.handCount[player] = 0;
     r = numHandCards(&G);
     asserttrue(r == 0, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", 0, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", 0, r);
 
     /*********/
     printf("---------TEST %d: Case handCount > 0\n", ++testCount);
@@ -64,7 +63,7 @@ int main() {
     player = G.whoseTurn;
     r = numHandCards(&G);
     asserttrue(r == G.handCount[player], &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", G.handCount[player], r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", G.handCount[player], r);
 
     /*********/
     printf("---------TEST %d: Check result == current player's handCount \n", ++testCount);
@@ -73,7 +72,7 @@ int main() {
     count = G.handCount[player];
     r = numHandCards(&G);  // should have r == count
     asserttrue(r == count, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", count, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", count, r);
 
     /*********/
     printf("---------TEST %d: Check result == number of positive cards in current player's hand\n", ++testCount);
@@ -87,7 +86,7 @@ int main() {
     }
     r = numHandCards(&G);  // should have r == count
     asserttrue(r == count, &r_main);
-    if (NOISY_TEST) printf("Expected: %d\tReceived: %d\n", count, r);
+    if (NOISY_TEST) printf("Expected: %d\nReceived: %d\n", count, r);
 
     /*********/
     printf("---------TEST %d: Game state unchanged after function executes\n", ++testCount);
