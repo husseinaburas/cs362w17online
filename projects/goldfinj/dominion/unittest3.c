@@ -285,9 +285,9 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
-    printf("\n################ END %s TEST ################\n", testFunc);
+    printf("\n################ END %s TEST ################\n\n", testFunc);
 
     return 0;
 }

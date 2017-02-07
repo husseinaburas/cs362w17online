@@ -55,11 +55,11 @@ int main()
            sea_hag, tribute, smithy};
 	initializeGame(2, k, 1, myState);
 
+	printf("----------------- Unit Test 1: isGameOver() ----------------\n");
 	//Call is Game Over right when the game begins
 	int result = isGameOver(myState);
 	assertTrue(result, 0, "Game just started. No Changes."); //Game should not be over.
 	initializeGame(2, k, 1, myState);
-
 
 	/***************************************
 	* Testing the Province cards (first check in isGameOver)
@@ -101,6 +101,7 @@ int main()
 	testSupply(myState, -1, 25, "Set all non -1 piles to -1", 1);  //Game should be over
 	initializeGame(2, k, 1, myState);
 
+	printf("----------------- Unit Test 1 - COMPLETE ----------------\n");
 	return 0;
 }
 

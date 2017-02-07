@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "assert.h"
 
 /* Unit test for the Councilroom card:
 *
@@ -52,6 +53,7 @@ int main()
 	int initCheck = initializeGame(numPlayers, k, seed, &G);
 	assert(initCheck == 0);
 	int	player = 0;
+	G.whoseTurn = player;
 	int initHandCount = G.handCount[player];
 	int initDeckCount = G.deckCount[player];
 	int councilRoomCheck;
@@ -65,20 +67,20 @@ int main()
 	int victoryCount[3];
 	int initNumbuys;
 	int v[3] = { estate , duchy, province };
-
+	int i;
 
 	//save the discard count 
 	int initDiscardCount = G.discardCount;
 	//save number of actions 
 	initNumbuys = G.numBuys;
 	// save the number of each kingdom cards 
-	for (int i = 0; i < 10; i++)
+	for ( i = 0; i < 10; i++)
 	{
 		initKingdomCount[i] = G.supplyCount[k[i]];
 
 	}
 	// save the number of victory cards
-	for (int i = 0; i < 3; i++)
+	for (i = 0; i < 3; i++)
 	{
 		initvictoryCount[i] = G.supplyCount[v[i]];
 
@@ -86,7 +88,7 @@ int main()
 
 	// create a hand full of council Room's 
 	int inithandcount = G.handCount[player];
-	for (int i = 0; i < inithandcount; ++i)
+	for ( i = 0; i < inithandcount; ++i)
 		councilRoomHand[i] = council_room;
 	printf("-------------------------------------------Test 1: Current player should receive exact 4 card. ----------------------------------------------\n");
 	// test that the player recieved exactly 1 cards
@@ -99,22 +101,22 @@ int main()
 	assert(G.deckCount[player] == initDeckCount - 4); // check that the 4 cards came from the players deck
 	
 	printf("-------------------------------------------Test 3: Number of discards goes up by 1. ------------\n");
-	assert(initDiscardCount + 1 == G.discardCount);// discard goes up by 1 
+	assert(1 == G.playedCardCount);// discard goes up by 1 
 
-	printf("-------------------------------------------Test 4: No state change should occur for other players. -----------------------------------------\n");
-	assert(inithandCountPlayer2 == G.handCount[1]);//checking other players hand 
-	assert(initdeckCountPlayer2 == G.deckCount[1]);//checking other players deck
+	printf("-------------------------------------------Test 4: Other players should have exactly 1 more card in hand and 1 less in deck. -----------------------------------------\n");
+	assert(inithandCountPlayer2 + 1 == G.handCount[1]);//checking other players hand 
+	assert(initdeckCountPlayer2 - 1 == G.deckCount[1]);//checking other players deck
 	assert(initdiscardPlayer2 == G.discardCount[1]); //checking other players discard
 
 	printf("-------------------------------------------Test 5: No state change should occur to the kingdom card piles. ------------\n");
-	for (int i = 0; i < 10; i++)// checking the kingdom cards havent changed 
+	for ( i = 0; i < 10; i++)// checking the kingdom cards havent changed 
 	{
 		kingdomCount[i] = G.supplyCount[k[i]];
 		assert(kingdomCount[i] == initKingdomCount[i]);
 	}
 
 	printf("-------------------------------------------Test 6: No state change should occur to the Victory card piles. ------------\n");
-	for (int i = 0; i < 10; i++)//checking the victory cards havent changed
+	for ( i = 0; i < 3; i++)//checking the victory cards havent changed
 	{
 		victoryCount[i] = G.supplyCount[v[i]];
 		assert(victoryCount[i] == initvictoryCount[i]);
@@ -125,7 +127,7 @@ int main()
 
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR Council Room CARD-----------------------------------------\n\n");
 
-	
+	return 0;
 }
 
 

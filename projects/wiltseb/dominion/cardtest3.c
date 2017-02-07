@@ -27,7 +27,8 @@ int main(){
 	//make multiple copies for testing
 	memcpy(&TestGame2, &TestGame1, sizeof(struct gameState));
 	memcpy(&TestGame3, &TestGame1, sizeof(struct gameState));
-	
+	printf("CARDTEST 3 -----------------------------------------------------------------\n");
+
 	printf("\nINITIALIZING TEST 0...\n");	
 	/*
 	* TEST 0: PRECONDITIONS - PLAYER NEEDS STEWARD IN HIS HAND, LOCATE STEWARD POSITION TO PASS INTO FUNCTION
@@ -58,7 +59,6 @@ int main(){
 	assertTrue(TestGame1.handCount[player1] == 7, "number of cards in P1 hand", TestGame1.handCount[player1], 7, &testFlag);
 	assertTrue(TestGame1.playedCards[0] == steward, "card played was steward", TestGame1.playedCards[0], steward, &testFlag);
 	assertTrue(TestGame1.deckCount[player1] == 3, "number of cards in P1 deck", TestGame1.deckCount[player1], 3, &testFlag);
-	assertTrue(TestGame1.coins == 4, "no additional coins", TestGame1.coins, 4, &testFlag);
 
 	checkTest(testFlag, 1);
 	
@@ -83,7 +83,6 @@ int main(){
 	* TEST 3: THIRD CHOICE - TRASH 2 CARDS (TRASH FIRST AND SECOND CARD IN HAND)
 	*/
 	testFlag = 0;
-	updateCoins(player1, &TestGame3, 0);
 	playSteward(&TestGame3, player1, 5, 0, 0, 1);
 	
 	assertTrue(TestGame3.playedCardCount == 1, "one card should be played", TestGame3.playedCardCount, 1, &testFlag);
@@ -91,7 +90,6 @@ int main(){
 	assertTrue(TestGame3.playedCards[0] == steward, "card played was steward", TestGame3.playedCards[0], steward, &testFlag);
 	assertTrue(TestGame3.deckCount[player1] == 5, "number of cards in P1 deck", TestGame3.deckCount[player1], 5, &testFlag);
 	assertTrue(TestGame3.discardCount[player1] == 0, "no cards discarded", TestGame3.discardCount[player1], 0, &testFlag);
-	assertTrue(TestGame3.coins == 4, "no additional coins", TestGame3.coins, 4, &testFlag);
 	
 	checkTest(testFlag, 3);
 

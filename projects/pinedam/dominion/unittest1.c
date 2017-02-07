@@ -62,6 +62,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
+#include "assert.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -78,9 +79,9 @@ int main()
 
 	int initCheck = initializeGame(numPlayers, k, seed, &G);
 	assert(initCheck == 0);
-
+	int i = 0 ;
 	int* toFlag[3];
-	for (int i = 0; i < 3; i++)
+	for ( i; i < 3; i++)
 		toFlag[i] = i;
 	int player = 0;
 	int initPlayerDeckCount = G.deckCount[player];
@@ -96,7 +97,7 @@ int main()
 	assert(gainCardCheck != 0);
 	printf("------------------------------------------Test 2: That the players discard pile gained a card----------------------------------------\n");
 	//test the player discard pile gaining a card
-	int gainCardCheck = gainCard(village, &G, toFlag[0], player);
+	gainCardCheck = gainCard(village, &G, toFlag[0], player);
 	assert(gainCardCheck == 0);
 
 	assert(G.discard[player][G.discardCount[player] - 1] == village);
@@ -104,7 +105,7 @@ int main()
 
 	printf("------------------------------------------Test 3: That the players deck gained a card----------------------------------------\n");
 	//test the player deck gaining a card
-	int gainCardCheck = gainCard(village, &G, toFlag[1], player);
+	gainCardCheck = gainCard(village, &G, toFlag[1], player);
 	assert(gainCardCheck == 0);
 
 	assert(G.deck[player][G.deckCount[player] - 1] == village);
@@ -112,7 +113,7 @@ int main()
 
 	printf("------------------------------------------Test 4: That the players hand gained a card----------------------------------------\n");
 	//test the player hand gaining a card
-	int gainCardCheck = gainCard(village, &G, toFlag[2], player);
+	gainCardCheck = gainCard(village, &G, toFlag[2], player);
 	assert(gainCardCheck == 0);
 
 	assert(G.hand[player][G.handCount[player] - 1] == village);
@@ -123,4 +124,6 @@ int main()
 	//so check to make sure correct number have been taken
 	assert(G.supplyCount[village] == initVillageSupply - 3);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR gainCard FUNCTION-----------------------------------------\n\n");
+	
+	return 0;
 }

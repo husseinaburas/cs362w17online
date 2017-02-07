@@ -75,7 +75,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 2: Discard last card in hand\n\n");
@@ -123,7 +123,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 3: Discard from hand with 1 card\n\n");
@@ -175,12 +175,12 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 4: Discard from empty hand\n\n");
 
-    printf("ERROR: Test code not run because it would crash the program.\n\n");
+    printf("ERROR: Test code not run because it would crash the program.\n");
 
 
     printf("\nTEST 5: Trash first card in hand\n\n");
@@ -225,9 +225,9 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
-    printf("\n################ END %s TEST ################\n", testFunc);
+    printf("\n################ END %s TEST ################\n\n", testFunc);
 
     return 0;
 }

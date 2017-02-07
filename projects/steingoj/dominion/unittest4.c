@@ -26,9 +26,6 @@ int main () {
 	initializeGame(2, k, 1, &post);
 
 	
-	
-	 
-
 	/**********************************************************
 	//Test to see when number of buys is 0
 	**********************************************************/
@@ -65,7 +62,11 @@ int main () {
 
 	assertTrue(post.numBuys==1, "Number of buys didn't decrement");
 	assertTrue(post.coins==8, "Number of coins didn't decrease");
+	assertTrue(post.supplyCount[estate]==0, "SupplyCount didn't decrease");
 
+
+
+	printf("\n\n");
 
 	return 0;
 }

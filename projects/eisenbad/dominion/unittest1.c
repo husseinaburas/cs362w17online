@@ -48,7 +48,7 @@ int main() {
 
   printf("\n----------------- Testing Function: %s ----------------\n", TESTFUNC);
 
-/**************************************** CASE 1 ****************************************************/
+  /**************************************** CASE 1 ****************************************************/
   printf("\n CASE 1: No treasure cards in hand, no bonus coins\n");
 	
   // iterate through current player's hand and replace all cards with estates

@@ -41,6 +41,7 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
+#include "assert.h"
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
@@ -70,26 +71,27 @@ int main()
 	int nonTreasureHand[5];
 	int updatecoinsCheck;
 	int coinCheck;
-
+	int i = 0;
 	// Initialize the test hands. All single treasure hands
 	// 
 	int inithandcount = G.handCount[player];
-	for (int i = 0; i < inithandcount; ++i)
+	for (i; i < inithandcount; ++i)
 		copperHand[i] = copper;
-
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for (i ; i < inithandcount; ++i)
 		silverHand[i] = silver;
-
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for (i; i < inithandcount; ++i)
 		goldHand[i] = gold;
-
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for (i; i < inithandcount; ++i)
 		nonTreasureHand[i] = estate; // any non-treasure card
 	
 	printf("------------------------------------------Test 1: Hand full of coppers sets coins to the handCount----------------------------------------\n");
 	//test that a card NOT in the game cannot be gained
 	//set the current hand to all copper
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for (i; i < inithandcount; ++i)
 		G.hand[player][i] = copperHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
@@ -101,7 +103,8 @@ int main()
 	
 	printf("------------------------------------------Test 2: Hand full of silvers sets coins to the handCount*2----------------------------------------\n");
 	//set the current hand to all silver
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for ( i ; i < inithandcount; ++i)
 		G.hand[player][i] = silverHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
@@ -113,7 +116,8 @@ int main()
 	
 	printf("------------------------------------------Test 3: Hand full of gold sets coins to the handCount*3----------------------------------------\n");
 	//set the current hand to all gold
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for (i; i < inithandcount; ++i)
 		G.hand[player][i] = goldHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
@@ -125,7 +129,8 @@ int main()
 	
 	printf("------------------------------------------Test 1: Hand with no treasure sets coins to 0 ----------------------------------------\n");
 	//set the current hand to the no treasure hand 
-	for (int i = 0; i < inithandcount; ++i)
+	i = 0;
+	for ( i ; i < inithandcount; ++i)
 		G.hand[player][i] = nonTreasureHand[i];
 	//check if update coin runs 
 	updatecoinsCheck = updateCoins(player, &G, 0);
@@ -135,4 +140,6 @@ int main()
 	coinCheck = G.coins;
 	assert(coinCheck == inithandcount * 0);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR updateCoins FUNCTION-----------------------------------------\n\n");
+
+	return 0;
 }

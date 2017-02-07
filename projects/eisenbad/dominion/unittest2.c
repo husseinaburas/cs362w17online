@@ -2,12 +2,11 @@
    Author: Daniel Eisenbach
    Date: 2/6/17
 
-   Description: Tests the implementation of the dominion updateCoins() function.
-   This function searches through the player's hand and adds up the value of their treasure cards,
-   in addition to any bonuses recieved during their turn.
+   Description: Tests the implementation of the dominion getCost() function.
+   This function returns the coin fost for all victory and kingdom cards.
     
    Pass Conditions:
-     1. Correct coin cost for all kingdom cards is returned
+     1. Correct coin cost for all victory and kingdom cards is returned
      2. Negative values return -1
      3. Large positive values not in map return -1
 */
@@ -17,7 +16,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include "rngs.h"
 #include <stdlib.h>
 
 #define TESTFUNC "getCost()"
@@ -28,8 +26,8 @@ int main() {
 	
   printf("\n----------------- Testing Function: %s ----------------\n", TESTFUNC);
 
-/**************************************** TEST 1 ****************************************************/
-  printf("\n  TEST 1: Correct coin cost for kingdom cards is returned\n");
+  /**************************************** TEST 1 ****************************************************/
+  printf("\n  TEST 1: Correct coin cost for all victory and kingdom cards is returned\n");
  
   pass_check = 1; 
 
@@ -117,11 +115,11 @@ int main() {
   // assert test 1 passes
   testAssert(1, &pass_count, pass_check);
 
-/**************************************** TEST 2 ****************************************************/
+  /**************************************** TEST 2 ****************************************************/
   printf("\n  TEST 2: Negative values return -1\n");
   testAssert(2, &pass_count, getCost(-1000) == -1);
 			 
-/**************************************** TEST 3 ****************************************************/
+  /**************************************** TEST 3 ****************************************************/
   printf("\n  TEST 3: Large positive values return -1\n");
   testAssert(3, &pass_count, getCost(1000) == -1);
 	
