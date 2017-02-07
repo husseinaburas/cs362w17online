@@ -8,167 +8,99 @@
         -:    3:#include <stdlib.h>
         -:    4:#include <time.h>
         -:    5:
-function inputChar called 2052683 returned 100% blocks executed 69%
         -:    6:char inputChar(int st)
         -:    7:{
         -:    8:	int toCast;
         -:    9:
-  2052683:   10:	if(st == 9){
-branch  0 taken 99%
-branch  1 taken 1%
+ 40155181:   10:	if(st == 9){
         -:   11:		//lowercase only, ASCII 97(dec) to 122(dec)
-  2045436:   12:		toCast = (rand() % 26) + 97;
-  2045436:   13:		if(toCast > 122){
-branch  0 taken 0%
-branch  1 taken 100%
+ 40151064:   12:		toCast = (rand() % 26) + 97;
+ 40151064:   13:		if(toCast > 122){
     #####:   14:    		printf("Number out of range, High\n");
     #####:   15:    		exit (1);
         -:   16:    	}
-  2045436:   17:    	if(toCast < 97){
-branch  0 taken 0%
-branch  1 taken 100%
+ 40151064:   17:    	if(toCast < 97){
     #####:   18:    		printf("Number out of range, Low\n");
     #####:   19:    		exit (1);
         -:   20:    	}	
-  2045436:   21:	}
+ 40151064:   21:	}
         -:   22:	else{
         -:   23:		//all chars from ASCII 32(dec) to 126(dec)
-     7247:   24:		toCast = (rand() % 95) + 32;
-     7247:   25:    	if(toCast > 126){
-branch  0 taken 0%
-branch  1 taken 100%
+     4117:   24:		toCast = (rand() % 95) + 32;
+     4117:   25:    	if(toCast > 126){
     #####:   26:    		printf("Number out of range, High\n");
     #####:   27:    		exit (1);
         -:   28:    	}
-     7247:   29:    	if(toCast < 32){
-branch  0 taken 0%
-branch  1 taken 100%
+     4117:   29:    	if(toCast < 32){
     #####:   30:    		printf("Number out of range, Low\n");
     #####:   31:    		exit (1);
         -:   32:    	}
         -:   33:	}
         -:   34:
         -:   35:    
-  2052683:   36:    return (char) toCast;
+ 40155181:   36:    return (char) toCast;
         -:   37:}
         -:   38:
-function inputString called 341936 returned 100% blocks executed 100%
         -:   39:char *inputString(int st)
         -:   40:{
         -:   41:	int i;
         -:   42:	int buildLength;
         -:   43:	char* word;
         -:   44:
-   341936:   45:	if(st == 9){
-branch  0 taken 99%
-branch  1 taken 1%
+  6692445:   45:	if(st == 9){
         -:   46:		//if state is 9 then only build 5 char strings
-   340906:   47:		buildLength = 5;
-   340906:   48:	}
+  6691844:   47:		buildLength = 5;
+  6691844:   48:	}
         -:   49:	else{
         -:   50:		//length of string to build, 1 to 10 charachters
-     1030:   51:    	buildLength = (rand() % 11) + 1;	
+      601:   51:    	buildLength = (rand() % 11) + 1;	
         -:   52:	}
-   341936:   53:	word = malloc(buildLength + 1);
+  6692445:   53:	word = malloc(buildLength + 1);
         -:   54:
-  4105366:   55:	for(i=0; i<buildLength; i=i+1){
-branch  0 taken 83%
-branch  1 taken 17%
-  1710747:   56:		word[i]=inputChar(st);
-  1710747:   57:	} 
-   341936:   58:	word[buildLength]='\0';
+ 80310362:   55:	for(i=0; i<buildLength; i=i+1){
+ 33462736:   56:		word[i]=inputChar(st);
+ 33462736:   57:	} 
+  6692445:   58:	word[buildLength]='\0';
         -:   59:
-   341936:   60:    return word;
+  6692445:   60:    return word;
         -:   61:}
         -:   62:
-function testme called 1 returned 0% blocks executed 94%
         -:   63:void testme()
         -:   64:{
         1:   65:  int tcCount = 0;
         -:   66:  char *s;
         -:   67:  char c;
         1:   68:  int state = 0;
-   341936:   69:  while (1)
+  6692445:   69:  while (1)
         -:   70:  {
-   341936:   71:    tcCount++;
-   341936:   72:    c = inputChar(state);
-   341936:   73:    s = inputString(state);
-   341936:   74:    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+  6692445:   71:    tcCount++;
+  6692445:   72:    c = inputChar(state);
+  6692445:   73:    s = inputString(state);
+  6692445:   74:    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
         -:   75:
-   341944:   76:    if (c == '[' && state == 0) state = 1;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 14%
-branch  3 taken 86%
-   341947:   77:    if (c == '(' && state == 1) state = 2;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 10%
-branch  3 taken 90%
-   341946:   78:    if (c == '{' && state == 2) state = 3;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 11%
-branch  3 taken 89%
-   341950:   79:    if (c == ' ' && state == 3) state = 4;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 8%
-branch  3 taken 92%
-   354779:   80:    if (c == 'a' && state == 4) state = 5;
-branch  0 taken 4%
-branch  1 taken 96%
-branch  2 taken 1%
-branch  3 taken 99%
-   355165:   81:    if (c == 'x' && state == 5) state = 6;
-branch  0 taken 4%
-branch  1 taken 96%
-branch  2 taken 1%
-branch  3 taken 99%
-   341944:   82:    if (c == '}' && state == 6) state = 7;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 14%
-branch  3 taken 86%
-   341945:   83:    if (c == ')' && state == 7) state = 8;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 13%
-branch  3 taken 88%
-   341945:   84:    if (c == ']' && state == 8) state = 9;
-branch  0 taken 1%
-branch  1 taken 99%
-branch  2 taken 13%
-branch  3 taken 88%
-   354959:   85:    if (s[0] == 'r' && s[1] == 'e'
-branch  0 taken 4%
-branch  1 taken 96%
-branch  2 taken 100%
-branch  3 taken 0%
-    13528:   86:       && s[2] == 's' && s[3] == 'e'
-branch  0 taken 4%
-branch  1 taken 96%
-branch  2 taken 5%
-branch  3 taken 95%
-       28:   87:       && s[4] == 't' && s[5] == '\0'
-branch  0 taken 23%
-branch  1 taken 77%
-branch  2 taken 20%
-branch  3 taken 80%
+  6692456:   76:    if (c == '[' && state == 0) state = 1;
+  6692453:   77:    if (c == '(' && state == 1) state = 2;
+  6692451:   78:    if (c == '{' && state == 2) state = 3;
+  6692452:   79:    if (c == ' ' && state == 3) state = 4;
+  6951030:   80:    if (c == 'a' && state == 4) state = 5;
+  6950396:   81:    if (c == 'x' && state == 5) state = 6;
+  6692451:   82:    if (c == '}' && state == 6) state = 7;
+  6692450:   83:    if (c == ')' && state == 7) state = 8;
+  6692452:   84:    if (c == ']' && state == 8) state = 9;
+  6949246:   85:    if (s[0] == 'r' && s[1] == 'e'
+   267238:   86:       && s[2] == 's' && s[3] == 'e'
+      439:   87:       && s[4] == 't' && s[5] == '\0'
         2:   88:       && state == 9)
-branch  0 taken 100%
-branch  1 taken 0%
         -:   89:    {
         1:   90:      printf("error ");
         1:   91:      free(s);
         1:   92:      exit(200);
         -:   93:    }
-   341935:   94:    free(s);
+  6692444:   94:    free(s);
         -:   95:  }
     #####:   96:}
         -:   97:
         -:   98:
-function main called 1 returned 100% blocks executed 100%
         -:   99:int main(int argc, char *argv[])
         -:  100:{
         1:  101:    srand(time(NULL));

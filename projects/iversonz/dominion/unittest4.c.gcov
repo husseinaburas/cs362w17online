@@ -1,0 +1,54 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:#include <stdlib.h>
+        -:    2:#include <stdio.h>
+        -:    3:#include "assert.h"
+        -:    4:#include "dominion.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <time.h>
+        -:    7:
+        -:    8:// gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+        -:    9:// gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest4.c rngs.c -o unittest4 -lm -g
+        -:   10:int zdi_assert(int a, char * string)
+        -:   11:{
+        3:   12:  if(a == 1)
+        -:   13:  {
+        3:   14:    printf("Test Passed: \t %s \n\n", string);
+        3:   15:    return 0;
+        -:   16:  }
+    #####:   17:  else if( a == 2)
+        -:   18:  {
+    #####:   19:    printf("Test Failed: \t %s\n\n", string);
+    #####:   20:  }
+    #####:   21:  return 0;
+        -:   22:
+        3:   23:}
+        -:   24:
+        -:   25:int main()
+        -:   26:{
+        -:   27:  int a, b;
+        3:   28:  int randomSeed = 10;
+        -:   29:
+        -:   30:  struct gameState game;
+        -:   31:
+        3:   32:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   33:
+        3:   34:  printf("Unit Test 4\n\n");
+        3:   35:  a = initializeGame(2,cards, randomSeed, &game);
+        -:   36:
+        3:   37:  b = shuffle(1, &game);
+        -:   38:
+        3:   39:  if(b == 0)
+        -:   40:  {
+        3:   41:    zdi_assert(1,"Shuffle Hand");
+        3:   42:  }
+        -:   43:  else
+        -:   44:  {
+    #####:   45:    zdi_assert(2, "Shuffle Handd");
+        -:   46:  }
+        -:   47:
+        -:   48:
+        3:   49:}

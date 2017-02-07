@@ -1278,7 +1278,6 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
 int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
 {
   //Note: supplyPos is enum of choosen card
-	
   //check if supply pile is empty (0) or card is not used in game (-1)
   if ( supplyCount(supplyPos, state) < 1 )
     {

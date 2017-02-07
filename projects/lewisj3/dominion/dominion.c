@@ -1349,7 +1349,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 	{
 	  state->coins += 3;
 	}	
-    }	
+    }
 
   //add bonus
   state->coins += bonus;

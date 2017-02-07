@@ -667,10 +667,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-      return adventurer(state);
+      return adventurerCard(state);
 
     case council_room:
-      return councilRoom(state, handPos);
+      return councilRoomCard(state, handPos);
 
     case feast:
       //gain card with cost up to 5
@@ -790,10 +790,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 
     case smithy:
-      return smithy(state, handPos);
+      return smithyCard(state, handPos);
 
     case village:
-      return village(state, handPos);
+      return villageCard(state, handPos);
 
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1084,7 +1084,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
     case embargo:
-      return embargo()
+      return embargoCard(state, handPos, choice1);
 
     case outpost:
       //set outpost flag
@@ -1259,7 +1259,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int adventurer(struct gameState *state)
+int adventurerCard(struct gameState *state)
 {
   int drawntreasure = 0;
   int currentPlayer = whoseTurn(state);
@@ -1294,7 +1294,7 @@ int adventurer(struct gameState *state)
   return 0;
 }
 
-int councilRoom(struct gameState *state, int handPos)
+int councilRoomCard(struct gameState *state, int handPos)
 {
   int currentPlayer = whoseTurn(state);
   int i;
@@ -1323,7 +1323,7 @@ int councilRoom(struct gameState *state, int handPos)
   return 0;
 }
 
-int smithy(struct gameState *state, int handPos)
+int smithyCard(struct gameState *state, int handPos)
 {
   int currentPlayer = whoseTurn(state);
   int i;
@@ -1339,7 +1339,7 @@ int smithy(struct gameState *state, int handPos)
   return 0;
 }
 
-int embargo(struct gameState *state, int handPos)
+int embargoCard(struct gameState *state, int handPos, int choice1)
 {
   int currentPlayer = whoseTurn(state);
   //+2 Coins
@@ -1359,7 +1359,7 @@ int embargo(struct gameState *state, int handPos)
   return 0;
 }
 
-int village(struct gameState *state, int handPos)
+int villageCard(struct gameState *state, int handPos)
 {
   int currentPlayer = whoseTurn(state);
   //+1 Card

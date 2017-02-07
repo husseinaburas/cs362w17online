@@ -1250,9 +1250,10 @@ int playAdventurer(struct gameState *state) {
 
 
 int playSmithy(struct gameState *state, int handPos) {
+    int i;
     int currentPlayer = whoseTurn(state);
 
-    for (int i = 0; i <= 3; i++) {
+    for (i = 0; i <= 3; i++) {
         drawCard(currentPlayer, state);
     }
 
@@ -1268,6 +1269,7 @@ int playVillage(struct gameState *state, int handPos) {
 
     return 0;
 };
+
 int playFeast(struct gameState *state, int choice1) {
     int i;
     int x;
@@ -1339,6 +1341,14 @@ int playCouncil_Room(struct gameState *state, int handPos) {
 
     return 0;
 };
+
+void customAssert(int val) {
+    if (val == 0) {
+        printf("TEST FAILED!\n");
+    }
+    else
+        printf("TEST PASSED!\n");
+}
 
 
 //end of dominion.c

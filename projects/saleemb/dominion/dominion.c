@@ -14,7 +14,7 @@ int compare(const void* a, const void* b) {
 }
 
 struct gameState* newGame() {
-  struct gameState* g = malloc(sizeof(struct gameState));
+  struct gameState* g =malloc(sizeof(struct gameState));
   return g;
 }
 
@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-            useAdventerurer(drawntreasure, state, temphand);
+            useAdventurer(drawntreasure, state, temphand);
             return 0;
 			
     case council_room:
@@ -1308,7 +1308,7 @@ int useSmithy(int handPos, int currentPlayer, struct gameState * state ){
     return 0;
 }
 
-int useAdventerurer(int currentPlayer, struct gameState * state, int temphand[]){
+int useAdventurer(int currentPlayer, struct gameState * state, int temphand[]){
     int z=0;
     int drawntreasure=0;
     int cardDrawn;

@@ -671,12 +671,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case feast:
       return playFeast(state, choice1);
 
-    //Reset Hand
-    for (i = 0; i <= state->handCount[currentPlayer]; i++){
-      state->hand[currentPlayer][i] = temphand[i];
-      temphand[i] = -1;
-    }
-    //Reset Hand
+
 
     return 0;
 
@@ -1324,9 +1319,14 @@ int playFeast(struct gameState *state, int choice1) {
       if (DEBUG){
         printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
       }
-
     }
   }
+  //Reset Hand
+  for (i = 0; i <= state->handCount[currentPlayer]; i++){
+    state->hand[currentPlayer][i] = temphand[i];
+    temphand[i] = -1;
+  }
+  //Reset Hand
 }
 
 int playCouncil_Room(struct gameState *state, int handPos) {

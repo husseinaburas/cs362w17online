@@ -1,0 +1,55 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include <stdio.h>
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdlib.h>
+        -:    5:
+        -:    6:// gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+        -:    7:// gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest1.c rngs.c -o unittest1 -lm -g
+        -:    8:int zdi_assert(int a, char * string)
+        -:    9:{
+        3:   10:  if(a == 1)
+        -:   11:  {
+        3:   12:    printf("Test Passed: \t %s \n\n\n", string);
+        3:   13:    return 0;
+        -:   14:  }
+    #####:   15:  else if( a == 2)
+        -:   16:  {
+    #####:   17:    printf("Test Failed: \t %s\n\n\n", string);
+    #####:   18:  }
+    #####:   19:  return 0;
+        -:   20:
+        3:   21:}
+        -:   22:
+        -:   23:
+        -:   24:
+        -:   25:int main()
+        -:   26:{
+        -:   27:  int a, b;
+        3:   28:  int randomSeed = 10;
+        -:   29:// Testing the zdi_assert function
+        -:   30://  a = 1;
+        -:   31://  b = zdi_assert(a, "init function");
+        -:   32:
+        -:   33:  struct gameState game;
+        -:   34:
+        3:   35:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   36:
+        3:   37:  printf("\n*****************************\n\nUnit Test 1\n\n");
+        3:   38:  a = initializeGame(2,cards, randomSeed, &game);
+        -:   39:
+        3:   40:  if(a == 0)
+        -:   41:  {
+        3:   42:    b = zdi_assert(1, "Initializng Game");
+        3:   43:  }
+        -:   44:  else
+        -:   45:  {
+    #####:   46:    b = zdi_assert(2, "Initializng Game");
+        -:   47:  }
+        -:   48:
+        3:   49:  return 0;
+        -:   50:}

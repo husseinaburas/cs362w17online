@@ -11,6 +11,8 @@ int main (int argc, char** argv) {
   printf ("Starting game.\n");
 
   initializeGame(2, k, atoi(argv[1]), &G);
+  //initializeGame(2, k, 1, &G);
+
 
   int money = 0;
   int smithyPos = -1;

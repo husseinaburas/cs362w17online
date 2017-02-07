@@ -165,6 +165,7 @@ static int  initialized   = 0;          /* test for stream initialization */
   PutSeed(1);                       /* and set the state to 1    */
   for(i = 0; i < 10000; i++)
     u = Random();
+  if(u) {}
   GetSeed(&x);                      /* get the new state value   */
   ok = (x == CHECK);                /* and check for correctness */
 

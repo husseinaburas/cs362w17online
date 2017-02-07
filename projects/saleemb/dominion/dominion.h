@@ -137,7 +137,7 @@ int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
 int useSmithy(int handPos, int currentPlayer, struct gameState * state );
-int useAdventerurer(int currentPlayer, struct gameState * state, int temphand[]);
+int useAdventurer(int currentPlayer, struct gameState * state, int temphand[]);
 int useOutpost(int currentPlayer, int handPos, struct gameState * state);
 int useVillage(int currentPlayer, int handPos, struct gameState * state);
 int useGreatHall(int currentPlayer, int handPos, struct gameState * state);

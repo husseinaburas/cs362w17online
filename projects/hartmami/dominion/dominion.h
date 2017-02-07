@@ -10,8 +10,6 @@
 
 #define DEBUG 0
 
-
-
 /* http://dominion.diehrstraits.com has card texts */
 /* http://dominion.isotropic.org has other stuff */
 
@@ -77,6 +75,8 @@ struct gameState {
 
 /* All functions return -1 on failure, and DO NOT CHANGE GAME STATE;
    unless specified for other return, return 0 on success */
+
+void testAssert(int isgo);
 
 struct gameState* newGame();
 

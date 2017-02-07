@@ -136,5 +136,10 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
+//card functions:
+
+int smithyCall(int, int, int, struct gameState *state);
+//int adventurerCall(int, struct gameState *state, int, int, int, int temphand[MAX_HAND]){
+
 
 #endif

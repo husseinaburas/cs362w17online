@@ -1,0 +1,53 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:#include <stdlib.h>
+        -:    2:#include <stdio.h>
+        -:    3:#include "assert.h"
+        -:    4:#include "dominion.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <time.h>
+        -:    7:
+        -:    8:// gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+        -:    9:// gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest3.c rngs.c -o unittest3 -lm -g
+        -:   10:int zdi_assert(int a, char * string)
+        -:   11:{
+        6:   12:  if(a == 1)
+        -:   13:  {
+        6:   14:    printf("Test Passed: \t %s \n\n\n", string);
+        6:   15:    return 0;
+        -:   16:  }
+    #####:   17:  else if( a == 2)
+        -:   18:  {
+    #####:   19:    printf("Test Failed: \t %s\n\n\n", string);
+    #####:   20:  }
+    #####:   21:  return 0;
+        -:   22:
+        6:   23:}
+        -:   24:
+        -:   25:
+        -:   26:int main ()
+        -:   27:{
+        3:   28:    printf("Unit Test 3\n\n");
+        3:   29:  if(getCost(adventurer) == 6)
+        -:   30:  {
+        3:   31:    zdi_assert(1, "Get Cost function test on adventurer card");
+        3:   32:  }
+        -:   33:  else
+        -:   34:  {
+    #####:   35:    zdi_assert(2, "Get Cost function test on adventurer card");
+        -:   36:  }
+        -:   37:
+        3:   38:  if(getCost(village) == 3)
+        -:   39:  {
+        3:   40:    zdi_assert(1, "Get Cost function test on village card ");
+        3:   41:  }
+        -:   42:  else
+        -:   43:  {
+    #####:   44:    zdi_assert(2, "Get Cost function test on village card ");
+        -:   45:  }
+        -:   46:
+        3:   47:  return 0;
+        -:   48:}

@@ -1,0 +1,57 @@
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:3
+        -:    0:Programs:1
+        -:    1:#include "dominion.h"
+        -:    2:#include <stdio.h>
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdlib.h>
+        -:    5:
+        -:    6:
+        -:    7:// gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest3.c rngs.c -o cardtest3 -lm -g
+        -:    8:int zdi_assert(int a, char * string)
+        -:    9:{
+        3:   10:  if(a == 1)
+        -:   11:  {
+        3:   12:    printf("Test Passed: \t %s \n\n\n", string);
+        3:   13:    return 0;
+        -:   14:  }
+    #####:   15:  else if( a == 2)
+        -:   16:  {
+    #####:   17:    printf("Test Failed: \t %s\n\n\n", string);
+    #####:   18:  }
+    #####:   19:  return 0;
+        -:   20:
+        3:   21:}
+        -:   22:
+        -:   23:
+        -:   24:int main()
+        -:   25:{
+        -:   26:
+        -:   27:  int a, b;
+        3:   28:  int randomSeed = 10;
+        -:   29:  struct gameState game;
+        -:   30:
+        3:   31:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   32:
+        3:   33:  printf("\nCard Test 3\n-----------\n");
+        -:   34:
+        3:   35:  a = initializeGame(2,cards, randomSeed, &game);
+        -:   36:
+        3:   37:  cardEffect(village, 0, 0, 0, &game, 0, 0);
+        -:   38:
+        3:   39:  b = numHandCards(&game);
+        -:   40:
+        3:   41:  if(b == 5) //should have 5 cards in hand
+        -:   42:  {
+        3:   43:    zdi_assert(1, "Card Effect - Village");
+        3:   44:  }
+        -:   45:  else
+        -:   46:  {
+    #####:   47:    zdi_assert(2, "Card Effect - Village");
+        -:   48:  }
+        -:   49:
+        3:   50:  return 0;
+        -:   51:
+        -:   52:}

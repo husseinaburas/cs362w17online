@@ -136,5 +136,12 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
+//Functions by John Moyer
+int smithyPlay(int currentPlayer, int handPos, struct gameState* state);
+int greatHallPlay(int currentPlayer, int handPos, struct gameState* state);
+int baronPlay(int currentPlayer, int handPos, struct gameState* state, int choice1);
+int treasureMapPlay(int currentPlayer, int handPos, struct gameState* state);
+int adventurerPlay(int currentPlayer, int handPos, struct gameState* state);
+
 
 #endif

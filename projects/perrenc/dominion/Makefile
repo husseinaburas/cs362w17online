@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -coverage -lm -std=c99 -ftest-coverage -fprofile-arcs
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -35,5 +35,86 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
+unittestresults.out:
+	echo "Compiling and running all tests....." > unittestresults.out
+	
+	gcc -o unittest1 unittest1.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Unittest1...." >> unittestresults.out
+	./unittest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest1.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o unittest2 unittest2.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Unittest2...." >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest2.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o unittest3 unittest3.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Unittest3...." >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest3.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o unittest4 unittest4.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Unittest4...." >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest4.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o cardtest1 cardtest1.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Cardtest1...." >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest1.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o cardtest2 cardtest2.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Cardtest2...." >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest2.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o cardtest3 cardtest3.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Cardtest3...." >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest3.gcov
+	
+	echo "######################################" >> unittestresults.out
+	echo "######################################" >> unittestresults.out
+	
+	gcc -o cardtest4 cardtest4.c dominion.c rngs.c -g $(CFLAGS)
+	echo "Running Cardtest4...." >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest4.gcov
+	
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out
+	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4

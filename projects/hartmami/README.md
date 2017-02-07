@@ -1,3 +1,8 @@
+## Random Testing Quiz
+
+	added testme.c
+	
+	added randomstring.c
 
 ## Assignment 2
 

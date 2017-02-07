@@ -5,10 +5,13 @@
 #include <assert.h>
 #include "rngs.h"
 
+#include <math.h>
+#include <stdlib.h>
+
 #define DEBUG 0
 #define NOISY_TEST 1
 
-int checkDrawCard(int p, struct gameState *post) {
+void checkDrawCard(int p, struct gameState *post) {
   struct gameState pre;
   memcpy (&pre, post, sizeof(struct gameState));
 
@@ -89,5 +92,6 @@ int main () {
     }
   }
 
+  if(r) {}
   return 0;
 }
