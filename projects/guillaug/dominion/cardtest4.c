@@ -13,16 +13,18 @@ int main(){
  	int choice1 = 0, choice2 = 0, choice3 = 0;
  	
  	/* test name and purpose */
- 	printf("-----\nStart of Card Test 2: gardens card\n-----\n");
- 	printf("\nThis test will cover the gardens card in Dominion.\n");
-    printf("We will pass the gardens card to the cardEffect function and assert whether 0 is returned.\n");
+ 	printf("-----\nStart of Card Test 4: mine card\n-----\n");
+ 	printf("\nThis test will cover the mine card in Dominion.\n");
+    printf("We will pass the mine card to the cardEffect function and assert whether 0 is returned.\n");
     
     /* initialize the game with 2 players, 10 cards and the game state */
     initializeGame(2, k, 4, &game);
 
-    assert(cardEffect(gardens, choice1, choice2, choice3, &game, 0, NULL) == -1);
+    int test;
+    test = cardEffect(mine, choice1, choice2, choice3, &game, 0, NULL);
     
-    printf("\n-----\nEnd of Card Test 2: gardens card\n-----\n");
+    assert(test == 0);
+    printf("\n-----\nEnd of Card Test 4: mine card\n-----\n");
     
     return 0;
 }
