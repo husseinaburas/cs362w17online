@@ -110,6 +110,31 @@ int main () {
 	assertTrue(a==b, "\nDiscard Count was not incremented\n");
 
 
+	/********************************************************
+	//Test for invalid card index
+	********************************************************/
+	initializeGame(2, k, 1, &pre);
+	memcpy (&pre, &post, sizeof(struct gameState));
+	discardCard(-1, 0, &post, 0);
+	a = pre.handCount[0];
+	b = post.handCount[0];
+	assertTrue(a==b, "handCount decreased with invalid low index");
+	
+
+	/*********************************************************
+	//Test for invalid player index
+	********************************************************/
+	initializeGame(2, k, 1, &pre);
+	memcpy (&pre, &post, sizeof(struct gameState));
+	discardCard(0, -1, &post, 0);
+	a = pre.handCount[0];
+	b = post.handCount[0];
+	assertTrue(a==b, "handCount decreased with invalid player number");
+	
+
+
+	
+	printf("\n\n");
 
   return 0;
 }

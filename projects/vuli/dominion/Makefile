@@ -32,11 +32,14 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittests cardtests
+all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
 	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
+
+# ---------------------------------------------------------------------------------------
+# assn3: Unit testing
 unittests_helpers.o: unittests_helpers.h unittests_helpers.c dominion.h dominion.c
 	gcc -c unittests_helpers.c -g  $(CFLAGS)
 
@@ -51,4 +54,54 @@ cardtests: cardtest1.c cardtest2.c dominion.o rngs.o unittests_helpers.o
 	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
 	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
 	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
+
+unittestresults.out: unittests cardtests
+	./unittest1 > unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./unittest2 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	
+	./unittest3 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./unittest4 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./cardtest1 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./cardtest2 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./cardtest3 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
+	./cardtest4 >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo "**********************************************************\n" >> unittestresults.out
+
  

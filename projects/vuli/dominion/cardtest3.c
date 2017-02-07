@@ -2,6 +2,7 @@
 Card tested: Village
 
 Requirements:
+-- Successful execution (return value 0)
 -- Decreases Hand+Deck+Discard count by 1
 -- Increases playedCardCount by 1
 -- Adds card previously at handPos to playedCards
@@ -362,7 +363,7 @@ int main() {
 
 
 
-    /*-------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------*/
     /******** Result */
     printf("---------\n");
     printf("Card %s passed %d/%d tests.\n", CARD_NAME, r_main, testCount);
