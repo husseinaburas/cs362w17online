@@ -44,7 +44,10 @@ unit2: dominion.o rngs.o
 unit3: dominion.o rngs.o
 	gcc -o unittest3 unittest3.c dominion.o rngs.o -g $(CFLAGS)
 	
-unittestresults.out: unit1 unit2
+unit4: dominion.o rngs.o
+	gcc -o unittest4 unittest4.c dominion.o rngs.o -g $(CFLAGS)
+	
+unittestresults.out: unit1 unit2 unit3 unit4
 
 	./unittest1 		>> unittestresults.out
 	printf '\n' 		>> unittestresults.out
@@ -58,5 +61,9 @@ unittestresults.out: unit1 unit2
 	printf '\n' 		>> unittestresults.out
 	gcov dominion.c 	>> unittestresults.out
 	
+	./unittest4 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1 unittest2 unittest3 *.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1 unittest2 unittest3 unittest4 *.out
