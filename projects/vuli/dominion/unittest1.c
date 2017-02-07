@@ -7,6 +7,13 @@ Requirements:
 -- Returns 1 if any three Supply piles are empty
 -- Returns 0 in all other cases
 -- Does not change game state after execution
+
+The following cases are tested:
+-- Game just initialized
+-- No Supply empty
+-- Province empty and 0..max other Supply piles empty
+-- Province not empty and 0..max other Supply piles empty
+-- All Supply empty
 */
 
 

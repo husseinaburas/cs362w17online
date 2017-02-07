@@ -7,6 +7,11 @@ Requirements:
 -- Number returned equals both current player's Hand count
     and number of positive cards in current player's Hand
 -- Does not change game state after execution
+
+The following cases are tested:
+-- Hand count < 0
+-- Hand count == 0
+-- Hand count > 0
 */
 
 

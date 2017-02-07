@@ -8,6 +8,11 @@ Requirements:
 -- Cards in deck of current player change positions after every execution. Note this is a sticky 
     condition, e.g. it won't hold if deck has all the same cards before execution.
 -- Does not change game state except deck of current player (note this includes deck count unchanged)
+
+The following cases are tested:
+-- Deck count < 0
+-- Deck count == 0
+-- Deck count > 0
 */
 
 
