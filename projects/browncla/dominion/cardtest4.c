@@ -35,14 +35,14 @@ int main(){
 	initializeGame(numPlayers, k, seed, &G);
 
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = village; 
+	G.hand[currentPlayer][3] = village; 
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 2);
+	result = playVillage(&testG, currentPlayer, 3);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -188,7 +188,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = village;
+	G.hand[currentPlayer][3] = village;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
@@ -252,7 +252,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = village;
+	G.hand[currentPlayer][3] = village;
 	G.phase = 1;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
@@ -260,7 +260,7 @@ int main(){
 
 	// ----------- TEST 13 : Test correct return statements for wrong phase -----------
 	printf("%s TEST 13: Correct return statements for wrong phase\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 2);
+	result = playVillage(&testG, currentPlayer, 3);
 	if (result == -1){
 		asserttrue(1, 13);
 	}
@@ -315,7 +315,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = village;
+	G.hand[currentPlayer][3] = village;
 	G.numActions = 0;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
@@ -323,7 +323,7 @@ int main(){
 
 	// ----------- TEST 15 : Test correct return statements for wrong number of actions-----------
 	printf("%s TEST 15: Correct return statements for wrong number of actions\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 2);
+	result = playVillage(&testG, currentPlayer, 3);
 	if (result == -1){
 		asserttrue(1, 15);
 	}

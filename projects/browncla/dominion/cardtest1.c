@@ -34,7 +34,7 @@ int main(){
 	initializeGame(numPlayers, k, seed, &G);
 
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = adventurer;
+	G.hand[currentPlayer][3] = adventurer;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
@@ -43,7 +43,7 @@ int main(){
 	printf("\nTESTS FOR VALID INPUT\n");
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 2);
+	result = playAdventurer(&testG, currentPlayer, 3);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -203,7 +203,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = adventurer;
+	G.hand[currentPlayer][3] = adventurer;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
@@ -267,7 +267,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = adventurer;
+	G.hand[currentPlayer][3] = adventurer;
 	G.phase = 1;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
@@ -275,7 +275,7 @@ int main(){
 
 	// ----------- TEST 14 : Test correct return statements for wrong phase -----------
 	printf("%s TEST 14: Correct return statements for wrong phase\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 2);
+	result = playAdventurer(&testG, currentPlayer, 3);
 	if (result == -1){
 		asserttrue(1, 14);
 	}
@@ -330,7 +330,7 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = adventurer;
+	G.hand[currentPlayer][3] = adventurer;
 	G.numActions = 0;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
@@ -338,7 +338,7 @@ int main(){
 
 	// ----------- TEST 16 : Test correct return statements for wrong number of actions-----------
 	printf("%s TEST 16: Correct return statements for wrong number of actions\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 2);
+	result = playAdventurer(&testG, currentPlayer, 3);
 	if (result == -1){
 		asserttrue(1, 16);
 	}
