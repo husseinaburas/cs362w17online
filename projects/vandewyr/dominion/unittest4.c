@@ -30,6 +30,8 @@ int testIsGameOver() {
 
     initializeGame(numPlayers, k, seed, &G);
 
+    //Test checks if game is over when all province cards remain and no supply stacks
+    //have been depleted
     printf("isGameOver() test: test with province cards at %d and supplies full ", G.supplyCount[province]);
     int over = isGameOver(&G);
     if(over == 0){
@@ -38,6 +40,7 @@ int testIsGameOver() {
         printf("-- Test Failed \n");
     }
 
+    //Test checks if game is over when all province cards depleted but all supply stacks remain
     G.supplyCount[province] = 0;
     printf("isGameOver() test: test with province cards at %d and supplies full ", G.supplyCount[province]);
     over = isGameOver(&G);
@@ -47,6 +50,8 @@ int testIsGameOver() {
         printf("-- Test Failed \n");
     }
 
+    //Test checks if game is over when all province cards remain but 3 supply stacks
+    //have been depleted
     G.supplyCount[province] = 8;
     G.supplyCount[4] = 0;
     G.supplyCount[5] = 0;

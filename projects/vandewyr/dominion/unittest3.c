@@ -53,9 +53,8 @@ int testGainCard() {
     oldSupplyCount = G.supplyCount[supplyPos];
     int oldDeckCount = G.deckCount[player];
     printf("testGainCard() test: attempt to add minion to deck ");
+    //toFlag is set to 1, testing for card being inserted into deck
     gainCard(supplyPos, &G, toFlag, player);
-    //check if 6th card in hand is now adventurer, oldHandCount should be less
-    //and oldSupplyCount should be greater
     if((G.deck[player][G.deckCount[player]-1] == 17) && (oldDeckCount < G.deckCount[player]) &&
             (oldSupplyCount > G.supplyCount[supplyPos])){
         printf(" -- Test Passed \n");
@@ -71,9 +70,8 @@ int testGainCard() {
     oldSupplyCount = G.supplyCount[supplyPos];
     int oldDiscardCount = G.discardCount[player];
     printf("testGainCard() test: attempt to add smithy to discard ");
+    //toFlag set to 0, testing for card being discarded
     gainCard(supplyPos, &G, toFlag, player);
-    //check if 6th card in hand is now adventurer, oldHandCount should be less
-    //and oldSupplyCount should be greater
     if((G.discard[player][G.discardCount[player]-1] == 13) && (oldDiscardCount < G.discardCount[player]) &&
        (oldSupplyCount > G.supplyCount[supplyPos])){
         printf(" -- Test Passed \n");
