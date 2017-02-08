@@ -33,7 +33,7 @@ int card_effect_adventurer(int currentPlayer, struct gameState* state, int handP
 {
   int temphand[MAX_HAND]; // moved above the if statement
   int cardDrawn;
-  int drawntreaure = 0;
+  int drawntreasure = 0;
   int z = 0;
 
   while (drawnTreasure < 2){
