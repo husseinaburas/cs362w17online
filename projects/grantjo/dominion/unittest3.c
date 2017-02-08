@@ -71,7 +71,7 @@ int main(int argc, char** argv)
   // hand)
   error_count += asserttrue(G.coins == copper_count, "Coin Count incorrect, should only contain copper");
   // assert that coin value is in the proper range for the start of the game
-  error_count += asserttrue(G.coins <= 7 && G.coins >= 2, "Coin count OUT OF RANGE, should be 2 <= coins <= 7");
+  error_count += asserttrue(G.coins <= 5 && G.coins >= 2, "Coin count OUT OF RANGE, should be 2 <= coins <= 5");
   // assert that silver and gold count is zero
   error_count += asserttrue(silver_count == 0, "Silver greater than 0");
   error_count += asserttrue(gold_count == 0, "Gold greater than 0");
