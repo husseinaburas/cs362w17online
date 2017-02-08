@@ -1,14 +1,7 @@
 /*
- * cardtest3.c
- *
- 
- */
-
-/*
- * Include the following lines in your makefile:
- *
- * cardtest3: cardtest3.c dominion.o rngs.o
- *      gcc -o cardtest1 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+ * cardtest3.c 
+ * Great Hall +1Card +1Action
+ * bug is;  state->numActions++; changed to state->numActions+2;
  */
 
 
@@ -20,26 +13,24 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD "Great Hall +1Card +1Action"
+#define TESTCARD "Great Hall"
 
-int my_assert(int test, char* msg)
+void my_assert(int test, char* msg)
 {
-	/* if (!test) {
+	if (!test) {
 		printf ("ASSERT HAS FAILED: %s\n", msg);
-		exit(-1);
 	}
-	return 0; */
+	return;
 }
 
 int main() {
-    int newCards = 0;
+    int i;
+	int newCards = 0;
     int discarded = 1;
     int xtraCoins = 0;
     int shuffledCards = 0;
 	int newActions = 0;
-
     int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-
     int seed = 1000;
     int numPlayers = 2;
     int thisPlayer = 0;
@@ -52,15 +43,14 @@ int main() {
 
 	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
 
-	// ----------- TEST 1: +1 cards --------------
-	printf("TEST 1: choice1 = 1 = +2 cards\n");
 
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
-	
-	
-	
-	printf("actions = %d, expected = %d\n", testG.numActions, G.numActions + newActions);
+		
+	printf("BFhand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+	printf("BFdeck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
+	printf("BFcoins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
+	printf("BFactions = %d, expected = %d\n", testG.numActions, G.numActions + newActions);
 	
 	cardEffect(great_hall, choice1, choice2, choice3, &testG, handpos, &bonus);
 
@@ -76,6 +66,23 @@ int main() {
 	my_assert(testG.coins == G.coins + xtraCoins, "msg 3");
 	my_assert(testG.numActions == G.numActions + newActions, "msg 4");
 
+	//check no change to supply card piles
+    printf("Verify no change to the supply card piles\n");
+
+    for (i=0; i<sizeof(testG.supplyCount)/sizeof(int); i++) {
+        printf("supply card count = %d, expected = %d\n", testG.supplyCount[i], G.supplyCount[i]);
+        my_assert(testG.supplyCount[i] == G.supplyCount[i], "msg 7"); 
+    }
+	
+	//check no change to other players deck
+    printf("other players deck count = %d, expected = %d\n", testG.deckCount[thisPlayer + 1], G.deckCount[thisPlayer + 1]);
+    my_assert(testG.deckCount[thisPlayer + 1] == G.deckCount[thisPlayer + 1], "msg 6");
+       
+	//check no change to other players hand
+	printf("other players hand count = %d, expected %d\n", testG.handCount[thisPlayer + 1], G.handCount[thisPlayer + 1]);
+    my_assert(testG.handCount[thisPlayer + 1] == G.handCount[thisPlayer + 1], "msg 5");
+       
+		
 	
 
 	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);

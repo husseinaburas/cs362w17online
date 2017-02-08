@@ -137,4 +137,6 @@ int cardOutpost(int handPos, int player, struct gameState *state);
 int cardGreatHall(int handPos, int currentPlayer, struct gameState *state);
 int cardMine(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer);
 
+int assertTrue(int);
+
 #endif
