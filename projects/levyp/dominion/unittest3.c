@@ -2,7 +2,7 @@
  * Unit tests for isGameOver() function
  *
  * unittest3: unittest3.c dominion.o rngs.o
- *      gcc -o unittest3 -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ *      gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -36,7 +36,7 @@ int main() {
         initializeGame(numPlayer, k, seed, &G); // initialize a new game
 
         // G.supplyCount[province] = 10;
-        printf("A new game has been so intitialized...isGameOver() should return 0");
+        printf("A new game has been intitialized...isGameOver() should return 0");
         checkAssertion(0, isGameOver(&G), &numFailingTests, &numPassedTests);
 
         G.supplyCount[province] = 0;

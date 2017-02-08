@@ -1,8 +1,8 @@
 /* -----------------------------------------------------------------------
- * Unit tests for isGameOver() function
+ * Unit tests for endTurn() function
  *
- * unittest3: unittest3.c dominion.o rngs.o
- *      gcc -o unittest3 -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ * unittest4: unittest4.c dominion.o rngs.o
+ *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 

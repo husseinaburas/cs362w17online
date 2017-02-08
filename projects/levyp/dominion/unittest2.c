@@ -2,7 +2,7 @@
  * Unit tests for buyCard() function
  *
  * unittest2: unittest2.c dominion.o rngs.o
- *      gcc -o unittest2 -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ *      gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -42,7 +42,7 @@ int main() {
 
         // Check that the user has one less buy after a purchase
         printf("Number of buys for the player should be reduced by one after a purchase");
-        checkAssertion(G.numBuys, currentBuys - 1, &numFailingTests, &numPassedTests);
+        checkAssertion(currentBuys - 1, G.numBuys, &numFailingTests, &numPassedTests);
 
         // Check that the user has less money after a purchase
         printf("Amount of coins for the player should be reduced after a purchase");

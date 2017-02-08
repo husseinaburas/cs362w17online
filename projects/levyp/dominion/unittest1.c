@@ -2,7 +2,7 @@
  * Unit tests for playCard() function
  *
  * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o unittest1 -g  testUpdateCoins.c dominion.o rngs.o $(CFLAGS)
+ *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -48,7 +48,7 @@ int main() {
         G.numActions = 1;
         playCard(0, 0, 0, 0, &G);
         printf("Playcard should result in the number of actions begin reduced to 0");
-        checkAssertion(G.numActions, 0, &numFailingTests, &numPassedTests);
+        checkAssertion(0, G.numActions, &numFailingTests, &numPassedTests);
 
         // Check that playcard does not execute when a non-action card is played
         handCount = 5;
@@ -57,7 +57,7 @@ int main() {
         G.numActions = 1;
         playCard(0, 0, 0, 0, &G);
         printf("Attempting to play a copper (non-action card) should cause playCard() to exit early and return -1");
-        checkAssertion(playCard(0, 0, 0, 0, &G), -1, &numFailingTests, &numPassedTests);
+        checkAssertion(-1, playCard(0, 0, 0, 0, &G), &numFailingTests, &numPassedTests);
 
         // Check that playcard does not execute when the player is out of actions
         handCount = 5;
@@ -66,17 +66,17 @@ int main() {
         G.numActions = 0;
         playCard(0, 0, 0, 0, &G);
         printf("The current player has no more actions left, should cause playCard() to exit early and return -1");
-        checkAssertion(playCard(0, 0, 0, 0, &G), -1, &numFailingTests, &numPassedTests);
+        checkAssertion(-1, playCard(0, 0, 0, 0, &G), &numFailingTests, &numPassedTests);
 
         // Check that the playCard function does not execute when it is called in the buy phase
         G.phase = 1;
         printf("Game phase is %d, playCard() should exit early and return -1", G.phase);
-        checkAssertion(playCard(0, 0, 0, 0, &G), -1, &numFailingTests, &numPassedTests);
+        checkAssertion(-1, playCard(0, 0, 0, 0, &G), &numFailingTests, &numPassedTests);
 
         // Check that the playCard function does not execute when it is called in the cleanup phase
         G.phase = 2;
         printf("Game phase is %d, playCard() should exit early and return -1", G.phase);
-        checkAssertion(playCard(0, 0, 0, 0, &G), -1, &numFailingTests, &numPassedTests);        
+        checkAssertion(-1, playCard(0, 0, 0, 0, &G), &numFailingTests, &numPassedTests);        
     }
     printf("\nSummary: passed tests: %d\n", numPassedTests);
     printf("Summary: failed tests: %d\n\n", numFailingTests);
