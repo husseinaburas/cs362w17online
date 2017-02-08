@@ -138,27 +138,27 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //set player decks
   for (i = 0; i < numPlayers; i++)
+  {
+    state->deckCount[i] = 0;
+    for (j = 0; j < 3; j++)
     {
-      state->deckCount[i] = 0;
-      for (j = 0; j < 3; j++)
-  {
-    state->deck[i][j] = estate;
-    state->deckCount[i]++;
-  }
-      for (j = 3; j < 10; j++)
-  {
-    state->deck[i][j] = copper;
-    state->deckCount[i]++;    
-  }
+      state->deck[i][j] = estate;
+      state->deckCount[i]++;
     }
+    for (j = 3; j < 10; j++)
+    {
+      state->deck[i][j] = copper;
+      state->deckCount[i]++;    
+    }
+  }
 
   //shuffle player decks
   for (i = 0; i < numPlayers; i++)
     {
       if ( shuffle(i, state) < 0 )
-  {
-    return -1;
-  }
+        {
+          return -1;
+        }
     }
 
   //initialize player hands to 0
@@ -183,7 +183,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   state->playedCardCount = 0;
   state->whoseTurn = 0;
   state->handCount[state->whoseTurn] = 0;
-
   //Moved draw cards to here, only drawing at the start of a turn
   for (it = 0; it < 5; it++){
     drawCard(state->whoseTurn, state);

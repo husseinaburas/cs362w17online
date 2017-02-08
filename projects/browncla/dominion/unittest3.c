@@ -8,48 +8,6 @@
 #include <stdlib.h>
 #define FUNCTION_NAME "endTurn"
 
-//int endTurn(struct gameState *state);
-/*
-int endTurn(struct gameState *state) {
-  int k;
-  int i;
-  int currentPlayer = whoseTurn(state);
-  
-  //Discard hand
-  for (i = 0; i < state->handCount[currentPlayer]; i++){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
-    state->hand[currentPlayer][i] = -1;//Set card to -1
-  }
-  state->handCount[currentPlayer] = 0;//Reset hand count
-    
-  //Code for determining the player
-  if (currentPlayer < (state->numPlayers - 1)){ 
-    state->whoseTurn = currentPlayer + 1;//Still safe to increment
-  }
-  else{
-    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
-  }
-
-  state->outpostPlayed = 0;
-  state->phase = 0;
-  state->numActions = 1;
-  state->coins = 0;
-  state->numBuys = 1;
-  state->playedCardCount = 0;
-  state->handCount[state->whoseTurn] = 0;
-
-  //int k; move to top
-  //Next player draws hand
-  for (k = 0; k < 5; k++){
-    drawCard(state->whoseTurn, state);//Draw a card
-  }
-
-  //Update money
-  updateCoins(state->whoseTurn, state , 0);
-
-  return 0;
-}
-*/
 
 //Own assert function
 int asserttrue(int input, int number){
@@ -87,6 +45,7 @@ int main(){
 	priorDiscard = testG.discardCount[priorPlayer];
 	i = endTurn(&testG);
 	printf("----------------- Function: %s ----------------\n", FUNCTION_NAME);
+	printf("TESTS FOR PRIOR PLAYER\n");
 	// ----------- TEST 1: Test that prior player discard pile increased by handCount  -----------
 	printf("%s TEST 1: Prior player discard pile has increased by handCount\n", FUNCTION_NAME);
 	
@@ -122,6 +81,7 @@ int main(){
 	else{
 		asserttrue	(0, 3);
 	}
+	printf("\nTESTS FOR NEW CURRENT PLAYER\n");
 	// ----------- TEST 4: Test that current player is next number -----------
 	printf("%s TEST 4: Current player is next after prior player\n", FUNCTION_NAME);
 	currentPlayer = whoseTurn(&testG);
@@ -214,6 +174,8 @@ int main(){
 	else{
 		asserttrue(0, 12);
 	}
+
+	printf("\nTEST FOR NEW PLAYER AGAIN\n");
 	// ----------- TEST 13: Test that next player goes back to first player -----------
 	printf("%s TEST 13: Next player goes back to first player\n", FUNCTION_NAME);
 	i = endTurn(&testG);
