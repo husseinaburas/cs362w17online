@@ -27,11 +27,11 @@ cardtest2: cardtest2.c dominion.o rngs.o
 unittests: cardtest1 cardtest2
 
 exec: unittests
-	cardtest1 >> unittestresult.out
-	cardtest2 >> unittestresult.out
+	cardtest1 >> unittestresults.out
+	cardtest2 >> unittestresults.out
 	
-unittestresult.out: exec
-	gcov -b unittest*.c cardtest*.c >> unittestresult.out
+unittestresults.out: exec
+	gcov -b unittest*.c cardtest*.c >> unittestresults.out
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
@@ -40,9 +40,9 @@ interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
 runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+	./testDrawCard &> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 
 player: player.c interface.o
