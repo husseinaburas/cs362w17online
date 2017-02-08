@@ -9,10 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "dominion.c"
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.c"
 #include "rngs.h"
 
 #define UNIT_ASSERT(conditional, message) \
