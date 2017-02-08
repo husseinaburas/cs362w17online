@@ -32,6 +32,9 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+cardtest1: cardtest1.c
+	gcc -o cardtest1 cardtest1.c
+
 unittest1: unittest1.c
 	gcc -o unittest1 unittest1.c
 
