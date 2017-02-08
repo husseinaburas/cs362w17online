@@ -1271,7 +1271,7 @@ int Doadventurer(int drawntreasure,struct gameState *state,int currentPlayer,int
             shuffle(currentPlayer, state);
         }
         drawCard(currentPlayer, state);
-        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//??top card of hand is most recently drawn card.
+        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//??top card of hand is most recently drawn card.
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
             drawntreasure++;
         else{
@@ -1297,7 +1297,7 @@ int DoSmithy(int currentPlayer, struct gameState *state, int handPos)
   }
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 1);//?
+  discardCard(handPos, currentPlayer, state,0);//?
 
   return 0;
 }

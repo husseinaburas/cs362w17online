@@ -43,35 +43,35 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 	$(info ******** compiling runtests *******)
 
-unittest1: dominion.o unittest1.c
+unittest1: dominion.c unittest1.c rngs.c
 	gcc -o unittest1 unittest1.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling unittest1 *******)
 	
-unittest2: dominion.o unittest2.c
+unittest2: dominion.c unittest2.c rngs.c
 	gcc -o unittest2 unittest2.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling unittest2 *******)
 
-unittest3: dominion.o unittest3.c
+unittest3: dominion.c unittest3.c rngs.c
 	gcc -o unittest3 unittest3.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling unittest3 *******)
 
-unittest4: dominion.o unittest4.c
+unittest4: dominion.c unittest4.c rngs.c
 	gcc -o unittest4 unittest4.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling unittest4 *******)
 
-cardtest1: dominion.o cardtest1.c
+cardtest1: dominion.c cardtest1.c rngs.c
 	gcc -o cardtest1 cardtest1.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling cardtest1 *******)
 
-cardtest2: dominion.o cardtest2.c
+cardtest2: dominion.c cardtest2.c rngs.c
 	gcc -o cardtest2 cardtest2.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling cardtest2 *******)
 
-cardtest3: dominion.o cardtest3.c
+cardtest3: dominion.c cardtest3.c rngs.c
 	gcc -o cardtest3 cardtest3.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling cardtest3 *******)
 
-cardtest4: dominion.o cardtest4.c
+cardtest4: cardtest4.c dominion.c rngs.c
 	gcc -o cardtest4 cardtest4.c dominion.c rngs.c $(CFLAGS)
 	$(info ******** compiling cardtest4 *******)
 						
@@ -84,28 +84,42 @@ rununittest: unittest1 unittest2 unittest3 unittest4
 	gcov -b dominion.c >> unittestresult1.out
 	cat dominion.c.gcov >> unittestresult1.out
 
-unittestresults: cardtest4
-	echo "*****************************************" >> unittestresults.out	
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	echo "*****************************************" &> unittestresults.out	
 	echo "Exececuting UNITTEST1" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./unittest1>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting UNITTEST2" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./unittest2>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting UNITEST3" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./unittest3>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting UNITEST4" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./unittest4>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting CARDTEST1" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./cardtest1>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting CARDTEST2" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./cardtest2>> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting CARDTEST3" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	
+	./cardtest3 >> unittestresults.out
+	echo " " >> unittestresults.out	
 	echo "*****************************************" >> unittestresults.out	
 	echo "Exececuting CARDTEST4" >> unittestresults.out
 	echo "*****************************************" >> unittestresults.out	

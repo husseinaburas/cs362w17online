@@ -27,20 +27,21 @@ int main(){
     int numPlayers = 2;
     int currentPlayer = 0;
     int otherPlayer = 1;
-    int choice1 = 3;
+    int choice1 = 2;
 	struct gameState G, testG;
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
-	G.hand[currentPlayer][2] = salvager;
+	G.hand[currentPlayer][3] = salvager;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
+
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 2);
+	result = playSalvager(&testG, currentPlayer, choice1, 3);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -214,14 +215,16 @@ int main(){
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = salvager;
+	G.hand[currentPlayer][3] = salvager;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
-	// ----------- TEST 12 : Test correct return statements for invalid input -----------
-	printf("%s TEST 12: Correct return statements for invalid input\n", TESTCARD);
-	result = playSmithy(&testG, currentPlayer, 4);
+		printf("\nTESTS FOR INVALID INPUT\n");
+
+	// ----------- TEST 12 : Test correct return statements for wrong card name -----------
+	printf("%s TEST 12: Correct return statements for wrong card name\n", TESTCARD);
+	result = playSalvager(&testG, currentPlayer, choice1, 4);
 	if (result == -1){
 		asserttrue(1, 12);
 	}
@@ -231,6 +234,7 @@ int main(){
 
 	// ----------- TEST 13: Test state stays same invalid input -----------
 	printf("%s TEST 13: State says the same with invalid input\n", TESTCARD);
+	
 	if (result == -1){
 
 		for (i = 0; i <= treasure_map; i++){
@@ -247,7 +251,7 @@ int main(){
 			asserttrue(1, 13);
 		}
 		else if (testG.coins != G.coins){
-			asserttrue(0, 13);
+		asserttrue(0, 13);
 		}
 		else if (testG.numBuys != G.numBuys){
 			asserttrue(0, 13);
@@ -269,7 +273,196 @@ int main(){
 		}
 	}
 	else{
-		printf("TEST 13 could not be run due to unplanned input\n");
+		printf("TEST 13 could not be run due to failing test 12\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][3] = salvager;
+	G.phase = 1;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 14 : Test correct return statements for wrong phase -----------
+	printf("%s TEST 14: Correct return statements for wrong phase\n", TESTCARD);
+	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	if (result == -1){
+		asserttrue(1, 14);
+	}
+	else{
+		asserttrue(0, 14);
+	}
+
+	// ----------- TEST 15: Test state stays same invalid input -----------
+	printf("%s TEST 15: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 15);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 15);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 15);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 15);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 15);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 15);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 15);
+		}
+		else{
+			asserttrue(1, 15);
+		}
+	}
+	else{
+		printf("TEST 15 could not be run due to failing test 14\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][3] = salvager;
+	G.numActions = 0;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 16 : Test correct return statements for wrong number of actions-----------
+	printf("%s TEST 16: Correct return statements for wrong number of actions\n", TESTCARD);
+	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	if (result == -1){
+		asserttrue(1, 16);
+	}
+	else{
+		asserttrue(0, 16);
+	}
+
+	// ----------- TEST 17: Test state stays same invalid input -----------
+	printf("%s TEST 17: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 17);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 17);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 17);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 17);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 17);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 17);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 17);
+		}
+		else{
+			asserttrue(1, 17);
+		}
+	}
+	else{
+		printf("TEST 17 could not be run due to failing test 16\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][3] = salvager;
+	choice1 = 10;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 18 : Test correct return statements for choice1 not being in hand-----------
+	printf("%s TEST 18: Correct return statements for choice1 not being a valid card\n", TESTCARD);
+	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	if (result == -1){
+		asserttrue(1, 18);
+	}
+	else{
+		asserttrue(0, 18);
+	}
+
+	// ----------- TEST 19: Test state stays same invalid input -----------
+	printf("%s TEST 19: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 19);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 19);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 19);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 19);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 19);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 19);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 19);
+		}
+		else{
+			asserttrue(1, 19);
+		}
+	}
+	else{
+		printf("TEST 19 could not be run due to failing test 18\n");
 	}
 	return 0;
 }

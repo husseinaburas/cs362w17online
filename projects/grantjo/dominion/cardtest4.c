@@ -327,6 +327,9 @@ int main(int argc, char** argv)
       G.deckCount[currentPlayer], testG.deckCount[currentPlayer]);
   error_count += asserttrue(G.deckCount[currentPlayer] == testG.deckCount[currentPlayer],
       "deckCount does not match reference");
+	  
+  printf("\tExpects 1 if Great Hall is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == great_hall);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == great_hall, "Great Hall should be in played pile");
 
   // print comparison of expected discardCount and reference and assert it is as expected
   printf("\tExpects %d if reference discardCount matches returned got %d\n",
@@ -520,6 +523,17 @@ int main(int argc, char** argv)
 
   printf("\tExpects 1 if the card drawn came from the top of the deck and got %d\n", seed);
   error_count += asserttrue(seed == 1, "Card should come from top of the deck.");
+  
+  // Make sure cards already in hand are unchanged
+   z = 0;
+   if (testG.hand[currentPlayer][0] == copper)
+	   z++;
+   for (i = 2; i < 4; i++)
+		if (testG.hand[currentPlayer][i] == copper)
+			z++;
+  // test that 3 cards originally in hand are unchanged
+  printf("\tExpecting 3 if cards originally in hand are unchanged, got %d\n", z);
+  error_count += asserttrue(z == 3, "Cards originally in hand should not have changed");
 
   printf("\tExpects %d if the numActions in the reference equals returned, got %d\n", G.numActions, testG.numActions);
   error_count += asserttrue(G.numActions == testG.numActions, "numActions should be equal between reference and returned");
@@ -546,6 +560,9 @@ int main(int argc, char** argv)
   // print expected value of Great Hall card in hand
   printf("\tExpects %d if returned deck matches reference and got %d\n", G.deckCount[currentPlayer], seed);
   error_count += asserttrue(seed == G.deckCount[currentPlayer], "Reference deck should match returned");
+  
+  printf("\tExpects 1 if Great Hall is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == great_hall);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == great_hall, "Great Hall should be in played pile");
 
   // print comparison of expected deckCount and reference and assert it is as expected
   printf("\tExpects %d if reference deckCount matches returned got %d\n",
@@ -735,12 +752,24 @@ int main(int argc, char** argv)
 
   printf("\tExpecting %d if numActions of returned to match reference, got %d\n", G.numActions, testG.numActions);
   asserttrue(G.numActions == testG.numActions, "numActions in returned should match reference");
+  
+  // Make sure cards already in hand are unchanged
+   z = 0;
+   for (i = 0; i < 3; i++)
+		if (testG.hand[currentPlayer][i] == silver)
+			z++;
+  // test that 3 cards originally in hand are unchanged
+  printf("\tExpecting 2 if cards originally in hand are unchanged, got %d\n", z);
+  error_count += asserttrue(z == 2, "Cards originally in hand should not have changed");
 
   // print comparison of expected deckCount and reference and assert it is as expected
-  printf("\tExpects deckCount to have been shuffled. Reference %d, Returned %d\n",
+  printf("\tExpects deckCount to be %d after discard shuffled in, Returned %d\n",
       G.deckCount[currentPlayer], testG.deckCount[currentPlayer]);
   error_count += asserttrue(G.deckCount[currentPlayer] == testG.deckCount[currentPlayer],
       "Discard should have been shuffled back into deck");
+	  
+  printf("\tExpects 1 if Great Hall is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == great_hall);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == great_hall, "Great Hall should be in played pile");
 
   // print comparison of expected discardCount and reference and assert it is as expected
   printf("\tExpects %d since discard should be empty after shuffle, got %d\n",

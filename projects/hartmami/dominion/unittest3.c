@@ -16,9 +16,6 @@
 **  verify discardCount is incremented
 **  verify player1 cannot discard more cards than in hand
 **  verify player2 cannot discard more cards than in hand
-**  verify adding 9 bonus adds 9 coins
-**  verify adding -1 bonus produces error
-**  verify error (adding -1 bonus has no effect)
 **  verify trashFlag ensures playedCardCount is NOT incremented
 **  verify trashFlag ensures card is NOT discarded
 **  verify player1's hand is as expected with trashFlag

@@ -166,6 +166,7 @@ int checkVillage (struct gameState * G, int scenario) {
 	int testresponse, controlresponse;
 	int p;
 	int response;
+	controlresponse = 0; response = 0; // to silence unused var warning
 
 	struct gameState Gpre, Gcontrol;
 	// Create a pre and control Game state that is copy of G
@@ -177,26 +178,25 @@ int checkVillage (struct gameState * G, int scenario) {
 
 		G->whoseTurn = p; // setting the turn of the player to play Treasure Map
 
-		// find the location of treasure_map in player p's hand
-		int handPos = -1; // default is that there is no treasure_map in hand
+		// find the location of village in player p's hand
+		int handPos = -1; // default is that there is no village in hand
 		int c;
 		for (c=0; c < G->handCount[p]; c++) {
-			if (G->hand[p][c] == treasure_map) { handPos = c; }
+			if (G->hand[p][c] == village) { handPos = c; }
 		}
 		if (handPos == -1) {
-			// printf ("\nNOTE Player %d: did NOT find Treasure Map in player's hand\n", p);
+			printf ("\nNOTE Player %d: did NOT find Village in player's hand\n", p);
 			//printGameState (G);
 		}
 
 		// call the function to test
 		int card = village;
-		int choice1 = 0; // not used for treasure_map
-		int choice2 = 0; // not used for treasure_map
-		int choice3 = 0; // not used for treasure_map
-		int bonus = 0;  // not used for treasure_map
+		int choice1 = 0; // not used for village
+		int choice2 = 0; // not used for village
+		int choice3 = 0; // not used for village
+		int bonus = 0;  // not used for village
 		testresponse =  cardEffect(card, choice1, choice2, choice3, G,
 									handPos, &bonus);
-		//controlresponse = myOwnTreasureMap (p, &Gcontrol, handPos);
 	}
 
 	// SCENARIO 1: IF THERE WAS 1 VILLAGE IN HAND
@@ -313,10 +313,10 @@ int checkVillage (struct gameState * G, int scenario) {
 
 	// SCENARIO 3: IF THERE WAS 5 VILLAGE CARDS IN HAND
 		if (scenario == 3) {
-			printf ("---- in checkTreasureMap Scenario 3 test loop\n");
+			printf ("---- in checkVillage Scenario 3 test loop\n");
 			// loop through each player
 			for (p=0; p< G->numPlayers; p++) {
-				printf ("---- in checkTreasureMap Scenario 3 player %d test loop\n", p);
+				printf ("---- in checkVillage Scenario 3 player %d test loop\n", p);
 
 				// Scenario3-test1: check if played card is increased by 1
 				if ((G->playedCardCount - Gpre.playedCardCount) == 1) {
@@ -454,7 +454,7 @@ int main () {
 				for (handCt = 9; handCt < 10; handCt++) {  // range: 0 to MAX_HAND
 
 					// force each player to have 0 Village in each player's hand.
-					// In this case we do nothing since there is no Treasure Map in hand for default initialization						// DEBUG
+					// In this case we do nothing since there is no Village in hand for default initialization						// DEBUG
 					//printGameState (&G);
 
 					response = checkVillage (&G, 2); // 2 for scenario 2
@@ -474,7 +474,7 @@ int main () {
 	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
 	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
 	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
-	// # of Treasure Maps in each player's Hand = 5
+	// # of Village in each player's Hand = 5
 
 	// SCENARIO 3: setup game
 	// test for some reasonable # of players
@@ -519,37 +519,6 @@ int main () {
 	return 0;
 }
 
-
-/*
-    case treasure_map:
-      //search hand for another treasure_map
-      index = -1;
-      for (i = 0; i < state->handCount[currentPlayer]; i++)
-      {
-	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
-	    {
-	      index = i;
-	      break;
-	    }
-      }
-      if (index > -1) {
-		  //trash both treasure cards
-		  discardCard(handPos, currentPlayer, state, 1);
-		  discardCard(index, currentPlayer, state, 1);
-
-		  //gain 4 Gold cards
-		  for (i = 0; i < 4; i++) {
-			  gainCard(gold, state, 1, currentPlayer);
-		  }
-
-		  //return success
-		  return 1;
-      }
-
-      //no second treasure_map found in hand
-      return -1;
-    }
-*/
 
 
 

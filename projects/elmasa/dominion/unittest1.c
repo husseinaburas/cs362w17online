@@ -1,8 +1,9 @@
 /* -----------------------------------------------------------------------
- * Demonstration of how to write unit tests for dominion-base
- * Include the following lines in your makefile:
+ *  Method updateCoins
+ *  ------------------
+ * Template provided by Ali Aburas
  *
- * testUpdateCoins: testUpdateCoins.c dominion.o rngs.o
+ * unittest1: unittest1.c dominion.o rngs.o
  *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
@@ -17,6 +18,7 @@
 
 // set NOISY_TEST to 0 to remove printfs from output
 #define NOISY_TEST 1
+#define CARDORFUNCTIONTOTEST "updateCoins"
 
 int main() {
     int constantSeedForRandomSeed = 1;
@@ -44,7 +46,11 @@ int main() {
         estates[i] = estate;        // Non Treasure Card (Should give value of 0)
     }
     
-    printf ("TESTING updateCoins():\n");
+    printf("----------------- Testing: %s ----------------\n", CARDORFUNCTIONTOTEST);
+    
+    // Did Any Test Fail Variable
+    int atLeast1TestFailed = 0;
+    
     int currentPlayer, handCount, bonus;
     
     /* LOOP OVER EACH OF THE 2 PLAYERS*/
@@ -68,7 +74,7 @@ int main() {
                 memset(&NewGameStateStruct, 23, sizeof(struct gameState));  // clear the game state
                 memset(&OldVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
                 
-                asserttrue(initializeGame(numPlayer, arrayOfKindomCardsAvailableDuringGamePlay, constantSeedForRandomSeed, &NewGameStateStruct) == 0); // initialize a new game
+                asserttrue(initializeGame(numPlayer, arrayOfKindomCardsAvailableDuringGamePlay, constantSeedForRandomSeed, &NewGameStateStruct) == 0, &atLeast1TestFailed); // initialize a new game
                 NewGameStateStruct.handCount[currentPlayer] = handCount;    // set the number of cards on hand FOR THE CURRENT PLAYER
                 
                 
@@ -85,12 +91,12 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("NewGameStateStruct.coins = %d, expected = %d\n", NewGameStateStruct.coins, handCount * 1 + bonus);
 #endif
-                asserttrue(NewGameStateStruct.coins == handCount * 1 + bonus); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.coins == handCount * 1 + bonus, &atLeast1TestFailed); // check if the number of coins is correct
                 
 #if (NOISY_TEST == 1)
                 printf("NewGameStateStruct.coins = %d, expected = %d\n", NewGameStateStruct.coins, handCount * 1 + bonus);
 #endif
-                asserttrue(NewGameStateStruct.coins == handCount * 1 + bonus); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.coins == handCount * 1 + bonus, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /************ Properties that Should not Change ************/
                 printf("    Testing Properties that should Not change...\n");
@@ -99,13 +105,13 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.whoseTurn = %d, expected = %d\n", NewGameStateStruct.whoseTurn, OldVersionOfGameStruct.whoseTurn);
 #endif
-                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* Make sure numPlayers is the same */
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.numPlayers  = %d, expected = %d\n", NewGameStateStruct.numPlayers , OldVersionOfGameStruct.numPlayers );
 #endif
-                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers ); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers, &atLeast1TestFailed ); // check if the number of coins is correct
                 
                 /* LOOP OVER EACH OF THE 2 PLAYERS to make sure handCount the same*/
                 for (int currentPlayerAgain = 0; currentPlayerAgain < numPlayer; currentPlayerAgain++)
@@ -113,7 +119,7 @@ int main() {
 #if (NOISY_TEST == 1)
                     printf("    NewGameStateStruct.handCount[%d] = %d, expected = %d\n", currentPlayerAgain, NewGameStateStruct.handCount[currentPlayerAgain], OldVersionOfGameStruct.handCount[currentPlayerAgain]);
 #endif
-                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 }
                 
                 
@@ -130,7 +136,7 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("NewGameStateStruct.coins = %d, expected = %d\n", NewGameStateStruct.coins, handCount * 2 + bonus);
 #endif
-                asserttrue(NewGameStateStruct.coins == handCount * 2 + bonus); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.coins == handCount * 2 + bonus, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /************ Properties that Should not Change ************/
                 printf("    Testing Properties that should Not change...\n");
@@ -139,13 +145,13 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.whoseTurn = %d, expected = %d\n", NewGameStateStruct.whoseTurn, OldVersionOfGameStruct.whoseTurn);
 #endif
-                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* Make sure numPlayers is the same */
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.numPlayers  = %d, expected = %d\n", NewGameStateStruct.numPlayers , OldVersionOfGameStruct.numPlayers );
 #endif
-                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers ); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers, &atLeast1TestFailed ); // check if the number of coins is correct
                 
                 /* LOOP OVER EACH OF THE 2 PLAYERS to make sure handCount the same*/
                 for (int currentPlayerAgain = 0; currentPlayerAgain < numPlayer; currentPlayerAgain++)
@@ -153,7 +159,7 @@ int main() {
 #if (NOISY_TEST == 1)
                     printf("    NewGameStateStruct.handCount[%d] = %d, expected = %d\n", currentPlayerAgain, NewGameStateStruct.handCount[currentPlayerAgain], OldVersionOfGameStruct.handCount[currentPlayerAgain]);
 #endif
-                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 }
                 
                 
@@ -170,7 +176,7 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("NewGameStateStruct.coins = %d, expected = %d\n", NewGameStateStruct.coins, handCount * 3 + bonus);
 #endif
-                asserttrue(NewGameStateStruct.coins == handCount * 3 + bonus); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.coins == handCount * 3 + bonus, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /************ Properties that Should not Change ************/
                 printf("    Testing Properties that should Not change...\n");
@@ -179,13 +185,13 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.whoseTurn = %d, expected = %d\n", NewGameStateStruct.whoseTurn, OldVersionOfGameStruct.whoseTurn);
 #endif
-                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* Make sure numPlayers is the same */
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.numPlayers  = %d, expected = %d\n", NewGameStateStruct.numPlayers , OldVersionOfGameStruct.numPlayers );
 #endif
-                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers ); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* LOOP OVER EACH OF THE 2 PLAYERS to make sure handCount the same*/
                 for (int currentPlayerAgain = 0; currentPlayerAgain < numPlayer; currentPlayerAgain++)
@@ -193,7 +199,7 @@ int main() {
 #if (NOISY_TEST == 1)
                     printf("    NewGameStateStruct.handCount[%d] = %d, expected = %d\n", currentPlayerAgain, NewGameStateStruct.handCount[currentPlayerAgain], OldVersionOfGameStruct.handCount[currentPlayerAgain]);
 #endif
-                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 }
                 
                 
@@ -213,7 +219,7 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("NewGameStateStruct.coins = %d, expected = %d\n", NewGameStateStruct.coins, 0 + bonus);
 #endif
-                asserttrue(NewGameStateStruct.coins == 0 + bonus); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.coins == 0 + bonus, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /************ Properties that Should not Change ************/
                 printf("    Testing Properties that should Not change...\n");
@@ -222,13 +228,13 @@ int main() {
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.whoseTurn = %d, expected = %d\n", NewGameStateStruct.whoseTurn, OldVersionOfGameStruct.whoseTurn);
 #endif
-                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* Make sure numPlayers is the same */
 #if (NOISY_TEST == 1)
                 printf("    NewGameStateStruct.numPlayers  = %d, expected = %d\n", NewGameStateStruct.numPlayers , OldVersionOfGameStruct.numPlayers );
 #endif
-                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers ); // check if the number of coins is correct
+                asserttrue(NewGameStateStruct.numPlayers  == OldVersionOfGameStruct.numPlayers , &atLeast1TestFailed); // check if the number of coins is correct
                 
                 /* LOOP OVER EACH OF THE 2 PLAYERS to make sure handCount the same*/
                 for (int currentPlayerAgain = 0; currentPlayerAgain < numPlayer; currentPlayerAgain++)
@@ -236,13 +242,17 @@ int main() {
 #if (NOISY_TEST == 1)
                     printf("    NewGameStateStruct.handCount[%d] = %d, expected = %d\n", currentPlayerAgain, NewGameStateStruct.handCount[currentPlayerAgain], OldVersionOfGameStruct.handCount[currentPlayerAgain]);
 #endif
-                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn); // check if the number of coins is correct
+                    asserttrue(NewGameStateStruct.whoseTurn == OldVersionOfGameStruct.whoseTurn, &atLeast1TestFailed); // check if the number of coins is correct
                 }
             }
         }
     }
     
-    printf("All TESTS PASSED...\n");
+    if (atLeast1TestFailed == 0) {
+        printf("All TESTS PASSED...\n");
+    }else{
+        printf("All TESTS DID NOT PASS X...\n");
+    }
     
     return 0;
 }

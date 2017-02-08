@@ -1,8 +1,8 @@
-#include <mem.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "rngs.h"
 
 int testPlayAdventurer();
@@ -68,7 +68,7 @@ int testPlayAdventurer() {
           "originally drawn cards remain -- Test Passed \n", G.handCount[player], newTreasure);
     }else{
         printf("testPlayAdventurer() finished: hand count = %d, treasure cards = %d "
-          "originally drawn cards remain -- Test Failed \n", G.handCount[player], newTreasure);
+          "original cards may not be the same -- Test Failed \n", G.handCount[player], newTreasure);
     }
 
     return 0;
