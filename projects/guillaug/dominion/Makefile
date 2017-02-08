@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -coverage -lm -w
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -35,5 +35,63 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
+unit1: dominion.o rngs.o
+	gcc -o unittest1 unittest1.c dominion.o rngs.o -g $(CFLAGS)
+	
+unit2: dominion.o rngs.o
+	gcc -o unittest2 unittest2.c dominion.o rngs.o -g $(CFLAGS)
+	
+unit3: dominion.o rngs.o
+	gcc -o unittest3 unittest3.c dominion.o rngs.o -g $(CFLAGS)
+	
+unit4: dominion.o rngs.o
+	gcc -o unittest4 unittest4.c dominion.o rngs.o -g $(CFLAGS)
+	
+cardtest1: dominion.o rngs.o
+	gcc -o cardtest1 cardtest1.c dominion.o rngs.o -g $(CFLAGS)
+	
+cardtest2: dominion.o rngs.o
+	gcc -o cardtest2 cardtest2.c dominion.o rngs.o -g $(CFLAGS)
+	
+cardtest3: dominion.o rngs.o
+	gcc -o cardtest3 cardtest3.c dominion.o rngs.o -g $(CFLAGS)
+	
+cardtest4: dominion.o rngs.o
+	gcc -o cardtest4 cardtest4.c dominion.o rngs.o -g $(CFLAGS)
+	
+unittestresults.out: unit1 unit2 unit3 unit4 cardtest1 cardtest2 cardtest3 cardtest4
+
+	./unittest1 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./unittest2 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./unittest3 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./unittest4 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./cardtest1 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./cardtest2 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./cardtest3 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
+	./cardtest4 		>> unittestresults.out
+	printf '\n' 		>> unittestresults.out
+	gcov dominion.c 	>> unittestresults.out
+	
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.out

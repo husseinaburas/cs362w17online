@@ -1,7 +1,7 @@
 /* -----------------------------------------------------------------------
  * Author: Elton Lee
  * Date: 2-4-2017
- * unittest1.c
+ * unittest2.c
  * unit test for discardCard function
  * Include the following lines in your makefile:
  *

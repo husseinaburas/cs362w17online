@@ -1,6 +1,6 @@
-/******************************************************************************
-* cardtest 1: function runAdventure() tests dominion.c::cardEffect::adventurer.
-* cardtest1.c is a unit testing program for the above function contained within
+/****************************************************************************** 
+* cardtest 2: function runAdventure() tests dominion.c::cardEffect::adventurer.
+* cardtest2.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017
 * Reveal cards from your deck until 2 Treasure cards are revealed.
