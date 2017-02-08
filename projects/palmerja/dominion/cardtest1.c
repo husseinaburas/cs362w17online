@@ -21,13 +21,16 @@ int main()
 	//have to declare all cards in the array
 	int k[10] = {minion, mine, adventurer, great_hall, cutpurse,
 	sea_hag, tribute, smithy, council_room, copper};
-
+	//output tests
 	printf("** Card Test 1: Adventure **\n");
 	
+	
+	//printf("first test :%d, Result: %d\n", G.handCount[G.whoseTurn] + 2, testG.handCount[testG.whoseTurn])
 	initializeGame(numPlayers, k, seed, &G);
 	memcpy(&testG, &G, sizeof(struct gameState));
 	testG.hand[testG.whoseTurn][0] = minion;
-
+	
+	//printf("second test :%d, Result: %d\n", G.handCount[G.whoseTurn] + 2, testG.handCount[testG.whoseTurn])
 	adventurerCard(&testG, 0);
 	printf("Expected value: %d, Result: %d\n", G.handCount[G.whoseTurn] + 2, testG.handCount[testG.whoseTurn]);
 
@@ -47,7 +50,7 @@ int main()
 	  i++;
 	}
     }
-     
+    //printf("third test:%d, testG.handCount[testG.whoseTurn])
 	printf("Expected  card count: %d, Result: %d\n", G.discardCount[G.whoseTurn] + i, testG.discardCount[testG.whoseTurn]);
 	
 	for(x = 0; x < G.handCount[G.whoseTurn]; x++){
@@ -60,6 +63,7 @@ int main()
 	for(x = 0; x < testG.handCount[testG.whoseTurn]; x++){
 		if (testG.hand[testG.whoseTurn][x] == copper || testG.hand[testG.whoseTurn][x] == silver || testG.hand[testG.whoseTurn][x] == gold){
 			treas2++;
+			//printf("final test:%d, testG.handCount[testG.whoseTurn])
 		}
 			
 	}

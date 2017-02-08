@@ -6,7 +6,6 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-
 //village card test
 int main()
 {
@@ -16,6 +15,7 @@ int main()
 	int k[10] = {copper, minion, mine, silver, gold, cutpurse,
 		sea_hag, tribute, smithy, council_room};
 
+	//printf("first test:%d, testG.handCount[testG.whoseTurn])
 	printf("** Card Test 3: Village **\n");
 	
 	initializeGame(numPlayers, k, seed, &G);
@@ -25,7 +25,8 @@ int main()
 
 	memcpy(&testG, &G, sizeof(struct gameState));
 	villageCard(&testG, 0);
-     
+    
+	//printf("final test:%d, testG.handCount[testG.whoseTurn])
 	printf("Final Expected action count: %d, Result: %d\n", G.numActions + 2, testG.numActions);
 	
 	printf("** End Card Test 3: Village **\n");
