@@ -101,7 +101,8 @@ int main() {
     printf("\n");
 
     // Play the test card
-    cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
+    playCard(0, choice1, choice2, choice3, &testG);
+    // cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
 
     printf("Player hand after playing test card.\n");
     printPlayerHand(&testG);

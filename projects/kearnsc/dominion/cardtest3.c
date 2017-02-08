@@ -1,6 +1,6 @@
-/******************************************************************************
-* cardtest 1: council_room tests dominion.c::cardEffect::council_room.
-* cardtest1.c is a unit testing program for the above function contained within
+/****************************************************************************** 
+* cardtest 3: council_room tests dominion.c::cardEffect::council_room.
+* cardtest3.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017
 ******************************************************************************/

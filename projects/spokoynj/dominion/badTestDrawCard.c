@@ -3,23 +3,28 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
+#include <stdlib.h>
 #include "rngs.h"
 
 #define DEBUG 0
 #define NOISY_TEST 1
 
-int checkDrawCard(int p, struct gameState *post) {
+void checkDrawCard(int p, struct gameState *post) {
   int r;
     
   r = drawCard (p, post);
+  
+  if(r) {}
 }
 
 int main () {
 
-  int i, n, r, p, deckCount, discardCount, handCount;
+  //int i, n, r, p, deckCount, discardCount, handCount;
+  int i, n, p;
 
-  int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+  //int k[10] = {adventurer, council_room, feast, gardens, mine,
+	//       remodel, smithy, village, baron, great_hall};
 
   struct gameState G;
 

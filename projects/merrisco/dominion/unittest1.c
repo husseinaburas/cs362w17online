@@ -21,18 +21,13 @@ Postconditions: Printout  to the screen the results of the tests.
 
 
 int main() {
-    int newCards = 0;
-    int discarded = 1;
     int xtraCoins = 0;
-    int shuffledCards = 0;
+    int dummy = 0;
 
-    int i, j, m;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int remove1, remove2;
     int seed = 101;
     int numPlayers = 2;
     int thisPlayer = 0;
-	struct gameState G, testG;
+	struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 
@@ -40,14 +35,43 @@ int main() {
 	initializeGame(numPlayers, k, seed, &G);
 	G.coins = 0;
 
-	//Check to see if the game state is set up
+	/*Check to see if the game state is set up
 	printf("\n\n\n"); 
 	printf("Checking game state for player 1\n");
 	printf("hand count is: %d\n", G.handCount[thisPlayer]);
     printf("number of coins before update: %d\n", G.coins);
-    // end of check
     updateCoins(thisPlayer,&G,0);
-    printf("number of coins before after: %d\n", G.coins);
+    printf("number of coins before after: %d\n", G.coins); */
+/**********************************************************************************************/
+
+    if(updateCoins(thisPlayer,&G,0) == 0)
+        printf("updateCoins(): PASS for initial run.\n");
+    else
+        printf("updateCoins(): FAIL for initial run\n");
+
+    if(G.coins == 4)
+        printf("updateCoins(): PASS for correct update to coins.\n");
+    else
+        printf("updateCoins(): FAIL for correct update to coins\n");
+   
+    if(updateCoins(3,&G,0) == 0)
+        printf("updateCoins(): FAIL when wrong player was passed in.\n");
+    else
+        printf("updateCoins(): PASS when wrong player was passed in\n");
+    
+// check to see if bonus is counted.    
+    xtraCoins = 2;
+    updateCoins(thisPlayer,&G,0);
+    dummy = G.coins;
+    updateCoins(thisPlayer,&G,xtraCoins);
+
+    if(G.coins == (dummy + xtraCoins))
+        printf("updateCoins(): PASS when bonus is factored in.\n");
+    else
+        printf("updateCoins(): FAIL when bonus is factored in\n");
+          
+    
+
 
 
     

@@ -18,7 +18,8 @@ int asserttrue(int condition, char* message)
 
 int main(int argc, char** argv) 
 {
-  struct gameState G;
+  struct gameState G,
+				   testG;
   int i = 0,
       success = 1, 
       error_count = 0,
@@ -34,14 +35,24 @@ int main(int argc, char** argv)
 
   printf("----------------------- Begin Test isGameOver  ---------------------\n");
   printf("Testing isGameOver after game initialized (ie just begun)\n");
+  // copy game state into reference
+  memcpy(&testG, &G, sizeof(struct gameState));
   // call isGameOver on game state
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
 
   // assert that return value is 0 for game still in progress
   error_count += asserttrue(success == 0, "Game Shouldn't be Over at Beginning");
+  
  
   if (error_count == 0)
-    printf("\tAll Tests Successful isGameOver after game initialized\n\n");
+    printf("\tAll 2 Tests Successful isGameOver after game initialized\n\n");
   else
     printf("\t%d Tests Failed isGameOver after game initialized\n\n)", error_count);
 
@@ -52,14 +63,26 @@ int main(int argc, char** argv)
   
   // Set province supply to 0
   G.supplyCount[province] = 0;
+  
+  // copy gameState into test state
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
   // Call is game over
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
 
   // assert return value is 1 for game over
   error_count += asserttrue(success == 1, "Game should be over when province supply is 0");
+  
 
   if (error_count == 0)
-    printf("\tAll Tests Successful isGameOver province supply 0\n\n");
+    printf("\tAll 2 Tests Successful isGameOver province supply 0\n\n");
   else
     printf("\t%d Tests Failed isGameOver province supply 0\n\n", error_count);
 
@@ -75,14 +98,24 @@ int main(int argc, char** argv)
   G.supplyCount[estate] = 0;
   G.supplyCount[village] = 0;
 
+  // copy gameState into test state
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
   // Call isGameOver
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
 
   // assert that return value is 1 for game over
   error_count += asserttrue(success == 1, "Game should be over when 3 supplies are 0");
 
   if (error_count == 0)
-    printf("\tAll Tests Successful, estate, duchy, village supply 0\n\n");
+    printf("\tAll 2 Tests Successful, estate, duchy, village supply 0\n\n");
   else
     printf("\t%d Tests Failed, estate, duchy, village supply 0\n\n", error_count);
 
@@ -96,14 +129,24 @@ int main(int argc, char** argv)
   // Set village back to normal
   G.supplyCount[village] = 8;
 
+  // copy gameState into test state
+  memcpy(&testG, &G, sizeof(struct gameState));
+  
   // Call isGameOver
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
 
   // assert that return value is 0 for game over
   error_count += asserttrue(success == 0, "Game should not be over with only 2 empty supplies");
 
   if (error_count == 0)
-    printf("\tAll Tests Successful, estate, duchy supply 0\n\n");
+    printf("\tAll 2 Tests Successful, estate, duchy supply 0\n\n");
   else
     printf("\t%d Tests Failed, estate, duchy supply 0\n\n", error_count);
 
@@ -117,15 +160,25 @@ int main(int argc, char** argv)
   
   // Set duchy back to normal
   G.supplyCount[duchy] = 8;
+  
+  // copy gameState into test state
+  memcpy(&testG, &G, sizeof(struct gameState));
 
   // Call isGameOver
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
 
   // assert that return value is 0 for game over
   error_count += asserttrue(success == 0, "Game should not be over with only 1 empty supply");
 
   if (error_count == 0)
-    printf("\tAll Tests Successful, estate supply 0\n\n");
+    printf("\tAll 2 Tests Successful, estate supply 0\n\n");
   else
     printf("\t%d Tests Failed, estate supply 0\n\n", error_count);
 
@@ -140,14 +193,26 @@ int main(int argc, char** argv)
     if (i != province)
       G.supplyCount[i] = 0;
   }
+  
+  // copy gameState into test state
+  memcpy(&testG, &G, sizeof(struct gameState));
 
   // call isGameOver
   success = isGameOver(&G);
+  
+  printf("\tExpecting isGameOver does not alter game state\n");
+  // gameState should be unchanged
+  error_count += asserttrue(memcmp(&testG, &G, sizeof(struct gameState)) == 0, "Game State Should Be Unchanged");
+  
+  if (error_count == 0)
+	  printf("\t\tSuccess: isGameOver does not alter game state\n");
+  
   // assert that value is 1 for game over
   error_count += asserttrue(success == 1, "Game should be over if at least 3 supplies 0");
+  
  
   if (error_count == 0)
-    printf("\tAll Tests Successful, every cards supply 0 except province\n\n");
+    printf("\tAll 2 Tests Successful, every cards supply 0 except province\n\n");
   else
     printf("\t%d Tests Failed, every cards supply 0 except province\n\n", error_count);
 
@@ -155,7 +220,7 @@ int main(int argc, char** argv)
   error_count = 0;
 
   if (error_total == 0)
-    printf("ALL TESTS SUCCESSFUL isGameOver\n");
+    printf("ALL 12 TESTS SUCCESSFUL isGameOver\n");
   else
     printf("%d TESTS FAILED isGameOver\n", error_total);
   

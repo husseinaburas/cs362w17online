@@ -3,8 +3,11 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-// gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
 // gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest2.c rngs.c -o unittest2 -lm -g
+
+//ZDI assert is a function that receives a integer and a character.
+// It checks if the integer is one or 2, if it is one that means the test Passed.
+// If the integer is 2 it means the test failed
 int zdi_assert(int a, char * string)
 {
   if(a == 1)
@@ -36,11 +39,11 @@ int main()
 
   printf("Unit Test 2\n\n");
 
-  if(number_of_cards == 5)
+  if(number_of_cards == 5) // 5 cards in players hand means test passed
   {
     b = zdi_assert(1, "Player 1 had 5 cards check");
   }
-  else
+  else // otherwise test passed
   {
     b = zdi_assert(2, "Player 1 had 5 cards check");
   }
