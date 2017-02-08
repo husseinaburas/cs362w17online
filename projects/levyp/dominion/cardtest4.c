@@ -31,12 +31,12 @@ int main() {
     int numPassedTests = 0;
     int adventurers[MAX_HAND];
     int coppers[MAX_HAND];
-    int golds[MAX_HAND];
+    //int golds[MAX_HAND];
     for (i = 0; i < MAX_HAND; i++)
     {
         adventurers[i] = adventurer;
         coppers[i] = copper;
-        golds[i] = gold;
+        //golds[i] = gold;
     }
 
     printf ("\n--------TESTING playMine()--------\n");
@@ -102,18 +102,11 @@ int main() {
                 numberOfSilversAfter++;
             }   
         }
-        // printf("numberOfCoppersBefore %d\n", numberOfCoppersBefore);
-        // printf("numberOfCoppersAfter %d\n", numberOfCoppersAfter);
-
-        // printf("numberOfSilversBefore %d\n", numberOfSilversBefore);
-        // printf("numberOfSilversAfter %d\n", numberOfSilversAfter);
-        //printf("First card after...%d\n", G.hand[0][0]);
         printf("Trash a copper and gain a silver. There should be one less copper");
         checkAssertion(numberOfCoppersBefore - 1, numberOfCoppersAfter, &numFailingTests, &numPassedTests);
 
         printf("Trash a copper and gain a silver. There should be one more silver");
         checkAssertion(numberOfSilversBefore + 1, numberOfSilversAfter, &numFailingTests, &numPassedTests);
-
 
     }
     printf("\nSummary: passed tests: %d\n", numPassedTests);
