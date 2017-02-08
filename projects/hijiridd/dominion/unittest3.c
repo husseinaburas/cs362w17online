@@ -311,7 +311,7 @@ int main () {
 	// Loop through # of players
 	// Note: to pass initializeGAme, the number of players must be between 2 and MAX_Players
 //	for (player = 2; player <= MAX_PLAYERS; player++) {
-	for (player = 2; player <= 4; player++) {
+	for (player = 2; player <= 3; player++) {
 
 		// initialize the standard game
 		response = initializeGame (player, k, 1, &G);
@@ -332,9 +332,9 @@ int main () {
 //				for (handCt = 0; handCt < MAX_HAND; handCt++) {
 //
 		// USE THIS OPTION TO GENERATE SOE REASONABLE COMBINATIONS OF DECK SIZE
-		for (deckCt = 0; deckCt < 11; deckCt++) {
-			for (discardCt = 0; discardCt < 6; discardCt++) {
-				for (handCt = 0; handCt < 10; handCt++) {
+		for (deckCt = 9; deckCt < 11; deckCt++) {
+			for (discardCt = 4; discardCt < 6; discardCt++) {
+				for (handCt = 8; handCt < 10; handCt++) {
 
 					// set the counts for each card stack for each player
 					int pCt;

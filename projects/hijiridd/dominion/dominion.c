@@ -627,6 +627,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int k;
   int x;
   int index;
+  k=0; x=0; index=0; //added this to silence unused var warning
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
 
@@ -634,7 +635,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int temphand[MAX_HAND];// moved above the if statement
   // int drawntreasure=0; removed due to code refactor wk2
   int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  cardDrawn = 0; //added this to silence unused var warning
+  int z = 0; // this is the counter for the temp hand
+  z = 0; // added this to silence warnings
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -1457,7 +1460,7 @@ int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
   int cardDrawn;
   int temphand[MAX_HAND];
   
-  printf ("\nDebug: Adventurer Action refactor code\n");
+  //printf ("\nDebug: Adventurer Action refactor code\n");
 
   while(drawntreasure<2){
 	  if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck

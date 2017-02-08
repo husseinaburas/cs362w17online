@@ -2,6 +2,7 @@
    Assignment: 3
    
    cardtest1.c testSmithy
+   NOTE: I added a bug in smithy for Assignment2
    */
    
 #include "dominion.h"
