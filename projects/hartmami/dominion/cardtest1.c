@@ -35,7 +35,6 @@
 
 int main()
 {
-	int emptyPile = 0;
 	int bonus = 0;
 	int seed = 772;
 	int bug = 0;  // if initialized to 0 then test will run additional known bug tests

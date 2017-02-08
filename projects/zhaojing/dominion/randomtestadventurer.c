@@ -29,8 +29,6 @@ int main(){
 	//begin testing
     for(i = 0, errorCount = 0; i < 1000; i++){		
         printf("\nrandom testing round #%d:\n", i+1);
-		
-		printf("testing original state before any player uses adventurer card.\n");
         Gafter.whoseTurn = rand() % 4;
         for(player = 0; player < 4; player++){
             Gafter.handCount[player] = rand() % (500 - 1) + 1;
@@ -83,20 +81,22 @@ int main(){
                 }
             }
             else Gafter.discardCount[player] = 0; 
-
-            printf("Player %d has %d cards in hand\n", player, Gafter.handCount[player]);
-			printf("Player %d has %d cards in deck\n", player, Gafter.deckCount[player]);
-			printf("Player %d discarded %d cards\n", player, Gafter.discardCount[player]);
         }
 
         memcpy(&Gbefore, &Gafter, sizeof(struct gameState));
 
-		printf("testing resulting state when player %d uses adventurer card.\n", Gafter.whoseTurn);
-		printf("testing whether player %d successfully played adventurer card: ", Gafter.whoseTurn);
-        results = cardEffect(adventurer, 0, 0, 0, &Gafter, cardPos, &bonus);
-        asserttrue(results == 0);
+        if(cardEffect(adventurer, 0, 0, 0, &Gafter, cardPos, &bonus) != 0){
+			printf("TEST FAILED: player %d did not successfully play adventurer card\n", Gafter.whoseTurn);
+			errorCount++;
+		}
 		
-		printf("testing supply and victory piles.\n");
+		if(Gafter.handCount[player] + Gafter.deckCount[player] + Gafter.discardCount[player] !=
+			Gbefore.handCount[player] + Gbefore.deckCount[player] + Gbefore.discardCount[player]){
+				printf("TEST FAILED: player %d's adventurer card incorrectly trashed player %d's cards\n", player, player);
+				errorCount++;
+            }
+		
+		printf("\ntesting supply and victory piles.\n");
 		printf("testing supply count on curse cards: ");
 		if(Gafter.supplyCount[curse] == Gbefore.supplyCount[curse]) printf("TEST SUCCESSFULLY COMPLETED.\n");
 		else{
@@ -122,58 +122,50 @@ int main(){
 			errorCount++;
 		}
 		
+		printf("\nTEST FAILURES: ('n/a' means should/does not exist)\n");
+		printf("PLAYER #	VAVRIABLE		INTENDED VALUE	TEST VALUE\n");
         for(player = 0; player < 4; player++){
-            printf("Player %d has %d cards in \n", player, Gafter.handCount[player]);
-			printf("Player %d has %d cards in deck\n", player, Gafter.deckCount[player]);
-			printf("Player %d discarded %d cards\n", player, Gafter.discardCount[player]);
-			
             if(player == Gafter.whoseTurn){
                 if(Gafter.discard[player][Gafter.discardCount[player] - 1] != adventurer){
-                    printf("TEST FAILED: player %d's adventurer card did not add adventurer card to player %'d discard pile\n", player, player);
+                    printf("player %d	discard pile	adventurer		n/a\n", player);
 					errorCount++;
                 }
                 
                 if(Gafter.handCount[player] != Gbefore.handCount[player] + 1){
-                    printf("TEST FAILED: player %d's adventurer card did not add 2 cards to player %d's hand\n", player, player);
+                    printf("player %d	hand			%d				%d\n", player, Gbefore.handCount[player] + 1, Gafter.handCount[player]);
 					errorCount++;
-                }
-				
-                if(Gafter.handCount[player] + Gafter.deckCount[player] + Gafter.discardCount[player] !=
-					Gbefore.handCount[player] + Gbefore.deckCount[player] + Gbefore.discardCount[player]){
-						printf("TEST FAILED: player %d's adventurer card incorrectly trashed player %d's cards\n", player, player);
-						errorCount++;
                 }
             }
             else{ 
                 if(Gafter.deckCount[player] != Gbefore.deckCount[player]){
-                    printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's deck count\n", Gafter.whoseTurn, player);
+                    printf("player %d	deck count		%d				%d\n", player, Gbefore.deckCount[player], Gafter.deckCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.deckCount[player]; discardPosition++){
                     if(Gafter.deck[player][discardPosition] != Gbefore.deck[player][discardPosition]){
-                        printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's deck position\n", Gafter.whoseTurn, player);
+                        printf("player %d	discard position	%d				%d\n", player, Gbefore.deck[player][discardPosition], Gafter.deck[player][discardPosition]);
 						errorCount++;
                     }
                 }
 
                 if(Gafter.handCount[player] != Gbefore.handCount[player]){
-                    printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's hand count\n", Gafter.whoseTurn, player);
+                    printf("player %d	hand count		%d				%d\n", Gafter.whoseTurn, Gbefore.handCount[player], Gafter.handCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.handCount[player]; discardPosition++){
                     if(Gafter.hand[player][discardPosition] != Gbefore.hand[player][discardPosition]){
-                        printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's hand position\n", Gafter.whoseTurn, player);
+                        printf("player %d	hand position	%d				%d\n", player, Gbefore.hand[player][discardPosition], Gafter.hand[player][discardPosition]);
 						errorCount++;
                     }
                 }
 
                 if(Gafter.discardCount[player] != Gbefore.discardCount[player]){
-                    printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's discard count\n", Gafter.whoseTurn, player);
+                    printf("player %d	discard count	%d				%d\n", player, Gbefore.discardCount[player], Gafter.discardCount[player]);
                     errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.discardCount[player] - 1; discardPosition++){
                     if(Gafter.discard[player][discardPosition] != Gbefore.discard[player][discardPosition]){
-                        printf("TEST FAILED: player %d's adventurer card incorrectly changed player %d's discard position\n", Gafter.whoseTurn, player);
+                        printf("player %d	discard position	%d				%d\n", player, Gbefore.discard[player][discardPosition], Gafter.discard[player][discardPosition]);
 						errorCount++;
                     }
                 }

@@ -17,7 +17,6 @@ int main(){
     int i, j, player, results, discardPosition, errorCount;
     int bonus = 0;
     int cardPos = -1;
-    int num = 0;
     int pos = -1;
 	int seed = rand();
     srand(time(NULL));
@@ -30,7 +29,6 @@ int main(){
     for(i = 0, errorCount = 0; i < 1000; i++){
 		printf("\nrandom testing round #%d:\n", i+1);
        
-		printf("testing original state before any player uses smithy card.\n");
         Gafter.whoseTurn = rand() % 4;
         for(player = 0; player < 4; player++){
             pos = -1;
@@ -64,20 +62,16 @@ int main(){
                 }
             }
             else Gafter.discardCount[player] = 0;
-			
-			printf("Player %d has %d cards in hand\n", player, Gafter.handCount[player]);
-			printf("Player %d has %d cards in deck\n", player, Gafter.deckCount[player]);
-			printf("Player %d has %d cards in discard pile\n", player, Gafter.discardCount[player]);
         }
 
         memcpy(&Gbefore, &Gafter, sizeof(struct gameState));
 
-		printf("testing resulting state when player %d uses smithy card.\n", Gafter.whoseTurn);
-		printf("testing whether player %d successfully played smithy card: ", Gafter.whoseTurn);
-        results = cardEffect(smithy, 0, 0, 0, &Gafter, cardPos, &bonus);
-        asserttrue(results == 0);
-		
-        printf("testing supply and vicotry piles.\n");
+        if(cardEffect(smithy, 0, 0, 0, &Gafter, cardPos, &bonus) != 0){
+			printf("TEST FAILED: player %d did not successfully play smithy card\n", Gafter.whoseTurn);
+			errorCount++;
+		}
+
+        printf("\ntesting supply and vicotry piles.\n");
 		printf("testing supply count on curse cards: ");
 		if(Gafter.supplyCount[curse] == Gbefore.supplyCount[curse]) printf("TEST SUCCESSFULLY COMPLETED.\n");
 		else{
@@ -103,74 +97,68 @@ int main(){
 			errorCount++;
 		}
 		
+		printf("\nTEST FAILURES: ('n/a' means should/does not exist)\n");
+		printf("PLAYER #	VAVRIABLE		INTENDED VALUE	TEST VALUE\n");
 		for(player = 0; player < 4; player++){
-
-            printf("Player %d has %d cards in \n", player, Gafter.handCount[player]);
-			printf("Player %d has %d cards in deck\n", player, Gafter.deckCount[player]);
-			printf("Player %d has %d cards in discard pile\n", player, Gafter.discardCount[player]);
-
             if(player == Gafter.whoseTurn){
                 if(Gafter.deckCount[player] != Gbefore.deckCount[player] - 3){
-                    printf("TEST FAILED: player %d's smithy card failed to take 3 cards from player %d's deck\n", player, player);
+                    printf("player %d	deck count		%d				%d\n", player, Gbefore.deckCount[player] - 3, Gafter.deckCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.deckCount[player]; discardPosition++){
                     if(Gafter.deck[player][discardPosition] != Gbefore.deck[player][discardPosition]){
-						printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's deck (besides taking 3 cards)\n", player, player);
+						printf("player %d	discard position	%d				%d\n", player, Gbefore.deck[player][discardPosition], Gafter.deck[player][discardPosition]);
 						errorCount++;
                     }
                 }
-
                 if(Gafter.handCount[player] != Gbefore.handCount[player] + 2){
-                    printf("TEST FAILED: player %d's smithy card failed to add 3 cards to player %d's hand\n", player, player);
+                    printf("player %d	hand count		%d				%d\n", player, Gbefore.handCount[player] + 2, Gafter.handCount[player]);
 					errorCount++;
                 }
-
                 if(Gafter.discardCount[player] != Gbefore.discardCount[player] + 1){
-                    printf("TEST FAILED: player %d's smithy card failed to discard a card from player %d's hand\n", player, player);
+                    printf("player %d	discard count	%d				%d\n", player, Gbefore.discardCount[player] + 1, Gafter.discardCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gbefore.discardCount[player]; discardPosition++){
                     if(Gafter.discard[player][discardPosition] != Gbefore.discard[player][discardPosition]){
-						printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's discard position\n", player, player);
+						printf("player %d	discard position	%d				%d\n", player, Gbefore.discard[player][discardPosition], Gafter.discard[player][discardPosition]);
 						errorCount++;
                     }
                 }
                 if(Gafter.discard[player][Gafter.discardCount[player] - 1] != smithy){
-                    printf("TEST FAILED: player %d's smithy card failed to discard smithy card from player %d's hand\n", player, player);
+                    printf("player %d	discard pile	smithy			n/a\n", player);
 					errorCount++;
                 }
             }
             else{
                 if(Gafter.deckCount[player] != Gbefore.deckCount[player]){
-                    printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's deck\n", Gafter.whoseTurn, player);
+                    printf("player %d	deck count		%d				%d\n", player, Gbefore.deckCount[player], Gafter.deckCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.deckCount[player]; discardPosition++){
                     if(Gafter.deck[player][discardPosition] != Gbefore.deck[player][discardPosition]){
-						printf("TEST FAILED: player %d's smithy incorrectly changed player %d's deck position\n", Gafter.whoseTurn, player);
+						printf("player %d	deck position	%d				%d\n", player, Gbefore.deck[player][discardPosition], Gafter.deck[player][discardPosition]);
 						errorCount++;
                     }
                 }
 
                 if(Gafter.handCount[player] != Gbefore.handCount[player]){
-                    printf("TEST FAILED: player %d's smithy incorrectly changed player %d's hand\n", Gafter.whoseTurn, player);
+                    printf("player %d	hand count		%d				%d\n", player, Gbefore.handCount[player], Gafter.handCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.handCount[player]; discardPosition++){
                     if(Gafter.hand[player][discardPosition] != Gbefore.hand[player][discardPosition]){
-						printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's hand position\n", Gafter.whoseTurn, player);
+						printf("player %d	hand position	%d				%d\n", player, Gbefore.hand[player][discardPosition], Gafter.hand[player][discardPosition]);
 						errorCount++;
                     }
                 }
-
                 if(Gafter.discardCount[player] != Gbefore.discardCount[player]){
-                    printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's discard count\n", Gafter.whoseTurn, player);
+                    printf("player %d discard count	%d				%d\n", player, Gbefore.discardCount[player], Gafter.discardCount[player]);
 					errorCount++;
                 }
                 for(discardPosition = 0; discardPosition < Gafter.discardCount[player] - 1; discardPosition++){
-                    if(Gafter.discard[player][discardPosition] != Gbefore.discard[player][discardPosition]){
-                        printf("TEST FAILED: player %d's smithy card incorrectly changed player %d's discard position\n", Gafter.whoseTurn, player);
+                    if(Gbefore.discard[player][discardPosition] != Gbefore.discard[player][discardPosition]){
+                        printf("player %d	discard position	%d				%d\n", player, Gbefore.discard[player][discardPosition], Gbefore.discard[player][discardPosition]);
 						errorCount++;
                     }
                 }
