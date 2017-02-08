@@ -5,7 +5,9 @@
 
 //gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest2.c rngs.c -o cardtest2 -lm -g
 
-
+//ZDI assert is a function that receives a integer and a character.
+// It checks if the integer is one or 2, if it is one that means the test Passed.
+// If the integer is 2 it means the test failed
 int zdi_assert(int a, char * string)
 {
   if(a == 1)

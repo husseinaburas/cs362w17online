@@ -58,45 +58,45 @@ cardtest4.o: cardtest4.c
 
 unittestresults.out: dominion.o rngs.o unittest1.o unittest2.o unittest3.o unittest4.o cardtest1.o cardtest2.o cardtest3.o cardtest4.o testingtools.o 
 	gcc -o test.run -g dominion.o rngs.o unittest1.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 > unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o unittest2.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o unittest3.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o unittest4.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o cardtest1.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o cardtest2.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o cardtest3.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 	gcc -o test.run -g dominion.o rngs.o cardtest4.o testingtools.o $(CFLAGS)
-	./test.run 1234
 	./test.run 1234 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	./test.run 1234
 
 
 player: player.c interface.o

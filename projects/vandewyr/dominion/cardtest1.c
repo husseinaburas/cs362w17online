@@ -35,12 +35,12 @@ int testPlaySmithy() {
     printf("testPlaySmithy() started: player 1 hand count = %d, smithy pos at %d "
     "number of cards played %d\n", G.handCount[player], 0, G.playedCardCount);
     playSmithy(&G, handPos);
-    if((G.hand[player][0] != smithy) && (G.handCount[player] == 8) && (G.playedCardCount == 1) &&
+    if((G.hand[player][0] != smithy) && (G.handCount[player] == 7) && (G.playedCardCount == 1) &&
             G.playedCards[0] == smithy){
         printf("testPlaySmithy() finished: player 1 hand count = %d, smithy card removed, "
                "number of cards played %d -- Test Passed \n", G.handCount[player], G.playedCardCount);
     }else{
-        printf("testPlaySmithy() finished: player 1 hand count = %d, smithy card removed, "
+        printf("testPlaySmithy() finished: player 1 hand count = %d, "
                        "number of cards played %d -- Test Failed \n", G.handCount[player], G.playedCardCount);
     }
 
