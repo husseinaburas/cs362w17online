@@ -30,13 +30,39 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 
+
+######## Compiles executables for card and unit tests #########
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 unittest1: dominion.o unittest1.c 
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+unittest2: dominion.o unittest2.c 
+	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
+
+unittest3: dominion.o unittest3.c 
+	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
+
+unittest4: dominion.o unittest4.c 
+	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest1: dominion.o cardtest1.c 
+	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
+
+cardest2: dominion.o cardtest2.c 
+	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest3: dominion.o cardtest3.c 
+	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)	
+
+cardtest4: dominion.o cardtest4.c 
+	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
+##################################################################
+
+
+
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 *.gcov *.gcda *.gcno *.so

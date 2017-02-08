@@ -8,7 +8,7 @@
 #include "rngs.h"
 #include "interface.h"
 
-//unit test for the gainCard() function
+//unit test for the endturn() function
 
 //Assert function, 3rd argument is operator, use: 0 for =, 1 for <, 2 for >
 int assertTrue(int arg1, int arg2, int op){
@@ -126,7 +126,13 @@ int main(){
     assertTrue(coinCnt, state.coins, 0);
 
     printf("check that player changes correctly when at max player\n");
-    
+
+    memcpy(&pretest, &state, sizeof(struct gameState));
+   	results = endTurn(&state);
+   	printf("Player before call: %d, player after call:%d\n",pretest.whoseTurn, state.whoseTurn);
+   	assertTrue(pretest.whoseTurn -1,state.whoseTurn,0);
+
+
 
 	printf("********************************endTurn() Testing complete****************************\n");
 

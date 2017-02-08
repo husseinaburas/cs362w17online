@@ -18,6 +18,7 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
+#include "assert.h"
 #include <math.h>
 #include <stdlib.h>
 //int buyCard(int supplyPos, struct gameState *state) {
@@ -62,6 +63,30 @@
 //	return 0;
 //}
 
+int assertTrue(int actual, int expected, int isEqual)
+{
+	if (isEqual)
+	{
+		if (actual == expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+	else
+	{
+		if (actual != expected)
+			return 0;
+		else
+		{
+			printf("****Error in current test******\n");
+			return -1;
+		}
+	}
+
+}
 
 int main()
 {
@@ -97,41 +122,44 @@ int main()
 	G.numBuys = 0;
 	//check to see if numbuys fails if it is 0
 	buyCardCheck= buyCard(village, &G);
-	assert(buyCardCheck != 0);
+	assertTrue(buyCardCheck, 0, 0);
 	
 	printf("------------------------------------------Test 2: Buying a nonexistent card-----------------------------------------\n");
 	//reset the number of buys 
 	G.numBuys = 1;	
 	// check if you can buy a non existent card
 	buyCardCheck = buyCard(remodel, &G);
-	assert(buyCardCheck != 0);
+	assertTrue(buyCardCheck, 0, 0);
 	//check that number of buys doesn't go down 
-	assert(G.numBuys == initNumBuy);
+	assertTrue(G.numBuys, initNumBuy, 1);
 	
 	printf("------------------------------------------Test 3: coins=0-----------------------------------------\n");
 	//set coins to 0
 	G.coins = 0;
 	buyCardCheck = buyCard(adventurer, &G);
-	assert(buyCardCheck != 0); 
+	assertTrue(buyCardCheck, 0, 0);
 	//check that number of buys doesn't go down 
-	assert(G.numBuys == initNumBuy);
+	assertTrue(G.numBuys, initNumBuy, 1);
 	
 	printf("------------------------------------------Test 4: Valid buy-----------------------------------------\n");
 	//check for post conditions during a valid buy
 	G.coins = 4;
+	G.numBuys = 1;
 	buyCardCheck = buyCard(smithy, &G);
-	assert(buyCardCheck = 0);
+	assertTrue(buyCardCheck, 0, 1);
 	
 	printf("------------------------------------------Test 4.1: Discard increases with new card in a Valid buy-----------------------------------------\n");
 	//check that the new card was discarded 
-	assert(G.discardCount[player] == initPlayerDiscard + 1);
+	assertTrue(G.discardCount[player], initPlayerDiscard + 1, 1);
 
 	printf("------------------------------------------Test 4.2: Supply decreases in a Valid buy-----------------------------------------\n");
 	//check that the supply of smithy went down
-	assert(G.supplyCount[smithy] == initsupply - 1);
+	assertTrue(G.supplyCount[smithy], initsupply - 1, 1);
 
 	printf("------------------------------------------Test 4.3: numBuys gets decreased in a Valid buy-----------------------------------------\n");
 	//check that number of buys goes down after it buys 
-	assert(G.numBuys == initNumBuy - 1);
+	assertTrue(G.numBuys, initNumBuy - 1, 1);
 	printf("\n------------------------------------------SUCCESS: TESTING COMPLETE FOR buyCard FUNCTION-----------------------------------------\n\n");
+
+	return 0;
 }
