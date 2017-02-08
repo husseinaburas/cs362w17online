@@ -9,13 +9,14 @@ Description:  This is a unit test for the isGameOver function in dominion.c
 #include <stdlib.h>
 #include <stdio.h>
 #include "dominion.h"
+#include "dominion_helpers.h"
 #include "rngs.h"
 #include <time.h>
 
 
 
 int main(){
-
+//variables for game state, cards, and test passing
   struct gameState state;
   int s;
   int k[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -44,7 +45,7 @@ int main(){
 
   s = isGameOver(&state);
   if(s == 1){
-	  pass1 = 1;
+	  pass2 = 1;
 	  printf("isGameOver Test 2 passed\n");
 	  
   }
@@ -64,7 +65,7 @@ int main(){
   s = isGameOver(&state);
 
   if(s == 1){
-	  pass1 = 1;
+	  pass3 = 1;
 	  printf("isGameOver Test 3 passed\n");
 	  
   }
@@ -75,9 +76,9 @@ int main(){
   }
   
   if(pass1 == 0 || pass2 == 0 || pass3 == 0)
-	  printf("isGameOver TEST FAILED");
+	  printf("isGameOver TEST FAILED\n");
   else
-	  printf("isGameOver TEST SUCCESSFULLY COMPLETED");
+	  printf("isGameOver TEST SUCCESSFULLY COMPLETED\n");
 
   return 0;
 }
