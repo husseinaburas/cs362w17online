@@ -178,6 +178,7 @@ int checkGainCard (struct gameState * G) {
 	int testresponse, controlresponse;
 	int p;
 	int response;
+	testresponse = 0; controlresponse = 0; response = 0; // to quite unused var warning
 
 	struct gameState Gpre;
 
@@ -378,7 +379,7 @@ int myOwnGainCard (int supplyPile, struct gameState * G, int destination, int pl
 */
 
 int main () {
-	printf ("\n\nstarting unittest3 -- testing gainCard() function\n\n");
+	printf ("\n\nstarting unittest4 -- testing gainCard() function\n\n");
 	// DEBUGGING
 	// printf ("MAX_HAND = %d, MAX_DECK = %d, MAX_PLAYERS = %d\n", MAX_HAND, MAX_DECK, MAX_PLAYERS);
 	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
@@ -387,7 +388,7 @@ int main () {
 	// setup a standard game
 	// -----------------
 	struct gameState G; // test game state
-	struct gameState Gcontrol; // control game state (pre-test)
+	//struct gameState Gcontrol; // control game state (pre-test)
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
 	           sea_hag, tribute, smithy};
 
@@ -412,7 +413,7 @@ int main () {
 		// initialize the standard game
 		response = initializeGame (player, k, 1, &G);
 		if (response < 0) { // then an error in initialize game
-			printf ("unittest1 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("unittest4 ERROR: Failed to initialize game. Data of current game state:\n");
 			printf ("Players = %d\n", player);
 			//printGameState (&G);
 			exit (1); // exit the program with value of 1
@@ -452,11 +453,11 @@ int main () {
 
 					// ASSERT TO TEST IF CHECK COMPLETED
 					if (!(response == 0)) {
-						printf ("\nUnittest3: gainCard() did not pass our unit test\n");
+						printf ("\nUnittest4: gainCard() did not pass our unit test\n");
 // TODO CHANGE						printf ("Debug data: trial #%d, handCt = %d, discardCt = %d, deckCt = %d, players = %d, response = %d\n\n",
 // TODO CHANGE								trial, handCt, discardCt, deckCt, player, response);
 					} else {
-						printf ("\nUnittest2: gainCard() TEST SUCCESSFULLY COMPLETED\n\n");
+						printf ("\nUnittest4: gainCard() TEST SUCCESSFULLY COMPLETED\n\n");
 					}
 				}
 			}

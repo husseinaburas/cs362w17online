@@ -198,10 +198,10 @@ int checkScoreFor (struct gameState * G) {
 			printf ("point calculation successful: testresponse = controlresponse = %d\n", testresponse);
 		} else {
 			printf ("FAILED point calculation: player: %d, testresponse: %d, controlresponse %d\n", p, testresponse, controlresponse);
-			printf ("Printing game state for Gcontrol:\n");
-			printGameState (&Gcontrol);
-			printf ("Printing game state for G (test):\n");
-			printGameState (G);
+			//printf ("Printing game state for Gcontrol:\n");
+			//printGameState (&Gcontrol);
+			//printf ("Printing game state for G (test):\n");
+			//printGameState (G);
 			errorval--; // subtract -1 for each error encountered.
 		}
 
@@ -328,7 +328,7 @@ int main () {
 	// setup a standard game
 	// -----------------
 	struct gameState G; // test game state
-	struct gameState Gcontrol; // control game state (pre-test)
+	//struct gameState Gcontrol; // control game state (pre-test)
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
 	           sea_hag, tribute, smithy};
 
@@ -369,9 +369,9 @@ int main () {
 //				for (handCt = 0; handCt < MAX_HAND; handCt++) {
 //
 		// USE THIS OPTION TO GENERATE SOE REASONABLE COMBINATIONS OF DECK SIZE
-		for (deckCt = 0; deckCt < 10; deckCt++) {
-			for (discardCt = 0; discardCt < 10; discardCt++) {
-				for (handCt = 0; handCt < 10; handCt++) {
+		for (deckCt = 8; deckCt < 10; deckCt++) {
+			for (discardCt = 8; discardCt < 10; discardCt++) {
+				for (handCt = 8; handCt < 10; handCt++) {
 
 					// set the counts for each card stack for each player
 					int pCt;
