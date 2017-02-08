@@ -32,7 +32,7 @@ void testPerformAdventureAction(){
   state.discard[currentPlayer][2] = minion;
   state.discard[currentPlayer][3] = mine;
   state.discard[currentPlayer][4] = tribute;
-  printf("Starting testPerformAdventureAction\n");
+  
   performAdventureAction(&state, currentPlayer);
 
   // we should add two treasure cards to deck so hand count should = 3
@@ -95,7 +95,7 @@ void testPerformAdventureAction(){
   state.discard[currentPlayer][2] = gold;
   state.discard[currentPlayer][3] = gold;
   state.discard[currentPlayer][4] = gold;
-  printf("Starting testPerformAdventureAction Test 2\n");
+  
   performAdventureAction(&state, currentPlayer);
 
   // we should add two treasure cards to deck so hand count should = 3
