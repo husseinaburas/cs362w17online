@@ -105,7 +105,7 @@ void testScoreFor(){
 	if (ReturnValue == 12)
         printf("scoreFor(): PASS when testing Player 1.\n");
     else
-        printf("scoreFor(): FAIL when testing Player 1.\n");
+        printf("scoreFor(): FAIL when testing Player 1. ReturnValue = %i\n", ReturnValue);
 	/* --- TEST 1: Player 1 --- */
 
 	/* --- TEST 2: Player 2 --- */
@@ -113,7 +113,7 @@ void testScoreFor(){
 	if (ReturnValue == -1)
         printf("scoreFor(): PASS when testing Player 2.\n");
     else
-        printf("scoreFor(): FAIL when testing Player 2.\n");
+        printf("scoreFor(): FAIL when testing Player 2. ReturnValue = %i\n", ReturnValue);
 	/* --- TEST 2: Player 2 --- */
 
 	/* --- TEST 3: Player 3 --- */
@@ -121,7 +121,7 @@ void testScoreFor(){
 	if (ReturnValue == 10)
         printf("scoreFor(): PASS when testing Player 3.\n");
     else
-        printf("scoreFor(): FAIL when testing Player 3.\n");
+        printf("scoreFor(): FAIL when testing Player 3. ReturnValue = %i\n", ReturnValue);
 	/* --- TEST 3: Player 3 --- */
 
 	/* --- TEST 4: Player 4 --- */
@@ -129,9 +129,9 @@ void testScoreFor(){
 	if (ReturnValue == 6)
         printf("scoreFor(): PASS when testing Player 4.\n");
     else
-        printf("scoreFor(): FAIL when testing Player 4.\n");
+        printf("scoreFor(): FAIL when testing Player 4. ReturnValue = %i\n", ReturnValue);
 	/* --- TEST 4: Player 4 --- */
-    printf("=== COMPLETED UNIT TESTS for scoreFor()\n\n");
+    printf("\n=== COMPLETED UNIT TESTS for scoreFor()\n\n");
 
     return;
 }

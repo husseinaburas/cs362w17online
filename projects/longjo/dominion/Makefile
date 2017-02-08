@@ -54,7 +54,7 @@ tests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 car
 	./cardtest2 >> unittestresults.out
 	./cardtest3 >> unittestresults.out
 	./cardtest4 >> unittestresults.out
-	gcov -abfu dominion.c >> unittestresults.out
+	gcov -bf dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
 interface.o: interface.h interface.c

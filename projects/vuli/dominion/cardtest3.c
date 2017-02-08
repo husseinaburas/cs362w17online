@@ -537,7 +537,7 @@ int main() {
     printf("---------\n");
     printf("Card %s passed %d/%d tests.\n", CARD_NAME, r_main, testCount);
     printf("END testing %s\n", CARD_NAME);
-    printf("**********************************************************\n");
+    printf("**********************************************************\n\n");
 
     return 0;
 }
