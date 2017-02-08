@@ -1500,19 +1500,15 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
 
    //+1 buy
     state->numBuys++;
-    printf("Coins before: %d\n", state->coins);
     if (choice1 == 2){ //BUG
       //gain coins equal to trashed card
       state->coins = state->coins + getCost( state->hand[currentPlayer][choice1] );
-      printf("inside if statement\n");
       //trash card
       discardCard(choice1, currentPlayer, state, 0);  //BUG
     }
-    printf("Coins during: %d\n", state->coins);
     //discard  salvager card
     discardCard(handPos, currentPlayer, state, 0);
     updateCoins(currentPlayer, state, 0);
-    printf("Coins After: %d\n", state->coins);
 
 
     return 0;
