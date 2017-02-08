@@ -18,7 +18,7 @@ int printGameState (struct gameState * G);
 int fillHandWithCards (struct gameState * G, int handCt);
 int fillDiscardWithCards (struct gameState * G, int discardCt);
 int fillDeckWithCards(struct gameState * G, int deckCt);
-int checkSmithy (struct gameState * G);
+int checkSmithy (struct gameState * G, int scenario);
 
 // ***************
 // assertTrue() - custom assert function
@@ -173,34 +173,33 @@ int printGameState (struct gameState * G) {
 // **********************
 // tests for SMITHY
 // **********************
-int checkSmithy (struct gameState * G) {
+int checkSmithy (struct gameState * G, int scenario) {
 	int errorval = 0;
 	int testresponse, controlresponse;
 	int p;
 	int response;
+	testresponse = 0; controlresponse = 0; response = 0; // to silence unused var warning
 
-	struct gameState Gpre;
+	struct gameState Gpre, Gcontrol;
+	// Create a pre and control Game state that is copy of G
+	memcpy (&Gpre, G, sizeof(struct gameState));
+	memcpy (&Gcontrol, G, sizeof(struct gameState));
 
-	// Set supply position for each player
-	// each player plays Smithy
-	// PLAYER MAY NOT MATTER IF YOU HAVE TO LOOK AT CURRENT TURN
+	// loop through each player
 	for (p=0; p< G->numPlayers; p++) {
 
 		G->whoseTurn = p; // setting the turn of the player to play Smithy
 
-		// find the location of smithy in player p's hand
-		int handPos = -1;
+		// find the location of Smithy in player p's hand
+		int handPos = -1; // default is that there is no Smithy in hand
 		int c;
 		for (c=0; c < G->handCount[p]; c++) {
 			if (G->hand[p][c] == smithy) { handPos = c; }
 		}
 		if (handPos == -1) {
-			printf ("\nNOTE Player %d: did NOT find Smithy in this player's hand\n", p);
+			printf ("NOTE Player %d: did NOT find Smithy in player's hand\n", p);
 			//printGameState (G);
 		}
-
-		// Create a control state that is copy of G
-		memcpy (&Gpre, G, sizeof(struct gameState));
 
 		// call the function to test
 		int card = smithy;
@@ -208,22 +207,266 @@ int checkSmithy (struct gameState * G) {
 		int choice2 = 0; // not used for smithy
 		int choice3 = 0; // not used for smithy
 		int bonus = 0;  // not used for smithy
-
-		testresponse =  cardEffect(card, choice1, choice2, choice3, G,
+		testresponse =  cardEffect (card, choice1, choice2, choice3, G,
 									handPos, &bonus);
+	}
 
-		// IF THERE WAS A SMITHY CARD TO PLAY
-		if (handPos > -1) {
+	// SCENARIO 1:
+	// # Smithy in each player's Hand = 1
+	if (scenario == 1) {
+		printf ("---- in checkSmithy Scenario 1 test loop\n");
+		// loop through each player
+		for (p=0; p< G->numPlayers; p++) {
+			printf ("---- in checkSmmithy Scenario 1 player %d test loop\n", p);
 
-			// check if handcount was increased by 2 (minus 1 smith, +3 from deck)
-			if ((G->handCount[p] - Gpre.handCount[p]) == 2) {
-				printf ("Success player %d: handCount increased by 2\n", p);
+			// Scenario1-test1: check if played card has increased by 1 * # players
+			if ((G->playedCardCount - Gpre.playedCardCount) == (1 * G->numPlayers)) {
+				printf ("Scenario1-test1: SUCCESS: player #%d, check if played card has increased by 1 * # players\n", p);
 			} else {
-				printf ("FAILED player %d: handCount NOT increased by 2\n", p);
+				printf ("Scenario1-test1: FAILED: player #%d, check if played card has increased by 1 * # players\n", p);
+				printf ("Debug: G->playedCardCount: %d, Gpre.playedCardCount: %d\n", G->playedCardCount, Gpre.playedCardCount);
 				errorval--;
 			}
 
-			// if there was >= 3 cards in deck
+			// Scenario1-test2: check if total supply count has not changed
+			int c;
+			int supplyTotalPost = 0;
+			int supplyTotalPre = 0;
+			for (c=0; c < (treasure_map+1); c++) {
+				supplyTotalPost += G->supplyCount[c];
+				supplyTotalPre += Gpre.supplyCount[c];
+				//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+			}
+			if ((supplyTotalPost - supplyTotalPre) == 0) {
+				printf ("Scenario1-test2: SUCCESS: player #%d, check if total supply count has not changed\n", p);
+			} else {
+				printf ("Scenario1-test2: FAILED: player #%d, check if total supply count has not changed\n", p);
+				printf ("Debug Data: supplyTotalPost: %d, supplyTotalPre: %d\n", supplyTotalPost, supplyTotalPre);
+				errorval--;
+			}
+
+			// Scenario1-test3: check if hand count went up by 2 (minus Smith + 3 cards)
+			if ((G->handCount[p] - Gpre.handCount[p]) == 2) {
+				printf ("Scenario1-test3: SUCCESS: player #%d, check if hand count went up by 2 (minus Smith + 3 cards)\n", p);
+			} else {
+				printf ("Scenario1-test3: FAILED: player #%d, check if hand count went up by 2 (minus Smith + 3 cards)\n", p);
+				printf ("Debug Data: G->handCount[p]: %d, Gpre.handCount[p]: %d\n", G->handCount[p], Gpre.handCount[p]);
+				errorval--;
+			}
+
+			// Scenario1-test4: check deck+discard count decreased 3 (only 3 cards moved to hand)
+			if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -3) {
+				printf ("Scenario1-test4: SUCCESS: player #%d, check deck+discard count decreased 3 (only 3 cards moved to hand)\n", p);
+			} else {
+				printf ("Scenario1-test4: FAILED: player #%d, check deck+discard count decreased 3 (only 3 cards moved to hand)\n", p);
+				printf ("Debug Data: G->deckCount[p] + G->discardCount[p]): %d, (Gpre.deckCount[p] + Gpre.discardCount[p]): %d\n",
+						(G->deckCount[p] + G->discardCount[p]), (Gpre.deckCount[p] + Gpre.discardCount[p]) );
+				errorval--;
+			}
+		}
+	}
+
+	// SCENARIO 2:
+	// # Smithy in each player's Hand = 0
+	if (scenario == 2) {
+		printf ("---- in checkSmithy Scenario 2 test loop\n");
+		// loop through each player
+		// loop through each player
+		for (p=0; p< G->numPlayers; p++) {
+			printf ("---- in checkSmmithy Scenario 2 player %d test loop\n", p);
+			// Scenario2-test1: check if played card count is unchanged
+			if ((G->playedCardCount - Gpre.playedCardCount) == 0) {
+				printf ("Scenario2-test1: SUCCESS: player #%d, check if played card count unchanged\n", p);
+			} else {
+				printf ("Scenario2-test1: FAILED: player #%d, check if played card count unchanged\n", p);
+				errorval--;
+			}
+
+			// Scenario2-test2: check to see if the total supply count has not changed
+			int c;
+			int supplyTotalPost = 0;
+			int supplyTotalPre = 0;
+			for (c=0; c < (treasure_map+1); c++) {
+				supplyTotalPost += G->supplyCount[c];
+				supplyTotalPre += Gpre.supplyCount[c];
+				//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+			}
+			if (supplyTotalPost == supplyTotalPre) {
+				printf ("Scenario2-test2: SUCCESS: player #%d, check to see if the total supply count has not changed\n", p);
+			} else {
+				printf ("Scenario2-test2: FAILED: player #%d, check to see if the total supply count has not changed\n", p);
+				errorval--;
+			}
+
+			// Scenario2-test3: check if hand count has not changed
+			if ((G->handCount[p] - Gpre.handCount[p]) == 0) {
+				printf ("Scenario2-test3: SUCCESS: player #%d, check if hand count has not changed\n", p);
+			} else {
+				printf ("Scenario2-test3: FAILED: player #%d, check if hand count has not changed\n", p);
+				errorval--;
+			}
+
+			// Scenario2-test4: check if deck count has not changed
+			if ((G->deckCount[p] - Gpre.deckCount[p]) == 0) {
+				printf ("Scenario2-test4: SUCCESS: player #%d, check if deck count has not changed\n", p);
+			} else {
+				printf ("Scenario2-test4: FAILED: player #%d, check if deck count has not changed\n", p);
+				errorval--;
+			}
+		}
+	}
+	return 0;
+}
+
+int main () {
+	printf ("\n\nstarting cardtest1 -- testing SMITHY function\n\n");
+	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
+
+	int player, response, p;
+	struct gameState G; // test game state
+	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+	           sea_hag, smithy, treasure_map}; // replaced one of the cards with treasure_map
+	int deckCt, discardCt, handCt;
+	int toFlag;
+
+	// ---- SCENARIO 1 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Smithy in each player's Hand = 1
+
+	printf ("----Starting Scenario 1 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 1 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// set the counts for each card stack for each player
+					int pCt;
+					for (pCt = 0; pCt < player; pCt++) {
+						G.handCount[pCt] = handCt;
+						G.discardCount[pCt] = discardCt;
+						G.deckCount[pCt] = deckCt;
+					}
+
+					// fill in the hand, discard, and deckCount with valid cards (systematically, not randomly)
+					fillHandWithCards (&G, handCt);
+					fillDiscardWithCards (&G, discardCt);
+					fillDeckWithCards(&G, deckCt);
+
+					// force each player to have only 1 Smithy
+					for (p=0; p<player; p++) {
+						// first remove all Smithy cards from hand
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if (G.hand[p][c] == smithy) {
+								// replace with a benign card
+								G.hand[p][c] = curse;
+							}
+						}
+					}
+
+					// now add 1 Smmithy to each players hand
+					for (p=0; p<player; p++) {
+						toFlag = 2; // add card to the hand
+						gainCard (smithy, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					printf ("--- loop with players: %d, deck: %d, discard: %d, hand: %d\n",
+							G.numPlayers, deckCt, discardCt, handCt);
+					response = checkSmithy (&G, 1); // 1 for scenario 1
+					if (response == 0) {
+						printf ("cardtest1-Scenario1-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest1-Scenario1-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+	// ---- SCENARIO 2 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Smithy in each player's Hand = 0
+
+	printf ("----Starting Scenario 2 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 1 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// set the counts for each card stack for each player
+					int pCt;
+					for (pCt = 0; pCt < player; pCt++) {
+						G.handCount[pCt] = handCt;
+						G.discardCount[pCt] = discardCt;
+						G.deckCount[pCt] = deckCt;
+					}
+
+					// fill in the hand, discard, and deckCount with valid cards (systematically, not randomly)
+					fillHandWithCards (&G, handCt);
+					fillDiscardWithCards (&G, discardCt);
+					fillDeckWithCards(&G, deckCt);
+
+					// force each player to have at least 0 Smithy card
+					for (p=0; p<player; p++) {
+						// first remove all Smithy cards from hand
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if (G.hand[p][c] == smithy) {
+								// replace with a benign card
+								G.hand[p][c] = curse;
+							}
+						}
+					}
+
+					printf ("--- loop with players: %d, deck: %d, discard: %d, hand: %d\n",
+							G.numPlayers, deckCt, discardCt, handCt);
+					response = checkSmithy (&G, 2); // 2 for scenario 2
+					if (response == 0) {
+						printf ("cardtest1-Scenario2-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest1-Scenario2-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+	return 0;
+}
+
+
+/*
+ 			// if there was >= 3 cards in deck
 			// check if deck count was decreased by 3
 			if (Gpre.deckCount[p] > 2) {
 				if ((G->deckCount[p] - Gpre.deckCount[p]) == 3) {
@@ -272,7 +515,6 @@ int checkSmithy (struct gameState * G) {
 
 		// IF THERE WAS NO SMITHY CARD TO PLAY
 		if (handPos < 0) {
-
 			// check if handcount is the same)
 			if ((G->handCount[p] - Gpre.handCount[p]) == 0) {
 				printf ("Success player %d: given no Smithy handCount increased by 0\n", p);
@@ -320,63 +562,13 @@ int checkSmithy (struct gameState * G) {
 	}
 	return errorval;
 }
+*/
 
-int main () {
-	printf ("\n\nstarting cardtest1 -- testing SMITHY function\n\n");
-	// DEBUGGING
-	// printf ("MAX_HAND = %d, MAX_DECK = %d, MAX_PLAYERS = %d\n", MAX_HAND, MAX_DECK, MAX_PLAYERS);
-	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
 
-	// -----------------
-	// setup a standard game
-	// -----------------
-	struct gameState G; // test game state
-	struct gameState Gcontrol; // control game state (pre-test)
-	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-	           sea_hag, smithy, treasure_map}; // replaced one of the cards with treasure_map
 
-	// -------------------
-	// setup the fixed unit tests  !!! WE ARE NOT DOING RANDOM TESTS!!!
-	// INSTEAD we are creating fixed tests by looping through different input spaces
-	// for deck, hand and discard size. we also fill in the card positions for each
-	// deck, hand and discard by looping through all 26 available cards
-	// -------------------
-	int player = 0;
-	int deckCt = 0;
-	int discardCt = 0;
-	int handCt = 0;
-	int response;
-	int trial = 0;
 
-	// Loop through # of players
-	// Note: to pass initializeGAme, the number of players must be between 2 and MAX_Players
-//	for (player = 2; player <= MAX_PLAYERS; player++) {
-	for (player = 2; player <= 2; player++) {
 
-		// initialize the standard game
-		response = initializeGame (player, k, 1, &G);
-		if (response < 0) { // then an error in initialize game
-			printf ("unittest1 ERROR: Failed to initialize game. Data of current game state:\n");
-			printf ("Players = %d\n", player);
-			//printGameState (&G);
-			exit (1); // exit the program with value of 1
-		}
 
-		// force a smithy to player 0's hand so you have instances where you can and cannot play
-		int toFlag = 2; // add the smithy card to the hand
-		gainCard (smithy, &G, toFlag, 0);
-
-		response = checkSmithy (&G);
-
-		// now loop through different sizes of deck, hand, and discard counts
-		// Cases to consider:
-		// very large and very small decks, discards and hand counts
-
-		// USE THIS OPTION TO GENERATE ALL POSSIBLE COMBINATIONS OF DECK SIZE
-//		for (deckCt = 0; deckCt < MAX_DECK; deckCt++) {
-//			for (discardCt = 0; discardCt < MAX_DECK; discardCt++) {
-//				for (handCt = 0; handCt < MAX_HAND; handCt++) {
-//
 		// USE THIS OPTION TO GENERATE SOE REASONABLE COMBINATIONS OF DECK SIZE
 /*
 		for (deckCt = 10; deckCt < 11; deckCt++) {
@@ -413,6 +605,4 @@ int main () {
 			}
 		}
 */
-	}
-	return 0;
-}
+

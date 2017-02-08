@@ -18,8 +18,8 @@ int printGameState (struct gameState * G);
 int fillHandWithCards (struct gameState * G, int handCt);
 int fillDiscardWithCards (struct gameState * G, int discardCt);
 int fillDeckWithCards(struct gameState * G, int deckCt);
-int checkAdventurer (struct gameState * G);
-int myOwnAdventurerAction (int currentPlayer, struct gameState * G, int handPos);
+int checkAdventurer (struct gameState * G, int scenario);
+//int myOwnAdventurerAction (int currentPlayer, struct gameState * G, int handPos);
 
 // ***************
 // assertTrue() - custom assert function
@@ -170,10 +170,678 @@ int printGameState (struct gameState * G) {
 	printf ("--END PRINTING GAME STATE -------------------\n\n");
 	return 0;
 }
+// **********************
+// tests for Adventurer
+// **********************
+int checkAdventurer (struct gameState * G, int scenario) {
+	int errorval = 0;
+	int testresponse, controlresponse;
+	int p;
+	int response;
+	testresponse = 0; controlresponse = 0; response = 0; // to silence unused var warning
+
+	struct gameState Gpre, Gcontrol;
+	// Create a pre and control Game state that is copy of G
+	memcpy (&Gpre, G, sizeof(struct gameState));
+	memcpy (&Gcontrol, G, sizeof(struct gameState));
+
+	// loop through each player
+	for (p=0; p< G->numPlayers; p++) {
+
+		G->whoseTurn = p; // setting the turn of the player to play Adventurer
+
+		// find the location of adventurer in player p's hand
+		int handPos = -1; // default is that there is no adventurer in hand
+		int c;
+		for (c=0; c < G->handCount[p]; c++) {
+			if (G->hand[p][c] == adventurer) { handPos = c; }
+		}
+		if (handPos == -1) {
+			printf ("NOTE Player %d: did NOT find Adventurer in player's hand\n", p);
+			//printGameState (G);
+		}
+
+		// call the function to test
+		int card = adventurer;
+		int choice1 = 0; // not used for Adventurer
+		int choice2 = 0; // not used for Adventurer
+		int choice3 = 0; // not used for Adventurer
+		int bonus = 0;  // not used for Adventurer
+		testresponse =  cardEffect(card, choice1, choice2, choice3, G,
+									handPos, &bonus);
+		//controlresponse = myOwnTreasureMap (p, &Gcontrol, handPos);
+	}
+
+	// SCENARIO 1:
+	// # Adventurer in each player's Hand = 1
+	// # copper cards in each player's deck and discard pile = 2 (silver = 0, gold = 0)
+	if (scenario == 1) {
+		printf ("---- in checkAdventurer Scenario 1 test loop\n");
+		// loop through each player
+		for (p=0; p< G->numPlayers; p++) {
+			printf ("---- in check Adventurer Scenario 1 player %d test loop\n", p);
+
+			// Scenario1-test1: check if played card has increased by 1
+			if ((G->playedCardCount - Gpre.playedCardCount) == 1) {
+				printf ("Scenario1-test1: SUCCESS: player #%d, check if played card has increased by 1\n", p);
+			} else {
+				printf ("Scenario1-test1: FAILED: player #%d, check if played card has increased by 1\n", p);
+				printf ("Debug: G->playedCardCount: %d, Gpre.playedCardCount: %d\n", G->playedCardCount, Gpre.playedCardCount);
+				errorval--;
+			}
+
+			// Scenario1-test2: check if total supply count has not changed
+			int c;
+			int supplyTotalPost = 0;
+			int supplyTotalPre = 0;
+			for (c=0; c < (treasure_map+1); c++) {
+				supplyTotalPost += G->supplyCount[c];
+				supplyTotalPre += Gpre.supplyCount[c];
+				//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+			}
+			if ((supplyTotalPost - supplyTotalPre) == 0) {
+				printf ("Scenario1-test2: SUCCESS: player #%d, check if total supply count has not changed\n", p);
+			} else {
+				printf ("Scenario1-test2: FAILED: player #%d, check if total supply count has not changed\n", p);
+				printf ("Debug Data: supplyTotalPost: %d, supplyTotalPre: %d\n", supplyTotalPost, supplyTotalPre);
+				errorval--;
+			}
+
+			// Scenario1-test3: check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+			if ((G->handCount[p] - Gpre.handCount[p]) == 1) {
+				printf ("Scenario1-test3: SUCCESS: player #%d, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)\n", p);
+			} else {
+				printf ("Scenario1-test3: FAILED: player #%d, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)\n", p);
+				printf ("Debug Data: G->handCount[p]: %d, supplyTotalPre: %d\n", G->handCount[p], Gpre.handCount[p]);
+				errorval--;
+			}
+
+			// Scenario1-test4: check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+			if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -2) {
+				printf ("Scenario1-test4: SUCCESS: player #%d, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+			} else {
+				printf ("Scenario1-test4: FAILED: player #%d, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+				errorval--;
+			}
+
+			// Scenario1-test5: check if top 2 cards of hand are treasure cards
+			// in this case top 2 cards in hand correspond to highest index in deck array with a valid card
+			// loop backward from top of hand
+			int d;
+			int treasureCounter = 0;
+			int topHand = G->handCount[p];
+			for (d = 1; d <= 2; d++) {
+				if ((G->hand[p][ topHand - d ] == gold) || (G->hand[p][ topHand - d ] == silver) || (G->hand[p][ topHand - d ] == copper)) {
+					treasureCounter++;
+				}
+			}
+			if (treasureCounter == 2) {
+				printf ("Scenario1-test5: SUCCESS: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+			} else {
+				printf ("Scenario1-test5: FAILED: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+				errorval--;
+			}
+		}
+	}
+
+	// SCENARIO 2:
+	// # Adventurer in each player's Hand = 1
+	// # silver cards in each player's deck = 1, gold cards in each player's deck = 1
+		if (scenario == 2) {
+			printf ("---- in Adventurer Scenario 2 test loop\n");
+			// loop through each player
+			for (p=0; p< G->numPlayers; p++) {
+				printf ("---- in Adventurer Scenario 2 player %d test loop\n", p);
+
+				// Scenario2-test1: check if played card has increased by 1
+				if ((G->playedCardCount - Gpre.playedCardCount) == 1) {
+					printf ("Scenario2-test1: SUCCESS: player #%d, check if played card has increased by 1\n", p);
+				} else {
+					printf ("Scenario2-test1: FAILED: player #%d, check if played card has increased by 1\n", p);
+					errorval--;
+				}
+
+				// Scenario2-test2: check if total supply count has not changed
+				int c;
+				int supplyTotalPost = 0;
+				int supplyTotalPre = 0;
+				for (c=0; c < (treasure_map+1); c++) {
+					supplyTotalPost += G->supplyCount[c];
+					supplyTotalPre += Gpre.supplyCount[c];
+					//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+				}
+
+				if ((supplyTotalPost - supplyTotalPre) == 0) {
+					printf ("Scenario2-test2: SUCCESS: player #%d, check if total supply count has not changed\n", p);
+				} else {
+					printf ("Scenario2-test2: FAILED: player #%d, check if total supply count has not changed\n", p);
+					printf ("Debug Data: supplyTotalPost: %d, supplyTotalPre: %d\n", supplyTotalPost, supplyTotalPre);
+					errorval--;
+				}
+
+				// Scenario2-test3: check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+				if ((G->handCount[p] - Gpre.handCount[p]) == 1) {
+					printf ("Scenario2-test3: SUCCESS: player #%d, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)\n", p);
+				} else {
+					printf ("Scenario2-test3: FAILED: player #%d, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)\n", p);
+					errorval--;
+				}
+
+				// Scenario2-test4: check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+				if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -2) {
+					printf ("Scenario2-test4: SUCCESS: player #%d, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+				} else {
+					printf ("Scenario2-test4: FAILED: player #%d, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+					errorval--;
+				}
+
+				// Scenario2-test5: check if top 2 cards of hand are treasure cards
+				// in this case top 2 cards in hand correspond to highest index in deck array with a valid card
+				// loop backward from top of hand
+				int d;
+				int treasureCounter = 0;
+				int topHand = G->handCount[p];
+				for (d = 1; d <= 2; d++) {
+					if ((G->hand[p][ topHand - d ] == gold) || (G->hand[p][ topHand - d ] == silver) || (G->hand[p][ topHand - d ] == copper)) {
+						treasureCounter++;
+					}
+				}
+				if (treasureCounter == 2) {
+					printf ("Scenario2-test5: SUCCESS: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+				} else {
+					printf ("Scenario2-test5: FAILED: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+					errorval--;
+				}
+			}
+		}
+
+	// SCENARIO 3:
+	// # Adventurer in each player's Hand = 1
+	// # copper cards in each player's deck = 1 (silver = 0, gold = 0)
+		if (scenario == 3) {
+			printf ("---- in checkTreasureMap Scenario 3 test loop\n");
+			// loop through each player
+			for (p=0; p< G->numPlayers; p++) {
+				printf ("---- in checkTreasureMap Scenario 3 player %d test loop\n", p);
+
+				// Scenario3-test1: check if played card has increased by 1
+				if ((G->playedCardCount - Gpre.playedCardCount) == 1) {
+					printf ("Scenario3-test1: SUCCESS: player #%d, check if played card has increased by 1\n", p);
+				} else {
+					printf ("Scenario3-test1: FAILED: player #%d, check if played card has increased by 1\n", p);
+					errorval--;
+				}
+
+				// Scenario3-test2: check if total supply count has not changed
+				int c;
+				int supplyTotalPost = 0;
+				int supplyTotalPre = 0;
+				for (c=0; c < (treasure_map+1); c++) {
+					supplyTotalPost += G->supplyCount[c];
+					supplyTotalPre += Gpre.supplyCount[c];
+					//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+				}
+				if (supplyTotalPost == supplyTotalPre) {
+					printf ("Scenario3-test2: SUCCESS: player #%d, check to see if the total supply count has not changed\n", p);
+				} else {
+					printf ("Scenario3-test2: FAILED: player #%d, check to see if the total supply count has not changed\n", p);
+					errorval--;
+				}
+
+				// Scenario3-test3: check if hand count is unchanged (minus adventurer + 1 treasure)
+				if ((G->handCount[p] - Gpre.handCount[p]) == 0) {
+					printf ("Scenario3-test3: SUCCESS: player #%d, check if hand count is unchanged (minus adventurer + 1 treasure)\n", p);
+				} else {
+					printf ("Scenario3-test3: FAILED: player #%d, check if hand count is unchanged (minus adventurer + 1 treasure)\n", p);
+					errorval--;
+				}
+
+				// Scenario3-test4: check deck+discard count decreased 1 (1 treasure moves to hand, rest are discard)
+				if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -1) {
+					printf ("Scenario3-test4: SUCCESS: player #%d, check deck+discard count decreased 1 (1 treasure moves to hand, rest are discard)\n", p);
+				} else {
+					printf ("Scenario3-test4: FAILED: player #%d, check deck+discard count decreased 1 (1 treasure moves to hand, rest are discard)\n", p);
+					errorval--;
+				}
+
+				// Scenario2-test5: check if top 1 card of hand is treasure cards
+				// in this case top 1 cards in hand correspond to highest index in deck array with a valid card
+				// loop backward from top of hand
+				int d;
+				int treasureCounter = 0;
+				int topHand = G->handCount[p];
+				for (d = 1; d <= 1; d++) {
+					if ((G->hand[p][ topHand - d ] == gold) || (G->hand[p][ topHand - d ] == silver) || (G->hand[p][ topHand - d ] == copper)) {
+						treasureCounter++;
+					}
+				}
+				if (treasureCounter == 1) {
+					printf ("Scenario3-test5: SUCCESS: player #%d, check if top 1 cards of hand are treasure cards\n", p);
+				} else {
+					printf ("Scenario3-test5: FAILED: player #%d, check if top 1 cards of hand are treasure cards\n", p);
+					errorval--;
+				}
+			}
+		}
+/* CAN'T EXECUTE BECAUSE THIS CRASHES DOMION
+		// ---- SCENARIO 4 ---------------------------------------------
+		// # Adventurer in each player's Hand = 1
+		// # copper, silver or gold cards in each player's deck = 0
+		if (scenario == 4) {
+			printf ("---- in checkAdventurer Scenario 4 test loop\n");
+			// loop through each player
+			for (p=0; p< G->numPlayers; p++) {
+				printf ("---- in checkAdventurer Scenario 4 player %d test loop\n", p);
+
+				// Scenario4-test1: check if played card has increased by 1
+				if ((G->playedCardCount - Gpre.playedCardCount) == 1) {
+					printf ("Scenario4-test1: SUCCESS: player #%d, check if played card has increased by 1\n", p);
+				} else {
+					printf ("Scenario4-test1: FAILED: player #%d, check if played card has increased by 1\n", p);
+					errorval--;
+				}
+
+				// Scenario4-test2: check if total supply count has not changed
+				int c;
+				int supplyTotalPost = 0;
+				int supplyTotalPre = 0;
+				for (c=0; c < (treasure_map+1); c++) {
+					supplyTotalPost += G->supplyCount[c];
+					supplyTotalPre += Gpre.supplyCount[c];
+					//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+				}
+				if (supplyTotalPost == supplyTotalPre) {
+					printf ("Scenario4-test2: SUCCESS: player #%d, check to see if the total supply count has not changed\n", p);
+				} else {
+					printf ("Scenario4-test2: FAILED: player #%d, check to see if the total supply count has not changed\n", p);
+					errorval--;
+				}
+
+				// Scenario4-test3: check if hand count is down by 1 (minus adventurer + 0 treasure)
+				if ((G->handCount[p] - Gpre.handCount[p]) == -1) {
+					printf ("Scenario4-test3: SUCCESS: player #%d, check if hand count is down by 1 (minus adventurer + 0 treasure)\n", p);
+				} else {
+					printf ("Scenario4-test3: FAILED: player #%d, check if hand count is down by 1 (minus adventurer + 0 treasure)\n", p);
+					errorval--;
+				}
+
+				// Scenario4-test4: check deck+discard count stayed same (no treasure moves to hand)
+				if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == 0) {
+					printf ("Scenario3-test4: SUCCESS: player #%d, check deck+discard count stayed same (no treasure moves to hand)\n", p);
+				} else {
+					printf ("Scenario3-test4: FAILED: player #%d, check deck+discard count stayed same (no treasure moves to hand)\n", p);
+					errorval--;
+				}
+
+			}
+		}
+*/
+		// ---- SCENARIO 5 ---------------------------------------------
+		// # Adventurer in each player's Hand = 0
+		// doesn't matter how many treasure card in deck
+		if (scenario == 5) {
+			printf ("---- in checkAdventurer Scenario 5 test loop\n");
+			// loop through each player
+			for (p=0; p< G->numPlayers; p++) {
+				printf ("---- in checkAdventurer Scenario 5 player %d test loop\n", p);
+
+				// Scenario4-test1: check if played card has increased by 0
+				if ((G->playedCardCount - Gpre.playedCardCount) == 0) {
+					printf ("Scenario5-test1: SUCCESS: player #%d, check if played card has increased by 0\n", p);
+				} else {
+					printf ("Scenario5-test1: FAILED: player #%d, check if played card has increased by 0\n", p);
+					errorval--;
+				}
+
+				// Scenario4-test2: check if total supply count has not changed
+				int c;
+				int supplyTotalPost = 0;
+				int supplyTotalPre = 0;
+				for (c=0; c < (treasure_map+1); c++) {
+					supplyTotalPost += G->supplyCount[c];
+					supplyTotalPre += Gpre.supplyCount[c];
+					//printf ("supplyTotalPost: %d, supplyTotalPre:%d\n", supplyTotalPost, supplyTotalPre);
+				}
+				if (supplyTotalPost == supplyTotalPre) {
+					printf ("Scenario5-test2: SUCCESS: player #%d, check to see if the total supply count has not changed\n", p);
+				} else {
+					printf ("Scenario5-test2: FAILED: player #%d, check to see if the total supply count has not changed\n", p);
+					errorval--;
+				}
+
+				// Scenario5-test3: check if hand count is down by 0 (no adventurer to play)
+				if ((G->handCount[p] - Gpre.handCount[p]) == 0) {
+					printf ("Scenario5-test3: SUCCESS: player #%d, check if hand count is down by 0 (no adventurer to play)\n", p);
+				} else {
+					printf ("Scenario5-test3: FAILED: player #%d, check if hand count is down by 0 (no adventurer to play)\n", p);
+					errorval--;
+				}
+
+				// Scenario5-test4: check deck+discard count stayed same (no treasure moves to hand)
+				if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == 0) {
+					printf ("Scenario5-test4: SUCCESS: player #%d, check deck+discard count stayed same (no treasure moves to hand)\n", p);
+				} else {
+					printf ("Scenario5-test4: FAILED: player #%d, check deck+discard count stayed same (no treasure moves to hand)\n", p);
+					errorval--;
+				}
+
+			}
+		}
+
+		return errorval;
+}
+
+
+int main () {
+	printf ("\n\nstarting cardtest2 -- testing ADVENTURER function\n\n");
+	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
+
+	int player, response, p;
+	struct gameState G; // test game state
+	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+	           sea_hag, smithy, treasure_map}; // replaced one of the cards with treasure_map
+	int deckCt, discardCt, handCt;
+	int toFlag;
+
+	// ---- SCENARIO 1 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Adventurer in each player's Hand = 1
+	// # copper cards in each player's deck and discard pile = 2 (silver = 0, gold = 0)
+
+	printf ("----Starting Scenario 1 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 1 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// force each player to have at least 1 Adventurer card
+					for (p=0; p<player; p++) {
+						toFlag = 2; // add action card to the hand
+						gainCard (adventurer, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					// force each player to have only 2 copper in deck
+					for (p=0; p<player; p++) {
+						// first remove all treasury cards from deck and discard
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if ((G.deck[p][c] == gold) || (G.deck[p][c] == copper) ||(G.deck[p][c] == silver)) {
+								// replace with a benign card
+								G.deck[p][c] = curse;
+							}
+						}
+					}
+
+					// now add 2 copper to each players deck
+					for (p=0; p<player; p++) {
+						toFlag = 1; // add card to the deck
+						gainCard (copper, &G, toFlag, p);
+						gainCard (copper, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					response = checkAdventurer (&G, 1); // 1 for scenario 1
+					if (response == 0) {
+						printf ("cardtest2-Scenario1-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest2-Scenario1-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+	// ---- SCENARIO 2 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Adventurer in each player's Hand = 1
+	// # silver cards in each player's deck = 1, gold cards in each player's deck = 1
+
+	printf ("----Starting Scenario 2 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 2 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// force each player to have at least 1 Adventurer card in hand
+					for (p=0; p<player; p++) {
+						toFlag = 2; // add action card to the hand
+						gainCard (adventurer, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					// force each player to have only 1 silver and 1 gold in deck
+					for (p=0; p<player; p++) {
+						// first remove all treasury cards from deck and discard
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if ((G.deck[p][c] == gold) || (G.deck[p][c] == copper) ||(G.deck[p][c] == silver)) {
+								// replace with a benign card
+								G.deck[p][c] = curse;
+							}
+						}
+					}
+
+					// now add 1 solver and 1 gold to each players deck
+					for (p=0; p<player; p++) {
+						toFlag = 1; // add card to the deck
+						gainCard (silver, &G, toFlag, p);
+						gainCard (gold, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					response = checkAdventurer (&G, 2); // 2 for scenario 2
+					if (response == 0) {
+						printf ("cardtest2-Scenario2-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest2-Scenario2-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+	// ---- SCENARIO 3 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Adventurer in each player's Hand = 1
+	// # copper cards in each player's deck = 1 (silver = 0, gold = 0)
+
+	printf ("----Starting Scenario 3 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 3 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// force each player to have at least 1 Adventurer card in hand
+					for (p=0; p<player; p++) {
+						toFlag = 2; // add action card to the hand
+						gainCard (adventurer, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					// force each player to have only 1 copper
+					for (p=0; p<player; p++) {
+						// first remove all treasury cards from deck and discard
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if ((G.deck[p][c] == gold) || (G.deck[p][c] == copper) ||(G.deck[p][c] == silver)) {
+								// replace with a benign card
+								G.deck[p][c] = curse;
+							}
+						}
+					}
+
+					// now add 1 copperto each players deck
+					for (p=0; p<player; p++) {
+						toFlag = 1; // add card to the deck
+						gainCard (copper, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					response = checkAdventurer (&G, 3); // 3 for scenario 3
+					if (response == 0) {
+						printf ("cardtest2-Scenario3-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest2-Scenario3-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+
+	// ---- SCENARIO 5 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Adventurer in each player's Hand = 0
+	// doesn't matter how many treasure card in deck
+
+	printf ("----Starting Scenario 5 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 5 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// no player has adventurer card in hand (no need to do anything here)
+					// doesn't matter how many treasure cards in deck
+
+					response = checkAdventurer (&G, 5); // 5 for scenario 5
+					if (response == 0) {
+						printf ("cardtest2-Scenario5-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest2-Scenario5-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+
+/* Can't execute because this crashes domion
+	// ---- SCENARIO 4 ---------------------------------------------
+	// # Players = start with 2 (may loop from 2 to 4 or MAX_PLAYER)
+	// DeckCount = loop from X to Y (extreme cases 0 to MAX_DECK)
+	// HandCount = loop from X to Y (extreme cases 0 to MAX_HAND)
+	// DiscardCount = loop from X to Y (Where DiscardCount + DeckCount < MAX_DECK)
+	// # Adventurer in each player's Hand = 1
+	// # copper, silver or gold cards in each player's deck = 0
+
+	printf ("----Starting Scenario 4 tests -----\n");
+	// test for some reasonable # of players
+	for (player = 2; player <= 2; player++) {	//MAX loop:	for (player = 2; player <= MAX_PLAYERS; player++)
+		// initialize the standard game
+		response = initializeGame (player, k, 1, &G);
+		if (response < 0) { // then an error in initialize game
+			printf ("cardtest 2, Scenario 4 ERROR: Failed to initialize game. Data of current game state:\n");
+			printf ("Players = %d\n", player);
+			//printGameState (&G);
+			exit (1); // exit the program with value of 1
+		}
+
+		// USE THIS OPTION TO GENERATE REASONABLE COMBINATIONS OF DECK SIZE
+		for (deckCt = 10; deckCt < 11; deckCt++) {
+			for (discardCt = 5; discardCt < 6; discardCt++) {
+				for (handCt = 9; handCt < 10; handCt++) {
+
+					// force each player to have at least 1 Adventurer card in hand
+					for (p=0; p<player; p++) {
+						toFlag = 2; // add action card to the hand
+						gainCard (adventurer, &G, toFlag, p);
+						// DEBUG
+						//printGameState (&G);
+					}
+
+					// force each player to have only 0 treasure cards
+					for (p=0; p<player; p++) {
+						// first remove all treasury cards from deck and discard
+						int c;
+						for (c=0; c< G.deckCount[p]; c++) {
+							if ((G.deck[p][c] == gold) || (G.deck[p][c] == copper) ||(G.deck[p][c] == silver)) {
+								// replace with a benign card
+								G.deck[p][c] = curse;
+							}
+						}
+					}
+
+					response = checkAdventurer (&G, 4); // 4 for scenario 4
+					if (response == 0) {
+						printf ("cardtest2-Scenario4-tests-> successfully passed tests\n");
+					} else {
+						printf ("cardtest2-Scenario4-tests -> FAILED to pass tests # errors: %d\n", response);
+					}
+				}
+			}
+		}
+	}
+*/
+	return 0;
+}
+
 
 // **********************
 // tests for ADVENTURER
 // **********************
+/*
 int checkAdventurer (struct gameState * G) {
 	int errorval = 0;
 	int testresponse, controlresponse;
@@ -361,104 +1029,4 @@ int myOwnAdventurerAction (int p, struct gameState * G, int handPos) {
 	  }
 	return 0;
 }
-
-int main () {
-	printf ("\n\nstarting cardtest1 -- testing SMITHY function\n\n");
-	// DEBUGGING
-	// printf ("MAX_HAND = %d, MAX_DECK = %d, MAX_PLAYERS = %d\n", MAX_HAND, MAX_DECK, MAX_PLAYERS);
-	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
-
-	// -----------------
-	// setup a standard game
-	// -----------------
-	struct gameState G; // test game state
-	struct gameState Gcontrol; // control game state (pre-test)
-	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
-	           sea_hag, smithy, treasure_map}; // replaced one of the cards with treasure_map
-
-	// -------------------
-	// setup the fixed unit tests  !!! WE ARE NOT DOING RANDOM TESTS!!!
-	// INSTEAD we are creating fixed tests by looping through different input spaces
-	// for deck, hand and discard size. we also fill in the card positions for each
-	// deck, hand and discard by looping through all 26 available cards
-	// -------------------
-	int player = 0;
-	int deckCt = 0;
-	int discardCt = 0;
-	int handCt = 0;
-	int response;
-	int trial = 0;
-
-	// Loop through # of players
-	// Note: to pass initializeGAme, the number of players must be between 2 and MAX_Players
-//	for (player = 2; player <= MAX_PLAYERS; player++) {
-	for (player = 2; player <= 2; player++) {
-
-		// initialize the standard game
-		response = initializeGame (player, k, 1, &G);
-		if (response < 0) { // then an error in initialize game
-			printf ("unittest1 ERROR: Failed to initialize game. Data of current game state:\n");
-			printf ("Players = %d\n", player);
-			//printGameState (&G);
-			exit (1); // exit the program with value of 1
-		}
-
-		// force a ADVENTURER to player 0's hand so you have instances where you can and cannot play
-		int toFlag = 2; // add action card to the hand
-		gainCard (adventurer, &G, toFlag, 0);
-
-		// force silver and gold to player 0's deck to test silver and gold
-		toFlag = 1; // add to the deck
-		gainCard (silver, &G, toFlag, 0);
-		gainCard (gold, &G, toFlag, 0);
-		// DEBUG
-		printGameState (&G);
-
-		response = checkAdventurer (&G);
-
-		// now loop through different sizes of deck, hand, and discard counts
-
-		// USE THIS OPTION TO GENERATE ALL POSSIBLE COMBINATIONS OF DECK SIZE
-//		for (deckCt = 0; deckCt < MAX_DECK; deckCt++) {
-//			for (discardCt = 0; discardCt < MAX_DECK; discardCt++) {
-//				for (handCt = 0; handCt < MAX_HAND; handCt++) {
-//
-		// USE THIS OPTION TO GENERATE SOE REASONABLE COMBINATIONS OF DECK SIZE
-/*
-		for (deckCt = 10; deckCt < 11; deckCt++) {
-			for (discardCt = 5; discardCt < 6; discardCt++) {
-				for (handCt = 8; handCt < 10; handCt++) {
-
-					// set the counts for each card stack for each player
-					int pCt;
-					for (pCt = 0; pCt < player; pCt++) {
-						G.handCount[pCt] = handCt;
-						G.discardCount[pCt] = discardCt;
-						G.deckCount[pCt] = deckCt;
-					}
-
-					// fill in the hand, discard, and deckCount with valid cards (systematically, not randomly)
-					fillHandWithCards (&G, handCt);
-					fillDiscardWithCards (&G, discardCt);
-					fillDeckWithCards(&G, deckCt);
-
-					// each loop is a "trial"
-					trial++;
-					printf ("--- Trial #%d ---\n", trial);
-					response = checkGainCard (&G);
-
-					// ASSERT TO TEST IF CHECK COMPLETED
-					if (!(response == 0)) {
-						printf ("\nUnittest3: gainCard() did not pass our unit test\n");
-// TODO CHANGE						printf ("Debug data: trial #%d, handCt = %d, discardCt = %d, deckCt = %d, players = %d, response = %d\n\n",
-// TODO CHANGE								trial, handCt, discardCt, deckCt, player, response);
-					} else {
-						printf ("\nUnittest2: gainCard() TEST SUCCESSFULLY COMPLETED\n\n");
-					}
-				}
-			}
-		}
 */
-	}
-	return 0;
-}
