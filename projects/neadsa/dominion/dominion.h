@@ -131,7 +131,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
    1, others to 0 */
 
 int cardEffectSmithy( int currentPlayer, struct gameState *state, int handPos );
-int cardEffectAdventurer( int currentPlayer, struct gameState *state, int handPos );
+int cardEffectAdventurer( int currentPlayer, struct gameState *state );
 int cardEffectCouncilRoom( int currentPlayer, struct gameState *state, int handPos );
 int cardEffectFeast( int currentPlayer, struct gameState *state, int handPos, int choice1 );
 int cardEffectMine( int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2 );
