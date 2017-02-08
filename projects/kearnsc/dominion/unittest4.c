@@ -1,5 +1,5 @@
 /******************************************************************************
-* Unittest 4: function gainCard() tests dominion.c::gainCard().
+* Unittest 4: function gainCard() tests dominion.c::gainCard(). 
 * unittest4.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017

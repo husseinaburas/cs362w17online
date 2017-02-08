@@ -75,9 +75,6 @@ int main(int argc, char** argv) {
             previous_handCount = G.handCount[player] = j;
             //printf("Handocount: %i\n", G.handCount[0]);
 
-            //Set a card to be smithy
-            //G.hand[player][smithyTestPos] = smithy;
-
             //printf("Player %i cards: ", player + 1);
             for(i = 0; i < G.handCount[player]; ++i){
                 //printf("v: %i ", G.hand[player][i]);
@@ -105,10 +102,9 @@ int main(int argc, char** argv) {
             countErrors += asserttrue(G.hand[player][previous_handCount + 0] >= copper && G.hand[player][previous_handCount + 0] <= gold);
             countErrors += asserttrue(G.hand[player][previous_handCount + 1] >= copper && G.hand[player][previous_handCount + 1] <= gold);
             
-            
             //END OF FIRST TEST
             
-            //Test the case if the deck count is zero
+            //For this second test, we are checking if the deck count is zero
             G = copy_G;
 
             G.whoseTurn = player;

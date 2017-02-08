@@ -648,12 +648,13 @@ int getCost(int cardNumber)
 int playSmithy(int currentPlayer, struct gameState *state,  int handPos)
 {
    int i; //introduced bug
-   for (i = 0; i < 5; i++)
+   for (i = 0; i < 3; i++)
    {
       drawCard(currentPlayer, state);
    }
 
    discardCard(handPos, currentPlayer, state, 0);
+   return 0;
 }
 
 int playAdventurer(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
@@ -664,7 +665,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int drawntreasure
       }
       drawCard(currentPlayer, state);
       cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn
-      if (cardDrawn == copper || cardDrawn == silver)
+      if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 	 drawntreasure++;
       else {
 	 temphand[z] = cardDrawn;
@@ -689,7 +690,7 @@ int playGreat_Hall(int currentPlayer, struct gameState *state, int handPos)
    state->numActions++;
 
    //discard
-   discardCard(handPos, currentPlayer, state, 1);
+   discardCard(handPos, currentPlayer, state, 0);
 
    return 0;
 }
@@ -700,8 +701,6 @@ int playSalvager(int currentPlayer, struct gameState *state, int handPos, int ch
 
    //+1 buy
    state->numBuys++;
-   //+1 action
-   state->numActions++;
 
    if (choice1)
    {
@@ -733,7 +732,7 @@ int playCouncil_Room(int currentPlayer, struct gameState *state, int handPos)
   //everyone else draws a card
   for (i = 0; i < state->numPlayers; i++)
   {
-     if (i == currentPlayer)
+     if (i != currentPlayer)
      {
 	drawCard(i, state);
      }

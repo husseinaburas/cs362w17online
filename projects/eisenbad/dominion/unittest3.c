@@ -93,8 +93,8 @@ int main() {
   printf("    NOTE: Setting adventurer and smithy piles to zero\n");
 	
   // set adventurer and smithy piles to zero
-  testG.supplyCount[curse] = 0;
-  testG.supplyCount[minion] = 0;
+  testG.supplyCount[adventurer] = 0;
+  testG.supplyCount[smithy] = 0;
 	
   printf("    game over = %d, expected = %d\n", isGameOver(&testG), 0);
   testAssert(4, &pass_count, isGameOver(&testG) == 0);

@@ -130,6 +130,9 @@ int main(){
 		printf("phase after call: %d\n", state.phase);
 		assertTrue(pretest.phase, state.phase, 0);
 
+		printf("discardCount before call %d, after call: %d\n", pretest.discardCount[curPlayer], state.discardCount[curPlayer]);
+		assertTrue(pretest.discardCount[curPlayer], state.discardCount[curPlayer], 0);
+
 		printf("check that hand count for other supply piles has not changed\n");
 		printf("skip adventurer card\n");
 		for(i = 1; i < 10; i++){

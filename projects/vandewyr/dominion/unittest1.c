@@ -4,27 +4,6 @@
 #include "stdlib.h"
 #include "rngs.h"
 
-
-/**int numPlayers; //number of players
-int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
-int embargoTokens[treasure_map+1];
-int outpostPlayed;
-int outpostTurn;
-int whoseTurn;
-int phase;
-int numActions; ///Starts at 1 each turn
-int coins; /// Use as you see
-int numBuys; /// Starts at 1 each turn
-int hand[MAX_PLAYERS][MAX_HAND];
-int handCount[MAX_PLAYERS];
-int deck[MAX_PLAYERS][MAX_DECK];
-int deckCount[MAX_PLAYERS];
-int discard[MAX_PLAYERS][MAX_DECK];
-int discardCount[MAX_PLAYERS];
-int playedCards[MAX_DECK];
-int playedCardCount;
-**/
-
 int testUpdateCoins();
 
 int main(){
@@ -34,7 +13,7 @@ int main(){
     if(x == 0){
         return 0;
     }else{
-        printf("Error during updateCoins() testing");
+        printf("Error during testUpdateCoins() testing");
         exit(200);
     }
 }
@@ -57,6 +36,7 @@ int testUpdateCoins(){
         G.hand[player][i] = 1;
     }
 
+    //Test for when no treasure cards are held
     printf("updateCoins() test: Zero treasure cards, expect 0,  returned ");
     updateCoins(player, &G, bonus);
     if(G.coins == 0){
@@ -70,6 +50,7 @@ int testUpdateCoins(){
         G.hand[player][i] = 4;
     }
 
+    //Test for when all cards are treasure cards
     printf("updateCoins() test: 5 copper cards, expect 5,  returned ");
     updateCoins(player, &G, bonus);
     if(G.coins == 5){
@@ -86,15 +67,16 @@ int testUpdateCoins(){
         else if(i < 4)
             G.hand[player][i] = 5;
         else if(i == 4){
-            G.hand[player][i] = 6;
+            G.hand[player][i] = 1;
         }
     }
 
-    printf("updateCoins() test: 2 copper, 2 silver, 1 gold, 2 bonus -- expect 11,  returned ");
+    //Test for bonus plus 4 treasure cards and 1 estate card
+    printf("updateCoins() test: 2 copper, 2 silver, bonus+2 -- expect 8,  returned ");
     updateCoins(player, &G, bonus);
-    if(G.coins == 11){
+    if(G.coins == 8){
         printf("%d -- Test Passed\n", G.coins);
-    }else if(G.coins != 11){
+    }else{
         printf("%d -- Test Failed\n", G.coins);
     }
 

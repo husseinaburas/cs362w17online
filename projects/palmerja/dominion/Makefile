@@ -51,5 +51,6 @@ unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unitt
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+	
 clean:
 	rm -f *.o playdom test testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player testInit *.exe *.gcov *.gcda *.gcno *.so unittestresults.out

@@ -1389,6 +1389,20 @@ int playVillage(int currentPlayer, int handPos, struct gameState *state)
 	return 0;
 }
 
+int assertTrue(int left, int right)
+{
+	if(left == right)
+	{
+		printf("no bug\n");
+		return 1;
+	}
+	else
+	{
+		printf("bug found\n");
+		return 0;
+	}
+}
+
 int updateCoins(int player, struct gameState *state, int bonus)
 {
   int i;
