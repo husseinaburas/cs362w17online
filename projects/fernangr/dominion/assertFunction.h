@@ -1,11 +1,6 @@
-#include <stdlib.h>
+#ifndef ASSERT_TRUE
+#define ASSERT_TRUE
 
-int assertTrue(int a)
-{
-  if (a)
-    printf("TEST SUCCESSFULLY COMPLETED!\n");
-  else
-    printf("TEST FAILED!\n");
+int assertTrue(int a);
 
-  return a;
-}
+#endif
