@@ -1,0 +1,81 @@
+Result for running dominion unittestresults:
+unittest1.c:
+Function isGameOver() - TEST 1 FAILED.
+Function isGameOver() - TEST 2 SUCCESSFULLY COMPLETED
+Function isGameOver() - TEST 3 SUCCESSFULLY COMPLETED
+Function isGameOver() - TEST 4 FAILED.
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+unittest2.c:
+Function playCard() - TEST 1 SUCCESSFULLY COMPLETED
+Function playCard() - TEST 2 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+unittest3.c:
+Function shuffle() - TEST 1 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 2 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 3 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 4 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 5 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 6 SUCCESSFULLY COMPLETED
+Function shuffle() - TEST 7 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+unittest4.c:
+Function discardCard() - TEST 1 SUCCESSFULLY COMPLETED
+Function discardCard() - TEST 2 FAILED.
+Function discardCard() - TEST 3 FAILED.
+Function discardCard() - TEST 4 FAILED.
+Function discardCard() - TEST 5 FAILED.
+Function discardCard() - TEST 6 FAILED.
+Function discardCard() - TEST 7 SUCCESSFULLY COMPLETED
+Function discardCard() - TEST 8 SUCCESSFULLY COMPLETED
+Function discardCard() - TEST 9 FAILED.
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+cardtest1.c:
+Card Test SMITHY - TEST 1 FAILED.
+Card Test SMITHY - TEST 2 FAILED.
+Card Test SMITHY - TEST 3 SUCCESSFULLY COMPLETED
+Card Test SMITHY - TEST 4 SUCCESSFULLY COMPLETED
+Card Test SMITHY - TEST 5 SUCCESSFULLY COMPLETED
+Card Test SMITHY - TEST 6 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+cardtest2.c:
+Card Test ADVENTURER - TEST 1 SUCCESSFULLY COMPLETED
+Card Test ADVENTURER - TEST 2 FAILED.
+Card Test ADVENTURER - TEST 3 SUCCESSFULLY COMPLETED
+Card Test ADVENTURER - TEST 4 FAILED.
+Card Test ADVENTURER - TEST 5 SUCCESSFULLY COMPLETED
+Card Test ADVENTURER - TEST 6 SUCCESSFULLY COMPLETED
+Card Test ADVENTURER - TEST 7 SUCCESSFULLY COMPLETED
+Card Test ADVENTURER - TEST 8 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+cardtest3.c:
+Card Test VILLAGE - TEST 1 SUCCESSFULLY COMPLETED
+Card Test VILLAGE - TEST 2 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
+cardtest4.c:
+Card Test COUNCIL_ROOM - TEST 1 SUCCESSFULLY COMPLETED
+Card Test COUNCIL_ROOM - TEST 3 SUCCESSFULLY COMPLETED
+File 'dominion.c'
+Lines executed:31.82% of 572
+Creating 'dominion.c.gcov'
+
