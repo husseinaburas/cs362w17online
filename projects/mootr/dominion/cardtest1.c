@@ -49,7 +49,7 @@ int main(int argv, char** argc) {
               "gained)\t\tRESULT:");
 
   // Card has made it into the played cards deck
-  UNIT_ASSERT((testState.playedCards[0] == 13),
+  UNIT_ASSERT((testState.playedCards[0] == smithy),
               "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
   // Player's deck has decreased by 3

@@ -40,21 +40,21 @@ int main(int argv, char** argc) {
   playAdventurer(&testState, 0);
   updateCoins(0, &testState, 0);
   // Checking discard count to ensure the card was not discarded
-  UNIT_ASSERT((testState.discardCount[0] == 0),
-              "TEST CASE:\tCheck card has not been discarded\t\t\t\tRESULT:");
+  UNIT_ASSERT((testState.deckCount[0] != copyState.deckCount[0]),
+              "TEST CASE:\tCheck deck count has changed\t\t\t\t\tRESULT:");
 
-  // Checking player's hand has increased by 2 (3 from drawing, played 1)
+  // Checking player's hand has increased by 2 (for both treasure cards)
   UNIT_ASSERT((testState.handCount[0] == copyState.handCount[0] + 2),
-              "TEST CASE:\tHand count has increased by 2 (1 played, 3 "
-              "gained)\t\tRESULT:");
+              "TEST CASE:\tHand count has increased by 2\t\t\t\t\tRESULT:");
 
   // Card has made it into the played cards deck
   UNIT_ASSERT((testState.playedCards[0] == adventurer),
               "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
-  // Player's deck has decreased by 3
-  UNIT_ASSERT((testState.deckCount[0] == copyState.deckCount[0] - 3),
-              "TEST CASE:\tDeck has decreased by 3 cards\t\t\t\t\tRESULT:");
+  //
+  UNIT_ASSERT(
+      (testState.deckCount[0] < copyState.deckCount[0] + 1),
+      "TEST CASE:\tDeck has decreased by atleast two cards\t\t\t\tRESULT:");
 
   UNIT_ASSERT((testState.deckCount[1] == copyState.deckCount[1]),
               "TEST CASE:\tPlayer 2 deck count unchanged\t\t\t\t\tRESULT:");
