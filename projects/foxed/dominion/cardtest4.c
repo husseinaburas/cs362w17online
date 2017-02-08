@@ -140,12 +140,12 @@ int main()
 		testsPassed = false;
 	}
 
-	asserttrue(game.handCount[0], 4);
-	asserttrue(game.handCount[1], 2);
-	asserttrue(game.numBuys, 2);
-	assertture(game.discardCount[0], 1);
-	asserttrue(game.playedCount, 1);
-	asserttrue(game.deckCount[0], 2);
+	asserttrue(game.handCount[0], 4); // failed
+	asserttrue(game.handCount[1], 2); // failed 
+	asserttrue(game.numBuys, 2); // passed
+	asserttrue(game.discardCount[0], 1); // failed 
+	asserttrue(game.playedCardCount, 1); // passed
+	asserttrue(game.deckCount[0], 2); // failed
 
 	if (testsPassed == true)
 	{

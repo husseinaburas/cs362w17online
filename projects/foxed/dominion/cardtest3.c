@@ -13,8 +13,8 @@
 
 typedef enum { false, true } bool; // Used for true and false.
 
-// We were told to create our own assert function printing success and failure. The standard assert
-// function can crash, and prevent coverage from being collected. 
+								   // We were told to create our own assert function printing success and failure. The standard assert
+								   // function can crash, and prevent coverage from being collected. 
 
 int asserttrue(int left, int right)
 {
@@ -44,7 +44,7 @@ int main()
 	int numPlayers = 2;
 	int thisPlayer = 0; // current player
 
-						
+
 	struct gameState game;
 	int k[10] = { adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall };
 
@@ -61,9 +61,9 @@ int main()
 	game.hand[0][0] = village; // Put village as the first card in the current players hand.
 	game.handCount[0] = 1; // Set the players hand count to 1, as it now has 1 card. 
 
-// Here we manually set each card in the deck so we can have more control in the future. 
-// For village, the contents of the deck shouldn't matter, but this let's us adjust for debugging. 
-						
+						   // Here we manually set each card in the deck so we can have more control in the future. 
+						   // For village, the contents of the deck shouldn't matter, but this let's us adjust for debugging. 
+
 	game.deck[0][0] = remodel;
 	game.deck[0][1] = gold;
 	game.deck[0][2] = curse;
@@ -77,11 +77,11 @@ int main()
 	game.playedCardCount = 0;
 	game.discardCount[0] = 0;
 
-	asserttrue((cardEffect(smithy, choice1, choice2, choice3, handpos, bonus)), 0); // Call card function while asserting it returns 0 when done.
+	asserttrue((cardEffect(village, choice1, choice2, choice3, &game, handpos, bonus)), 0); // Call card function while asserting it returns 0 when done.
 
 	bool testsPassed = true;
 
-	
+
 	// The player should start with 1 card, draw 1, and then discard village, ending up with net +0 cards, having 1 card total in their hand.
 	// Just like with adventurer, we test above and below for specificity. 
 
@@ -124,8 +124,8 @@ int main()
 	}
 
 	asserttrue(game.handCount[0], 1);
-	assertture(game.discardCount[0], 1);
-	asserttrue(game.playedCount, 1);
+	asserttrue(game.discardCount[0], 1);
+	asserttrue(game.playedCardCount, 1);
 	asserttrue(game.deckCount[0], 5);
 
 	if (testsPassed == true)

@@ -18,7 +18,6 @@
 
 int asserttrue(int left, int right)
 {
-	int thisPlayer = 0;
 	if (left == right)
 	{
 		printf("Test PASSED\n");
@@ -47,6 +46,7 @@ int main()
 
 	int seed = 777;
 	int numPlayers = 2;
+	int currentPlayer = 0;
 	
 
 	// Here we adopt the sample card tests technique of creating two gamestates, and copying over an untouched gamestate after
@@ -67,13 +67,12 @@ int main()
 
 	newCards = 3;
 
-	int thisPlayer;
-	printf("Hand Count = %d, Expected = %d\n", test.handCount[thisPlayer], original.handCount[thisPlayer] + newCards - discarded);
-	printf("Deck Count = %d, Expected = %d\n", test.deckCount[thisPlayer], original.deckCount[thisPlayer] - newCards + shuffled);
+	printf("Hand Count = %d, Expected = %d\n", test.handCount[currentPlayer], original.handCount[currentPlayer] + newCards - discarded);
+	printf("Deck Count = %d, Expected = %d\n", test.deckCount[currentPlayer], original.deckCount[currentPlayer] - newCards + shuffled);
 	printf("coins = %d, expected = %d\n", test.coins, original.coins + extraCoins);
 
-	asserttrue(test.handCount[thisPlayer], (original.handCount[thisPlayer] + newCards - discarded));
-	asserttrue(test.deckCount[thisplayer], (original.deckCount[thisPlayer] - newCards + shuffled));
+	asserttrue(test.handCount[currentPlayer], (original.handCount[currentPlayer] + newCards - discarded));
+	asserttrue(test.deckCount[currentPlayer], (original.deckCount[currentPlayer] - newCards + shuffled));
 	asserttrue(test.coins, (original.coins + extraCoins));
 
 	return 0;
