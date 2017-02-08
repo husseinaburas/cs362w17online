@@ -804,6 +804,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0; */
 		
     case village:
+        return playVillage(state, handPos);
+      /*
       //+1 Card
       drawCard(currentPlayer, state);
 			
@@ -813,7 +815,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-		
+       */	
     case baron:
       state->numBuys++;//Increase buys by 1!
       if (choice1 > 0){//Boolean true or going to discard an estate
@@ -972,7 +974,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
 	state->playedCardCount++;
 	tributeRevealedCards[1] = -1;
-      }
+      } 
 
       for (i = 0; i <= 2; i ++){
 	if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold){//Treasure cards
@@ -1294,6 +1296,20 @@ int playSteward(struct gameState *state, int handPos, int choice1, int choice2, 
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
+}
+
+int playVillage(struct gameState *state, int handPos){
+    int currentPlayer = whoseTurn(state);
+
+    //+1 Card
+     drawCard(currentPlayer, state);
+
+     //+2 Actions
+     state->numActions = state->numActions + 2;
+
+     //discard played card from hand
+     discardCard(handPos, currentPlayer, state, 0);
+     return 0;
 }
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)

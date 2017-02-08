@@ -5,15 +5,20 @@
 
 //Unit test for update coins found in dominion.c
 // Funciton call: int updateCoins(int player, struct gameState *state, int bonus)
-//Note: updateCions function starts line 1252 from dominion.c
+//Note: updateCions function currently starts line 1252 from dominion.c
 
 
 void testUpdateCoins() {
-    
+    printf("----TEST updateCoins Function-----\n");
+
+    int k[10] = {adventurer, gardens, feast, village, minion, mine, steward,
+        sea_hag, tribute, smithy};
+    int seed = 40;
 //---GS1 TEST---- 3 treasure cards and bonus, +inital coin value
     // Expect coin output: 8 (Copper+Silver+Gold+Bonus = 1+2+3+2=8)
     int coinExpectedForGS1 = 8;
     struct gameState *GS1 = newGame();
+    initializeGame(2,k,seed,GS1);
     int playerGS1 = 0;  //Maxplayers is 4, test 0-3 array indexing
     int bonusGS1 = 2;  
     GS1->coins = 1000; //Used to verify a prexisting coin amount, should be set reset
@@ -32,6 +37,7 @@ void testUpdateCoins() {
     //as it is assumed there are no cards.  The bonus is set to 10, eventhough the player has no cards, test outcome.
     int coinExpectedForGS2 = 10;
     struct gameState *GS2 = newGame();
+    initializeGame(2,k,seed,GS2);
     int playerGS2 = 1;  //Maxplayers is 4, test 0-3 array indexing
     int bonusGS2 = 10; 
     GS2->coins = 5; //Used to verify a prexisting coin amount, should be set back to 0
@@ -42,10 +48,11 @@ void testUpdateCoins() {
     // Expect coin output: 151 (25*Copper+25*Silver+25*Gold+Bonus = 25+50+75+1 = 151)
     int coinExpectedForGS3 = 151;
     struct gameState *GS3 = newGame();
+    initializeGame(2,k,seed,GS3);
     int playerGS3 = 2;  //Maxplayers is 4, test 0-3 array indexing
     int bonusGS3 = 1;  
     GS3->coins = 0; 
-    GS3->handCount[playerGS3] = 75;  //Test hand of 5 cards (average).
+    GS3->handCount[playerGS3] = 75;  
     
     for(int cop=0; cop < 25; cop++)  //Assigns 0-24 indexs to copper cards
     {
@@ -61,23 +68,24 @@ void testUpdateCoins() {
     }
 
 //---GS4 TEST---- Test coin and bonus w/ estate/adv cards
-    // Expect coin output: 8 (Copper+Silver+Gold+Bonus = 1+2+3+2=8)
-    int coinExpectedForGS4 = 8;
+    // Expect coin output: 8 (Copper+Silver+Gold+Bonus = 1+2+3+1+2+3=12)
+    int coinExpectedForGS4 = 12;
     struct gameState *GS4 = newGame();
+    initializeGame(2,k,seed,GS4);
     int playerGS4 = 3;  //Maxplayers is 4, test 0-3 array indexing
-    int bonusGS4 = 2;  
+    int bonusGS4 = 0;  
     GS4->coins = 0; //Verify an inital 0 amount
-    GS4->handCount[playerGS4] = 10;  //Test hand of 5 cards (average).
+    GS4->handCount[playerGS4] = 10;  
     GS4->hand[playerGS4][0] = copper;  //Coin value is 1
     GS4->hand[playerGS4][1] = silver;  //Coin value is 2
     GS4->hand[playerGS4][2] = gold;  //Coin value is 3
     GS4->hand[playerGS4][3] = adventurer; //Coin value is 0
     GS4->hand[playerGS4][4] = smithy; //Coin value is 0
-    GS4->hand[playerGS4][0] = copper;  //Coin value is 1
-    GS4->hand[playerGS4][1] = silver;  //Coin value is 2
-    GS4->hand[playerGS4][2] = gold;  //Coin value is 3
-    GS4->hand[playerGS4][3] = adventurer; //Coin value is 0
-    GS4->hand[playerGS4][4] = village; //Coin value is 0
+    GS4->hand[playerGS4][5] = copper;  //Coin value is 1
+    GS4->hand[playerGS4][6] = silver;  //Coin value is 2
+    GS4->hand[playerGS4][7] = gold;  //Coin value is 3
+    GS4->hand[playerGS4][8] = adventurer; //Coin value is 0
+    GS4->hand[playerGS4][9] = village; //Coin value is 0
 
 
 

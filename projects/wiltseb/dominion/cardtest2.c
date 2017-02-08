@@ -3,7 +3,7 @@
 #include "domtests.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 /*
 TESTS adventurer card effect
 */
@@ -13,22 +13,14 @@ int main(){
 	int numPlayers = 2;
 	int seed = 10;
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
-	int p1CurrCoins, p2CurrCoins;
 	int testFlag = 0;
 	int player1 = 0;
 	int player2 = 1;
 	int i, h;
-	int deckCopy[MAX_DECK];
-	int result;
-	int initNumTreasure, isTreasure, nonTreasureDrawn, currNumTreasure;
+	int initNumTreasure, nonTreasureDrawn, currNumTreasure;
 	
 	//initialize games
 	initializeGame(numPlayers, cards, seed, &TestGame1);
-	
-	//make a copy of deck for testing
-	for (i = 0; i < TestGame1.deckCount[player1]; i++){
-		deckCopy[i] = TestGame1.deck[player1][i];
-	}
 	
 	//put steward in p1's hand	
 	gainCard(adventurer, &TestGame1, 2, player1);
@@ -45,7 +37,8 @@ int main(){
 			initNumTreasure++;
 		}
 	}
-	
+	printf("CARDTEST 2 -----------------------------------------------------------------\n");
+
 	printf("\nINITIALIZING TEST 0...\n");	
 	/*
 	* TEST 0: PRECONDITIONS - PLAYER NEEDS ADVENTURER IN HIS HAND, LOCATE ADVENTURER POSITION TO PASS INTO FUNCTION
@@ -72,7 +65,7 @@ int main(){
 	//Should be a "played card", not discarded until end of Action phase
 	assertTrue(TestGame1.playedCardCount == 1, "only one card should be played", TestGame1.playedCardCount, 1, &testFlag);
 	assertTrue(TestGame1.playedCards[0] == adventurer, "card played was adventurer", TestGame1.playedCards[0], adventurer, &testFlag);
-	assertTrue(TestGame1.handCount[player1] == 7, "number of cards in P1 hand", TestGame1.handCount[player1], 6, &testFlag);
+	assertTrue(TestGame1.handCount[player1] == 7, "number of cards in P1 hand", TestGame1.handCount[player1], 7, &testFlag);
 	
 	//Hand should have 2 more treasure cards
 	currNumTreasure = 0;

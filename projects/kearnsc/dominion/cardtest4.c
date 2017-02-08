@@ -1,6 +1,6 @@
-/******************************************************************************
-* cardtest 1: mine() tests dominion.c::cardEffect::mine.
-* cardtest1.c is a unit testing program for the above function contained within
+/****************************************************************************** 
+* cardtest 4: mine() tests dominion.c::cardEffect::mine.
+* cardtest4.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017
 ******************************************************************************/
@@ -64,7 +64,7 @@ int main() {
 	// Test 4: Does player[1] have the same amount of cards?
 	softAssert((T4pre == T4post), 4);
 
-	// We alredy know discardCard() has some issues, see unittest3.c for those details.
+	// We already know discardCard() has some issues, see unittest3.c for those details.
 
 	return 0;
 }

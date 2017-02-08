@@ -12,7 +12,7 @@
      3. No state change occurs to victory card piles or kingdom card piles
      4. Curse supply decreases by number of opponents
      5. Other players' top of deck is added to their discard pile and replaced with curse
-     6. Current player's deck is unaffected other than discard of played card
+     6. Current player's hand/deck is unaffected other than discard of played card
 */
 
 #include "dominion.h"
@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 #define TESTCARD sea_hag
-#define TESTCARD_NAME "sea hag"
+#define TESTCARD_NAME "sea_hag"
 
 int main() {
   int pass_count = 0;
@@ -108,7 +108,7 @@ int main() {
 
 
   /**************************************** TEST 6 ****************************************************/
-  printf("\n  TEST 6: Current player's deck is unaffected other than discard of played card\n");
+  printf("\n  TEST 6: Current player's hand/deck is unaffected other than discard of played card\n");
   int test6_pass = 1;
 
   // copy the game state to a test case
@@ -120,13 +120,18 @@ int main() {
   printf("    current player deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer]);
 
   // assert test passed
-  // compare player's current deck to stored deck (hand is drawn at start of turn, so all cards stored in deck)
+  // compare player's current deck to stored deck
   for (i = 0; i < G.deckCount[thisPlayer]; i++) {
     if (testG.deck[thisPlayer][i] != G.deck[thisPlayer][i]) {test6_pass = 0; break;} 
   }
+	
+  // compare player's current hand to stored hand
+  for (i = 1; i < G.handCount[thisPlayer]; i++) {
+    if (testG.hand[thisPlayer][i] != G.hand[thisPlayer][i]) {test6_pass = 0; break;} 
+  }
 
   // check that deck/hand counts didn't change
-  if ((testG.handCount[thisPlayer] != 0) || (testG.deckCount[thisPlayer] != G.deckCount[thisPlayer])) {test6_pass = 0;}
+  if ((testG.handCount[thisPlayer] != G.handCount[thisPlayer] - discarded) || (testG.deckCount[thisPlayer] != G.deckCount[thisPlayer])) {test6_pass = 0;}
 
   // assert test 6 passed
   testAssert(6, &pass_count, test6_pass);

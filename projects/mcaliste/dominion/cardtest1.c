@@ -2,12 +2,10 @@
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -18,8 +16,7 @@ int main() {
   int numPlayers = 2;
   int kingdom[10] = {adventurer, council_room, feast, gardens, mine, remodel,
     smithy, village, baron, great_hall};
-  int result, currentPlayer, actions, oldHandCount, oldDiscardCount;
-  int testHand[MAX_HAND];
+  int result, currentPlayer, actions, oldDiscardCount;
 
   printf("*** Unit testing adventurerCard() ***\n");
   result = initializeGame(numPlayers, kingdom, seed, &state);
@@ -49,7 +46,7 @@ int main() {
   oldDiscardCount = state.discardCount[currentPlayer];
 
   // initial state has 7 copper cards in deck
-  printf("Test playing adventurer card:\n");
+  printf("*** Test playing adventurer card:\n");
   result = playCard(3, 0, 0, 0, &state);
   assertResult(result == 0);
 
@@ -62,6 +59,22 @@ int main() {
     handCard(numHandCards(&state)-2, &state) == gold);
   //printf("New hand count %d\n", numHandCards(&state));
 
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   printf("*** Test empty deck + shuffle discard + play adventurerCard:\n");
   state2.deckCount[currentPlayer] = 0;
@@ -86,6 +99,22 @@ int main() {
     handCard(numHandCards(&state2)-2, &state2) == gold);
 
   //printf("New hand count %d\n", numHandCards(&state2));
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state2) == 8);
+  assertResult(supplyCount(duchy, &state2) == 8);
+  assertResult(supplyCount(province, &state2) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(adventurer, &state2) == 10);
+  assertResult(supplyCount(council_room, &state2) == 10);
+  assertResult(supplyCount(feast, &state2) == 10);
+  assertResult(supplyCount(gardens, &state2) == 8);
+  assertResult(supplyCount(mine, &state2) == 10);
+  assertResult(supplyCount(remodel, &state2) == 10);
+  assertResult(supplyCount(smithy, &state2) == 10);
+  assertResult(supplyCount(village, &state2) == 10);
+  assertResult(supplyCount(baron, &state2) == 10);
+  assertResult(supplyCount(great_hall, &state2) == 8);
 
   // this is being broken by the bug introduced in assignment 2
   printf("Test discard has 2 fewer cards:\n");

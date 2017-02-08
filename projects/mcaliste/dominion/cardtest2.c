@@ -2,12 +2,10 @@
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -19,7 +17,6 @@ int main() {
   int kingdom[10] = {adventurer, council_room, feast, gardens, mine, remodel,
     smithy, village, baron, great_hall};
   int result, currentPlayer, actions, oldHandCount, oldDiscardCount;
-  int testHand[MAX_HAND];
 
   printf("*** Unit testing smithyCard() ***\n");
   result = initializeGame(numPlayers, kingdom, seed, &state);
@@ -38,7 +35,7 @@ int main() {
   assertResult(actions > 0);
 
   printf("Test smithy in player hand:\n");
-  // adventurer is 13 in cards enum
+  // smithy is 13 in cards enum
   state.hand[currentPlayer][2] = smithy;
   assertResult(handCard(2, &state) == 13);
 
@@ -59,6 +56,23 @@ int main() {
   // which breaks this
   printf("Test hand has +3 cards:\n");
   assertResult((oldHandCount + 2) == numHandCards(&state));
+
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   //printf("New hand count %d\n", numHandCards(&state));
 
@@ -84,8 +98,22 @@ int main() {
   assertResult((oldHandCount + 2) == numHandCards(&state2));
   //printf("New hand count %d\n", numHandCards(&state2));
 
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
 
-
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   return 0;
 }
