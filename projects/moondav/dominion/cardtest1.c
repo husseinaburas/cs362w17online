@@ -57,7 +57,8 @@ int main() {
 
     printf("TEST 1: Play %s card.\n\n", testCardName);
     // Setup
-    currentPlayer = 0;
+    currentPlayer = whoseTurn(&G);
+    handPos = 0;
 
     card1 = testCard;
     card2 = silver;
@@ -80,6 +81,16 @@ int main() {
         G.deck[currentPlayer][i] = adventurer;
     }
 
+    printf("SETUP\n");
+    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
+    printPlayerDeck(&G);
+
+    // Populate the current player's deck with 10 cards
+    G.deckCount[currentPlayer] = 10;
+    for(i = 0; i < G.deckCount[currentPlayer]; i++){
+        G.deck[currentPlayer][i] = adventurer;
+    }
+
     printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
     printPlayerDeck(&G);
 
@@ -92,7 +103,8 @@ int main() {
     printf("\n");
 
     // Play the test card
-    cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
+    playCard(0, choice1, choice2, choice3, &testG);
+    // cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
 
     // Check if the player's deck count decreased by 3.
     observed = testG.deckCount[currentPlayer];

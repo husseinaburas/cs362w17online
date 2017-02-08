@@ -682,7 +682,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos)
     }
 
     //discard card from hand
-    discardCard(handPos, handPos, state, 0);  //***BUG ADDED:  CHANGED FROM currentPlayer to handPos
+    discardCard(handPos, handPos, state, 0);  //***BUG ADDED:  2nd arg CHANGED FROM currentPlayer to handPos
     return 0;
 }
 
@@ -781,33 +781,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     nextPlayer = 0;
   }
 
-  //*************ADDED NEW CARD METHOD CALLS HERE (TOOK FROM SWITCH STATEMENT***************
-  if(card == adventurer)
-  {
-      playAdventurer(drawntreasure, state, currentPlayer, cardDrawn, temphand, z);
-  }
-  else if(card == smithy)
-  {
-      playSmithy(state, currentPlayer, handPos);
-  }
-  else if(card == village)
-  {
-      playVillage(state, currentPlayer, handPos);
-  }
-  else if(card == remodel)
-  {
-      playRemodel(state, currentPlayer, handPos, j, choice1, choice2);
-  }
-  else if(card = council_room)
-  {
-      playCouncil_Room(state, currentPlayer, handPos);
-  }
-    
-    
-  else  //{           //ADDED TO WRAP AROUND SWITCH STATEMENT
-	
-  //*****************************************************************************************
-    
   //uses switch to select card and perform actions
   switch( card ) 
     {
@@ -1275,6 +1248,28 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
     }
 	
+    //*************ADDED NEW CARD METHOD CALLS HERE (TOOK FROM SWITCH STATEMENT)***************
+    if(card == adventurer)
+    {
+        playAdventurer(drawntreasure, state, currentPlayer, cardDrawn, temphand, z);
+    }
+    else if(card == smithy)
+    {
+        playSmithy(state, currentPlayer, handPos);
+    }
+    else if(card == village)
+    {
+        playVillage(state, currentPlayer, handPos);
+    }
+    else if(card == remodel)
+    {
+        playRemodel(state, currentPlayer, handPos, j, choice1, choice2);
+    }
+    else if(card = council_room)
+    {
+        playCouncil_Room(state, currentPlayer, handPos);
+    }
+    
   return -1;
 }
 //}                       //ADDED TO CLOSE SWITCH STATEMENT

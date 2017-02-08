@@ -303,9 +303,7 @@ int buyCard(int supplyPos, struct gameState *state) {
       printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
   }
 
-  //state->discard[who][state->discardCount[who]] = supplyPos;
-  //state->discardCount[who]++;
-    
+
   return 0;
 }
 

@@ -35,7 +35,7 @@ int main() {
         golds[i] = gold;
     }
 
-    printf ("TESTING updateCoins():\n");
+    printf ("TESTING isGameOver:\n");
     for (p = 2; p < 4; p++)
     {
         for (provinces = 1; provinces >=0 ; provinces--)
