@@ -78,7 +78,7 @@ int main(){
 		printf("TEST 3 could not be run due to invalid input\n");
 	}
 	// ----------- TEST 4: Test number of actions is increased by 2 -----------
-	printf("%s TEST 4: Number of actions after is decreased by 1\n", TESTCARD);
+	printf("%s TEST 4: Number of actions after is increased by 2\n", TESTCARD);
 	if (result == 0){
 		if (testG.numActions == (G.numActions + 2)){
 			asserttrue(1, 4);
@@ -104,10 +104,10 @@ int main(){
 	else{
 		printf("TEST 5 could not be run due to invalid input\n");
 	}
-	// ----------- TEST 6: Test handCount of player increased by 2 (+ 3 - smithy) -----------
-	printf("%s TEST 6: handCount for current player has increased by 2\n", TESTCARD);
+	// ----------- TEST 6: Test handCount of player stays the same -----------
+	printf("%s TEST 6: handCount for current player stays the same\n", TESTCARD);
 	if (result == 0){
-		if (testG.handCount[currentPlayer] == G.handCount[currentPlayer] + 2){
+		if (testG.handCount[currentPlayer] == G.handCount[currentPlayer]){
 			asserttrue(1, 6);
 		}
 		else{
@@ -118,7 +118,7 @@ int main(){
 		printf("TEST 6 could not be run due to invalid input\n");
 	}
 	// ----------- TEST 7: Test that the village card is in the discard pile -----------
-	printf("%s TEST 7: Smithy card is in the discard pile\n", TESTCARD);
+	printf("%s TEST 7: Village card is in the discard pile\n", TESTCARD);
 	if (result == 0){
 		if (testG.discard[currentPlayer][testG.discardCount[currentPlayer]] == village){
 			asserttrue(1, 7);
@@ -193,8 +193,10 @@ int main(){
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
-	// ----------- TEST 11 : Test correct return statements for invalid input -----------
-	printf("%s TEST 11: Correct return statements for invalid input\n", TESTCARD);
+		printf("\nTESTS FOR INVALID INPUT\n");
+
+	// ----------- TEST 11 : Test correct return statements for wrong card name -----------
+	printf("%s TEST 11: Correct return statements for wrong card name\n", TESTCARD);
 	result = playVillage(&testG, currentPlayer, 4);
 	if (result == -1){
 		asserttrue(1, 11);
@@ -205,6 +207,7 @@ int main(){
 
 	// ----------- TEST 12: Test state stays same invalid input -----------
 	printf("%s TEST 12: State says the same with invalid input\n", TESTCARD);
+	
 	if (result == -1){
 
 		for (i = 0; i <= treasure_map; i++){
@@ -221,7 +224,7 @@ int main(){
 			asserttrue(1, 12);
 		}
 		else if (testG.coins != G.coins){
-			asserttrue(0, 12);
+		asserttrue(0, 12);
 		}
 		else if (testG.numBuys != G.numBuys){
 			asserttrue(0, 12);
@@ -243,7 +246,133 @@ int main(){
 		}
 	}
 	else{
-		printf("TEST 12 could not be run due to unplanned input\n");
+		printf("TEST 12 could not be run due to failing test 11\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][2] = village;
+	G.phase = 1;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 13 : Test correct return statements for wrong phase -----------
+	printf("%s TEST 13: Correct return statements for wrong phase\n", TESTCARD);
+	result = playVillage(&testG, currentPlayer, 2);
+	if (result == -1){
+		asserttrue(1, 13);
+	}
+	else{
+		asserttrue(0, 13);
+	}
+
+	// ----------- TEST 14: Test state stays same invalid input -----------
+	printf("%s TEST 14: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 14);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 14);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 14);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 14);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 14);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 14);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 14);
+		}
+		else{
+			asserttrue(1, 14);
+		}
+	}
+	else{
+		printf("TEST 14 could not be run due to failing test 13\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][2] = village;
+	G.numActions = 0;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 15 : Test correct return statements for wrong number of actions-----------
+	printf("%s TEST 15: Correct return statements for wrong number of actions\n", TESTCARD);
+	result = playVillage(&testG, currentPlayer, 2);
+	if (result == -1){
+		asserttrue(1, 15);
+	}
+	else{
+		asserttrue(0, 15);
+	}
+
+	// ----------- TEST 16: Test state stays same invalid input -----------
+	printf("%s TEST 16: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 16);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 16);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 16);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 16);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 16);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 16);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 16);
+		}
+		else{
+			asserttrue(1, 16);
+		}
+	}
+	else{
+		printf("TEST 16 could not be run due to failing test 15\n");
 	}
 	return 0;
 }
