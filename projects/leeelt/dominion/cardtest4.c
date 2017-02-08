@@ -1,13 +1,13 @@
 /* Author: Elton Lee
- * cardtest3.c
- * unit test for council_room
+ * cardtest4.c
+ * unit test for feast
  */
 
 /*
  * Include the following lines in your makefile:
  *
- * cardtest1: cartest3.c dominion.o rngs.o
- *      gcc -o cartest3 -g  cartest3.c dominion.o rngs.o $(CFLAGS)
+ * cardtest1: cardtest4.c dominion.o rngs.o
+ *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  */
 
 #include "dominion.h"
@@ -17,25 +17,27 @@
 #include <assert.h>
 #include "rngs.h"
 #include <stdlib.h>
-#include "cardtest3.h"
+#include "cardtest4.h"
 
 int main()
 {
-    runCardTest(10,10);
-    runCardTest(10,0);
-    runCardTest(0,10);
+    runCardTest(council_room);
+    runCardTest(copper);
+	//runCardTest(adventurer); // causes an infinite loop
     return 0;
 }
 
-int runCardTest(int deckSize, int discardSize)
+int runCardTest(int chosenCard)
 {
-    printf("Running council_room test with %d cards in deck and %d in discard\n", deckSize, discardSize);
+    printf("Running feast using enum #%d card, cost = %d\n", chosenCard, getCost(chosenCard));
     int i;
     int j;
     int seed = 1000;
     int numPlayers = 2;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 		 sea_hag, tribute, smithy, council_room};
+	int deckSize = 10;
+	int discardSize = 10;
 
     struct gameState G;
     initializeGame(numPlayers, k, seed, &G);
@@ -68,7 +70,6 @@ int runCardTest(int deckSize, int discardSize)
 
 		G.hand[j][0] = council_room; // council_room needs to be played from hand
     }
-
     printf("Starting hand:\n");
     for (i = 0; i < G.handCount[0]; i++)
     {
@@ -76,42 +77,42 @@ int runCardTest(int deckSize, int discardSize)
     }
     printf("\n");
 
+	printf("Starting discard:\n");
+    for (i = 0; i < G.discardCount[0]; i++)
+    {
+		printf("%d ", G.discard[0][i]);
+    }
+    printf("\n");
     int startHandCount = G.handCount[0];
+	int startDiscardCount = G.discardCount[0];
     int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
-    int startNumBuys = G.numBuys;
-    int startHandCountPlayer2 = G.handCount[1];
-	int totalCardsPlayer2 = G.handCount[1] + G.deckCount[1] + G.discardCount[1];
 
     // run play council_room
-    playCouncil_Room(&G, 0);
+    playFeast(&G, chosenCard);
 
-    // Check +4 cards to hand
-	printf("-----TEST 1: CHECKING +4 TO HAND AND COUNCIL_ROOM NO LONGER IN HAND-----\n");
-    printf("Number of cards in player 1's hand = %d, expected = %d\n", G.handCount[0], startHandCount + 4 - 1);
-    asserttrue(G.handCount[0], startHandCount + 4 - 1);
+	// Check that feast has been trashed.
+	printf("-----TEST 1: CHECKING FEAST HAS BEEN TRASHED ----\n");
+	printf("Number of cards in player 1's hand = %d, expected = %d\n", G.handCount[0], startHandCount-1);
+    asserttrue(G.handCount[0], startHandCount-1);
     printf("Showing current cards in hand...\n");
     for (i = 0; i < G.handCount[0]; i++)
     {
 		printf("%d ", G.hand[0][i]);
     }
-	printf("\n");
 
-    // Check +1 buy action
-	printf("-----TEST 2: CHECK +1 BUY ADDED TO PLAYER 1-----\n");
-    printf("Number of buys for player 1 = %d, expected = %d\n", G.numBuys, startNumBuys + 1);
-    asserttrue(G.numBuys, startNumBuys + 1);
-	
-	// Check +1 card to player 2
-	printf("-----TEST 3: CHECK OTHER PLAYER +1 CARD TO HAND-----\n");
-    printf("Number of cards in player 2's hand = %d, expected = %d\n", G.handCount[1], startHandCountPlayer2 + 1);
-    asserttrue(G.handCount[1], startHandCountPlayer2 + 1);
-	
-	// Check card total for players
-	printf("-----TEST 4: CHECK DECK TOTALS FOR BOTH PLAYERS-----\n");
+    // Check new card obtained has been placed in the discard pile.
+	printf("\n-----TEST 2: CHECKING SELECTED CARD IS IN DISCARD PILE-----\n");
+    printf("Number of cards in player 1's discard = %d, expected = %d\n", G.discardCount[0], startDiscardCount + 1);
+    asserttrue(G.discardCount[0], startDiscardCount + 1);
+    printf("Showing current cards in discard...\n");
+    for (i = 0; i < G.discardCount[0]; i++)
+    {
+		printf("%d ", G.discard[0][i]);
+    }
+
+	printf("\n-----TEST3: CHECKING DECK HAS THE RIGHT AMOUNT OF CARDS-----\n");
     printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
     asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-    printf("Total cards for player 2 = %d, expected = %d\n", G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
-    asserttrue(G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
 
     printf("\n\n");
 
