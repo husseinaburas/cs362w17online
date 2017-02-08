@@ -27,8 +27,10 @@ int main(int argc, char const *argv[])
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Card Test 3: Village Card\n");
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
-	printf("Running Card Test 3: Village Card\n\n");
+	printf("\n");
+
 	initializeGame(players, k, seed, &G);
 	memcpy(&copyG, &G, sizeof(struct gameState));
 
@@ -41,12 +43,12 @@ int main(int argc, char const *argv[])
 
 	//make sure there is one new card minus the played card
 	if( G.handCount[0] != copyG.handCount[0] ){
-		printf("Error with hand card count\n");
+		printf("Error with hand card count. Expected 6 has %d\n", G.handCount[0]);
 		errorFlag++;
 	}
 	//make sure there are two actions left after using first action
 	if(G.numActions != (copyG.numActions + 2)){
-		printf("Error with number of actions count\n");
+		printf("Error with number of actions count. Expected 2 has %d\n", G.numActions);
 		errorFlag++;
 	}
 	//make sure village card is discarded
@@ -56,8 +58,8 @@ int main(int argc, char const *argv[])
 	}
 
 	printf("\n");
-	printf("Completed Card Test 3, Village Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Completed Card Test 3, Village Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 	return 0;
 }
