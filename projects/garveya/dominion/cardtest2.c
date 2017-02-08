@@ -78,6 +78,10 @@ void testCutpurseWithCopper(int playerNum){
 
 	playCutpurse(playerNum, &testGameState, 0);
 
+	//test player has 1 less card and doesn't have cutpurse anymore
+	custom_assert(testGameState.handCount[playerNum] == 0, testName, __LINE__, SHOULD_ASSERT_FAIL);
+	custom_assert(!isInHand(playerNum, &testGameState, cutpurse), testName, __LINE__, SHOULD_ASSERT_FAIL);
+
 	//test that player2 has 1 less card
 	custom_assert(testGameState.handCount[player2] == 0, testName, __LINE__, SHOULD_ASSERT_FAIL);
 	custom_assert(!isInHand(player2, &testGameState, copper), testName, __LINE__, SHOULD_ASSERT_FAIL);
@@ -126,6 +130,10 @@ void testCutpurseWithoutCopper(int playerNum){
 	testGameState.hand[player3][2] = adventurer;
 
 	playCutpurse(playerNum, &testGameState, 0);
+
+	//test player has 1 less card and doesn't have cutpurse anymore
+	custom_assert(testGameState.handCount[playerNum] == 0, testName, __LINE__, SHOULD_ASSERT_FAIL);
+	custom_assert(!isInHand(playerNum, &testGameState, cutpurse), testName, __LINE__, SHOULD_ASSERT_FAIL);
 
 	//test that player2 has same cards
 	custom_assert(testGameState.handCount[player2] == 1, testName, __LINE__, SHOULD_ASSERT_FAIL);
