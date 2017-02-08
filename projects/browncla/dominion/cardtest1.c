@@ -352,7 +352,7 @@ int main(){
 	if (result == -1){
 
 		for (i = 0; i <= treasure_map; i++){
-			if (testG.supplyCount[i] != G.supplyCount[i]){
+			if (testG.supplyCount[i] != G.supplyCount[i]){ 
 				asserttrue(0, 17);
 				success = 0;
 				break;

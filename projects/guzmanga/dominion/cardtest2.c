@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "dominion.h"
 
 //cardtest4.c
@@ -21,7 +22,7 @@ int main(void) {
 	                        outpost, sea_hag, minion, tribute};
 
 	struct gameState G;
-	struct gameState *p = p;
+	struct gameState *p = &G;
 
 	initializeGame(2,kingdomCards, 3, p);
 	p->hand[0][0] = council_room;

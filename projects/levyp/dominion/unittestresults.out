@@ -1,0 +1,488 @@
+*****************************
+*   Patrick Levy            *
+*   levyp@oregonstate.edu   *
+*****************************\n\n
+Result of running unit tests:\n
+********************************************************************
+unittest1.c:
+
+--------TESTING playCard()--------
+Playcard should result in the number of actions begin reduced to 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Attempting to play a copper (non-action card) should cause playCard() to exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+The current player has no more actions left, should cause playCard() to exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Game phase is 1, playCard() should exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Game phase is 2, playCard() should exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Playcard should result in the number of actions begin reduced to 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Attempting to play a copper (non-action card) should cause playCard() to exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+The current player has no more actions left, should cause playCard() to exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Game phase is 1, playCard() should exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Game phase is 2, playCard() should exit early and return -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+
+Summary: passed tests: 10
+Summary: failed tests: 0
+
+File 'dominion.c'
+Lines executed:22.42% of 562
+Branches executed:25.66% of 417
+Taken at least once:16.55% of 417
+Calls executed:14.89% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+unittest2.c:
+
+--------TESTING buyCard()--------
+Number of buys for the player should be reduced by one after a purchase
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Amount of coins for the player should be reduced after a purchase
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+Attempting to purchase a card without enough money should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to purchase a card without any buys left should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to purchase a card that is not in the supply should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Number of buys for the player should be reduced by one after a purchase
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Amount of coins for the player should be reduced after a purchase
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+Attempting to purchase a card without enough money should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to purchase a card without any buys left should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to purchase a card that is not in the supply should not be possible
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+
+Summary: passed tests: 10
+Summary: failed tests: 0
+
+File 'dominion.c'
+Lines executed:27.05% of 562
+Branches executed:35.25% of 417
+Taken at least once:18.94% of 417
+Calls executed:20.21% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+unittest3.c:
+
+--------TESTING isGameOver()--------
+A new game has been intitialized...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+No more provinces are available in the supply...isGameOver() should return 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+10 Provinces have been added...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+One supply piles is empty...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Two supply piles are empty...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Three supply piles are empty...isGameOver() should return 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+A new game has been intitialized...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+No more provinces are available in the supply...isGameOver() should return 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+10 Provinces have been added...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+One supply piles is empty...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Two supply piles are empty...isGameOver() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Three supply piles are empty...isGameOver() should return 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+
+Summary: passed tests: 12
+Summary: failed tests: 0
+
+File 'dominion.c'
+Lines executed:28.83% of 562
+Branches executed:37.17% of 417
+Taken at least once:20.86% of 417
+Calls executed:20.21% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+unittest4.c:
+
+--------TESTING endTurn()--------
+endTurn() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the current player should have a handcount of 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the player should advance
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+After calling endTurn() the outpostPlayed should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the phase should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the numActions should be 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+After calling endTurn() the coins should be reset to 3
+     Expected: 3     Actual: 3  -- TEST PASSED
+
+After calling endTurn() the numBuys should be 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+After calling endTurn() the playedCardCount should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+endTurn() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the current player should have a handcount of 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() on the last player, it should advance to the first player
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the outpostPlayed should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the phase should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+After calling endTurn() the numActions should be 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+After calling endTurn() the coins should be reset to 3
+     Expected: 3     Actual: 3  -- TEST PASSED
+
+After calling endTurn() the numBuys should be 1
+     Expected: 1     Actual: 1  -- TEST PASSED
+
+After calling endTurn() the playedCardCount should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+
+Summary: passed tests: 18
+Summary: failed tests: 0
+
+File 'dominion.c'
+Lines executed:32.38% of 562
+Branches executed:38.61% of 417
+Taken at least once:22.30% of 417
+Calls executed:23.40% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+cardtest1.c:
+
+--------TESTING smithy card--------
+Playing smithy() should increase the current player's hand by 3 cards
+     Expected: 8     Actual: 9  -- TEST FAILED
+
+Smithy() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+Playing smithy() should increase the current player's hand by 3 cards
+     Expected: 3     Actual: 4  -- TEST FAILED
+
+Smithy() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+
+Summary: passed tests: 2
+Summary: failed tests: 2
+
+File 'dominion.c'
+Lines executed:33.10% of 562
+Branches executed:39.09% of 417
+Taken at least once:22.78% of 417
+Calls executed:24.47% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+cardtest2.c:
+
+--------TESTING Adventurer Card--------
+playAdventurer should increase the number of treasure cards by 2
+     Expected: 2     Actual: 3  -- TEST FAILED
+
+playAdventurer() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+playAdventurer should increase the number of treasure cards by 2
+     Expected: 2     Actual: 3  -- TEST FAILED
+
+playAdventurer() should return 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+
+Summary: passed tests: 2
+Summary: failed tests: 2
+
+File 'dominion.c'
+Lines executed:33.99% of 562
+Branches executed:40.05% of 417
+Taken at least once:23.74% of 417
+Calls executed:24.47% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+cardtest3.c:
+
+--------TESTING playBaron()--------
+Return value from playBaron should be 0
+     Expected: 0     Actual: 0  -- TEST PASSED
+
+The number of buys should have increased by 1
+     Expected: 2     Actual: 2  -- TEST PASSED
+
+With the option set to false, the number of estates in the supply should decrease by 1
+     Expected: 7     Actual: 6  -- TEST FAILED
+
+With the option set to false, the number of estates in the player's hand should increase by 1
+     Expected: 2     Actual: 1  -- TEST FAILED
+
+With the option set to true, the player should gain 4 coins
+     Expected: 8     Actual: 9  -- TEST FAILED
+
+
+Summary: passed tests: 2
+Summary: failed tests: 3
+
+File 'dominion.c'
+Lines executed:38.26% of 562
+Branches executed:43.41% of 417
+Taken at least once:26.62% of 417
+Calls executed:27.66% of 94
+Creating 'dominion.c.gcov'
+
+********************************************************************
+cardtest4.c:
+
+--------TESTING playMine()--------
+Attempting to trash a non-treasure card should not be possible.  The return value should be -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to trash a copper and take a gold is not possible.  The return value should be -1
+     Expected: -1     Actual: 0  -- TEST FAILED
+
+Attempting to take a card that is not in the deck (less than curse).  The return value should be -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Attempting to take a card that is not in the deck (greater than treasure_map).  The return value should be -1
+     Expected: -1     Actual: -1  -- TEST PASSED
+
+Trash a copper and gain a silver. There should be one less copper
+     Expected: 4     Actual: 3  -- TEST FAILED
+
+Trash a copper and gain a silver. There should be one more silver
+     Expected: 1     Actual: 0  -- TEST FAILED
+
+
+Summary: passed tests: 3
+Summary: failed tests: 3
+
+Function 'playMinion'
+Lines executed:0.00% of 18
+Branches executed:0.00% of 18
+Taken at least once:0.00% of 18
+Calls executed:0.00% of 6
+
+Function 'playMine'
+Lines executed:93.33% of 15
+Branches executed:100.00% of 14
+Taken at least once:71.43% of 14
+Calls executed:100.00% of 5
+
+Function 'playBaron'
+Lines executed:75.86% of 29
+Branches executed:77.78% of 18
+Taken at least once:61.11% of 18
+Calls executed:37.50% of 8
+
+Function 'playAdventurer'
+Lines executed:94.12% of 17
+Branches executed:100.00% of 12
+Taken at least once:75.00% of 12
+Calls executed:50.00% of 2
+
+Function 'playSmithy'
+Lines executed:100.00% of 4
+Branches executed:100.00% of 2
+Taken at least once:100.00% of 2
+Calls executed:100.00% of 1
+
+Function 'updateCoins'
+Lines executed:81.82% of 11
+Branches executed:100.00% of 8
+Taken at least once:75.00% of 8
+No calls
+
+Function 'gainCard'
+Lines executed:76.92% of 13
+Branches executed:100.00% of 6
+Taken at least once:66.67% of 6
+Calls executed:100.00% of 1
+
+Function 'discardCard'
+Lines executed:84.62% of 13
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+No calls
+
+Function 'cardEffect'
+Lines executed:4.79% of 167
+Branches executed:17.04% of 135
+Taken at least once:1.48% of 135
+Calls executed:4.35% of 46
+
+Function 'getCost'
+Lines executed:20.00% of 30
+Branches executed:100.00% of 28
+Taken at least once:14.29% of 28
+No calls
+
+Function 'drawCard'
+Lines executed:36.36% of 22
+Branches executed:33.33% of 6
+Taken at least once:16.67% of 6
+Calls executed:0.00% of 1
+
+Function 'getWinners'
+Lines executed:0.00% of 24
+Branches executed:0.00% of 22
+Taken at least once:0.00% of 22
+Calls executed:0.00% of 2
+
+Function 'scoreFor'
+Lines executed:0.00% of 24
+Branches executed:0.00% of 42
+Taken at least once:0.00% of 42
+Calls executed:0.00% of 3
+
+Function 'isGameOver'
+Lines executed:100.00% of 10
+Branches executed:100.00% of 8
+Taken at least once:100.00% of 8
+No calls
+
+Function 'endTurn'
+Lines executed:100.00% of 20
+Branches executed:100.00% of 6
+Taken at least once:100.00% of 6
+Calls executed:100.00% of 3
+
+Function 'whoseTurn'
+Lines executed:100.00% of 2
+No branches
+No calls
+
+Function 'fullDeckCount'
+Lines executed:0.00% of 9
+Branches executed:0.00% of 12
+Taken at least once:0.00% of 12
+No calls
+
+Function 'supplyCount'
+Lines executed:100.00% of 2
+No branches
+No calls
+
+Function 'handCard'
+Lines executed:100.00% of 3
+No branches
+Calls executed:100.00% of 1
+
+Function 'numHandCards'
+Lines executed:0.00% of 2
+No branches
+Calls executed:0.00% of 1
+
+Function 'buyCard'
+Lines executed:100.00% of 13
+Branches executed:100.00% of 6
+Taken at least once:100.00% of 6
+Calls executed:100.00% of 4
+
+Function 'playCard'
+Lines executed:92.86% of 14
+Branches executed:100.00% of 10
+Taken at least once:80.00% of 10
+Calls executed:100.00% of 3
+
+Function 'shuffle'
+Lines executed:93.75% of 16
+Branches executed:100.00% of 8
+Taken at least once:87.50% of 8
+Calls executed:100.00% of 2
+
+Function 'initializeGame'
+Lines executed:83.87% of 62
+Branches executed:95.65% of 46
+Taken at least once:80.43% of 46
+Calls executed:100.00% of 5
+
+Function 'kingdomCards'
+Lines executed:0.00% of 13
+No branches
+No calls
+
+Function 'newGame'
+Lines executed:0.00% of 3
+No branches
+No calls
+
+Function 'compare'
+Lines executed:83.33% of 6
+Branches executed:100.00% of 4
+Taken at least once:75.00% of 4
+No calls
+
+File 'dominion.c'
+Lines executed:43.24% of 562
+Branches executed:48.20% of 417
+Taken at least once:30.46% of 417
+Calls executed:32.98% of 94
+Creating 'dominion.c.gcov'
+

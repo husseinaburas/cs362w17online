@@ -29,7 +29,8 @@ int main() {
     int adventurers[MAX_HAND];
     int numFailingTests = 0;
     int numPassedTests = 0;
-    for (i = 0; i < MAX_HAND; i++)
+    handCount = 5;
+    for (i = 0; i < handCount; i++)
     {
         adventurers[i] = adventurer;
     }
@@ -42,13 +43,13 @@ int main() {
         G.handCount[p] = handCount;                 // set the number of cards on hand
 
         // Check that playcard results in the number of actions to be reduced
-        handCount = 5;
         memcpy(G.hand[0], adventurers, sizeof(int) * handCount); // set all the cards to adventurers
         G.phase = 0;
         G.numActions = 1;
         playCard(0, 0, 0, 0, &G);
         printf("Playcard should result in the number of actions begin reduced to 0");
         checkAssertion(0, G.numActions, &numFailingTests, &numPassedTests);
+	
 
         // Check that playcard does not execute when a non-action card is played
         handCount = 5;
