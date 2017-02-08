@@ -38,17 +38,13 @@ void assert_true(int val) {
 
 int main() {
 
-    int newCards = 0;
-    int discarded = 1;
-    int shuffledCards = 0;
-
     int seed = 10;
     int thisPlayer = 0;
     int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
     struct gameState G, testG;
 
     // initialize game
-    printf("******* Begin Test, testing %s ******\n", TESTCARD);
+    printf("************************ Begin Test, testing %s *****************\n", TESTCARD);
     initializeGame(2, cards, seed, &G);
 
     G.whoseTurn = 0;
@@ -58,31 +54,31 @@ int main() {
     memcpy(&testG, &G, sizeof(struct gameState));
     cardEffect(smithy, 0, 0, 0, &testG, 0, 0);
 
-    newCards = 3;
 
     // test number of cards in hand
-    printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
+    printf("**********************   test 1 handCount **************\n");
+    printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer]);
     assert_true(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + 2);
 
     // test number of cards in deck
-    printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
-    assert_true(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - 3);
+    printf("**********************   test 2 deckCount **************\n");
+    printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], 2);
+    assert_true(testG.deckCount[thisPlayer] == testG.deckCount[thisPlayer] - 3);
 
-    printf("discard count = %d, expected = %d\n", testG.discardCount[0], G.discardCount[0]);
-    assert_true(testG.discardCount[0] == G.discardCount[0]);
 
     // test other players for state change 
+    // test number of cards in hand
+    printf("**********************   test 3 player 2 deckcount **************\n");
     printf("player 2 deck count = %d, expected = %d\n", testG.deckCount[1], G.deckCount[1]);
     assert_true(testG.deckCount[1] == G.deckCount[1]);
 
+    // test number of cards in hand
+    printf("**********************   test 4 player 2 handCount **************");
     printf("player 2 hand count = %d, expected = %d\n", testG.handCount[1], G.handCount[1]);
     assert_true(testG.handCount[1] == G.handCount[1]);
 
-    printf("player 2 discard count = %d, expected = %d\n", testG.discardCount[1], G.discardCount[1]);
-    assert_true(testG.discardCount[1] == G.discardCount[1]);
-
 //************************* end of test **************************
-    printf("**********CARDTEST1 SUCCESSFULLY COMPLETED *****************\n\n");
+    printf("********** CARDTEST1 SUCCESSFULLY COMPLETED *****************\n\n");
     return 0;
 
 }

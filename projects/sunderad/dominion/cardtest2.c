@@ -27,8 +27,10 @@ int main(int argc, char const *argv[])
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Card Test 2: Smithy Card\n");
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
-	printf("Running Card Test 2: Smithy Card\n\n");
+	printf("\n");
+
 	initializeGame(players, k, seed, &G);
 	memcpy(&copyG, &G, sizeof(struct gameState));
 
@@ -40,13 +42,13 @@ int main(int argc, char const *argv[])
 	playSmithy(&G, 5);
 
 	//make sure there are three new cards minus the played card
-	if( G.handCount[0] != (copyG.handCount[0] + 2) ){
-		printf("Error with hand card count\n");
+	if( G.handCount[0] != 8 ){
+		printf("Error with hand card count. Expected 8 has %d.\n", G.handCount[0]);
 		errorFlag++;
 	}
 	//make sure card totals are correct
-	if( (G.discardCount[0] + G.deckCount[0] + G.handCount[0]) != (copyG.discardCount[0] + copyG.deckCount[0] + copyG.handCount[0]) ){
-		printf("Error with overall card count (sum of deck+hand+discard)\n");
+	if( (G.discardCount[0] + G.deckCount[0] + G.handCount[0]) != 10 ){
+		printf("Error with overall card count (sum of deck+hand+discard). Expected 10 has %d.\n",(G.discardCount[0] + G.deckCount[0] + G.handCount[0]));
 		errorFlag++;
 	}
 	//make sure smithy card is discarded
@@ -56,8 +58,8 @@ int main(int argc, char const *argv[])
 	}
 
 	printf("\n");
-	printf("Completed Card Test 2, Smithy Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Completed Card Test 2, Smithy Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 	return 0;
 }

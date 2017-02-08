@@ -33,7 +33,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-unittestresults.out: unittest1.c unittest2.c rngs.h rngs.c dominion.h dominion.c
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c rngs.h rngs.c dominion.h dominion.c
 	gcc -c rngs.c -g rngs.h rngs.c -Wall -fpic -coverage 
 	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage 
 
