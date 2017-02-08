@@ -7,7 +7,7 @@
 
 int main(void) {
     char *testFunc = "playSeaHag()";
-    int seed = 8546;
+    int seed = 8547;
     int numPlayers = 3;
     int kCards[10] = { salvager, feast, mine, smithy, village,
                        baron, minion, tribute, outpost, sea_hag };
@@ -124,7 +124,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 2: All players have full decks, 2 Curses in supply\n\n");
@@ -220,7 +220,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 3: All players have full decks, 1 Curse in supply\n\n");
@@ -316,7 +316,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 4: All players have full decks, Curse supply empty\n\n");
@@ -412,7 +412,7 @@ int main(void) {
     for (i = 0; i != afterHandCount; ++i) {
         printf("%d ", testG.hand[currentPlayer][i]);
     }
-    printf("\n\n");
+    printf("\n");
 
 
     printf("\nTEST 5: Player 1 has just 1 card in deck, Player 2 has ");

@@ -59,6 +59,8 @@ int main(int argc, char** argv){
 			
 	// call the function to test
 	playSmithy(&game, 0, 0);
+	
+	printf("///// ----- STARTING CARD TEST 4 (SMITHY) -----/////\n");
 		
 	//======================================================================================
 	
@@ -107,7 +109,10 @@ int main(int argc, char** argv){
 	//======================================================================================
 	
     if( pass == 0){
-    	printf("CARD TEST 1 SUCCESSFULLY PASSED\n");
+    	printf("**CARD TEST 1 SUCCESSFULLY PASSED**\n");
+    }
+    else{
+    	printf("**CARD TEST 1 FAILED**\n");
     }
 	
     return 0;
@@ -128,5 +133,8 @@ void assertTrue(int val1, int val2, char* testName, char* cardName, int testCase
 	if(val1 != val2){
 		printf("%s: Test Case %i of %i of card '%s' FAILED\n", testName, testCase, testCount, cardName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of %i of card '%s' PASSED\n", testName, testCase, testCount, cardName);
 	}
 }

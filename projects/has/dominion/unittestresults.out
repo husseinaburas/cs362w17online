@@ -1,16 +1,99 @@
-UNIT TEST 1 SUCCESSFULLY PASSED
-UNIT TEST 2 SUCCESSFULLY PASSED.
-UNIT TEST 3 SUCCESSFULLY PASSED
-UNIT TEST 4 SUCCESSFULLY PASSED
+///// ----- STARTING UNIT TEST 1 (updateCoins) -----/////
+UNIT TEST 1: Test Case 1 of 4 for function 'updateCoins()' PASSED
+UNIT TEST 1: Test Case 2 of 4 for function 'updateCoins()' PASSED
+UNIT TEST 1: Test Case 3 of 4 for function 'updateCoins()' PASSED
+UNIT TEST 1: Test Case 4 of 4 for function 'updateCoins()' PASSED
+**UNIT TEST 1 SUCCESSFULLY PASSED**
+///// ----- STARTING UNIT TEST 2 (getCost) -----/////
+UNIT TEST 2: Test Case 1 of 27 for function 'getCost()' for card 'curse' PASSED
+UNIT TEST 2: Test Case 2 of 27 for function 'getCost()' for card 'estate' PASSED
+UNIT TEST 2: Test Case 3 of 27 for function 'getCost()' for card 'duchy' PASSED
+UNIT TEST 2: Test Case 4 of 27 for function 'getCost()' for card 'provinence' PASSED
+UNIT TEST 2: Test Case 5 of 27 for function 'getCost()' for card 'copper' PASSED
+UNIT TEST 2: Test Case 6 of 27 for function 'getCost()' for card 'silver' PASSED
+UNIT TEST 2: Test Case 7 of 27 for function 'getCost()' for card 'gold' PASSED
+UNIT TEST 2: Test Case 8 of 27 for function 'getCost()' for card 'adventurer' PASSED
+UNIT TEST 2: Test Case 9 of 27 for function 'getCost()' for card 'council room' PASSED
+UNIT TEST 2: Test Case 10 of 27 for function 'getCost()' for card 'feast' PASSED
+UNIT TEST 2: Test Case 11 of 27 for function 'getCost()' for card 'gardens' PASSED
+UNIT TEST 2: Test Case 12 of 27 for function 'getCost()' for card 'mine' PASSED
+UNIT TEST 2: Test Case 13 of 27 for function 'getCost()' for card 'remodel' PASSED
+UNIT TEST 2: Test Case 14 of 27 for function 'getCost()' for card 'smithy' PASSED
+UNIT TEST 2: Test Case 15 of 27 for function 'getCost()' for card 'village' PASSED
+UNIT TEST 2: Test Case 16 of 27 for function 'getCost()' for card 'baron' PASSED
+UNIT TEST 2: Test Case 17 of 27 for function 'getCost()' for card 'great hall' PASSED
+UNIT TEST 2: Test Case 18 of 27 for function 'getCost()' for card 'minion' PASSED
+UNIT TEST 2: Test Case 19 of 27 for function 'getCost()' for card 'steward' PASSED
+UNIT TEST 2: Test Case 20 of 27 for function 'getCost()' for card 'tribute' PASSED
+UNIT TEST 2: Test Case 21 of 27 for function 'getCost()' for card 'ambassador' PASSED
+UNIT TEST 2: Test Case 22 of 27 for function 'getCost()' for card 'curpurse' PASSED
+UNIT TEST 2: Test Case 23 of 27 for function 'getCost()' for card 'embargo' PASSED
+UNIT TEST 2: Test Case 24 of 27 for function 'getCost()' for card 'outpost' PASSED
+UNIT TEST 2: Test Case 25 of 27 for function 'getCost()' for card 'salvager' PASSED
+UNIT TEST 2: Test Case 26 of 27 for function 'getCost()' for card 'sea hag' PASSED
+UNIT TEST 2: Test Case 27 of 27 for function 'getCost()' for card 'treasure map' PASSED
+**UNIT TEST 2 SUCCESSFULLY PASSED**
+///// ----- STARTING UNIT TEST 1 (supplyCount) -----/////
+UNIT TEST 3: Test Case 1 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 2 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 3 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 4 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 5 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 6 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 6 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 7 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 8 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 9 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 10 of 11 for function 'supplyCount()' PASSED
+UNIT TEST 3: Test Case 11 of 11 for function 'supplyCount()' PASSED
+**UNIT TEST 3 SUCCESSFULLY PASSED**
+///// ----- STARTING UNIT TEST 4 (endTurn) -----/////
+UNIT TEST 4: Test Case 1 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 2 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 3 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 4 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 5 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 6 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 7 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 8 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 9 of 10 for function 'endTurn()' PASSED
+UNIT TEST 4: Test Case 10 of 10 for function 'endTurn()' PASSED
+**UNIT TEST 4 SUCCESSFULLY PASSED**
+///// ----- STARTING CARD TEST 4 (SMITHY) -----/////
+CARD TEST 1: Test Case 1 of 4 of card 'smithy' PASSED
+CARD TEST 1: Test Case 2 of 4 of card 'smithy' PASSED
 CARD TEST 1: Test Case 3 of 4 of card 'smithy' FAILED
+CARD TEST 1: Test Case 4 of 4 of card 'smithy' PASSED
+**CARD TEST 1 FAILED**
+///// ----- STARTING CARD TEST 3 (VILLAGE) -----/////
+CARD TEST 2: Test Case 1 of 5 of card 'village' PASSED
+CARD TEST 2: Test Case 2 of 5 of card 'village' PASSED
 CARD TEST 2: Test Case 3 of 5 of card 'village' FAILED
+CARD TEST 2: Test Case 4 of 5 of card 'village' PASSED
+CARD TEST 2: Test Case 5 of 5 of card 'village' PASSED
+**CARD TEST 2 FAILED**
+///// ----- STARTING CARD TEST 3 (GREAT HALL) -----/////
+CARD TEST 3: Test Case 1 of 5 of card 'great hall' PASSED
+CARD TEST 3: Test Case 2 of 5 of card 'great hall' PASSED
 CARD TEST 3: Test Case 3 of 5 of card 'great hall' FAILED
+CARD TEST 3: Test Case 4 of 5 of card 'great hall' PASSED
+CARD TEST 3: Test Case 5 of 5 of card 'great hall' PASSED
+**CARD TEST 3 FAILED**
+///// ----- STARTING CARD TEST 4 (ADVENTURER) -----/////
 CARD TEST 4: Test Case 1 of 13 of card 'adventurer' FAILED
 CARD TEST 4: Test Case 2 of 13 of card 'adventurer' FAILED
 CARD TEST 4: Test Case 3 of 13 of card 'adventurer' FAILED
+CARD TEST 4: Test Case 4 of 13 of card 'adventurer' PASSED
+CARD TEST 4: Test Case 5 of 13 of card 'adventurer' PASSED
+CARD TEST 4: Test Case 6 of 13 of card 'adventurer' PASSED
 CARD TEST 4: Test Case 7 of 13 of card 'adventurer' FAILED
 CARD TEST 4: Test Case 8 of 13 of card 'adventurer' FAILED
+CARD TEST 4: Test Case 9 of 13 of card 'adventurer' PASSED
+CARD TEST 4: Test Case 10 of 13 of card 'adventurer' PASSED
+CARD TEST 4: Test Case 11 of 13 of card 'adventurer' PASSED
 CARD TEST 4: Test Case 12 of 13 of card 'adventurer' FAILED
+CARD TEST 4: Test Case 13 of 13 of card 'adventurer' PASSED
+**CARD TEST 4 FAILED**
 File 'dominion.c'
 Lines executed:32.47% of 653
 Branches executed:29.51% of 427

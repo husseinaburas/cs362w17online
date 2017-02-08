@@ -9,4 +9,7 @@ int VillageAction (int currentPlayer, struct gameState *state, int handPos);
 int CouncilRoomAction (int currentPlayer, struct gameState *state, int handPos);
 int CutPurseAction (int currentPlayer, struct gameState *state, int handPos);
 
+// did not change code to introduce bugs, just refactored out
+int TreasureMapAction (int currentPlayer, struct gameState *state, int handPos);
+
 #endif

@@ -74,13 +74,13 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -fprofile-arcs -ftest-coverage -Wall -lm -std=c99 -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o
 	
-randomtestcard1.out: randomtestcard1.c dominion.o rngs.out
+randomtestcard1.out: randomtestcard1 dominion.o rngs.o
 	gcc -fprofile-arcs -ftest-coverage -Wall -lm -std=c99 -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o
 	./randomtestcard1 &> randomtestcard1.out
 	gcov -b -f dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
 	
-randomtestcard2.out: randomtestcard2.c dominion.o rngs.o
+randomtestcard2.out: randomtestcard2 dominion.o rngs.o
 	gcc -fprofile-arcs -ftest-coverage -Wall -lm -std=c99 -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o
 	./randomtestcard2 &> randomtestcard2.out
 	gcov -b -f dominion.c >> randomtestcard2.out

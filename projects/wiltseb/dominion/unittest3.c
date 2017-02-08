@@ -15,14 +15,13 @@ int main(){
 	int numPlayers = 2;
 	int seed = 10;
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
-	int p1InitHandCt, p2InitHandCt, p1CurrHandCt, p2CurrHandCt;
+	int p1InitHandCt, p1CurrHandCt, p2CurrHandCt;
 	int initPlayedCardCt, currPlayedCardCt;
-	int p1InitDeckCt, p2InitDeckCt, p1CurrDeckCt, p2CurrDeckCt;
-	int p1InitDiscardCt, p2InitDiscardCt, p1CurrDiscardCt, p2CurrDiscardCt;
+	int p1InitDeckCt, p1CurrDeckCt, p2CurrDeckCt;
+	int p1InitDiscardCt, p1CurrDiscardCt, p2CurrDiscardCt;
 	int testFlag = 0;
 	int player1 = 0;
 	int player2 = 1;
-	int initSupplyCt[treasure_map+1];
 	int i;
 	
 	initializeGame(numPlayers, cards, seed, &TestGame1);
@@ -30,16 +29,13 @@ int main(){
 
 	//Get initial count of hand, discard, deck
 	p1InitHandCt = p1CurrHandCt = TestGame1.handCount[player1];
-	p2InitHandCt = p2CurrHandCt = TestGame1.handCount[player2];
+	p2CurrHandCt = TestGame1.handCount[player2];
 	p1InitDeckCt = p1CurrDeckCt = TestGame1.deckCount[player1];
-	p2InitDeckCt = p2CurrDeckCt = TestGame1.deckCount[player2];
+	p2CurrDeckCt = TestGame1.deckCount[player2];
 	p1InitDiscardCt = p1CurrDiscardCt = TestGame1.discardCount[player1];
-	p2InitDiscardCt = p2CurrDiscardCt = TestGame1.discardCount[player2];
+	p2CurrDiscardCt = TestGame1.discardCount[player2];
 	
-	//Copy initial supply count
-	for (i = 0; i < treasure_map+1; i++){
-		initSupplyCt[i] = TestGame1.supplyCount[i];
-	}
+
 	printf("UNITTEST 3 -----------------------------------------------------------------\n");
 
 	printf("INITIATING TEST 0...\n");

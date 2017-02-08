@@ -47,6 +47,8 @@ int main(int argc, char** argv){
 	
 	// int used to determine if program successfully passed (0 - pass)
     int* pass = 0;
+    
+	printf("///// ----- STARTING UNIT TEST 1 (supplyCount) -----/////\n");
 	
     // for loop is used to iterate through each test case for 2 players
     for( i = 0; i < (numTests/2); i++){
@@ -73,9 +75,11 @@ int main(int argc, char** argv){
     }
     
     if( pass == 0){
-    	printf("UNIT TEST 3 SUCCESSFULLY PASSED\n");
+    	printf("**UNIT TEST 3 SUCCESSFULLY PASSED**\n");
     }
-	
+    else{
+    	printf("**UNIT TEST 3 FAILED**\n");
+    }
     return 0;
 }
 
@@ -92,7 +96,10 @@ int main(int argc, char** argv){
  */
 void assertTrue(int val1, int val2, char* testName, char* functionName, int testCase, int* passFlag){
 	if(val1 != val2){
-		printf("%s: Test Case %i of function '%s' FAILED\n", testName, testCase, functionName);
+		printf("%s: Test Case %i of 11 for function '%s' FAILED\n", testName, testCase, functionName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of 11 for function '%s' PASSED\n", testName, testCase, functionName);
 	}
 }

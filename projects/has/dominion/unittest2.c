@@ -38,6 +38,8 @@ int main(int argc, char** argv){
         ret[i] = getCost(i);
     }
     
+	printf("///// ----- STARTING UNIT TEST 2 (getCost) -----/////\n");
+    
     // check if the card values match
     for(j = 0; j < 27; j++){
     	// set test ID
@@ -48,7 +50,10 @@ int main(int argc, char** argv){
     }
     
     if(pass == 0){
-        printf("UNIT TEST 2 SUCCESSFULLY PASSED.\n");
+        printf("**UNIT TEST 2 SUCCESSFULLY PASSED**\n");
+    }
+    else{
+    	printf("**UNIT TEST 2 FAILED**\n");
     }
     
     return 0;
@@ -68,7 +73,10 @@ int main(int argc, char** argv){
  */
 void assertTrue(int val1, int val2, char* testName, char* functionName, int testCase, char* cardName, int* passFlag){
 	if(val1 != val2){
-		printf("%s: Test Case %i of function '%s' for card '%s' FAILED\n", testName, testCase, functionName, cardName);
+		printf("%s: Test Case %i of 27 for function '%s' for card '%s' FAILED\n", testName, testCase, functionName, cardName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of 27 for function '%s' for card '%s' PASSED\n", testName, testCase, functionName, cardName);
 	}
 }

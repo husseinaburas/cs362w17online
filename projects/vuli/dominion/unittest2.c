@@ -43,7 +43,7 @@ int main() {
 
     int player, card, i, j;
     int count1, count2;
-    int numShuffle = 5, minChange = 2, numChange;
+    int maxShuffle = 5, minChange = 2, numChange;
 
     printf("**********************************************************\n");
     printf("BEGIN testing %s\n", FUNC_NAME);
@@ -101,9 +101,9 @@ int main() {
     asserttrue(r == 1, &r_main);
 
     /*********/
-    printf("---------CASE %d: %s -- TEST %d: Cards in Deck change positions at least %d times in %d runs\n", caseCount, casename, ++testCount, minChange, numShuffle);
+    printf("---------CASE %d: %s -- TEST %d: Cards in Deck change positions at least %d times in %d runs\n", caseCount, casename, ++testCount, minChange, maxShuffle);
     numChange = 0;
-    for (i=0; i < numShuffle; i++) {  // Run shuffles at most numShuffle time, break when cards in player's deck changes position minChange times
+    for (i=0; i < maxShuffle; i++) {  // Run shuffles at most maxShuffle time, break when cards in player's deck changes position minChange times
         printf("RUN %d:\n", i+1);
         memcpy(&tempG, &G, sizeof(struct gameState));
         shuffle(player, &G);
@@ -135,7 +135,7 @@ int main() {
     printf("---------\n");
     printf("Function %s passed %d/%d tests.\n", FUNC_NAME, r_main, testCount);
     printf("END testing %s\n", FUNC_NAME);
-    printf("**********************************************************\n");
+    printf("**********************************************************\n\n");
 
     return 0;
 }

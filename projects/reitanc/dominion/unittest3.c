@@ -139,7 +139,7 @@ void testUpdateCoins(){
     else
         printf("updateCoins(): FAIL TEST 10. Value of Coins = %i\n", MyGame.coins);
 	/* --- TEST 10 from Checklist --- */
-    printf("=== COMPLETED UNIT TESTS for UpdateCoins()\n\n");
+    printf("\n=== COMPLETED UNIT TESTS for UpdateCoins()\n\n");
     
 	return;
 }

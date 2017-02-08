@@ -1,8 +1,14 @@
+
+=== BEGINNING UNIT TESTS for initializeGame()
+
 initializeGame(): PASS when testing 1 player setup.
 initializeGame(): PASS when testing 2 player setup.
 initializeGame(): PASS when testing 3 player setup.
 initializeGame(): PASS when testing 4 player setup.
 initializeGame(): PASS when testing 5 player setup.
+
+=== COMPLETED UNIT TESTS for initializeGame()
+
 File 'dominion.c'
 Lines executed:16.99% of 571
 Creating 'dominion.c.gcov'
@@ -1399,10 +1405,16 @@ Creating 'dominion.c.gcov'
         -: 1385:
         -: 1386://end of dominion.c
         -: 1387:
-scoreFor(): FAIL when testing Player 1.
+
+=== BEGINNING UNIT TESTS for scoreFor()
+
+scoreFor(): FAIL when testing Player 1. ReturnValue = 7
 scoreFor(): PASS when testing Player 2.
-scoreFor(): FAIL when testing Player 3.
-scoreFor(): FAIL when testing Player 4.
+scoreFor(): FAIL when testing Player 3. ReturnValue = 9
+scoreFor(): FAIL when testing Player 4. ReturnValue = 5
+
+=== COMPLETED UNIT TESTS for scoreFor()
+
 File 'dominion.c'
 Lines executed:22.77% of 571
 Creating 'dominion.c.gcov'
@@ -2799,6 +2811,9 @@ Creating 'dominion.c.gcov'
         -: 1385:
         -: 1386://end of dominion.c
         -: 1387:
+
+=== BEGINNING UNIT TESTS for UpdateCoins()
+
 updateCoins(): PASS TEST 1.
 updateCoins(): PASS TEST 2.
 updateCoins(): PASS TEST 3.
@@ -2809,6 +2824,9 @@ updateCoins(): PASS TEST 7.
 updateCoins(): PASS TEST 8.
 updateCoins(): PASS TEST 9.
 updateCoins(): PASS TEST 10.
+
+=== COMPLETED UNIT TESTS for UpdateCoins()
+
 File 'dominion.c'
 Lines executed:23.12% of 571
 Creating 'dominion.c.gcov'
@@ -4205,9 +4223,15 @@ Creating 'dominion.c.gcov'
         -: 1385:
         -: 1386://end of dominion.c
         -: 1387:
+
+=== BEGINNING UNIT TESTS for isGameOver()
+
 isGameOver(): FAIL TEST 1. ReturnValue = 1
 isGameOver(): PASS TEST 2.
 isGameOver(): PASS TEST 3.
+
+=== COMPLETED UNIT TESTS for isGameOver()
+
 File 'dominion.c'
 Lines executed:23.64% of 571
 Creating 'dominion.c.gcov'
