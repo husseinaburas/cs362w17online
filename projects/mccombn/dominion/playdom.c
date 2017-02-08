@@ -1,3 +1,4 @@
+
 #include "dominion.h"
 #include <stdio.h>
 #include "rngs.h"
@@ -19,7 +20,7 @@ int main (int argc, char** argv) {
 
   int numSmithies = 0;
   int numAdventurers = 0;
-
+  
   while (!isGameOver(&G)) {
     money = 0;
     smithyPos = -1;

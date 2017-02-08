@@ -36,7 +36,9 @@ cardtests: cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
 	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 
-unittestresults.out: unittest1 
+unittestresults.out: unittests cardtests
+	make clean
+	make all 
 	./unittest1 >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
