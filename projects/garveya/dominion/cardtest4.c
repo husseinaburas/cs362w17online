@@ -80,7 +80,6 @@ void testCouncilRoomDrawsCards(int playerNum){
 	//test player2 got 1 card
 	custom_assert(testGameState.handCount[player2] == 1, testName, __LINE__, SHOULD_ASSERT_FAIL);
 	custom_assert(isInHand(player2, &testGameState, copper), testName, __LINE__, SHOULD_ASSERT_FAIL);
-	printf("%d\n", testGameState.hand[player2][0]);
 
 	//test player3 got 1 card
 	custom_assert(testGameState.handCount[player3] == 1, testName, __LINE__, SHOULD_ASSERT_FAIL);
