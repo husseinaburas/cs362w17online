@@ -45,7 +45,7 @@ unittest3: unittest3.c dominion.o rngs.o
 	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest3 -g unittest3.c dominion.o rngs.o
 
 unittest4: unittest4.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -std=c99 -o unittest4 -g unittest4.c dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest4 -g unittest4.c dominion.o rngs.o
 	
 
 	
