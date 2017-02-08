@@ -12,7 +12,7 @@
 void testgetCost() {
 	printf("----TEST getCost Function-----\n");
 	
-    int costArray[27] = {0,2,5,8,0,3,6,6,5,5,4,5,4,4,3,0,4,5,3,5,3,4,2,0,5,4,4};  // Costs referenced from http://dominion.diehrstraits.com/?set=All&f=list
+    int costArray[27] = {0,2,5,8,0,3,6,6,5,4,4,5,4,4,3,4,3,5,3,5,3,4,2,5,4,4,4};  // Costs referenced from http://dominion.diehrstraits.com/?set=All&f=list
     char*NameArray[27] = {"curse","estate","duchy","province","copper",
     "silver","gold","adventurer","council_room","feast","gardens","mine",
     "remodel","smithy","village","baron","great_hall","minion","steward",
@@ -30,10 +30,23 @@ void testgetCost() {
 
     	else
     	{
-    		printf("PASS for parameters %s.  Cost Expected:%i  Cost Returned:%i \n",(*pointerToNameArray)[i], costArray[i], tempCost);
+    	printf("FAIL for parameters %s.  Cost Expected:%i  Cost Returned:%i \n",(*pointerToNameArray)[i], costArray[i], tempCost);
     	}
    }
-        
+   
+   int outsideOfCardNumBounds = 30;
+   int expectedReturnOfOutsideBounds = -1;
+   int costOutsideBounds = getCost(outsideOfCardNumBounds); 
+
+   if(costOutsideBounds == expectedReturnOfOutsideBounds)
+   	{
+   	printf("PASS for invalid vard.  Return Value Expected:%i   Return Value:%i \n",expectedReturnOfOutsideBounds, costOutsideBounds);
+   	}
+
+    else
+    {
+    printf("FAIL for invalid vard.  Return Value Expected:%i   Return Value:%i \n",expectedReturnOfOutsideBounds, costOutsideBounds);
+    }
 
     return;
 }
