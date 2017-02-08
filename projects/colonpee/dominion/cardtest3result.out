@@ -1,0 +1,16 @@
+TESTING Village card!
+
+Playing Village for player 1. Should add 1 card to his hand from the deck and 2 actions
+Number of actions for player 1, before playing Village: 1
+Cards in hand for player 1, before playing Village: 5
+Cards in discard pile for player 1, before playing Village: 0
+Cards in deck for player 1, before playing Village: 5
+Getting one free Village for player 1
+After playing Village, player 1 should have + 1 card in hand 
+and 2 more actions.
+Number of actions for player 1: 2 - PASS
+Played cards: 1 - PASS
+Cards in hand for player 1: 7 - FAIL (should be 6)
+Cards in deck for player 1: 3 - FAIL (should be 4)
+testVillage fails miserably.
+
