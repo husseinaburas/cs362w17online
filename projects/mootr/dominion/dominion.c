@@ -1005,17 +1005,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3,
       return 0;
 
     case sea_hag:
-      for (i = 0; i < state->numPlayers; i++) {
-        if (i != currentPlayer) {
-          state->discard[i][state->discardCount[i]] =
-              state->deck[i][state->deckCount[i]--];
-          state->deckCount[i]--;
-          state->discardCount[i]++;
-          state->deck[i][state->deckCount[i]--] =
-              curse;  // Top card now a curse
-        }
-      }
-      return 0;
+      return playSeaHag(state, handPos);
 
     case treasure_map:
       // search hand for another treasure_map
@@ -1240,20 +1230,18 @@ int playFeast(struct gameState *state, int handPos, int choice1) {
       }
     } else {
       if (DEBUG) {
-        printf("Deck Count: %d\n",
-               state->handCount[currentPlayer] +
-                   state->deckCount[currentPlayer] +
-                   state->discardCount[currentPlayer]);
+        printf("Deck Count: %d\n", state->handCount[currentPlayer] +
+                                       state->deckCount[currentPlayer] +
+                                       state->discardCount[currentPlayer]);
       }
 
       gainCard(choice1, state, 0, currentPlayer);  // Gain the card
       x = 0;                                       // No more buying cards
 
       if (DEBUG) {
-        printf("Deck Count: %d\n",
-               state->handCount[currentPlayer] +
-                   state->deckCount[currentPlayer] +
-                   state->discardCount[currentPlayer]);
+        printf("Deck Count: %d\n", state->handCount[currentPlayer] +
+                                       state->deckCount[currentPlayer] +
+                                       state->discardCount[currentPlayer]);
       }
     }
   }
@@ -1300,6 +1288,20 @@ int playMine(struct gameState *state, int handPos, int choice1, int choice2) {
     }
   }
 
+  return 0;
+}
+
+int playSeaHag(struct gameState *state, int handPos) {
+  int currentPlayer = whoseTurn(state);
+  for (int i = 0; i < state->numPlayers; i++) {
+    if (i != currentPlayer) {
+      state->discard[i][state->discardCount[i]] =
+          state->deck[i][state->deckCount[i]--];
+      state->deckCount[i]--;
+      state->discardCount[i]++;
+      state->deck[i][state->deckCount[i]--] = curse;  // Top card now a curse
+    }
+  }
   return 0;
 }
 // end of dominion.c

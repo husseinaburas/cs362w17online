@@ -135,5 +135,5 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int handPos, int choice1);
 int playCouncilRoom(struct gameState *state, int handPos);
 int playMine(struct gameState *state, int handPos, int choice1, int choice2);
-
+int playSeaHag(struct gameState *state, int handPos);
 #endif
