@@ -166,7 +166,7 @@ int checkTreasureMap (struct gameState * G, int scenario) {
 	int testresponse, controlresponse;
 	int p;
 	int response;
-
+	controlresponse = 0; response = 0; // to silence unused var warning
 	struct gameState Gpre, Gcontrol;
 	// Create a pre and control Game state that is copy of G
 	memcpy (&Gpre, G, sizeof(struct gameState));
@@ -184,7 +184,7 @@ int checkTreasureMap (struct gameState * G, int scenario) {
 			if (G->hand[p][c] == treasure_map) { handPos = c; }
 		}
 		if (handPos == -1) {
-			// printf ("\nNOTE Player %d: did NOT find Treasure Map in player's hand\n", p);
+			printf ("NOTE Player %d: did NOT find Treasure Map in player's hand\n", p);
 			//printGameState (G);
 		}
 
@@ -367,11 +367,8 @@ int checkTreasureMap (struct gameState * G, int scenario) {
 }
 
 int main () {
-	printf ("\n\nstarting cardtest1 -- testing SMITHY function\n\n");
-	// DEBUGGING
-	// printf ("MAX_HAND = %d, MAX_DECK = %d, MAX_PLAYERS = %d\n", MAX_HAND, MAX_DECK, MAX_PLAYERS);
+	printf ("\n\nstarting cardtest3 -- testing TREASURE MAP function\n\n");
 	// MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
-
 
 	int player, response, p;
 	struct gameState G; // test game state
