@@ -1,7 +1,6 @@
-/*
+/* Author: Elton Lee
  * cardtest1.c
- *
- 
+ * unit test for adventurer
  */
 
 /*

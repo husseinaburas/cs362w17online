@@ -1,7 +1,6 @@
-/*
+/* Author: Elton Lee
  * cardtest2.c
- *
- 
+ * unit test for smithy 
  */
 
 /*

@@ -1,9 +1,9 @@
-#ifndef _CARDTEST2_H
-#define _CARDTEST2_H
+#ifndef _CARDTEST3_H
+#define _CARDTEST3_H
 
 /* Author: Elton Lee
- * cardtest2.c
- * unit test for smithy 
+ * cardtest3.h
+ * unit test for council_room
  */
 
 int runCardTest(int deckSize, int discardSize);
