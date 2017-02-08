@@ -115,9 +115,9 @@ int main() {
     else{testResult = FAIL;}
     customAssert(testResult, "Hand Count", observed, expected);
 
-    // Check that the played card count increased by 1.
+    // Check that the played card count stayed the same.
     observed = testG.playedCardCount;
-    expected = G.playedCardCount + 1;
+    expected = G.playedCardCount;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Played Card Count", observed, expected);
@@ -129,9 +129,9 @@ int main() {
     else{testResult = FAIL;}
     customAssert(testResult, "Discard Count", observed, expected);
 
-    // Check that the player's deck count decreased by 1.
+    // Check that the player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer];
-    expected = G.deckCount[currentPlayer] - 1;
+    expected = G.deckCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Player Deck Count", observed, expected);

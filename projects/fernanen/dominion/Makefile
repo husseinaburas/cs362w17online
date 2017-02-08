@@ -1,5 +1,44 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
+unittestresults1.out: unittest1.c dominion.o rngs.o 
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+	unittest1 >> unittest1results.out
+	gcov -b dominion.c >> unittest1results.out
+
+unittestresults2.out: unittest2.c dominion.o rngs.o
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+	unittest2 >> unittest1results.out
+	gcov -b dominion.c >> unittest1results.out
+
+unittestresults3.out: unittest3.c dominion.o rngs.o
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+	unittest3 >> unittest1results.out
+	gcov -b dominion.c >> unittest1results.out
+unittestresults4.out: unittest4.c dominion.o rngs.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+	unittest4 >> unittest1results.out
+	gcov -b dominion.c >> unittest1results.out
+
+cardtestresults1.out: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+	cardtest1 >> cardtest1results.out
+	gcov -b dominion.c >> cardtest1results.out
+
+cardtestresults2.out: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+	cardtest2 >> cardtest1results.out
+	gcov -b dominion.c >> cardtest1results.out
+
+cardtestresults3.out: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+	cardtest3 >> cardtest1results.out
+	gcov -b dominion.c >> cardtest1results.out
+
+cardtestresults4.out: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+	cardtest4 >> cardtest1results.out
+	gcov -b dominion.c >> cardtest1results.out
+
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
@@ -36,4 +75,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out

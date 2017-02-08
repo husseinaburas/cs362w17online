@@ -1,0 +1,10 @@
+Allen Garvey
+CS 362
+Winter 2017
+Quiz 2
+
+The inputChar() function selects a random character with the range of all allowable values for the char datatype. It does this by first determining the range of values that the char datatype may have by comparing the CHAR_MAX and CHAR_MIN constants. It then generates a random number and uses the mod operator to limit the randomly generated int to that range. It then adds CHAR_MIN to the random number to ensure that the random number is not below the minimum value allowed for a char.
+
+The inputString() function generates a null terminated C string filled with random characters, of a random length between 0 and INPUT_STRING_BUFFER_LENGTH. It does this by first generating a random number between 0 and (INPUT_STRING_BUFFER_LENGTH - 1) (so the string will be null terminated), using the mod operator to limit the maximum value returned by the rand() function. If the random length is 0, the function returns the string "reset", since without doing this, I could not get the testme() function to exit, as the upper time bound to randomly generate this string is infinity. In all other cases, the string buffer is filled with random characters using the inputChar() function up to the specified random length. One thing to note is that the value from inputString is implemented using a global char array rather than dynamically allocating a pointer to string. This is because the function testme() does not free the pointer returned by inputString(), so that if memory were alloced for the pointer in inputString(), this would cause a memory leak, and the test would eventually exit due to lack of memory.
+
+When running testme, the program would generally fail (i.e. find the error) within 2000 to 3000 iterations. When the inputString function did not return "reset" when the random length was 0, the program did not find the error within 650,000 iterations, and had to be manually stopped.

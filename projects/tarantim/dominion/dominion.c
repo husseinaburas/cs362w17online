@@ -659,6 +659,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
     case adventurer:
 		adventurerCard(state, handPos, currentPlayer);
+    return 0;
     	break;
 
 	case council_room:
@@ -804,10 +805,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
 		smithyCard(state, handPos, currentPlayer);
+    return 0;
 		break;
 
     case village:
 		villageCard(state, handPos, currentPlayer);
+    return 0;
 		break;
 
     case baron:
@@ -1163,8 +1166,8 @@ int adventurerCard(struct gameState *state, int handPos, int currentPlayer){
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-	  		//drawntreasure++;
-			drawntreasure = drawntreasure;
+	  		drawntreasure++;
+			//drawntreasure = drawntreasure;
 		else{
 	  		temphand[z]=cardDrawn;
 	  		state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
