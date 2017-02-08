@@ -29,8 +29,8 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-unittestresults.out: unittest1.c dominion.o rngs.o
-	rm -f unittestresults.out
+unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c dominion.o rngs.o
+#	rm -f unittestresults.out
 	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
@@ -39,21 +39,21 @@ unittestresults.out: unittest1.c dominion.o rngs.o
 	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
 	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
-	./unittest1 &> unittestresult.out
+	./unittest1 &> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./unittest2 >> unittestresult.out
+	./unittest2 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./unittest3 >> unittestresult.out
+	./unittest3 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./unittest4 >> unittestresult.out
+	./unittest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./cardtest1 >> unittestresult.out
+	./cardtest1 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./cardtest2 >> unittestresult.out
+	./cardtest2 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./cardtest3 >> unittestresult.out
+	./cardtest3 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
-	./cardtest4 >> unittestresult.out
+	./cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
