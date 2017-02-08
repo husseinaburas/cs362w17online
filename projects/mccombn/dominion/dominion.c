@@ -399,15 +399,15 @@ int isGameOver(struct gameState *state) {
     }
 
   //if three supply pile are at 0, the game ends
-  j = 0;
-  for (i = 0; i < 25; i++)
+    j = 0;
+    for (i = 0; i < 25; i++)
     {
       if (state->supplyCount[i] == 0)
-	{
-	  j++;
-	}
+        {
+          j++;
+        }
     }
-  if ( j >= 3)
+    if ( j >= 3)
     {
       return 1;
     }
@@ -804,6 +804,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0; */
 		
     case village:
+        return playVillage(state, handPos);
+      /*
       //+1 Card
       drawCard(currentPlayer, state);
 			
@@ -813,7 +815,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
       return 0;
-		
+       */	
     case baron:
       state->numBuys++;//Increase buys by 1!
       if (choice1 > 0){//Boolean true or going to discard an estate
@@ -972,7 +974,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
 	state->playedCardCount++;
 	tributeRevealedCards[1] = -1;
-      }
+      } 
 
       for (i = 0; i <= 2; i ++){
 	if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold){//Treasure cards
@@ -1176,7 +1178,7 @@ int playAdventurer(struct gameState *state){
     int z = 0;// this is the counter for the temp hand
 
 	
-	while(drawntreasure<2){
+	while(drawntreasure<3){
 		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 		  shuffle(currentPlayer, state);
 		}
@@ -1191,7 +1193,7 @@ int playAdventurer(struct gameState *state){
 		}
 	  }
 	  while(z-1>=0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z++-1]; // discard all cards in play that have been drawn
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	   z=z-1;
 	  }
 	  
@@ -1294,6 +1296,20 @@ int playSteward(struct gameState *state, int handPos, int choice1, int choice2, 
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
   return 0;
+}
+
+int playVillage(struct gameState *state, int handPos){
+    int currentPlayer = whoseTurn(state);
+
+    //+1 Card
+     drawCard(currentPlayer, state);
+
+     //+2 Actions
+     state->numActions = state->numActions + 2;
+
+     //discard played card from hand
+     discardCard(handPos, currentPlayer, state, 0);
+     return 0;
 }
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)

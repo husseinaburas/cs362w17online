@@ -22,7 +22,6 @@ int main () {
 	struct gameState G;
 
 	initializeGame(2, k, 1, &G);
-
 	/*******************************************
 	//Test win condition province being empty
 	*******************************************/
@@ -30,6 +29,15 @@ int main () {
 	G.supplyCount[province] = 0;
 	r = isGameOver(&G);
 	assertTrue(r==1, "Province being empty and no win"); 
+
+	initializeGame(2, k, 1, &G);
+	/*******************************************
+	//Test win condition province being negative
+	*******************************************/
+
+	G.supplyCount[province] = -1;
+	r = isGameOver(&G);
+	assertTrue(r==1, "Province being negative and no win"); 
 
 
 	initializeGame(2, k, 1, &G);
@@ -57,6 +65,8 @@ int main () {
 	G.supplyCount[gold] = 0;
 	r = isGameOver(&G);
 	assertTrue(r==0, "False win condition. 2 empty piles");
+
+	printf("\n\n");
 
 	return 0;
 }

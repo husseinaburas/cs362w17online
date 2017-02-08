@@ -3,6 +3,96 @@
 #include "rngs.h"
 #include <stdlib.h>
 
+// *** for debugging purposes *****
+int printCounts (int player, struct gameState * G) {
+	int handcount = G->handCount[player];
+	int discardCount = G->discardCount[player];
+	int deckCount = G->deckCount[player];
+	int playedCardsCount = G->playedCardCount; // not sure if playedcardscount is needed it's not a separate pile??
+	printf ("Player: %d, handcount = %d, discardCount = %d, deckCount = %d, playedCardsCount = %d\n",
+			player, handcount, discardCount, deckCount, playedCardsCount);
+	return 0;
+}
+
+int printGameState (struct gameState * G) {
+	printf ("numPlayers = %d\n", G->numPlayers);
+	int i;
+	int totalsupply = 0;;
+	for (i = 0; i< (treasure_map+1); i++) {
+		totalsupply += G->supplyCount[i];
+	}
+	printf ("SUPPLY TOTAL=%d, supplyCount: ", totalsupply);
+	for (i = 0; i< (treasure_map+1); i++) {
+		printf ("#%d: %d, ", i, G->supplyCount[i]);
+	}
+	printf ("\n");
+	printf ("embargoTokens: ");
+	for (i = 0; i< (treasure_map+1); i++) {
+		printf ("#%d: %d, ", i, G->embargoTokens[i]);
+	}
+	printf ("\n");
+	printf ("outpostPlayed = %d, ", G->outpostPlayed);
+	printf ("outpostTurn = %d, ", G->outpostTurn);
+	printf ("whoseTurn = %d\n", G->whoseTurn);
+	printf ("phase = %d, ", G->phase);
+	printf ("numActions = %d, ", G->numActions);
+	printf ("coins = %d, ", G->coins);
+	printf ("numBuys = %d\n", G->numBuys);
+	int p, j;
+	for (p=0; p<2; p++) {
+		int handCount = G->handCount[p];
+		printf ("PLAYER #%d, HANDCOUNT=%d, hand[player][hand]: ", p, handCount);
+		for (j = 0; j<handCount; j++) {
+			printf ("[%d][hand:%d] = %d, ", p, j, G->hand[p][j]);
+		}
+		printf ("\n");
+
+		int deckCount = G->deckCount[p];
+		printf ("PLAYER #%d, DECKCOUNT=%d, deck[player][hand]: ", p, deckCount);
+		for (j = 0; j<deckCount; j++) {
+			printf ("[%d][deck:%d] = %d, ", p, j, G->deck[p][j]);
+		}
+		printf ("\n");
+
+		int discardCount = G->discardCount[p];
+		printf ("PLAYER #%d, DISCARDCOUNT=%d, discard[player][hand]: ", p, discardCount);
+		for (j = 0; j<discardCount; j++) {
+			printf ("[%d][discard: %d] = %d, ", p, j, G->discard[p][j]);
+		}
+		printf ("\n");
+		printf ("---------------------\n");
+	}
+	printf ("playedCardCount = %d, playedCards[x]: \n", G->playedCardCount);
+	for (j=0; j< (G->playedCardCount); j++) {
+		printf ("[%d] = %d", j, G->playedCards[j]);
+	}
+	printf ("\n");
+	return 0;
+}
+
+/*
+struct gameState {
+  int numPlayers; //number of players
+  int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
+  int embargoTokens[treasure_map+1];
+  int outpostPlayed;
+  int outpostTurn;
+  int whoseTurn;
+  int phase;
+  int numActions; // Starts at 1 each turn
+  int coins; // Use as you see fit!
+  int numBuys; // Starts at 1 each turn
+  int hand[MAX_PLAYERS][MAX_HAND];
+  int handCount[MAX_PLAYERS];
+  int deck[MAX_PLAYERS][MAX_DECK];
+  int deckCount[MAX_PLAYERS];
+  int discard[MAX_PLAYERS][MAX_DECK];
+  int discardCount[MAX_PLAYERS];
+  int playedCards[MAX_DECK];
+  int playedCardCount;
+};
+*/
+
 int main (int argc, char** argv) {
   struct gameState G;
   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
@@ -21,6 +111,11 @@ int main (int argc, char** argv) {
   int numAdventurers = 0;
 
   while (!isGameOver(&G)) {
+	// ** Debugging Code ***
+	//printCounts (0, &G);
+	//printCounts (1, &G);
+	printGameState (&G);
+	// *********************
     money = 0;
     smithyPos = -1;
     adventurerPos = -1;

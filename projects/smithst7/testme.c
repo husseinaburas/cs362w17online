@@ -5,18 +5,54 @@
 
 char inputChar()
 {
-    // TODO: rewrite this function
-    return ' ';
+    //restrict input domain to those characters used in the testme() function
+
+	int select = rand() % 9;
+	
+	switch (select) {
+	case 0:
+	return '[';
+	case 1:
+	return '(';
+	case 2:
+	return '{';
+	case 3:
+	return ' ';
+	case 4:
+	return 'a';
+	case 5:
+	return 'x';
+	case 6:
+	return '}';
+	case 7:
+	return ')';
+	case 8:
+	return ']';
+	}
 }
 
 char *inputString()
 {
-    // TODO: rewrite this function
-    return "";
+    	//i'm tempted to just have this function return 'reset'
+	// but we have to have *some* semblence of random
+	// so let's just restrict the domain to one of three possible choices
+
+	int select = rand() % 3;
+
+	switch 	(select){
+	case 0:
+	return "blorp";
+	case 1:
+	return "badoo";
+	case 2:
+	return "reset";
+	}
 }
 
 void testme()
 {
+  srand(time(NULL)); //initializing srand here because initializing it inside the
+			//functions makes the program take forever (returns would change only once per second)
   int tcCount = 0;
   char *s;
   char c;

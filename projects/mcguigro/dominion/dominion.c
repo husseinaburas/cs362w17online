@@ -1267,7 +1267,7 @@ int adventurerEffect(struct gameState *state, int currentPlayer, int temphand[])
 	int drawntreasure = 0;
 	int cardDrawn;
 	int z = 0;// this is the counter for the temp hand
-	while (drawntreasure<2) {
+	while (drawntreasure < 1) {
 		if (state->deckCount[currentPlayer] <1) {//if the deck is empty we need to shuffle discard and add to deck
 			shuffle(currentPlayer, state);
 		}
@@ -1307,6 +1307,7 @@ int villageEffect(struct gameState *state, int currentPlayer, int handPos)
 {
 	//+1 Card
 	drawCard(currentPlayer, state);
+	//printf("%d", state->deckCount[currentPlayer]);
 
 	//+2 Actions
 	state->numActions = 2;

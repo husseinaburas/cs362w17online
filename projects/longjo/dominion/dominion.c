@@ -33,7 +33,7 @@ void adventurerCard(struct gameState *state, int currentPlayer, int cardDrawn,in
 		{//if the deck is empty we need to shuffle discard and add to deck
 			
 		 //bug introduction
-		 //shuffle(currentPlayer, state);
+		 shuffle(currentPlayer, state);
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
@@ -117,6 +117,8 @@ void villageCard(struct gameState* state, int handPos, int currentPlayer)
 
 	//+2 Actions
 
+
+	// 2/1/2017, remove bug for code understanding...
 	//Introduce bug here....
 	state->numActions = state->numActions++;
 
@@ -125,7 +127,16 @@ void villageCard(struct gameState* state, int handPos, int currentPlayer)
 
 	//discard played card from hand
 	discardCard(handPos, currentPlayer, state, 0);
+
+
+
+
+
+
 }
+
+
+
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)

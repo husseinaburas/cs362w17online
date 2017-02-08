@@ -3,7 +3,7 @@
 #include "domtests.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 /*
 TESTS smithy card effect
 */
@@ -14,7 +14,6 @@ int main(){
 	int numPlayers = 2;
 	int seed = 10;
 	int cards[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
-	int p1CurrCoins, p2CurrCoins;
 	int testFlag = 0;
 	int player1 = 0;
 	int player2 = 1;
@@ -36,8 +35,9 @@ int main(){
 	//make multiple copies for testing
 	memcpy(&TestGame2, &TestGame1, sizeof(struct gameState));
 	memcpy(&TestGame3, &TestGame1, sizeof(struct gameState));
-	memcpy(&TestGame3, &TestGame1, sizeof(struct gameState));
 	
+	printf("CARDTEST 1 -----------------------------------------------------------------\n");
+
 	printf("\nINITIALIZING TEST 0...\n");	
 	/*
 	* TEST 0: PRECONDITIONS - PLAYER NEEDS SMITHY IN HIS HAND, LOCATE SMITHY POSITION TO PASS INTO FUNCTION
@@ -83,7 +83,7 @@ int main(){
 	*/
 	checkTest(testFlag, 1);
 	
-	printf("\nINITIALIZING TEST 1...\n");	
+	printf("\nINITIALIZING TEST 2...\n");	
 	/*
 	* TEST 2: PLAY SMITHY FOR P1 DOES NOT AFFECT P2'S CARDS
 	*/

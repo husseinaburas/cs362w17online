@@ -27,7 +27,7 @@ int main(int argc, char** argv){
     int* pass = 0;
 
 	// int defining number of tests
-	int numTests = 4;
+	int numTests = 13;
 	
 	// int store the current player
     int currentPlayer;
@@ -54,39 +54,110 @@ int main(int argc, char** argv){
     int cardDrawn;
     int tempHand[MAX_HAND];
     int z = 0;
+    
+	int deckCounter;
+	int discards;
+	int i;
         
     currentPlayer = game.whoseTurn;
     
-    game.deck[currentPlayer][0] = estate;
-    game.deck[currentPlayer][1] = estate;
-    game.deck[currentPlayer][2] = estate;
-    game.deck[currentPlayer][3] = copper;
-    game.deck[currentPlayer][4] = copper;
+    game.hand[currentPlayer][0] = adventurer;
+    game.hand[currentPlayer][1] = gold;
+    game.hand[currentPlayer][2] = gold;
+    game.hand[currentPlayer][3] = gold;
+    game.hand[currentPlayer][4] = gold;
+    
+    game.deck[currentPlayer][0] = copper;
+    game.deck[currentPlayer][1] = copper;
+    game.deck[currentPlayer][2] = sea_hag;
+    game.deck[currentPlayer][3] = sea_hag;
+    game.deck[currentPlayer][4] = sea_hag;
     
 	// set the first card in the current player's hand to smithy
-	game.hand[currentPlayer][0] = village;
+	game.hand[currentPlayer][0] = adventurer;
 			
 	// call the function to test
 	playAdventurer(&game, 0, currentPlayer, cardDrawn, tempHand, z);
+	
+	printf("///// ----- STARTING CARD TEST 4 (ADVENTURER) -----/////\n");
+	
+	//======================================================================================
+	
+	/* Test Case 1
+	 * Description: playedCardCount should be 1 after calling playadventurer()
+	 * This test should FAIL.
+	 */
 	
 	playedCardCount = game.playedCardCount;
 	
 	assertTrue(playedCardCount, 1, "CARD TEST 4", "adventurer", 1, numTests, &pass);
 	
+	//======================================================================================
+	
+	/* Test Case 2
+	 * Description: the first played card should be adventurer after calling playadventurer()
+	 * This test should FAIL.
+	 */
+	 
 	playedCard = game.playedCards[0];
 			
 	assertTrue(playedCard, adventurer, "CARD TEST 4", "adventurer", 2, numTests, &pass);
 	
+	//======================================================================================
+	
+	/* Test Case 3
+	 * Description: the player's handcount should be 6 after calling playadventurer()
+	 * This test should FAIL.
+	 */
+	
 	numCards = game.handCount[currentPlayer];
-		
+			
 	assertTrue(numCards, 6, "CARD TEST 4", "adventurer", 3, numTests, &pass);
+	
+	//======================================================================================
+	
+	/* Test Case 4
+	 * Description: the player's discard count should be 3 after calling playadventurer()
+	 * This test should PASS.
+	 */
 	
 	discardCount = game.discardCount[currentPlayer];
 		
 	assertTrue(discardCount, 3, "CARD TEST 4", "adventurer", 4, numTests, &pass);
+	
+	//======================================================================================
+	
+	/* Test Case 5-7
+	 * Description: the discard pile should contain 3 sea_hags after calling playadventurer()
+	 * Test 5 and 6 should PASS. Test 7 should FAIL.
+	 */
+
+	for( i = 0; i < discardCount; i++){
+		discards = game.discard[0][i];
+		assertTrue(discards, sea_hag, "CARD TEST 4", "adventurer", (5+i), numTests, &pass);
+	}
+	
+	//======================================================================================
+	
+	/* Test Case 8-9
+	 * Description: the players first four cards should be gold, fifth and sixth card should copper
+	 * Test 8 and 12 should fail and 9, 10, 11, 13 should PASS.
+	 */
+
+	assertTrue(game.hand[currentPlayer][0], gold, "CARD TEST 4", "adventurer", 8, numTests, &pass);
+	assertTrue(game.hand[currentPlayer][1], gold, "CARD TEST 4", "adventurer", 9, numTests, &pass);
+	assertTrue(game.hand[currentPlayer][2], gold, "CARD TEST 4", "adventurer", 10, numTests, &pass);
+	assertTrue(game.hand[currentPlayer][3], gold, "CARD TEST 4", "adventurer", 11, numTests, &pass);
+	assertTrue(game.hand[currentPlayer][4], copper, "CARD TEST 4", "adventurer", 12, numTests, &pass);
+	assertTrue(game.hand[currentPlayer][5], copper, "CARD TEST 4", "adventurer", 13, numTests, &pass);
+	
+	//======================================================================================
 		
     if( pass == 0){
-    	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
+    	printf("**CARD TEST 4 SUCCESSFULLY PASSED\n**");
+    }
+    else{
+    	printf("**CARD TEST 4 FAILED**\n");
     }
 	
     return 0;
@@ -107,5 +178,8 @@ void assertTrue(int val1, int val2, char* testName, char* cardName, int testCase
 	if(val1 != val2){
 		printf("%s: Test Case %i of %i of card '%s' FAILED\n", testName, testCase, testCount, cardName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of %i of card '%s' PASSED\n", testName, testCase, testCount, cardName);
 	}
 }

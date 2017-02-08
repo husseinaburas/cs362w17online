@@ -1,3 +1,11 @@
+## Assignment 3
+
+	added unittests
+
+	modified makefile
+	
+	added testAssert function to dominion.c and dominion.h
+
 ## Random Testing Quiz
 
 	added testme.c
@@ -12,23 +20,23 @@
 
 	case adventurer
 
-    	case mine
+	case mine
 			
-    	case remodel
+	case remodel
 	
-    	case smithy
+	case smithy
 
-    	case baron
+	case baron
 
 ## bugs were added to:
 
 	adventurer
 			
-    	remodel
+	remodel
 	
-    	smithy
+	smithy
 
-    	baron
+	baron
 
 ## udpated README
 

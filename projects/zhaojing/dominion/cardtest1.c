@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 	
 	//test adventurer when 2 treasure cards are at the beginning of the deck
 	printf("testing player1 playing adventurer with 2 treasure cards at beginning of deck\n");
+	
 	G.hand[whoseTurn][0] = adventurer;
 	G.deck[whoseTurn][0] = copper;
 	G.deck[whoseTurn][1] = copper;
