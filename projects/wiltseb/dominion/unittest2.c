@@ -42,6 +42,8 @@ int main(){
 		initSupplyCt[i] = TestGame1.supplyCount[i];
 	}
 	
+	printf("UNITTEST 2 -----------------------------------------------------------------\n");
+
 	printf("INITIATING TEST 0...\n");
 	/*
 	TEST 0: PRECONDITIONS - PLAYED CARD COUNT SHOULD BE INITIALIZED TO 0, HANDCOUNT IS 5, DECK IS 5, DISCARD IS 0

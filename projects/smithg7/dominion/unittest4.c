@@ -51,7 +51,7 @@ int main()
            sea_hag, tribute, smithy};
   initializeGame(2, k, 2, myState);
 
-
+  printf("----------------- Unit Test 4: updateCoins() ----------------\n");
 
   /******************************************
    Testing player parameter of updateCoins() (first parameter)
@@ -201,6 +201,8 @@ int main()
   assertTrue(result, 0, "Updated coins with 1 gold, 1 silver, 1 copper & 1 bonus. No error from updateCoins().");
   assertTrue(myState->coins, 7, "Update Coins with 1 gold, 1 silver, 1 copper & 1 bonus.  Coins = 7.");
   initializeGame(2, k, 2, myState);
+
+  printf("----------------- Unit Test 2 - COMPLETE ----------------\n");  
 
   return 0;
 }
