@@ -68,6 +68,7 @@ int runCardTest(int deckSize, int discardSize)
 
 		G.hand[j][0] = council_room; // council_room needs to be played from hand
     }
+
     printf("Starting hand:\n");
     for (i = 0; i < G.handCount[0]; i++)
     {
@@ -79,11 +80,13 @@ int runCardTest(int deckSize, int discardSize)
     int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
     int startNumBuys = G.numBuys;
     int startHandCountPlayer2 = G.handCount[1];
+	int totalCardsPlayer2 = G.handCount[1] + G.deckCount[1] + G.discardCount[1];
 
     // run play council_room
     playCouncil_Room(&G, 0);
 
     // Check +4 cards to hand
+	printf("-----TEST 1: CHECKING +4 TO HAND AND COUNCIL_ROOM NO LONGER IN HAND-----\n");
     printf("Number of cards in player 1's hand = %d, expected = %d\n", G.handCount[0], startHandCount + 4 - 1);
     asserttrue(G.handCount[0], startHandCount + 4 - 1);
     printf("Showing current cards in hand...\n");
@@ -91,17 +94,25 @@ int runCardTest(int deckSize, int discardSize)
     {
 		printf("%d ", G.hand[0][i]);
     }
+	printf("\n");
 
     // Check +1 buy action
-    printf("\nNumber of buys for player 1 = %d, expected = %d\n", G.numBuys, startNumBuys + 1);
+	printf("-----TEST 2: CHECK +1 BUY ADDED TO PLAYER 1-----\n");
+    printf("Number of buys for player 1 = %d, expected = %d\n", G.numBuys, startNumBuys + 1);
     asserttrue(G.numBuys, startNumBuys + 1);
-
-    printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-    asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-
-    // Check +1 card to player 2
+	
+	// Check +1 card to player 2
+	printf("-----TEST 3: CHECK OTHER PLAYER +1 CARD TO HAND-----\n");
     printf("Number of cards in player 2's hand = %d, expected = %d\n", G.handCount[1], startHandCountPlayer2 + 1);
     asserttrue(G.handCount[1], startHandCountPlayer2 + 1);
+	
+	// Check card total for players
+	printf("-----TEST 4: CHECK DECK TOTALS FOR BOTH PLAYERS-----\n");
+    printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+    asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+    printf("Total cards for player 2 = %d, expected = %d\n", G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
+    asserttrue(G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
+
     printf("\n\n");
 
     return 0;
