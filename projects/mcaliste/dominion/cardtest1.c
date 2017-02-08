@@ -59,6 +59,22 @@ int main() {
     handCard(numHandCards(&state)-2, &state) == gold);
   //printf("New hand count %d\n", numHandCards(&state));
 
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   printf("*** Test empty deck + shuffle discard + play adventurerCard:\n");
   state2.deckCount[currentPlayer] = 0;
@@ -83,6 +99,22 @@ int main() {
     handCard(numHandCards(&state2)-2, &state2) == gold);
 
   //printf("New hand count %d\n", numHandCards(&state2));
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   // this is being broken by the bug introduced in assignment 2
   printf("Test discard has 2 fewer cards:\n");

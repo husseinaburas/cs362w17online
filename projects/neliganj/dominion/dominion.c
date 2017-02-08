@@ -1228,7 +1228,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 int playSmithy(struct gameState *state, int handPos) {
   //+3 Cards
-  for (int i = 0; i < 3; i--)
+  for (int i = 0; i < 3; i++)
   {
     drawCard(state->whoseTurn, state);
   }
