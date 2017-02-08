@@ -3,7 +3,7 @@
 * CS-362
 * Winter 2017
 * Assignment-3
-* Card Test 4 - test for cardAdventurer()
+* Card Test 4 - test for cardCutpurse()
 ------------------------------------------------*/
 
 /*
