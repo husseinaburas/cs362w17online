@@ -18,7 +18,7 @@ void testsea_hagAction() {
   int playerZero = 0;
   int playerOne = 1; 
 
-//---GS1 TEST---- Test that we Draw 1 cards from draw, and discard 1, so hand will have 5 cards.
+//---GS1 TEST---- 
   struct gameState *GS1 = newGame();
   initializeGame(2,k,seed,GS1);
   GS1->numPlayers = 2;
@@ -117,13 +117,13 @@ void testsea_hagAction() {
         printf("FAIL for success on current players discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerZeroGS1, GS1->discardCount[playerZero]);
     }
 
-  int expecteddiscardCountplayerOneGS1 = 2;  //Expected to incrase by one after playing sea_hag (1+1=2)
-  if(expecteddiscardCountplayerOneGS1 == GS1->discardCount[playerZero]){
-        printf("PASS for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerZero]);
+  int expecteddiscardCountplayerOneGS1 = 1;  //Expected to incrase by one after playing sea_hag and curse card added (1+1=2)
+  if(expecteddiscardCountplayerOneGS1 == GS1->discardCount[playerOne]){
+        printf("PASS for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerOne]);
     }
   else
     {
-        printf("FAIL for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerZero]);
+        printf("FAIL for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerOne]);
     }
 
   int isSea_hagInHand = 1;

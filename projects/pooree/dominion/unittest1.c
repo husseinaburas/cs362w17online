@@ -51,6 +51,10 @@ int main() {
     if(testG.playedCardCount + discarded != G.playedCardCount)
         failedTest();
 
+    printf("discard count = %d, expected = %d\n", testG.discardCount[currentPlayer], G.discardCount[currentPlayer] + 1);
+    if(testG.discardCount[currentPlayer] != G.discardCount[currentPlayer]+1)
+        failedTest();
+
     printf("--Test 2: Test that current player's hand count decreases by 1 with trash flag --\n");
 
     // copy the game state to a test case 
@@ -75,7 +79,7 @@ int main() {
     if (G.hand[currentPlayer][testG.handCount[currentPlayer]] != -1) 
         failedTest();
 
-    /*Write tests for how discard should be changing..... */
+    
 
 
     printf("------------ Testing complete for: %s -----------------------\n", TESTFUNCTION);

@@ -1,5 +1,31 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
+cardtest1: cardtest1.c
+	gcc -o cardtest1 cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c
+	gcc -o cardtest2 cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+cardtest3: cardtest3.c
+	gcc -o cardtest3 cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c
+	gcc -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+unittest1: unittest1.c
+	gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
+
+unittest2: unittest2.c
+	gcc -o unittest2 unittest2.c dominion.o rngs.o $(CFLAGS)
+
+unittest3: unittest3.c
+	gcc -o unittest3 unittest3.c dominion.o rngs.o $(CFLAGS)
+
+unittest4: unittest4.c
+	gcc -o unittest4 unittest4.c dominion.o rngs.o $(CFLAGS)
+
+gcovtests: 
+
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
@@ -28,6 +54,16 @@ runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+
+unittestresult.out: rngs.o dominion.o cardtest1 cardtest3 cardtest4 unittest3 unittest4
+	./cardtest1 >& unittestresult.out
+	./cardtest3 >> unittestresult.out
+	./cardtest4 >> unittestresult.out
+	./unittest3 >> unittestresult.out
+	./unittest4 >> unittestresult.out
+	gcov dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
 
 
 player: player.c interface.o
