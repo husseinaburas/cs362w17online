@@ -31,6 +31,7 @@ int runCardTest(int deckSize, int discardSize)
 {
     printf("Running smithy test with %d cards in deck and %d cards in discard\n", deckSize, discardSize);
     int i;
+	int j;
     int seed = 1000;
     int numPlayers = 2;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
@@ -78,7 +79,6 @@ int runCardTest(int deckSize, int discardSize)
 
     int startHandCount = G.handCount[0];
     int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
-    int startHandCountPlayer2 = G.handCount[1];
 	int totalCardsPlayer2 = G.handCount[1] + G.deckCount[1] + G.discardCount[1];
 
     // run playSmithy
