@@ -1,9 +1,5 @@
 /*********************************************************************
- * cardtest1.c
- * Include the following lines in your makefile:
- *
- * cardtest1: cardtest1.c dominion.o rngs.o newAssert.0
- *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o newAssert.o $(CFLAGS)
+ * unittest3.c
  *********************************************************************/
 
 
