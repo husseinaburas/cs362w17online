@@ -52,7 +52,7 @@ void testUpdateCoins() {
     int playerGS3 = 2;  //Maxplayers is 4, test 0-3 array indexing
     int bonusGS3 = 1;  
     GS3->coins = 0; 
-    GS3->handCount[playerGS3] = 75;  //Test hand of 5 cards (average).
+    GS3->handCount[playerGS3] = 75;  
     
     for(int cop=0; cop < 25; cop++)  //Assigns 0-24 indexs to copper cards
     {
@@ -68,24 +68,24 @@ void testUpdateCoins() {
     }
 
 //---GS4 TEST---- Test coin and bonus w/ estate/adv cards
-    // Expect coin output: 8 (Copper+Silver+Gold+Bonus = 1+2+3+2=8)
-    int coinExpectedForGS4 = 8;
+    // Expect coin output: 8 (Copper+Silver+Gold+Bonus = 1+2+3+1+2+3=12)
+    int coinExpectedForGS4 = 12;
     struct gameState *GS4 = newGame();
     initializeGame(2,k,seed,GS4);
     int playerGS4 = 3;  //Maxplayers is 4, test 0-3 array indexing
-    int bonusGS4 = 2;  
+    int bonusGS4 = 0;  
     GS4->coins = 0; //Verify an inital 0 amount
-    GS4->handCount[playerGS4] = 10;  //Test hand of 5 cards (average).
+    GS4->handCount[playerGS4] = 10;  
     GS4->hand[playerGS4][0] = copper;  //Coin value is 1
     GS4->hand[playerGS4][1] = silver;  //Coin value is 2
     GS4->hand[playerGS4][2] = gold;  //Coin value is 3
     GS4->hand[playerGS4][3] = adventurer; //Coin value is 0
     GS4->hand[playerGS4][4] = smithy; //Coin value is 0
-    GS4->hand[playerGS4][0] = copper;  //Coin value is 1
-    GS4->hand[playerGS4][1] = silver;  //Coin value is 2
-    GS4->hand[playerGS4][2] = gold;  //Coin value is 3
-    GS4->hand[playerGS4][3] = adventurer; //Coin value is 0
-    GS4->hand[playerGS4][4] = village; //Coin value is 0
+    GS4->hand[playerGS4][5] = copper;  //Coin value is 1
+    GS4->hand[playerGS4][6] = silver;  //Coin value is 2
+    GS4->hand[playerGS4][7] = gold;  //Coin value is 3
+    GS4->hand[playerGS4][8] = adventurer; //Coin value is 0
+    GS4->hand[playerGS4][9] = village; //Coin value is 0
 
 
 
