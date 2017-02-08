@@ -39,25 +39,28 @@ int main() {
 	
 	// Test 1 : handNum + newDraw - discard = newHandNum
 	// Expected result : 5 + 3 - 1 = 7
-	printf("Test 1: Correct number of cards in hand");
+	printf("Test 1: Correct number of cards in hand\n");
 	expected = 7;
+	printf("%d\n", G.handCount[0]);
 	assert_true(G.handCount[0] == expected);
 	
 	// Test 2 : origPlayedCardCount + 1 = newPlayedCardCount
 	// Expected result : 0 + 1 = 1
-	printf("Test 2: Correct number of played cards");
+	printf("Test 2: Correct number of played cards\n");
 	expected = 1;
+	printf("%d\n", G.playedCardCount);
 	assert_true(G.playedCardCount == expected);
 
 	// Test 3 : deckCount - draw = newDeckCount
 	// Expected result : 5 - 3 = 2
-	printf("Test 3: Correct number of cards in deck");
+	printf("Test 3: Correct number of cards in deck\n");
 	expected = 2;
+	printf("%d\n", G.deckCount[0]);
 	assert_true(G.deckCount[0] == expected);
 	
 	// Test 4 : discardCount + newDiscard = newDiscardCount
 	// Expected result : 0 + 1 = 1
-	printf("Test 4: Correct number of cards in discard pile");
+	printf("Test 4: Correct number of cards in discard pile\n");
 	expected = 1;
 	assert_true(G.discardCount[0] == expected);
 	
@@ -65,19 +68,21 @@ int main() {
 	
 	// Test 5 : handNum + newDraw - discard = newHandNum
 	// Expected result : 5 + 0 - 0 = 5
-	printf("Test 5: Correct number of cards in opponent hand");
+	printf("Test 5: Correct number of cards in opponent hand\n");
 	expected = 5;
+	printf("%d\n", G.handCount[1]);
 	assert_true(G.handCount[1] == expected);
 
 	// Test 6 : deckCount - draw = newDeckCount
 	// Expected result : 5 - 0 = 5
-	printf("Test 6: Correct number of cards in deck");
+	printf("Test 6: Correct number of cards in deck\n");
 	expected = 5;
+	printf("%d\n", G.deckCount[1]);
 	assert_true(G.deckCount[1] == expected);
 	
 	// Test 4 : discardCount + newDiscard = newDiscardCount
 	// Expected result : 0 + 0 = 0
-	printf("Test 4: Correct number of cards in discard pile");
+	printf("Test 4: Correct number of cards in discard pile\n");
 	expected = 0;
 	assert_true(G.discardCount[1] == expected);
 }
@@ -87,9 +92,9 @@ int main() {
 void assert_true(int bool) {
   
 	if (bool != 0) {
-		printf("      -Test Passed");
+		printf("      -Test Passed\n");
 	}
 	else {
-		printf("      -Test Failed");
+		printf("      -Test Failed\n");
 	}
 }
