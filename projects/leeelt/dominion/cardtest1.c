@@ -1,5 +1,5 @@
 /*
- * cardtest4.c
+ * cardtest1.c
  *
  
  */
@@ -7,10 +7,9 @@
 /*
  * Include the following lines in your makefile:
  *
- * cardtest4: cardtest4.c dominion.o rngs.o
- *      gcc -o cardtest1 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+ * cardtest1: cardtest1.c dominion.o rngs.o
+ *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
  */
-
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -19,56 +18,97 @@
 #include <assert.h>
 #include "rngs.h"
 #include <stdlib.h>
+#include "cardtest1.h"
 
+int main()
+{
+	runCardTest(gold, 0, 5, gold, 1, 5);
+	runCardTest(gold, 2, 5, silver, 0, 5);
+	runCardTest(silver, 0, 5, silver, 2, 5);
+	runCardTest(silver, 0, 5, gold, 0, 5);
+	runCardTest(gold, 2, 5, silver, 2, 5);
+	runCardTest(gold, 1, 5, silver, 0, 5);
+    return 0;
+}
 
-int main() {
-	int i, j, m;
-    int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
-	int handCount;
-	struct gameState G, testG;
+int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int discardTreasure, int discardTreasureCount, int discardSize)
+{
+	printf("Running playAdventurer test with %d treasures (enum = %d) in deck and %d treasures (enum = %d) in discard\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
+	int i;
+	int seed = 1000;
+	int numPlayers = 2;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
-
-	// initialize a game state and player cards
+		 sea_hag, tribute, smithy, council_room};
+	int expectedTreasure = discardTreasureCount + deckTreasureCount; // holds the amount of treasure that we will draw
+	if (expectedTreasure > 2){
+		expectedTreasure = 2;
+	}
+    struct gameState G;
 	initializeGame(numPlayers, k, seed, &G);
+	G.deckCount[0] = 0;
 
-	// set up deck for player 1 and player 2
-	G.deck[0][0] = copper;
-	G.deck[0][1] = smithy;
-	G.deck[0][2] = province;
-	G.deck[0][3] = smithy;
-	G.deck[0][4] = gold;
-	G.deckCount[0] = 5;
+    // initialize player 1 deck.
+    for (i = 0; i < deckTreasureCount; i++)
+    {
+	G.deck[0][i] = deckTreasure;
+	G.deckCount[0]++;
+    }
 
-	G.deck[1][0] = gold;
-	G.deck[1][1] = silver;
-	G.deck[1][2] = province;
-	G.deck[1][3] = duchy;
-	G.deck[1][4] = gold;
-	G.deckCount[1] = 5;
+    for (i = G.deckCount[0]; i < deckSize; i++)
+    {
+	G.deck[0][i] = smithy;
+	G.deckCount[0]++;
+    }
 
+    // initialize player 1 discard
+    for (i = 0; i < discardTreasureCount; i++)
+    {
+	G.discard[0][i] = discardTreasure;
+	G.discardCount[0]++;
+    }
+    for (i = G.discardCount[0]; i < discardSize; i++)
+    {
+	G.discard[0][i] = smithy;
+	G.discardCount[0]++;
+    }
 
-	// set up hand for player 1 and player 2
-	G.hand[0][0] = adventurer;
+    // initialize player 1 hand
+    G.hand[0][0] = adventurer;
 	G.hand[0][1] = gold;
 	G.hand[0][2] = silver;
-	G.hand[0][3] = smithy;
-	G.hand[0][4] = adventurer;
-	G.handCount[0] = 5;
+    G.hand[0][3] = smithy;
+   	G.hand[0][4] = adventurer;
+    G.handCount[0] = 5;
+	printf("Starting hand:\n");
+	for (i = 0; i< G.handCount[0]; i++){
+		printf("%d ", G.hand[0][i]);
+	}
+	printf("\n");
+	
+	int startHandCount = G.handCount[0];
+	int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
 
-	memcpy(&testG, &G, sizeof(struct gameState));
-	printf("Running playAdventurer...\n");
-	playAdventurer(&testG);
-	printf("Number of cards in hand = %d, expected = %d\n", testG.handCount[0], G.handCount[0] + 1);
-	printf("New cards are %d and %d, expected = %d (copper) and %d (gold)\n",testG.hand[0][4], testG.hand[0][5], copper, gold);
-	printf("Discard pile has %d cards, expected = %d", testG.discardCount[0], 4);
+	// run playAdventurer
+    playAdventurer(&G);
+
+	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
+    printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
+	asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1);
+	printf("Showing current cards in hand...\n");
+	for (i = 0; i< G.handCount[0]; i++){
+		printf("%d ", G.hand[0][i]);
+	}
+	printf("\nTotal cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+	asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+	printf("\n\n");
+
 	return 0;
 }
 
-
-void asserttrue(int val1, int val2){
-	if (val1 != val2) printf("Test failed.");
-	else printf("Test passed.");
+void asserttrue(int val1, int val2)
+{
+    if (val1 != val2)
+	printf("TEST FAILED \n");
+    else
+	printf("TEST PASSED \n");
 }
