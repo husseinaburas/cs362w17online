@@ -62,32 +62,7 @@ int main()
     
     //Announce test...
     printf(" ******** UNIT TEST: updateCoins() ************\n\n");
-    
-    //capture player score
-    //playerScore = scoreFor(thisPlayer, &G);
-    
-//    //Output Hand..
-//    for (i = 0; i < G.handCount[thisPlayer]; i++)
-//    {
-//        
-//        printf("Card is: %d\n", G.hand[thisPlayer][i] );
-//        
-//        /*
-//         if (state->hand[player][i] == copper)
-//         {
-//         state->coins += 1;
-//         }
-//         else if (state->hand[player][i] == silver)
-//         {
-//         state->coins += 2;
-//         }
-//         else if (state->hand[player][i] == gold)
-//         {
-//         state->coins += 3;
-//         }	*/
-//    }
-    
-    
+   
     //Capture Current coin state
     currentCoins = G.coins;
     printf("Coin State: %d\n", G.coins);
@@ -117,74 +92,9 @@ int main()
         printf("ACTUAL COIN VALUE: %d\n", postCoins );
     }
     
-    
-    
-    //Check to see expected value...
-    
-    
-//    for (i = 0; i < G.handCount[thisPlayer]; i++)
-//    {
-//        
-//        printf("Card is: %d\n", G.hand[thisPlayer][i] );
-//        
-//        /*
-//        if (state->hand[player][i] == copper)
-//        {
-//            state->coins += 1;
-//        }
-//        else if (state->hand[player][i] == silver)
-//        {
-//            state->coins += 2;
-//        }
-//        else if (state->hand[player][i] == gold)
-//        {
-//            state->coins += 3;
-//        }	*/
-//    }
-//    
-//    printf("Current Score: %d\n", playerScore);
-//    cont();
+
     return 0;
-    
-    /*
-     //TEST ONE...
-     printf("TEST ONE:  Check to see current players turn: \n");
-     printf("Testing for %d player(s)...\n", numPlayers);
-     
-     //Enter testing loop...
-     for ( i = 0 ; i < numPlayers ; i++ )
-     {
-     printf("EXPECTED whoseTurn: %d\n", i);
-     printf("  ACTUAL whoseTurn: %d\n", G.whoseTurn);
-     //set fail flag if test fails..
-     if ( i != G.whoseTurn )
-     {
-     flag = 0;
-     }
-     endTurn(&G);
-     }
-     
-     
-     //Output Results...
-     if ( flag != 0 )
-     {
-     printf("TEST PASSED...EXPECTED TURN(S) = ACTUAL TURN(s) on ALL TESTS \n");
-     }
-     else
-     {
-     printf("TEST FAILURE\n");
-     }
-     
-     
-     printf("******** END TEST ********\n");
-     
-     
-     */
-    
-    
-    
-    
-    
+  
 }
 
 

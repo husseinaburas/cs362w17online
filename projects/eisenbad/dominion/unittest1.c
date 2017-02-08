@@ -6,7 +6,9 @@
    This function searches through the player's hand and adds up the value of their treasure cards,
    in addition to any bonuses recieved during their turn.
 
-   Case 0: No treasure cards in hand. No bonuses.
+   Case 1: No treasure cards in hand. No bonuses.
+   Case 2: No treasure cards in hand. 4 bonus coins.
+   Case 3: 1 copper, 2 silver, and 2 gold in hand. 2 bonus coins.
     
    Pass Conditions:
      1. Current player receives correct number of coins for treasure cards in hand and bonus
@@ -44,7 +46,9 @@ int main() {
   int thisPlayer = G.whoseTurn;
   int nextPlayer = thisPlayer + 1;
 
-/**************************************** CASE 1 ****************************************************/
+  printf("\n----------------- Testing Function: %s ----------------\n", TESTFUNC);
+
+  /**************************************** CASE 1 ****************************************************/
   printf("\n CASE 1: No treasure cards in hand, no bonus coins\n");
 	
   // iterate through current player's hand and replace all cards with estates
