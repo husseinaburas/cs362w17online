@@ -137,7 +137,7 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos);
 int playVillage(struct gameState *state, int currentPlayer, int handPos);
 int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos);
 int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos);
-int notInHand(struct gameState *state, int currentPlayer, int choice1);
+int notInHand(struct gameState *state, int currentPlayer, int choice1); 
 
 
 #endif

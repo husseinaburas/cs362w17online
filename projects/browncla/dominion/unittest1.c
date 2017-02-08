@@ -25,7 +25,7 @@ int cmpfunc	(const void* a, const void* b) {
     return 1;
   if (*(int*)a < *(int*)b)
     return -1;
-  return 0;
+  return 0; 
 }
 
 

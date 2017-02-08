@@ -374,7 +374,7 @@ int main(){
 				success = 1;
 			}
 		}
-		if (success == 1){ // supplies staying the same
+		if (success == 1){ // supplies staying the same 
 			asserttrue(1, 17);
 		}
 		else if (testG.coins != G.coins){

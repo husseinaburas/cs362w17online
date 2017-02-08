@@ -1512,6 +1512,6 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
 
 
     return 0;
-}
+} 
 
 //end of dominion.c
