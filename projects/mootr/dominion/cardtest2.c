@@ -34,9 +34,9 @@ int main(int argv, char** argc) {
 
   printf("==============\tSTART TESTING\tplayAdventurer()\t==============\n");
 
-  // Setting first card of first player's hand to be Smithy
+  // Setting first card of first player's hand to be adventurer
   testState.hand[0][0] = adventurer;
-  // Playing smithy
+  // Playing adventurer
   playAdventurer(&testState, 0);
   updateCoins(0, &testState, 0);
   // Checking discard count to ensure the card was not discarded

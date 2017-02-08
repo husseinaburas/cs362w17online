@@ -35,9 +35,9 @@ int main(int argv, char** argc) {
 
   printf("==============\tSTART TESTING\tplayCouncilRoom()\t==============\n");
 
-  // Setting first card of first player's hand to be Smithy
+  // Setting first card of first player's hand to be council room
   testState.hand[0][0] = council_room;
-  // Playing smithy
+  // Playing council room
   playCouncilRoom(&testState, 0);
 
   // Checking discard count to ensure the card was not discarded
