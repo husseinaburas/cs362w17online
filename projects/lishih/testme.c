@@ -22,7 +22,7 @@ char *inputString()
     // TODO: rewrite this function
     int i;
     // input array of size 5
-    int array[5] = {'p', 'q', 'r', 's', '\0'};
+    int array[5] = {'r', 'e', 's', 't', '\0'};
 
     // allocation array memory
     char *randString =(char*) malloc (sizeof(char)* MAX_LENGTH);

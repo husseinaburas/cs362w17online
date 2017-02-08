@@ -1,7 +1,7 @@
         -:    0:Source:cardtest2.c
         -:    0:Graph:cardtest2.gcno
         -:    0:Data:cardtest2.gcda
-        -:    0:Runs:3
+        -:    0:Runs:2
         -:    0:Programs:1
         -:    1:#include "dominion.h"
         -:    2:#include <stdio.h>
@@ -10,49 +10,51 @@
         -:    5:
         -:    6://gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest2.c rngs.c -o cardtest2 -lm -g
         -:    7:
-        -:    8:
-        -:    9:int zdi_assert(int a, char * string)
-        -:   10:{
-        3:   11:  if(a == 1)
-        -:   12:  {
-    #####:   13:    printf("Test Passed: \t %s \n\n\n", string);
-    #####:   14:    return 0;
-        -:   15:  }
-        3:   16:  else if( a == 2)
-        -:   17:  {
-        3:   18:    printf("Test Failed: \t %s\n\n\n", string);
-        3:   19:  }
-        3:   20:  return 0;
-        -:   21:
-        3:   22:}
+        -:    8://ZDI assert is a function that receives a integer and a character.
+        -:    9:// It checks if the integer is one or 2, if it is one that means the test Passed.
+        -:   10:// If the integer is 2 it means the test failed
+        -:   11:int zdi_assert(int a, char * string)
+        -:   12:{
+        2:   13:  if(a == 1)
+        -:   14:  {
+    #####:   15:    printf("Test Passed: \t %s \n\n\n", string);
+    #####:   16:    return 0;
+        -:   17:  }
+        2:   18:  else if( a == 2)
+        -:   19:  {
+        2:   20:    printf("Test Failed: \t %s\n\n\n", string);
+        2:   21:  }
+        2:   22:  return 0;
         -:   23:
-        -:   24:
-        -:   25:int main()
-        -:   26:{
-        -:   27:  int a, b, c;
-        3:   28:  int randomSeed = 10;
-        -:   29:  struct gameState game;
-        -:   30:
-        3:   31:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
-        3:   32:  printf("\nCard Test 2\n-----------\n");
-        -:   33:
-        3:   34:  a = initializeGame(2,cards, randomSeed, &game);
+        2:   24:}
+        -:   25:
+        -:   26:
+        -:   27:int main()
+        -:   28:{
+        -:   29:  int a, b, c;
+        2:   30:  int randomSeed = 10;
+        -:   31:  struct gameState game;
+        -:   32:
+        2:   33:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        2:   34:  printf("\nCard Test 2\n-----------\n");
         -:   35:
-        3:   36:  b = numHandCards(&game);
+        2:   36:  a = initializeGame(2,cards, randomSeed, &game);
         -:   37:
-        3:   38:  cardEffect(smithy, 0, 0, 0, &game, 0, 0);
+        2:   38:  b = numHandCards(&game);
         -:   39:
-        3:   40:  c = numHandCards(&game);
-        3:   41:  b = b + 2; // add cards
-        3:   42:  if(b == c) // make sure each have the same amount of cards
-        -:   43:  {
-    #####:   44:    zdi_assert(1, "Card Effect - Smithy");
-    #####:   45:  }
-        -:   46:  else
-        -:   47:  {
-        3:   48:    zdi_assert(2, "Card Effect - Smithy");
-        -:   49:
-        -:   50:  }
+        2:   40:  cardEffect(smithy, 0, 0, 0, &game, 0, 0);
+        -:   41:
+        2:   42:  c = numHandCards(&game);
+        2:   43:  b = b + 2; // add cards
+        2:   44:  if(b == c) // make sure each have the same amount of cards
+        -:   45:  {
+    #####:   46:    zdi_assert(1, "Card Effect - Smithy");
+    #####:   47:  }
+        -:   48:  else
+        -:   49:  {
+        2:   50:    zdi_assert(2, "Card Effect - Smithy");
         -:   51:
-        3:   52:return 0;
-        -:   53:}
+        -:   52:  }
+        -:   53:
+        2:   54:return 0;
+        -:   55:}

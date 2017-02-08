@@ -3,12 +3,14 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <math.h>
+#include <stdlib.h>
 #include "rngs.h"
 
 #define DEBUG 0
 #define NOISY_TEST 1
 
-int checkDrawCard(int p, struct gameState *post) {
+void checkDrawCard(int p, struct gameState *post) {
   struct gameState pre;
   memcpy (&pre, post, sizeof(struct gameState));
 
@@ -77,6 +79,8 @@ int main () {
 	for (handCount = 0; handCount < 5; handCount++) {
 	  memset(&G, 23, sizeof(struct gameState)); 
 	  r = initializeGame(2, k, 1, &G);
+	  if (r == -1)
+		exit(1);
 	  G.deckCount[p] = deckCount;
 	  memset(G.deck[p], 0, sizeof(int) * deckCount);
 	  G.discardCount[p] = discardCount;

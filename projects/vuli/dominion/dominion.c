@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
@@ -1212,6 +1214,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 
+
 int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3) {
   int temphand[MAX_HAND];
   int drawntreasure=0;
@@ -1265,7 +1268,7 @@ int cardEffectCouncil_Room(int handPos, int currentPlayer, struct gameState *sta
   state->numBuys++;
       
   //Each other player draws a card
-  for (i=i; i < state->numPlayers; i++) {
+  for (i=0; i < state->numPlayers; i++) {
     drawCard(i, state);
   }
       
@@ -1352,6 +1355,7 @@ int cardEffectMinion(int handPos, int currentPlayer, struct gameState *state, in
   }
   return 0;
 }
+
 
 //end of dominion.c
 

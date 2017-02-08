@@ -14,7 +14,6 @@ char *inputString()
     const char lower_case_char_set[] = "rest"; // set the char_set to change testing time and chars covered.
     int len = 6;
     const int char_set_size = sizeof(lower_case_char_set) - 1;
-    printf("%i",char_set_size);
     char *randomString = malloc(len * sizeof(char));
     int i;
     for (i = 0; i < len - 1; i++){

@@ -95,15 +95,15 @@ int shuffle(int player, struct gameState *state);
 /* Assumes all cards are now in deck array (or hand/played):  discard is
  empty */
 
- int adventurer(struct gameState *state, int handPos); // adventurer card function version
+int Adventurer(struct gameState *state, int handPos); // adventurer card function version
 
-int smithy(int card, struct gameState *state, int handPos); // smithy card function version
+int Smithy(int card, struct gameState *state, int handPos); // smithy card function version
 
-int village (int card, struct gameState *state, int handPos); // village card function version
+int Village (int card, struct gameState *state, int handPos); // village card function version
 
-int  MoneyLender(int card, struct gameState *state, int handPos, int choice1); // moneylender card function version
+int MoneyLender(int card, struct gameState *state, int handPos, int choice1); // moneylender card function version
 
-int militia(int card, struct gameState *state, int handPos); //
+int Militia(int card, struct gameState *state, int handPos); //
 
 int playCard(int handPos, int choice1, int choice2, int choice3,
 	     struct gameState *state);

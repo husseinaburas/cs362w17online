@@ -5,11 +5,14 @@
 #include <string.h>
 #include <stdio.h>
 
-void asserttrue(int theEqualityBool) {
+void asserttrue(int theEqualityBool, int *testFailed) {
     
-    if (theEqualityBool)
+    if (theEqualityBool) {
         printf("l The Test Passed\n");
-    else
-        printf("X The Test DID NOT Pass\n");
+    }
+    else {
+        printf("X The Test did NOT Pass\n");
+        *testFailed = 1;
+    }
     return;
 }

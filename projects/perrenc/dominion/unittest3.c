@@ -27,11 +27,10 @@ int main(int argc, char** argv) {
     for(int i = 2 ; i <= MAX_PLAYERS ; i++){
         initializeGame(i, k, 65432, &G);
         
-        unsigned int turn = (i - 2);
-        G.whoseTurn = turn;
-        
-        testing_assert(whoseTurn(&G) == turn);
-       
+        for(int j = 0 ; j < i ; j++){
+            G.whoseTurn = j; 
+            testing_assert(whoseTurn(&G) == j);
+        }       
     }
     
     return (EXIT_SUCCESS);
@@ -39,7 +38,7 @@ int main(int argc, char** argv) {
 
 int testing_assert(int expression) {
     if (expression) {
-        printf("TEST SUCEEDED!\n");
+        printf("TEST SUCCEEDED!\n");
         return 1;
     } else {
         printf("TEST FAILED!\n");

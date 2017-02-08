@@ -43,6 +43,7 @@ unittestresults.out:
 	./unittest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest1.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -52,6 +53,7 @@ unittestresults.out:
 	./unittest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest2.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -61,6 +63,7 @@ unittestresults.out:
 	./unittest3 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest3.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -70,6 +73,7 @@ unittestresults.out:
 	./unittest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> unittest4.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -79,6 +83,7 @@ unittestresults.out:
 	./cardtest1 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest1.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -88,6 +93,7 @@ unittestresults.out:
 	./cardtest2 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest2.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -97,6 +103,7 @@ unittestresults.out:
 	./cardtest3 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest3.gcov
 	
 	echo "######################################" >> unittestresults.out
 	echo "######################################" >> unittestresults.out
@@ -106,6 +113,7 @@ unittestresults.out:
 	./cardtest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	cat dominion.c.gcov >> cardtest4.gcov
 	
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out

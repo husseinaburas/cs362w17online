@@ -587,59 +587,59 @@ int getCost(int cardNumber)
   switch( cardNumber ) 
     {
     case curse:
-      return 0;
+      return 0;//0
     case estate:
-      return 2;
+      return 2;//
     case duchy:
-      return 5;
+      return 5;//
     case province:
       return 8;
     case copper:
-      return 0;
+      return 0;//4
     case silver:
-      return 3;
+      return 3;//
     case gold:
-      return 6;
+      return 6;//
     case adventurer:
-      return 6;
+      return 6;//
     case council_room:
-      return 5;
+      return 5;//
     case feast:
-      return 4;
+      return 4;//9
     case gardens:
-      return 4;
+      return 4;//
     case mine:
-      return 5;
+      return 5;//
     case remodel:
-      return 4;
+      return 4;//
     case smithy:
-      return 4;
+      return 4;//
     case village:
-      return 3;
+      return 3;//14
     case baron:
-      return 4;
+      return 4;//
     case great_hall:
-      return 3;
+      return 3;//
     case minion:
-      return 5;
+      return 5;//
     case steward:
-      return 3;
+      return 3;//
     case tribute:
-      return 5;
+      return 5;//19
     case ambassador:
-      return 3;
+      return 3;//
     case cutpurse:
-      return 4;
+      return 4;//
     case embargo: 
-      return 2;
+      return 2;//
     case outpost:
-      return 5;
+      return 5;//
     case salvager:
-      return 4;
+      return 4;//24
     case sea_hag:
-      return 4;
+      return 4;//
     case treasure_map:
-      return 4;
+      return 4;//
     }
 	
   return -1;
@@ -652,7 +652,7 @@ int getCost(int cardNumber)
 int play_smithy_card(struct gameState *state, int currentPlayer, int handPos)
 {
    int i;
-   for (/*i = 0*/; i < 3; i++) /** Introduced bug, don't initialize i. **/
+   for (i = 0; i < 3; i++) /** Introduced bug, don't initialize i. **/
 	   {
 	     drawCard(currentPlayer, state);
 	   }
@@ -665,7 +665,7 @@ int play_smithy_card(struct gameState *state, int currentPlayer, int handPos)
 // *****************************************************
 int play_adventurer_card(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z )
 {
-  while(drawntreasure<=2) /** Introduced bug, should be < 2. **/
+  while(drawntreasure<2) /** Introduced bug, should be < 2. **/
   {
 	  if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	    shuffle(currentPlayer, state);
@@ -677,7 +677,7 @@ int play_adventurer_card(struct gameState *state, int currentPlayer, int drawntr
   	else{
 	    temphand[z]=cardDrawn;
 	    state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	  // z++ (removed this line to induce a bug, but left this message to be nice )
+	  	z++;
 	  }
   }
   while(z-1>=0){
@@ -693,13 +693,13 @@ int play_council_room(struct gameState *state, int currentPlayer, int handPos)
 {
   //+4 Cards
 	int i;
-  for (i = 0; i < 3; i++) /** Introduced bug, should be i < 4. **/
+  for (i = 0; i < 4; i++) /** Introduced bug, should be i < 4. **/
 	{
 	  drawCard(currentPlayer, state);
 	}
 			
   //+1 Buy Another bug, the line below shouldn't be commented out
-  // state->numBuys++;
+   state->numBuys++;
 			
   //Each other player draws a card
   for (i = 0; i < state->numPlayers; i++)
@@ -988,7 +988,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		case great_hall:
 			  play_great_hall(currentPlayer, state, handPos);
 	//*************************************			
-
+		  return 0;
+			
 		case minion:
 		  //+1 action
 		  state->numActions++;

@@ -259,8 +259,6 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     {
       return -1;
     }
-
-  cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus); 
 	
   //reduce number of actions
   state->numActions--;
@@ -669,32 +667,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      playAdventurer(drawntreasure, temphand, z, cardDrawn, currentPlayer, state);
+      return playAdventurer(drawntreasure, temphand, z, cardDrawn, currentPlayer, state);
 			
     case council_room:
       return playCouncil_Room(handPos, currentPlayer, state);
-      //+4 Cards
-      for (i = 0; i < 4; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //+1 Buy
-      state->numBuys++;
-			
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
-	}
-			
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
-			
-      return 0;
 			
     case feast:
       //gain card with cost up to 5

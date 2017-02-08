@@ -27,7 +27,8 @@ int main () {
 
 	memcpy (&pre, &post, sizeof(struct gameState));
 
-
+	post.deckCount[0] = 3; //Set deckCount so drawCard draws
+	pre.deckCount[0] = 3;
 	post.hand[0][0] = village;
 	post.whoseTurn = 0;
 	playVillage(&post, 0);
@@ -57,6 +58,7 @@ int main () {
 	//printf("Post: %d\n", b);
 
 
+	printf("\n\n");	
 
 	return 0;
 }
