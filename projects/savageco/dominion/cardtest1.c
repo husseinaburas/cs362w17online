@@ -89,7 +89,6 @@ int main() {
 	printf("Test 4: Correct number of cards in discard pile");
 	expected = 0;
 	assert_true(G.discardCount[1] == expected);
-}
 	
 	//
 	//  Second Tests (Reshuffle needed for card effect)
@@ -143,9 +142,6 @@ int main() {
 	printf("Test 4: Correct number of cards in discard pile");
 	expected = 0;
 	assert_true(G1.discardCount[1] == expected);
-}
-
-
 
 }
 
