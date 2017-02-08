@@ -1,6 +1,6 @@
-/* unittest1.c
+/* unittest2.c
 
-	for testing the shuffle function
+	for testing the drawcard function
 
 */
 
@@ -25,21 +25,17 @@ int main() {
 
 	initializeGame(2, testcards, 5, testGame);
 
-	int testhand[MAX_HAND];
+	int testdeck[MAX_HAND];
 	for (i=0; i< testGame->deckCount[1]; i++)
 	{
-		testhand[i] = testGame->deck[1][i];
+		testdeck[i] = testGame->deck[1][i];
 
 	}
 	
-	for (i=0; i< testGame->deckCount[1]; i++)
-	{
-		discardCard(i, 1, testGame, 0);
-	}
-	shuffle(1, testGame);
+	drawCard(1, testGame);
 
-	if (testhand == testGame->deck[1]){
-		printf("shuffle test failed\n");
-	}
-	else printf("shuffle test passed\n");
+	if (testdeck!= testGame->deck[1])
+	{	printf("draw test pass\n");	}
+	else printf ("draw test fail\n");	
+
 }
