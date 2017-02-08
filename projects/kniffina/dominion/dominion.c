@@ -1169,17 +1169,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
 {
-  //pre-condition to make sure that the card is in valid position
-  assert(state->handCount[currentPlayer] > handPos);
-
-  int startCount;
-
   //if card is not trashed, added to Played pile 
   if (trashFlag < 1)
     {
-      startCount = state->playedCardCount;
-
-      //add card to played pile
+        //add card to played pile
       state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
       state->playedCardCount++;
     }
@@ -1207,15 +1200,6 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;
     }
-
-  //post-condition assert statements to make sure that the player has one less card in their hand,
-  //To check if the trashflag is greater than or equal to 1, then the discard pile did not get a card
-  //To check if the trashflag is less than 1 then the discard pile gains a card
-  if(trashFlag < 1) {
-    assert(state->playedCardCount = 1 + startCount);
-  }
-  else
-    assert(state->playedCardCount = startCount);
 	
   return 0;
 }

@@ -13,19 +13,19 @@ Description:  This is a unit test for the getCost function in dominion.c
 #include <string.h>
 #include "rngs.h"
 
-int expectedValue[] = {0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4, 4, 3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4, -1};
+int expectedValue[] = {0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4, 4, 3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4};
 
 
 int testGetCost(int cardNumber){
 	int returnedCost = getCost(cardNumber);
 	
 	if (returnedCost == expectedValue[cardNumber]){
-		printf("Expected value: %d\n Returned value: %d\n", expectedvalue[cardNumber], returnedCost);
+		printf("Expected value: %i\n Returned value: %i\n", expectedValue[cardNumber], returnedCost);
 		return 1; 
 	}
 	
 	else if (returnedCost != expectedValue[cardNumber]){
-		printf("Expected value: %d\n Returned value: %d\n", expectedvalue[cardNumber], returnedCost);
+		printf("Expected value: %i\n Returned value: %i\n", expectedValue[cardNumber], returnedCost);
 		return 0; 
 	}
 

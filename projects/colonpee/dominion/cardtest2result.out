@@ -1,0 +1,18 @@
+TESTING Adventurer card!
+
+Playing adventurer for player 1. Should add 2 treasure cards
+to his hand from the deck and discard the other revealed cards
+Coins available for player 1, before playing Adventurer: 3
+Cards in hand for player 1, before playing Adventurer: 5
+Cards in discard pile for player 1, before playing Adventurer: 0
+Cards in deck for player 1, before playing Adventurer: 5
+Getting one free Adventurer for player 1
+After playing Adventurer, player 1 should have + 2 treasure cards
+in hand because Adventurer was added for free and
+played card should be set to 1.
+Coins available for player 1: 4 - FAIL (should be 5)
+Played cards: 0 - FAIL (should be 1)
+Cards in hand for player 1: 7 - PASS
+Cards in deck for player 1: 4 - FAIL (should be 3)
+testAdventurer fails miserably.
+
