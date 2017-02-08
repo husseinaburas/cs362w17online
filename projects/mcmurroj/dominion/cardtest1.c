@@ -138,24 +138,24 @@ void testadventurerAction() {
         printf("FAIL for success draws no cards when no treasure cards in deck.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS2, GS2->handCount[playerZero]);
     }
 
-  adventurerAction(playerZero,GS3,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
+  adventurerAction(playerZero,GS3,temphand);  
   int expectedCardsInHandGS3 = 7;
   if(expectedCardsInHandGS3 == GS3->handCount[playerZero]){
         printf("PASS for success draws 2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS3, GS3->handCount[playerZero]);
     }
     else
     {
-        printf("FAIL for success draws  2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS3, GS3->handCount[playerZero]);
+        printf("FAIL for success draws 2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS3, GS3->handCount[playerZero]);
     }
 
   adventurerAction(playerZero,GS4,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
-  int expectedCardsInHandGS4 = 7;
+  int expectedCardsInHandGS4 = 5;
   if(expectedCardsInHandGS4 == GS4->handCount[playerZero]){
-        printf("PASS for success draws 2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS4, GS4->handCount[playerZero]);
+        printf("PASS for success draws no cards as there is no deck or discard cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS4, GS4->handCount[playerZero]);
     }
     else
     {
-        printf("FAIL for success draws  2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS4, GS4->handCount[playerZero]);
+        printf("FAIL for success draws no cards as there is no deck or discard cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS4, GS4->handCount[playerZero]);
     }
 
 
