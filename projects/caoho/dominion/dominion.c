@@ -699,7 +699,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3,
 //		//put played card in played card pile
 //		discardCard(handPos, currentPlayer, state, 0);
 
-		return playCouncile_Room(state, handPos);
+		return playCouncil_Room(state, handPos);
 
 	case feast:
 //		//gain card with cost up to 5
@@ -1319,9 +1319,11 @@ int playAdventurer(struct gameState *state) {
 			z++;
 		}
 	}
-      else if (state->hand[player][i] == silver)
-	{
-	  state->coins += 2;
+//	while (z - 1 >= 0) { // original
+	while (z - 1 > 0) { //bug
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++] =
+				temphand[z - 1]; // discard all cards in play that have been drawn
+		z = z - 1;
 	}
 	return 0;
 }
@@ -1423,4 +1425,8 @@ int playCouncil_Room(struct gameState *state, int handPos) {
 	//put played card in played card pile
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
+}
+
+void assertMsg(const char *msg, int expected, int actual){
+	printf("%s\n%s:\texpected: %d\tactual: %d\n", msg, expected == actual ? "SUCCESS" : "FAILURE", expected, actual);
 }
