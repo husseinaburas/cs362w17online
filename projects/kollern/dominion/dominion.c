@@ -643,7 +643,10 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int adventurer(struct gameState *state, int handPos){
+int Adventurer(struct gameState *state, int handPos){
+	int z = 0;// this is the counter for the temp hand
+	int temphand[MAX_HAND];// moved above the if statement
+	int cardDrawn;
 	int currentPlayer = whoseTurn(state);
 	int drawntreasure=0;
 	while(drawntreasure<2){
@@ -667,8 +670,9 @@ int adventurer(struct gameState *state, int handPos){
       return 0;
 }
 
-int smithy(int card, struct gameState *state, int handPos){
-    int currentPlayer = whoseTurn(state);    
+int Smithy(int card, struct gameState *state, int handPos){
+	int i;
+	int currentPlayer = whoseTurn(state);    
 	//+3 Cards
       for (i = 0; i <= 3; i++)
 	{
@@ -680,7 +684,7 @@ int smithy(int card, struct gameState *state, int handPos){
       return 0;
 }
 
-int village (int card, struct gameState *state, int handPos){
+int Village (int card, struct gameState *state, int handPos){
     int currentPlayer = whoseTurn(state);    
 	//+1 Card
       drawCard(currentPlayer, state);
@@ -694,10 +698,11 @@ int village (int card, struct gameState *state, int handPos){
 }
 
 int MoneyLender(int card, struct gameState *state, int handPos, int choice1){
-    int currentPlayer = whoseTurn(state);
+	int j, i;
+	int currentPlayer = whoseTurn(state);
 	j = state->hand[currentPlayer][choice1];  //store card we will trash
 	
-	State->coins += 4;      
+	state->coins += 4;      
 
   for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
@@ -712,8 +717,9 @@ int MoneyLender(int card, struct gameState *state, int handPos, int choice1){
     return 0;
 }
 
-int militia(int card, struct gameState *state, int handPos){
-      int currentPlayer = whoseTurn(state);
+int Militia(int card, struct gameState *state, int handPos){
+	int i;
+	int currentPlayer = whoseTurn(state);
 	  //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
       state->coins = state->coins + 2;
