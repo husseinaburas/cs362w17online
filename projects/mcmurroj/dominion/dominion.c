@@ -655,9 +655,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  //int drawntreasure=0;
+  //int cardDrawn;
+  //int  z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -667,7 +667,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-     adventurerAction(drawntreasure,state,temphand);
+     adventurerAction(currentPlayer,state,temphand);
      return 0;
 			
     case council_room:
@@ -1298,7 +1298,7 @@ int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
     state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
     z++;
   }
-  drawntreasure++;
+  drawntreasure++;  
       }
       while(z-1>=0){
   state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
@@ -1310,7 +1310,7 @@ int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
 
 int smithyAction(int currentPlayer,int handPos,struct gameState *state)
 {
-     for (int i = 0; i < 3; i++)
+     for (int i = 0; i < 4; i++)
   {
     drawCard(currentPlayer, state);
   }
@@ -1352,7 +1352,7 @@ int salvagerAction(int currentPlayer, int choice1, int handPos, struct gameState
      //+2 buy
       state->numBuys = state->numBuys +2;
       
-      if (choice1)
+  if (choice1)
   {
     //gain coins equal to trashed card
     state->coins = state->coins + getCost( handCard(choice1, state) );
