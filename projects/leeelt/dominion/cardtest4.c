@@ -68,7 +68,7 @@ int runCardTest(int chosenCard)
 	    	G.handCount[j]++;
 		}
 
-		G.hand[j][0] = council_room; // council_room needs to be played from hand
+		G.hand[j][0] = feast; // set feast to the first card in hand
     }
     printf("Starting hand:\n");
     for (i = 0; i < G.handCount[0]; i++)
@@ -86,8 +86,9 @@ int runCardTest(int chosenCard)
     int startHandCount = G.handCount[0];
 	int startDiscardCount = G.discardCount[0];
     int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
+    int initialSupplyCount = G.supplyCount[chosenCard];
 
-    // run play council_room
+    // run play feast
     playFeast(&G, chosenCard);
 
 	// Check that feast has been trashed.
@@ -110,9 +111,15 @@ int runCardTest(int chosenCard)
 		printf("%d ", G.discard[0][i]);
     }
 
-	printf("\n-----TEST3: CHECKING DECK HAS THE RIGHT AMOUNT OF CARDS-----\n");
+    // Check player has right total cards
+	printf("\n-----TEST 3: CHECKING PLAYER 1 HAS THE RIGHT AMOUNT OF CARDS-----\n");
     printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
     asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+
+    // Checking supply has right num of cards
+    printf("-----TEST 4: CHECKING SUPPLY OF enum#%d HAS 1 LESS CARD-----\n", chosenCard);
+    printf("supply = %d, expected = %d\n", G.supplyCount[chosenCard], initialSupplyCount - 1);
+    asserttrue(G.supplyCount[chosenCard], initialSupplyCount - 1);
 
     printf("\n\n");
 
