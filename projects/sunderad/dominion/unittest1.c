@@ -15,8 +15,11 @@ int main(int argc, char const *argv[])
 	struct gameState twoPlayerG, threePlayerG, fourPlayerG;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
-	printf("-----------------------------------------------------------------------\n");
-	printf("Running Unit Test 1: Initialize Game Function\n\n");
+	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Unit Test 1: Initialize Game Function\n");
+	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("\n");
+
 	printf("Testing initializeGame(), 2 Players\n");
 	//-----------------------------------------------------------------------------
 	//Test a two player game initialization
@@ -265,10 +268,10 @@ int main(int argc, char const *argv[])
     }
 
     printf("Four Player Game Test Complete, %d Errors\n\n", errorFlag[2]);
-
-
+    
+    printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
     printf("Unit Test 1 Complete: %d Total Errors\n",(errorFlag[0]+errorFlag[1]+errorFlag[2]));
-    printf("-----------------------------------------------------------------------\n");
+    printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 
 	return 0;
 }

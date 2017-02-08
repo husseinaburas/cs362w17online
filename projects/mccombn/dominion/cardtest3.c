@@ -46,8 +46,6 @@ int main(int argc, char** argv) {
     //For this function, we're testing the whoseTurn() function
     //We're required to give it an initialized game.
     
-    int smithyTestPos = 7;
-    
     //printf("Player 1 cards: ");
     //for(i = 0; i < G.handCount[0]; ++i){
     //    printf("v: %i ", G.hand[0][i]);
@@ -75,9 +73,6 @@ int main(int argc, char** argv) {
             previous_handCount = G.handCount[player] = j;
             initialActions = G.numActions;
             //printf("Handocount: %i\n", G.handCount[0]);
-
-            //Set a card to be smithy
-            //G.hand[player][smithyTestPos] = smithy;
 
             //printf("Player %i cards: ", player + 1);
             for(i = 0; i < G.handCount[player]; ++i){

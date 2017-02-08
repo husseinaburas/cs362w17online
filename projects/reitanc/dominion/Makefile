@@ -41,21 +41,49 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 unittest4.c dominion.o rngs.o $(CFLAGS)
 
-runUnitTests: unittest1 unittest2 unittest3 unittest4
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 cardtest2.c dominion.o rngs.o $(CFLAGS)	
+
+cardtest3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+unittestresult.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out	
 
 	./unittest2 >> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 	./unittest3 >> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 	./unittest4 >> unittestresult.out
-	gcov dominion.c >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
+	./cardtest1 >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
+	./cardtest2 >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
+	./cardtest3 >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
+	cat dominion.c.gcov >> unittestresult.out
+
+	./cardtest4 >> unittestresult.out
+	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
 player: player.c interface.o
@@ -63,7 +91,7 @@ player: player.c interface.o
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
-allUnitTests: unittest1 unittest2 unittest3 unittest4
+allUnitTests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 
 cleanUnitTests:
 	rm -f unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4

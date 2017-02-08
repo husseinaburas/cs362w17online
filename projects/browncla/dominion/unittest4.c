@@ -8,38 +8,6 @@
 #include "rngs.h"
 #include <stdlib.h>
 #define FUNCTION_NAME "isGameOver"
-//int isGameOver(struct gameState *state)
-/*
-int isGameOver(struct gameState *state) {
-  int i;
-  int j;
-  
-  //if stack of Province cards is empty, the game ends
-  if (state->supplyCount[province] == 0)
-    {
-      return 1;
-    }
-
-  //if three supply pile are at 0, the game ends
-  j = 0;
-  for (i = 0; i < 25; i++)
-    {
-      if (state->supplyCount[i] == 0)
-  {
-    j++;
-  }
-    }
-  if ( j >= 3)
-    {
-      return 1;
-    }
-
-  return 0;
-}
-*/
-
-
-
 
 
 //Own assert function
@@ -49,7 +17,7 @@ int asserttrue(int input, int number){
 	}
 	else
 		printf("\tTEST %d FAILED\n", number);
-	return 0;
+	return 0; 
 }
 
 int main(){
@@ -85,48 +53,70 @@ int main(){
 	}
 	// ----------- TEST 2: Test supplyCount[province] doesn't change -----------
 	printf("%s TEST 2: supplyCount[province] does not change\n", FUNCTION_NAME);
-	if (testG.supplyCount[province] == preSupply[province]){
-		asserttrue(1, 2);
+	if (result == 0){
+		if (testG.supplyCount[province] == preSupply[province]){
+			asserttrue(1, 2);
+		}
+		else{
+			asserttrue(0, 2);
+		}
 	}
 	else{
-		asserttrue(0, 2);
+		printf("TEST 2 could not be run due to invalid input\n");
 	}
 	// ----------- TEST 3: Test supplyCount[province] is not equal to 0 -----------
 	printf("%s TEST 3: supplyCount[province] is not equal to 0\n", FUNCTION_NAME);
-	if (testG.supplyCount[province] == 0){
-		asserttrue(0, 3);
+	if (result == 0){		
+		if (testG.supplyCount[province] == 0){
+			asserttrue(0, 3);
+		}
+		else{
+			asserttrue(1, 3);
+		}
 	}
 	else{
-		asserttrue(1, 3);
+		printf("TEST 3 could not be run due to invalid input\n");
 	}
 	// ----------- TEST 4: Test supplyCounts do not change -----------
 	printf("%s TEST 4: Supply counts do not change for any card\n", FUNCTION_NAME);
-	for (i = 0; i < treasure_map; i++){
-		if (preSupply[i] != testG.supplyCount[i]){
-			asserttrue(0, 4);
-			success = 0;
-			break;
+	
+	if (result == 0){
+		for (i = 0; i < treasure_map; i++){
+			if (preSupply[i] != testG.supplyCount[i]){
+				asserttrue(0, 4);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
 		}
-		else{
-			success = 1;
+		if (success == 1){
+			asserttrue(1, 4);
 		}
-	}
-	if (success == 1){
-		asserttrue(1, 4);
-	}
-	// ----------- TEST 5: Test no three supply counts are 0 -----------
-	tester = 0;
-	printf("%s TEST 5: No three supply counts are 0\n", FUNCTION_NAME);
-	for (i = 0; i < treasure_map; i++){
-		if (testG.supplyCount[i] == 0){
-			tester ++;
-		}
-	}
-	if (tester >= 3){
-		asserttrue(0, 5);
 	}
 	else{
-		asserttrue(1, 5);
+		printf("TEST 4 could not be run due to invalid input\n");
+	}
+	// ----------- TEST 5: Test no three supply counts are 0 -----------
+	
+	if (success == 0){
+	tester = 0;
+		printf("%s TEST 5: No three supply counts are 0\n", FUNCTION_NAME);
+		for (i = 0; i < treasure_map; i++){
+			if (testG.supplyCount[i] == 0){
+				tester ++;
+			}
+		}
+		if (tester >= 3){
+			asserttrue(0, 5);
+		}
+		else{
+			asserttrue(1, 5);
+		}
+	}
+	else{
+		printf("TEST 5 could not be run due to invalid input\n");
 	}
 
 
@@ -155,26 +145,36 @@ int main(){
 	}
 	// ----------- TEST 7: Test supplyCount doesn't change for any cards -----------
 	printf("%s TEST 7: Supply counts do not change for any card\n", FUNCTION_NAME);
-	for (i = 0; i < treasure_map; i++){
-		if (preSupply[i] != testG.supplyCount[i]){
-			asserttrue(0, 7);
-			success = 0;
-			break;
+	if (result == 1){
+		for (i = 0; i < treasure_map; i++){
+			if (preSupply[i] != testG.supplyCount[i]){
+				asserttrue(0, 7);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
 		}
-		else{
-			success = 1;
+		if (success == 1){
+			asserttrue(1, 7);
 		}
 	}
-	if (success == 1){
-		asserttrue(1, 7);
+	else{
+		printf("TEST 7 could not be run due to unplanned input\n");
 	}
 	// ----------- TEST 8: Test supplyCount[province] = 0 -----------
 	printf("%s TEST 8: supplyCount[province] == 0\n", FUNCTION_NAME);
-	if (testG.supplyCount[province] == 0){
-		asserttrue(1, 8);
+	if (result == 1){
+		if (testG.supplyCount[province] == 0){
+			asserttrue(1, 8);
+		}
+		else{
+			asserttrue(0, 8);
+		}
 	}
 	else{
-		asserttrue(0, 8);
+		printf("TEST 8 could not be run due to unplanned input\n");
 	}
 	// 3 SUPPLY PILES AT 0
 	printf("\nENDING GAME BASED ON SUPPLY COUNT FOR 3 PILES\n");
@@ -201,18 +201,23 @@ int main(){
 	}
 	// ----------- TEST 10: Test supplyCount doesn't change for any cards -----------
 	printf("%s TEST 10: Supply counts do not change for any card\n", FUNCTION_NAME);
-	for (i = 0; i < treasure_map; i++){
-		if (preSupply[i] != testG.supplyCount[i]){
-			asserttrue(0, 10);
-			success = 0;
-			break;
+	if (result == 1){	
+		for (i = 0; i < treasure_map; i++){
+			if (preSupply[i] != testG.supplyCount[i]){
+				asserttrue(0, 10);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
 		}
-		else{
-			success = 1;
+		if (success == 1){
+			asserttrue(1, 10);
 		}
 	}
-	if (success == 1){
-		asserttrue(1, 10);
+	else{
+		printf("TEST 10 could not be run due to unplanned input\n");
 	}
 	// ----------- TEST 11: Test 3 piles have a count of 0 -----------
 	printf("%s TEST 11: 3 piles of supply cards have a count of 0\n", FUNCTION_NAME);

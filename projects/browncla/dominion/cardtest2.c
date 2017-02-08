@@ -22,7 +22,7 @@ int asserttrue(int input, int number){
 
 int main(){
 
-	int i, success, result;
+	int i, success, result, tester;
 	int seed = 1000;
 	int numPlayers = 2;
 	int currentPlayer = 0;
@@ -33,14 +33,15 @@ int main(){
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = smithy; 
+	G.hand[currentPlayer][3] = smithy; 
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
+	printf("\nTESTS FOR VALID INPUT\n");
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playSmithy(&testG, currentPlayer, 2);
+	result = playSmithy(&testG, currentPlayer, 3);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -63,7 +64,7 @@ int main(){
 	}
 
 	// ----------- TEST 3: Test number of buys after is the same -----------
-	printf("%s TEST 3: Number of actions after is greater than 0\n", TESTCARD);
+	printf("%s TEST 3: Number of buys after is greater than 0\n", TESTCARD);
 	if (result == 0){
 		if (testG.numBuys == G.numBuys){
 			asserttrue(1, 3);
@@ -131,44 +132,48 @@ int main(){
 	else{
 		printf("TEST 7 could not be run due to invalid input\n");
 	}
-	// ----------- TEST 8: Test that the players total number of cards has not changed -----------
-	printf("%s TEST 8: Other players have not gained cards\n", TESTCARD);
+	// ----------- TEST 8: Test that the number of coins has been updated -----------
+	printf("%s TEST 8: Number of coins has been updated\n", TESTCARD);
 	if (result == 0){
-		if (testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] !=
-			G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]){
-			asserttrue(0, 8);
+		tester = 0;
+		for (i = 0; i < testG.handCount[currentPlayer]; i++){
+			if (testG.hand[currentPlayer][i] == copper)
+				tester += 1;
+			else if (testG.hand[currentPlayer][i] == silver){
+				tester += 2;
+			}
+			else if (testG.hand[currentPlayer][i] == gold){
+				tester += 3;
+			}
+		}
+		if (tester == testG.coins){
+			asserttrue(1, 8);
 		}
 		else{
-			asserttrue(1, 8);
+			asserttrue(0, 8);
 		}
 	}
 	else{
 		printf("TEST 8 could not be run due to invalid input\n");
 	}
-	// ----------- TEST 9: Test that the number of victory (province, estate, duchy) cards has not changed -----------
-	printf("%s TEST 9: Victory cards have not been affected\n", TESTCARD);
+	// ----------- TEST 9: Test that the players total number of cards has not changed -----------
+	printf("%s TEST 9: Other players have not gained cards\n", TESTCARD);
 	if (result == 0){
-		for (i = estate; i <= province; i++){
-			if (testG.supplyCount[i] != G.supplyCount[i]){
-				asserttrue(0, 9);
-				success = 0;
-				break;
-			}
-			else{
-				success = 1;
-			}
+		if (testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer] !=
+			G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]){
+			asserttrue(0, 9);
 		}
-		if (success == 1){
+		else{
 			asserttrue(1, 9);
 		}
 	}
 	else{
 		printf("TEST 9 could not be run due to invalid input\n");
 	}
-	// ----------- TEST 10: Test that number of kingdom cards (supply...) has not changed -----------
-	printf("%s TEST 10: Supply cards have not been changed\n", TESTCARD);
+	// ----------- TEST 10: Test that the number of victory (province, estate, duchy) cards has not changed -----------
+	printf("%s TEST 10: Victory cards have not been affected\n", TESTCARD);
 	if (result == 0){
-		for (i = copper; i <= treasure_map; i++){
+		for (i = estate; i <= province; i++){
 			if (testG.supplyCount[i] != G.supplyCount[i]){
 				asserttrue(0, 10);
 				success = 0;
@@ -185,32 +190,57 @@ int main(){
 	else{
 		printf("TEST 10 could not be run due to invalid input\n");
 	}
+	// ----------- TEST 11: Test that number of kingdom cards (supply...) has not changed -----------
+	printf("%s TEST 11: Supply cards have not been changed\n", TESTCARD);
+	if (result == 0){
+		for (i = copper; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 11);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){
+			asserttrue(1, 11);
+		}
+	}
+	else{
+		printf("TEST 11 could not be run due to invalid input\n");
+	}
+
+
 
 	// reset a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 	// placing the card in the players hand
-	G.hand[currentPlayer][2] = smithy;
+	G.hand[currentPlayer][3] = smithy;
 	updateCoins(currentPlayer, &G, 0);
 	// copy the game state to a test case
 	memcpy(&testG, &G, sizeof(struct gameState));
 
-	// ----------- TEST 11 : Test correct return statements for invalid input -----------
-	printf("%s TEST 11: Correct return statements for invalid input\n", TESTCARD);
+		printf("\nTESTS FOR INVALID INPUT\n");
+
+	// ----------- TEST 12 : Test correct return statements for wrong card name -----------
+	printf("%s TEST 12: Correct return statements for wrong card name\n", TESTCARD);
 	result = playSmithy(&testG, currentPlayer, 4);
 	if (result == -1){
-		asserttrue(1, 11);
+		asserttrue(1, 12);
 	}
 	else{
-		asserttrue(0, 11);
+		asserttrue(0, 12);
 	}
 
-	// ----------- TEST 12: Test state stays same invalid input -----------
-	printf("%s TEST 12: State says the same with invalid input\n", TESTCARD);
+	// ----------- TEST 13: Test state stays same invalid input -----------
+	printf("%s TEST 13: State says the same with invalid input\n", TESTCARD);
+	
 	if (result == -1){
 
 		for (i = 0; i <= treasure_map; i++){
 			if (testG.supplyCount[i] != G.supplyCount[i]){
-				asserttrue(0, 12);
+				asserttrue(0, 13);
 				success = 0;
 				break;
 			}
@@ -219,32 +249,158 @@ int main(){
 			}
 		}
 		if (success == 1){ // supplies staying the same
-			asserttrue(1, 12);
+			asserttrue(1, 13);
 		}
 		else if (testG.coins != G.coins){
-			asserttrue(0, 12);
+		asserttrue(0, 13);
 		}
 		else if (testG.numBuys != G.numBuys){
-			asserttrue(0, 12);
+			asserttrue(0, 13);
 
 		}
 		else if (testG.numActions != G.numActions){
-			asserttrue(0, 12);
+			asserttrue(0, 13);
 		} 
 		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
 		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
-			asserttrue(0, 12);
+			asserttrue(0, 13);
 		}
 		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
 		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
-			asserttrue(0, 12);
+			asserttrue(0, 13);
 		}
 		else{
-			asserttrue(1, 12);
+			asserttrue(1, 13);
 		}
 	}
 	else{
-		printf("TEST 12 could not be run due to unplanned input\n");
+		printf("TEST 13 could not be run due to failing test 12\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][3] = smithy;
+	G.phase = 1;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 14 : Test correct return statements for wrong phase -----------
+	printf("%s TEST 14: Correct return statements for wrong phase\n", TESTCARD);
+	result = playSmithy(&testG, currentPlayer, 3);
+	if (result == -1){
+		asserttrue(1, 14);
+	}
+	else{
+		asserttrue(0, 14);
+	}
+
+	// ----------- TEST 15: Test state stays same invalid input -----------
+	printf("%s TEST 15: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 15);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same
+			asserttrue(1, 15);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 15);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 15);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 15);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 15);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 15);
+		}
+		else{
+			asserttrue(1, 15);
+		}
+	}
+	else{
+		printf("TEST 15 could not be run due to failing test 14\n");
+	}
+
+	// reset a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	// placing the card in the players hand
+	G.hand[currentPlayer][3] = smithy;
+	G.numActions = 0;
+	updateCoins(currentPlayer, &G, 0);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
+
+	// ----------- TEST 16 : Test correct return statements for wrong number of actions-----------
+	printf("%s TEST 16: Correct return statements for wrong number of actions\n", TESTCARD);
+	result = playSmithy(&testG, currentPlayer, 3);
+	if (result == -1){
+		asserttrue(1, 16);
+	}
+	else{
+		asserttrue(0, 16);
+	}
+
+	// ----------- TEST 17: Test state stays same invalid input -----------
+	printf("%s TEST 17: State says the same with invalid input\n", TESTCARD);
+	
+	if (result == -1){
+
+		for (i = 0; i <= treasure_map; i++){
+			if (testG.supplyCount[i] != G.supplyCount[i]){
+				asserttrue(0, 17);
+				success = 0;
+				break;
+			}
+			else{
+				success = 1;
+			}
+		}
+		if (success == 1){ // supplies staying the same 
+			asserttrue(1, 17);
+		}
+		else if (testG.coins != G.coins){
+		asserttrue(0, 17);
+		}
+		else if (testG.numBuys != G.numBuys){
+			asserttrue(0, 17);
+
+		}
+		else if (testG.numActions != G.numActions){
+			asserttrue(0, 17);
+		} 
+		else if ((G.handCount[currentPlayer] + G.deckCount[currentPlayer] + G.discardCount[currentPlayer] + G.playedCardCount) != (
+		testG.handCount[currentPlayer] + testG.deckCount[currentPlayer] + testG.discardCount[currentPlayer] + testG.playedCardCount))	{
+			asserttrue(0, 17);
+		}
+		else if ((G.handCount[otherPlayer] + G.deckCount[otherPlayer] + G.discardCount[otherPlayer]) != (
+		testG.handCount[otherPlayer] + testG.deckCount[otherPlayer] + testG.discardCount[otherPlayer])){
+			asserttrue(0, 17);
+		}
+		else{
+			asserttrue(1, 17);
+		}
+	}
+	else{
+		printf("TEST 17 could not be run due to failing test 16\n");
 	}
 	return 0;
 }

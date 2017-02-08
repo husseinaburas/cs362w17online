@@ -752,6 +752,7 @@ int playFeast(struct gameState *state, int choice1) {
         printf("Deck Count: %d\n", state->handCount[currentPlayer] + state->deckCount[currentPlayer] + state->discardCount[currentPlayer]);
       }
     }
+    x++;
   }
   //reset hand
   for (i = 0; i <= state->handCount[currentPlayer]; i++) {
@@ -811,11 +812,11 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case council_room:
       playCouncil_Room(state, handPos);
       return 0;
-    
+
     case feast:
       playFeast(state, choice1);
       return 0;
-      
+
 
     case gardens:
       return -1;
@@ -884,7 +885,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case smithy:
       playSmithy(state, handPos);
       return 0;
-     
+
     case village:
       //+1 Card
       drawCard(currentPlayer, state);

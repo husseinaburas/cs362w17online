@@ -309,6 +309,9 @@ int main(int argc, char** argv)
   // print expected value of Village card in hand
   printf("\tExpects 0 if returned hand doesnt have Village card and got %d\n", seed);
   error_count += asserttrue(seed == 0, "Village should not be in hand");
+  
+  printf("\tExpects 1 if village is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == village);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == village, "Village should be in played pile");
 
   // keep track of whether returned deck matches reference
   seed = 0;
@@ -510,6 +513,17 @@ int main(int argc, char** argv)
   // print expected result of reference comparison and assert it is as expected
   printf("\tExpects 1 if cards drawn in reference and returned are the same got %d\n", seed);
   error_count += asserttrue(seed == 1, "Reference and returned hand should match");
+  
+  // Make sure cards already in hand are unchanged
+   z = 0;
+   if (testG.hand[currentPlayer][0] == copper)
+	   z++;
+   for (i = 2; i < 4; i++)
+		if (testG.hand[currentPlayer][i] == copper)
+			z++;
+  // test that 3 cards originally in hand are unchanged
+  printf("\tExpecting 3 if cards originally in hand are unchanged, got %d\n", z);
+  error_count += asserttrue(z == 3, "Cards originally in hand should not have changed");
 
   seed = 0;
   // Make sure that cards added to hand come from deck
@@ -546,6 +560,9 @@ int main(int argc, char** argv)
   // print expected value of Village card in hand
   printf("\tExpects %d if returned deck matches reference and got %d\n", G.deckCount[currentPlayer], seed);
   error_count += asserttrue(seed == G.deckCount[currentPlayer], "Reference deck should match returned");
+  
+  printf("\tExpects 1 if village is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == village);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == village, "Village should be in played pile");
 
   // print comparison of expected deckCount and reference and assert it is as expected
   printf("\tExpects %d if reference deckCount matches returned got %d\n",
@@ -735,12 +752,24 @@ int main(int argc, char** argv)
 
   printf("\tExpecting %d if numActions of returned to match reference, got %d\n", G.numActions, testG.numActions);
   asserttrue(G.numActions == testG.numActions, "numActions in returned should match reference");
+  
+  // Make sure cards already in hand are unchanged
+   z = 0;
+   for (i = 0; i < 3; i++)
+		if (testG.hand[currentPlayer][i] == silver)
+			z++;
+  // test that 3 cards originally in hand are unchanged
+  printf("\tExpecting 2 if cards originally in hand are unchanged, got %d\n", z);
+  error_count += asserttrue(z == 2, "Cards originally in hand should not have changed");
 
   // print comparison of expected deckCount and reference and assert it is as expected
-  printf("\tExpects deckCount to have been shuffled. Reference %d, Returned %d\n",
+  printf("\tExpects deckCount to be %d after discard shuffled in, Returned %d\n",
       G.deckCount[currentPlayer], testG.deckCount[currentPlayer]);
   error_count += asserttrue(G.deckCount[currentPlayer] == testG.deckCount[currentPlayer],
       "Discard should have been shuffled back into deck");
+	  
+  printf("\tExpects 1 if village is in played pile and got %d\n", testG.playedCards[G.playedCardCount-1] == village);
+  error_count += asserttrue(testG.playedCards[G.playedCardCount-1] == village, "Village should be in played pile");
 
   // print comparison of expected discardCount and reference and assert it is as expected
   printf("\tExpects %d since discard should be empty after shuffle, got %d\n",

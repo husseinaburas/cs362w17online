@@ -60,7 +60,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         {
 	  if (j != i && kingdomCards[j] == kingdomCards[i])
 	    {
-	      return -1;
+		    return -1;
 	    }
         }
     }
@@ -461,9 +461,8 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   int currentPlayer;
 
   //get score for each player
-  for (i = 0; i < MAX_PLAYERS; i++)
-    {
-      //set unused player scores to -9999
+  for (i = 0; i < MAX_PLAYERS; i++) {
+   // set unused player scores to -9999
       if (i >= state->numPlayers)
 	{
 	  players[i] = -9999;
@@ -652,6 +651,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   int index;
   int currentPlayer = whoseTurn(state);
   int nextPlayer = currentPlayer + 1;
+  int temphand[MAX_HAND];
 
   int tributeRevealedCards[2] = {-1, -1};
   if (nextPlayer > (state->numPlayers - 1)){
@@ -663,7 +663,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-	adventurer(currentPlayer, state);
+	adventurer_func(currentPlayer, state);
 	return 0;
 			
     case council_room:
@@ -809,7 +809,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
 
     case smithy:
-	smithy(currentPlayer, state, handPos);
+	smithy_func(currentPlayer, state, handPos);
 	return 0; 
 		
     case village:
@@ -937,7 +937,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case steward:
-	steward(currentPlayer, state, choice1, choice2, choice3);
+	steward_func(currentPlayer, state, choice1, choice2, choice3);
 	return 0;
 
     case tribute:
@@ -1000,10 +1000,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case ambassador:
-	return ambassador(currentPlayer, state, handPos, choice1, choice2);
+	return ambassador_func(currentPlayer, state, handPos, choice1, choice2);
 		
     case cutpurse:
-	return cutpurse(currentPlayer, state, handPos);
+	return cutpurse_func(currentPlayer, state, handPos);
 		
     case embargo: 
       //+2 Coins
@@ -1196,7 +1196,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 //cards refactored as functions - Assignment 2
-int steward(int currentPlayer, struct gameState* state, int choice1, int choice2, int choice3)
+int steward_func(int currentPlayer, struct gameState* state, int choice1, int choice2, int choice3)
 {
 
       if (choice1 == 1)
@@ -1218,14 +1218,15 @@ int steward(int currentPlayer, struct gameState* state, int choice1, int choice2
 	}
 			
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      //discardCard(handPos, currentPlayer, state, 0);
       return 0;
 
 }
 
-int smithy (int currentPlayer, struct gameState* state, int handPos)
+int smithy_func (int currentPlayer, struct gameState* state, int handPos)
 {
       //+3 Cards
+      int i;
       for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
@@ -1236,7 +1237,7 @@ int smithy (int currentPlayer, struct gameState* state, int handPos)
       return 0;
 }
 
-int adventurer (int currentPlayer, struct gameState* state)
+int adventurer_func (int currentPlayer, struct gameState* state)
 {
 
   int temphand[MAX_HAND];// moved above the if statement
@@ -1265,9 +1266,10 @@ int adventurer (int currentPlayer, struct gameState* state)
       return 0;
 }
 
-int ambassador (int currentPlayer, struct gameState* state, int handPos, int choice1, int choice2)
+int ambassador_func (int currentPlayer, struct gameState* state, int handPos, int choice1, int choice2)
 {
 
+      int i;
       int j = 0;		//used to check if player has enough cards to discard
 
       if (choice2 > 2 || choice2 < 0)
@@ -1322,9 +1324,12 @@ int ambassador (int currentPlayer, struct gameState* state, int handPos, int cho
       return 0;
 }
 
-int cutpurse(int currentPlayer, struct gameState* state, int handPos)
+int cutpurse_func(int currentPlayer, struct gameState* state, int handPos)
 {
 
+      int i;
+      int j;
+      int k;
       updateCoins(currentPlayer, state, 2);
       for (i = 0; i < state->numPlayers; i++)
 	{

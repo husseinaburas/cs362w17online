@@ -42,7 +42,7 @@ int testCouncilRoom() {
                G.handCount[player], G.numBuys, G.handCount[player+1]);
     }else{
         printf("testCouncilRoom() finished: hand count = %d, number of buys = %d, player 1 hand \n"
-        "count = %d, council room card discarded --Test Passed \n",
+        "count = %d, council room card discarded --Test Failed \n",
                G.handCount[player], G.numBuys, G.handCount[player+1]);
     }
 
