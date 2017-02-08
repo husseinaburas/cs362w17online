@@ -67,29 +67,15 @@ rununittest: unittest1 unittest2 unittest3 unittest4
 
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1>> unittestresults.out
-	gcov -b dominion >> unittest1.out
-	cat dominion.c.gcov >> unittest1.out
 	./unittest2>> unittestresults.out
-	gcov -b dominion >> unittest2.out
-	cat dominion.c.gcov >> unittest2.out
 	./unittest3>> unittestresults.out
-	gcov -b dominion >> unittest3.out
-	cat dominion.c.gcov >> unittest3.out
 	./unittest4>> unittestresults.out
-	gcov -b dominion >> unittest4.out
-	cat dominion.c.gcov >> unittest4.out
 	./cardtest1>> unittestresults.out
-	gcov -b dominion >> cardtest1.out
-	cat dominion.c.gcov >> cardtest1.out
 	./cardtest2>> unittestresults.out
-	gcov -b dominion >> cardtest2.out
-	cat dominion.c.gcov >> cardtest2.out
 	./cardtest3 >> unittestresults.out
-	gcov -b dominion >> cardtest3.out
-	cat dominion.c.gcov >> cardtest3.out
 	./cardtest4 >> unittestresults.out
-	gcov -b dominion >> cardtest4.out
-	cat dominion.c.gcov >> cardtest4.out
+	gcov -b dominion >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
