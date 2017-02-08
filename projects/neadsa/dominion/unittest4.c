@@ -71,9 +71,9 @@ int main( int argc, char** argv )
 	for( i = curse; i <= treasure_map; i++ ) {
 		int output = getCost(i);
 		if ( output != cardValues[i] ) {
-			printf( "TEST FAILED for getCard with %s with expected cost of %d, but getCost returned %d\n", cardNames[i], cardValues[i], output );
+			printf( "TEST FAILED for getCost with %s with expected cost of %d, but getCost returned %d\n", cardNames[i], cardValues[i], output );
 		} else {
-			printf( "TEST PASSED for getCard with %s with expected cost of %d\n", cardNames[i], cardValues[i] );
+			printf( "TEST PASSED for getCost with %s with expected cost of %d\n", cardNames[i], cardValues[i] );
 		}
 	}
 

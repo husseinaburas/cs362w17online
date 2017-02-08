@@ -113,6 +113,32 @@ int main() {
     if (success == (7 + treasure_map)){
         printf("TEST 3 COMPLETED SUCCESSFULLY\n");
     }
+
+    /* TEST 4: Gain village to deck for player 1, village supply empty */
+    /* set village supply to empty */
+    actualState.supplyCount[village] = 0;
+    /* copy game state */
+    memcpy(&copyState, &actualState, sizeof(struct gameState));
+    /* gain card */
+    gainCard(village, &actualState, 1, 1);
+    success = 0;
+    /* check that no cards were added to player 1's deck */
+    success += asserttrue(actualState.deckCount[1], copyState.deckCount[1], 4.1);
+    /* check that player 1's hand count and discard count haven't changed */
+    success += asserttrue(actualState.handCount[1], copyState.handCount[1], 4.2);
+    success += asserttrue(actualState.discardCount[1], copyState.discardCount[1], 4.3);
+    /* check that player 0's discard, deck, and hand counts haven't changed */
+    success += asserttrue(actualState.discardCount[0], copyState.discardCount[0], 4.4);
+    success += asserttrue(actualState.deckCount[0], copyState.deckCount[0], 4.5);
+    success += asserttrue(actualState.handCount[0], copyState.handCount[0], 4.6);
+    /* check that supply counts haven't changed */
+    for (i = 0; i <= treasure_map; i++){
+        success += asserttrue(actualState.supplyCount[i], copyState.supplyCount[i], 4.7);
+    }
+    /* if all subtests passed, print success message */
+    if (success == (7 + treasure_map)){
+        printf("TEST 4 COMPLETED SUCCESSFULLY\n");
+    }
 }
 
 int asserttrue(int x, int y, float testNum) {
