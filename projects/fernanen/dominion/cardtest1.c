@@ -59,5 +59,6 @@ int main() {
         {
                 printf("FAILED! \n");
         }
-	printf("Tests Complete!"); 
+	printf("Tests Complete!");
+	return 0; 
 }
