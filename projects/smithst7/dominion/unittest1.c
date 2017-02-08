@@ -11,7 +11,7 @@
 #include <math.h>
 #include <stdlib.h>
  
-void main() {
+int main() {
 	
 
 	struct gameState* testGame = newGame();

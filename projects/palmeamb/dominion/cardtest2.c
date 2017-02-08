@@ -23,7 +23,7 @@ Functionality to test for:
 	•adventurer card is discarded
 */
 
-#define TESTCARD "adventurer"
+//#define TESTCARD "adventurer"
 #define NOISY_TEST 1
 
 int main(){
@@ -36,6 +36,8 @@ int main(){
      int newActions = 1;
      int thisPlayer = 0;
 	int addTreasure = 0;
+	int seed = 1000;
+	int i;
 
      struct gameState G, testG;
      int  k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
@@ -43,7 +45,7 @@ int main(){
      //initialize game state and player cards
      initializeGame(numPlayers, k, seed, &G);
 
-     printf("Testing Card: &s \n", TESTCARD);
+     printf("Testing Adventurer Card");
 	//Test 1:Check that hand Count has increased by 2 and deck has decreased by appropriate number ----- Having trouble figuring out how to test discarded cards and deck count
 	printf("TEST 1: Checking to see that hand and deck counts have adjusted correctly\n");	
 
@@ -66,24 +68,24 @@ int main(){
      assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] - discarded);
 	
 	//Test 3: check that number of treasure cards in piles have not changed
-     printf("TEST 3: Check that state of kingdom and treasure cards have not changed")
+     printf("TEST 3: Check that state of kingdom and treasure cards have not changed");
 
      printf("copper count = %d, expected = %d \n", testG.supplyCount[copper], G.supplyCount[copper]);
      printf("silver count = %d, expected = %d \n", testG.supplyCount[silver], G.supplyCount[silver]);
-     printf("gold count = %d, expected = %d \n", testG.supplyCount[gold], G.supplyCount, [gold]);
+     printf("gold count = %d, expected = %d \n", testG.supplyCount[gold], G.supplyCount[gold]);
      assert(testG.supplyCount[copper] == G.supplyCount[copper]);
      assert(testG.supplyCount[silver] == G.supplyCount[silver]);
      assert(testG.supplyCount[gold] == G.supplyCount[gold]);
 
-     for(i = 0; i < treasure_map, i++)
+     for(i = 0; i < treasure_map; i++)
           if(testG.supplyCount[i] != G.supplyCount[i])
           {
-               printf("Test Failed. Supply count changed for %d card\n", i)
+               printf("Test Failed. Supply count changed for %d card\n", i);
           }
 
      //Test 4: Check for no state changes in other players
      printf("TEST 4: Check to see that there are no state changes for other players\n");
-     for(int i = 0; i < numPlayers, i++)
+     for(int i = 0; i < numPlayers; i++)
      {
           if(i != thisPlayer)
           {
@@ -91,7 +93,6 @@ int main(){
                if(testG.deckCount[i] != G.deckCount[i])
                {
                     printf("Test Failed. Incorrect deck count change for player %d\n", i);
-                    return = -1
                }
 
                if(testG.handCount[i] != G.handCount[i])
