@@ -35,6 +35,18 @@ player: player.c interface.o
 cardtest1: cardtest1.c
 	gcc -o cardtest1 cardtest1.c
 
+cardtest2: cardtest2.c
+	gcc -o cardtest2 cardtest2.c
+
+cardtest3: cardtest3.c
+	gcc -o cardtest3 cardtest3.c
+
+cardtest4: cardtest4.c
+	gcc -o cardtest4 cardtest4.c
+
+
+cardsuite: cardtest1 cardtest2 cardtest3 cardtest4
+
 unittest1: unittest1.c
 	gcc -o unittest1 unittest1.c
 
@@ -49,14 +61,18 @@ unittest4: unittest4.c
 
 unittestsuite: unittest1 unittest2 unittest3 unittest4
 
-runsuite: unittestsuite
+unittestresults.out: unittestsuite
 	./unittest1 >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	./unittest4 >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	./cardtest4 >> unittestresults.out		
 	cat unittestresults.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 unittestresults.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so testDrawCard testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 unittestresults.out
