@@ -5,6 +5,10 @@
 
 
 // gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest3.c rngs.c -o cardtest3 -lm -g
+
+//ZDI assert is a function that receives a integer and a character.
+// It checks if the integer is one or 2, if it is one that means the test Passed.
+// If the integer is 2 it means the test failed
 int zdi_assert(int a, char * string)
 {
   if(a == 1)
@@ -38,7 +42,7 @@ int main()
 
   b = numHandCards(&game);
 
-  if(b == 5) //should have 5 cards in hand
+  if(b == 5) //should have 5 cards in hand based ont the effect of the card to the players hand
   {
     zdi_assert(1, "Card Effect - Village");
   }

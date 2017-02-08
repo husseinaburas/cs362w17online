@@ -327,7 +327,7 @@ int main(void) {
     printTest("Player's number of Coins decreased by correct amount",
         beforeNumCoins - cardCost, afterNumCoins);
 
-    printf("\n################ END %s TEST ################\n", testFunc);
+    printf("\n################ END %s TEST ################\n\n", testFunc);
 
     return 0;
 }

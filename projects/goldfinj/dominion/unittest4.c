@@ -110,7 +110,7 @@ int main(void) {
     /* check whether game ended */
     printTest("Game is over", 1, isGameOver(&testG));
 
-    printf("\n################ END %s TEST ################\n", testFunc);
+    printf("\n################ END %s TEST ################\n\n", testFunc);
 
     return 0;
 }

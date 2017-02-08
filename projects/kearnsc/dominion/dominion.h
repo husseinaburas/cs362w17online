@@ -1,4 +1,4 @@
-// Code from various sources, baseline from Kristen Bartosz
+// Code from various sources, baseline from Kristen Bartosz 
 
 #ifndef _DOMINION_H
 #define _DOMINION_H

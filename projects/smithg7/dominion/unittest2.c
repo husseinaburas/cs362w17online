@@ -22,6 +22,7 @@ int main()
   int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
            sea_hag, tribute, smithy};
   initializeGame(2, k, 2, myState);
+  printf("----------------- Unit Test 2: scoreFor() ----------------\n");
 
   int score = scoreFor(0, myState);
   assertTrue(score, 3, "Score at beginning of game for player 1 is 3.  0 provinces and 3 estates. ");
@@ -70,6 +71,8 @@ int main()
   myState->discard[0][0] = province;
   score = scoreFor(0, myState);
   assertTrue(score, 21, ("Adding a province to player 1's discard pile. Expected Score: 21 = 3 province (18) + 3 estates. "));
+
+  printf("----------------- Unit Test 2 - COMPLETE ----------------\n");
 
   return 0;
 }

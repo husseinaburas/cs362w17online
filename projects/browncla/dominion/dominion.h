@@ -132,12 +132,12 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 
 
-int playAdventurer(struct gameState *state, int currentPlayer, int handPos, int card);
-int playSmithy(struct gameState *state, int currentPlayer, int handPos, int card);
-int playVillage(struct gameState *state, int currentPlayer, int handPos, int card);
-int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos, int card);
-int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos, int card);
-int inHand(struct gameState *state, int currentPlayer, int choice1);
+int playAdventurer(struct gameState *state, int currentPlayer, int handPos);
+int playSmithy(struct gameState *state, int currentPlayer, int handPos);
+int playVillage(struct gameState *state, int currentPlayer, int handPos);
+int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos);
+int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos);
+int notInHand(struct gameState *state, int currentPlayer, int choice1);
 
 
 #endif

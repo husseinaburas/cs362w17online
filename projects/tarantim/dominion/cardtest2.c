@@ -8,7 +8,6 @@
 #include "rngs.h"
 #include "interface.h"
 
-//unit test for the buyCard() function
 
 //Assert function, 3rd argument is operator, use: 0 for =, 1 for <, 2 for >
 int assertTrue(int arg1, int arg2, int op){
@@ -165,7 +164,7 @@ int main(){
 
 	
 
-	// rerun test for counting trease cards in hand
+	// rerun test for counting treasure cards in hand
 	printf("check that two treasure cards were added to hand\n");
 	trCount1 = 0;
 	for(i = 0; i < pretest.handCount[curPlayer]; i++){
