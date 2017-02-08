@@ -20,7 +20,6 @@ int cardCount(int player, struct gameState G, int card){
 //Test council_room card
 int main(int argc, char const *argv[])
 {
-	int i, j;
 	int errorFlag=0;
 	int players=2;
 	int seed=999;
@@ -28,8 +27,10 @@ int main(int argc, char const *argv[])
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Card Test 4: Council Room Card\n");
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
-	printf("Running Card Test 4: Council Room Card\n\n");
+	printf("\n");
+
 	initializeGame(players, k, seed, &G);
 	memcpy(&copyG, &G, sizeof(struct gameState));
 
@@ -41,18 +42,18 @@ int main(int argc, char const *argv[])
 	playCouncil_Room(&G, 5);
 
 	//make sure there are four new cards minus the played card
-	if( G.handCount[0] != (copyG.handCount[0] + 3) ){
-		printf("Error with hand card count\n");
+	if( G.handCount[0] != 8 ){
+		printf("Error with hand card count. Expected 8 has %d.\n", G.handCount[0]);
 		errorFlag++;
 	}
 	//make sure there are now 2 buys
 	if( G.numBuys != 2 ){
-		printf("Error with numBuys count\n");
+		printf("Error with numBuys count. Expected 2 has %d\n", G.numBuys);
 		errorFlag++;
 	}
 	//make sure other player has an extra card
 	if(G.handCount[1] != 1){
-		printf("Error with player 2 hand count, no extra card\n");
+		printf("Error with player 2 hand count. Expected 1 has %d\n", G.handCount[1]);
 		errorFlag++;
 	}
 	//make sure council_room card is discarded
@@ -62,8 +63,8 @@ int main(int argc, char const *argv[])
 	}
 
 	printf("\n");
-	printf("Completed Card Test 4, Council Room Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Completed Card Test 4, Council Room Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 	return 0;
 }

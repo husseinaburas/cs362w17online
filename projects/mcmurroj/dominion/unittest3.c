@@ -26,7 +26,7 @@ void testisGameOver() {
    int GS1expectedResult = 1;  //The function should return 1 to indicate game is over as there are no province cards lift.
 
   
-//---GS1 TEST---- Verify that when 3 piles are empty (copper/silver/gold), game is marked as over.
+//---GS2 TEST---- Verify that when 3 piles are empty (copper/silver/gold), game is marked as over.
    // Also verify handels cards of value -1 properly, as cards not in game session will
    // be marked as -1 as seen in dominion.c
    struct gameState *GS2 = newGame();

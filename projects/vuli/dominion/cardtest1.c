@@ -122,11 +122,6 @@ int main() {
             G.deck[player][i] = iterCard++;
         }
     }
-    for (i=0; i<G.discardCount[player]; i++) {
-        if (G.discard[player][i] == copper || G.discard[player][i] == silver || G.discard[player][i] == gold) {
-            G.discard[player][i] = iterCard++;
-        }
-    }
     G.discardCount[player] = 2;
     G.discard[player][0] = copper;
     G.discard[player][G.discardCount[player]/2] = silver;
@@ -250,11 +245,6 @@ int main() {
             G.deck[player][i] = iterCard++;
         }
     }
-    for (i=0; i<G.discardCount[player]; i++) {
-        if (G.discard[player][i] == copper || G.discard[player][i] == silver || G.discard[player][i] == gold) {
-            G.discard[player][i] = iterCard++;
-        }
-    }
     G.discardCount[player] = 1;
     G.discard[player][G.discardCount[player]/2] = silver;
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
@@ -293,11 +283,9 @@ int main() {
             G.deck[player][i] = iterCard++;
         }
     }
-    for (i=0; i<G.discardCount[player]; i++) {
-        if (G.discard[player][i] == copper || G.discard[player][i] == silver || G.discard[player][i] == gold) {
-            G.discard[player][i] = iterCard++;
-        }
-    }
+    G.discardCount[player] = 2;
+    G.discard[player][0] = smithy;
+    G.discard[player][1] = cutpurse;
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
