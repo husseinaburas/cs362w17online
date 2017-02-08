@@ -5,8 +5,11 @@
 #include "rngs.h"
 #include <time.h>
 
-// gcc -o unittest1 unittest1.c dominion.o rngs.o $(CFLAGS)
 // gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest4.c rngs.c -o unittest4 -lm -g
+
+//ZDI assert is a function that receives a integer and a character.
+// It checks if the integer is one or 2, if it is one that means the test Passed.
+// If the integer is 2 it means the test failed
 int zdi_assert(int a, char * string)
 {
   if(a == 1)
@@ -22,6 +25,7 @@ int zdi_assert(int a, char * string)
 
 }
 
+//Testing the shuffle function
 int main()
 {
   int a, b;
@@ -34,13 +38,13 @@ int main()
   printf("Unit Test 4\n\n");
   a = initializeGame(2,cards, randomSeed, &game);
 
-  b = shuffle(1, &game);
+  b = shuffle(1, &game); // shuffle player one hand
 
-  if(b == 0)
+  if(b == 0) // 0 means the shuffe correction worked correctly
   {
     zdi_assert(1,"Shuffle Hand");
   }
-  else
+  else // shuffle function did not pass tes
   {
     zdi_assert(2, "Shuffle Handd");
   }

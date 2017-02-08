@@ -88,6 +88,6 @@ int main(int argc, char **argv) {
 	printf("testing supply count on province cards\n");
 	asserttrue(G.supplyCount[province] == 4);
 	
-	printf("******begin unit test on smithy card******\n");
+	printf("******end unit test on smithy card******\n");
 	return 0;
 }

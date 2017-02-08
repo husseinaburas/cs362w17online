@@ -27,7 +27,7 @@ int main() {
     int discarded = 1;          // Discard smithy card when it's played
 
     // Default values for calling cardEffect
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int handpos = 0;
 
     int seed = 1000;
     int numPlayers = 2;
@@ -46,7 +46,7 @@ int main() {
 
     // copy the game state to a test case 
     memcpy(&testG, &G, sizeof(struct gameState));
-    cardEffect(smithy, choice1, choice2, choice3, &testG, handpos, &bonus);
+    playSmithy(handpos, thisPlayer, &testG);
     
     printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
     if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded)
@@ -54,6 +54,10 @@ int main() {
     
     printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards);
     if(testG.deckCount[thisPlayer] != G.deckCount[thisPlayer] - newCards)
+        failedTest();
+
+    printf("discard count = %d, expected = %d\n", testG.discardCount[thisPlayer], G.discardCount[thisPlayer] + discarded);
+    if(testG.discardCount[thisPlayer] != G.discardCount[thisPlayer] + discarded)
         failedTest();
 
     printf("-----------Check that other player's hands are not effected-------\n");

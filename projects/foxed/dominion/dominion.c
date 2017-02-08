@@ -1267,6 +1267,7 @@ int playAdventurer(struct gameState *state, int currentPlayer)
 int playSmithy(struct gameState *state, int currentPlayer, int handPos)
 {
 	//+3 Cards
+	int i;
 	for (i = 0; i <= 3; ++i)
 	{
 		drawCard(currentPlayer, state);
@@ -1281,8 +1282,7 @@ int playMine(struct gameState *state, int choice1, int choice2, int currentPlaye
 {
 	int i;
 	int j;
-	int currentPlayer = currentPlayer;
-
+	
 	j = state->hand[currentPlayer][choice1];  //store card we will trash
 
 	if (state->hand[currentPlayer][choice1] < copper && state->hand[currentPlayer][choice1] > gold)
@@ -1333,6 +1333,7 @@ int playGreat_Hall(struct gameState *state, int currentPlayer, int handPos)
 int playCouncil_Room(struct gameState *state, int currentPlayer, int handPos)
 {
 	//+4 Cards
+	int i;
 	for (i = 0; i < 4; i++)
 	{
 		drawCard(currentPlayer, state);

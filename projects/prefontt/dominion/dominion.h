@@ -139,6 +139,6 @@ int playSmithy(int currentPlayer, int handPos, struct gameState *state);
 //int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
-
+int assertTrue(int right, int left);
 
 #endif

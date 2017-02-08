@@ -1,0 +1,1 @@
+For assigment 3 run: make unittestresults.out

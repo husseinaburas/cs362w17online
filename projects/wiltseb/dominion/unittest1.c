@@ -29,7 +29,8 @@ int main(){
 	updateCoins(player1, &TestGame1, 0);
 	p1CurrCoins = TestGame1.coins;
 	
-	
+	printf("UNITTEST 1 -----------------------------------------------------------------\n");
+
 /*
  * TEST 0: PRECONDITIONS - PLAYERS START WITH NONNEGATIVE COINS
  */
@@ -58,7 +59,7 @@ int main(){
 	p1CurrCoins = TestGame1.coins;
 	assertTrue(p1CurrCoins == 7, "Player 1 added 1 gold (3 coins)", p1CurrCoins, 7, &testFlag);
 	
-	//Adds 1 copper to p1
+	//Adds 1 silver to p1
 	gainCard(silver, &TestGame1, 2, 0);
 	updateCoins(player1, &TestGame1, 0);
 	p1CurrCoins = TestGame1.coins;

@@ -21,7 +21,7 @@ int main(int argc, char** argv){
     int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
     
     // initialize the game
-    initializeGame(numberPlayers, &kingdomCards, numberPlayers, &game);
+    initializeGame(numberPlayers, kingdomCards, 1, &game);
     
     // unit test2 will check the updateCoins() function using 4 test cases
 	int numTests = 4;
@@ -56,6 +56,8 @@ int main(int argc, char** argv){
     // get the current player's hand count
     playerHandCount = game.handCount[player];
     
+	printf("///// ----- STARTING UNIT TEST 1 (updateCoins) -----/////\n");
+    
     // for loop is used to iterate through each test case
     for( i = 0; i < numTests; i++){
     	// for loop used to assign the coin values for each test case
@@ -68,13 +70,16 @@ int main(int argc, char** argv){
     	
 		// set test ID    	
     	testID = i + 1;
-    	
+    	  	
     	// check results
     	assertTrue(game.coins, expectedCoins[i], "UNIT TEST 1", "updateCoins()", testID, &pass);
     }
     
     if( pass == 0){
-    	printf("UNIT TEST 1 SUCCESSFULLY PASSED\n");
+    	printf("**UNIT TEST 1 SUCCESSFULLY PASSED**\n");
+    }
+    else{
+    	printf("**UNIT TEST 1 FAILED**\n");
     }
 	
     return 0;
@@ -93,7 +98,10 @@ int main(int argc, char** argv){
  */
 void assertTrue(int val1, int val2, char* testName, char* functionName, int testCase, int* passFlag){
 	if(val1 != val2){
-		printf("%s: Test Case %i of function '%s' FAILED\n", testName, testCase, functionName);
+		printf("%s: Test Case %i of 4 for function '%s' FAILED\n", testName, testCase, functionName);
 		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of 4 for function '%s' PASSED\n", testName, testCase, functionName);
 	}
 }
