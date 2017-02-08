@@ -17,7 +17,7 @@ int asserttrue(int input, int number){
 	}
 	else
 		printf("\tTEST %d FAILED\n", number);
-	return 0;
+	return 0; 
 }
 
 int main(){
