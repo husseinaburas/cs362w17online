@@ -31,7 +31,7 @@ int main(int argv, char** argc) {
   int players = 3;
 
   initializeGame(players, kingdomCards, randomSeed, testState);
-  copyState = testState;
+  int handCountBefore = testState->handCount[0];
 
   printf("==============\tSTART TESTING\tplaySmithy()\t==============\n");
 
@@ -41,9 +41,9 @@ int main(int argv, char** argc) {
   playSmithy(testState, 0);
 
   UNIT_ASSERT(
-      (testState->hand[0][1] == -1),
+      (testState->hand[0][0] == -1),
       "TEST CASE:\tCheck card is no longer in hand of player\t\t\tRESULT:");
-  UNIT_ASSERT((testState->handCount[0] == copyState->handCount[0] + 3),
+  UNIT_ASSERT((testState->handCount[0] == handCountBefore + 2),
               "TEST CASE:\tHand count has increased by 2 (1 played, 3 "
               "gained)\t\tRESULT:");
 
