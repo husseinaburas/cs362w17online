@@ -17,7 +17,7 @@ void assert_true(int);
 
 int main() {
 	
-	int expected, n, r, p, deckCount, discardCount, handCount;
+	int expected;
 
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 	             remodel, smithy, village, baron, great_hall};
