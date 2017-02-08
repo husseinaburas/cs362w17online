@@ -39,8 +39,10 @@ int main(int argc, char const *argv[])
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Card Test 1: Adventurer Card\n");
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
-	printf("Running Card Test 1: Adventurer Card\n\n");
+	printf("\n");
+
 	//Setup Game
 	initializeGame(players, k, seed, &G);
 	memcpy(&copyG, &G, sizeof(struct gameState));
@@ -52,18 +54,18 @@ int main(int argc, char const *argv[])
 	playAdventurer(&G);
 
 	//make sure there are two new treasure cards
-	if( treasureCardCount(0, G) != (treasureCardCount(0, copyG) + 2) ){
-		printf("Error with treasure card count in hand\n");
+	if( treasureCardCount(0, G) != (treasureCardCount(0, copyG)+2) ){
+		printf("Error with treasure card count in hand. Expected %d has %d.\n", (treasureCardCount(0, copyG)+2), treasureCardCount(0, G));
 		errorFlag++;
 	}
 	//make sure there are two new cards minus the played card
 	if( G.handCount[0] != (copyG.handCount[0] + 1) ){
-		printf("Error with hand card count\n");
+		printf("Error with hand card count. Expected 7 has %d.\n", G.handCount[0]);
 		errorFlag++;
 	}
 	//make sure card totals are correct
 	if( (G.discardCount[0] + G.deckCount[0] + G.handCount[0]) != (copyG.discardCount[0] + copyG.deckCount[0] + copyG.handCount[0]) ){
-		printf("Error with overall card count (sum of deck+hand+discard)\n");
+		printf("Error with overall card count (sum of deck+hand+discard). Expected 12 has %d.\n",(G.discardCount[0] + G.deckCount[0] + G.handCount[0]));
 		errorFlag++;
 	}
 
@@ -73,8 +75,8 @@ int main(int argc, char const *argv[])
 	}
 
 	printf("\n");
-	printf("Completed Card Test 1, Adventurer Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Completed Card Test 1, Adventurer Card. %d total errors.\n", errorFlag);
 	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 	return 0;
 }
