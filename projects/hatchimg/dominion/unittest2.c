@@ -53,6 +53,12 @@ int asserttrue(int a, int b, int testCase){
 			case 12:
 				printf("Incorrect number of supply remaining post call\n");
 				break;
+			case 13:
+				printf("Victory card pile was affected\n");
+				break;
+			case 14:
+				printf("Kingdom card pile was affected\n");
+				break;
 
 		}
 	}
@@ -131,6 +137,28 @@ int checkBuyCard(int supplyPos, struct gameState *post){
 	//Test that after call, supply count of card bought is one fewer
 
 	asserttrue(post->supplyCount[supplyPos], (pre.supplyCount[supplyPos] - 1), 12);
+	
+	//Test that after call, victory and kingdom card piles are unchanged
+	int n;
+	if(post->supplyCount[estate] != pre.supplyCount[estate])
+		n = 1;
+	else if(post->supplyCount[duchy] != pre.supplyCount[duchy])
+		n = 1;
+	else if(post->supplyCount[province] != pre.supplyCount[province])
+		n = 1;
+	else
+		n = 0;
+	asserttrue(0, n, 13);
+	
+	int m;
+	int z = 0;
+	for (m = 0; m < 10; m++){
+		if(post->kingdomCards[m] != pre.kingdomCards[m])
+			z++;
+		else
+		
+	}
+	asserttrue(0, z, 14);
 
 	if(passFlag == 0)
 		printf("ALL TESTS OK \n");
@@ -143,12 +171,20 @@ int main(){
 	
 
 	struct gameState G;
+
+	int numPlayers = 4;
+	
+	int k[10] = {adventurer, embargo, village, minion, outpost, cutpurse, great_hall, tribute, smithy, council_room};
+	int seed = 1000;
+	
+	initializeGame(numPlayers, k, seed, &G);
+
 	G.supplyCount[smithy] = 5;
 	G.coins = 5;
 	G.numBuys = 1;
 	G.whoseTurn = 1;
-	G.numPlayers = 4;
 	
+	//set everyone's deck, discard, and handcounts to 20, 10, and 5, respectively
 	int i;
 	for(i = 0; i < G.numPlayers; i++){
 		G.deckCount[i] = 20;

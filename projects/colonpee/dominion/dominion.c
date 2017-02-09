@@ -88,7 +88,7 @@ int runMine (struct gameState *state, int currentPlayer, int choice1, int choice
             break;
         }
     }
-    
+    return 0;
 };
 
 //Refactored cutpurse code

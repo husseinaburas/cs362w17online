@@ -1365,5 +1365,15 @@ int cardMine(int choice1, int choice2, struct gameState *state, int handPos, int
       return 0;
 }
 
+int assertTrue(int val) {
+    if (val <= 0) {
+        printf("TEST FAILED.\n");
+        return 1;
+    }
+    else
+        printf("TEST SUCCEEDED.\n");
+        return 0;
+}
+
 //end of dominion.c
 

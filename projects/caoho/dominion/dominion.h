@@ -136,5 +136,9 @@ int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
 
+void assertMsg(const char *msg, int expected, int actual);
+//void assertMsg(const char *msg, double expected, double actual);
+//void assertMsg(const char *msg, char* expected, char* actual);
+
 
 #endif

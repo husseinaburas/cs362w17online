@@ -1,0 +1,17 @@
+TESTING Gardens card!
+
+Playing Gardens card for player 1. Should be worth 1 VP per 10 cards
+should add 1 VP to total VPs
+Player 1 score before having a Gardens: 2
+Getting one free Gardens card for player 1
+After having a Gardens, player 1 
+should have + 1 VP for each 10 cards.
+Cards in hand for player 1: 6 - PASS
+Cards in deck for player 1: 5 - PASS
+Player 1 score: 2 - FAIL (should be 4)
+Adding 3 Estates and 7 Duchys to player 1's hand, should then have +25 VPs 
+since 3 Estates and 7 Duchys are added and player has a Gardens
+Cards in hand for player 1: 16 - PASS
+Player 1 score: 26 - FAIL (should be 29)
+testGardens fails miserably.
+

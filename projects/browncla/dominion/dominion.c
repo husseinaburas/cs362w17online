@@ -1308,6 +1308,12 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
        if (state->hand[currentPlayer][handPos] != adventurer){
         return -1;
        }
+       if (state->phase != 0){
+        return -1;
+       }
+       if (state->numActions <= 0){
+        return -1;
+       }
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
       while(drawntreasure<1){ //BUG
@@ -1355,6 +1361,12 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
       if (state->hand[currentPlayer][handPos] != smithy){
         return -1;
       }
+      if (state->phase != 0){
+        return -1;
+       }
+       if (state->numActions <= 0){
+        return -1;
+       }
       int i;
       //int startNumCards = state->handCount[currentPlayer];
       //+3 Cards
@@ -1384,6 +1396,12 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
 int playVillage(struct gameState *state, int currentPlayer, int handPos){
    
       if (state->hand[currentPlayer][handPos] != village){
+        return -1;
+      }
+      if (state->phase != 0){
+        return -1;
+       }
+      if (state->numActions <= 0){
         return -1;
       }
 
@@ -1418,6 +1436,13 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
   if (state->hand[currentPlayer][handPos] != steward){
     return -1;
   }
+  if (state->phase != 0){
+        return -1;
+       }
+  if (state->numActions <= 0){
+    return -1;
+  }
+
   if (choice1 == 1){
     //+2 cards
     drawCard(currentPlayer, state);
@@ -1449,46 +1474,44 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be salvager and the value must be between 7 and 26
-                   Choice1 must be a valid card in the players hand
+                   Choice1 must be a valid card position in the players hand
    Post-Conditions: state->numActions must be >= 0 because the number of actions isn't changed in this function
                     state->numBuys should be increased by 1
                     The card represented by choice1 should not be in the players deck
                     The salvager card should be the last discarded card
+                    The number of coins should increase by the cost of the trashed card
 */
 int playSalvager(struct gameState *state, int currentPlayer, int choice1, int handPos){
    
+   // choice1 is position of card
     if (state->hand[currentPlayer][handPos] != salvager){
       return -1;
     }
+
+    if (state->phase != 0){
+        return -1;
+       }
+    if (state->numActions <= 0){
+      return -1;
+    }
+    if (choice1 < 0 || choice1 >= state->handCount[currentPlayer]){
+      return -1;
+    }
+
    //+1 buy
     state->numBuys++;
-    
-    if (choice1 == smithy){ //BUG
+    if (choice1 == 2){ //BUG
       //gain coins equal to trashed card
-      state->coins = state->coins + getCost( handCard(choice1, state) );
+      state->coins = state->coins + getCost( state->hand[currentPlayer][choice1] );
       //trash card
       discardCard(choice1, currentPlayer, state, 0);  //BUG
     }
-      
     //discard  salvager card
     discardCard(handPos, currentPlayer, state, 0);
     updateCoins(currentPlayer, state, 0);
 
 
     return 0;
-}
+} 
 
-//Helper function for playSalvager
-//Verifies that a certain card is in the given players hand. If the card is in the players hand
-// returns 0, else returns 1
-int inHand(struct gameState *state, int currentPlayer, int choice1){
-  int i;
-
-    for (i = 0; i < state->handCount[currentPlayer]; i++){
-      if (state->hand[currentPlayer][i] == choice1){
-          return 0;
-      }
-    }
-    return 1;
-}
 //end of dominion.c

@@ -1,7 +1,6 @@
-/*
+/* Author: Elton Lee
  * cardtest1.c
- *
- 
+ * unit test for adventurer
  */
 
 /*
@@ -33,7 +32,7 @@ int main()
 
 int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int discardTreasure, int discardTreasureCount, int discardSize)
 {
-	printf("Running playAdventurer test with %d treasures (enum = %d) in deck and %d treasures (enum = %d) in discard\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
+	printf("RUNNING playAdventurer WITH %d TREASURES(enum = %d) IN DECK AND %d TREASURES(enum = %d) DISCARD\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
 	int i;
 	int seed = 1000;
 	int numPlayers = 2;
@@ -92,13 +91,17 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
     playAdventurer(&G);
 
 	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
+	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
     printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
 	asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1);
 	printf("Showing current cards in hand...\n");
 	for (i = 0; i< G.handCount[0]; i++){
 		printf("%d ", G.hand[0][i]);
 	}
-	printf("\nTotal cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+	printf("\n");
+
+	printf("-----TEST 2: CHECK TOTAL CARDS FOR PLAYER 1 HAS NOT CHANGED-----\n");
+	printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
 	asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
 	printf("\n\n");
 

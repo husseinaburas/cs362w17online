@@ -21,8 +21,11 @@ int main(int argc, char const *argv[])
 	initializeGame((players+1), c, seed, &threePlayerG);
 	initializeGame((players+2), c, seed, &fourPlayerG);
 
-	printf("-----------------------------------------------------------------------\n");
-	printf("Running Unit Test 2: Draw Card Function\n\n");
+	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("Running Unit Test 2: Draw Card Function\n");
+	printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+	printf("\n");
+
 	printf("Testing drawCard(), Two Player Game\n");
 	memcpy(&copyG, &twoPlayerG, sizeof(struct gameState));
 	
@@ -173,8 +176,10 @@ int main(int argc, char const *argv[])
 	}
 	printf("Four Player Game Draw Card Test Complete, %d Errors\n\n", errorFlag[2]);
 
-	printf("Unit Test 2 Complete: %d Total Errors\n",(errorFlag[0]+errorFlag[1]+errorFlag[2]));
-    printf("-----------------------------------------------------------------------\n");
+	
+    printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("Unit Test 2 Complete: %d Total Errors\n",(errorFlag[0]+errorFlag[1]+errorFlag[2]));
+    printf("-------------------------------------------------------------------------------------------------------------------------------------\n");
 
 	return 0;
 }

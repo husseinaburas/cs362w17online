@@ -1,0 +1,114 @@
+        -:    0:Source:cardtest1.c
+        -:    0:Graph:cardtest1.gcno
+        -:    0:Data:cardtest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: *  Card Smithy
+        -:    3: *  -----------
+        -:    4: * cardtest1: cardtest1.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include "asserttrue.h"
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:
+        -:   17:// set NOISY_TEST to 0 to remove printfs from output
+        -:   18:#define NOISY_TEST 1
+        -:   19:#define CARDORFUNCTIONTOTEST "Smithy"
+        -:   20:
+function main called 1 returned 100% blocks executed 80%
+        -:   21:int main() {
+        -:   22:    
+        -:   23:    /****************************** Main Setup ******************************/
+        -:   24:    
+        1:   25:    int constantSeedForRandomSeed = 1;
+        1:   26:    int numPlayer = 2;
+        -:   27:    struct gameState NewGameStateStruct, OldVersionOfGameStruct;
+        -:   28:    
+        1:   29:    memset(&NewGameStateStruct, 23, sizeof(struct gameState));      // clear the game state
+        1:   30:    memset(&OldVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
+        -:   31:    
+        1:   32:    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   33:        sea_hag, tribute, smithy, council_room};
+        -:   34:    
+        -:   35:    // initialize a game state and player cards
+        1:   36:    initializeGame(numPlayer, k, constantSeedForRandomSeed, &NewGameStateStruct);
+        -:   37:    //memcpy(&NewGameStateStruct, &OldVersionOfGameStruct, sizeof(struct gameState)); // copy game state to have before - after comparision
+        -:   38:    
+        -:   39:    
+        1:   40:    printf("----------------- Testing Card: %s ----------------\n", CARDORFUNCTIONTOTEST);
+        -:   41:    
+        -:   42:    // Did Any Test Fail Variable
+        1:   43:    int atLeast1TestFailed = 0;
+        -:   44:    
+        -:   45:    
+        -:   46:    //Invariable Conditions for all Tests
+        1:   47:    int expectedNumCardDrawn = 3;
+        1:   48:    int expectedNumCardDiscarded = 1;
+        1:   49:    int indexOfCardBeingPlayed = 0;
+        -:   50:    
+        -:   51:    // ----------- TEST 1: Test playSmithy when deckCount is not depleted --------------
+        -:   52:    //Invariable Conditions for this Test
+        1:   53:    int indexCurrentPlayer = 0;
+        -:   54:    
+        1:   55:    printf("TEST 1: Test Player 0 has a handCount of equal to gained 3 cards minus discarded 1 card\n");
+        -:   56:    // copy the game state to compare (before + expected) with after
+        1:   57:    OldVersionOfGameStruct = NewGameStateStruct;
+        -:   58:    
+        -:   59:    /**** Call Func ****/
+        1:   60:    printf("Testing Successful Return of 0 for calling Method\n");
+        1:   61:    asserttrue(playSmithy(&NewGameStateStruct, indexOfCardBeingPlayed) == 0, &atLeast1TestFailed);
+        -:   62:    /**** End Call Func ****/
+        -:   63:    /**** Assert Results ****/
+        1:   64:    printf("hand count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardDrawn - expectedNumCardDiscarded);
+        1:   65:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardDrawn - expectedNumCardDiscarded, &atLeast1TestFailed);
+        -:   66:    
+        1:   67:    printf("discard count = %d, expected = %d\n", NewGameStateStruct.discardCount[indexCurrentPlayer], OldVersionOfGameStruct.discardCount[indexCurrentPlayer] + expectedNumCardDiscarded);
+        1:   68:    asserttrue(NewGameStateStruct.discardCount[indexCurrentPlayer] == OldVersionOfGameStruct.discardCount[indexCurrentPlayer] +  expectedNumCardDiscarded, &atLeast1TestFailed);
+        -:   69:    
+        1:   70:    printf("deck count = %d, expected = %d\n", NewGameStateStruct.deckCount[indexCurrentPlayer], OldVersionOfGameStruct.deckCount[indexCurrentPlayer]);
+        1:   71:    asserttrue(NewGameStateStruct.deckCount[indexCurrentPlayer] == OldVersionOfGameStruct.deckCount[indexCurrentPlayer] - 3, &atLeast1TestFailed);
+        -:   72:    /**** End Assert Results ****/
+        -:   73:    
+        -:   74:    // ----------- TEST 2: Test playSmithy when deckCount is depleted --------------
+        -:   75:    //Invariable Conditions for this Test
+        1:   76:    indexCurrentPlayer = 0;
+        1:   77:    NewGameStateStruct.deckCount[indexCurrentPlayer] = 0;
+        1:   78:    printf("TEST 2: Test Player 1 has a handCount of equal to gained 3 cards minus discarded 1 card\n");
+        -:   79:    // copy the game state to compare (before + expected) with after
+        1:   80:    NewGameStateStruct = OldVersionOfGameStruct;
+        -:   81:    
+        -:   82:    /**** Call Func ****/
+        1:   83:    printf("Testing Successful Return of 0 for calling Method\n");
+        1:   84:    asserttrue(playSmithy(&NewGameStateStruct, indexOfCardBeingPlayed) == 0, &atLeast1TestFailed);
+        -:   85:    /**** End Call Func ****/
+        -:   86:    /**** Assert Results ****/
+        1:   87:    printf("hand count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardDrawn - expectedNumCardDiscarded);
+        1:   88:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardDrawn - expectedNumCardDiscarded, &atLeast1TestFailed);
+        -:   89:    
+        1:   90:    printf("discard count = %d, expected = %d\n", NewGameStateStruct.discardCount[indexCurrentPlayer], OldVersionOfGameStruct.discardCount[indexCurrentPlayer] + expectedNumCardDiscarded);
+        1:   91:    asserttrue(NewGameStateStruct.discardCount[indexCurrentPlayer] == OldVersionOfGameStruct.discardCount[indexCurrentPlayer]*0 + 1, &atLeast1TestFailed);
+        -:   92:    
+        1:   93:    printf("deck count = %d, expected = %d\n", NewGameStateStruct.deckCount[indexCurrentPlayer], OldVersionOfGameStruct.discardCount[indexCurrentPlayer] - 3);
+        1:   94:    asserttrue(NewGameStateStruct.deckCount[indexCurrentPlayer] == OldVersionOfGameStruct.discardCount[indexCurrentPlayer] - 3 , &atLeast1TestFailed);
+        -:   95:    /**** End Assert Results ****/
+        -:   96:    
+        -:   97:    
+        -:   98:    
+        -:   99:    
+        1:  100:    if (atLeast1TestFailed == 0) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  101:        printf("All TESTS PASSED...\n");
+    #####:  102:    }else{
+        1:  103:        printf("All TESTS DID NOT PASS X...\n");
+        -:  104:    }
+        1:  105:    return 0;
+        -:  106:}

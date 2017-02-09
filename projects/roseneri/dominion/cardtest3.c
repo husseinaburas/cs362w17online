@@ -1,3 +1,10 @@
+/*
+Erin Rosenbaum
+File: cardtest3.c
+testing steward
+
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -39,7 +46,7 @@ int main() {
 
 
     // initialize game
-    printf("******* Begin Test, testing %s ******\n", TESTCARD);
+    printf("**************** Begin Test, testing %s **************************\n", TESTCARD);
     initializeGame(num_players, cards, seed, &G);
 
 //*********** test 1: +2 cards, choice1=1 *******************
@@ -50,11 +57,11 @@ int main() {
     cardEffect(steward, 1, 0, 0, &testG, handpos, &bonus);
     int gained_coins = 0;
     int gained_cards = 2;
+    int test_input;
 
     // compare the number of cards in hand
-    printf("hand count = %d, expected = %d\n", testG.handCount[current_player], G.handCount[current_player] + gained_cards - num_discarded);
-    int test_input  = testG.handCount[current_player] == G.handCount[current_player] + gained_cards - num_discarded;
-    assert_true(test_input);
+    printf("hand count = %d, expected = %d\n", testG.handCount[current_player], 6);
+    assert_true(testG.handCount[current_player]== 6);
 
     // campare the number of cards in player's deck
     printf("deck count = %d, expected = %d\n", testG.deckCount[current_player], G.deckCount[current_player] - gained_cards + shuffledCards);
@@ -101,7 +108,7 @@ int main() {
     assert_true(testG.deckCount[current_player] == G.deckCount[current_player] - gained_cards + shuffledCards);
 
 //**************************** end of test *****************
-    printf("CARDTTEST3 SUCCESSFULLY COMPLETED\n\n");
+    printf("*************** CARDTTEST3 SUCCESSFULLY COMPLETED ***********\n\n");
     return 0;
 
 

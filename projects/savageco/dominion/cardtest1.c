@@ -17,7 +17,7 @@ void assert_true(int);
 
 int main() {
 	
-	int expected, n, r, p, deckCount, discardCount, handCount;
+	int expected;
 
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 	             remodel, smithy, village, baron, great_hall};
@@ -89,7 +89,6 @@ int main() {
 	printf("Test 4: Correct number of cards in discard pile");
 	expected = 0;
 	assert_true(G.discardCount[1] == expected);
-}
 	
 	//
 	//  Second Tests (Reshuffle needed for card effect)
@@ -146,8 +145,6 @@ int main() {
 }
 
 
-
-}
 
 // Used to print success or failure messages for test. Comparisons will be made within the 
 // function parameters to test results. 
