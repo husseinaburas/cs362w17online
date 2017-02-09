@@ -4,6 +4,7 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -126,6 +127,9 @@ int test_play_adventurer(struct gameState* post){
 		
 	}
 	asserttrue(0, z, 6);
+	
+	if(passFlag == 0)
+		printf("ALL TESTS PASSED SUCCESSFULLY\n");
 	
 	return 0;
 }
