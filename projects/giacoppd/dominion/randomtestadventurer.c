@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include "dominion.h"
 #include "rngs.h"
+#include <time.h>
 
-
-void abortDump(struct gameState * current, int cycle)
+void abortDump(struct gameState * current, int cycle, int * flags)
 {
 //to be added
 int i = 0;
@@ -21,6 +21,9 @@ printf("\n");
 printf("%d dis size\n", current->discardCount[0]);
 for(i = 0; i < current->discardCount[0]; i++)
 	printf("%d ", current->discard[0][i]);
+printf("\n");
+for(i = 0; i < 8; i++)
+	printf("%d ", flags[i]);
 printf("\n%d error #\n", cycle);
 exit(cycle);
 }
@@ -116,15 +119,15 @@ current->discard[0][j] = tempCard;
 int main(int argc, char * args[])
 {
 struct gameState * current = newGame();
-srand(atoi(args[1])); //the random seed as requested by the assignment.
+srand(time(NULL)); //the random seed as requested by the assignment.
 int coins = 0; //number of coins in discard and deck
 int limit = 100;
 int priorHandCount = 0;
-if(argc > 2)
-	limit = atoi(args[2]); //if you want to limit your tests to a specific number
+if(argc > 1)
+	limit = atoi(args[1]); //if you want to limit your tests to a specific number
 int size = 15;
-if(argc > 3)
-	size = atoi(args[3]);
+if(argc > 2)
+	size = atoi(args[2]);
 int flags[8] = {0,0,0,0,0,0,0,0};
 
 for(int i = 0; i < limit; i++)
@@ -137,15 +140,15 @@ cardEffect(adventurer, 0,0,0, current, current->deckCount[0], 0); //play adventu
 //so these check for a couple things. All check to make sure we have the appropriate number of cards in hand
 if(coins == 0)
 if((current->handCount[0] + 1) != priorHandCount)
-	abortDump(current, 0);
+	abortDump(current, 0, flags);
 //this one makes sure that if we only should draw 1 coin, that it's added to our hand and that it's the right kind of coin
 if(coins == 1)
 if(((current->handCount[0]) != (priorHandCount)) || (current->hand[0][current->handCount[0]-1] != flags[6]))
-	abortDump(current, 1);
+	abortDump(current, 1, flags);
 //this one does the same as above, but with 2 coins. 
 if(coins == 2)
 if(((current->handCount[0]) != (priorHandCount+1)) || (current->hand[0][current->handCount[0]-1] != flags[7]) || (current->hand[0][current->handCount[0]-2] != flags[6]))  
-	abortDump(current, 2); //if the above fails something bad happened to adventurer, dump the gameState
+	abortDump(current, 2, flags); //if the above fails something bad happened to adventurer, dump the gameState
 }
 //we made it
 printf("%s\n", "All clear in adventurer random");
