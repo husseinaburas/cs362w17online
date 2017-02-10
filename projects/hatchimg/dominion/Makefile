@@ -17,9 +17,32 @@ badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
-	
+
+unit1:	unittest1.c dominion.o rngs.o
+	gcc -o unit1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+
 unit2: unittest2.c dominion.o rngs.o
 	gcc -o unit2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+
+unit3: unittest3.c dominion.o rngs.o
+	gcc -o unit3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+
+unit4: unittest4.c dominion.o rngs.o
+	gcc -o unit4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+
+card1: cardtest1.c dominion.o rngs.o
+	gcc -o card1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+card2: cardtest2.c dominion.o rngs.o
+	gcc -o card2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+card3: cardtest3.c dominion.o rngs.o
+	gcc -o card3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+card4: cardtest4.c dominion.o rngs.o
+	gcc -o card4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
@@ -36,7 +59,36 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unit2
+all: playdom player testDrawCard testBuyCard badTestDrawCard unit1 unit2 unit3 unit4 card1 card2 card3 card4
 
+unittestresults.out: playdom player testDrawCard testBuyCard badTestDrawCard unit1 unit2 unit3 unit4 card1 card2 card3 card4
+	rm -rf dominion.gcda
+	./unit1 > unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	#cat dominion.c.gcov >> unittestresults.out
+	rm -rf dominion.gcda
+	./unit2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	#cat dominion.c.gcov >> unittestresults.out
+	rm -rf dominion.gcda
+	./unit3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	rm -rf dominion.gcda
+	./unit4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	rm -rf dominion.gcda
+	./card1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	rm -rf dominion.gcda
+	./card2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	rm -rf dominion.gcda
+	./card3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	rm -rf dominion.gcda
+	./card4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+	
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
