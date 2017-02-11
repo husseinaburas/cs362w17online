@@ -24,7 +24,7 @@ The following cases are tested:
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include "unittests_helpers.h"
+#include "tests_helpers.h"
 
 #define FUNC_NAME "isGameOver()"
 

@@ -1,5 +1,5 @@
-#ifndef _UNITTESTS_HELPERS
-#define _UNITTESTS_HELPERS
+#ifndef _TESTS_HELPERS
+#define _TESTS_HELPERS
 
 #define NOISY_TEST 1
 

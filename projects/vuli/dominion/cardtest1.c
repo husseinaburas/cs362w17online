@@ -39,7 +39,7 @@ The following cases are tests:
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "unittests_helpers.h"
+#include "tests_helpers.h"
 
 #define CARD_NAME "Adventurer"
 

@@ -40,20 +40,20 @@ clean:
 
 # ---------------------------------------------------------------------------------------
 # assn3: Unit testing
-unittests_helpers.o: unittests_helpers.h unittests_helpers.c dominion.h dominion.c
-	gcc -c unittests_helpers.c -g  $(CFLAGS)
+tests_helpers.o: tests_helpers.h tests_helpers.c dominion.h dominion.c
+	gcc -c tests_helpers.c -g  $(CFLAGS)
 
-unittests: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o unittests_helpers.o
-	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
+unittests: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o tests_helpers.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 
-cardtests: cardtest1.c cardtest2.c dominion.o rngs.o unittests_helpers.o
-	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
+cardtests: cardtest1.c cardtest2.c dominion.o rngs.o tests_helpers.o
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 
 unittestresults.out: unittests cardtests
 	./unittest1 > unittestresults.out
@@ -111,8 +111,8 @@ unittestresults.out: unittests cardtests
 	echo "**********************************************************\n" >> unittestresults.out
 
 	echo "**********************************************************" >> unittestresults.out
-	gcov -b unittests_helpers.c >> unittestresults.out
-	cat unittests_helpers.c.gcov >> unittestresults.out
+	gcov -b tests_helpers.c >> unittestresults.out
+	cat tests_helpers.c.gcov >> unittestresults.out
 	echo "**********************************************************\n" >> unittestresults.out
  
 
