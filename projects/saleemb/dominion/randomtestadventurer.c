@@ -1,3 +1,7 @@
+/* Card being tested: adventurer
+ * Bilal Saleem
+ * Intro to SE II - Assignment 4 - 2/11/17
+ */
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -7,7 +11,7 @@
 
 void setDeck(struct gameState * G, int * deck, int numCards, int playerNum);
 void setHand(struct gameState * G, int * hand, int numCards, int playerNum);
-/* compares to arrays in the order and equality of their values; returns 1 if not equal, 0 if equal */
+/* compares two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
 int compare(int * one, int * two, int num);
 
 int main(){
@@ -59,7 +63,11 @@ int main(){
         // top of deck
     };
     
-    setDeck(G, deckInitializer, 10, 0);
+    int i;
+    
+    for(i = 0; i < numPlayers; ++i) {
+        setDeck(G, deckInitializer, 10, i);
+    }
     
     // re-initialize hand so hand is known before cards are drawn.
     // after adventurer is played, hand should be: copper, copper,
@@ -72,7 +80,9 @@ int main(){
         adventurer
     };
     
-    setHand(G, handInitializer, 5, 0);
+    for(i = 0; i < numPlayers; ++i){
+        setHand(G, handInitializer, 5, i);
+    }
     
     // make sure player 1 goes first
     G->whoseTurn = 0;
@@ -121,13 +131,13 @@ int main(){
     // correct hand at this point should be: copper, copper, copper, copper,
     // silver, and silver.  determine if this is the case.
     if(compare(G->hand[G->whoseTurn], correctHand, 6)){
-        printf("Test Failed: Hand of player 1 not correct.\n");
+        printf("Test Failed: Hand of player %d not correct.\n", G->whoseTurn + 1);
     }
     
     // correct deck at this point should be: copper, copper, copper, silver,
     // smithy and village. determine if this is the deck found
     if(compare(G->deck[G->whoseTurn], correctDeck, 6)){
-        printf("Test Failed: Deck of player 1 not correct. \n");
+        printf("Test Failed: Deck of player %d not correct. \n", G->whoseTurn + 1);
     }
     
     
