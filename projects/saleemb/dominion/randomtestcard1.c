@@ -67,6 +67,8 @@ int main(){
         setDeck(G, deckInitializer, 10, i);
     }
     
+    // re-initialize hand so that it is known what the hand should look like
+    // after playing smithy
     int handInitializer[5] = {
         copper,
         copper,
