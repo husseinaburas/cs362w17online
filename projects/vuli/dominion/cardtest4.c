@@ -65,11 +65,12 @@ int main() {
     int G_DeckDiscardCount, preG_DeckDiscardCount;
 
     printf("**********************************************************\n");
-    printf("BEGIN testing %s\n", CARD_NAME);
+    printf("BEGIN unit testing %s\n", CARD_NAME);
     
 
 /*-------------------------------------------------------------------------*/
     casename = "1+ cards in Deck, empty Discard";
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = great_hall; // make current card great_hall
@@ -78,7 +79,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -218,6 +219,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, 1+ cards in Discard";  // to test shuffle
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = great_hall; // make current card great_hall
@@ -234,7 +236,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -375,6 +377,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, empty Discard";
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = great_hall; // make current card great_hall
@@ -390,7 +393,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -533,7 +536,7 @@ int main() {
     /******** Result */
     printf("---------\n");
     printf("Card %s passed %d/%d tests.\n", CARD_NAME, r_main, testCount);
-    printf("END testing %s\n", CARD_NAME);
+    printf("END unit testing %s\n", CARD_NAME);
     printf("**********************************************************\n\n");
 
     return 0;

@@ -10,8 +10,9 @@ int getNumCardsHand(int player, int card, struct gameState* state);
 int getNumCardsDeck(int player, int card, struct gameState* state);
 int getNumCardsDiscard(int player, int card, struct gameState* state);
 int randomInRange(int max);
-void testCardsGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
+void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
     int card, int choice1, int choice2, int choice3, int handPos, int* bonus,
     struct gameState* G, struct gameState* preG);
+struct gameState randomGameState();
 
 #endif

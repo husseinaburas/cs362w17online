@@ -76,11 +76,12 @@ int main() {
     int G_DeckDiscardCount, preG_DeckDiscardCount;
 
     printf("**********************************************************\n");
-    printf("BEGIN testing %s\n", CARD_NAME);
+    printf("BEGIN unit testing %s\n", CARD_NAME);
     
 
 /*-------------------------------------------------------------------------*/
     casename = "3+ cards in Deck, empty Discard";
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -89,7 +90,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -223,6 +224,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "2 cards in Deck, non-empty Discard";  // to test shuffle
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -241,7 +243,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -375,6 +377,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, 3+ cards in Discard";  // to test shuffle
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -394,7 +397,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -527,6 +530,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "2 cards in Deck, empty Discard";  // to test Deck+Discard count < 3
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -544,7 +548,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -678,6 +682,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "1 card in Deck, 1 card in Discard";  // to test shuffle and Deck+Discard count < 3
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -695,7 +700,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -828,6 +833,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, 1 card in Discard";  // to test shuffle and Deck+Discard count < 3
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -844,7 +850,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -977,6 +983,7 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, empty Discard";
+    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = smithy; // make current card smithy
@@ -992,7 +999,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -1127,7 +1134,7 @@ int main() {
     /******** Result */
     printf("---------\n");
     printf("Card %s passed %d/%d tests.\n", CARD_NAME, r_main, testCount);
-    printf("END testing %s\n", CARD_NAME);
+    printf("END unit testing %s\n", CARD_NAME);
     printf("**********************************************************\n\n");
 
     return 0;

@@ -146,7 +146,7 @@ int randomInRange(int max) {
 
 
 /*********************************************************************
-* testCardsGeneralRequirements()
+* testCardGeneralRequirements()
 * Test general requirements that apply to most cards and Deck+Hand+Discard 
 * scenarios:
 * -- Decreases Hand+Deck+Discard count by 1
@@ -155,7 +155,7 @@ int randomInRange(int max) {
 * -- Removes card previously at handPos from hand
 * -- Does not change game state except for current player
 *********************************************************************/
-void testCardsGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
+void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
     int card, int choice1, int choice2, int choice3, int handPos, int* bonus,
     struct gameState* G, struct gameState* preG) 
 {
@@ -164,8 +164,6 @@ void testCardsGeneralRequirements(int* caseCount, char* casename, int* testCount
     int player = G->whoseTurn;
     int G_HandDeckDiscard[2*MAX_DECK + MAX_HAND], preG_HandDeckDiscard[2*MAX_DECK + MAX_HAND];
     int G_HandDeckDiscardCount, preG_HandDeckDiscardCount;
-
-    (*caseCount)++;
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Successful execution\n", *caseCount, casename, ++(*testCount));
@@ -283,3 +281,48 @@ void testCardsGeneralRequirements(int* caseCount, char* casename, int* testCount
     }
     asserttrue(count1==0 && count2==0, r_main);
 }
+
+
+/*********************************************************************
+* randomGameState()
+* Returns random game state that satisfies the following requirements:
+* -- Player in range 0..MAX_PLAYERS-1
+* -- Deck, Discard, and Played count in range 0..MAX_DECK-1
+* -- Hand count of Player in range 0..MAX_HAND-1
+* -- All cards in Player's Deck, Discard, Hand, Played in range curse..treasure_map
+*********************************************************************/
+struct gameState randomGameState() {
+    struct gameState G;
+    int player, i;
+
+    /* Fill game state with random bytes */
+    for (i=0; i < sizeof(struct gameState); i++) {
+        ((char*)&G)[i] = floor(Random() * 256);
+    }
+    
+    /* Construct player in range 0..MAX_PLAYERS-1; Deck, Discard, Played count in range 0..MAX_DECK-1;
+    Hand count in range 0..MAX_HAND-1 */
+    G.whoseTurn = randomInRange(MAX_PLAYERS-1);
+    player = G.whoseTurn;
+    G.deckCount[player] = randomInRange(MAX_DECK-1);
+    G.discardCount[player] = randomInRange(MAX_DECK-1);
+    G.handCount[player] = randomInRange(MAX_HAND-1);
+    G.playedCardCount = randomInRange(MAX_DECK-1);
+
+    /* Construct Deck, Discard, Hand, Played with cards in range curse..treasure_map */
+    for (i=0; i<G.deckCount[player]; i++) {
+        G.deck[player][i] = randomInRange(treasure_map);
+    }
+    for (i=0; i<G.discardCount[player]; i++) {
+        G.discard[player][i] = randomInRange(treasure_map);
+    }
+    for (i=0; i<G.handCount[player]; i++) {
+        G.hand[player][i] = randomInRange(treasure_map);
+    }
+    for (i=0; i<G.playedCardCount; i++) {
+        G.playedCards[i] = randomInRange(treasure_map);
+    }
+
+    return G;
+}
+
