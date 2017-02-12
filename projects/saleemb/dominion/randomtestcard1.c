@@ -21,8 +21,8 @@
 
 void setDeck(struct gameState * G, int * deck, int numCards, int playerNum);
 void setHand(struct gameState * G, int * hand, int numCards, int playerNum);
-/* compares two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
-int compare(int * one, int * two, int num);
+/* compareArrs two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
+int compareArr(int * one, int * two, int num);
 
 int main(int argc, char ** argv){
     
@@ -110,7 +110,7 @@ int main(int argc, char ** argv){
         copper, copper, copper, copper, treasure_map, silver, sea_hag
     };
     
-    if(compare(G->hand[0], correctHand, 7)){
+    if(compareArr(G->hand[0], correctHand, 7)){
         printf("Test Failed: Hand of player 1 not correct.\n");
     }
     
@@ -120,7 +120,7 @@ int main(int argc, char ** argv){
             copper, copper, copper, silver, smithy, village, silver
     };
     
-    if(compare(G->deck[0], correctDeck, 6)){
+    if(compareArr(G->deck[0], correctDeck, 6)){
         printf("Test Failed: Deck of player 1 not correct. \n");
     }
     
@@ -141,13 +141,13 @@ int main(int argc, char ** argv){
     
     // correct hand at this point should be: copper, copper, copper, copper,
     // silver, and silver.  determine if this is the case.
-    if(compare(G->hand[G->whoseTurn], correctHand, 7)){
+    if(compareArr(G->hand[G->whoseTurn], correctHand, 7)){
         printf("Test Failed: Hand of player %d not correct.\n", G->whoseTurn + 1);
     }
     
     // correct deck at this point should be: copper, copper, copper, silver,
     // smithy and village. determine if this is the deck found
-    if(compare(G->deck[G->whoseTurn], correctDeck, 7)){
+    if(compareArr(G->deck[G->whoseTurn], correctDeck, 7)){
         printf("Test Failed: Deck of player %d not correct. \n", G->whoseTurn + 1);
     }
 
@@ -181,7 +181,7 @@ void setHand(struct gameState * G, int * hand, int numCards, int playerNum){
 }
 
 
-int compare(int * one, int * two, int num) {
+int compareArr(int * one, int * two, int num) {
     int i;
     
     for(i = 0; i < num; ++i){
