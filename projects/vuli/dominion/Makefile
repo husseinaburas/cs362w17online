@@ -32,17 +32,18 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+all: playdom player testDrawCard testBuyCard badTestDrawCard randomtests
 
 clean:
-	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard \
+	unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1
+
+tests_helpers.o: tests_helpers.h tests_helpers.c dominion.h dominion.c
+	gcc -c tests_helpers.c -g  $(CFLAGS)
 
 
 # ---------------------------------------------------------------------------------------
 # assn3: Unit testing
-tests_helpers.o: tests_helpers.h tests_helpers.c dominion.h dominion.c
-	gcc -c tests_helpers.c -g  $(CFLAGS)
-
 unittests: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o tests_helpers.o
 	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
@@ -115,4 +116,10 @@ unittestresults.out: unittests cardtests
 	cat tests_helpers.c.gcov >> unittestresults.out
 	echo "**********************************************************\n" >> unittestresults.out
  
+
+# ---------------------------------------------------------------------------------------
+# assn4: Random testing
+randomtests: randomtestadventurer.c randomtestcard1.c dominion.o rngs.o tests_helpers.o
+#	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 

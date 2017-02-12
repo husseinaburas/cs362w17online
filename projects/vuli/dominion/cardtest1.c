@@ -68,7 +68,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "2+ Treasure in Deck, no Treasure in Discard";
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -88,7 +87,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -109,7 +108,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "No Treasure in Deck, 2 Treasure in Discard";
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -129,7 +127,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -151,7 +149,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "1 Treasure in Deck, 1 Treasure in Discard";  // test shuffle
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -173,7 +170,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -194,7 +191,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "1 Treasure in Deck, no Treasure in Discard";  // test shuffle and <1 Treasure
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -211,7 +207,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -232,7 +228,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "No Treasure in Deck, 1 Treasure in Discard";  // test shuffle and <1 Treasure
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -250,7 +245,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -270,7 +265,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "No Treasure in Deck, no Treasure in Discard";  // test 0 Treasure
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = adventurer; // make current card adventurer
@@ -289,7 +283,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 

@@ -70,7 +70,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "1+ cards in Deck, empty Discard";
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = village; // make current card village
@@ -79,7 +78,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -219,7 +218,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, 1+ cards in Discard";  // to test shuffle
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = village; // make current card village
@@ -236,7 +234,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -377,7 +375,6 @@ int main() {
 
 /*-------------------------------------------------------------------------*/
     casename = "Empty Deck, empty Discard";
-    caseCount++;
     initializeGame(numPlayer, k, seed, &G);
     player = G.whoseTurn;
     G.hand[player][handPos] = village; // make current card village
@@ -393,7 +390,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardsGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
