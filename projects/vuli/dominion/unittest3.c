@@ -43,7 +43,7 @@ int main() {
     int player, count, i;
 
     printf("**********************************************************\n");
-    printf("BEGIN testing %s\n", FUNC_NAME);
+    printf("BEGIN unit testing %s\n", FUNC_NAME);
 
 /*-------------------------------------------------------------------------*/
     casename = "Hand count < 0";
@@ -101,7 +101,7 @@ int main() {
     /******** Result */
     printf("---------\n");
     printf("Function %s passed %d/%d tests.\n", FUNC_NAME, r_main, testCount);
-    printf("END testing %s\n", FUNC_NAME);
+    printf("END unit testing %s\n", FUNC_NAME);
     printf("**********************************************************\n\n");
 
     return 0;
