@@ -2,25 +2,38 @@
  * Bilal Saleem
  * Intro to SE II - Assignment 4 - 2/11/17
  */
-
+/*
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+*/
+
+#include "dominion.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
 void setDeck(struct gameState * G, int * deck, int numCards, int playerNum);
 void setHand(struct gameState * G, int * hand, int numCards, int playerNum);
 /* compares two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
 int compare(int * one, int * two, int num);
 
-int main(){
-
+int main(int argc, char ** argv){
+    
+    /*
     // get user to provide a seed value for the srand function
     printf("Enter a random number to serve as a seed: ");
     int randomSeed;
     scanf("%d", &randomSeed);
+    */
+    
+    int randomSeed = atoi(argv[1]);
     srand(randomSeed);
     
     /*********** RANDOMIZATION TEST 1 *************

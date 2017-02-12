@@ -14,12 +14,12 @@ void setHand(struct gameState * G, int * hand, int numCards, int playerNum);
 /* compares two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
 int compare(int * one, int * two, int num);
 
-int main() {
+int main(int argc, char ** argv) {
     
     // get user to provide a seed value for the srand function
-    printf("Enter a random number to serve as a seed: ");
-    int randomSeed;
-    scanf("%d", &randomSeed);
+//    printf("Enter a random number to serve as a seed: ");
+    int randomSeed = atoi(argv[1]);
+//    scanf("%d", &randomSeed);
     srand(randomSeed);
     
     /*********** RANDOMIZATION TEST 1 *************
