@@ -35,6 +35,18 @@ randomtestadventurer.out:
 	./randoadventurer 21 > randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 
+randomtestcard1.out:
+	echo " "
+	gcc -o randocard1 -g randomtestcard1.c dominion.c rngs.c $(CFLAGS)
+	./randocard1 21 > randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+
+randomtestcard2.out:
+	echo " "
+	gcc -o randocard2 -g randomtestcard2.c dominion.c rngs.c $(CFLAGS)
+	./randocard2 2 > randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+
 unittestresults.out: 
 	echo "clean up\n" > unittestresults.out 
 	gcc -o cardtest1 -g cardtest1.c dominion.c rngs.c $(CFLAGS)
