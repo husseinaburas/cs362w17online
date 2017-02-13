@@ -6,7 +6,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD "Adventurer"
+#define TESTCARD "Adventurer"   
 
 
 //Own assert function
