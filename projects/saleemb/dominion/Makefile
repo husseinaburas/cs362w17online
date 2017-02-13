@@ -98,17 +98,17 @@ runtests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 
 	cat dominion.c.gcov >> unittestresults.out
 
 runrandomtests: randomtestadventurer randomtestcard1 randomtestcard2
-	./randomtestadventurer > randomtestadventurer.out
+	./randomtestadventurer 10 &> randomtestadventurer.out
 	gcov dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
-	./randomtestcard1 > randomtestcard1.out
+	./randomtestcard1 10 &> randomtestcard1.out
 	gcov dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
 	gcov -b dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out	
-	./randomtestcard2 > randomtestcard2.out
+	./randomtestcard2 10 &> randomtestcard2.out
 	gcov dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
