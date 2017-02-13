@@ -56,9 +56,6 @@ int asserttrue(int a, int b, int testCase){
 			case 13:
 				printf("Victory card pile was affected\n");
 				break;
-			case 14:
-				printf("Kingdom card pile was affected\n");
-				break;
 
 		}
 	}
@@ -68,6 +65,7 @@ int asserttrue(int a, int b, int testCase){
 
 int checkBuyCard(int supplyPos, struct gameState *post){
 
+	printf("Beginning Unit Test 2...\n");
 	//Save current gamestate in pre
 	struct gameState pre;
 	memcpy (&pre, post, sizeof(struct gameState));
@@ -79,7 +77,12 @@ int checkBuyCard(int supplyPos, struct gameState *post){
 	int r;
 	r=buyCard(-100, post);
 	
-	asserttrue(-1, r, 1);
+	if(r == 0)
+		r = 1;
+	else
+		r = 0;
+	
+	asserttrue(0, r, 1);
 	//ensure that gamestate was unchanged in event of failed call
 	if(r != 0){
 		int u;
@@ -120,7 +123,7 @@ int checkBuyCard(int supplyPos, struct gameState *post){
 	//Test that after call, player has one more card, 4 fewer coins (since we're buying a smithy card), card in discard, and correct # of buys
 	asserttrue((pre.discardCount[player]+1), post->discardCount[player], 6);
 	asserttrue(1, post->coins, 7);
-	asserttrue(post->discard[player][post->discardCount[player]], supplyPos, 8);
+	asserttrue(post->discard[player][post->discardCount[player]], pre.hand[player][supplyPos], 8);
 	asserttrue(post->numBuys, (pre.numBuys-1), 9);
 
 
@@ -138,7 +141,7 @@ int checkBuyCard(int supplyPos, struct gameState *post){
 
 	asserttrue(post->supplyCount[supplyPos], (pre.supplyCount[supplyPos] - 1), 12);
 	
-	//Test that after call, victory and kingdom card piles are unchanged
+	//Test that after call, victory card piles are unchanged
 	int n;
 	if(post->supplyCount[estate] != pre.supplyCount[estate])
 		n = 1;
@@ -149,19 +152,9 @@ int checkBuyCard(int supplyPos, struct gameState *post){
 	else
 		n = 0;
 	asserttrue(0, n, 13);
-	
-	int m;
-	int z = 0;
-	for (m = 0; m < 10; m++){
-		if(post->kingdomCards[m] != pre.kingdomCards[m])
-			z++;
-		else
-		
-	}
-	asserttrue(0, z, 14);
 
 	if(passFlag == 0)
-		printf("ALL TESTS OK \n");
+		printf("ALL TESTS PASSED SUCCESSFULLY \n");
 	
 	return 0;
 

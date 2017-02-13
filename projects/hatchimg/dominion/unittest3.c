@@ -12,7 +12,7 @@ int passFlag = 0;
 void asserttrue(int a, int b, int testcase){
 	
 	if(a == b)
-		printf("TEST PASS");
+		printf("TEST PASS\n");
 	
 	else{
 		printf("TEST FAIL. ");
@@ -74,6 +74,7 @@ void asserttrue(int a, int b, int testcase){
 
 int testUpdateCoins(int player, struct gameState* post, int bonus){
 	
+	printf("Beginning Unit Test 3...\n");
 	//Save current gamestate in pre
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
@@ -81,7 +82,11 @@ int testUpdateCoins(int player, struct gameState* post, int bonus){
 	//Test with bad input (nonexistent player, impossible bonus)
 	int x;
 	x = updateCoins(-1, post, -1);
-	asserttrue(-1, x, 1);
+	if(x == 0)
+		x = 1;
+	else
+		x = 0;
+	asserttrue(0, x, 1);
 	
 	//Test with coins at 0 and at greater than zero, check that they were updated correctly
 	post->coins = 0;
@@ -91,7 +96,7 @@ int testUpdateCoins(int player, struct gameState* post, int bonus){
 	post->coins = pre.coins;
 	post->coins = 1;
 	updateCoins(player, post, 0);
-	asserttrue((pre.coins + 7), post->coins, 3);
+	asserttrue((pre.coins + 6), post->coins, 3);
 	
 	//Reset coin value, test successful call with bonus (calls without bonus were just perfomed)
 	post->coins = pre.coins;
@@ -165,14 +170,15 @@ int testUpdateCoins(int player, struct gameState* post, int bonus){
 	
 	updateCoins(player, post, 0);
 	asserttrue((pre.coins)+7, post->coins, 11);
+	
 	post->coins = pre.coins;
 	
 	post->hand[player][0] = pre.hand[player][0];
-	post->hand[player][1] = pre.hand[player][0];
-	post->hand[player][2] = pre.hand[player][0];
+	post->hand[player][1] = pre.hand[player][1];
+	post->hand[player][2] = pre.hand[player][2];
 	
 	//Check no other aspect of gamestate affected after by changing coins back to old amount and then comparing gamestates
-	//This covers the check for changes in victory and kingdom card piles
+	//This covers the check for changes in other players' hands, victory card pile, kingdom cards, etc.
 	
 	updateCoins(player, post, 0);
 	post->coins = pre.coins;

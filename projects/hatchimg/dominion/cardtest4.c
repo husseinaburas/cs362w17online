@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <stlib.h>
+#include <stdlib.h>
 #include "rngs.h"
 
 int passFlag = 0;
@@ -13,8 +13,8 @@ int passFlag = 0;
 void asserttrue(int a, int b, int testcase){
 	
 	if(a == b)
-		printf("TEST PASSED.\n");
-	else
+		printf("TEST PASS\n");
+	else{
 		printf("TEST FAILED. ");
 		passFlag++;
 		
@@ -25,27 +25,34 @@ void asserttrue(int a, int b, int testcase){
 				break;
 
 			case 2:
-				printf("");
+				printf("Card was not removed from hand and/or discarded\n");
 				break;
 
 			case 3:
-				printf("Other aspect(s) of gamestate were changed besides outpostPlayed flag\n");
+				printf("Deck/hand/discard of other player(s) affected by call\n");
+				break;
+				
+			case 4:
+				printf("Victory card pile was altered \n");
 				break;
 
-			case 4:
+			case 5:
 				printf("Call returned successfully with bad/nonexistent input\n");
 				break;
 				
 		}
+	}
 	
 }
 
 int test_play_outpost(struct gameState *post, int handPos){
 	
+	printf("Beginning Card Test 4...\n");
 	//copy current gamestate into pre
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
 	
+	play_outpost(post, handPos);
 	//test that outpost flag was set
 	int x;
 	if((post->outpostPlayed != pre.outpostPlayed) && post->outpostPlayed == 1)
@@ -58,19 +65,43 @@ int test_play_outpost(struct gameState *post, int handPos){
 	//test that card was removed from hand and discarded
 	
 	int y;
-	if((post->handCount[post->whoseTurn] == (pre.handCount[post->whoseTurn] - 1)) && (post->discardCount[post->whoseTurn] == (pre.discardCount[post->whoseTurn] + 1)))
+	if((post->handCount[post->whoseTurn] == (pre.handCount[pre.whoseTurn] - 1)) && (post->playedCardCount == (pre.playedCardCount + 1)))
 		y = 0;
 	else
 		y = 1;
 	
 	asserttrue(0, y, 2);
 	
-	//reset the flag and compare gamestates to test if anything else was changed (which it shouldn't be). This will check on other players' hands/decks/discards,
-	//victory and kingdom card piles, etc.
-	int z;
-	post->outpostPlayed = pre.outpostPlayed;
-	z = memcmp(&pre, post, sizeof(struct gameState));
-	asserttrue(0, z, 3);
+	//test that other players' decks/hands/discard counts are not affected by function call
+	
+	int otherPlayersFlag = 0;
+	int i;
+	
+	for(i = 0; i < post->numPlayers; i++){
+		if(i == post->whoseTurn){}
+			
+		else
+			if(post->deckCount[i] != pre.deckCount[i])
+				otherPlayersFlag++;
+			else if(post->handCount[i] != pre.handCount[i])
+				otherPlayersFlag++;
+			else if(post->discardCount[i] != pre.discardCount[i])
+				otherPlayersFlag++;
+	}
+	
+	asserttrue(0, otherPlayersFlag, 3);
+	
+	//Test that victory card pile is unchanged
+	int n;
+	if(post->supplyCount[estate] != pre.supplyCount[estate])
+		n = 1;
+	else if(post->supplyCount[duchy] != pre.supplyCount[duchy])
+		n = 1;
+	else if(post->supplyCount[province] != pre.supplyCount[province])
+		n = 1;
+	else
+		n = 0;
+	asserttrue(0, n, 4);
 	
 	//test with bad input (nonexistent handPos)
 	int q;
@@ -80,7 +111,7 @@ int test_play_outpost(struct gameState *post, int handPos){
 	else
 		q = 0;
 	
-	asserttrue(0, q, 4);
+	asserttrue(0, q, 5);
 	
 	
 	if(passFlag == 0)
@@ -114,6 +145,7 @@ int main(){
 	
 	int handPos = 3;
 	G.hand[G.whoseTurn][3] = outpost;
+	G.outpostPlayed = 0;
 	
 	test_play_outpost(&G, handPos);
 	

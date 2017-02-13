@@ -21,11 +21,11 @@ void asserttrue(int a, int b, int testcase){
 		switch(testcase){
 				
 				case 1:
-					printf("Player did not receive two treasure cards\n");
+					printf("Player did not receive exactly two treasure cards\n");
 					break;
 				
 				case 2:
-					printf("Player's hand did not increase by exactly two, possible error discarding non-treasure cards\n");
+					printf("Player's hand did not increase by exactly two\n");
 					break;
 					
 				case 3:
@@ -39,10 +39,6 @@ void asserttrue(int a, int b, int testcase){
 				case 5:
 					printf("Victory card pile was affected\n");
 					break;
-					
-				case 6:
-					printf("Kingdom card pile was affected\n");
-					break;
 		}
 		
 	}
@@ -50,12 +46,14 @@ void asserttrue(int a, int b, int testcase){
 
 int test_play_adventurer(struct gameState* post){
 	
+	printf("Beginning Card Test 3...\n");
 	//copy current gamestate into pre
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
 	int player = post->whoseTurn;
 	
 	//test that player received two treasure cards
+	play_adventurer(post);
 	int x;
 	if((post->hand[player][post->handCount[player] - 1] == (copper || silver || gold)) && (post->hand[player][post->handCount[player] - 2] == (copper || silver || gold)))
 		x = 0;
@@ -76,7 +74,7 @@ int test_play_adventurer(struct gameState* post){
 	//test that there are as many more cards in the hand and discard pile as there are fewer cards in the deck
 	int handNum;
 	int discardNum;
-	int total Num;
+	int totalNum;
 	handNum = (post->handCount[player] - pre.handCount[player]);
 	discardNum = (post->discardCount[player] - pre.discardCount[player]);
 	totalNum = handNum + discardNum;
@@ -93,20 +91,20 @@ int test_play_adventurer(struct gameState* post){
 	int i;
 	
 	for(i = 0; i < post->numPlayers; i++){
-		if(i == post->whoseTurn)
+		if(i == post->whoseTurn){}
 			
 		else
 			if(post->deckCount[i] != pre.deckCount[i])
 				otherPlayersFlag++;
 			else if(post->handCount[i] != pre.handCount[i])
 				otherPlayersFlag++;
-			else if(post->discardCount[i] ! = pre.discardCount[i])
+			else if(post->discardCount[i] != pre.discardCount[i])
 				otherPlayersFlag++;
 	}
 	
 	asserttrue(0, otherPlayersFlag, 4);
 	
-	//Test that victory and kingdom card piles are unchanged
+	//Test that victory card pile is unchanged
 	int n;
 	if(post->supplyCount[estate] != pre.supplyCount[estate])
 		n = 1;
@@ -117,16 +115,6 @@ int test_play_adventurer(struct gameState* post){
 	else
 		n = 0;
 	asserttrue(0, n, 5);
-	
-	int m;
-	int z = 0;
-	for (m = 0; m < 10; m++){
-		if(post->kingdomCards[m] != pre.kingdomCards[m])
-			z++;
-		else
-		
-	}
-	asserttrue(0, z, 6);
 	
 	if(passFlag == 0)
 		printf("ALL TESTS PASSED SUCCESSFULLY\n");
@@ -145,7 +133,7 @@ int main(){
 	
 	initializeGame(numPlayers, k, seed, &G);
 	G.whoseTurn = 1;
-	int currentPlayer = G.whoseTurn;
+	int player = G.whoseTurn;
 	
 	int i;
 	for(i = 0; i < G.numPlayers; i++){
