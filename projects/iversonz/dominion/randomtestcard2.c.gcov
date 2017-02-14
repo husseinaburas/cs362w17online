@@ -1,0 +1,104 @@
+        -:    0:Source:randomtestcard2.c
+        -:    0:Graph:randomtestcard2.gcno
+        -:    0:Data:randomtestcard2.gcda
+        -:    0:Runs:4
+        -:    0:Programs:1
+        -:    1://Automated Random Test for the Smithy Card
+        -:    2:// Compile --  gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
+        -:    3:// find . -name "*.gcda" -print0 | xargs -0 rm
+        -:    4:// ./randomtestcard2
+        -:    5:// gcov randomtestcard2
+        -:    6:#include "dominion.h"
+        -:    7:#include "rngs.h"
+        -:    8:#include <stdio.h>
+        -:    9:#include <math.h>
+        -:   10:#include <stdlib.h>
+        -:   11:
+        -:   12:///////// Global Variable /////////
+        -:   13:int test_passed = 0;
+        -:   14:int cards_test_passed = 0;
+        -:   15:////////////////////////////////
+        -:   16:
+        -:   17:
+        -:   18:void check_results(int a)
+        -:   19:{
+     4000:   20:  if(a == 0)
+        -:   21:  {
+     4000:   22:    test_passed++;
+     4000:   23:  }
+        -:   24:
+     4000:   25:}
+        -:   26:
+        -:   27:void cards_check(int c)
+        -:   28:{
+     4000:   29:  if(c == 7) //should have 7 cards in hand
+        -:   30:  {
+     2044:   31:    cards_test_passed++;
+     2044:   32:  }
+        -:   33:
+     4000:   34:}
+        -:   35:
+        -:   36:
+        -:   37:int main()
+        -:   38:{
+        -:   39:  int a, b, c, playersn, randomSeed, value, countDeck, countHand;
+        4:   40:  int currentplayer = 1;
+        -:   41:  struct gameState game;
+        -:   42:
+        4:   43:  int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+        -:   44:
+        4:   45:  printf("\nAutomated Random Test -- Smithy\n-----------\nThere are 10 rounds of testing...\nEach round has 100 random tests...\n");
+        -:   46:
+        -:   47:
+       88:   48:  for(int z = 0; z < 10 ; z++)
+        -:   49:  {
+       40:   50:    printf("Testing Round %d\n", (z+1));
+     8080:   51:    for(int i = 0; i < 100; i ++)
+        -:   52:    {
+     4000:   53:      playersn = rand() % 4; // Randon Number of players
+     4000:   54:      randomSeed = rand() % 10000; // Randon Seed
+        -:   55:
+     4000:   56:      a = initializeGame(playersn,cards, randomSeed, &game); // Initiliaze the game
+        -:   57:
+        -:   58:
+     4000:   59:      value = rand() % 6; // set a value random
+        -:   60:
+     4000:   61:      if(value == 1) // if the value is 1 set the deckCount to 0
+        -:   62:      {
+      616:   63:        game.deckCount[currentplayer] = 0;
+      616:   64:        countDeck = 0 ;
+      616:   65:      }
+        -:   66:      else // otherwise pick a random value
+        -:   67:      {
+     3384:   68:        countDeck = rand() % MAX_DECK;
+     3384:   69:        game.deckCount[currentplayer] = countDeck;
+        -:   70:      }
+        -:   71:
+     4000:   72:      countHand = rand() % MAX_HAND;
+     4000:   73:      game.handCount[currentplayer] = countHand;
+        -:   74:
+        -:   75:
+     4000:   76:      game.discardCount[currentplayer] = rand() % MAX_DECK;
+        -:   77:
+     4000:   78:      b = cardEffect(smithy, 1, 1, 1, &game,0,0);
+        -:   79:
+     4000:   80:      check_results(b);
+        -:   81:
+     4000:   82:      c = numHandCards(&game);
+        -:   83:
+     4000:   84:      cards_check(c);
+     4000:   85:    }
+        -:   86:
+       40:   87:  }
+        4:   88:  printf("\nResults\n----------\n");
+        4:   89:  printf("Test's - Card Effect - Passed: %d\n",test_passed );
+        4:   90:  printf("Test's - Card Effect - Failed: %d\n",(1000 - test_passed) );
+        4:   91:  printf("Total Number of Card Effect Test's: %d\n",1000 );
+        4:   92:  printf("----------\n");
+        4:   93:  printf("Test's - Number of Cards -  Passed: %d\n",cards_test_passed );
+        4:   94:  printf("Test's - Number of Cards -  Failed: %d\n",(1000 - cards_test_passed) );
+        4:   95:  printf("Total Number of Number of Cards Test's: %d\n",1000 );
+        -:   96:
+        -:   97:
+        -:   98:
+        4:   99:}
