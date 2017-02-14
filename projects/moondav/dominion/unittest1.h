@@ -17,7 +17,6 @@ void customAssert(int testStatus, char *testName, int observed, int expected, st
         printf("FAILED TEST %s: observed = %d, expected = %d\n", testName, observed, expected);
         result->numFailed++;
     }
-    printf("passed: %d, failed: %d\n", result->numPassed, result->numFailed);
 }
 
 // Print the current player's hand
