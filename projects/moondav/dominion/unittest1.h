@@ -22,7 +22,6 @@ void customAssert(int testStatus, char *testName, int observed, int expected, st
 // Print the current player's hand
 void printPlayerHand(struct gameState *state, int currentPlayer){
 	int i = 0;
-    printf("Player hand: \t");
     for(i = 0; i < state->handCount[currentPlayer]; i++){
         printf("%d ", state->hand[currentPlayer][i]);
     }
@@ -32,7 +31,6 @@ void printPlayerHand(struct gameState *state, int currentPlayer){
 // Pirnt the current player's deck
 void printPlayerDeck(struct gameState *state, int currentPlayer){
 	int i = 0;
-    printf("Player deck: \t");
     for(i = 0; i < state->deckCount[currentPlayer]; i++){
         printf("%d ", state->deck[currentPlayer][i]);
     }
@@ -41,5 +39,5 @@ void printPlayerDeck(struct gameState *state, int currentPlayer){
 
 // Print expected hand
 void printExpectedHand(int card1, int card2, int card3, int card4, int card5){
-    printf("Expected hand: \t%d %d %d %d %d\n", card1, card2, card3, card4, card5);
+    printf("%d %d %d %d %d\n", card1, card2, card3, card4, card5);
 }

@@ -42,7 +42,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 
 #define NUM_TESTS 1000
 #define ACCEPTED_FAILURES 0
-
+#define HAND_COUNT 5
 
 
 struct TestResult randomTestSmithy(){
@@ -86,7 +86,7 @@ struct TestResult randomTestSmithy(){
 
     // Setup
     currentPlayer = rand() % numPlayers;
-    printf("Current player is: %d\n", currentPlayer);
+    printf("Current player is: %d\n\n", currentPlayer);
 
     // Put the test card at handPos 0, and randomly populate the rest of the
     // player's hand.
@@ -104,7 +104,7 @@ struct TestResult randomTestSmithy(){
     G.hand[currentPlayer][3] = card4;
     G.hand[currentPlayer][4] = card5;
 
-    G.handCount[currentPlayer] = 5;
+    G.handCount[currentPlayer] = HAND_COUNT;
 
     // Populate all player's decks with a random number of random cards
     // Each deck size will be between minDeck and maxDeck cards
@@ -116,15 +116,23 @@ struct TestResult randomTestSmithy(){
         }
     }
 
-    printf("SETUP\n");
-    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G, currentPlayer);
-
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
+    printf("Current player deck count: %d\n", testG.deckCount[currentPlayer]);
+
+    printf("Current player deck: ");
+    printPlayerDeck(&testG, currentPlayer);
+    printf("Expected player deck: ");
+    printPlayerDeck(&G, currentPlayer);
+    printf("\n");
+
     // Ensure the player's hand is populated correctly
+    printf("Current player hand count: %d.\n", testG.handCount[currentPlayer]);
+    printf("Expected player hand count: %d.\n", HAND_COUNT);
+    printf("Current player hand: ");
     printPlayerHand(&testG, currentPlayer);
+    printf("Expected player hand: ");
     printExpectedHand(card1, card2, card3, card4, card5);
     printf("\n");
 
@@ -144,7 +152,6 @@ struct TestResult randomTestSmithy(){
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Hand Count", observed, expected, &result);
-    printPlayerHand(&testG, currentPlayer);
 
     // Check if the player's discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
@@ -159,13 +166,6 @@ struct TestResult randomTestSmithy(){
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Played Card Count", observed, expected, &result);
-
-    // Check that the players coins stayed the same.
-    observed = testG.coins;
-    expected = G.coins;
-    if(observed == expected){testResult = PASS;}
-    else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected, &result);
 
     // Check that all other player's deck count stayed the same.
     for(i = 0; i < maxPlayers; i++){
@@ -189,6 +189,12 @@ struct TestResult randomTestSmithy(){
 
     printf("Number of tests passed: %d\n", result.numPassed);
     printf("Number of tests failed: %d\n", result.numFailed);
+    if(result.numFailed > ACCEPTED_FAILURES){
+        printf("FAILED TEST\n");
+    }
+    else{
+        printf("PASSED TEST\n");
+    }
 
     return result;
 }
@@ -211,7 +217,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n\n############# RANDOM TESTING OF SMITHY CARD ###############\n");
     for(test = 1; test <= NUM_TESTS; test++){
-        printf("\n\nRunning test %d of %d\n", test, NUM_TESTS);
+        printf("\n\n**** Running test %d of %d\n", test, NUM_TESTS);
         curTestResult = randomTestSmithy();
         if(curTestResult.numFailed > ACCEPTED_FAILURES){
             totalTestResults.numFailed++;
