@@ -44,6 +44,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 #define ACCEPTED_FAILURES 0
 
 
+
 struct TestResult randomTestSmithy(){
     int testResult = FAIL;
     int observed;
