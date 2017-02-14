@@ -30,6 +30,11 @@ Description:
 Note: Some skeleton code for game setup was taken from cardtest4.c,
     which was posted to the OSU CS-362 course web page.
 
+Note: There is a known bug in this test that if the seed for the random
+    tester is set to 3, a seg fault occurs at test #15. I have tried
+    numerous other seeds to try to replicate the error, but have not
+    found another that causes it.
+
 Include the following lines in your makefile:
 
 CFLAGS = -Wall -fpic -coverage -lm
