@@ -225,6 +225,8 @@ int main() {
     printf("\n\n************* Summary of random testing Smithy card. ****************\n");
     printf("Total number of tests passed: %d\n", totalTestResults.numPassed);
     printf("Total number of tests failed: %d\n", totalTestResults.numFailed);
+    float percentPassed = (totalTestResults.numPassed / NUM_TESTS);
+    printf("Passed %2.f%% of tests.\n", percentPassed);
     printf("*********************************************************************\n");
     printf("\n\n############# END OF RANDOM TESTING OF SMITHY CARD ###############\n\n");
 
