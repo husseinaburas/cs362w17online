@@ -30,10 +30,12 @@ Description:
 Note: Some skeleton code for game setup was taken from cardtest4.c,
     which was posted to the OSU CS-362 course web page.
 
-Note: There is a known bug in this test that if the seed for the random
-    tester is set to 3, a seg fault occurs at test #15. I have tried
-    numerous other seeds to try to replicate the error, but have not
-    found another that causes it.
+Note: There was a bug in my original refactor of playAdventurer() where
+    I didn't properly handle the event where the player draws through
+    all of their deck and discards without finding 2 treasures. This
+    caused a seg fault when the event occurred. I found it becuase of this
+    test, but I needed to fix it in dominion.c so the test could run to 
+    completion.
 
 Include the following lines in your makefile:
 
@@ -53,7 +55,7 @@ randomtestcardadventurer: randomtestcardadventurer.c dominion.o rngs.o
 #include <stdlib.h>
 #include "unittest1.h"  // custom assert function, printPlayerHand(), printPlayerDeck()
 
-#define NUM_TESTS 100
+#define NUM_TESTS 1000
 #define ACCEPTED_FAILURES 0
 
 
@@ -71,11 +73,12 @@ Output:
     2 treasure cards in the deck, returns -1.
 ******************************************************************/
 int getIndexOfSecondTreasure(int *deck, int numCards){
-    int i = numCards;
+    int i;
     int treasuresFound = 0;
 
     for(i = numCards - 1; i >= 0; i--){
         if(deck[i] >= copper && deck[i] <= gold){
+            printf("Found a treasure at index: %d!\n", i);
             treasuresFound++;
         }
         if(treasuresFound >= 2){
@@ -161,7 +164,9 @@ struct TestResult randomtestAdventurer(){
     // Setup
     // Randomly set the current player
     currentPlayer = rand() % numPlayers;
-    printf("Current player is: %d\n", currentPlayer);
+    G.whoseTurn = currentPlayer;
+    printf("Current player is: %d\n", G.whoseTurn);
+    printf("Expected player is: %d\n", currentPlayer);
 
     // Put the test card at handPos 0, and randomly populate the rest of the
     // player's hand.
@@ -206,7 +211,6 @@ struct TestResult randomtestAdventurer(){
 
     // Play the test card
     playCard(0, choice1, choice2, choice3, &testG);
-    // cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
 
     secondTreasureIndex = getIndexOfSecondTreasure(testG.deck[currentPlayer], testG.deckCount[currentPlayer]);
     printf("Second treasure index: %d.\n", secondTreasureIndex);

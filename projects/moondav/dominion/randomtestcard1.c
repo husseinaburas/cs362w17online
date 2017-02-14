@@ -40,7 +40,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 #include <stdlib.h>
 #include "unittest1.h"  // custom assert function, printPlayerHand(), printPlayerDeck()
 
-#define NUM_TESTS 100
+#define NUM_TESTS 1000
 #define ACCEPTED_FAILURES 0
 
 
