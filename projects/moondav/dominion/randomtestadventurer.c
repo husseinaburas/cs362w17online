@@ -57,6 +57,7 @@ randomtestcardadventurer: randomtestcardadventurer.c dominion.o rngs.o
 
 #define NUM_TESTS 1000
 #define ACCEPTED_FAILURES 0
+#define HAND_COUNT 5
 
 
 /******************************************************************
@@ -81,6 +82,7 @@ int getIndexOfSecondTreasure(int *deck, int numCards){
             printf("Found a treasure at index: %d!\n", i);
             treasuresFound++;
         }
+
         if(treasuresFound >= 2){
             return i;
         }
@@ -138,7 +140,6 @@ struct TestResult randomtestAdventurer(){
     int handGain = 0;
     int discardGain = 0;
 
-
     struct TestResult result;
     result.numPassed = 0;
     result.numFailed = 0;
@@ -153,7 +154,7 @@ struct TestResult randomtestAdventurer(){
 
     // between minPlayers and maxPlayers
     numPlayers = (rand() % maxPlayers) + minPlayers;
-    printf("Number of players selected: %d\n", numPlayers);
+    printf("Number of players selected: %d\n\n", numPlayers);
 
     // between minTreasures and maxTreasures
     numTreasures = (rand() % maxTreasures) + minTreasures;
@@ -166,7 +167,7 @@ struct TestResult randomtestAdventurer(){
     currentPlayer = rand() % numPlayers;
     G.whoseTurn = currentPlayer;
     printf("Current player is: %d\n", G.whoseTurn);
-    printf("Expected player is: %d\n", currentPlayer);
+    printf("Expected player is: %d\n\n", currentPlayer);
 
     // Put the test card at handPos 0, and randomly populate the rest of the
     // player's hand.
@@ -184,7 +185,7 @@ struct TestResult randomtestAdventurer(){
     G.hand[currentPlayer][3] = card4;
     G.hand[currentPlayer][4] = card5;
 
-    G.handCount[currentPlayer] = 5;
+    G.handCount[currentPlayer] = HAND_COUNT;
 
     // Populate all player's decks with a random number of random cards
     // Each deck size will be between minDeck and maxDeck cards
@@ -196,32 +197,36 @@ struct TestResult randomtestAdventurer(){
         }
     }
 
-    printf("SETUP\n");
-    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G, currentPlayer);
-
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
-    // Ensure the player's hand is populated correctly
     printPlayerDeck(&testG, currentPlayer);
+    printf("Current player deck count is: %d.\n", testG.deckCount[currentPlayer]);
+
+    // Ensure the player's hand is populated correctly
     printPlayerHand(&testG, currentPlayer);
     printExpectedHand(card1, card2, card3, card4, card5);
     printf("\n");
 
-    // Play the test card
+    // Ensure the player's hand count is correct
+    printf("Current player hand count: %d.\n", testG.handCount[currentPlayer]);
+    printf("Expected player hand count: %d.\n\n", HAND_COUNT);
+
+    // Play the test card, this will change the testG game state
     playCard(0, choice1, choice2, choice3, &testG);
 
-    secondTreasureIndex = getIndexOfSecondTreasure(testG.deck[currentPlayer], testG.deckCount[currentPlayer]);
-    printf("Second treasure index: %d.\n", secondTreasureIndex);
+    // Locate the index of the second treasure card the player will draw.
+    secondTreasureIndex = getIndexOfSecondTreasure(G.deck[currentPlayer], G.deckCount[currentPlayer]);
+    printf("Second treasure index: %d.\n\n", secondTreasureIndex);
+    
     // Get the number of cards the player is expected to draw.
     if(secondTreasureIndex == -1){
-        numCardsToDraw = testG.deckCount[currentPlayer];
+        numCardsToDraw = G.deckCount[currentPlayer];
     }
     else{
-        numCardsToDraw = testG.deckCount[currentPlayer] - secondTreasureIndex;
+        numCardsToDraw = G.deckCount[currentPlayer] - secondTreasureIndex;
     }
-    printf("Player is drawing %d cards.\n", numCardsToDraw);
+    printf("Player should draw %d cards.\n", numCardsToDraw);
 
     // Check if the player's deck count decreased by numCardsToDraw.
     observed = testG.deckCount[currentPlayer];
@@ -232,19 +237,19 @@ struct TestResult randomtestAdventurer(){
 
     // Check if the player's hand count was increased by 0, 1, or 2,
     // depending on how many treasures were in the player's deck.
-    playersTreasures = getNumTreasures(testG.deck[currentPlayer], testG.deckCount[currentPlayer]);
+    playersTreasures = getNumTreasures(G.deck[currentPlayer], G.deckCount[currentPlayer]);
     if(playersTreasures >= 2){
         handGain = 2;
     }
     else{
         handGain = playersTreasures;
     }
+    // Player loses 1 card to play the test card, and gains handGain
     observed = testG.handCount[currentPlayer];
-    expected = G.handCount[currentPlayer] + handGain;
+    expected = G.handCount[currentPlayer] + handGain - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Hand Count", observed, expected, &result);
-    printPlayerHand(&testG, currentPlayer);
 
     // Check if the player's discard count increased by (numCardsToDraw - handGain)
     discardGain = numCardsToDraw - handGain;
@@ -283,6 +288,12 @@ struct TestResult randomtestAdventurer(){
 
     printf("Number of tests passed: %d\n", result.numPassed);
     printf("Number of tests failed: %d\n", result.numFailed);
+    if(result.numFailed > ACCEPTED_FAILURES){
+        printf("FAILED TEST\n");
+    }
+    else{
+        printf("PASSED TEST\n");
+    }
 
     return result;
 }
@@ -305,7 +316,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n\n############# RANDOM TESTING OF Adventurer CARD ###############\n");
     for(test = 1; test <= NUM_TESTS; test++){
-        printf("\n\nRunning test %d of %d\n", test, NUM_TESTS);
+        printf("\n\n**** Running test %d of %d\n", test, NUM_TESTS);
         curTestResult = randomtestAdventurer();
         if(curTestResult.numFailed > ACCEPTED_FAILURES){
             totalTestResults.numFailed++;
@@ -326,7 +337,7 @@ int main(int argc, char *argv[]) {
     printf("Total number of tests failed: %d\n", totalTestResults.numFailed);
     float percentPassed = (totalTestResults.numPassed / NUM_TESTS);
     printf("Passed %2.f%% of tests.\n", percentPassed);
-    printf("*********************************************************************\n");
+    printf("*************************************************************************\n");
     printf("\n\n############## END OF RANDOM TESTING OF ADVENTURER CARD #################\n\n");
 
     return 0;

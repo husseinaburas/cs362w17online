@@ -96,4 +96,4 @@ player: player.c interface.o
 all: playdom player
 
 clean:
-	rm -f *.o randomtestresults.out playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o randomtestcard1.out randomtestcard2.out randomtestadventurer.out randomtestresults.out playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
