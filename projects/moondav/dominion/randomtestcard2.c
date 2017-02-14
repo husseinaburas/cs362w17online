@@ -1,10 +1,10 @@
 /*********************************************************************
-randomtestcard1.c
+randomtestcard2.c
 
 Author: David Moon
 Date: 2-13-2017
 Description:
-    This is a random tester for the smithy card in dominion.c. The variables
+    This is a random tester for the village card in dominion.c. The variables
     that are selected randomly are:
     - numPlayers: The number of players in the game during testing.
     - currentPlayer: Which player's turn it is.
@@ -13,10 +13,9 @@ Description:
     - card: A card from the possible cards in the dominion game.
     
     The following are key points the test will check:
-    - The current player's actions decrease by 1
-    - The current player's hand count increases by 2 (+3 for the card,
-      and -1 to play the test card)
-    - The current player's deck count decreases by 3
+    - The current player's actions increase by 1 (+2 for card, -1 to play card)
+    - The current player's hand count stays the same (+1 for card, -1 to play card)
+    - The current player's deck count decreases by 1
     - The current player's palyed card count increases by 1
 
 Note: Some skeleton code for game setup was taken from cardtest4.c,
@@ -44,7 +43,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 #define ACCEPTED_FAILURES 0
 
 
-struct TestResult randomTestSmithy(){
+struct TestResult randomTestVillage(){
     int testResult = FAIL;
     int observed;
     int expected;
@@ -71,8 +70,8 @@ struct TestResult randomTestSmithy(){
     struct gameState G, testG;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
                  sea_hag, tribute, smithy, council_room};
-    int testCard = smithy;
-    char *testCardName = "smithy";
+    int testCard = village;
+    char *testCardName = "village";
     int card1, card2, card3, card4, card5;
     int i = 0;
 
@@ -130,16 +129,16 @@ struct TestResult randomTestSmithy(){
     // Play the test card
     playCard(0, choice1, choice2, choice3, &testG);
 
-    // Check if the player's deck count decreased by 3.
+    // Check if the player's deck count decreased by 1.
     observed = testG.deckCount[currentPlayer];
-    expected = G.deckCount[currentPlayer] - 3;
+    expected = G.deckCount[currentPlayer] - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Deck Count", observed, expected, &result);
 
-    // Check if the player's hand count was increased by 2 (play testCard and draw 3).
+    // Check if the player's hand count stayed the same (play testCard and draw 1).
     observed = testG.handCount[currentPlayer];
-    expected = G.handCount[currentPlayer] + 2;
+    expected = G.handCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Hand Count", observed, expected, &result);
@@ -159,13 +158,6 @@ struct TestResult randomTestSmithy(){
     else{testResult = FAIL;}
     customAssert(testResult, "Played Card Count", observed, expected, &result);
 
-    // Check that the players coins stayed the same.
-    observed = testG.coins;
-    expected = G.coins;
-    if(observed == expected){testResult = PASS;}
-    else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected, &result);
-
     // Check that all other player's deck count stayed the same.
     for(i = 0; i < maxPlayers; i++){
         if(i != currentPlayer){
@@ -179,9 +171,9 @@ struct TestResult randomTestSmithy(){
         }
     }
 
-    // Check that the players number of actions decreased by 1.
+    // Check that the players number of actions increased by 1 (-1 to play card, +2 for card).
     observed = testG.numActions;
-    expected = G.numActions - 1;
+    expected = G.numActions + 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Number of Actions", observed, expected, &result);
@@ -208,10 +200,10 @@ int main(int argc, char *argv[]) {
 
     int test = 1;
 
-    printf("\n\n############# RANDOM TESTING OF SMITHY CARD ###############\n");
+    printf("\n\n############# RANDOM TESTING OF VILLAGE CARD ###############\n");
     for(test = 1; test <= NUM_TESTS; test++){
         printf("\n\nRunning test %d of %d\n", test, NUM_TESTS);
-        curTestResult = randomTestSmithy();
+        curTestResult = randomTestVillage();
         if(curTestResult.numFailed > ACCEPTED_FAILURES){
             totalTestResults.numFailed++;
         }
@@ -220,19 +212,19 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    // Note: Every call to randomTestSmithy() tests several expected values.
+    // Note: Every call to randomTestVillage() tests several expected values.
     //       If more than ACCEPTED_FAILURES of those values are not the
     //       expected values, the entire test is counted as a failure in the
-    //       summary of random testing Smithy card.
-    // Note: At the time of testing the Smithy card, there were known bugs
+    //       summary of random testing Village card.
+    // Note: At the time of testing the Village card, there were known bugs
     //       that result in a 100% failure rate for this test.
-    printf("\n\n************* Summary of random testing Smithy card. ****************\n");
+    printf("\n\n************* Summary of random testing Village card. ****************\n");
     printf("Total number of tests passed: %d\n", totalTestResults.numPassed);
     printf("Total number of tests failed: %d\n", totalTestResults.numFailed);
     float percentPassed = (totalTestResults.numPassed / NUM_TESTS);
     printf("Passed %2.f%% of tests.\n", percentPassed);
     printf("*********************************************************************\n");
-    printf("\n\n############## END OF RANDOM TESTING OF SMITHY CARD #################\n\n");
+    printf("\n\n############# END OF RANDOM TESTING OF SMITHY CARD ###############\n\n");
 
     return 0;
 }
