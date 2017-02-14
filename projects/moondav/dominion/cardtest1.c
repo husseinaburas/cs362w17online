@@ -50,6 +50,10 @@ int main() {
     int card1, card2, card3, card4, card5;
     int i = 0;
 
+    struct TestResult result;
+    result.numPassed = 0;
+    result.numFailed = 0;
+
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
@@ -83,7 +87,7 @@ int main() {
 
     printf("SETUP\n");
     printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G);
+    printPlayerDeck(&G, currentPlayer);
 
     // Populate the current player's deck with 10 cards
     G.deckCount[currentPlayer] = 10;
@@ -92,13 +96,13 @@ int main() {
     }
 
     printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G);
+    printPlayerDeck(&G, currentPlayer);
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // Ensure the player's hand is populated correctly
-    printPlayerHand(&G);
+    printPlayerHand(&G, currentPlayer);
     printExpectedHand(card1, card2, card3, card4, card5);
     printf("\n");
 
@@ -111,51 +115,58 @@ int main() {
     expected = G.deckCount[currentPlayer] - 3;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Deck Count", observed, expected);
+    customAssert(testResult, "Deck Count", observed, expected, &result);
 
     // Check if the player's hand count was increased by 2 (play testCard and draw 3).
     observed = testG.handCount[currentPlayer];
     expected = G.handCount[currentPlayer] + 2;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Hand Count", observed, expected);
-    printPlayerHand(&testG);
+    customAssert(testResult, "Hand Count", observed, expected, &result);
+    printPlayerHand(&testG, currentPlayer);
 
     // Check if the player's discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check that the played card count increased by 1.
     observed = testG.playedCardCount;
     expected = G.playedCardCount + 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Played Card Count", observed, expected);
+    customAssert(testResult, "Played Card Count", observed, expected, &result);
 
     // Check that the players coins stayed the same.
     observed = testG.coins;
     expected = G.coins;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected);
+    customAssert(testResult, "Coins", observed, expected, &result);
 
     // Check that the other player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer + 1];
     expected = G.deckCount[currentPlayer + 1];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Other Player's Deck Count", observed, expected);
+    customAssert(testResult, "Other Player's Deck Count", observed, expected, &result);
 
     // Check that the players number of actions decreased by 1.
     observed = testG.numActions;
     expected = G.numActions - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Number of Actions", observed, expected);
+    customAssert(testResult, "Number of Actions", observed, expected, &result);
 
+    printf("\n\n************* Summary of random testing Smithy card. ****************\n");
+    printf("Total number of tests passed: %d\n", result.numPassed);
+    printf("Total number of tests failed: %d\n", result.numFailed);
+    int totalTests = result.numPassed + result.numFailed;
+    float percentPassed = ((float)result.numPassed / totalTests) * 100;
+    printf("Passed %.2f%% of tests.\n", percentPassed);
+    printf("*********************************************************************\n");
     printf("\n\nEND OF SMITHY CARD TEST\n\n");
 
     return 0;
