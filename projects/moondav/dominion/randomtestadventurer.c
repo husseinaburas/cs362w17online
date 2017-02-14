@@ -200,9 +200,9 @@ struct TestResult randomtestAdventurer(){
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
+    printf("Current player deck count is: %d.\n", testG.deckCount[currentPlayer]);
     printf("Current player deck: ");
     printPlayerDeck(&testG, currentPlayer);
-    printf("Current player deck count is: %d.\n", testG.deckCount[currentPlayer]);
 
     // Ensure the player's hand is populated correctly
     printf("Current player hand: ");

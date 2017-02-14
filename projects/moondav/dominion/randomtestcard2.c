@@ -41,6 +41,7 @@ randomtestcard1: randomtestcard1.c dominion.o rngs.o
 
 #define NUM_TESTS 1000
 #define ACCEPTED_FAILURES 0
+#define HAND_COUNT 5
 
 
 struct TestResult randomTestVillage(){
@@ -84,7 +85,9 @@ struct TestResult randomTestVillage(){
 
     // Setup
     currentPlayer = rand() % numPlayers;
-    printf("Current player is: %d\n", currentPlayer);
+    G.whoseTurn = currentPlayer;
+    printf("Current player is: %d.\n", G.whoseTurn);
+    printf("Expected player is: %d.\n\n", currentPlayer);
 
     // Put the test card at handPos 0, and randomly populate the rest of the
     // player's hand.
@@ -114,17 +117,24 @@ struct TestResult randomTestVillage(){
         }
     }
 
-    printf("SETUP\n");
-    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G, currentPlayer);
-
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
+    printf("Current player deck count: %d\n", testG.deckCount[currentPlayer]);
+    printf("Current player deck: ");
+    printPlayerDeck(&testG, currentPlayer);
+    printf("\n");
+
     // Ensure the player's hand is populated correctly
+    printf("Current player hand: ");
     printPlayerHand(&testG, currentPlayer);
+    printf("Expected player hand: ");
     printExpectedHand(card1, card2, card3, card4, card5);
     printf("\n");
+
+    // Ensure the player's hand count is correct
+    printf("Current player hand count: %d.\n", testG.handCount[currentPlayer]);
+    printf("Expected player hand count: %d.\n\n", HAND_COUNT);
 
     // Play the test card
     playCard(0, choice1, choice2, choice3, &testG);
@@ -142,7 +152,6 @@ struct TestResult randomTestVillage(){
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
     customAssert(testResult, "Hand Count", observed, expected, &result);
-    printPlayerHand(&testG, currentPlayer);
 
     // Check if the player's discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
@@ -202,7 +211,7 @@ int main(int argc, char *argv[]) {
 
     printf("\n\n############# RANDOM TESTING OF VILLAGE CARD ###############\n");
     for(test = 1; test <= NUM_TESTS; test++){
-        printf("\n\nRunning test %d of %d\n", test, NUM_TESTS);
+        printf("\n\n**** Running test %d of %d\n", test, NUM_TESTS);
         curTestResult = randomTestVillage();
         if(curTestResult.numFailed > ACCEPTED_FAILURES){
             totalTestResults.numFailed++;
@@ -224,7 +233,7 @@ int main(int argc, char *argv[]) {
     float percentPassed = (totalTestResults.numPassed / NUM_TESTS);
     printf("Passed %2.f%% of tests.\n", percentPassed);
     printf("*********************************************************************\n");
-    printf("\n\n############# END OF RANDOM TESTING OF SMITHY CARD ###############\n\n");
+    printf("\n\n############# END OF RANDOM TESTING OF VILLAGE CARD ###############\n\n");
 
     return 0;
 }
