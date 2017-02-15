@@ -1,15 +1,15 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
- * cardtest3.c - Testing great_hall card function
+ * randomtestcard2.c - Testing great_hall card function
  * Test 1: Play great_hall, 1 card drawn from deck.
  * Test 2: Play great_hall, verify action is the same before and after playing card.
  * Test 3: Play great_hall, 0 cards in deck.
  * Test 4: Play great_hall, verify action is the same before and after playing card.
  * Include the following lines in your makefile:
  *
- * cardtest3: cardtest3.c dominion.o rngs.o
- *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+ * randomtestcard2: randomtestcard2.c dominion.o rngs.o
+ *      gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -37,16 +37,27 @@ void initializeHand(struct gameState *state, int testPlayer)
     }
 }
 
-int main() {
-    int seed = 1000;
-    int numPlayers = 2;
+int main(int argc, char* argv[]) {
+    if (argc == 1)
+    {
+        printf("usage: ./randomcardtest2 <seed>\n");
+        return (EXIT_FAILURE);
+    }
+    int seed = atoi(argv[1]);
+    srand(seed);
+    int numPlayers;
     int testResults[4] = {-1};
-    int testPlayer = 0;
-    int great_hallPos = 0;
+    int testPlayer;
     int preActionCount = 0, postActionCount = 0, preHandCount = 0, postHandCount = 0;
     int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall};
     struct gameState G;
+    
+    do {
+        numPlayers = rand() % 4;
+    }
+    while (numPlayers < 2);
+    testPlayer = rand() % numPlayers;
     
     printf ("TESTING great hall card:\n");
 #if (NOISY_TEST == 1)
@@ -54,12 +65,26 @@ int main() {
 #endif
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     initializeGame(numPlayers, k, seed, &G); // initialize a new game
-    printf("Actions: %i\n", G.numActions);
+    //setting hands for all players after player 0 -- initalize game only sets hand for player 0
+    for (int i = 1; i < numPlayers; i++)
+    {
+        G.handCount[i] = G.handCount[0];
+        int j = 0;
+        while(j < G.handCount[i])
+        {
+            drawCard(i, &G);
+            j++;
+        }
+    }
     //put great_hall in hand
-    replaceCard(&G, testPlayer, great_hallPos);
+    
+    int randGreat_HallPos = rand() % G.handCount[testPlayer];
+    
+    replaceCard(&G, testPlayer, randGreat_HallPos);
     preHandCount = G.handCount[testPlayer];
     preActionCount = G.numActions;
-    playCard(great_hallPos, 0, 0 , 0, &G);
+    
+    playCard(randGreat_HallPos, rand(), rand(), rand(), &G);
     
     postHandCount = G.handCount[testPlayer];
     postActionCount = G.numActions;
@@ -80,9 +105,9 @@ int main() {
     preHandCount = G.handCount[testPlayer];
     preActionCount = G.numActions;
     G.deckCount[testPlayer] = 2;
-    replaceCard(&G, testPlayer, great_hallPos);
+    replaceCard(&G, testPlayer, randGreat_HallPos);
     
-    playCard(great_hallPos, 0, 0 , 0, &G);
+    playCard(randGreat_HallPos, rand(), rand(), rand(), &G);
     postActionCount = G.numActions;
     postHandCount = G.handCount[testPlayer];
     

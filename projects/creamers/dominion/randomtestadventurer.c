@@ -1,15 +1,15 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
- * cardtest1.c - Testing adventurer card function
+ * randomtestadventurer.c - Testing adventurer card function
  * Test 1: Only one treasure in deck, verify only one is added to hand (also forces shuffle)
  * Test 2: No treasures in deck.
  * Test 3: Treasure in discard and not deck or hand (this is to test that the deck is shuffled).
  *
  * Include the following lines in your makefile:
  *
- * cardtest1: cardtest1.c dominion.o rngs.o
- *      gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+ * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+ *      gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -45,11 +45,18 @@ void coinCount(struct gameState *state, int* coins, int testPlayer)
     }  
 }
 
-int main() {
-    int seed = 1000;
-    int numPlayers = 2;
+int main(int argc, char* argv[]) {
+    if (argc == 1)
+    {
+        printf("usage: ./randomrandomtestadventurer <seed>\n");
+        return (EXIT_FAILURE);
+    }
+    int seed = atoi(argv[1]);
+    srand(seed);
+    int numPlayers;
     int testResults[2] = {-1};
-    int testPlayer = 0;
+    int testPlayer;
+    //this is how many different kinds of coins there are; this cannot be randomized
     int numCoins = 3;
     int preCardGoldCount = 0, postCardGoldCount = 0;
     int k[10] = {adventurer, council_room, feast, gardens, mine
@@ -60,8 +67,14 @@ int main() {
     {
         coinCounter[i] = 0;
     }
-    //int k[6] = {curse, estate, duchy, province, great_hall, gardens};
+    
+    //int treasure[6] = {curse, estate, duchy, province, great_hall, gardens};
     struct gameState G;
+    do {
+        numPlayers = rand() % 4;
+    }
+    while (numPlayers < 2);
+    testPlayer = rand() % numPlayers;
     
     printf ("TESTING adventurer card:\n");
 #if (NOISY_TEST == 1)
@@ -70,17 +83,16 @@ int main() {
     memset(&G, 23, sizeof(struct gameState));   // clear the game state
     initializeGame(numPlayers, k, seed, &G); // initialize a new game
     
-    //get coins in hand
-    coinCount(&G, coinCounter, 0);
+    coinCount(&G, coinCounter, testPlayer);
     preCardGoldCount = coinCounter[2];
  
     //put one gold on top of deck
     G.deck[testPlayer][0] = gold;
 
-    //set all other cards to a non-treasure card
-    for (int i = 1; i < G.deckCount[0]; i++)
+    //set all cards to a non-treasure card
+    for (int i = 0; i < G.deckCount[testPlayer]; i++)
     {
-        G.deck[testPlayer][i] = k[0];
+        G.deck[testPlayer][i] = k[rand() % 10];
     }
     
     playAdventurer(&G);
@@ -97,20 +109,20 @@ int main() {
 #endif  
     
     //resetting test parameters to handful of copper
-    resetHand(&G, 0, copper);
+    resetHand(&G, testPlayer, k[rand() % 10]);
     preCardGoldCount = 0;
     postCardGoldCount = 0;
 
-    coinCount(&G, coinCounter, 0);
+    coinCount(&G, coinCounter, testPlayer);
     preCardGoldCount = coinCounter[2];
     
     //set all other cards to a non-treasure card
-    for (int i = 0; i < MAX_DECK; i++)
+    for (int i = 0; i < G.deckCount[testPlayer]; i++)
     {
-        G.deck[0][i] = k[0];
+        G.deck[testPlayer][i] = k[rand() % 10];
     }
     playAdventurer(&G);
-    coinCount(&G, coinCounter, 0);
+    coinCount(&G, coinCounter, testPlayer);
     postCardGoldCount = coinCounter[2];
     
     testResults[1] = asserttrue(postCardGoldCount, preCardGoldCount);
@@ -120,7 +132,7 @@ int main() {
 #endif  
     
     //resetting test parameters to handful of copper
-    resetHand(&G, 0, copper);
+    resetHand(&G, testPlayer, k[rand() % 10]);
     preCardGoldCount = 0;
     postCardGoldCount = 0;
     
@@ -128,16 +140,16 @@ int main() {
     preCardGoldCount = coinCounter[2];
         
     //set all other cards to a non-treasure card
-    for (int i = 0; i < MAX_DECK; i++)
+    for (int i = 0; i < G.deckCount[testPlayer]; i++)
     {
-        G.deck[0][i] = k[0];
+        G.deck[testPlayer][i] = k[rand() % 10];
     }
     
     //set gold on top of discard
     G.discard[testPlayer][0] = gold;
     
     playAdventurer(&G);
-    coinCount(&G, coinCounter, 0);
+    coinCount(&G, coinCounter, testPlayer);
     postCardGoldCount = coinCounter[2];
         
     testResults[2] = asserttrue(postCardGoldCount+1, preCardGoldCount);
