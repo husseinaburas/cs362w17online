@@ -49,11 +49,14 @@ int main() {
     int trashFlag;
     int i;
 
+    struct TestResult result;
+    result.numPassed = 0;
+    result.numFailed = 0;
+
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
     printf("\n\n############# TESTING discardCard() FUNCTION ###############\n");
-
 
     printf("TEST 1: Discard a card (not trashed).\n\n");
 
@@ -73,28 +76,28 @@ int main() {
     expected = G.handCount[currentPlayer] - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Hand Count", observed, expected);
+    customAssert(testResult, "Hand Count", observed, expected, &result);
 
     // Check that the played card count stayed the same.
     observed = testG.playedCardCount;
     expected = G.playedCardCount;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Played Card Count", observed, expected);
+    customAssert(testResult, "Played Card Count", observed, expected, &result);
 
     // Check that the discard count was increased by 1.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer] + 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check that the player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer];
     expected = G.deckCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Player Deck Count", observed, expected);
+    customAssert(testResult, "Player Deck Count", observed, expected, &result);
 
 
     printf("\n\nTEST 2: Discard a card and trash it.\n\n");
@@ -113,28 +116,28 @@ int main() {
     expected = G.handCount[currentPlayer] - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Hand Count", observed, expected);
+    customAssert(testResult, "Hand Count", observed, expected, &result);
 
     // Check that the played card count stayed the same.
     observed = testG.playedCardCount;
     expected = G.playedCardCount;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Played Card Count", observed, expected);
+    customAssert(testResult, "Played Card Count", observed, expected, &result);
 
     // Check that the discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check that the player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer];
     expected = G.deckCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Player Deck Count", observed, expected);
+    customAssert(testResult, "Player Deck Count", observed, expected, &result);
 
 
     printf("\n\nTEST 3: Attempt to discard with an empty hand.\n\n");
@@ -161,29 +164,36 @@ int main() {
     expected = G.handCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Hand Count", observed, expected);
+    customAssert(testResult, "Hand Count", observed, expected, &result);
 
     // Check that the played card count stayed the same.
     observed = testG.playedCardCount;
     expected = G.playedCardCount;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Played Card Count", observed, expected);
+    customAssert(testResult, "Played Card Count", observed, expected, &result);
 
     // Check that the discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check that the player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer];
     expected = G.deckCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Player Deck Count", observed, expected);
+    customAssert(testResult, "Player Deck Count", observed, expected, &result);
 
+    printf("\n\n************* Summary of random testing discardCard() function. ****************\n");
+    printf("Total number of tests passed: %d\n", result.numPassed);
+    printf("Total number of tests failed: %d\n", result.numFailed);
+    int totalTests = result.numPassed + result.numFailed;
+    float percentPassed = ((float)result.numPassed / totalTests) * 100;
+    printf("Passed %.2f%% of tests.\n", percentPassed);
+    printf("*********************************************************************\n");
     printf("\n\nEND OF UNIT TEST 2\n\n");
 
     return 0;

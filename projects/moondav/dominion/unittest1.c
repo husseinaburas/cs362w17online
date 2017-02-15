@@ -49,11 +49,14 @@ int main() {
     int cardToBuy;
     int cardCost;
 
+    struct TestResult result;
+    result.numPassed = 0;
+    result.numFailed = 0;
+
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
     printf("\n\n############# TESTING buyCard() FUNCTION ###############\n");
-
 
     printf("TEST 1: Buy a card with sufficient coins and available supply.\n\n");
     G.numBuys = 3;  //set player's number of buys
@@ -73,28 +76,28 @@ int main() {
     expected = G.numBuys - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Num Buys", observed, expected);
+    customAssert(testResult, "Num Buys", observed, expected, &result);
 
     // Check if the supply count for the purchased card was decreased by 1.
     observed = testG.supplyCount[cardToBuy];
     expected = G.supplyCount[cardToBuy] - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Supply Count", observed, expected);
+    customAssert(testResult, "Supply Count", observed, expected, &result);
 
     // Check if the discard count for the player was increased by 1.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer] + 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check if the players coins were decreased by the cost of the purchased card.
     observed = testG.coins;
     expected = G.coins - cardCost;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected);
+    customAssert(testResult, "Coins", observed, expected, &result);
 
     printf("\n\nTEST 2: Buy a card with insufficient coins and available supply.\n\n");
     G.numBuys = 3;  //set player's number of buys
@@ -116,28 +119,28 @@ int main() {
     expected = G.numBuys;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Num Buys", observed, expected);
+    customAssert(testResult, "Num Buys", observed, expected, &result);
 
     // Check if the supply count stayed the same.
     observed = testG.supplyCount[cardToBuy];
     expected = G.supplyCount[cardToBuy];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Supply Count", observed, expected);
+    customAssert(testResult, "Supply Count", observed, expected, &result);
 
     // Check if the player's discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check if the player's coins stayed the same.
     observed = testG.coins;
     expected = G.coins;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected);
+    customAssert(testResult, "Coins", observed, expected, &result);
 
     printf("\n\nTEST 3: Buy a card with sufficient coins and unavailable supply.\n\n");
     G.numBuys = 3;  //set player's number of buys
@@ -160,29 +163,36 @@ int main() {
     expected = G.numBuys;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Num Buys", observed, expected);
+    customAssert(testResult, "Num Buys", observed, expected, &result);
 
     // Check if the the supply count stayed the same.
     observed = testG.supplyCount[cardToBuy];
     expected = G.supplyCount[cardToBuy];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Supply Count", observed, expected);
+    customAssert(testResult, "Supply Count", observed, expected, &result);
 
     // Check if the player's discard count stayed the same.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check if the player's coins stayed the same.
     observed = testG.coins;
     expected = G.coins;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected);
+    customAssert(testResult, "Coins", observed, expected, &result);
 
+    printf("\n\n************* Summary of random testing buyCard() function. ****************\n");
+    printf("Total number of tests passed: %d\n", result.numPassed);
+    printf("Total number of tests failed: %d\n", result.numFailed);
+    int totalTests = result.numPassed + result.numFailed;
+    float percentPassed = ((float)result.numPassed / totalTests) * 100;
+    printf("Passed %.2f%% of tests.\n", percentPassed);
+    printf("*********************************************************************\n");
     printf("\n\nEND OF UNIT TEST 1\n\n");
 
     return 0;

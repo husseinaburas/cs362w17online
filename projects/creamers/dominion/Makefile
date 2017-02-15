@@ -54,23 +54,23 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
     
-runA3tests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-	./unittest1 &> unittest.out
-	./unittest2 &> unittest.out
-	./unittest3 &> unittest.out
-	./unittest4 &> unittest.out
-	./cardtest1 &> cardtest.out
-	./cardtest2 &> unittest.out
-	./cardtest3 &> unittest.out
-	./cardtest4 &> unittest.out
-	gcov -b dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	./unittest1 &> unittestresults.out
+	./unittest2 &> unittestresults.out
+	./unittest3 &> unittestresults.out
+	./unittest4 &> unittestresults.out
+	./cardtest1 &> unittestresults.out
+	./cardtest2 &> unittestresults.out
+	./cardtest3 &> unittestresults.out
+	./cardtest4 &> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
     
 
 runtests: testDrawCard 
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+	./testDrawCard &> unittestresults.out
+	gcov dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
