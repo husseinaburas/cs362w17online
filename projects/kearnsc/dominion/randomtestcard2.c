@@ -14,7 +14,7 @@
 #include <time.h>
 #include "dominion.h"
 
-#define SHOW_PASSFAIL 1
+#define SHOW_PASSFAIL 0
 static int failCount = 0;
 
 // Prototypes.

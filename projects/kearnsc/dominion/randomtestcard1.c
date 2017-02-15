@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
 		softAssert((T6pre + 1 == T6post), 13);
 	}
 
-	printf("Failed test count = %d\n", failCount);
+	printf("Card council_room failed test count = %d\n", failCount);
 
 	if (failCount > 0)
 		printf("Consider running this test with SHOW_PASSFAIL set to 1\n");
