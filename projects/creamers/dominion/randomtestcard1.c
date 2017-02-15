@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
- * Assignment 3
+ * Assignment 4
  * randomcardtest1.c - Testing smithy card function
  * Test 1: Play smithy, 3 cards drawn from deck.
  * Test 2: Play smithy, verify smithy is removed from hand.

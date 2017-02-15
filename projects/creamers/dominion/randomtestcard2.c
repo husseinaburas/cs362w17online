@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
- * Assignment 3
+ * Assignment 4
  * randomtestcard2.c - Testing great_hall card function
  * Test 1: Play great_hall, 1 card drawn from deck.
  * Test 2: Play great_hall, verify action is the same before and after playing card.
@@ -27,14 +27,6 @@
 void replaceCard(struct gameState *state, int testPlayer, int pos)
 {
     state->hand[testPlayer][pos] = great_hall;
-}
-
-void initializeHand(struct gameState *state, int testPlayer)
-{
-    for (int i = 0; i < state->handCount[testPlayer]; i++)
-    {
-        state->hand[testPlayer][i] = adventurer;
-    }
 }
 
 int main(int argc, char* argv[]) {
@@ -81,6 +73,7 @@ int main(int argc, char* argv[]) {
     int randGreat_HallPos = rand() % G.handCount[testPlayer];
     
     replaceCard(&G, testPlayer, randGreat_HallPos);
+    printf ("%i", randGreat_HallPos);
     preHandCount = G.handCount[testPlayer];
     preActionCount = G.numActions;
     

@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
- * Assignment 3
+ * Assignment 4
  * randomtestadventurer.c - Testing adventurer card function
  * Test 1: Only one treasure in deck, verify only one is added to hand (also forces shuffle)
  * Test 2: No treasures in deck.

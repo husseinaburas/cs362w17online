@@ -35,7 +35,7 @@ randomtestcard2: randomtestcard2.c dominion.o devassert.o rngs.o
 
 randomtestadventurer: randomtestadventurer.c dominion.o devassert.o rngs.o
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o devassert.o $(CFLAGS)
-      
+    
 devassert.o: devassert.h devassert.c
 	gcc -c devassert.c -g $(CFLAGS)
 
@@ -67,10 +67,10 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	./unittest4 &> unittestresults.out
 	./cardtest1 &> unittestresults.out
 	./cardtest2 &> unittestresults.out
-	./cardtest3 &> unittestresults.out
+	./cardtest3 &> cardtest3.out
 	./cardtest4 &> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+	gcov -b -f dominion.c >> cardtest3.out
+	cat dominion.c.gcov >> cardtest3.out
 
 randomtestcard1.out: randomtestcard1
 	./randomtestcard1 1000 &> randomtestcard1.out
