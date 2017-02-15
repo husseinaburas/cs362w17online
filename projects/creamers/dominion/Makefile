@@ -35,10 +35,7 @@ randomtestcard2: randomtestcard2.c dominion.o devassert.o rngs.o
 
 randomtestadventurer: randomtestadventurer.c dominion.o devassert.o rngs.o
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o devassert.o $(CFLAGS)
-    
-test: test.c dominion.o devassert.o rngs.o
-	gcc -o test -g test.c dominion.o rngs.o devassert.o $(CFLAGS)
-    
+      
 devassert.o: devassert.h devassert.c
 	gcc -c devassert.c -g $(CFLAGS)
 
