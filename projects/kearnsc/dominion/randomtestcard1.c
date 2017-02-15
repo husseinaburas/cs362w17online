@@ -151,7 +151,7 @@ int main(int argc, char** argv) {
 is result should be false, call softAssert with "!result" as argument. */
 void softAssert(_Bool result, int testNum) {
 	if (SHOW_PASSFAIL == 1) {
-		printf("Card Adventurer - ");
+		printf("Card council_room - ");
 		if (result)
 			printf("TEST %d SUCCESFULLY COMPLETED\n", testNum);
 		else

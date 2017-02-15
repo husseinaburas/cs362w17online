@@ -71,11 +71,40 @@ int main(int argc, char** argv) {
 		// Test 3: Is card at G1.hand[1][0] unchanged since this is player[1]? 
 		softAssert((T3pre == T3post), 3);
 
-		// We already know discardCard() has some issues, see unittest3.c for those details.
-
 	}
 
-	printf("Failed test count = %d\n", failCount);
+	// Reset gameState.
+	memcpy(&G1, &G2, sizeof(struct gameState));
+
+	// Do early returns work
+
+	// Test 4: if choice1 < copper || > gold) return -1
+	for (i = 0; i < MAX_HAND; i++) {
+		G1.hand[0][i] = floor(Random() * MAX_HAND);
+	}
+
+	int result = runMine(&G1, 0, copper, gold, 0);
+	softAssert((result == -1), 4);
+
+	// Reset gameState.
+	memcpy(&G1, &G2, sizeof(struct gameState));
+
+	// Card choice1 invalid.
+	result = runMine(&G1, 0, -1, gold, 0);
+	softAssert((result == -1), 5);
+
+	// Card choice2 invalid.
+	result = runMine(&G1, 0, copper, 27, 0);
+	softAssert((result == -1), 6);
+
+	// Reset gameState.
+	memcpy(&G1, &G2, sizeof(struct gameState));
+
+	// Card choice1 and choice2 invalid for getCost(). Added both to dominion.c::getCost() switch.
+	result = runMine(&G1, 0, 27, 28, 0);
+	softAssert((result == -1), 7);
+
+	printf("Card mine() failed test count = %d\n", failCount);
 
 	if (failCount > 0)
 		printf("Consider running this test with SHOW_PASSFAIL set to 1\n");
@@ -87,7 +116,7 @@ int main(int argc, char** argv) {
 is result should be false, call softAssert with "!result" as argument. */
 void softAssert(_Bool result, int testNum) {
 	if (SHOW_PASSFAIL == 1) {
-		printf("Card Adventurer - ");
+		printf("Card Mine - ");
 		if (result)
 			printf("TEST %d SUCCESFULLY COMPLETED\n", testNum);
 		else

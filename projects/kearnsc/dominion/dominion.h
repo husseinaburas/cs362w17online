@@ -128,6 +128,8 @@ void runSmithy(struct gameState *state, int currentPlayer, int handPos);
 void runTribute(struct gameState *state, int nextPlayer, int currentPlayer);
 void runMinion(struct gameState *state, int choice1, int choice2, int currentPlayer, int handPos);
 void runSea_hag(struct gameState *state, int currentPlayer);
+void runCouncil_room(struct gameState *state, int currentPlayer, int handPos);
+int runMine(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
 
 // Added to enable calls to the various functions and cardEffect() from testing progs.
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus);
