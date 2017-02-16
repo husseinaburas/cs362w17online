@@ -122,6 +122,13 @@
      #endif
      return 1;
    }
+   //Main player should have one additional Buy
+   if(post->numBuys != pre.numBuys + 1) {
+     #if (PRINT_TEST)
+      printf("Test Failed: Expected Buy count: %i, Actual Buy Count: %i\n", pre.numBuys + 1, post->numBuys);
+     #endif
+     return 1;
+   }
    //Every other player should have one additional card in their hand
    for (i = 0; i < post->numPlayers; i++) {
      if (i != p) {
