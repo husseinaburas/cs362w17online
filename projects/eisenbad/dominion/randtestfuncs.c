@@ -1,14 +1,10 @@
-/* File: testFuncs.c
+/* File: randtestFuncs.c
    Author: Daniel Eisenbach
-   Date: 2/4/17
+   Date: 2/16/17
+  
+   Description: compilation of assert functions that test various aspects 
+   of the game's state after performing a card/function test.
 */
-
-// card_state[0] = card
-// card_state[1] = choice1
-// card_state[2] = choice2
-// card_state[3] = choice3
-// card_state[4] = handpos
-// card_state[5] = bonus
 
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -18,50 +14,35 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G) {
-  struct gameState testG;
-
-  printf("\n  TEST %d: %d bonus coins are awarded to the current player\n", testNum, xtraCoins);
-
-  // reset bonus coins to zero
-  card_state[5] = 0;
-	
-  // copy the game state to a test case
-  memcpy(&testG, &G, sizeof(struct gameState));
-  cardEffect(card_state[0], card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
-
-  printf("   bonus coins = %d, expected = %d\n", testG.coins - G.coins, xtraCoins);
-
-  // assert test passed
-  if (testG.coins - G.coins == xtraCoins) {return 1;}
-  else {return 0;}
+int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCoins) {
+  if (testG.coins - G.coins == xtraCoins) {
+    *pass_count = *pass_count + 1;
+    return 1;
+  }
+  else {
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+    printf("\n  TEST %d: %d bonus coins are awarded to the current player\n", testNum, xtraCoins);
+    printf("   bonus coins = %d, expected = %d\n", testG.coins - G.coins, xtraCoins);
+    return 0;
+  }
 }
 
-int checkActions(int testNum, int card_state[6], int xtraActions, struct gameState G) {
-  struct gameState testG;
-
-  printf("\n  TEST %d: %d extra actions are gained\n", testNum, xtraActions);
-
-  // copy the game state to a test case
-  memcpy(&testG, &G, sizeof(struct gameState));
-  cardEffect(card_state[0], card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
-	
-  printf("    actions = %d, expected = %d\n", testG.numActions , G.numActions + xtraActions);
-
-  // assert test passed
-  if (testG.numActions == G.numActions + xtraActions) {return 1;}
-  else {return 0;}
+int randCheckActions(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraActions) {
+  if (testG.numActions == G.numActions + xtraActions) {
+    *pass_count = *pass_count + 1;
+    return 1;
+  }
+  else {
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+    printf("\n  TEST %d: %d extra actions are gained\n", testNum, xtraActions);
+    printf("    actions = %d, expected = %d\n", testG.numActions , G.numActions + xtraActions);
+    return 0;
+  }
 }
 
-int checkSupplyCount(int testNum, int card_state[6], struct gameState G) {
-  struct gameState testG;
+int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
 	
-  printf("\n  TEST %d: No state change occurs to the victory card piles or kingdom card piles\n", testNum);
 
-  // copy the game state to a test case
-  memcpy(&testG, &G, sizeof(struct gameState));
-  cardEffect(card_state[0], card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
-	
   // victory cards
   printf("    estate count = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
   printf("    duchy count = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
@@ -94,8 +75,16 @@ int checkSupplyCount(int testNum, int card_state[6], struct gameState G) {
       (testG.supplyCount[tribute] == G.supplyCount[tribute]) &&
       (testG.supplyCount[smithy] == G.supplyCount[smithy]) &&
       (testG.supplyCount[council_room] == G.supplyCount[council_room]))
-      {return 1;}
-  else {return 0;}
+  {
+    *pass_count = *pass_count + 1;
+    return 1;
+  }
+  // TODO: add individual print statements
+  else {
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+    printf("\n  TEST %d: No state change occurs to the victory card piles or kingdom card piles\n", testNum);
+    return 0;
+  }
 }
 
 int checkOtherPlayerState(int testNum, int card_state[6], struct gameState G) {
