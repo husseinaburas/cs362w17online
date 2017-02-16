@@ -165,11 +165,11 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
     //initialize hand size to zero
     state->handCount[i] = 0;
     state->discardCount[i] = 0;
-    //draw 5 cards
-    // for (j = 0; j < 5; j++)
-    //	{
-    //	  drawCard(i, state);
-    //	}
+    // draw 5 cards
+     for (j = 0; j < 5; j++)
+      {
+        drawCard(i, state);
+      }
   }
 
   //set embargo tokens to 0 for all supply piles
@@ -1228,7 +1228,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 int playSmithy(struct gameState *state, int handPos) {
   //+3 Cards
-  for (int i = 0; i < 3; i--)
+  for (int i = 0; i < 3; i++)
   {
     drawCard(state->whoseTurn, state);
   }

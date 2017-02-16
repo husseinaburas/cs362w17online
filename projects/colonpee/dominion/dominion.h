@@ -135,6 +135,6 @@ int playSmithy(struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);
 int playFeast(struct gameState *state, int choice1);
 int playCouncil_Room(struct gameState *state, int handPos);
-
+int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
 
 #endif
