@@ -77,15 +77,15 @@ char* getCardName(int card) {
 ********************************************************************/
 void printCurrentPlayer(int currentPlayer, struct gameState* state) {
   int i;
-  printf("---Player %d's Hand:\n", currentPlayer);
+  printf("---Player %d's Hand count=%d\n", currentPlayer, state->handCount[currentPlayer]);
   for (i=0; i<state->handCount[currentPlayer]; i++)
     printf("%s\t", getCardName(state->hand[currentPlayer][i]));
   printf("\n");
-  printf("---Player %d's Deck:\n", currentPlayer);
+  printf("---Player %d's Deck count=%d\n", currentPlayer, state->deckCount[currentPlayer]);
   for (i=0; i<state->deckCount[currentPlayer]; i++)
     printf("%s\t", getCardName(state->deck[currentPlayer][i]));
   printf("\n");
-  printf("---Player %d's Discard:\n", currentPlayer);
+  printf("---Player %d's Discard count=%d\n", currentPlayer, state->discardCount[currentPlayer]);
   for (i=0; i<state->discardCount[currentPlayer]; i++)
     printf("%s\t", getCardName(state->discard[currentPlayer][i]));
   printf("\n");
@@ -154,6 +154,9 @@ int randomInRange(int max) {
 * -- Adds card previously at handPos to playedCards
 * -- Removes card previously at handPos from hand
 * -- Does not change game state except for current player
+* Params:
+*   G: original game state (will be changed after function executes)
+*   preG: where copy of original game state will be stored
 *********************************************************************/
 void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
     int card, int choice1, int choice2, int choice3, int handPos, int* bonus,
@@ -167,6 +170,7 @@ void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount,
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Successful execution\n", *caseCount, casename, ++(*testCount));
+    memcpy(preG, G, sizeof(struct gameState)); 
     r = cardEffect(card, choice1, choice2, choice3, G, handPos, bonus);
     asserttrue(r==0, r_main); 
     if (NOISY_TEST) {
@@ -194,25 +198,26 @@ void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount,
     printf("---------CASE %d: %s -- TEST %d: Card at handPos added to playedCards\n", *caseCount, casename, ++(*testCount));
     asserttrue(G->playedCards[G->playedCardCount-1] == preG->hand[player][handPos], r_main);
 
-    /*********/
-    printf("---------CASE %d: %s -- TEST %d: Card at handPos removed from current player's hand\n", *caseCount, casename, ++(*testCount));
-    count1 = getNumCardsHand(player, card, preG);
-    count2 = getNumCardsHand(player, card, G);
-    asserttrue(count2==count1-1, r_main);
-    if (NOISY_TEST) printf("Card at handPos: %s\nCard count before: %d\nCard count after: %d\n", 
-        getCardName(preG->hand[player][handPos]), count1, count2);
+    // /*********/
+    // /* This test produces incorrect result if player draws exactly the same card as the card previously at handPos -- removed for now */
+    // printf("---------CASE %d: %s -- TEST %d: Card at handPos removed from current player's hand\n", *caseCount, casename, ++(*testCount));
+    // count1 = getNumCardsHand(player, card, preG);
+    // count2 = getNumCardsHand(player, card, G);
+    // asserttrue(count2==count1-1, r_main);
+    // if (NOISY_TEST) printf("Card at handPos: %s\nCard count before: %d\nCard count after: %d\n", 
+    //     getCardName(preG->hand[player][handPos]), count1, count2);
 
     /*********/
     printf("---------CASE %d: %s -- TEST %d: Game state unchanged except for played card and current player\n", *caseCount, casename, ++(*testCount));
     memcpy(&preG_mod, G, sizeof(struct gameState));
     preG_mod.handCount[player] = G->handCount[player];  // make current player's hand, deck, discard before execution equal after execution
-    for (i=0; i<MAX_HAND; i++) preG_mod.hand[player][i] = G->hand[player][i];
     preG_mod.deckCount[player] = G->deckCount[player];
-    for (i=0; i<MAX_DECK; i++) preG_mod.deck[player][i] = G->deck[player][i];
     preG_mod.discardCount[player] = G->discardCount[player];
-    for (i=0; i<MAX_DECK; i++) preG_mod.discard[player][i] = G->discard[player][i];
     preG_mod.playedCardCount = G->playedCardCount;
-    for (i=0; i<MAX_DECK; i++) preG_mod.playedCards[i] = G->playedCards[i];
+    memcpy(preG_mod.hand[player], G->hand[player], sizeof(int)*MAX_HAND);
+    memcpy(preG_mod.deck[player], G->deck[player], sizeof(int)*MAX_DECK);
+    memcpy(preG_mod.discard[player], G->discard[player], sizeof(int)*MAX_DECK);
+    memcpy(preG_mod.playedCards, G->playedCards, sizeof(int)*MAX_DECK);
     asserttrue(memcmp(G, &preG_mod, sizeof(struct gameState))==0, r_main);
 
     /*********/
@@ -308,6 +313,10 @@ struct gameState randomGameState() {
     G.discardCount[player] = randomInRange(MAX_DECK-1);
     G.handCount[player] = randomInRange(MAX_HAND-1);
     G.playedCardCount = randomInRange(MAX_DECK-1);
+    // G.deckCount[player] = 40;
+    // G.discardCount[player] = 15;
+    // G.handCount[player] = 9;
+    // G.playedCardCount = 12;
 
     /* Construct Deck, Discard, Hand, Played with cards in range curse..treasure_map */
     for (i=0; i<G.deckCount[player]; i++) {

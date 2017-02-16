@@ -1,7 +1,8 @@
 #ifndef _TESTS_HELPERS
 #define _TESTS_HELPERS
 
-#define NOISY_TEST 0
+#define NOISY_TEST 1
+#define NUM_RANDOM_TESTS 80
 
 void asserttrue(int condition, int* r_main);
 char* getCardName(int card);

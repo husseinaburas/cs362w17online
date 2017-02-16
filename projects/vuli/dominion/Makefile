@@ -36,7 +36,7 @@ all: playdom player testDrawCard testBuyCard badTestDrawCard randomtests
 
 clean:
 	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard \
-	unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1
+	unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2
 
 tests_helpers.o: tests_helpers.h tests_helpers.c dominion.h dominion.c
 	gcc -c tests_helpers.c -g  $(CFLAGS)
@@ -119,7 +119,8 @@ unittestresults.out: unittests cardtests
 
 # ---------------------------------------------------------------------------------------
 # assn4: Random testing
-randomtests: randomtestadventurer.c randomtestcard1.c dominion.o rngs.o tests_helpers.o
-#	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+randomtests: randomtestadventurer.c randomtestcard1.c randomtestcard2.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 
