@@ -37,8 +37,8 @@ struct gameState* createTestState(int* handPos) {
     
     g->whoseTurn = rand() % numPlayers;
     g->numActions = rand() % 10 + 1;
-    g->handCount[g->whoseTurn] = rand() % MAX_HAND;
-    g->deckCount[g->whoseTurn] = rand() % MAX_DECK;
+    g->handCount[g->whoseTurn] = rand() % MAX_HAND + 1;
+    g->deckCount[g->whoseTurn] = rand() % MAX_DECK + 1;
 
     // creating discard pile of random size smaller size than hand of player
     
