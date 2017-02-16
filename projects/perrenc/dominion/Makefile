@@ -128,7 +128,7 @@ randomtests:
 	
 	gcc -o randomtestcard2 randomtestcard2.c dominion.c rngs.c -g $(CFLAGS)
 	./randomtestcard2 29378 > randomtestcard2.out
-	gcov dominion.c >> randomtestadventurer.out
+	gcov dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 	
 clean:

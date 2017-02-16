@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     
     long seed = atoi(argv[1]);
     
-    
+
     SelectStream(1);
     PutSeed(seed);
     
@@ -67,17 +67,9 @@ int main(int argc, char** argv) {
 
         playAdventurer(&G);
 
-        if(testing_assert(G.handCount[turn] == starting_hand + 2, 0) == 0){
-            printf("Handcount: %d\t should be: %u\titeration: %d\n", G.handCount[turn], arbitrary_hand_count_max + 2, z);
-        }
-
-        if(testing_assert((G.hand[turn][G.handCount[turn] - 1] >= copper) && (G.hand[turn][G.handCount[turn] - 1] <= gold), 0) == 0){
-            printf("Failed 2\n");
-        }
-
-        if(testing_assert((G.hand[turn][G.handCount[turn] - 2] >= copper) && (G.hand[turn][G.handCount[turn] - 2] <= gold), 0) == 0){
-            printf("Failed 3\n");
-        }
+        testing_assert(G.handCount[turn] == starting_hand + 2, 0);
+        testing_assert((G.hand[turn][G.handCount[turn] - 1] >= copper) && (G.hand[turn][G.handCount[turn] - 1] <= gold), 0);
+        testing_assert((G.hand[turn][G.handCount[turn] - 2] >= copper) && (G.hand[turn][G.handCount[turn] - 2] <= gold), 0);
     }
     
     printf("Run complete!\n");
