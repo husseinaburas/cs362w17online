@@ -4,12 +4,38 @@
  * Class: CS362 Software Development II
  * Description: This is a set of helper functions for test suite
  * **********************************************************************/
-#include "testhelperfunctions.h"
-#include "dominion_helpers.h"
-#include "dominion.h"
-#include <stdio.h>
-#include "rngs.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include "dominion.h"
+#include "dominion_helpers.h"
+#include "testhelperfunctions.h"
+
+int fillPlayerHandDeckDiscardRandom(int player, struct gameState *state) {
+   int i, randDeckCount, randHandCount, randDiscardCount;
+
+   randDeckCount = (rand() % 500);
+   state->deckCount[player] = randDeckCount;
+   randHandCount = (rand() % 500);
+   state->handCount[player] = randHandCount;
+   randDiscardCount = (rand() % 500);
+   state->discardCount[player] = randDiscardCount;
+
+   for (i=0; i<randDeckCount; i++) {
+     state->hand[player][i] = (rand() % 26);
+   }
+
+   for (i=0; i<randHandCount; i++) {
+     state->deck[player][i] = (rand() % 26);
+   }
+
+   for (i=0; i<randHandCount; i++) {
+     state->discard[player][i] = (rand() % 26);
+   }
+
+   return 1;
+
+}
 
 int fillPlayerHand(int player, int card, int count, struct gameState *state) {
   int i;
@@ -72,4 +98,47 @@ int assertTest(int result, int expected, int testNumber) {
     return 0;
   }
 }
+
+int controlPlayAdventurer(struct gameState *state, int handPos) {
+      int drawntreasure = 0;
+      int currentPlayer = whoseTurn(state);
+      int temphand[MAX_HAND];
+      int cardDrawn;
+      int z = 0; //counter for tempHand
+      
+      //put played card in played card pile
+      state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos];
+      state->playedCardCount = state->playedCardCount + 1;
+      //replace played card with last card in hand
+      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+      //set last card to -1
+      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+      //reduce number of cards in hand
+      state->handCount[currentPlayer]--;
+
+      while(drawntreasure<2){
+	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+	  shuffle(currentPlayer, state);
+	}
+	drawCard(currentPlayer, state);
+	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+	  drawntreasure++;
+	else{
+          //Place card in temphand and remove from players hand
+	  temphand[z]=cardDrawn;
+          state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+	  state->handCount[currentPlayer]--; 
+	  z++;
+	}
+      }
+      while(z!=0){
+        state->discardCount[currentPlayer] = state->discardCount[currentPlayer] + 1;  
+	state->discard[currentPlayer][state->discardCount[currentPlayer]]=temphand[z]; // discard all cards in play that have been drawn
+	z=z-1;
+      }
+
+      return 0;
+}
+
 
