@@ -1317,10 +1317,6 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
       while(drawntreasure<1){ //BUG
-        //if the deck is empty we need to shuffle discard and add to deck
-        if (state->deckCount[currentPlayer] <1){
-          shuffle(currentPlayer, state);
-        }
         drawCard(currentPlayer, state);
         int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
         if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
