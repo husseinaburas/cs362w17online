@@ -82,7 +82,7 @@ int main(int argc, char *argv[]) {
     G.hand[thisPlayer][handpos] = TESTCARD;  // put test card at random handpos location in hand
     G.supplyCount[TESTCARD]--;  // decrease supply of card being tested
 
-    // put a council_room card at the top of current player's deck
+    // put a random card at the top of the current player's deck
     G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]]++; // restore supply of card to be removed from deck
     G.deck[thisPlayer][G.deckCount[thisPlayer] - 1] = rand() % 27;  // put random card at top of deck (range of cards is 0:26)
     G.supplyCount[council_room]--;  // decrease supply of random card that was selected
