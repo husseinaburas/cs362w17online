@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
     
     handpos = rand() % 5;  // choose random hand position for testcard (player starts with 5 cards, thus range is 0:4)
 
-    // put testcard in 0th position of player's hand
+    // put testcard in random position of player's hand
     G.supplyCount[G.hand[thisPlayer][handpos]]++; // restore supply of card to be removed from hand
     G.hand[thisPlayer][handpos] = TESTCARD;  // put test card at random handpos location in hand
     G.supplyCount[TESTCARD]--;  // decrease supply of card being tested
