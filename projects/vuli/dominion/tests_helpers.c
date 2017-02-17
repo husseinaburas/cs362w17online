@@ -140,7 +140,6 @@ int randomInRange(int max) {
   int out;
   do {
     out = floor(Random() * (max+1));
-    // printf("%d\n", out);
   } while (out > max);
   return out;
 }

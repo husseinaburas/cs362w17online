@@ -557,7 +557,7 @@ int main(int argc, char* argv[]) {
     }
 
 
-    /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 1+ Treasure in Discard */ // issue here seed=4
+    /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 1+ Treasure in Discard */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
         G = randomGameState(1, 1, 1);
@@ -673,7 +673,7 @@ int main(int argc, char* argv[]) {
     }
 
 
-    /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 0 Treasure in Discard */ // issue here seed=4, NUM_TESTS=50
+    /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 0 Treasure in Discard */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
         G = randomGameState(1, 0, 0);
