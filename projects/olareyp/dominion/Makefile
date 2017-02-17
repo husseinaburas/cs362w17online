@@ -3,20 +3,20 @@ CFLAGS = -Wall -fpic -coverage -lm
 randomtests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
 
 randomtestcard1.out: randomtestcard1
-	echo "Running randomtestcard1 and saving results to randomtestcard1.out" &> randomtestcard1.out
-	./randomtestcard1 >> randomtestcard1.out
+	echo "Running randomtestcard1 999 and saving results to randomtestcard1.out" &> randomtestcard1.out
+	./randomtestcard1 999 >> randomtestcard1.out
 	gcov -b dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
 
 randomtestcard2.out: randomtestcard2
-	echo "Running randomtestcard2 and saving results to randomtestcard2.out" &> randomtestcard2.out
-	./randomtestcard2 >> randomtestcard2.out
+	echo "Running randomtestcard2 999 and saving results to randomtestcard2.out" &> randomtestcard2.out
+	./randomtestcard2 999 >> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 
 randomtestadventurer.out: randomtestadventurer
-	echo "Running randomtestadventurer and saving results to randomtestadventurer.out" &> randomtestadventurer.out
-	./randomtestadventurer >> randomtestadventurer.out
+	echo "Running randomtestadventurer 999 and saving results to randomtestadventurer.out" &> randomtestadventurer.out
+	./randomtestadventurer 999 >> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 
