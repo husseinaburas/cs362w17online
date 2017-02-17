@@ -47,21 +47,25 @@ int checkAdventurer(int p, struct gameState *post){
 	//printf("HandCount before: %d\n", handCount); 
 	//printf("HandCount after: %d\n", post->handCount[p]);
 
-	
+	/***************************************************************
 	//handCount should be increased by the number of treasures found
+	****************************************************************/
 	assertTrue(a + numTreasures==post->handCount[p], "Hand Count did not increment by number of treasures found\n");
 
-	
+	/**************************************************************
 	//Check the right number of cards was discarded 
+	**************************************************************/
 	assertTrue(discardCount + cardCount == post->discardCount[p], "Wrong number of cards discarded\n");
 
-
+	/*************************************************************
 	//Check that the deckCount is the same before and after
+	*************************************************************/
 	assertTrue(deckCount  == post->deckCount[p] - (cardCount + numTreasures), "Right number of cards not taken from deck");
 
 
-
+	/*************************************************************
 	//Check the handCount increases appropriately 
+	*************************************************************/
 	if(numTreasures == 0){
 		//No treasures, shuffled through the whole deck
 		assertTrue(handCount == post->handCount[p], "0 treasures and handCount changed\n");
@@ -79,24 +83,16 @@ int checkAdventurer(int p, struct gameState *post){
 
 int main(int argc, char* argv[]) {
 
-	int i, n, r, p, deckCount, discardCount, handCount, rando;
+	int i, n, r, p, rando;
 
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
-
-	struct gameState G;
+		struct gameState G;
 
 	printf ("Testing adventurer.\n");
 
 	printf ("RANDOM TESTS.\n");
 
-	if(argc != 2){
-		printf("You only need one argument to run this program\n\n");
-	}
-
-	//SelectStream(2);
-	//PutSeed(3);
-	srand(time(argv[1]));
+	//Set random Seed
+	srand(time(NULL));
 
 	//Generate random number of treasure
 	//Generate number of other cards
@@ -136,7 +132,7 @@ int main(int argc, char* argv[]) {
 			}
 		
 		}
-    		//p = floor(Random() * 2);
+    		
     		G.discardCount[0] = floor(Random() * (MAX_DECK - G.deckCount[0]));
     		G.handCount[0] = floor(Random() * MAX_HAND);
 		//random number of treasure and place

@@ -14,15 +14,14 @@
 
 int checkVillage(int p, struct gameState *post){
 	int numActions = post->numActions;
-	int handCount = post->handCount[p];	
+	int handCount = post->handCount[0];	
 	int r, a, b;
 
 
-	post->whoseTurn = p;
-printf("INSIDE THE THING\n");
+	//post->whoseTurn = 0;
 
 	//p is the handposition
-	r = playVillage(post, p);	
+	r = playVillage(post, p);	//TEST CHANGE
 
 
 	/****************************************
@@ -33,25 +32,21 @@ printf("INSIDE THE THING\n");
 	b = post->numActions;
 	assertTrue(a+2==b, "numActions didn't increase properly");
 
-	//printf("Pre: %d\n", a);
-	//printf("Post: %d\n", b);
-
-
+	
 	/****************************************
 	//Test to see if handCount decreased
 	****************************************/
 
 	a = handCount;
-	b = post->handCount[p];
-	assertTrue(a==b, "handCount didn't decrease/increase properly"); 
-
+	b = post->handCount[0];
+	assertTrue(a==b, "handCount changed"); 
 	return 0;
 }
 
 
 int main(int argc, char* argv[]) {
 
-	int i, n, r, p, deckCount, discardCount, handCount, rando;
+	int n, p;
 
 	int k[10] = {adventurer, council_room, feast, gardens, mine,
 	       remodel, smithy, village, baron, great_hall};
@@ -62,27 +57,24 @@ int main(int argc, char* argv[]) {
 
 	printf ("RANDOM TESTS.\n");
 
-	if(argc != 2){
-		printf("You only need one argument to run this program\n\n");
-	}
-
-	SelectStream(2);
-	PutSeed(argv[1]);
-	//srand(time(argv[1]));
+	//Set random seed
+	srand(time(NULL));
 
 
 	//TO DO: Increase n for more random testing
 	for (n = 0; n < 10; n++) {
-		p = floor(Random() * 2);
-	
-		//random handCount
-		G.handCount[p] = floor(Random() * MAX_DECK);
-	
-		//random deckCount
-		G.deckCount[p] = floor(Random() * MAX_DECK);
+		initializeGame(2, k, 1, &G);
+		
+		G.deckCount[0] = floor(Random() * MAX_DECK);
+		G.handCount[0] = floor(Random() * MAX_DECK);
+		
+		//Random position of card
+		p = floor(Random() * G.handCount[0]);
+
+		G.whoseTurn = 0;
 	
 		//random discardCount 
-		G.discardCount[p] = floor(Random() * MAX_DECK);
+		G.discardCount[0] = floor(Random() * MAX_DECK);
 		G.numActions = floor(Random() * MAX_DECK);
 						
 		checkVillage(p, &G);
