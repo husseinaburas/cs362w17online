@@ -74,7 +74,7 @@ void testCardGreatHall(int* caseCount, int* testCount, int* r_main,
 
     /*-------------------------------------------------------------------------*/
     (*caseCount)++;
-    sprintf(casename, "Hand count=%d, Deck count=%d, Discard count=%d", G->handCount[player], G->deckCount[player], G->discardCount[player]);
+    sprintf(casename, "Hand count=%d, Deck count=%d, Discard count=%d, handPos=%d", G->handCount[player], G->deckCount[player], G->discardCount[player], handPos);
 
     testCardGeneralRequirements(caseCount, casename, testCount, r_main,
         card, choice1, choice2, choice3, handPos, bonus,
@@ -372,7 +372,7 @@ int main(int argc, char* argv[]) {
     /* Perform NUM_RANDOM_TESTS random tests */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         handPos = randomInRange(G.handCount[player]-1);
         G.hand[player][handPos] = card;  
@@ -389,7 +389,7 @@ int main(int argc, char* argv[]) {
     /* Perform NUM_RANDOM_TESTS random tests where Deck is empty */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         handPos = randomInRange(G.handCount[player]-1);
         G.hand[player][handPos] = card;  
@@ -409,7 +409,7 @@ int main(int argc, char* argv[]) {
     /* Perform NUM_RANDOM_TESTS random tests where Discard is empty */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         handPos = randomInRange(G.handCount[player]-1);
         G.hand[player][handPos] = card;  
@@ -429,7 +429,7 @@ int main(int argc, char* argv[]) {
     /* Perform NUM_RANDOM_TESTS random tests where Deck and Discard both empty */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         handPos = randomInRange(G.handCount[player]-1);
         G.hand[player][handPos] = card;  
@@ -452,7 +452,7 @@ int main(int argc, char* argv[]) {
     /* Perform NUM_RANDOM_TESTS random tests where Hand only has card being played */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         for (j=0; j<MAX_HAND; j++) G.hand[player][j] = -1;
         G.hand[player][0] = card;

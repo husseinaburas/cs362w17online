@@ -140,6 +140,7 @@ int randomInRange(int max) {
   int out;
   do {
     out = floor(Random() * (max+1));
+    // printf("%d\n", out);
   } while (out > max);
   return out;
 }
@@ -292,11 +293,13 @@ void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount,
 * randomGameState()
 * Returns random game state that satisfies the following requirements:
 * -- Player in range 0..MAX_PLAYERS-1
-* -- Deck, Discard, and Played count in range 0..MAX_DECK-1
-* -- Hand count of Player in range 0..MAX_HAND-1
+* -- Deck in range minDeck..MAX_DECK - 1
+* -- Discard in range minDiscard..MAX_DECK-1
+* -- Hand count of Player in range minHand..MAX_HAND-1
+* -- Played count in range 0..MAX_DECK-1
 * -- All cards in Player's Deck, Discard, Hand, Played in range curse..treasure_map
 *********************************************************************/
-struct gameState randomGameState() {
+struct gameState randomGameState(int minHand, int minDeck, int minDiscard) {
     struct gameState G;
     int player, i;
 
@@ -309,14 +312,10 @@ struct gameState randomGameState() {
     Hand count in range 0..MAX_HAND-1 */
     G.whoseTurn = randomInRange(MAX_PLAYERS-1);
     player = G.whoseTurn;
-    G.deckCount[player] = randomInRange(MAX_DECK-1);
-    G.discardCount[player] = randomInRange(MAX_DECK-1);
-    G.handCount[player] = randomInRange(MAX_HAND-1);
+    G.deckCount[player] = minDeck + randomInRange(MAX_DECK-1-minDeck);
+    G.discardCount[player] = minDiscard + randomInRange(MAX_DECK-1-minDiscard);
+    G.handCount[player] = minHand +randomInRange(MAX_HAND-1-minHand);
     G.playedCardCount = randomInRange(MAX_DECK-1);
-    // G.deckCount[player] = 40;
-    // G.discardCount[player] = 15;
-    // G.handCount[player] = 9;
-    // G.playedCardCount = 12;
 
     /* Construct Deck, Discard, Hand, Played with cards in range curse..treasure_map */
     for (i=0; i<G.deckCount[player]; i++) {

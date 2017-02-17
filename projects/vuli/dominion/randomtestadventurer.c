@@ -78,7 +78,7 @@ void testCardAdventurer(int* caseCount, int* testCount, int* r_main,
     (*caseCount)++;
     numTreasureDeck = getNumCardsDeck(player, copper, G) + getNumCardsDeck(player, silver, G) + getNumCardsDeck(player, gold, G);
     numTreasureDiscard = getNumCardsDiscard(player, copper, G) + getNumCardsDiscard(player, silver, G) + getNumCardsDiscard(player, gold, G);
-    sprintf(casename, "Hand count=%d, Deck count=%d, Discard count=%d, Treasure count in Deck=%d,  Treasure count in Discard=%d", G->handCount[player], G->deckCount[player], G->discardCount[player], numTreasureDeck, numTreasureDiscard);
+    sprintf(casename, "Hand count=%d, Deck count=%d, Discard count=%d, handPos=%d, Treasure count in Deck=%d,  Treasure count in Discard=%d", G->handCount[player], G->deckCount[player], G->discardCount[player], handPos, numTreasureDeck, numTreasureDiscard);
 
     testCardGeneralRequirements(caseCount, casename, testCount, r_main,
         card, choice1, choice2, choice3, handPos, bonus,
@@ -308,7 +308,7 @@ void testCardAdventurer(int* caseCount, int* testCount, int* r_main,
 
     /*-------------------------------------------------------------------------*/
     /* If Deck + Discard previously has 0 Treasure */
-    else if (numTreasureDeck + numTreasureDiscard == 1) {
+    else if (numTreasureDeck + numTreasureDiscard == 0) {
         printf("---------CASE %d: %s -- TEST %d: Hand count decreased by 1\n", *caseCount, casename, ++(*testCount));
         count1 = preG->handCount[player];
         count2 = G->handCount[player];
@@ -514,10 +514,8 @@ int main(int argc, char* argv[]) {
 
     /* Perform NUM_RANDOM_TESTS random tests */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
-        printf("Iter=%d\n", i);
-
         /* Construct game state */
-        G = randomGameState();
+        G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
         handPos = randomInRange(G.handCount[player]-1);
         G.hand[player][handPos] = card;  
@@ -532,175 +530,175 @@ int main(int argc, char* argv[]) {
     }
 
 
-    // /* Perform NUM_RANDOM_TESTS random tests with 2+ Treasure in Deck, 0 Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<5; j++) {
-    //         randPos = randomInRange(G.deckCount[player]-1);
-    //         G.deck[player][randPos] = copper;
-    //     }
-    //     for (j=0; j<G.discardCount[player]; j++) {
-    //         if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
-    //             G.discard[player][j] = baron;
-    //         }
-    //     }
+    /* Perform NUM_RANDOM_TESTS random tests with 2+ Treasure in Deck, 0 Treasure in Discard */
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 2, 0);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<5; j++) {
+            randPos = randomInRange(G.deckCount[player]-1);
+            G.deck[player][randPos] = copper;
+        }
+        for (j=0; j<G.discardCount[player]; j++) {
+            if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
+                G.discard[player][j] = baron;
+            }
+        }
 
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
 
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
-
-
-    // /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 1+ Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<G.deckCount[player]; j++) {
-    //         if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
-    //             G.deck[player][j] = baron;
-    //         }
-    //     }
-    //     randPos = randomInRange(G.deckCount[player]-1);
-    //     G.deck[player][randPos] = copper;
-    //     for (j=0; j<5; j++) {
-    //         randPos = randomInRange(G.discardCount[player]-1);
-    //         G.discard[player][randPos] = copper;
-    //     }
-
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
-
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
 
 
-    // /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 2+ Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<G.deckCount[player]; j++) {
-    //         if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
-    //             G.deck[player][j] = baron;
-    //         }
-    //     }
-    //     for (j=0; j<5; j++) {
-    //         randPos = randomInRange(G.discardCount[player]-1);
-    //         G.discard[player][randPos] = copper;
-    //     }
+    /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 1+ Treasure in Discard */ // issue here seed=4
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 1, 1);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<G.deckCount[player]; j++) {
+            if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
+                G.deck[player][j] = baron;
+            }
+        }
+        randPos = randomInRange(G.deckCount[player]-1);
+        G.deck[player][randPos] = copper;
+        for (j=0; j<5; j++) {
+            randPos = randomInRange(G.discardCount[player]-1);
+            G.discard[player][randPos] = copper;
+        }
 
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
 
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
-
-
-    // /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 0 Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<G.deckCount[player]; j++) {
-    //         if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
-    //             G.deck[player][j] = baron;
-    //         }
-    //     }
-    //     randPos = randomInRange(G.deckCount[player]-1);
-    //     G.deck[player][randPos] = copper;
-    //     for (j=0; j<G.discardCount[player]; j++) {
-    //         if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
-    //             G.discard[player][j] = baron;
-    //         }
-    //     }
-
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
-
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
 
 
-    // /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 1 Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<G.deckCount[player]; j++) {
-    //         if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
-    //             G.deck[player][j] = baron;
-    //         }
-    //     }
-    //     for (j=0; j<G.discardCount[player]; j++) {
-    //         if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
-    //             G.discard[player][j] = baron;
-    //         }
-    //     }
-    //     randPos = randomInRange(G.discardCount[player]-1);
-    //     G.discard[player][randPos] = copper;
+    /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 2+ Treasure in Discard */
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 0, 2);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<G.deckCount[player]; j++) {
+            if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
+                G.deck[player][j] = baron;
+            }
+        }
+        for (j=0; j<5; j++) {
+            randPos = randomInRange(G.discardCount[player]-1);
+            G.discard[player][randPos] = copper;
+        }
 
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
 
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
 
 
-    // /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 0 Treasure in Discard */
-    // for (i=0; i<NUM_RANDOM_TESTS; i++) {
-    //     /* Construct game state */
-    //     G = randomGameState();
-    //     player = G.whoseTurn;
-    //     handPos = randomInRange(G.handCount[player]-1);
-    //     G.hand[player][handPos] = card;
-    //     for (j=0; j<G.deckCount[player]; j++) {
-    //         if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
-    //             G.deck[player][j] = baron;
-    //         }
-    //     }
-    //     for (j=0; j<G.discardCount[player]; j++) {
-    //         if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
-    //             G.discard[player][j] = baron;
-    //         }
-    //     }
+    /* Perform NUM_RANDOM_TESTS random tests with 1 Treasure in Deck, 0 Treasure in Discard */
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 1, 0);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<G.deckCount[player]; j++) {
+            if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
+                G.deck[player][j] = baron;
+            }
+        }
+        randPos = randomInRange(G.deckCount[player]-1);
+        G.deck[player][randPos] = copper;
+        for (j=0; j<G.discardCount[player]; j++) {
+            if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
+                G.discard[player][j] = baron;
+            }
+        }
 
-    //     /* Copy game state to preG */
-    //     memcpy(&preG, &G, sizeof(struct gameState));
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
 
-    //     /*********/
-    //     testCardAdventurer(&caseCount, &testCount, &r_main,
-    //         card, choice1, choice2, choice3, handPos, &bonus,
-    //         &G, &preG);       
-    // }
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
+
+
+    /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 1 Treasure in Discard */
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 0, 1);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<G.deckCount[player]; j++) {
+            if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
+                G.deck[player][j] = baron;
+            }
+        }
+        for (j=0; j<G.discardCount[player]; j++) {
+            if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
+                G.discard[player][j] = baron;
+            }
+        }
+        randPos = randomInRange(G.discardCount[player]-1);
+        G.discard[player][randPos] = copper;
+
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
+
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
+
+
+    /* Perform NUM_RANDOM_TESTS random tests with 0 Treasure in Deck, 0 Treasure in Discard */ // issue here seed=4, NUM_TESTS=50
+    for (i=0; i<NUM_RANDOM_TESTS; i++) {
+        /* Construct game state */
+        G = randomGameState(1, 0, 0);
+        player = G.whoseTurn;
+        handPos = randomInRange(G.handCount[player]-1);
+        G.hand[player][handPos] = card;
+        for (j=0; j<G.deckCount[player]; j++) {
+            if (G.deck[player][j] == copper || G.deck[player][j] == silver || G.deck[player][j] == gold) {
+                G.deck[player][j] = baron;
+            }
+        }
+        for (j=0; j<G.discardCount[player]; j++) {
+            if (G.discard[player][j] == copper || G.discard[player][j] == silver || G.discard[player][j] == gold) {
+                G.discard[player][j] = baron;
+            }
+        }
+
+        /* Copy game state to preG */
+        memcpy(&preG, &G, sizeof(struct gameState));
+
+        /*********/
+        testCardAdventurer(&caseCount, &testCount, &r_main,
+            card, choice1, choice2, choice3, handPos, &bonus,
+            &G, &preG);       
+    }
 
 
 /*-------------------------------------------------------------------------*/

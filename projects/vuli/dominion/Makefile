@@ -32,7 +32,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard randomtests
+all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
 	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard \
@@ -119,8 +119,44 @@ unittestresults.out: unittests cardtests
 
 # ---------------------------------------------------------------------------------------
 # assn4: Random testing
-randomtests: randomtestadventurer.c randomtestcard1.c randomtestcard2.c dominion.o rngs.o tests_helpers.o
-	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
-	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
-	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+RANDOM_TESTS_SEED=4
+
+randomtestcard1.out: randomtestcard1.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestcard1 $(RANDOM_TESTS_SEED) > randomtestcard1.out
+	echo "**********************************************************" >> randomtestcard1.out
+	gcov -b randomtestcard1.c >> randomtestcard1.out
+	cat randomtestcard1.c.gcov >> randomtestcard1.out
+	echo "**********************************************************\n" >> randomtestcard1.out
+	echo "**********************************************************" >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	echo "**********************************************************\n" >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestcard2 $(RANDOM_TESTS_SEED) > randomtestcard2.out
+	echo "**********************************************************" >> randomtestcard2.out
+	gcov -b randomtestcard2.c >> randomtestcard2.out
+	cat randomtestcard2.c.gcov >> randomtestcard2.out
+	echo "**********************************************************\n" >> randomtestcard2.out
+	echo "**********************************************************" >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	echo "**********************************************************\n" >> randomtestcard2.out
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestadventurer $(RANDOM_TESTS_SEED) > randomtestadventurer.out
+	echo "**********************************************************" >> randomtestadventurer.out
+	gcov -b randomtestadventurer.c >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+	echo "**********************************************************\n" >> randomtestadventurer.out
+	echo "**********************************************************" >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	echo "**********************************************************\n" >> randomtestadventurer.out
+
+randomtests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
+
 
