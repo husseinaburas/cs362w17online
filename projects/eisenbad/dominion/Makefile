@@ -89,3 +89,4 @@ clean:
 	rm -f *.o *.c~ *~ unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 
 	rm -f badTestDrawCard betterTestDrawCard testDrawCard playdom.exe playdom test.exe test player player.exe
 	rm -f testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f randomtestadventurer randomtestcard1 randomtestcard2
