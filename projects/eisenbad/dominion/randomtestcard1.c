@@ -8,9 +8,9 @@
    Pass Conditions:
      1. No extra coins are awarded to current player
      2. Two extra actions are gained
-     3. No state change occurs to victory card piles or kingdom card piles
-     4. No state change occurs for other players
-     5. Current player receives exactly 1 card
+     3. One extra card is drawn
+     4. No state change occurs to victory or kingdom card piles
+     5. No state change occurs for other players
      6. Extra card comes from player's own deck
 */
 
@@ -25,17 +25,34 @@
 #define TESTCARD village
 #define TESTCARD_NAME "village"
 
+int randCheckExtraCard(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
+  int thisPlayer = G.whoseTurn;
+
+  if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1] ==  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]) {
+    *pass_count = *pass_count + 1;     
+    return 1;
+  }
+  else {
+    printf("\n  TEST %d: Extra card comes from player's own pile\n", testNum);
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+    printf("    top card in hand = %d, expected = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1], G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]);
+    return 0;
+  }
+}
+
+
 int main(int argc, char *argv[]) {
+  int i;
   int randomseed = atoi(argv[argc - 1]);  // get random seed from user input
   srand(randomseed);  // set seed value to random seed from user unput
 	
   int pass_count = 0;
 
   // variables for comparing player's state after playing card
-  int newCards = 1;
-  int discarded = 1;
-  int xtraCoins = 0;  // two extra actions should be awarded to the player
-  int xtraActions = 2;
+  int xtraCoins = 0;  
+  int xtraActions = 2;  // two extra actions should be awarded to the player
+  int xtraCards = 1;  // one card should be gained from the player's deck
+  int discarded = 1;  // played card should be discarded
 
   // initialize array storing state of card being tested
   int choice1 = 0, choice2 = 0, choice3 = 0, handpos = 0, bonus = 0;
@@ -51,32 +68,43 @@ int main(int argc, char *argv[]) {
 	
   int thisPlayer = G.whoseTurn;
 	
-  // put testcard in 0th position of player's hand
-  G.supplyCount[G.hand[thisPlayer][0]]++; // restore supply of card to be removed from hand
-  G.hand[thisPlayer][0] = TESTCARD;  // put test card at bottom of hand
-  G.supplyCount[TESTCARD]--;  // decrease supply of card being tested
 	
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
-  // put a council_room card at the top of current player's deck
-  G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]]++; // restore supply of card to be removed from deck
-  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1] = council_room;  // put council_room card at top of deck
-  G.supplyCount[council_room]--;  // decrease council_room supply
+  // perform 100 random tests
+  for (i = 0; i < 100; i++) {
+    printf("\n----------- ITERATION: %d ----------\n", i);
+    
+    handpos = rand() % 5;  // choose random hand position for testcard (player starts with 5 cards, thus range is 0:4)
+
+    // put testcard in 0th position of player's hand
+    G.supplyCount[G.hand[thisPlayer][handpos]]++; // restore supply of card to be removed from hand
+    G.hand[thisPlayer][handpos] = TESTCARD;  // put test card at random handpos location in hand
+    G.supplyCount[TESTCARD]--;  // decrease supply of card being tested
+
+    // put a council_room card at the top of current player's deck
+    G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]]++; // restore supply of card to be removed from deck
+    G.deck[thisPlayer][G.deckCount[thisPlayer] - 1] = rand() % 27;  // put random card at top of deck (range of cards is 0:26)
+    G.supplyCount[council_room]--;  // decrease supply of random card that was selected
 	
-  // reset bonus coins to zero
-  bonus = 0;
+    // reset bonus coins to zero
+    bonus = 0;
         
-  // copy the game state to a test case
-  memcpy(&testG, &G, sizeof(struct gameState));
-  cardEffect(TESTCARD, choice1, choice2, choice3, &testG, handpos, &bonus);
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
+    cardEffect(TESTCARD, choice1, choice2, choice3, &testG, handpos, &bonus);
 
-  randCheckCoins(1, &pass_count, G, testG, xtraCoins);
-  randCheckActions(2, &pass_count, G, testG, xtraActions);
-
+    randCheckCoins(1, &pass_count, G, testG, xtraCoins);
+    randCheckActions(2, &pass_count, G, testG, xtraActions);
+    randCheckHandCount(3, &pass_count, G, testG, xtraCards, discarded);
+    randCheckSupplyCount(4, &pass_count, G, testG);
+    randCheckOtherPlayerState(5, &pass_count, G, testG);
+    randCheckExtraCard(6, &pass_count, G, testG);
+  }
 
   /**************************************** END OF TESTS ****************************************************/
-  if (pass_count == 6) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
-  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: Not all %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
+  if (pass_count == 600) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
+  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", 600 - pass_count, 600, TESTCARD_NAME);}
 
   return 0;
 }
