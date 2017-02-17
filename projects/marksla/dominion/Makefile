@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -coverage -lm 
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -85,13 +85,11 @@ allunittests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardte
 	cat dominion.c.gcov >> unittestresults.out
 
 randomtestadventurer: randomtestadventurer.c testhelperfunctions.c  dominion.o rngs.o
-	gcc -o randomtestadventurer -g randomtestadventurer.c testhelperfunctions.c dominion.o rngs.o $(CLFAGS)
+	gcc -o randomtestadventurer -g randomtestadventurer.c testhelperfunctions.c dominion.o rngs.o $(CFLAGS)
 
 runrandomtestadventurer: randomtestadventurer
-	./randomtestadventurer > /dev/null
+	./randomtestadventurer
 	touch randomtestadventurer.out
-	gcov.dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 	./randomtestadventurer >> randomtestadventurer.out
@@ -99,7 +97,33 @@ runrandomtestadventurer: randomtestadventurer
 randomtestadventurer.out:
 	make clean; make randomtestadventurer; make runrandomtestadventurer;
 
+randomtestcard1: randomtestcard1.c testhelperfunctions.c  dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c testhelperfunctions.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestcard1: randomtestcard1
+	./randomtestcard1
+	touch randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	./randomtestcard1 >> randomtestcard1.out
+
+randomtestcard1.out:
+	make clean; make randomtestcard1; make runrandomtestcard1;
+
+randomtestcard2: randomtestcard2.c testhelperfunctions.c  dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c testhelperfunctions.c dominion.o rngs.o $(CFLAGS)
+
+runrandomtestcard2: randomtestcard2
+	./randomtestcard2
+	touch randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	./randomtestcard2 >> randomtestcard2.out
+
+randomtestcard2.out:
+	make clean; make randomtestcard2; make runrandomtestcard2;
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest1.exe unittest2 unittest2.exe unittest3 unittest3.exe unittest4 unittest4.exe cardtest1 cardtest1.exe cardtest2 cardtest2.exe cardtest3 cardtest3.exe cardtest4 cardtest4 unittestresults.out *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest1.exe unittest2 unittest2.exe unittest3 unittest3.exe unittest4 unittest4.exe cardtest1 cardtest1.exe cardtest2 cardtest2.exe cardtest3 cardtest3.exe cardtest4 cardtest4 unittestresults.out randomtestadventurer randomtestadventurer.out randomtestcard1 randomtestcard1.out randomtestcard2 randomtestcard2.out *.gcov *.gcda *.gcno *.so

@@ -253,7 +253,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     {
       return -1;
     }
-	
+  
   //play card
   if ( cardEffect(card, choice1, choice2, choice3, state, handPos, &coin_bonus) < 0 )
     {
@@ -1289,7 +1289,7 @@ int playAdventurer(struct gameState *state,int handPos) {
       }
 
       //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, -1);
       
       return 0;
 }

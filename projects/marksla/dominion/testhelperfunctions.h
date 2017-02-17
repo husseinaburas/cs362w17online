@@ -19,4 +19,6 @@ int assertTest(int result, int expected, int testNumber);
 
 int controlPlayAdventurer(struct gameState *state, int handPos);
 
+int controlPlaySmithy(struct gameState *state, int handPos);
+
 #endif
