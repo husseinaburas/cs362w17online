@@ -22,7 +22,7 @@ void testAdventurer(int randHandPos, int playerNum, struct gameState* state) {
   assertResult(result == 0);
 }
 
-void test2Adventurer(int oldHandCount, int playerNum, struct gameState* state) {
+void test2Adventurer(int oldHandCount, struct gameState* state) {
 
   //there are instances where we might only draw 0 or 1 treasure cards
   printf("Test hand has +1 cards:\n");
@@ -33,7 +33,7 @@ void test2Adventurer(int oldHandCount, int playerNum, struct gameState* state) {
     handCard(numHandCards(state)-2, state));
 }
 
-void test3Adventurer(int oldHandCount, int playerNum, struct gameState* state) {
+void test3Adventurer(int oldHandCount, struct gameState* state) {
 
   //top two cards in hand should be drawn treasure cards
   //if no treasure cards found in deck, this test will fail
@@ -73,7 +73,7 @@ int main (int argc, char *argv[]) {
   int cliNum = atoi(argv[1]);
 
   for (numTests = 0; numTests < cliNum; numTests++) {
-    int playerNum = rand() % 2;
+    int playerNum = (rand() % 2)+1;
     //printf("Clinum number is %d\n", cliNum);
     //printf("Player number is %d\n", playerNum);
     initializeGame(playerNum, kingdom, 667, &state);
@@ -101,18 +101,18 @@ int main (int argc, char *argv[]) {
     if (cliNum % 2 == 0) {
       int oldHandCount = numHandCards(&state);
       testAdventurer(handPos, currentPlayer, &state);
-      test2Adventurer(oldHandCount, currentPlayer, &state);
-      test3Adventurer(oldHandCount, currentPlayer, &state);
+      test2Adventurer(oldHandCount, &state);
+      test3Adventurer(oldHandCount, &state);
     }
     else if (cliNum % 3 == 0) {
       int oldHandCount = numHandCards(&state);
       testAdventurer(handPos, currentPlayer, &state);
-      test2Adventurer(oldHandCount, currentPlayer, &state);
+      test2Adventurer(oldHandCount, &state);
     }
     else {
       int oldHandCount = numHandCards(&state);
       testAdventurer(handPos, currentPlayer, &state);
-      test3Adventurer(oldHandCount, currentPlayer, &state);
+      test3Adventurer(oldHandCount, &state);
     }
   }
 
