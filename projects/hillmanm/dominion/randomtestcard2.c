@@ -1,5 +1,5 @@
-/*
- * cardtest2.c 
+/* Matthew Hillman
+ * randomtestcard2.c 
  * Village +1Card +2Action
  * bug is;  state->numActions = state->numActions + 2; changed to state->numActions == state->numActions + 2;
  */
@@ -13,8 +13,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-
-#define MAX_TESTS 1000
+#define MAX_TESTS 100
 #define NOISY 1	//set NOISY to 0 to activate printf statements
 
 #define TESTCARD "Village"
@@ -89,27 +88,7 @@ int main(int argc, char* argv[]) {
 		my_assert(testG.numActions == G.numActions + newActions, "msg 4");
 
 
-		/* // copy the game state to a test case
-		memcpy(&testG, &G, sizeof(struct gameState));
 			
-		printf("BFhand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
-		printf("BFdeck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
-		printf("BFcoins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
-		printf("BFactions = %d, expected = %d\n", testG.numActions, G.numActions + newActions);
-		
-		cardEffect(village, choice1, choice2, choice3, &testG, handpos, &bonus);
-
-		
-		printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
-		printf("deck count = %d, expected = %d\n", testG.deckCount[thisPlayer], G.deckCount[thisPlayer] - newCards + shuffledCards);
-		printf("coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
-		printf("actions = %d, expected = %d\n", testG.numActions, G.numActions + newActions);
-		my_assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] + newCards - discarded, "msg 1");
-		my_assert(testG.deckCount[thisPlayer] == G.deckCount[thisPlayer] - newCards + shuffledCards, "msg 2");
-		my_assert(testG.coins == G.coins + xtraCoins, "msg 3");
-		my_assert(testG.numActions == G.numActions + newActions, "msg 4");
- */
-		
 		
 		//check no change to supply card piles
 		
