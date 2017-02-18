@@ -1,0 +1,160 @@
+\hypertarget{classInetAddressValidator}{}\section{Inet\+Address\+Validator Class Reference}
+\label{classInetAddressValidator}\index{Inet\+Address\+Validator@{Inet\+Address\+Validator}}
+
+
+Inheritance diagram for Inet\+Address\+Validator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classInetAddressValidator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Inet\+Address\+Validator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classInetAddressValidator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \hyperlink{classInetAddressValidator_a266ab1d773ca178093917c9c2faae01a}{is\+Valid} (String inet\+Address)
+\item 
+boolean \hyperlink{classInetAddressValidator_a2bbbd69ca6baf133c01da93a5ad1b600}{is\+Valid\+Inet4\+Address} (String inet4\+Address)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classInetAddressValidator}{Inet\+Address\+Validator} \hyperlink{classInetAddressValidator_ab9dc7787b620b11cd97b860b3ec942af}{get\+Instance} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+{\bfseries Inet\+Address} validation and conversion routines ({\ttfamily java.\+net.\+Inet\+Address}).
+
+This class provides methods to validate a candidate IP address.
+
+This class is a Singleton; you can retrieve the instance via the \hyperlink{classInetAddressValidator_ab9dc7787b620b11cd97b860b3ec942af}{get\+Instance()} method. 
+
+\begin{DoxyVersion}{Version}
+
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Revision}
+1227719 
+\end{DoxyParagraph}
+\begin{DoxySince}{Since}
+Validator 1.\+4 
+\end{DoxySince}
+
+
+\subsection{Member Function Documentation}
+\index{Inet\+Address\+Validator@{Inet\+Address\+Validator}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Inet\+Address\+Validator@{Inet\+Address\+Validator}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Inet\+Address\+Validator} Inet\+Address\+Validator.\+get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classInetAddressValidator_ab9dc7787b620b11cd97b860b3ec942af}{}\label{classInetAddressValidator_ab9dc7787b620b11cd97b860b3ec942af}
+Returns the singleton instance of this validator. \begin{DoxyReturn}{Returns}
+the singleton instance of this validator 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInetAddressValidator_ab9dc7787b620b11cd97b860b3ec942af_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Inet\+Address\+Validator@{Inet\+Address\+Validator}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!Inet\+Address\+Validator@{Inet\+Address\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid(\+String inet\+Address)}{isValid(String inetAddress)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Inet\+Address\+Validator.\+is\+Valid (
+\begin{DoxyParamCaption}
+\item[{String}]{inet\+Address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInetAddressValidator_a266ab1d773ca178093917c9c2faae01a}{}\label{classInetAddressValidator_a266ab1d773ca178093917c9c2faae01a}
+Checks if the specified string is a valid IP address. 
+\begin{DoxyParams}{Parameters}
+{\em inet\+Address} & the string to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string validates as an IP address 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInetAddressValidator_a266ab1d773ca178093917c9c2faae01a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInetAddressValidator_a266ab1d773ca178093917c9c2faae01a_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Inet\+Address\+Validator@{Inet\+Address\+Validator}!is\+Valid\+Inet4\+Address@{is\+Valid\+Inet4\+Address}}
+\index{is\+Valid\+Inet4\+Address@{is\+Valid\+Inet4\+Address}!Inet\+Address\+Validator@{Inet\+Address\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Inet4\+Address(\+String inet4\+Address)}{isValidInet4Address(String inet4Address)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Inet\+Address\+Validator.\+is\+Valid\+Inet4\+Address (
+\begin{DoxyParamCaption}
+\item[{String}]{inet4\+Address}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classInetAddressValidator_a2bbbd69ca6baf133c01da93a5ad1b600}{}\label{classInetAddressValidator_a2bbbd69ca6baf133c01da93a5ad1b600}
+Validates an I\+Pv4 address. Returns true if valid. 
+\begin{DoxyParams}{Parameters}
+{\em inet4\+Address} & the I\+Pv4 address to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the argument contains a valid I\+Pv4 address 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInetAddressValidator_a2bbbd69ca6baf133c01da93a5ad1b600_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classInetAddressValidator_a2bbbd69ca6baf133c01da93a5ad1b600_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Inet\+Address\+Validator.\+java\end{DoxyCompactItemize}

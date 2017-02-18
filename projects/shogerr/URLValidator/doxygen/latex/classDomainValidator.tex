@@ -1,0 +1,307 @@
+\hypertarget{classDomainValidator}{}\section{Domain\+Validator Class Reference}
+\label{classDomainValidator}\index{Domain\+Validator@{Domain\+Validator}}
+
+
+Inheritance diagram for Domain\+Validator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classDomainValidator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Domain\+Validator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classDomainValidator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \hyperlink{classDomainValidator_a73165784191fb2f12c0bd5295b8e6004}{is\+Valid} (String domain)
+\item 
+boolean \hyperlink{classDomainValidator_aa05e0803e9f7390577f072fbeac0afb6}{is\+Valid\+Tld} (String tld)
+\item 
+boolean \hyperlink{classDomainValidator_acf198e86d538d0c001020ee8ff117b78}{is\+Valid\+Infrastructure\+Tld} (String i\+Tld)
+\item 
+boolean \hyperlink{classDomainValidator_a4d8d33106c0f174b9402cf78687644a5}{is\+Valid\+Generic\+Tld} (String g\+Tld)
+\item 
+boolean \hyperlink{classDomainValidator_ada2c219d4cec8346ebefc981a17c6bb9}{is\+Valid\+Country\+Code\+Tld} (String cc\+Tld)
+\item 
+boolean \hyperlink{classDomainValidator_a504c7f2f180d6cf946e2fe08915f9a88}{is\+Valid\+Local\+Tld} (String i\+Tld)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classDomainValidator}{Domain\+Validator} \hyperlink{classDomainValidator_abfe4cdfd8653602ecfc36c3b38e2dbf8}{get\+Instance} ()
+\item 
+static \hyperlink{classDomainValidator}{Domain\+Validator} \hyperlink{classDomainValidator_ab2f892047c9988557afbd36b3d4031bf}{get\+Instance} (boolean allow\+Local)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+{\bfseries Domain name} validation routines.
+
+This validator provides methods for validating Internet domain names and top-\/level domains. 
+
+Domain names are evaluated according to the standards \href{http://www.ietf.org/rfc/rfc1034.txt}{\tt R\+F\+C1034}, section 3, and \href{http://www.ietf.org/rfc/rfc1123.txt}{\tt R\+F\+C1123}, section 2.\+1. No accomodation is provided for the specialized needs of other applications; if the domain name has been U\+R\+L-\/encoded, for example, validation will fail even though the equivalent plaintext version of the same name would have passed. 
+
+Validation is also provided for top-\/level domains (T\+L\+Ds) as defined and maintained by the Internet Assigned Numbers Authority (I\+A\+NA)\+: 
+
+
+\begin{DoxyItemize}
+\item \hyperlink{classDomainValidator_acf198e86d538d0c001020ee8ff117b78}{is\+Valid\+Infrastructure\+Tld} -\/ validates infrastructure T\+L\+Ds ({\ttfamily .arpa}, etc.) 
+\item \hyperlink{classDomainValidator_a4d8d33106c0f174b9402cf78687644a5}{is\+Valid\+Generic\+Tld} -\/ validates generic T\+L\+Ds ({\ttfamily .com, .org}, etc.) 
+\item \hyperlink{classDomainValidator_ada2c219d4cec8346ebefc981a17c6bb9}{is\+Valid\+Country\+Code\+Tld} -\/ validates country code T\+L\+Ds ({\ttfamily .us, .uk, .cn}, etc.) 
+\end{DoxyItemize}
+
+({\bfseries N\+O\+TE}\+: This class does not provide IP address lookup for domain names or methods to ensure that a given domain name matches a specific IP; see \hyperlink{}{java.\+net.\+Inet\+Address} for that functionality.) 
+
+\begin{DoxyVersion}{Version}
+
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Revision}
+1227719 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date}
+2012-\/01-\/05 09\+:45\+:51 -\/0800 (Thu, 05 Jan 2012) 
+\end{DoxyParagraph}
+\begin{DoxySince}{Since}
+Validator 1.\+4 
+\end{DoxySince}
+
+
+\subsection{Member Function Documentation}
+\index{Domain\+Validator@{Domain\+Validator}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{get\+Instance()}{getInstance()}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Domain\+Validator} Domain\+Validator.\+get\+Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classDomainValidator_abfe4cdfd8653602ecfc36c3b38e2dbf8}{}\label{classDomainValidator_abfe4cdfd8653602ecfc36c3b38e2dbf8}
+Returns the singleton instance of this validator. It will not consider local addresses as valid. \begin{DoxyReturn}{Returns}
+the singleton instance of this validator 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_abfe4cdfd8653602ecfc36c3b38e2dbf8_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{get\+Instance(boolean allow\+Local)}{getInstance(boolean allowLocal)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Domain\+Validator} Domain\+Validator.\+get\+Instance (
+\begin{DoxyParamCaption}
+\item[{boolean}]{allow\+Local}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classDomainValidator_ab2f892047c9988557afbd36b3d4031bf}{}\label{classDomainValidator_ab2f892047c9988557afbd36b3d4031bf}
+Returns the singleton instance of this validator, with local validation as required. 
+\begin{DoxyParams}{Parameters}
+{\em allow\+Local} & Should local addresses be considered valid? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the singleton instance of this validator 
+\end{DoxyReturn}
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid(\+String domain)}{isValid(String domain)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid (
+\begin{DoxyParamCaption}
+\item[{String}]{domain}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_a73165784191fb2f12c0bd5295b8e6004}{}\label{classDomainValidator_a73165784191fb2f12c0bd5295b8e6004}
+Returns true if the specified {\ttfamily String} parses as a valid domain name with a recognized top-\/level domain. The parsing is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em domain} & the parameter to check for domain name syntax \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is a valid domain name 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_a73165784191fb2f12c0bd5295b8e6004_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_a73165784191fb2f12c0bd5295b8e6004_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid\+Country\+Code\+Tld@{is\+Valid\+Country\+Code\+Tld}}
+\index{is\+Valid\+Country\+Code\+Tld@{is\+Valid\+Country\+Code\+Tld}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Country\+Code\+Tld(\+String cc\+Tld)}{isValidCountryCodeTld(String ccTld)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid\+Country\+Code\+Tld (
+\begin{DoxyParamCaption}
+\item[{String}]{cc\+Tld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_ada2c219d4cec8346ebefc981a17c6bb9}{}\label{classDomainValidator_ada2c219d4cec8346ebefc981a17c6bb9}
+Returns true if the specified {\ttfamily String} matches any I\+A\+N\+A-\/defined country code top-\/level domain. Leading dots are ignored if present. The search is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em cc\+Tld} & the parameter to check for country code T\+LD status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is a country code T\+LD 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_ada2c219d4cec8346ebefc981a17c6bb9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid\+Generic\+Tld@{is\+Valid\+Generic\+Tld}}
+\index{is\+Valid\+Generic\+Tld@{is\+Valid\+Generic\+Tld}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Generic\+Tld(\+String g\+Tld)}{isValidGenericTld(String gTld)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid\+Generic\+Tld (
+\begin{DoxyParamCaption}
+\item[{String}]{g\+Tld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_a4d8d33106c0f174b9402cf78687644a5}{}\label{classDomainValidator_a4d8d33106c0f174b9402cf78687644a5}
+Returns true if the specified {\ttfamily String} matches any I\+A\+N\+A-\/defined generic top-\/level domain. Leading dots are ignored if present. The search is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em g\+Tld} & the parameter to check for generic T\+LD status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is a generic T\+LD 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_a4d8d33106c0f174b9402cf78687644a5_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid\+Infrastructure\+Tld@{is\+Valid\+Infrastructure\+Tld}}
+\index{is\+Valid\+Infrastructure\+Tld@{is\+Valid\+Infrastructure\+Tld}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Infrastructure\+Tld(\+String i\+Tld)}{isValidInfrastructureTld(String iTld)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid\+Infrastructure\+Tld (
+\begin{DoxyParamCaption}
+\item[{String}]{i\+Tld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_acf198e86d538d0c001020ee8ff117b78}{}\label{classDomainValidator_acf198e86d538d0c001020ee8ff117b78}
+Returns true if the specified {\ttfamily String} matches any I\+A\+N\+A-\/defined infrastructure top-\/level domain. Leading dots are ignored if present. The search is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em i\+Tld} & the parameter to check for infrastructure T\+LD status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is an infrastructure T\+LD 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_acf198e86d538d0c001020ee8ff117b78_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid\+Local\+Tld@{is\+Valid\+Local\+Tld}}
+\index{is\+Valid\+Local\+Tld@{is\+Valid\+Local\+Tld}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Local\+Tld(\+String i\+Tld)}{isValidLocalTld(String iTld)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid\+Local\+Tld (
+\begin{DoxyParamCaption}
+\item[{String}]{i\+Tld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_a504c7f2f180d6cf946e2fe08915f9a88}{}\label{classDomainValidator_a504c7f2f180d6cf946e2fe08915f9a88}
+Returns true if the specified {\ttfamily String} matches any widely used \char`\"{}local\char`\"{} domains (localhost or localdomain). Leading dots are ignored if present. The search is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em i\+Tld} & the parameter to check for local T\+LD status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is an local T\+LD 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_a504c7f2f180d6cf946e2fe08915f9a88_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Domain\+Validator@{Domain\+Validator}!is\+Valid\+Tld@{is\+Valid\+Tld}}
+\index{is\+Valid\+Tld@{is\+Valid\+Tld}!Domain\+Validator@{Domain\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Tld(\+String tld)}{isValidTld(String tld)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Domain\+Validator.\+is\+Valid\+Tld (
+\begin{DoxyParamCaption}
+\item[{String}]{tld}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classDomainValidator_aa05e0803e9f7390577f072fbeac0afb6}{}\label{classDomainValidator_aa05e0803e9f7390577f072fbeac0afb6}
+Returns true if the specified {\ttfamily String} matches any I\+A\+N\+A-\/defined top-\/level domain. Leading dots are ignored if present. The search is case-\/sensitive. 
+\begin{DoxyParams}{Parameters}
+{\em tld} & the parameter to check for T\+LD status \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the parameter is a T\+LD 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_aa05e0803e9f7390577f072fbeac0afb6_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classDomainValidator_aa05e0803e9f7390577f072fbeac0afb6_icgraph}
+\end{center}
+\end{figure}
+
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Domain\+Validator.\+java\end{DoxyCompactItemize}
