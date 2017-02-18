@@ -1,9 +1,0 @@
-<map id="DomainValidator.isValid" name="DomainValidator.isValid">
-<area shape="rect" id="node2" href="$classRegexValidator.html#aa4c1660ff32c1aecc8f616a2cfef80ed" title="RegexValidator.match" alt="" coords="229,31,379,57"/>
-<area shape="rect" id="node3" href="$classDomainValidator.html#aa05e0803e9f7390577f072fbeac0afb6" title="DomainValidator.isValidTld" alt="" coords="215,81,393,108"/>
-<area shape="rect" id="node8" href="$classRegexValidator.html#adf161a2df40e7d80be0088a20af715d2" title="RegexValidator.isValid" alt="" coords="227,132,381,159"/>
-<area shape="rect" id="node4" href="$classDomainValidator.html#a504c7f2f180d6cf946e2fe08915f9a88" title="DomainValidator.isValidLocalTld" alt="" coords="464,5,675,32"/>
-<area shape="rect" id="node5" href="$classDomainValidator.html#acf198e86d538d0c001020ee8ff117b78" title="DomainValidator.isValidInfrastructureTld" alt="" coords="441,56,697,83"/>
-<area shape="rect" id="node6" href="$classDomainValidator.html#a4d8d33106c0f174b9402cf78687644a5" title="DomainValidator.isValidGenericTld" alt="" coords="457,107,681,133"/>
-<area shape="rect" id="node7" href="$classDomainValidator.html#ada2c219d4cec8346ebefc981a17c6bb9" title="DomainValidator.isValidCountry\lCodeTld" alt="" coords="466,158,673,199"/>
-</map>

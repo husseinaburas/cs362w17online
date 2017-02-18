@@ -1,6 +1,0 @@
-<map id="DomainValidator.isValidTld" name="DomainValidator.isValidTld">
-<area shape="rect" id="node2" href="$classDomainValidator.html#a504c7f2f180d6cf946e2fe08915f9a88" title="DomainValidator.isValidLocalTld" alt="" coords="255,5,465,32"/>
-<area shape="rect" id="node3" href="$classDomainValidator.html#acf198e86d538d0c001020ee8ff117b78" title="DomainValidator.isValidInfrastructureTld" alt="" coords="232,56,488,83"/>
-<area shape="rect" id="node4" href="$classDomainValidator.html#a4d8d33106c0f174b9402cf78687644a5" title="DomainValidator.isValidGenericTld" alt="" coords="248,107,472,133"/>
-<area shape="rect" id="node5" href="$classDomainValidator.html#ada2c219d4cec8346ebefc981a17c6bb9" title="DomainValidator.isValidCountry\lCodeTld" alt="" coords="257,158,463,199"/>
-</map>
