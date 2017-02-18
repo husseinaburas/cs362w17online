@@ -43,8 +43,6 @@ int main(int argc, char** argv) {
     printf("\nTesting playSmithy() with seed %i\n", atoi(argv[1]));
     printf("Game Initialized! :)\n");
     
-    //For this function, we're testing the whoseTurn() function
-    //We're required to give it an initialized game.
     
     int smithyTestPos = 7;
     

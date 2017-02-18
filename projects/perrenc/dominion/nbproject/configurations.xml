@@ -12,6 +12,9 @@
       <in>interface.c</in>
       <in>playdom.c</in>
       <in>player.c</in>
+      <in>randomtestadventurer.c</in>
+      <in>randomtestcard1.c</in>
+      <in>randomtestcard2.c</in>
       <in>rngs.c</in>
       <in>rt.c</in>
       <in>supplyTest.c</in>
@@ -52,7 +55,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile unittestresults.out</buildCommand>
+          <buildCommand>${MAKE} -f Makefile randomtests</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath></executablePath>
           <cTool>
@@ -85,6 +88,12 @@
       <item path="playdom.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="player.c" ex="false" tool="0" flavor2="2">
+      </item>
+      <item path="randomtestadventurer.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="randomtestcard1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="randomtestcard2.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="rngs.c" ex="false" tool="0" flavor2="0">
         <cTool flags="0">

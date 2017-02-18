@@ -143,6 +143,11 @@ int checkActions(int testNum, int card_state[6], int xtraActions, struct gameSta
 int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G);
 //HELPER FUNCTIONS
 void testAssert(int testNum, int *pass_count, int cmp);
+int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCoins);
+int randCheckActions(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraActions);
+int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards, int discarded);
+int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG);
+int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, struct gameState testG);
 //VARIABLES
 int card_state[6];
 

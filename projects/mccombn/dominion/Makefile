@@ -98,6 +98,32 @@ unittestresults.out: dominion.o rngs.o unittest1.o unittest2.o unittest3.o unitt
 	cat dominion.c.gcov >> unittestresults.out
 	./test.run 1234
 
+randomtestcard1.o: randomtestcard1.c
+	gcc -c randomtestcard1.c -g $(CFLAGS)
+
+randomtestadventurer.o: randomtestadventurer.c
+	gcc -c randomtestadventurer.c -g $(CFLAGS)
+
+randomtestcard2.o: randomtestcard2.c
+	gcc -c randomtestcard2.c -g $(CFLAGS)
+
+randomtestresults.out: dominion.o rngs.o testingtools.o randomtestcard1.o randomtestcard2.o randomtestadventurer.o
+	gcc -o test.run -g dominion.o rngs.o testingtools.o randomtestcard1.o $(CFLAGS)
+	./test.run 1234 >> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+	./test.run 1234
+	gcc -o test.run -g dominion.o rngs.o testingtools.o randomtestcard2.o $(CFLAGS)
+	./test.run 1234 >> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+	./test.run 1234
+	gcc -o test.run -g dominion.o rngs.o testingtools.o randomtestadventurer.o $(CFLAGS)
+	./test.run 1234 >> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+	./test.run 1234
+	
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
