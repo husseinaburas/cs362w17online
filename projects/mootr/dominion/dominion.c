@@ -1293,7 +1293,8 @@ int playMine(struct gameState *state, int handPos, int choice1, int choice2) {
 
 int playSeaHag(struct gameState *state, int handPos) {
   int currentPlayer = whoseTurn(state);
-  for (int i = 0; i < state->numPlayers; i++) {
+	int i;
+  for (i = 0; i < state->numPlayers; i++) {
     if (i != currentPlayer) {
       state->discard[i][state->discardCount[i]] =
           state->deck[i][state->deckCount[i]--];
