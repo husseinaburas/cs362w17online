@@ -13,7 +13,7 @@ void testSalvager(int *testArr, int seed) {
                        baron, minion, tribute, outpost, sea_hag };
     struct gameState G, testG;
     int currentPlayer;
-    const int INIT_HAND_MIN = 2;
+    const int INIT_HAND_MIN = 1;
     const int INIT_HAND_MAX = 20;
     const int INIT_DECK_MIN = 0;
     const int INIT_DECK_MAX = 100;
@@ -62,7 +62,9 @@ void testSalvager(int *testArr, int seed) {
         testG.hand[currentPlayer][i] = rand() % (treasure_map + 1);
     }
 
-    trashPos = rand() % (beforeHandCount - 1) + 1;
+    /* changed this to allow the first card to be trashed, which should indicate
+       not trashing a card at all */
+    trashPos = rand() % (beforeHandCount);
     cardCost = getCost(testG.hand[currentPlayer][trashPos]);
 
     /* record original state */
@@ -90,9 +92,15 @@ void testSalvager(int *testArr, int seed) {
         afterDiscardCount[i] = testG.discardCount[i];
     }
 
+    if (trashPos == 0 && beforeHandCount == 1) {
+        expected = 1;
+    } else {
+        expected = 2;
+    }
+
     /* examine the state */
     testArr[testNo++] += printTest("Number of cards in hand is correct",
-        beforeHandCount - 2, afterHandCount);
+        beforeHandCount - expected, afterHandCount);
 
     testArr[testNo++] += printTest("Played count increased by 1",
         beforePlayedCount + 1, afterPlayedCount);
@@ -103,8 +111,13 @@ void testSalvager(int *testArr, int seed) {
     testArr[testNo++] += printTest("Number of Buys increased by 1",
         beforeNumBuys + 1, afterNumBuys);
 
+    if (trashPos == 0 && beforeHandCount == 1) {
+        expected = 0;
+    } else {
+        expected = cardCost;
+    }
     testArr[testNo++] += printTest("Number of Coins increased by correct amount",
-        beforeCoins + cardCost, afterCoins);
+        beforeCoins + expected, afterCoins);
 
     expected = actual = 0;
     for (i = 0; i != numPlayers; ++i) {
@@ -133,7 +146,7 @@ int main(int argc, char *argv[]) {
     int testSuccesses[NUM_TESTS + 1];
     int i;
 
-    if (argc > 2) {
+    if (argc > 1) {
         seed = atoi(argv[1]);
         printf("%d", seed);
     }
