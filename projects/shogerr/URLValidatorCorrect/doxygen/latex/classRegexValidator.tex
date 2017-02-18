@@ -1,0 +1,239 @@
+\hypertarget{classRegexValidator}{}\section{Regex\+Validator Class Reference}
+\label{classRegexValidator}\index{Regex\+Validator@{Regex\+Validator}}
+
+
+Inheritance diagram for Regex\+Validator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classRegexValidator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Regex\+Validator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classRegexValidator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRegexValidator_a6aebddf94f8fcd8e3e59c5f815fe91d9}{Regex\+Validator} (String regex)
+\item 
+\hyperlink{classRegexValidator_a58c7266d66ccd96f86427b2f3b05ca36}{Regex\+Validator} (String regex, boolean case\+Sensitive)
+\item 
+\hyperlink{classRegexValidator_a71a78f0ac0a7d799dcb3b769659fe1f6}{Regex\+Validator} (String\mbox{[}$\,$\mbox{]} regexs)
+\item 
+\hyperlink{classRegexValidator_acc8868d903890615c99044b841a79265}{Regex\+Validator} (String\mbox{[}$\,$\mbox{]} regexs, boolean case\+Sensitive)
+\item 
+boolean \hyperlink{classRegexValidator_adf161a2df40e7d80be0088a20af715d2}{is\+Valid} (String value)
+\item 
+String\mbox{[}$\,$\mbox{]} \hyperlink{classRegexValidator_aa4c1660ff32c1aecc8f616a2cfef80ed}{match} (String value)
+\item 
+String \hyperlink{classRegexValidator_a4ded906679cf17678ba42604b90c9e86}{validate} (String value)
+\item 
+String \hyperlink{classRegexValidator_a504dcfb95f1458ff9fa479404a50090e}{to\+String} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+{\bfseries Regular Expression} validation (using J\+DK 1.\+4+ regex support). 
+
+Construct the validator either for a single regular expression or a set (array) of regular expressions. By default validation is {\itshape case sensitive} but constructors are provided to allow {\itshape case in-\/sensitive} validation. For example to create a validator which does {\itshape case in-\/sensitive} validation for a set of regular expressions\+: 
+\begin{DoxyPre}
+        String[] regexs = new String[] \{...\};
+        \hyperlink{classRegexValidator}{RegexValidator} validator = new \hyperlink{classRegexValidator}{RegexValidator(regexs, false)};
+\end{DoxyPre}
+ 
+
+
+\begin{DoxyItemize}
+\item Validate {\ttfamily true} or {\ttfamily false}\+: 
+\begin{DoxyItemize}
+\item {\ttfamily boolean valid = validator.\+is\+Valid(value);} 
+\end{DoxyItemize}
+\item Validate returning an aggregated String of the matched groups\+: 
+\begin{DoxyItemize}
+\item {\ttfamily String result = validator.\+validate(value);} 
+\end{DoxyItemize}
+\item Validate returning the matched groups\+: 
+\begin{DoxyItemize}
+\item {\ttfamily String\mbox{[}\mbox{]} result = validator.\+match(value);} 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Cached instances pre-\/compile and re-\/use \hyperlink{}{Pattern}(s) -\/ which according to the \hyperlink{}{Pattern} A\+PI are safe to use in a multi-\/threaded environment.
+
+\begin{DoxyVersion}{Version}
+
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Revision}
+1227719 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date}
+2012-\/01-\/05 09\+:45\+:51 -\/0800 (Thu, 05 Jan 2012) 
+\end{DoxyParagraph}
+\begin{DoxySince}{Since}
+Validator 1.\+4 
+\end{DoxySince}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{Regex\+Validator(\+String regex)}{RegexValidator(String regex)}}]{\setlength{\rightskip}{0pt plus 5cm}Regex\+Validator.\+Regex\+Validator (
+\begin{DoxyParamCaption}
+\item[{String}]{regex}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_a6aebddf94f8fcd8e3e59c5f815fe91d9}{}\label{classRegexValidator_a6aebddf94f8fcd8e3e59c5f815fe91d9}
+Construct a {\itshape case sensitive} validator for a single regular expression.
+
+
+\begin{DoxyParams}{Parameters}
+{\em regex} & The regular expression this validator will validate against \\
+\hline
+\end{DoxyParams}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{Regex\+Validator(\+String regex, boolean case\+Sensitive)}{RegexValidator(String regex, boolean caseSensitive)}}]{\setlength{\rightskip}{0pt plus 5cm}Regex\+Validator.\+Regex\+Validator (
+\begin{DoxyParamCaption}
+\item[{String}]{regex, }
+\item[{boolean}]{case\+Sensitive}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_a58c7266d66ccd96f86427b2f3b05ca36}{}\label{classRegexValidator_a58c7266d66ccd96f86427b2f3b05ca36}
+Construct a validator for a single regular expression with the specified case sensitivity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em regex} & The regular expression this validator will validate against \\
+\hline
+{\em case\+Sensitive} & when {\ttfamily true} matching is {\itshape case sensitive}, otherwise matching is {\itshape case in-\/sensitive} \\
+\hline
+\end{DoxyParams}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{Regex\+Validator(\+String[] regexs)}{RegexValidator(String[] regexs)}}]{\setlength{\rightskip}{0pt plus 5cm}Regex\+Validator.\+Regex\+Validator (
+\begin{DoxyParamCaption}
+\item[{String\mbox{[}$\,$\mbox{]}}]{regexs}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_a71a78f0ac0a7d799dcb3b769659fe1f6}{}\label{classRegexValidator_a71a78f0ac0a7d799dcb3b769659fe1f6}
+Construct a {\itshape case sensitive} validator that matches any one of the set of regular expressions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em regexs} & The set of regular expressions this validator will validate against \\
+\hline
+\end{DoxyParams}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\index{Regex\+Validator@{Regex\+Validator}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{Regex\+Validator(\+String[] regexs, boolean case\+Sensitive)}{RegexValidator(String[] regexs, boolean caseSensitive)}}]{\setlength{\rightskip}{0pt plus 5cm}Regex\+Validator.\+Regex\+Validator (
+\begin{DoxyParamCaption}
+\item[{String\mbox{[}$\,$\mbox{]}}]{regexs, }
+\item[{boolean}]{case\+Sensitive}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_acc8868d903890615c99044b841a79265}{}\label{classRegexValidator_acc8868d903890615c99044b841a79265}
+Construct a validator that matches any one of the set of regular expressions with the specified case sensitivity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em regexs} & The set of regular expressions this validator will validate against \\
+\hline
+{\em case\+Sensitive} & when {\ttfamily true} matching is {\itshape case sensitive}, otherwise matching is {\itshape case in-\/sensitive} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Regex\+Validator@{Regex\+Validator}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{is\+Valid(\+String value)}{isValid(String value)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean Regex\+Validator.\+is\+Valid (
+\begin{DoxyParamCaption}
+\item[{String}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_adf161a2df40e7d80be0088a20af715d2}{}\label{classRegexValidator_adf161a2df40e7d80be0088a20af715d2}
+Validate a value against the set of regular expressions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the value is valid otherwise {\ttfamily false}. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRegexValidator_adf161a2df40e7d80be0088a20af715d2_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Regex\+Validator@{Regex\+Validator}!match@{match}}
+\index{match@{match}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{match(\+String value)}{match(String value)}}]{\setlength{\rightskip}{0pt plus 5cm}String \mbox{[}$\,$\mbox{]} Regex\+Validator.\+match (
+\begin{DoxyParamCaption}
+\item[{String}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_aa4c1660ff32c1aecc8f616a2cfef80ed}{}\label{classRegexValidator_aa4c1660ff32c1aecc8f616a2cfef80ed}
+Validate a value against the set of regular expressions returning the array of matched groups.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String array of the {\itshape groups} matched if valid or {\ttfamily null} if invalid 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRegexValidator_aa4c1660ff32c1aecc8f616a2cfef80ed_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Regex\+Validator@{Regex\+Validator}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}String Regex\+Validator.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_a504dcfb95f1458ff9fa479404a50090e}{}\label{classRegexValidator_a504dcfb95f1458ff9fa479404a50090e}
+Provide a String representation of this validator. \begin{DoxyReturn}{Returns}
+A String representation of this validator 
+\end{DoxyReturn}
+\index{Regex\+Validator@{Regex\+Validator}!validate@{validate}}
+\index{validate@{validate}!Regex\+Validator@{Regex\+Validator}}
+\subsubsection[{\texorpdfstring{validate(\+String value)}{validate(String value)}}]{\setlength{\rightskip}{0pt plus 5cm}String Regex\+Validator.\+validate (
+\begin{DoxyParamCaption}
+\item[{String}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{classRegexValidator_a4ded906679cf17678ba42604b90c9e86}{}\label{classRegexValidator_a4ded906679cf17678ba42604b90c9e86}
+Validate a value against the set of regular expressions returning a String value of the aggregated groups.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to validate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Aggregated String value comprised of the {\itshape groups} matched if valid or {\ttfamily null} if invalid 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Regex\+Validator.\+java\end{DoxyCompactItemize}
