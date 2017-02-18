@@ -8,6 +8,9 @@
 **
 **  Description:    randomtester for the card smithy in dominion tests:
 **
+**  tester generates Pseudo random hand and deck cards for 2 to 4 players then
+**  	conducts all tests with full output uses getCard() helper function to
+**  	properly display all hand and deck card names
 **  verify preconditions
 **  verify smithy is at the top of curPlayer's discard pile
 **  verify curPlayer's playedCardCount has been incremented to 1
@@ -21,7 +24,14 @@
 **  previous tests verify cards came from curPlayer's deck into their hand
 **  verify all players are as expected
 **  verify treasure_map is 26
-**  run 1000 iterations
+**
+**  run 999 more iterations of the tests with limited output that can be
+**  	checked agianst the first full run to determine the specific test
+**  	which failed
+**
+**  seed, and number of players is logged for each iteration
+**
+**  finally a total count of all failed tests is output to randomtestcard1.out
 **
 ***********************************************************************************************/
 
@@ -54,7 +64,7 @@ int main()
 	for(j=0; j < 1000; j++)
 	{
 	int players = (rand() % 3) + 2;
-	initializeGame(players, k, seed, &G);  // initialize game state for 2 players
+	initializeGame(players, k, seed, &G);  // initialize game state
 
 	printf("\n	Pseudo Random Seed is: %d \n", seed);
 	printf("	Number of Players is: %d \n", players);
@@ -126,7 +136,6 @@ int main()
 					failcount++;
 			}
 
-
 			card2 = getCard(deckCard6);
 			if( j == 0 )
 			{
@@ -140,7 +149,6 @@ int main()
 				if(temp == 1)
 					failcount++;
 			}
-
 
 			card3 = getCard(deckCard5);
 			if( j == 0 )
@@ -175,7 +183,6 @@ int main()
 		curPlayer = 0;
 
 		printf("	Playing %s\n", TESTCARD);
-
 
 		char * card11 = {"error"};
 		char * card22 = {"error"};
