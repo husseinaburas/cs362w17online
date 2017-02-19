@@ -10,7 +10,7 @@
 #include "rngs.h"
 #include <stdio.h>
 #include <math.h>
-
+#include <stdlib.h>
 
 int main(int argc, char **argv) {
 	struct gameState G;
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 	}
 
 	else
-		seed = (int) argv[1];
+		seed = atoi(argv[1]);
 
 	SelectStream(2);
 	PutSeed(seed);
