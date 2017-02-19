@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
 
 		//randomly set hand and deck count
 		initialHandCount = G.handCount[p] = (int) floor(Random() * MAX_HAND + 1);
-		initialDeckCount = G.deckCount[p] = (int) floor(Random() * MAX_DECK + 1);
+		initialDeckCount = G.deckCount[p] = (int) floor(Random() * MAX_DECK);
 
 		//If we have an empty deck, we need to fill the discard pile
 		r = (int) floor(Random() * 10);
