@@ -135,6 +135,17 @@ int main(int argc, char **argv) {
 			customAssert(G.deckCount[p] + G.discardCount[p] + 1 == initialDeckCount);
 
 		}
+
+		else if (treasureDeckBefore == 0) {
+			printf("Confirm that hand count has no treasure.\n");
+			customAssert(treasureHandAfter == treasureHandBefore);
+			printf("Confirm that deck now has no treasure\n");
+			customAssert(treasureDeckAfter == treasureDeckBefore );
+			printf("Confirm that hand now has -1  cards, adventurer should be discarded\n");
+			customAssert(G.handCount[p] == initialHandCount - 1);
+			printf("Confirm that deck + discard is equal to initial deck count\n");
+			customAssert(G.deckCount[p] + G.discardCount[p] == initialDeckCount);
+		}
 		else {
 			printf("Confirm that hand now has two additional treasure cards.\n");
 			customAssert(treasureHandAfter == treasureHandBefore + 2);

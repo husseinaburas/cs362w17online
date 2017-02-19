@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 		initialActions = G.numActions = (int) floor(Random() * (numPlayers - 1) + 1);
 
 		//randomly set hand and deck count
-		initialHandCount = G.handCount[p] = (int) floor(Random() * MAX_HAND + 1);
+		initialHandCount = G.handCount[p] = (int) floor(Random() * (MAX_HAND - 3) + 1);
 		initialDeckCount = G.deckCount[p] = (int) floor(Random() * MAX_DECK);
 
 		r = (int) floor(Random() * 10);
