@@ -47,7 +47,7 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o
 
 ##################  Assignment 3.out file  ##################
 randomtestadventurer.out: randomtestadventurer
-	./randomtestadventurer 100 &> randomtestadventurer.out
+	./randomtestadventurer 101 &> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 
@@ -57,7 +57,7 @@ randomtestcard1.out: randomtestcard1
 	cat dominion.c.gcov >> randomtestcard1.out
 
 randomtestcard2.out: randomtestcard2
-	./randomtestcard2 102 &> randomtestcard2.out
+	./randomtestcard2 101 &> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 
@@ -135,7 +135,7 @@ unittestresults.out: dominion.o unittest1.c unittest2.c unittest3.c unittest4.c 
 
 
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2 randomtestadventurer.out randomtestcard1.out randomtestcard2.out
 
 clean:
 	rm -f *.o testDrawCard badTestDrawCard playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2 *.gcov *.gcda *.gcno *.so

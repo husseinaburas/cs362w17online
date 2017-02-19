@@ -32,9 +32,9 @@ randomtestresults.out: randomtestadventurer.c randomtestcard1.c randomtestcard2.
 	gcc -o randomtestcard1 -g randomtestcard1.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
 	gcc -o randomtestcard2 -g randomtestcard2.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
 	
-	./randomtestadventurer > randomtestresults.out
-	./randomtestcard1 >> randomtestresults.out
-	./randomtestcard2 >> randomtestresults.out
+	./randomtestadventurer 192 > randomtestresults.out
+	./randomtestcard1 132 >> randomtestresults.out
+	./randomtestcard2 30 >> randomtestresults.out
 	echo --------------------- randomtestadventurer.c gcov results ------------------ >> randomtestresults.out
 	gcov -b -f randomtestadventurer.c >> randomtestresults.out
 	echo --------------------- randomtestcard1.c gcov results ------------------ >> randomtestresults.out
