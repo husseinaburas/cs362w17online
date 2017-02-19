@@ -91,8 +91,8 @@ int main(int argc, char *argv[]) {
         actualState.handCount[activePlayer] = 2;
 
         /* randomly determine deck and discard sizes */
-        actualState.deckCount[activePlayer] = rand() % 5;
-        actualState.discardCount[activePlayer] = rand() % 5;
+        actualState.deckCount[activePlayer] = rand() % 11;
+        actualState.discardCount[activePlayer] = rand() % 11;
 
         /* randomly determine contents of deck */
         deckTreasure = 0;
