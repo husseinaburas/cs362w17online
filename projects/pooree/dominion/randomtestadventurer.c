@@ -51,7 +51,9 @@ int main (int argc, char** argv) {
 
   
 
-  for (n = 0; n < 1000; n++) {   
+  for (n = 0; n < 1000; n++) {
+
+    printf ("***************************Test %d***************************\n", n);   
 
     numPlayers = floor(Random() * 3) + 2;             // Determine a random number of players for game
     G.numPlayers = numPlayers;
