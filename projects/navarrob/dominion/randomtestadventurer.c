@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
 		int initialHandCount = 0;
 		int initialActions = 0;
 		int checkOneTreasure = 0;
+		int r;
 
 		//Set a random amount of players for game
 		numPlayers = (int) floor(Random() * 3 + 2);
@@ -54,6 +55,20 @@ int main(int argc, char **argv) {
 		//randomly set hand and deck count
 		initialHandCount = G.handCount[p] = (int) floor(Random() * MAX_HAND + 1);
 		initialDeckCount = G.deckCount[p] = (int) floor(Random() * MAX_DECK + 1);
+
+		//If we have an empty deck, we need to fill the discard pile
+		r = (int) floor(Random() * 10);
+		if (initialDeckCount == 0) {
+			G.discardCount[p] = 3;
+			G.discard[p][0] = smithy;
+			G.discard[p][1] = adventurer;
+			G.discard[p][2] = gold;
+			G.discard[p][3] = village;
+			if (r == 7) {
+				G.discardCount[p]++;
+				G.discard[p][4] = silver;
+			}
+		}
 
 		printf("Test initialized with %d players, %d hand count, %d deck count.\n", numPlayers, initialHandCount, initialDeckCount);
 		printf("Testing smithy with player %d\n", p + 1);
