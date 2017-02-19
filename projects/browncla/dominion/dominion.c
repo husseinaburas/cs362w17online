@@ -1320,7 +1320,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
-      while(drawntreasure<1 && state->deckCount[currentPlayer] < z){ //BUG
+      while(drawntreasure<1 && state->deckCount[currentPlayer] > z){ //BUG
         
         drawCard(currentPlayer, state);
 
