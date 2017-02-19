@@ -1,0 +1,773 @@
+\hypertarget{interface_8h}{}\section{interface.\+h File Reference}
+\label{interface_8h}\index{interface.\+h@{interface.\+h}}
+{\ttfamily \#include \char`\"{}dominion.\+h\char`\"{}}\\*
+Include dependency graph for interface.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=144pt]{interface_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{interface_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{interface_8h_ab7f9778e590d6528fa6dfa2632730b42}{N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS}~(\hyperlink{dominion_8h_a90493cb4d9abd6726dfc438c413a13bea7afb3eea128840c336919e9c7c29732e}{treasure\+\_\+map} + 1)
+\item 
+\#define \hyperlink{interface_8h_aaca91e0982703365c8633487d1210220}{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS}~10
+\item 
+\#define \hyperlink{interface_8h_a4070d35535b456b91e72ad2bdc73ef06}{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2}~8
+\item 
+\#define \hyperlink{interface_8h_a4c48e7f01d2c2f5e7bab28503cd9db2f}{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4}~12
+\item 
+\#define \hyperlink{interface_8h_a92abbd2d62382fdc298968fa74fd9d57}{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2}~10
+\item 
+\#define \hyperlink{interface_8h_a907669dcacd77c60bb4b82f7d7c2af1e}{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3}~20
+\item 
+\#define \hyperlink{interface_8h_a4ec55d5b5addeac9d70f16fffaa0cc75}{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4}~30
+\item 
+\#define \hyperlink{interface_8h_ad2f5ca01d7e0da25c1c67cd41d1a33c5}{N\+U\+M\+\_\+\+C\+O\+P\+P\+ER}~60
+\item 
+\#define \hyperlink{interface_8h_ad1263d79e64f0bbd1e4d8ff97b58d8ce}{N\+U\+M\+\_\+\+S\+I\+L\+V\+ER}~40
+\item 
+\#define \hyperlink{interface_8h_a723e293d427f37f20726f8e4204d0949}{N\+U\+M\+\_\+\+G\+O\+LD}~30
+\item 
+\#define \hyperlink{interface_8h_addf5ec070e9499d36b7f2009ce736076}{U\+N\+U\+S\+ED}~-\/1
+\item 
+\#define \hyperlink{interface_8h_a50cb198abdbd641720e335e0760aca5f}{S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER}~7
+\item 
+\#define \hyperlink{interface_8h_acbcdb1a4f56c238f6dadb5de59aaba39}{S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE}~3
+\item 
+\#define \hyperlink{interface_8h_a10b88cb7de771a233f2d8307a3e4b386}{H\+A\+N\+D\+S\+I\+ZE}~5
+\item 
+\#define \hyperlink{interface_8h_a09d0920cb004a2247b46dee12cf4eb7b}{C\+O\+M\+P\+A\+RE}(string1,  string2)~strncmp(string1, string2, 4)
+\item 
+\#define \hyperlink{interface_8h_a6789ebc0df71a8ef76bfbb4fb5f74aad}{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH}~32
+\item 
+\#define \hyperlink{interface_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{T\+R\+UE}~1
+\item 
+\#define \hyperlink{interface_8h_aa93f0eb578d23995850d61f7d61c55c1}{F\+A\+L\+SE}~0
+\item 
+\#define \hyperlink{interface_8h_aa90cac659d18e8ef6294c7ae337f6b58}{S\+U\+C\+C\+E\+SS}~0
+\item 
+\#define \hyperlink{interface_8h_a6d58f9ac447476b4e084d7ca383f5183}{F\+A\+I\+L\+U\+RE}~-\/1
+\item 
+\#define \hyperlink{interface_8h_a6fbd908903ad34f115e0726001be8753}{M\+A\+T\+CH}~0
+\item 
+\#define \hyperlink{interface_8h_a148665c75ac246648923b90119015f88}{W\+I\+N\+N\+ER}~1
+\item 
+\#define \hyperlink{interface_8h_a19125cccdcac98dda428ea2b8fe620fb}{N\+O\+T\+\_\+\+W\+I\+N\+N\+ER}~0
+\item 
+\#define \hyperlink{interface_8h_a5af50807c7d84a078948932fec03e557}{A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE}~0
+\item 
+\#define \hyperlink{interface_8h_a78544972b7bd79fb5efb93b3c2448b9f}{B\+U\+Y\+\_\+\+P\+H\+A\+SE}~1
+\item 
+\#define \hyperlink{interface_8h_a6e85a066f90958a837d72f4b68fcb3d1}{C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE}~2
+\item 
+\#define \hyperlink{interface_8h_ac9cd7190e7753437700569074b829f75}{C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE}~1
+\item 
+\#define \hyperlink{interface_8h_a3e29ca1fb10ec0ad9ba582a48110e4ff}{S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE}~2
+\item 
+\#define \hyperlink{interface_8h_aed1558edf87ab415fb0ecee14865c993}{G\+O\+L\+D\+\_\+\+V\+A\+L\+UE}~3
+\item 
+\#define \hyperlink{interface_8h_ae3170765b7adc39501f9a92658ad6779}{C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST}~0
+\item 
+\#define \hyperlink{interface_8h_a13cb3d2ce7cbd691262b281ac4b31ab4}{S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_a861f41f18c92b352f92db6fab71d1b1c}{G\+O\+L\+D\+\_\+\+C\+O\+ST}~6
+\item 
+\#define \hyperlink{interface_8h_a7c10e6ed2c94f8a729e435fa24f057cc}{E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST}~2
+\item 
+\#define \hyperlink{interface_8h_ae30597e93aa69b2ab4d470282d042f5b}{D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_ab462b630439db2fcf674e83b4a2f2775}{P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST}~8
+\item 
+\#define \hyperlink{interface_8h_a50e64371d11c638f1ecaae0a17de7b26}{C\+U\+R\+S\+E\+\_\+\+C\+O\+ST}~0
+\item 
+\#define \hyperlink{interface_8h_a44864a9a476696cf7002bbcf8bb8fd52}{A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST}~6
+\item 
+\#define \hyperlink{interface_8h_ac93150a79ac377a8d1d9376d7daa03ba}{C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_a32c0bbc916501d896a8deb34687f43cf}{F\+E\+A\+S\+T\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a8fe43bc5508ee716120962cfbd5f9d69}{G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a756496b57bf21fbd55521709ab0d55a7}{M\+I\+N\+E\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_ac93aa078a456bbb434fe78ec142ae62e}{M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_aedab19fea1272ab50a15a0ec9c359222}{R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_aac76764d09219e52285ac6a22836a608}{S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a54930eeb7681e6e036ab3c81e430200e}{V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_aef9e83638b2883399e1b69d1fa8a1bd2}{W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_a0506246f13f08b885c084ebff39bcd72}{B\+A\+R\+O\+N\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_af8a043adf4c66ceb4786c1737aff82aa}{G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_a1fe909e6ee2623fa835c71bb39c5bb32}{M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_a68647532d1acf6faf7085d799cee9a47}{S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_a704ceb67bbc6d682b700d2af7e384b06}{S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_adf214a11da2638e034823dcbf050cc42}{T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_acf09561d52b2d2af589736f367abfaa5}{W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_adcbd6f232fa6b9b9a7c67cf0d5b41a78}{A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST}~3
+\item 
+\#define \hyperlink{interface_8h_a86237d65442eb85ae66dae03046c44de}{C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a31397cbe80fa2b7a85aa156110a46619}{E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST}~2
+\item 
+\#define \hyperlink{interface_8h_ac6b9dff349dd2482c924e672f11858a8}{O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST}~5
+\item 
+\#define \hyperlink{interface_8h_a1595e80b8a8628b36e043709289f2e32}{S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a039c0380746308777b961fcf9e8886f1}{S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a0e88234b092746d05b9b778edd68de01}{T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST}~4
+\item 
+\#define \hyperlink{interface_8h_a05be3eb1d31c56ffb8f757ca266e9880}{O\+N\+E\+T\+H\+O\+U\+S\+A\+ND}~1000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{interface_8h_aa652aa36d98ce7d25c22fb34950d052d}{add\+Card\+To\+Hand} (int player, int card, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+int \hyperlink{interface_8h_a781d4fae99cab530ca224cdd07ff87e9}{count\+Hand\+Coins} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a315090fac682ce17ffb8eef9c1353a95}{execute\+Bot\+Turn} (int player, int $\ast$turn\+Num, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_ab220fedebc8fd24014b72a8684da15a6}{phase\+Num\+To\+Name} (int phase, char $\ast$name)
+\item 
+void \hyperlink{interface_8h_a31ae96ff493d78bcc34cbff663204fef}{card\+Num\+To\+Name} (int card, char $\ast$name)
+\item 
+int \hyperlink{interface_8h_a0e98621e2a0abdafda26d00f8cdb54d9}{get\+Card\+Cost} (int card)
+\item 
+void \hyperlink{interface_8h_ae19e0a10c9b6b5aaf1878cac27ea9541}{print\+Help} (void)
+\item 
+void \hyperlink{interface_8h_a9736e6d05f5eaf9cb89c60ab4e9caf67}{print\+Hand} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a79033647c652a00c5bb877ffe97607e7}{print\+Deck} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a81598f2a28ab5cb73e31e90d86091562}{print\+Discard} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a0b5c274889c795b3034800fc69321d13}{print\+Played} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a914b5ae665ce3ba461dd71f55f3e062f}{print\+State} (struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a72df42ddc629927aca258391808d6457}{print\+Supply} (struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_af1295361903f8552328d3a48133bfeaa}{print\+Game\+State} (struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_adcc11b1cd6ed2d555286c260d6fc113d}{print\+Scores} (struct \hyperlink{structgameState}{game\+State} $\ast$game)
+\item 
+void \hyperlink{interface_8h_a94302829f53609bc163808cdd3caa76d}{select\+Kingdom\+Cards} (int random\+Seed, int \hyperlink{dominion_8h_a1706b56eb300d15f7afa13e8037b1d51}{kingdom\+Cards}\mbox{[}\hyperlink{interface_8h_aaca91e0982703365c8633487d1210220}{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS}\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{interface.\+h@{interface.\+h}!A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE@{A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE}}
+\index{A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE@{A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE}{ACTION_PHASE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+C\+T\+I\+O\+N\+\_\+\+P\+H\+A\+SE~0}\hypertarget{interface_8h_a5af50807c7d84a078948932fec03e557}{}\label{interface_8h_a5af50807c7d84a078948932fec03e557}
+\index{interface.\+h@{interface.\+h}!A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST@{A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST}}
+\index{A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST@{A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST}{ADVENTURER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+D\+V\+E\+N\+T\+U\+R\+E\+R\+\_\+\+C\+O\+ST~6}\hypertarget{interface_8h_a44864a9a476696cf7002bbcf8bb8fd52}{}\label{interface_8h_a44864a9a476696cf7002bbcf8bb8fd52}
+\index{interface.\+h@{interface.\+h}!A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST@{A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST}}
+\index{A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST@{A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST}{AMBASSADOR_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+M\+B\+A\+S\+S\+A\+D\+O\+R\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_adcbd6f232fa6b9b9a7c67cf0d5b41a78}{}\label{interface_8h_adcbd6f232fa6b9b9a7c67cf0d5b41a78}
+\index{interface.\+h@{interface.\+h}!B\+A\+R\+O\+N\+\_\+\+C\+O\+ST@{B\+A\+R\+O\+N\+\_\+\+C\+O\+ST}}
+\index{B\+A\+R\+O\+N\+\_\+\+C\+O\+ST@{B\+A\+R\+O\+N\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{B\+A\+R\+O\+N\+\_\+\+C\+O\+ST}{BARON_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+A\+R\+O\+N\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a0506246f13f08b885c084ebff39bcd72}{}\label{interface_8h_a0506246f13f08b885c084ebff39bcd72}
+\index{interface.\+h@{interface.\+h}!B\+U\+Y\+\_\+\+P\+H\+A\+SE@{B\+U\+Y\+\_\+\+P\+H\+A\+SE}}
+\index{B\+U\+Y\+\_\+\+P\+H\+A\+SE@{B\+U\+Y\+\_\+\+P\+H\+A\+SE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{B\+U\+Y\+\_\+\+P\+H\+A\+SE}{BUY_PHASE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define B\+U\+Y\+\_\+\+P\+H\+A\+SE~1}\hypertarget{interface_8h_a78544972b7bd79fb5efb93b3c2448b9f}{}\label{interface_8h_a78544972b7bd79fb5efb93b3c2448b9f}
+\index{interface.\+h@{interface.\+h}!C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE@{C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE}}
+\index{C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE@{C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE}{CLEANUP_PHASE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+L\+E\+A\+N\+U\+P\+\_\+\+P\+H\+A\+SE~2}\hypertarget{interface_8h_a6e85a066f90958a837d72f4b68fcb3d1}{}\label{interface_8h_a6e85a066f90958a837d72f4b68fcb3d1}
+\index{interface.\+h@{interface.\+h}!C\+O\+M\+P\+A\+RE@{C\+O\+M\+P\+A\+RE}}
+\index{C\+O\+M\+P\+A\+RE@{C\+O\+M\+P\+A\+RE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+M\+P\+A\+RE}{COMPARE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+M\+P\+A\+RE(
+\begin{DoxyParamCaption}
+\item[{}]{string1, }
+\item[{}]{string2}
+\end{DoxyParamCaption}
+)~strncmp(string1, string2, 4)}\hypertarget{interface_8h_a09d0920cb004a2247b46dee12cf4eb7b}{}\label{interface_8h_a09d0920cb004a2247b46dee12cf4eb7b}
+\index{interface.\+h@{interface.\+h}!C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST@{C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST}}
+\index{C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST@{C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST}{COPPER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+P\+P\+E\+R\+\_\+\+C\+O\+ST~0}\hypertarget{interface_8h_ae3170765b7adc39501f9a92658ad6779}{}\label{interface_8h_ae3170765b7adc39501f9a92658ad6779}
+\index{interface.\+h@{interface.\+h}!C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE@{C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE}}
+\index{C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE@{C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE}{COPPER_VALUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+P\+P\+E\+R\+\_\+\+V\+A\+L\+UE~1}\hypertarget{interface_8h_ac9cd7190e7753437700569074b829f75}{}\label{interface_8h_ac9cd7190e7753437700569074b829f75}
+\index{interface.\+h@{interface.\+h}!C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST@{C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST}}
+\index{C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST@{C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST}{COUNCIL_ROOM_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+O\+U\+N\+C\+I\+L\+\_\+\+R\+O\+O\+M\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_ac93150a79ac377a8d1d9376d7daa03ba}{}\label{interface_8h_ac93150a79ac377a8d1d9376d7daa03ba}
+\index{interface.\+h@{interface.\+h}!C\+U\+R\+S\+E\+\_\+\+C\+O\+ST@{C\+U\+R\+S\+E\+\_\+\+C\+O\+ST}}
+\index{C\+U\+R\+S\+E\+\_\+\+C\+O\+ST@{C\+U\+R\+S\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+U\+R\+S\+E\+\_\+\+C\+O\+ST}{CURSE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+U\+R\+S\+E\+\_\+\+C\+O\+ST~0}\hypertarget{interface_8h_a50e64371d11c638f1ecaae0a17de7b26}{}\label{interface_8h_a50e64371d11c638f1ecaae0a17de7b26}
+\index{interface.\+h@{interface.\+h}!C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST@{C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST}}
+\index{C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST@{C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST}{CUTPURSE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+U\+T\+P\+U\+R\+S\+E\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a86237d65442eb85ae66dae03046c44de}{}\label{interface_8h_a86237d65442eb85ae66dae03046c44de}
+\index{interface.\+h@{interface.\+h}!D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST@{D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST}}
+\index{D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST@{D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST}{DUCHY_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+U\+C\+H\+Y\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_ae30597e93aa69b2ab4d470282d042f5b}{}\label{interface_8h_ae30597e93aa69b2ab4d470282d042f5b}
+\index{interface.\+h@{interface.\+h}!E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST@{E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST}}
+\index{E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST@{E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST}{EMBARGO_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+M\+B\+A\+R\+G\+O\+\_\+\+C\+O\+ST~2}\hypertarget{interface_8h_a31397cbe80fa2b7a85aa156110a46619}{}\label{interface_8h_a31397cbe80fa2b7a85aa156110a46619}
+\index{interface.\+h@{interface.\+h}!E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST@{E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST}}
+\index{E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST@{E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST}{ESTATE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+S\+T\+A\+T\+E\+\_\+\+C\+O\+ST~2}\hypertarget{interface_8h_a7c10e6ed2c94f8a729e435fa24f057cc}{}\label{interface_8h_a7c10e6ed2c94f8a729e435fa24f057cc}
+\index{interface.\+h@{interface.\+h}!F\+A\+I\+L\+U\+RE@{F\+A\+I\+L\+U\+RE}}
+\index{F\+A\+I\+L\+U\+RE@{F\+A\+I\+L\+U\+RE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{F\+A\+I\+L\+U\+RE}{FAILURE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+I\+L\+U\+RE~-\/1}\hypertarget{interface_8h_a6d58f9ac447476b4e084d7ca383f5183}{}\label{interface_8h_a6d58f9ac447476b4e084d7ca383f5183}
+\index{interface.\+h@{interface.\+h}!F\+A\+L\+SE@{F\+A\+L\+SE}}
+\index{F\+A\+L\+SE@{F\+A\+L\+SE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{F\+A\+L\+SE}{FALSE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+A\+L\+SE~0}\hypertarget{interface_8h_aa93f0eb578d23995850d61f7d61c55c1}{}\label{interface_8h_aa93f0eb578d23995850d61f7d61c55c1}
+\index{interface.\+h@{interface.\+h}!F\+E\+A\+S\+T\+\_\+\+C\+O\+ST@{F\+E\+A\+S\+T\+\_\+\+C\+O\+ST}}
+\index{F\+E\+A\+S\+T\+\_\+\+C\+O\+ST@{F\+E\+A\+S\+T\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{F\+E\+A\+S\+T\+\_\+\+C\+O\+ST}{FEAST_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+E\+A\+S\+T\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a32c0bbc916501d896a8deb34687f43cf}{}\label{interface_8h_a32c0bbc916501d896a8deb34687f43cf}
+\index{interface.\+h@{interface.\+h}!G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST@{G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST}}
+\index{G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST@{G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST}{GARDEN_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+A\+R\+D\+E\+N\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a8fe43bc5508ee716120962cfbd5f9d69}{}\label{interface_8h_a8fe43bc5508ee716120962cfbd5f9d69}
+\index{interface.\+h@{interface.\+h}!G\+O\+L\+D\+\_\+\+C\+O\+ST@{G\+O\+L\+D\+\_\+\+C\+O\+ST}}
+\index{G\+O\+L\+D\+\_\+\+C\+O\+ST@{G\+O\+L\+D\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{G\+O\+L\+D\+\_\+\+C\+O\+ST}{GOLD_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+O\+L\+D\+\_\+\+C\+O\+ST~6}\hypertarget{interface_8h_a861f41f18c92b352f92db6fab71d1b1c}{}\label{interface_8h_a861f41f18c92b352f92db6fab71d1b1c}
+\index{interface.\+h@{interface.\+h}!G\+O\+L\+D\+\_\+\+V\+A\+L\+UE@{G\+O\+L\+D\+\_\+\+V\+A\+L\+UE}}
+\index{G\+O\+L\+D\+\_\+\+V\+A\+L\+UE@{G\+O\+L\+D\+\_\+\+V\+A\+L\+UE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{G\+O\+L\+D\+\_\+\+V\+A\+L\+UE}{GOLD_VALUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+O\+L\+D\+\_\+\+V\+A\+L\+UE~3}\hypertarget{interface_8h_aed1558edf87ab415fb0ecee14865c993}{}\label{interface_8h_aed1558edf87ab415fb0ecee14865c993}
+\index{interface.\+h@{interface.\+h}!G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST@{G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST}}
+\index{G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST@{G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST}{GREAT_HALL_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+R\+E\+A\+T\+\_\+\+H\+A\+L\+L\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_af8a043adf4c66ceb4786c1737aff82aa}{}\label{interface_8h_af8a043adf4c66ceb4786c1737aff82aa}
+\index{interface.\+h@{interface.\+h}!H\+A\+N\+D\+S\+I\+ZE@{H\+A\+N\+D\+S\+I\+ZE}}
+\index{H\+A\+N\+D\+S\+I\+ZE@{H\+A\+N\+D\+S\+I\+ZE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{H\+A\+N\+D\+S\+I\+ZE}{HANDSIZE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define H\+A\+N\+D\+S\+I\+ZE~5}\hypertarget{interface_8h_a10b88cb7de771a233f2d8307a3e4b386}{}\label{interface_8h_a10b88cb7de771a233f2d8307a3e4b386}
+\index{interface.\+h@{interface.\+h}!M\+A\+T\+CH@{M\+A\+T\+CH}}
+\index{M\+A\+T\+CH@{M\+A\+T\+CH}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+T\+CH}{MATCH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+T\+CH~0}\hypertarget{interface_8h_a6fbd908903ad34f115e0726001be8753}{}\label{interface_8h_a6fbd908903ad34f115e0726001be8753}
+\index{interface.\+h@{interface.\+h}!M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH}{MAX_STRING_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+X\+\_\+\+S\+T\+R\+I\+N\+G\+\_\+\+L\+E\+N\+G\+TH~32}\hypertarget{interface_8h_a6789ebc0df71a8ef76bfbb4fb5f74aad}{}\label{interface_8h_a6789ebc0df71a8ef76bfbb4fb5f74aad}
+\index{interface.\+h@{interface.\+h}!M\+I\+N\+E\+\_\+\+C\+O\+ST@{M\+I\+N\+E\+\_\+\+C\+O\+ST}}
+\index{M\+I\+N\+E\+\_\+\+C\+O\+ST@{M\+I\+N\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+E\+\_\+\+C\+O\+ST}{MINE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+E\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_a756496b57bf21fbd55521709ab0d55a7}{}\label{interface_8h_a756496b57bf21fbd55521709ab0d55a7}
+\index{interface.\+h@{interface.\+h}!M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST@{M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST}}
+\index{M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST@{M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST}{MINION_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+I\+O\+N\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_a1fe909e6ee2623fa835c71bb39c5bb32}{}\label{interface_8h_a1fe909e6ee2623fa835c71bb39c5bb32}
+\index{interface.\+h@{interface.\+h}!M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST@{M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST}}
+\index{M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST@{M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST}{MONEYLENDER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+N\+E\+Y\+L\+E\+N\+D\+E\+R\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_ac93aa078a456bbb434fe78ec142ae62e}{}\label{interface_8h_ac93aa078a456bbb434fe78ec142ae62e}
+\index{interface.\+h@{interface.\+h}!N\+O\+T\+\_\+\+W\+I\+N\+N\+ER@{N\+O\+T\+\_\+\+W\+I\+N\+N\+ER}}
+\index{N\+O\+T\+\_\+\+W\+I\+N\+N\+ER@{N\+O\+T\+\_\+\+W\+I\+N\+N\+ER}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+O\+T\+\_\+\+W\+I\+N\+N\+ER}{NOT_WINNER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+O\+T\+\_\+\+W\+I\+N\+N\+ER~0}\hypertarget{interface_8h_a19125cccdcac98dda428ea2b8fe620fb}{}\label{interface_8h_a19125cccdcac98dda428ea2b8fe620fb}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2}}
+\index{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2}{NUM_C_CARDS_2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+2~10}\hypertarget{interface_8h_a92abbd2d62382fdc298968fa74fd9d57}{}\label{interface_8h_a92abbd2d62382fdc298968fa74fd9d57}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3}}
+\index{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3}{NUM_C_CARDS_3}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+3~20}\hypertarget{interface_8h_a907669dcacd77c60bb4b82f7d7c2af1e}{}\label{interface_8h_a907669dcacd77c60bb4b82f7d7c2af1e}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4}}
+\index{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4@{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4}{NUM_C_CARDS_4}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+C\+\_\+\+C\+A\+R\+D\+S\+\_\+4~30}\hypertarget{interface_8h_a4ec55d5b5addeac9d70f16fffaa0cc75}{}\label{interface_8h_a4ec55d5b5addeac9d70f16fffaa0cc75}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+C\+O\+P\+P\+ER@{N\+U\+M\+\_\+\+C\+O\+P\+P\+ER}}
+\index{N\+U\+M\+\_\+\+C\+O\+P\+P\+ER@{N\+U\+M\+\_\+\+C\+O\+P\+P\+ER}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+C\+O\+P\+P\+ER}{NUM_COPPER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+C\+O\+P\+P\+ER~60}\hypertarget{interface_8h_ad2f5ca01d7e0da25c1c67cd41d1a33c5}{}\label{interface_8h_ad2f5ca01d7e0da25c1c67cd41d1a33c5}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+G\+O\+LD@{N\+U\+M\+\_\+\+G\+O\+LD}}
+\index{N\+U\+M\+\_\+\+G\+O\+LD@{N\+U\+M\+\_\+\+G\+O\+LD}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+G\+O\+LD}{NUM_GOLD}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+G\+O\+LD~30}\hypertarget{interface_8h_a723e293d427f37f20726f8e4204d0949}{}\label{interface_8h_a723e293d427f37f20726f8e4204d0949}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS@{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS}}
+\index{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS@{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS}{NUM_K_CARDS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS~10}\hypertarget{interface_8h_aaca91e0982703365c8633487d1210220}{}\label{interface_8h_aaca91e0982703365c8633487d1210220}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+S\+I\+L\+V\+ER@{N\+U\+M\+\_\+\+S\+I\+L\+V\+ER}}
+\index{N\+U\+M\+\_\+\+S\+I\+L\+V\+ER@{N\+U\+M\+\_\+\+S\+I\+L\+V\+ER}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+S\+I\+L\+V\+ER}{NUM_SILVER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+S\+I\+L\+V\+ER~40}\hypertarget{interface_8h_ad1263d79e64f0bbd1e4d8ff97b58d8ce}{}\label{interface_8h_ad1263d79e64f0bbd1e4d8ff97b58d8ce}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS@{N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS}}
+\index{N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS@{N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS}{NUM_TOTAL_K_CARDS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+T\+O\+T\+A\+L\+\_\+\+K\+\_\+\+C\+A\+R\+DS~({\bf treasure\+\_\+map} + 1)}\hypertarget{interface_8h_ab7f9778e590d6528fa6dfa2632730b42}{}\label{interface_8h_ab7f9778e590d6528fa6dfa2632730b42}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2@{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2}}
+\index{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2@{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2}{NUM_V_CARDS_2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+2~8}\hypertarget{interface_8h_a4070d35535b456b91e72ad2bdc73ef06}{}\label{interface_8h_a4070d35535b456b91e72ad2bdc73ef06}
+\index{interface.\+h@{interface.\+h}!N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4@{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4}}
+\index{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4@{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4}{NUM_V_CARDS_3or4}}]{\setlength{\rightskip}{0pt plus 5cm}\#define N\+U\+M\+\_\+\+V\+\_\+\+C\+A\+R\+D\+S\+\_\+3or4~12}\hypertarget{interface_8h_a4c48e7f01d2c2f5e7bab28503cd9db2f}{}\label{interface_8h_a4c48e7f01d2c2f5e7bab28503cd9db2f}
+\index{interface.\+h@{interface.\+h}!O\+N\+E\+T\+H\+O\+U\+S\+A\+ND@{O\+N\+E\+T\+H\+O\+U\+S\+A\+ND}}
+\index{O\+N\+E\+T\+H\+O\+U\+S\+A\+ND@{O\+N\+E\+T\+H\+O\+U\+S\+A\+ND}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{O\+N\+E\+T\+H\+O\+U\+S\+A\+ND}{ONETHOUSAND}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+N\+E\+T\+H\+O\+U\+S\+A\+ND~1000}\hypertarget{interface_8h_a05be3eb1d31c56ffb8f757ca266e9880}{}\label{interface_8h_a05be3eb1d31c56ffb8f757ca266e9880}
+\index{interface.\+h@{interface.\+h}!O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST@{O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST}}
+\index{O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST@{O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST}{OUTPOST_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+U\+T\+P\+O\+S\+T\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_ac6b9dff349dd2482c924e672f11858a8}{}\label{interface_8h_ac6b9dff349dd2482c924e672f11858a8}
+\index{interface.\+h@{interface.\+h}!P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST@{P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST}}
+\index{P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST@{P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST}{PROVINCE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+R\+O\+V\+I\+N\+C\+E\+\_\+\+C\+O\+ST~8}\hypertarget{interface_8h_ab462b630439db2fcf674e83b4a2f2775}{}\label{interface_8h_ab462b630439db2fcf674e83b4a2f2775}
+\index{interface.\+h@{interface.\+h}!R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST@{R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST}}
+\index{R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST@{R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST}{REMODEL_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+E\+M\+O\+D\+E\+L\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_aedab19fea1272ab50a15a0ec9c359222}{}\label{interface_8h_aedab19fea1272ab50a15a0ec9c359222}
+\index{interface.\+h@{interface.\+h}!S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST@{S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST}}
+\index{S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST@{S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST}{SALVAGER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+A\+L\+V\+A\+G\+E\+R\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a1595e80b8a8628b36e043709289f2e32}{}\label{interface_8h_a1595e80b8a8628b36e043709289f2e32}
+\index{interface.\+h@{interface.\+h}!S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST@{S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST}}
+\index{S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST@{S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST}{SEA_HAG_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+E\+A\+\_\+\+H\+A\+G\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a039c0380746308777b961fcf9e8886f1}{}\label{interface_8h_a039c0380746308777b961fcf9e8886f1}
+\index{interface.\+h@{interface.\+h}!S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST@{S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST}}
+\index{S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST@{S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST}{SHANTY_TOWN_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+H\+A\+N\+T\+Y\+\_\+\+T\+O\+W\+N\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_a68647532d1acf6faf7085d799cee9a47}{}\label{interface_8h_a68647532d1acf6faf7085d799cee9a47}
+\index{interface.\+h@{interface.\+h}!S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST@{S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST}}
+\index{S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST@{S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST}{SILVER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+L\+V\+E\+R\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_a13cb3d2ce7cbd691262b281ac4b31ab4}{}\label{interface_8h_a13cb3d2ce7cbd691262b281ac4b31ab4}
+\index{interface.\+h@{interface.\+h}!S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE@{S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE}}
+\index{S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE@{S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE}{SILVER_VALUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+L\+V\+E\+R\+\_\+\+V\+A\+L\+UE~2}\hypertarget{interface_8h_a3e29ca1fb10ec0ad9ba582a48110e4ff}{}\label{interface_8h_a3e29ca1fb10ec0ad9ba582a48110e4ff}
+\index{interface.\+h@{interface.\+h}!S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST@{S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST}}
+\index{S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST@{S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST}{SMITHY_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+M\+I\+T\+H\+Y\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_aac76764d09219e52285ac6a22836a608}{}\label{interface_8h_aac76764d09219e52285ac6a22836a608}
+\index{interface.\+h@{interface.\+h}!S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER@{S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER}}
+\index{S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER@{S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER}{START_COPPER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+R\+T\+\_\+\+C\+O\+P\+P\+ER~7}\hypertarget{interface_8h_a50cb198abdbd641720e335e0760aca5f}{}\label{interface_8h_a50cb198abdbd641720e335e0760aca5f}
+\index{interface.\+h@{interface.\+h}!S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE@{S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE}}
+\index{S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE@{S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE}{START_ESTATE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+A\+R\+T\+\_\+\+E\+S\+T\+A\+TE~3}\hypertarget{interface_8h_acbcdb1a4f56c238f6dadb5de59aaba39}{}\label{interface_8h_acbcdb1a4f56c238f6dadb5de59aaba39}
+\index{interface.\+h@{interface.\+h}!S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST@{S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST}}
+\index{S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST@{S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST}{STEWARD_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+E\+W\+A\+R\+D\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_a704ceb67bbc6d682b700d2af7e384b06}{}\label{interface_8h_a704ceb67bbc6d682b700d2af7e384b06}
+\index{interface.\+h@{interface.\+h}!S\+U\+C\+C\+E\+SS@{S\+U\+C\+C\+E\+SS}}
+\index{S\+U\+C\+C\+E\+SS@{S\+U\+C\+C\+E\+SS}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{S\+U\+C\+C\+E\+SS}{SUCCESS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+U\+C\+C\+E\+SS~0}\hypertarget{interface_8h_aa90cac659d18e8ef6294c7ae337f6b58}{}\label{interface_8h_aa90cac659d18e8ef6294c7ae337f6b58}
+\index{interface.\+h@{interface.\+h}!T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST@{T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST}}
+\index{T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST@{T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST}{TREASURE_MAP_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+E\+A\+S\+U\+R\+E\+\_\+\+M\+A\+P\+\_\+\+C\+O\+ST~4}\hypertarget{interface_8h_a0e88234b092746d05b9b778edd68de01}{}\label{interface_8h_a0e88234b092746d05b9b778edd68de01}
+\index{interface.\+h@{interface.\+h}!T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST@{T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST}}
+\index{T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST@{T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST}{TRIBUTE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+I\+B\+U\+T\+E\+\_\+\+C\+O\+ST~5}\hypertarget{interface_8h_adf214a11da2638e034823dcbf050cc42}{}\label{interface_8h_adf214a11da2638e034823dcbf050cc42}
+\index{interface.\+h@{interface.\+h}!T\+R\+UE@{T\+R\+UE}}
+\index{T\+R\+UE@{T\+R\+UE}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{T\+R\+UE}{TRUE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+R\+UE~1}\hypertarget{interface_8h_aa8cecfc5c5c054d2875c03e77b7be15d}{}\label{interface_8h_aa8cecfc5c5c054d2875c03e77b7be15d}
+\index{interface.\+h@{interface.\+h}!U\+N\+U\+S\+ED@{U\+N\+U\+S\+ED}}
+\index{U\+N\+U\+S\+ED@{U\+N\+U\+S\+ED}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{U\+N\+U\+S\+ED}{UNUSED}}]{\setlength{\rightskip}{0pt plus 5cm}\#define U\+N\+U\+S\+ED~-\/1}\hypertarget{interface_8h_addf5ec070e9499d36b7f2009ce736076}{}\label{interface_8h_addf5ec070e9499d36b7f2009ce736076}
+\index{interface.\+h@{interface.\+h}!V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST@{V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST}}
+\index{V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST@{V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST}{VILLAGE_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define V\+I\+L\+L\+A\+G\+E\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_a54930eeb7681e6e036ab3c81e430200e}{}\label{interface_8h_a54930eeb7681e6e036ab3c81e430200e}
+\index{interface.\+h@{interface.\+h}!W\+I\+N\+N\+ER@{W\+I\+N\+N\+ER}}
+\index{W\+I\+N\+N\+ER@{W\+I\+N\+N\+ER}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{W\+I\+N\+N\+ER}{WINNER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+I\+N\+N\+ER~1}\hypertarget{interface_8h_a148665c75ac246648923b90119015f88}{}\label{interface_8h_a148665c75ac246648923b90119015f88}
+\index{interface.\+h@{interface.\+h}!W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST@{W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST}}
+\index{W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST@{W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST}{WISHING_WELL_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+I\+S\+H\+I\+N\+G\+\_\+\+W\+E\+L\+L\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_acf09561d52b2d2af589736f367abfaa5}{}\label{interface_8h_acf09561d52b2d2af589736f367abfaa5}
+\index{interface.\+h@{interface.\+h}!W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST@{W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST}}
+\index{W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST@{W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST}{WOODCUTTER_COST}}]{\setlength{\rightskip}{0pt plus 5cm}\#define W\+O\+O\+D\+C\+U\+T\+T\+E\+R\+\_\+\+C\+O\+ST~3}\hypertarget{interface_8h_aef9e83638b2883399e1b69d1fa8a1bd2}{}\label{interface_8h_aef9e83638b2883399e1b69d1fa8a1bd2}
+
+
+\subsection{Function Documentation}
+\index{interface.\+h@{interface.\+h}!add\+Card\+To\+Hand@{add\+Card\+To\+Hand}}
+\index{add\+Card\+To\+Hand@{add\+Card\+To\+Hand}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{add\+Card\+To\+Hand(int player, int card, struct game\+State $\ast$game)}{addCardToHand(int player, int card, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}int add\+Card\+To\+Hand (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{int}]{card, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_aa652aa36d98ce7d25c22fb34950d052d}{}\label{interface_8h_aa652aa36d98ce7d25c22fb34950d052d}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{interface_8h_aa652aa36d98ce7d25c22fb34950d052d_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!card\+Num\+To\+Name@{card\+Num\+To\+Name}}
+\index{card\+Num\+To\+Name@{card\+Num\+To\+Name}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{card\+Num\+To\+Name(int card, char $\ast$name)}{cardNumToName(int card, char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void card\+Num\+To\+Name (
+\begin{DoxyParamCaption}
+\item[{int}]{card, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a31ae96ff493d78bcc34cbff663204fef}{}\label{interface_8h_a31ae96ff493d78bcc34cbff663204fef}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_a31ae96ff493d78bcc34cbff663204fef_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!count\+Hand\+Coins@{count\+Hand\+Coins}}
+\index{count\+Hand\+Coins@{count\+Hand\+Coins}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{count\+Hand\+Coins(int player, struct game\+State $\ast$game)}{countHandCoins(int player, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}int count\+Hand\+Coins (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a781d4fae99cab530ca224cdd07ff87e9}{}\label{interface_8h_a781d4fae99cab530ca224cdd07ff87e9}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_a781d4fae99cab530ca224cdd07ff87e9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!execute\+Bot\+Turn@{execute\+Bot\+Turn}}
+\index{execute\+Bot\+Turn@{execute\+Bot\+Turn}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{execute\+Bot\+Turn(int player, int $\ast$turn\+Num, struct game\+State $\ast$game)}{executeBotTurn(int player, int *turnNum, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void execute\+Bot\+Turn (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{int $\ast$}]{turn\+Num, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a315090fac682ce17ffb8eef9c1353a95}{}\label{interface_8h_a315090fac682ce17ffb8eef9c1353a95}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_a315090fac682ce17ffb8eef9c1353a95_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{interface_8h_a315090fac682ce17ffb8eef9c1353a95_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!get\+Card\+Cost@{get\+Card\+Cost}}
+\index{get\+Card\+Cost@{get\+Card\+Cost}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{get\+Card\+Cost(int card)}{getCardCost(int card)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Card\+Cost (
+\begin{DoxyParamCaption}
+\item[{int}]{card}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a0e98621e2a0abdafda26d00f8cdb54d9}{}\label{interface_8h_a0e98621e2a0abdafda26d00f8cdb54d9}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_a0e98621e2a0abdafda26d00f8cdb54d9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!phase\+Num\+To\+Name@{phase\+Num\+To\+Name}}
+\index{phase\+Num\+To\+Name@{phase\+Num\+To\+Name}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{phase\+Num\+To\+Name(int phase, char $\ast$name)}{phaseNumToName(int phase, char *name)}}]{\setlength{\rightskip}{0pt plus 5cm}void phase\+Num\+To\+Name (
+\begin{DoxyParamCaption}
+\item[{int}]{phase, }
+\item[{char $\ast$}]{name}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_ab220fedebc8fd24014b72a8684da15a6}{}\label{interface_8h_ab220fedebc8fd24014b72a8684da15a6}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_ab220fedebc8fd24014b72a8684da15a6_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Deck@{print\+Deck}}
+\index{print\+Deck@{print\+Deck}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Deck(int player, struct game\+State $\ast$game)}{printDeck(int player, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Deck (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a79033647c652a00c5bb877ffe97607e7}{}\label{interface_8h_a79033647c652a00c5bb877ffe97607e7}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{interface_8h_a79033647c652a00c5bb877ffe97607e7_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{interface_8h_a79033647c652a00c5bb877ffe97607e7_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Discard@{print\+Discard}}
+\index{print\+Discard@{print\+Discard}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Discard(int player, struct game\+State $\ast$game)}{printDiscard(int player, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Discard (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a81598f2a28ab5cb73e31e90d86091562}{}\label{interface_8h_a81598f2a28ab5cb73e31e90d86091562}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{interface_8h_a81598f2a28ab5cb73e31e90d86091562_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{interface_8h_a81598f2a28ab5cb73e31e90d86091562_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Game\+State@{print\+Game\+State}}
+\index{print\+Game\+State@{print\+Game\+State}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Game\+State(struct game\+State $\ast$game)}{printGameState(struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Game\+State (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_af1295361903f8552328d3a48133bfeaa}{}\label{interface_8h_af1295361903f8552328d3a48133bfeaa}
+\index{interface.\+h@{interface.\+h}!print\+Hand@{print\+Hand}}
+\index{print\+Hand@{print\+Hand}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Hand(int player, struct game\+State $\ast$game)}{printHand(int player, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Hand (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a9736e6d05f5eaf9cb89c60ab4e9caf67}{}\label{interface_8h_a9736e6d05f5eaf9cb89c60ab4e9caf67}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{interface_8h_a9736e6d05f5eaf9cb89c60ab4e9caf67_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{interface_8h_a9736e6d05f5eaf9cb89c60ab4e9caf67_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Help@{print\+Help}}
+\index{print\+Help@{print\+Help}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Help(void)}{printHelp(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Help (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_ae19e0a10c9b6b5aaf1878cac27ea9541}{}\label{interface_8h_ae19e0a10c9b6b5aaf1878cac27ea9541}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{interface_8h_ae19e0a10c9b6b5aaf1878cac27ea9541_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Played@{print\+Played}}
+\index{print\+Played@{print\+Played}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Played(int player, struct game\+State $\ast$game)}{printPlayed(int player, struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Played (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a0b5c274889c795b3034800fc69321d13}{}\label{interface_8h_a0b5c274889c795b3034800fc69321d13}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{interface_8h_a0b5c274889c795b3034800fc69321d13_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{interface_8h_a0b5c274889c795b3034800fc69321d13_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Scores@{print\+Scores}}
+\index{print\+Scores@{print\+Scores}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Scores(struct game\+State $\ast$game)}{printScores(struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Scores (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_adcc11b1cd6ed2d555286c260d6fc113d}{}\label{interface_8h_adcc11b1cd6ed2d555286c260d6fc113d}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_adcc11b1cd6ed2d555286c260d6fc113d_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{interface_8h_adcc11b1cd6ed2d555286c260d6fc113d_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+State@{print\+State}}
+\index{print\+State@{print\+State}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+State(struct game\+State $\ast$game)}{printState(struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+State (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a914b5ae665ce3ba461dd71f55f3e062f}{}\label{interface_8h_a914b5ae665ce3ba461dd71f55f3e062f}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{interface_8h_a914b5ae665ce3ba461dd71f55f3e062f_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{interface_8h_a914b5ae665ce3ba461dd71f55f3e062f_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!print\+Supply@{print\+Supply}}
+\index{print\+Supply@{print\+Supply}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{print\+Supply(struct game\+State $\ast$game)}{printSupply(struct gameState *game)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Supply (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{game}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a72df42ddc629927aca258391808d6457}{}\label{interface_8h_a72df42ddc629927aca258391808d6457}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{interface_8h_a72df42ddc629927aca258391808d6457_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{interface_8h_a72df42ddc629927aca258391808d6457_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{interface.\+h@{interface.\+h}!select\+Kingdom\+Cards@{select\+Kingdom\+Cards}}
+\index{select\+Kingdom\+Cards@{select\+Kingdom\+Cards}!interface.\+h@{interface.\+h}}
+\subsubsection[{\texorpdfstring{select\+Kingdom\+Cards(int random\+Seed, int kingdom\+Cards[N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+DS])}{selectKingdomCards(int randomSeed, int kingdomCards[NUM_K_CARDS])}}]{\setlength{\rightskip}{0pt plus 5cm}void select\+Kingdom\+Cards (
+\begin{DoxyParamCaption}
+\item[{int}]{random\+Seed, }
+\item[{int}]{kingdom\+Cards\mbox{[}\+N\+U\+M\+\_\+\+K\+\_\+\+C\+A\+R\+D\+S\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{interface_8h_a94302829f53609bc163808cdd3caa76d}{}\label{interface_8h_a94302829f53609bc163808cdd3caa76d}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_8h_a94302829f53609bc163808cdd3caa76d_cgraph}
+\end{center}
+\end{figure}
+
+

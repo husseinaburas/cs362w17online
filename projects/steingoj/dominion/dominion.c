@@ -1183,12 +1183,12 @@ int playVillage(struct gameState *state, int handPos){
 
       int currentPlayer = whoseTurn(state); 
 
-      //+1 Card
+       //+1 Card
       drawCard(currentPlayer, state);
-			
+		
       //+2 Actions
       state->numActions = state->numActions + 2;
-			
+	
       //discard played card from hand
       discardCard(handPos, currentPlayer, state, 0);
 
@@ -1312,6 +1312,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     }
   else 	
     {
+	
       //replace discarded card with last card in hand
       state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
       //set last card to -1

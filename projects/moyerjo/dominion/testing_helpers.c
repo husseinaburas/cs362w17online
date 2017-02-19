@@ -158,12 +158,12 @@ void randomSetup(struct gameState *state) {
 	int kingdomCard;
 	int emptySupplies = 0;
 	int outpostRandom = 0;
-	//printf("TEST - TEST HELPER START\n");
+
 	//set supplies to -1
 	for (i = 0; i <= treasure_map; i++) {
 		state->supplyCount[i] = -1;
 	}
-	//printf("TEST - BEFORE DO LOOP\n");
+
 	do {
 		state->numPlayers = rand() % 3 + 2; //randomly set number of players
 
@@ -204,7 +204,7 @@ void randomSetup(struct gameState *state) {
 			}
 		}
 	} while (emptySupplies < 3);
-	//printf("TEST - END OF DO WHILE LOOP\n");
+
 
 	if (state->numPlayers == 2) {
 		kingdomCardStackSize = 8;
@@ -213,7 +213,7 @@ void randomSetup(struct gameState *state) {
 		kingdomCardStackSize = 12;
 	}
 
-	//printf("TEST - START OF SUPPLY FILL LOOP\n");
+
 	while (kingdomCount <= 10) {
 		kingdomCard = rand() % (treasure_map - 7) + 7; //random card - min is adventurer, max is treasure_map
 
@@ -229,7 +229,7 @@ void randomSetup(struct gameState *state) {
 			}
 		}
 	}
-	printf("TEST - END OF SUPPLY FILL LOOP\n");
+
 
 	if (state->numPlayers == 2) {
 		addCards(curse, 10 - state->supplyCount[curse], state);
@@ -240,12 +240,12 @@ void randomSetup(struct gameState *state) {
 	else {
 		addCards(curse, 30 - state->supplyCount[curse], state);
 	}
-	printf("TEST - END OF CURSES\n");
+
 	//send the various cards to the deck, discard, hands, etc. of the various players
 	addCards(copper, 60 - state->supplyCount[copper], state);
 	addCards(silver, 40 - state->supplyCount[silver], state);
 	addCards(gold, 30 - state->supplyCount[gold], state);
-	printf("TEST - END OF COINSS\n");
+
 	if (state->numPlayers == 2) {
 		for (i = 1; i < 4; i++) {
 			if (state->supplyCount[i] >= 0) {
@@ -271,7 +271,7 @@ void randomSetup(struct gameState *state) {
 			}
 		}
 	}
-	printf("TEST - END OF SUPPLIES\n");
+
 	//Set up the remaining gamestate
 	state->whoseTurn = random() % state->numPlayers;
 
@@ -280,7 +280,7 @@ void randomSetup(struct gameState *state) {
 	state->numBuys = rand() % 50;
 	state->phase = 0; //unclear, but it should likely be 0 for playing cards
 	//sets outpost flags - appears to not be functioning yet
-	//printf("TEST - END OF VALUE SETTING\n");
+
 	//only mess with flags if outposts are in play
 	if (state->supplyCount[outpost] >= 0) {
 		outpostRandom = rand() % 10 + 1;
@@ -299,7 +299,7 @@ void randomSetup(struct gameState *state) {
 		state->outpostTurn = 0;
 		state->outpostPlayed = 0;
 	}
-	printf("TEST - END OF Outpost\n");
+
 	//SHUFFLE THE DECKS, DISCARDS, HANDS, ETC. 50 times for each player
 	for (i = 0; i < state->numPlayers; i++) {
 		int j;
@@ -311,7 +311,7 @@ void randomSetup(struct gameState *state) {
 			shuffleCards(i, 3, state);
 		}
 	}
-	printf("TEST - END OF shuffling\n");
+
 
 }
 
@@ -319,7 +319,7 @@ void addCards(int card, int numToAdd, struct gameState *state) {
 	int i;
 	int sendLocation; //represents the location to send the card to
 	int playerPicked; //represents the player to send the card to
-	printf("TEST - ADDCARD START\n");
+
 	for (i = 0; i < numToAdd; i++) {
 		playerPicked = rand() % state->numPlayers;
 		sendLocation = rand() % 23 + 1;
@@ -383,7 +383,7 @@ void addCards(int card, int numToAdd, struct gameState *state) {
 			break;
 		}
 	}
-	printf("TEST: ADDCARD END\n");
+
 }
 
 void shuffleCards(int curPlayer, int deckSection, struct gameState * state){
@@ -492,6 +492,42 @@ int validateAdventurerDraw(int curPlayer, struct gameState *state1, struct gameS
 	}
 	else {
 		return 1;
+	}
+}
+
+int testFlags(struct gameState *state1, struct gameState *state2) {
+	int failed = 0, i;
+	if (state1->numPlayers != state2->numPlayers) {
+		printf("Test Failed - num players was changed\n");
+		failed = 1;
+	}
+	if (state1->outpostPlayed != state2->outpostPlayed) {
+		printf("Test Failed - outpostPlayed was changed\n");
+		failed = 1;
+	}
+	if (state1->outpostTurn != state2->outpostTurn) {
+		printf("Test Failed - outpostTurn was changed\n");
+		failed = 1;
+	}
+	if (state1->whoseTurn != state2->whoseTurn) {
+		printf("Test Failed - whose turn was changed\n");
+		failed = 1;
+	}
+	if (state1->phase != state2->phase) {
+		printf("Test Failed - phase was changed\n");
+		failed = 1;
+	}
+	//not testing coins - implementation is a little too ambiguous at the moment
+	for (i = 0; i < treasure_map + 1; i++) {
+		if (state1->embargoTokens[i] != state2->embargoTokens[i]) {
+			failed = 1;
+		}
+	}
+	if (failed == 1) {
+		return 0;
+	}
+	else {
+		return 1; //tests ok
 	}
 }
 

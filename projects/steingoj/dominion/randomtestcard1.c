@@ -61,10 +61,7 @@ int checkSmithy(int p, struct gameState *post){
 
 int main(int argc, char* argv[]) {
 
-	int i, n, r, p, deckCount, discardCount, handCount, rando;
-
-	int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+	int n, p;
 
 	struct gameState G;
 
@@ -72,13 +69,8 @@ int main(int argc, char* argv[]) {
 
 	printf ("RANDOM TESTS.\n");
 
-	if(argc != 2){
-		printf("You only need one argument to run this program\n\n");
-	}
-
-	SelectStream(2);
-	PutSeed(argv[1]);
-	//srand(time(argv[1]));
+	//Set random seed
+	srand(time(NULL));
 
 
 	//TO DO: Increase n for more random testing

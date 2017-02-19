@@ -8,20 +8,23 @@
 
 //Testing adventurer
 
-#define advMaxTests 10
+#define advMaxTests 1000
 
 int main(int argc, char** argv) {
-	//printf("TEST\n");
+
 	int failedCount = 0;
 	int totalTests = 0;
 	int i, j;
-	//struct gameState pre, post;
+
 	int curPlayer, handPos;
-	//printf("TEST\n");
+
+	printf("=====================================================\n");
+	printf("TESTING ADVENTURER\n");
+		printf("=====================================================\n\n");
 
 	srand(time(NULL));
 	for (i = 0; i < advMaxTests; i++) {
-		printf("TEST: FOR LOOP BEGIN NEW TEST\n");
+
 		struct gameState pre, post;
 		randomSetup(&pre);
 		curPlayer = pre.whoseTurn;
@@ -31,33 +34,42 @@ int main(int argc, char** argv) {
 		else {
 			handPos = 0;
 		}
-		printf("TEST: HANDPOS SET\n");
+
 		pre.hand[curPlayer][handPos] = adventurer;
 		post = pre;
-		printf("TEST: JUST BEFORE ADVENTUREPLAY\n");
+
 		adventurerPlay(curPlayer, handPos, &post);
-		printf("TEST: ADVENTURE PLAYED\n");
+
 		if (supplyUnchanged(&pre, &post) == 0) {
 			printf("Test Failed: Supply Unexpectedly Changed\n");
 				failedCount++;
-				totalTests++;
+				
 		}
+		totalTests++;
 
+		if (supplyUnchanged(&pre, &post) == 0) {
+			printf("Test Failed: Supply Unexpectedly Changed\n");
+			failedCount++;
+
+		}
+		totalTests++;
 		for (j = 0; j < pre.numPlayers; j++) {
 			if (j == curPlayer) {
 				//total card totals unchanged for current player
+				totalTests++;
 				if (cardNumbersConstant(j, &pre, &post) == 0) {
 					printf("Test Failed: Current player's overall deck count unexpectedly changed.\n");
 					failedCount++;
-					totalTests++;
+					
 				}
 				else {
 					//test that correct coins were drawn
 					if (validateAdventurerDraw(curPlayer, &pre, &post) == 0) {
 						printf("Test Failed - Incorrectly drawing treasure\n");
 						failedCount++;
-						totalTests+=5;
+						
 					}
+					totalTests += 5;
 				}
 				
 			}
@@ -65,8 +77,9 @@ int main(int argc, char** argv) {
 				if (compareGameState(j, &pre, &post) == 0) {
 					printf("Test Failed: player %d's gameState unexpectedly changed\n", j + 1);
 					failedCount++;
-					totalTests++;
+					
 				}
+				totalTests++;
 			}
 		}
 
@@ -82,7 +95,9 @@ int main(int argc, char** argv) {
 
 
 
+	printf("=====================================================\n");
 	printf("%d/%d Tests Failed\n", failedCount, totalTests);
+	printf("=====================================================\n\n");
 
 
 
