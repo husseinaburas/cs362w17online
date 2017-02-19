@@ -1,3 +1,8 @@
+/*Name of file: randomtestadventurer.c
+  Author: Clare Brown
+  ONID: browncla
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -5,7 +10,7 @@
 #include <assert.h>
 #include "rngs.h"
 #include <stdlib.h>
-#include <math.h>
+
 
 #define TESTCARD "Adventurer" 
 #define PRINT_ALL 0

@@ -1,3 +1,7 @@
+/*Name of file: randomtestcard2.c
+  Author: Clare Brown
+  ONID: browncla
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
