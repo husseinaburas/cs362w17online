@@ -2,6 +2,7 @@
 #define _TESTS_HELPERS
 
 #define NOISY_TEST 0
+#define NUM_RANDOM_TESTS 100
 
 void asserttrue(int condition, int* r_main);
 char* getCardName(int card);
@@ -13,6 +14,6 @@ int randomInRange(int max);
 void testCardGeneralRequirements(int* caseCount, char* casename, int* testCount, int* r_main,
     int card, int choice1, int choice2, int choice3, int handPos, int* bonus,
     struct gameState* G, struct gameState* preG);
-struct gameState randomGameState();
+struct gameState randomGameState(int minHand, int minDeck, int minDiscard);
 
 #endif

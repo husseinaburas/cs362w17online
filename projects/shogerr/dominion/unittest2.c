@@ -31,7 +31,7 @@ int test_updateCoins(int p, struct gameState *G, int c)
         _G.coins += 2;
         break;
       case gold:
-        _G.coins +=3;
+        _G.coins += 3;
         break;
     }
   }

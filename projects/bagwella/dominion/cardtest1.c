@@ -52,7 +52,7 @@ int main () {
 
   //test that it works as intended 
   printf("TESTING - playSmithy()'s incrementing of handCount by drawing 3 cards \n");
-  assertTrue(GS.handCount[0], 4);
+  assertTrue(GS.handCount[0], 3);
 
   printf("TESTING - playSmity() decreases the deckCount\n");
   assertTrue((priorDeckCount - GS.deckCount[0]), 3);

@@ -1369,3 +1369,12 @@ int great_hall_refact(struct gameState *state, int handPos) {
       discardCard(handPos, currentPlayer, state, 1);
       return 0;
 }
+
+// custom assert function that increments the number of tests passed for a specific card/function
+void testAssert(int testNum, int *pass_count, int cmp) {
+  if (cmp == 1) {
+    *pass_count = *pass_count + 1;
+    printf("    STATUS: TEST %d PASSED\n", testNum);
+  }
+  else {printf("    STATUS: TEST %d FAILED\n", testNum);}
+}

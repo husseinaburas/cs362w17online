@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -Wall -fpic -coverage -lm  -std=c99
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -29,13 +29,49 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+randomtestadventurer.out: randomtestadventurer.c rngs.h rngs.c dominion.h dominion.c
+	
+	gcc -c rngs.c -g rngs.h rngs.c -Wall -fpic -coverage 
+	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage -std=c99
+
+	echo "Random Test Adventurer Card" > randomtestadventurer.out
+	
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer $(SEED) >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1.c rngs.h rngs.c dominion.h dominion.c
+	
+	gcc -c rngs.c -g rngs.h rngs.c -Wall -fpic -coverage 
+	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage -std=c99
+
+	echo "Random Test Smithy Card" > randomtestcard1.out
+	
+	echo "randomtestcard1.c:" >> randomtestcard1.out
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	randomtestcard1 $(SEED) >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+
+
+randomtestcard2.out: randomtestcard2.c rngs.h rngs.c dominion.h dominion.c
+	
+	gcc -c rngs.c -g rngs.h rngs.c -Wall -fpic -coverage 
+	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage -std=c99
+
+	echo "Random Test Village Card" > randomtestcard2.out
+	
+	echo "randomtestcard2.c:" >> randomtestcard2.out
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	randomtestcard2 $(SEED) >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c rngs.h rngs.c dominion.h dominion.c
 	gcc -c rngs.c -g rngs.h rngs.c -Wall -fpic -coverage 
-	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage 
+	gcc -c dominion.c -g dominion.h dominion.c -Wall -fpic -coverage  -std=c99
 
 	echo "Complete Unit Test Assignment 4" > unittestresults.out
 	
@@ -86,3 +122,6 @@ clean:
 
 cleantests:
 	rm -f -r *.o unittestresults.out unittest1 unittest2 unittest3 unittest4 unittest5 cardtest1 cardtest2 cardtest3 cardtest4 cardtest5 *.gcda *.gcno *.gcov *.dSYM .DS_Store *.gch
+
+cleanrandtests:
+	rm -f -r *.o randomtestadventurer.out randomtestcard1.out randomtestcard2.out randomtestcard1 randomtestcard2 randomtestadventurer *.gcda *.gcno *.gcov *.dSYM .DS_Store *.gch

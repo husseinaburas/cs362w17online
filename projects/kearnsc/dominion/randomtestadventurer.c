@@ -115,7 +115,7 @@ int main(int argc, char** argv) {
 		softAssert((T4pre == T4post), 8);
 	}
 
-	printf("Failed test count = %d\n", failCount);
+	printf("Card Adventurer failed test count = %d\n", failCount);
 
 	if (failCount > 0)
 		printf("Consider running this test with SHOW_PASSFAIL set to 1\n");

@@ -5,17 +5,108 @@
 #include <math.h>
 #include <stdlib.h>
 
-void testAssert(int isgo)
+int testAssert(int isgo)
 {
 	if (isgo == 1)
 	{
 		printf("TEST SUCCESSFULLY COMPLETED\n");
+		return 0;
 	}
 
 	else
 	{
 		printf("TEST FAILED\n");
+		return 1;
 	}
+}
+
+
+char * getCard(int in)
+{
+	char * card= {"error"};
+
+	if(in == 0)
+		card = "curse";
+
+	if(in == 1)
+		card = "estate";
+
+	if(in == 2)
+		card = "duchy";
+
+	if(in == 3)
+		card = "province";
+
+	if(in == 4)
+		card = "copper";
+
+	if(in == 5)
+		card = "silver";
+
+	if(in == 6)
+		card = "gold";
+
+	if(in == 7)
+		card = "adventurer";
+
+	if(in == 8)
+		card = "council_room";
+
+	if(in == 9)
+		card = "feast";
+
+	if(in == 10)
+		card = "gardens";
+
+	if(in == 11)
+		card = "mine";
+
+	if(in == 12)
+		card = "remodel";
+
+	if(in == 13)
+		card = "smithy";
+
+	if(in == 14)
+		card = "village";
+
+	if(in == 15)
+		card = "baron";
+
+	if(in == 16)
+		card = "great_hall";
+
+	if(in == 17)
+		card = "minion";
+
+	if(in == 18)
+		card = "steward";
+
+	if(in == 19)
+		card = "tribute";
+
+	if(in == 20)
+		card = "ambassador";
+
+	if(in == 21)
+		card = "cutpurse";
+
+	if(in == 22)
+		card = "embargo";
+
+	if(in == 23)
+		card = "outpost";
+
+	if(in == 24)
+		card = "salvager";
+
+	if(in == 25)
+		card = "sea_hag";
+
+	if(in == 26)
+		card = "treasure_map";
+
+	return card;
 }
 
 
