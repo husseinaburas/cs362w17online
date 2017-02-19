@@ -1,17 +1,17 @@
-/* File: randomtestcard1.c
+/* File: randomtestcard2.c
    Author: Daniel Eisenbach
-   Date: 2/16/17
+   Date: 2/18/17
 
-   Description: Tests the implementation of the dominion village action card. Village costs three coin to buy,
-   and when played gives the current player an extra card and two extra actions.
+   Description: Tests the implementation of the dominion smithy action card. Smithy costs four coin to buy, 
+   and when played lets the player draw three additional cards from the top of their deck into their hand.
 
    Pass Conditions:
      1. No extra coins are awarded to current player
-     2. Two extra actions are gained
-     3. One extra card is drawn
+     2. No extra actions are gained
+     3. Three extra cards are drawn
      4. No state change occurs to victory or kingdom card piles
      5. No state change occurs for other players
-     6. Extra card comes from player's own deck
+     6. Extra three cards come from player's own deck
 */
 
 #include "dominion.h"
@@ -22,8 +22,8 @@
 #include "rngs.h"
 #include <stdlib.h>
 
-#define TESTCARD village
-#define TESTCARD_NAME "village"
+#define TESTCARD smithy
+#define TESTCARD_NAME "smithy"
 
 int main(int argc, char *argv[]) {
   int i, testnum;
@@ -35,8 +35,8 @@ int main(int argc, char *argv[]) {
 
   // variables for comparing player's state after playing card
   int xtraCoins = 0;  
-  int xtraActions = 2;  // two extra actions should be awarded to the player
-  int xtraCards = 1;  // one card should be gained from the player's deck
+  int xtraActions = 0;  // two extra actions should be awarded to the player
+  int xtraCards = 3;  // one card should be gained from the player's deck
   int discarded = 1;  // played card should be discarded
 
   // initialize array storing state of card being tested
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
   // perform 100 random tests
   for (testnum = 0; testnum < 100; testnum++) {
     printf("\n----------- ITERATION: %d ----------\n", i);
-    
+
     // fill player's hand with random cards
     for (i = 0; i < G.handCount[thisPlayer]; i++) {
       randcard = rand() % 27;  // get random test card (range of cards is 0:26)
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
       G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i] = randcard;  // put random card in deck position i
       G.supplyCount[randcard]--;  // decrease supply of random card that was selected
     }
-
+	
     // place testcard in random position of player's hand
     handpos = rand() % 5;  // choose random hand position for testcard (player starts with 5 cards, thus range is 0:4)
     G.supplyCount[G.hand[thisPlayer][handpos]]++; // restore supply of card to be removed from hand

@@ -24,6 +24,9 @@ randomtestadventurer.out: randomtestadventurer.c randtestfuncs.c dominion.o rngs
 randomtestcard1.out: randomtestcard1.c randtestfuncs.c dominion.o rngs.o
 	gcc -o randomtestcard1 -g randomtestcard1.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
 
+randomtestcard2.out: randomtestcard2.c randtestfuncs.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 

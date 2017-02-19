@@ -1,6 +1,6 @@
 /* File: randtestFuncs.c
    Author: Daniel Eisenbach
-   Date: 2/16/17
+   Date: 2/18/17
   
    Description: compilation of assert functions that test various aspects 
    of the game's state after performing a card/function test.
@@ -14,6 +14,7 @@
 #include "rngs.h"
 #include <stdlib.h>
 
+// verify correct number of extra coins are awarded to current player
 int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCoins) {
   if (testG.coins - G.coins == xtraCoins) {
     *pass_count = *pass_count + 1;
@@ -27,6 +28,7 @@ int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct game
   }
 }
 
+// verify correct number of extra actions are gained
 int randCheckActions(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraActions) {
   if (testG.numActions == G.numActions + xtraActions) {
     *pass_count = *pass_count + 1;
@@ -40,6 +42,7 @@ int randCheckActions(int testNum, int *pass_count, struct gameState G, struct ga
   }
 }
 
+// verify correct number of extra cards are drawn
 int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards, int discarded) {
   int thisPlayer = G.whoseTurn;
 
@@ -55,6 +58,7 @@ int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct 
   }
 }
 
+// verify that no state change occurs to victory or kingdom card piles
 int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
   if ( 
       (testG.supplyCount[estate] == G.supplyCount[estate]) &&   
@@ -99,6 +103,7 @@ int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struc
   }
 }
 
+// verify that no state change occurs for other players
 int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
   int thisPlayer = G.whoseTurn;
   int nextPlayer = thisPlayer + 1;
@@ -137,4 +142,31 @@ int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, 
 
     return 0;
   } 
+}
+
+// verify that extra cards drawn come from player's own deck
+int randCheckExtraCards(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards) {
+  int thisPlayer = G.whoseTurn;
+  int pass_check = 1;
+  int i;
+
+  for (i = 0; i < xtraCards; i++) {
+    if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i] !=  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]) {pass_check = 0;}
+  }
+
+  if (pass_check) {
+    *pass_count = *pass_count + 1;     
+    return 1;
+  }
+  else {
+    printf("\n  TEST %d: Extra card comes from player's own pile\n", testNum);
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+
+    for (i = 0; i < xtraCards; i++) {   
+      if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i] !=  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]) {
+        printf("    card %d in hand = %d, expected = %d\n", i, testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i], G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]);
+      }
+    }
+    return 0;
+  }
 }

@@ -148,6 +148,7 @@ int randCheckActions(int testNum, int *pass_count, struct gameState G, struct ga
 int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards, int discarded);
 int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG);
 int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, struct gameState testG);
+int randCheckExtraCards(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards);
 //VARIABLES
 int card_state[6];
 
