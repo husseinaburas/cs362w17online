@@ -8,7 +8,7 @@
 **
 **  Description:    randomtester for the card adventurer in dominion tests:
 **
-**  tester generates Pseudo random hand and deck cards for 2 to 4 players then
+**  tester generates Pseudo random kingdom, hand, and deck cards for 2 to 4 players then
 **  	conducts all tests with full output uses getCard() helper function to
 **  	properly display all hand and deck card names
 **  verify preconditions
@@ -46,7 +46,6 @@ int main()
 	int seed = (rand() % 999) + 2;
 	int bonus = 0;
 	struct gameState G;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	int curPlayer = 0;
 	int i = 0;
 	int j = 0;
@@ -54,10 +53,24 @@ int main()
 	int deckCard1, deckCard2, deckCard3, deckCard4, deckCard5, deckCard6, deckCard7, deckCard8 = 0;
 	int failcount = 0;
 	int temp = 0;
+	int kingdom1, kingdom2, kingdom3, kingdom4, kingdom5, kingdom6, kingdom7, kingdom8, kingdom9, kingdom10 = 0;
 
 	for(j=0; j < 1000; j++)
 	{
 	int players = (rand() % 3) + 2;
+
+	kingdom1 = adventurer;
+	kingdom2 = (rand() % 19) + 7;
+	kingdom3 = (rand() % 19) + 7;
+	kingdom4 = (rand() % 19) + 7;
+	kingdom5 = (rand() % 19) + 7;
+	kingdom6 = (rand() % 19) + 7;
+	kingdom7 = (rand() % 19) + 7;
+	kingdom8 = (rand() % 19) + 7;
+	kingdom9 = (rand() % 19) + 7;
+	kingdom10 = (rand() % 19) + 7;
+	int k[10] = {kingdom1, kingdom2, kingdom3, kingdom4, kingdom5, kingdom6, kingdom7, kingdom8, kingdom9, kingdom10};
+
 	initializeGame(players, k, seed, &G);  // initialize game state
 
 	printf("\n	Pseudo Random Seed is: %d \n", seed);
@@ -164,7 +177,7 @@ int main()
 			card4 = getCard(deckCard5);
 			if( j == 0 )
 			{
-				printf("The card 3nd from the top of the deck is a %s:  ", card4);
+				printf("The card 4th from the top of the deck is a %s:  ", card4);
 				testAssert(G.deck[curPlayer][4] == deckCard5);
 				printf("\n");
 			}
