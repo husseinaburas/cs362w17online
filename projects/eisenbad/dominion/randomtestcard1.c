@@ -51,6 +51,10 @@ int main(int argc, char *argv[]) {
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
       sea_hag, tribute, smithy, council_room};
 
+  // array of all cards being used in the game used to pick random cards
+  int cards_in_game[17] = {curse, estate, duchy, province, copper, silver, gold, adventurer, embargo,
+      village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	
   // initialize game state and player cards
   initializeGame(numPlayers, k, seed, &G);
 	
@@ -65,7 +69,7 @@ int main(int argc, char *argv[]) {
     
     // fill player's hand with random cards
     for (i = 0; i < G.handCount[thisPlayer]; i++) {
-      randcard = rand() % 27;  // get random test card (range of cards is 0:26)
+      randcard = cards_in_game[rand() % 17];  // get random test card
       G.supplyCount[G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
       G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i] = randcard;  // put random card in hand position i 
       G.supplyCount[randcard]--;  // decrease supply of random card that was selected
@@ -73,7 +77,7 @@ int main(int argc, char *argv[]) {
 
     // fill player's deck with random cards
     for (i = 0; i < G.deckCount[thisPlayer]; i++) {
-      randcard = rand() % 27;  // get random test card (range of cards is 0:26)
+      randcard = cards_in_game[rand() % 17];  // get random test card
       G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
       G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i] = randcard;  // put random card in deck position i
       G.supplyCount[randcard]--;  // decrease supply of random card that was selected
