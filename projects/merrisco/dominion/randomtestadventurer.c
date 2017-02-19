@@ -21,7 +21,7 @@ Description:
 
 #define NUM_TESTS 1000
 
-//random tester for: Adventurer
+
 int main(int argc, char *argv[]) {
 
 	

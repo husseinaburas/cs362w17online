@@ -5,8 +5,8 @@ Program: randomtestcard1.c
 Author: Scott Merrill
 Date: 02/18/2017
 Description:
-	this program is a random test for the card smith. It creates a random gamestate,
-	assigns a random person with the smith card. Then that player plays the card and 
+	this program is a random test for the card smithy. It creates a random gamestate,
+	assigns a random person with the smithy card. Then that player plays the card and 
 	we check to how/if the game state has changed. All this information is printed out to the screen. 
 */
 
@@ -23,7 +23,7 @@ Description:
 
 #define NUM_TESTS 1000
 
-//random tester for: Adventurer
+
 int main(int argc, char *argv[]) {
 
 	
