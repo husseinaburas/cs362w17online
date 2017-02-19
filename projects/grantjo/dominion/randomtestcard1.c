@@ -1,3 +1,9 @@
+/*******************************************************************************
+** randomtestcard1.c
+** Assignment 4
+** Author: Jordan Grant (grantjo)
+** Description: Random test suite for the Village cardEffect in dominion.c
+*******************************************************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <stdio.h>
@@ -5,17 +11,13 @@
 #include <string.h>
 #include "rngs.h"
 
-#include <signal.h>
-#include <unistd.h>
-#include <execinfo.h>
-
 #define TEST_NUM 1000
 #define MAX_PLAYER 4
 #define MIN_PLAYER 2
 #define MAX_DECKSIZE 11 // limit decksize to ensure higher chance of 0 deck
 #define MAX_DISCARD 20
 #define MAX_HANDSIZE 10
-#define MAX_TREASURE 4
+#define MIN_DISCARD 4
 #define NUM_CARDS 26
 
 struct test {
@@ -58,7 +60,10 @@ int refPlayVillage(struct gameState *state, struct villageDetails *detail, int h
   return 0;
 }
 
-
+// Function to check for corruption of the game state.
+// Description: Takes an unalterred game state and a state where Village
+//              has been played and compares all irrelevant variables to assert they
+//              are unchanged.
 int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPlayers, int player) {
   int i = 0,
   j = 0,
@@ -119,7 +124,23 @@ int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPl
   return error;
 }
 
+// Function to generate random game states and perform test suite to Ensure
+// proper execution of cardEffect in dominion.c
+// Description: Generates random number of players, random current player, random
+//              cards to fill players discard/deck/hand, random choices to
+//              pass to cardEffect.
+//              It creates 3 copies of the random game state. 1 to apply reference
+//              logic, 1 to apply dominion.c logic, and 1 to remain unchanged.
+//
+//              Once the cardEffect for reference and dominion.c is called it compares
+//              these changed states to the unchanged to ensure irrelevant variables
+//              were not effected.
+//              I then run some assertions to ensure that the reference logic is
+//              sound before running the oracle assertions for dominion.c logic.
+//              The Oracle compares expected values in dominion.c to the reference
+//              values.
 void performRandomTest(struct test *totalTest, int test, int rand_seed) {
+  // *********************** DECLARE TEST VARIABLES ********************
   struct gameState testG,
                    refG,
                    refUnchanged;
@@ -147,24 +168,26 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
 
   char buffer[100],
        *cardName = "Village";
-
+  // *********************** END DECLARE TEST VARIABLES ********************
+  // *********************** RANDOM INPUT GENERATION ***********************
+  // generate numPlayers
   numPlayers = 1 + rand() % MAX_PLAYER;
   while (numPlayers < 2) numPlayers = 1 + rand() % MAX_PLAYER;
-
+  // calculate current player
   currentPlayer = rand() % numPlayers;
-
+  // calculate card pile sizes for player
   handSize = rand() % MAX_HANDSIZE;
   deckSize = rand() % MAX_DECKSIZE;
-  discardSize = MAX_TREASURE + rand() % MAX_DISCARD;
-
+  discardSize = MIN_DISCARD + rand() % MAX_DISCARD;
+  // call initializeGame
   initializeGame(numPlayers, k, seed, &testG);
-
+  // keep track of current player
   testG.whoseTurn = currentPlayer;
   villDetails.currentPlayer = currentPlayer;
   testG.numPlayers = numPlayers;
 
   testG.handCount[currentPlayer] = handSize;
-
+  // fill discard with random (not Village) cards and 1 village
   if (handSize > 0) {
     handPos = rand() % handSize;
     for (i = 0; i < handSize; i++) {
@@ -178,21 +201,21 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
     handPos = 0;
     testG.hand[currentPlayer][testG.handCount[currentPlayer]++] = cardToTest;
   }
-
+  // fill deck with random (not Village) cards
   testG.deckCount[currentPlayer] = deckSize;
   for (i = 0; i < deckSize; i++) {
       int card = rand() % NUM_CARDS;
       while (card == cardToTest) card = rand() % NUM_CARDS;
       testG.deck[currentPlayer][i] = card;
   }
-
+  // fill discard with random (not Village) cards
   testG.discardCount[currentPlayer] = discardSize;
   for (i = 0; i < discardSize; i++) {
     int card = rand() % NUM_CARDS;
     while (card == cardToTest) card = rand() % NUM_CARDS;
     testG.discard[currentPlayer][i] = card;
   }
-
+  // *********************** END RANDOM INPUT GENERATION ***********************
   printf("Test %d %s, Player %d, %d cards in deck, %d in discard and %d in hand\n",
             test, cardName, currentPlayer, deckSize, discardSize, handSize);
   printf("\tNumber of players: %d\n", numPlayers);
@@ -310,27 +333,14 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
   return;
 }
 
-void handler(int sig) {
-  void *array[10];
-  size_t size;
-
-  // get void*'s for all entries on the stack
-  size = backtrace(array, 10);
-
-  // print out all the frames to stderr
-  fprintf(stderr, "Error: signal %d:\n", sig);
-  backtrace_symbols_fd(array, size, STDERR_FILENO);
-  exit(1);
-}
-
 int main(int argc, char **argv) {
   int seed,
       i = 0;
-  signal(SIGFPE, handler);   // install our handler
+
   struct test total;
   total.testsPassed = 0;
   total.testsFailed = 0;
-
+  // get seed from argument or set to 10
   if (argc < 2)
     seed = 10;
   else
@@ -339,10 +349,10 @@ int main(int argc, char **argv) {
   srand(seed);
 
   printf("------------------------ Testing Village Card ------------------------------\n");
-
+  // perform TEST_NUM random tests
   for (i = 0; i < TEST_NUM; i++)
     performRandomTest(&total, i+1, seed);
-
+  // Output pass or fail messages
   if (total.testsFailed == 0)
       printf("ALL %d TESTS SUCCESSFUL, Village\n", total.testsPassed);
   else
