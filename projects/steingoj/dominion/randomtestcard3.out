@@ -1,0 +1,9 @@
+Testing village.
+RANDOM TESTS.
+File 'dominion.c'
+Lines executed:26.01% of 569
+Branches executed:21.20% of 415
+Taken at least once:18.55% of 415
+Calls executed:17.17% of 99
+Creating 'dominion.c.gcov'
+
