@@ -26,28 +26,31 @@ int main(int argc, char *argv[])
 {
 	// seed program with user input or call srand with time(NULL)
 	int test_seed;
+	time_t t;
 	if ( argc == 2) {
 		test_seed = atoi(argv[1]);
-		srand(test_seed);
 	} else {
-		srand(time(NULL));
+		test_seed = (unsigned) time(&t);
 	}
 
-	// Using rand to get a number = [min_number, max_number]
-	// rand() % (max_number + 1 - min_number) + min_number
-	int deckSize = rand() % (10 + 1);
-	int discardSize = rand() % (10 + 1);
+	srand(test_seed);
+
 	int i;
 	int numPassedTests = 0;
 	int numFailedTests = 0;
 	for (i = 0; i < 1000; ++i){
+		// Using rand to get a number = [min_number, max_number]
+		// rand() % (max_number + 1 - min_number) + min_number
+		int deckSize = rand() % (30 + 1);
+		int discardSize = rand() % (30 + 1);
     	if (runCardTest(deckSize, discardSize) == -1){
 			++numFailedTests;
 		} else {
 			++numPassedTests;
 		}
 	}
-	printf("\nNumber of passed test cases: %d\nNumber of failed tests case: %d\n", numPassedTests, numFailedTests);
+	printf("\nSeed used: %d\n", test_seed);
+	printf("Number of passed test cases: %d\nNumber of failed tests case: %d\n", numPassedTests, numFailedTests);
 
 	return 0;
 }
