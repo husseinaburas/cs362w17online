@@ -1,1340 +1,41 @@
-Saved to unittestresuls.out
-
-**** gainCard() TESTING BEGINNING ****
-TEST-1
- **CHECKING INITIAL HAND/DECK/DISCARD COUNTS**
-Checking both p1 hand == 5 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 5 and p2 deck size == 10: TEST PASSED
-CHecking both p1 and p2 discard size == 0: TEST PASSED
-**ADDING CARD TO P1 DISCARD**
-Checking both p1 hand == 5 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 5 and p2 deck size == 10: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 0: TEST PASSED
-**ADDING CARD TO P2 DISCARD**
-Checking both p1 hand == 5 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 5 and p2 deck size == 10: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P1 DECK**
-Checking both p1 hand == 5 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 10: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P2 DECK**
-Checking both p1 hand == 5 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P1 HAND**
-Checking both p1 hand == 6 and p2 hand size == 0: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P2 HAND**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-
-TEST-2
- **CHECKING INITIAL supplyCount VS CURRENT supplyCount**
-Check all cards except smithy are same as initial supplyCount: TEST PASSED
-Checking smithy supplyCount is 6 less than original supplyCount: TEST PASSED
-
-TEST-3
- **CHECKING CARD IS NOT ADDED TO ANY PILE WHEN SUPPLY IS 0**
-**ADDING CARD TO P1 DISCARD**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P2 DISCARD**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P1 DECK**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P2 DECK**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P1 HAND**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-**ADDING CARD TO P2 HAND**
-Checking both p1 hand == 6 and p2 hand size == 1: TEST PASSED
-Checking both p1 deck size == 6 and p2 deck size == 11: TEST PASSED
-CHecking both p1  discard size == 1 and p2 discard size == 1: TEST PASSED
-
-TEST-4
- **CHECKING TOP CARD IN DECK, HAND AND DISCARD IS SMITHY**
-Checking both p1 and p2 hand last card is smithy: TEST PASSED
-Checking both p1 and p2 deck last card is smithy: TEST PASSED
-Checking both p1 and p2 discard last card is smithy: TEST PASSED
-
-**** gainCard() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** isGameOver() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CHECKING isGameOver()**
-Checking isGameOver returns 0: TEST PASSED
-TEST-2
- **CHECKING  isGameOver BASED ON NUMBER OF PROVINCES**
-Checking isGameOver returns 1 when 0 provinces: TEST PASSED
-Checking isGameOver returns 0 when there is 1 province: TEST PASSED
-Checking isGameOver returns 0 when there is -1 province: TEST PASSED
-TEST-3
- **CHECKING  isGameOver BASED ON 3 SUPPLY PILES EMPTY OR NOT**
-Checking isGameOver returns 0 when curse pile is empty: TEST PASSED
-Checking isGameOver returns 0 when curse and estate piles are empty: TEST PASSED
-Checking isGameOver returns 1 when curse, estate and duchy piles are empty: TEST PASSED
-Checking isGameOver returns 1 when curse and province piles are empty: TEST PASSED
-Checking isGameOver returns 1 when 4 supply piles are empty (not province): TEST PASSED
-
-**** isGameOver() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** fullDeckCount() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CHECKING fullDeckCount of copper vs manual count**
-Checking fullDeckCount == manual count of copper card of p1: TEST PASSED
-Checking fullDeckCount == manual count of copper card of p2: TEST PASSED
-TEST-2
- **CHECKING CARDS THAT SHOULDN'T BE IN HAND/DECK/DISCARD == 0**
-Checking p1 and p2 fullDeckCount of provinces == 0: TEST PASSED
-Checking p1 and p2 fullDeckCount of treasure_map (not in game) == 0: TEST PASSED
-TEST-3
- **MANUALLY ADD PROVINCE TO DECK/HAND/DISCARD AND CHECK fullDeckCount VALUE**
-Added province to deck, checking p1 fullDeckCount of provinces == 1: TEST PASSED
-Added province to deck, checking p2 fullDeckCount of provinces == 1: TEST PASSED
-Added province to hand, checking p1 fullDeckCount of provinces == 2: TEST PASSED
-Added province to hand, checking p2 fullDeckCount of provinces == 2: TEST PASSED
-Added province to discard, checking p1 fullDeckCount of provinces == 3: TEST PASSED
-Added province to discard, checking p2 fullDeckCount of provinces == 3: TEST PASSED
-
-**** fullDeckCount() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** endTurn() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CALLING endTurn() AND CHECKING CHANGED VARS**
-Checking p1 handCount == 0: TEST PASSED
-Checking p1 discardCount == 5 (original size of hand): TEST PASSED
-Checking whoseTurn == p2: TEST PASSED
-Checking p2 handCount == 5: TEST PASSED
-Checking G.coins == manual count of p2 coins: TEST PASSED
-TEST-2
- **GAME CALLING endTurn() AND CHECKING CHANGED VARS**
-Checking p2 handCount == 0: TEST PASSED
-Checking p2 discardCount == 5 (original size of hand): TEST PASSED
-Checking whoseTurn == p1: TEST PASSED
-Checking p1 handCount == 5: TEST PASSED
-Checking G.coins == manual count of p1 coins: TEST PASSED
-TEST-3
- **GAME CALLING endTurn() 3RD TIME AND CHECKING CHANGED VARS**
-Checking p1 handCount == 0: TEST PASSED
-Checking p1 discardCount == 10 (original size of hand + last turn): TEST PASSED
-Checking whoseTurn == p2: TEST PASSED
-Checking p2 handCount == 5: TEST PASSED
-Checking p2 discardCount == 5 (original size of hand): TEST PASSED
-Checking G.coins == manual count of p2 coins: TEST PASSED
-
-**** endTurn() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** playSmithy() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CALLING playSmithy() AND CHECKING CHANGED VARS**
-Check p1 handSize is == initial hand size of p1 + 2: TEST FAILED
-Check value of p1 hand at current handCount is == -1 (discard): TEST PASSED
-Check smithy is not in p1 hand: TEST PASSED
-Check deckCount is equal to initial deckCount - 3 for p1: TEST FAILED
-TEST-2
- **AFTER SMITHY PLAYED, CHECK VARS THAT SHOULDN'T BE EFFECTED**
-Check discardCount is equal to initial discardCount for p1: TEST PASSED
-Check p2 Deck/Hand/Discard counts are same as initial values: TEST PASSED
-
-**** playSmithy() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** playAdventurer() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CALLING playAdventurer() WITH P1 AND CHECKING CHANGED VARS**
-Check drawntreasure == 0: TEST PASSED
-Check p1 discardCount > initial discardCount: TEST PASSED
-Check p1 handCount < initial handCount: TEST PASSED
-Check p1 initial hand treasure + 2 == current hand treasure for p1: TEST PASSED
-Check nothing in p2 Deck/Hand/Discard changed: TEST PASSED
-Check adventurer was discarded from p1 hand: TEST FAILED
-Check cards in discard hand are in kingdom Cards (due to bug introduced): TEST PASSED
-TEST-2
- **END P1 TURN, REMOVE ALL BUT 1 TREASURE FROM P2 AND playAdenturer()**
-Check drawntreasure == 0: TEST PASSED
-Check p2 discardCount > initial discardCount: TEST PASSED
-Check p2 handCount < initial handCount: TEST PASSED
-Check p2 initial hand treasure + 1 == current hand treasure for p2: TEST PASSED
-Check adventurer was discarded from p2 hand: TEST FAILED
-TEST-3
- **END P2 TURN, REMOVE ALL TREASURE FROM P1 DECK AND playAdenturer()**
-Check drawntreasure == 0: TEST PASSED
-Check p1 discardCount > initial discardCount: TEST PASSED
-Check p1 handCount == initial handCount (no treasure added): TEST PASSED
-Check p1 initial hand treasure == current hand treasure for p1: TEST PASSED
-Check adventurer was discarded from p1 hand: TEST FAILED
+Saved to randomtestadventurer.out
+
+**** playAdventurer() RANDOM TESTING BEGINNING ****
+**CALLING playAdventurer() WITH player AND CHECKING CHANGED VARS**
+TEST-2:
+Check player discardCount != initial discardCount: FAILED 2294 times for player 1
+TEST-6:
+Check adventurer was discarded from player hand: FAILED 2294 times for player 1
+TEST-7:
+Check cards in discard hand are in kingdom Cards (due to bug introduced): FAILED 2294 times for player 1
+TEST-9:
+Check player handCount == initial handCount + 1 (-1 adventurer +2 treasure): FAILED 2294 times for player 1
+TEST-2:
+Check player discardCount != initial discardCount: FAILED 1901 times for player 2
+TEST-6:
+Check adventurer was discarded from player hand: FAILED 1901 times for player 2
+TEST-7:
+Check cards in discard hand are in kingdom Cards (due to bug introduced): FAILED 1901 times for player 2
+TEST-9:
+Check player handCount == initial handCount + 1 (-1 adventurer +2 treasure): FAILED 1901 times for player 2
+TEST-2:
+Check player discardCount != initial discardCount: FAILED 937 times for player 3
+TEST-6:
+Check adventurer was discarded from player hand: FAILED 937 times for player 3
+TEST-7:
+Check cards in discard hand are in kingdom Cards (due to bug introduced): FAILED 937 times for player 3
+TEST-9:
+Check player handCount == initial handCount + 1 (-1 adventurer +2 treasure): FAILED 937 times for player 3
+TEST-2:
+Check player discardCount != initial discardCount: FAILED 315 times for player 4
+TEST-6:
+Check adventurer was discarded from player hand: FAILED 315 times for player 4
+TEST-7:
+Check cards in discard hand are in kingdom Cards (due to bug introduced): FAILED 315 times for player 4
+TEST-9:
+Check player handCount == initial handCount + 1 (-1 adventurer +2 treasure): FAILED 315 times for player 4
 
 **** playAdventurer() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** playVillage() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CALLING playVillage() WITH P1 AND CHECKING CHANGED VARS**
-Check p1 handCount == initial handCount (1 card drawn, 1 discarded): TEST PASSED
-Check p1 deckCount == initial deckCount - 1: TEST PASSED
-Check numActions == 3 (original action + 2) TEST FAILED
-Check numActions > original num actions TEST PASSED
-Check village was discarded from p1 hand: TEST PASSED
-Check value of p1 hand at current handCount is == -1 (discard): TEST PASSED
-TEST-2
- **AFTER VILLAGE PLAYED, CHECK VARS THAT SHOULDN'T BE EFFECTED**
-Check discardCount is equal to initial discardCount for p1: TEST PASSED
-Check p2 Deck/Hand/Discard counts are same as initial values: TEST PASSED
-
-**** playVillage() TESTING COMPLETE ****
-Function 'compare'
-Lines executed:100.00% of 6
-Branches executed:100.00% of 4
-Taken at least once:100.00% of 4
-No calls
-
-Function 'newGame'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'kingdomCards'
-Lines executed:0.00% of 12
-No branches
-No calls
-
-Function 'initializeGame'
-Lines executed:96.15% of 78
-Branches executed:100.00% of 46
-Taken at least once:91.30% of 46
-No calls
-
-Function 'shuffle'
-Lines executed:100.00% of 18
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'playCard'
-Lines executed:0.00% of 14
-Branches executed:0.00% of 10
-Taken at least once:0.00% of 10
-No calls
-
-Function 'buyCard'
-Lines executed:0.00% of 13
-Branches executed:0.00% of 6
-Taken at least once:0.00% of 6
-No calls
-
-Function 'numHandCards'
-Lines executed:0.00% of 1
-No branches
-No calls
-
-Function 'handCard'
-Lines executed:0.00% of 2
-No branches
-No calls
-
-Function 'supplyCount'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'fullDeckCount'
-Lines executed:100.00% of 11
-Branches executed:100.00% of 12
-Taken at least once:91.67% of 12
-No calls
-
-Function 'whoseTurn'
-Lines executed:100.00% of 1
-No branches
-No calls
-
-Function 'endTurn'
-Lines executed:100.00% of 22
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'isGameOver'
-Lines executed:100.00% of 12
-Branches executed:100.00% of 8
-Taken at least once:100.00% of 8
-No calls
-
-Function 'scoreFor'
-Lines executed:0.00% of 26
-Branches executed:0.00% of 42
-Taken at least once:0.00% of 42
-No calls
-
-Function 'getWinners'
-Lines executed:0.00% of 33
-Branches executed:0.00% of 22
-Taken at least once:0.00% of 22
-No calls
-
-Function 'drawCard'
-Lines executed:100.00% of 24
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'getCost'
-Lines executed:0.00% of 30
-Branches executed:0.00% of 28
-Taken at least once:0.00% of 28
-No calls
-
-Function 'cardEffect'
-Lines executed:0.00% of 259
-Branches executed:0.00% of 183
-Taken at least once:0.00% of 183
-No calls
-
-Function 'discardCard'
-Lines executed:73.33% of 15
-Branches executed:100.00% of 6
-Taken at least once:50.00% of 6
-No calls
-
-Function 'gainCard'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 6
-Taken at least once:100.00% of 6
-No calls
-
-Function 'updateCoins'
-Lines executed:71.43% of 14
-Branches executed:100.00% of 8
-Taken at least once:75.00% of 8
-No calls
-
-Function 'playSmithy'
-Lines executed:100.00% of 5
-Branches executed:100.00% of 2
-Taken at least once:100.00% of 2
-No calls
-
-Function 'playAdventurer'
-Lines executed:100.00% of 15
-Branches executed:100.00% of 12
-Taken at least once:83.33% of 12
-No calls
-
-Function 'playVillage'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playGreat_hall'
-Lines executed:100.00% of 4
-No branches
-No calls
-
-Function 'playSalvager'
-Lines executed:0.00% of 7
-Branches executed:0.00% of 2
-Taken at least once:0.00% of 2
-No calls
-
-File 'dominion.c'
-Lines executed:36.34% of 644
-Branches executed:29.74% of 417
-Taken at least once:26.86% of 417
-No calls
-dominion.c:creating 'dominion.c.gcov'
-
-
-**** playGreat_hall() TESTING BEGINNING ****
-TEST-1
- **GAME INITIALIZED CALLING playGreat_hall() WITH P1 AND CHECKING CHANGED VARS**
-Check p1 handCount == initial handCount (1 card drawn, 1 discarded): TEST PASSED
-Check p1 deckCount == initial deckCount - 1: TEST PASSED
-Check numActions == 2 (original action + 1) TEST PASSED
-Check numActions > original num actions TEST PASSED
-Check great_hall was discarded from p1 hand: TEST PASSED
-Check value of p1 hand at current handCount is == -1 (discard): TEST PASSED
-TEST-2
- **AFTER VILLAGE PLAYED, CHECK VARS THAT SHOULDN'T BE EFFECTED**
-Check discardCount is equal to initial discardCount for p1: TEST PASSED
-Check p2 Deck/Hand/Discard counts are same as initial values: TEST PASSED
-
-**** playGreat_hall() TESTING COMPLETE ****
 Function 'compare'
 Lines executed:100.00% of 6
 Branches executed:100.00% of 4
@@ -1499,7 +200,7 @@ dominion.c:creating 'dominion.c.gcov'
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:17
+        -:    0:Runs:18
         -:    0:Programs:1
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
@@ -1508,18 +209,18 @@ dominion.c:creating 'dominion.c.gcov'
         -:    5:#include <math.h>
         -:    6:#include <stdlib.h>
         -:    7:
-function compare called 62592 returned 100% blocks executed 100%
+function compare called 153361 returned 100% blocks executed 100%
         -:    8:int compare(const void* a, const void* b) {
-    62592:    9:  if (*(int*)a > *(int*)b)
-branch  0 taken 14%
-branch  1 taken 86%
-     8680:   10:    return 1;
-    53912:   11:  if (*(int*)a < *(int*)b)
-branch  0 taken 29%
-branch  1 taken 71%
-    15574:   12:    return -1;
-    38338:   13:  return 0;
-    62592:   14:}
+   153361:    9:  if (*(int*)a > *(int*)b)
+branch  0 taken 18%
+branch  1 taken 82%
+    28107:   10:    return 1;
+   125254:   11:  if (*(int*)a < *(int*)b)
+branch  0 taken 33%
+branch  1 taken 67%
+    41919:   12:    return -1;
+    83335:   13:  return 0;
+   153361:   14:}
         -:   15:
 function newGame called 0 returned 0% blocks executed 0%
         -:   16:struct gameState* newGame() {
@@ -1544,7 +245,7 @@ function kingdomCards called 0 returned 0% blocks executed 0%
     #####:   34:  return k;
         -:   35:}
         -:   36:
-function initializeGame called 1016 returned 100% blocks executed 95%
+function initializeGame called 2016 returned 100% blocks executed 95%
         -:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         -:   38:		   struct gameState *state) {
         -:   39:
@@ -1552,11 +253,11 @@ function initializeGame called 1016 returned 100% blocks executed 95%
         -:   41:  int j;
         -:   42:  int it;			
         -:   43:  //set up random number generator
-     1016:   44:  SelectStream(1);
-     1016:   45:  PutSeed((long)randomSeed);
+     2016:   44:  SelectStream(1);
+     2016:   45:  PutSeed((long)randomSeed);
         -:   46:  
         -:   47:  //check number of players
-     2032:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+     4032:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
 branch  0 taken 100%
 branch  1 taken 0%
 branch  2 taken 0%
@@ -1566,18 +267,18 @@ branch  3 taken 100%
         -:   51:    }
         -:   52:
         -:   53:  //set number of players
-     1016:   54:  state->numPlayers = numPlayers;
+     2016:   54:  state->numPlayers = numPlayers;
         -:   55:
         -:   56:  //check selected kingdom cards are different
-    22352:   57:  for (i = 0; i < 10; i++)
+    44352:   57:  for (i = 0; i < 10; i++)
 branch  0 taken 91%
 branch  1 taken 9%
         -:   58:    {
-   223520:   59:      for (j = 0; j < 10; j++)
+   443520:   59:      for (j = 0; j < 10; j++)
 branch  0 taken 91%
 branch  1 taken 9%
         -:   60:        {
-   193040:   61:	  if (j != i && kingdomCards[j] == kingdomCards[i])
+   383040:   61:	  if (j != i && kingdomCards[j] == kingdomCards[i])
 branch  0 taken 90%
 branch  1 taken 10%
 branch  2 taken 0%
@@ -1585,214 +286,214 @@ branch  3 taken 100%
         -:   62:	    {
     #####:   63:	      return -1;
         -:   64:	    }
-   101600:   65:        }
-    10160:   66:    }
+   201600:   65:        }
+    20160:   66:    }
         -:   67:
         -:   68:
         -:   69:  //initialize supply
         -:   70:  ///////////////////////////////
         -:   71:
         -:   72:  //set number of Curse cards
-     1016:   73:  if (numPlayers == 2)
-branch  0 taken 36%
-branch  1 taken 64%
+     2016:   73:  if (numPlayers == 2)
+branch  0 taken 34%
+branch  1 taken 66%
         -:   74:    {
-      363:   75:      state->supplyCount[curse] = 10;
-      363:   76:    }
-      653:   77:  else if (numPlayers == 3)
-branch  0 taken 47%
-branch  1 taken 53%
+      681:   75:      state->supplyCount[curse] = 10;
+      681:   76:    }
+     1335:   77:  else if (numPlayers == 3)
+branch  0 taken 51%
+branch  1 taken 49%
         -:   78:    {
-      310:   79:      state->supplyCount[curse] = 20;
-      310:   80:    }
+      675:   79:      state->supplyCount[curse] = 20;
+      675:   80:    }
         -:   81:  else
         -:   82:    {
-      343:   83:      state->supplyCount[curse] = 30;
+      660:   83:      state->supplyCount[curse] = 30;
         -:   84:    }
         -:   85:
         -:   86:  //set number of Victory cards
-     1016:   87:  if (numPlayers == 2)
-branch  0 taken 36%
-branch  1 taken 64%
+     2016:   87:  if (numPlayers == 2)
+branch  0 taken 34%
+branch  1 taken 66%
         -:   88:    {
-      363:   89:      state->supplyCount[estate] = 8;
-      363:   90:      state->supplyCount[duchy] = 8;
-      363:   91:      state->supplyCount[province] = 8;
-      363:   92:    }
+      681:   89:      state->supplyCount[estate] = 8;
+      681:   90:      state->supplyCount[duchy] = 8;
+      681:   91:      state->supplyCount[province] = 8;
+      681:   92:    }
         -:   93:  else
         -:   94:    {
-      653:   95:      state->supplyCount[estate] = 12;
-      653:   96:      state->supplyCount[duchy] = 12;
-      653:   97:      state->supplyCount[province] = 12;
+     1335:   95:      state->supplyCount[estate] = 12;
+     1335:   96:      state->supplyCount[duchy] = 12;
+     1335:   97:      state->supplyCount[province] = 12;
         -:   98:    }
         -:   99:
         -:  100:  //set number of Treasure cards
-     1016:  101:  state->supplyCount[copper] = 60 - (7 * numPlayers);
-     1016:  102:  state->supplyCount[silver] = 40;
-     1016:  103:  state->supplyCount[gold] = 30;
+     2016:  101:  state->supplyCount[copper] = 60 - (7 * numPlayers);
+     2016:  102:  state->supplyCount[silver] = 40;
+     2016:  103:  state->supplyCount[gold] = 30;
         -:  104:
         -:  105:  //set number of Kingdom cards
-    42672:  106:  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
+    84672:  106:  for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
 branch  0 taken 95%
 branch  1 taken 5%
         -:  107:    {
-   335280:  108:      for (j = 0; j < 10; j++)           		//loop chosen cards
+   665280:  108:      for (j = 0; j < 10; j++)           		//loop chosen cards
 branch  0 taken 94%
 branch  1 taken 6%
         -:  109:	{
-   157480:  110:	  if (kingdomCards[j] == i)
+   312480:  110:	  if (kingdomCards[j] == i)
 branch  0 taken 6%
 branch  1 taken 94%
         -:  111:	    {
         -:  112:	      //check if card is a 'Victory' Kingdom card
-    19306:  113:	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
+    38306:  113:	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
 branch  0 taken 90%
 branch  1 taken 10%
 branch  2 taken 11%
 branch  3 taken 89%
         -:  114:		{
-     2030:  115:		  if (numPlayers == 2){ 
-branch  0 taken 36%
-branch  1 taken 64%
-      724:  116:		    state->supplyCount[i] = 8; 
-      724:  117:		  }
-     1306:  118:		  else{ state->supplyCount[i] = 12; }
-     2030:  119:		}
+     4030:  115:		  if (numPlayers == 2){ 
+branch  0 taken 34%
+branch  1 taken 66%
+     1360:  116:		    state->supplyCount[i] = 8; 
+     1360:  117:		  }
+     2670:  118:		  else{ state->supplyCount[i] = 12; }
+     4030:  119:		}
         -:  120:	      else
         -:  121:		{
-     8130:  122:		  state->supplyCount[i] = 10;
+    16130:  122:		  state->supplyCount[i] = 10;
         -:  123:		}
-    10160:  124:	      break;
+    20160:  124:	      break;
         -:  125:	    }
         -:  126:	  else    //card is not in the set choosen for the game
         -:  127:	    {
-   147320:  128:	      state->supplyCount[i] = -1;
+   292320:  128:	      state->supplyCount[i] = -1;
         -:  129:	    }
-   147320:  130:	}
+   292320:  130:	}
         -:  131:
-    20320:  132:    }
+    40320:  132:    }
         -:  133:
         -:  134:  ////////////////////////
         -:  135:  //supply intilization complete
         -:  136:
         -:  137:  //set player decks
-     8088:  138:  for (i = 0; i < numPlayers; i++)
+    16086:  138:  for (i = 0; i < numPlayers; i++)
 branch  0 taken 75%
 branch  1 taken 25%
         -:  139:    {
-     3028:  140:      state->deckCount[i] = 0;
-    24224:  141:      for (j = 0; j < 3; j++)
+     6027:  140:      state->deckCount[i] = 0;
+    48216:  141:      for (j = 0; j < 3; j++)
 branch  0 taken 75%
 branch  1 taken 25%
         -:  142:	{
-     9084:  143:	  state->deck[i][j] = estate;
-     9084:  144:	  state->deckCount[i]++;
-     9084:  145:	}
-    48448:  146:      for (j = 3; j < 10; j++)
+    18081:  143:	  state->deck[i][j] = estate;
+    18081:  144:	  state->deckCount[i]++;
+    18081:  145:	}
+    96432:  146:      for (j = 3; j < 10; j++)
 branch  0 taken 88%
 branch  1 taken 13%
         -:  147:	{
-    21196:  148:	  state->deck[i][j] = copper;
-    21196:  149:	  state->deckCount[i]++;		
-    21196:  150:	}
-     3028:  151:    }
+    42189:  148:	  state->deck[i][j] = copper;
+    42189:  149:	  state->deckCount[i]++;		
+    42189:  150:	}
+     6027:  151:    }
         -:  152:
         -:  153:  //shuffle player decks
-     8088:  154:  for (i = 0; i < numPlayers; i++)
+    16086:  154:  for (i = 0; i < numPlayers; i++)
 branch  0 taken 75%
 branch  1 taken 25%
         -:  155:    {
-     3028:  156:      if ( shuffle(i, state) < 0 )
+     6027:  156:      if ( shuffle(i, state) < 0 )
 branch  0 taken 0%
 branch  1 taken 100%
         -:  157:	{
     #####:  158:	  return -1;
         -:  159:	}
-     3028:  160:    }
+     6027:  160:    }
         -:  161:
         -:  162:  //draw player hands
-     8088:  163:  for (i = 0; i < numPlayers; i++)
+    16086:  163:  for (i = 0; i < numPlayers; i++)
 branch  0 taken 75%
 branch  1 taken 25%
         -:  164:    {  
         -:  165:      //initialize hand size to zero
-     3028:  166:      state->handCount[i] = 0;
-     3028:  167:      state->discardCount[i] = 0;
+     6027:  166:      state->handCount[i] = 0;
+     6027:  167:      state->discardCount[i] = 0;
         -:  168:      //draw 5 cards
         -:  169:      // for (j = 0; j < 5; j++)
         -:  170:      //	{
         -:  171:      //	  drawCard(i, state);
         -:  172:      //	}
-     3028:  173:    }
+     6027:  173:    }
         -:  174:  
         -:  175:  //set embargo tokens to 0 for all supply piles
-    56896:  176:  for (i = 0; i <= treasure_map; i++)
+   112896:  176:  for (i = 0; i <= treasure_map; i++)
 branch  0 taken 96%
 branch  1 taken 4%
         -:  177:    {
-    27432:  178:      state->embargoTokens[i] = 0;
-    27432:  179:    }
+    54432:  178:      state->embargoTokens[i] = 0;
+    54432:  179:    }
         -:  180:
         -:  181:  //initialize first player's turn
-     1016:  182:  state->outpostPlayed = 0;
-     1016:  183:  state->phase = 0;
-     1016:  184:  state->numActions = 1;
-     1016:  185:  state->numBuys = 1;
-     1016:  186:  state->playedCardCount = 0;
-     1016:  187:  state->whoseTurn = 0;
-     1016:  188:  state->handCount[state->whoseTurn] = 0;
+     2016:  182:  state->outpostPlayed = 0;
+     2016:  183:  state->phase = 0;
+     2016:  184:  state->numActions = 1;
+     2016:  185:  state->numBuys = 1;
+     2016:  186:  state->playedCardCount = 0;
+     2016:  187:  state->whoseTurn = 0;
+     2016:  188:  state->handCount[state->whoseTurn] = 0;
         -:  189:  //int it; move to top
         -:  190:
         -:  191:  //Moved draw cards to here, only drawing at the start of a turn
-    12192:  192:  for (it = 0; it < 5; it++){
+    24192:  192:  for (it = 0; it < 5; it++){
 branch  0 taken 83%
 branch  1 taken 17%
-     5080:  193:    drawCard(state->whoseTurn, state);
-     5080:  194:  }
+    10080:  193:    drawCard(state->whoseTurn, state);
+    10080:  194:  }
         -:  195:
-     1016:  196:  updateCoins(state->whoseTurn, state, 0);
+     2016:  196:  updateCoins(state->whoseTurn, state, 0);
         -:  197:
-     1016:  198:  return 0;
-     1016:  199:}
+     2016:  198:  return 0;
+     2016:  199:}
         -:  200:
-function shuffle called 6625 returned 100% blocks executed 100%
+function shuffle called 13255 returned 100% blocks executed 100%
         -:  201:int shuffle(int player, struct gameState *state) {
         -:  202: 
         -:  203:
         -:  204:  int newDeck[MAX_DECK];
-     6625:  205:  int newDeckPos = 0;
+    13255:  205:  int newDeckPos = 0;
         -:  206:  int card;
         -:  207:  int i;
         -:  208:
-     6625:  209:  if (state->deckCount[player] < 1)
-branch  0 taken 1%
-branch  1 taken 99%
-       12:  210:    return -1;
-     6613:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+    13255:  209:  if (state->deckCount[player] < 1)
+branch  0 taken 2%
+branch  1 taken 98%
+      201:  210:    return -1;
+    13054:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
         -:  212:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-   109648:  214:  while (state->deckCount[player] > 0) {
-branch  0 taken 88%
-branch  1 taken 12%
-    48211:  215:    card = floor(Random() * state->deckCount[player]);
-    48211:  216:    newDeck[newDeckPos] = state->deck[player][card];
-    48211:  217:    newDeckPos++;
-   312014:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
+   241674:  214:  while (state->deckCount[player] > 0) {
+branch  0 taken 89%
+branch  1 taken 11%
+   107783:  215:    card = floor(Random() * state->deckCount[player]);
+   107783:  216:    newDeck[newDeckPos] = state->deck[player][card];
+   107783:  217:    newDeckPos++;
+   693722:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
 branch  0 taken 69%
 branch  1 taken 31%
-   107796:  219:      state->deck[player][i] = state->deck[player][i+1];
-   107796:  220:    }
-    48211:  221:    state->deckCount[player]--;
+   239078:  219:      state->deck[player][i] = state->deck[player][i+1];
+   239078:  220:    }
+   107783:  221:    state->deckCount[player]--;
         -:  222:  }
-   109648:  223:  for (i = 0; i < newDeckPos; i++) {
-branch  0 taken 88%
-branch  1 taken 12%
-    48211:  224:    state->deck[player][i] = newDeck[i];
-    48211:  225:    state->deckCount[player]++;
-    48211:  226:  }
+   241674:  223:  for (i = 0; i < newDeckPos; i++) {
+branch  0 taken 89%
+branch  1 taken 11%
+   107783:  224:    state->deck[player][i] = newDeck[i];
+   107783:  225:    state->deckCount[player]++;
+   107783:  226:  }
         -:  227:
-     6613:  228:  return 0;
-     6625:  229:}
+    13054:  228:  return 0;
+    13255:  229:}
         -:  230:
 function playCard called 0 returned 0% blocks executed 0%
         -:  231:int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state) 
@@ -1943,65 +644,65 @@ branch  1 taken 0%
        24:  343:  return count;
         -:  344:}
         -:  345:
-function whoseTurn called 11880 returned 100% blocks executed 100%
+function whoseTurn called 23774 returned 100% blocks executed 100%
         -:  346:int whoseTurn(struct gameState *state) {
-    11880:  347:  return state->whoseTurn;
+    23774:  347:  return state->whoseTurn;
         -:  348:}
         -:  349:
-function endTurn called 5445 returned 100% blocks executed 100%
+function endTurn called 10892 returned 100% blocks executed 100%
         -:  350:int endTurn(struct gameState *state) {
         -:  351:  int k;
         -:  352:  int i;
-     5445:  353:  int currentPlayer = whoseTurn(state);
+    10892:  353:  int currentPlayer = whoseTurn(state);
         -:  354:  
         -:  355:  //Discard hand
-    65352:  356:  for (i = 0; i < state->handCount[currentPlayer]; i++){
-branch  0 taken 83%
-branch  1 taken 17%
-    27231:  357:    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
-    27231:  358:    state->hand[currentPlayer][i] = -1;//Set card to -1
-    27231:  359:  }
-     5445:  360:  state->handCount[currentPlayer] = 0;//Reset hand count
+   152504:  356:  for (i = 0; i < state->handCount[currentPlayer]; i++){
+branch  0 taken 86%
+branch  1 taken 14%
+    65360:  357:    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    65360:  358:    state->hand[currentPlayer][i] = -1;//Set card to -1
+    65360:  359:  }
+    10892:  360:  state->handCount[currentPlayer] = 0;//Reset hand count
         -:  361:    
         -:  362:  //Code for determining the player
-     5445:  363:  if (currentPlayer < (state->numPlayers - 1)){ 
+    10892:  363:  if (currentPlayer < (state->numPlayers - 1)){ 
 branch  0 taken 70%
 branch  1 taken 30%
-     3808:  364:    state->whoseTurn = currentPlayer + 1;//Still safe to increment
-     3808:  365:  }
+     7618:  364:    state->whoseTurn = currentPlayer + 1;//Still safe to increment
+     7618:  365:  }
         -:  366:  else{
-     1637:  367:    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
+     3274:  367:    state->whoseTurn = 0;//Max player has been reached, loop back around to player 1
         -:  368:  }
         -:  369:
-     5445:  370:  state->outpostPlayed = 0;
-     5445:  371:  state->phase = 0;
-     5445:  372:  state->numActions = 1;
-     5445:  373:  state->coins = 0;
-     5445:  374:  state->numBuys = 1;
-     5445:  375:  state->playedCardCount = 0;
-     5445:  376:  state->handCount[state->whoseTurn] = 0;
+    10892:  370:  state->outpostPlayed = 0;
+    10892:  371:  state->phase = 0;
+    10892:  372:  state->numActions = 1;
+    10892:  373:  state->coins = 0;
+    10892:  374:  state->numBuys = 1;
+    10892:  375:  state->playedCardCount = 0;
+    10892:  376:  state->handCount[state->whoseTurn] = 0;
         -:  377:
         -:  378:  //int k; move to top
         -:  379:  //Next player draws hand
-    65340:  380:  for (k = 0; k < 5; k++){
+   130704:  380:  for (k = 0; k < 5; k++){
 branch  0 taken 83%
 branch  1 taken 17%
-    27225:  381:    drawCard(state->whoseTurn, state);//Draw a card
-    27225:  382:  }
+    54460:  381:    drawCard(state->whoseTurn, state);//Draw a card
+    54460:  382:  }
         -:  383:
         -:  384:  //Update money
-     5445:  385:  updateCoins(state->whoseTurn, state , 0);
+    10892:  385:  updateCoins(state->whoseTurn, state , 0);
         -:  386:
-     5445:  387:  return 0;
+    10892:  387:  return 0;
         -:  388:}
         -:  389:
-function isGameOver called 5453 returned 100% blocks executed 100%
+function isGameOver called 10900 returned 100% blocks executed 100%
         -:  390:int isGameOver(struct gameState *state) {
         -:  391:  int i;
         -:  392:  int j;
         -:  393:	
         -:  394:  //if stack of Province cards is empty, the game ends
-     5453:  395:  if (state->supplyCount[province] == 0)
+    10900:  395:  if (state->supplyCount[province] == 0)
 branch  0 taken 1%
 branch  1 taken 99%
         -:  396:    {
@@ -2009,27 +710,27 @@ branch  1 taken 99%
         -:  398:    }
         -:  399:
         -:  400:  //if three supply pile are at 0, the game ends
-     5449:  401:  j = 0;
-   283348:  402:  for (i = 0; i < 25; i++)
+    10896:  401:  j = 0;
+   566592:  402:  for (i = 0; i < 25; i++)
 branch  0 taken 96%
 branch  1 taken 4%
         -:  403:    {
-   136225:  404:      if (state->supplyCount[i] == 0)
+   272400:  404:      if (state->supplyCount[i] == 0)
 branch  0 taken 1%
 branch  1 taken 99%
         -:  405:	{
        20:  406:	  j++;
        20:  407:	}
-   136225:  408:    }
-     5449:  409:  if ( j >= 3)
+   272400:  408:    }
+    10896:  409:  if ( j >= 3)
 branch  0 taken 1%
 branch  1 taken 99%
         -:  410:    {
         4:  411:      return 1;
         -:  412:    }
         -:  413:
-     5445:  414:  return 0;
-     5453:  415:}
+    10892:  414:  return 0;
+    10900:  415:}
         -:  416:
 function scoreFor called 0 returned 0% blocks executed 0%
         -:  417:int scoreFor (int player, struct gameState *state) {
@@ -2205,70 +906,70 @@ branch  1 never executed
     #####:  522:  return 0;
         -:  523:}
         -:  524:
-function drawCard called 37784 returned 100% blocks executed 100%
+function drawCard called 84592 returned 100% blocks executed 100%
         -:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:  int deckCounter;
-    37784:  528:  if (state->deckCount[player] <= 0){//Deck is empty
-branch  0 taken 10%
-branch  1 taken 90%
+    84592:  528:  if (state->deckCount[player] <= 0){//Deck is empty
+branch  0 taken 8%
+branch  1 taken 92%
         -:  529:    
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
         -:  532:    //Move discard to deck
-    43044:  533:    for (i = 0; i < state->discardCount[player];i++){
-branch  0 taken 83%
-branch  1 taken 17%
-    17931:  534:      state->deck[player][i] = state->discard[player][i];
-    17931:  535:      state->discard[player][i] = -1;
-    17931:  536:    }
+   109092:  533:    for (i = 0; i < state->discardCount[player];i++){
+branch  0 taken 87%
+branch  1 taken 13%
+    47513:  534:      state->deck[player][i] = state->discard[player][i];
+    47513:  535:      state->discard[player][i] = -1;
+    47513:  536:    }
         -:  537:
-     3591:  538:    state->deckCount[player] = state->discardCount[player];
-     3591:  539:    state->discardCount[player] = 0;//Reset discard
+     7033:  538:    state->deckCount[player] = state->discardCount[player];
+     7033:  539:    state->discardCount[player] = 0;//Reset discard
         -:  540:
         -:  541:    //Shufffle the deck
-     3591:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+     7033:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
         -:  543:   
         -:  544:    if (DEBUG){//Debug statements
         -:  545:      printf("Deck count now: %d\n", state->deckCount[player]);
         -:  546:    }
         -:  547:    
-     3591:  548:    state->discardCount[player] = 0;
+     7033:  548:    state->discardCount[player] = 0;
         -:  549:
         -:  550:    //Step 2 Draw Card
-     3591:  551:    count = state->handCount[player];//Get current player's hand count
+     7033:  551:    count = state->handCount[player];//Get current player's hand count
         -:  552:    
         -:  553:    if (DEBUG){//Debug statements
         -:  554:      printf("Current hand count: %d\n", count);
         -:  555:    }
         -:  556:    
-     3591:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+     7033:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
         -:  558:
-     3591:  559:    if (deckCounter == 0)
+     7033:  559:    if (deckCounter == 0)
 branch  0 taken 1%
 branch  1 taken 99%
         6:  560:      return -1;
         -:  561:
-     3585:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-     3585:  563:    state->deckCount[player]--;
-     3585:  564:    state->handCount[player]++;//Increment hand count
-     3585:  565:  }
+     7027:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+     7027:  563:    state->deckCount[player]--;
+     7027:  564:    state->handCount[player]++;//Increment hand count
+     7027:  565:  }
         -:  566:
         -:  567:  else{
-    34193:  568:    int count = state->handCount[player];//Get current hand count for player
+    77559:  568:    int count = state->handCount[player];//Get current hand count for player
         -:  569:    int deckCounter;
         -:  570:    if (DEBUG){//Debug statements
         -:  571:      printf("Current hand count: %d\n", count);
         -:  572:    }
         -:  573:
-    34193:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
-    34193:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-    34193:  576:    state->deckCount[player]--;
-    34193:  577:    state->handCount[player]++;//Increment hand count
+    77559:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
+    77559:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+    77559:  576:    state->deckCount[player]--;
+    77559:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-    37778:  580:  return 0;
-    37784:  581:}
+    84586:  580:  return 0;
+    84592:  581:}
         -:  582:
 function getCost called 0 returned 0% blocks executed 0%
         -:  583:int getCost(int cardNumber)
@@ -3160,43 +1861,43 @@ branch  1 taken 50%
        12: 1243:  return 0;
        24: 1244:}
         -: 1245:
-function updateCoins called 6461 returned 100% blocks executed 85%
+function updateCoins called 12908 returned 100% blocks executed 85%
         -: 1246:int updateCoins(int player, struct gameState *state, int bonus)
         -: 1247:{
         -: 1248:  int i;
         -: 1249:	
         -: 1250:  //reset coin count
-     6461: 1251:  state->coins = 0;
+    12908: 1251:  state->coins = 0;
         -: 1252:
         -: 1253:  //add coins for each Treasure card in player's hand
-    77532: 1254:  for (i = 0; i < state->handCount[player]; i++)
+   154896: 1254:  for (i = 0; i < state->handCount[player]; i++)
 branch  0 taken 83%
 branch  1 taken 17%
         -: 1255:    {
-    32305: 1256:      if (state->hand[player][i] == copper)
-branch  0 taken 74%
-branch  1 taken 26%
+    64540: 1256:      if (state->hand[player][i] == copper)
+branch  0 taken 69%
+branch  1 taken 31%
         -: 1257:	{
-    23988: 1258:	  state->coins += 1;
-    23988: 1259:	}
-     8317: 1260:      else if (state->hand[player][i] == silver)
+    44272: 1258:	  state->coins += 1;
+    44272: 1259:	}
+    20268: 1260:      else if (state->hand[player][i] == silver)
 branch  0 taken 0%
 branch  1 taken 100%
         -: 1261:	{
     #####: 1262:	  state->coins += 2;
     #####: 1263:	}
-     8317: 1264:      else if (state->hand[player][i] == gold)
+    20268: 1264:      else if (state->hand[player][i] == gold)
 branch  0 taken 0%
 branch  1 taken 100%
         -: 1265:	{
     #####: 1266:	  state->coins += 3;
     #####: 1267:	}	
-    32305: 1268:    }	
+    64540: 1268:    }	
         -: 1269:
         -: 1270:  //add bonus
-     6461: 1271:  state->coins += bonus;
+    12908: 1271:  state->coins += bonus;
         -: 1272:
-     6461: 1273:  return 0;
+    12908: 1273:  return 0;
         -: 1274:}
         -: 1275:
         -: 1276://playSmithy function
@@ -3218,40 +1919,40 @@ branch  1 taken 20%
         -: 1289:}
         -: 1290:
         -: 1291://play adventurer function
-function playAdventurer called 6 returned 100% blocks executed 100%
+function playAdventurer called 5453 returned 100% blocks executed 100%
         -: 1292:int playAdventurer(int currentPlayer, struct gameState *state, int cardDrawn, int drawntreasure, int z, int temphand[MAX_HAND])
         -: 1293:{
-       76: 1294:  while(drawntreasure<2){
-branch  0 taken 84%
-branch  1 taken 16%
-       32: 1295:    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
-branch  0 taken 19%
-branch  1 taken 81%
-        6: 1296:      shuffle(currentPlayer, state);
-        6: 1297:    }
-       32: 1298:    drawCard(currentPlayer, state);
-       32: 1299:    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-       72: 1300:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-branch  0 taken 63%
-branch  1 taken 38%
+    40116: 1294:  while(drawntreasure<2){
+branch  0 taken 73%
+branch  1 taken 27%
+    14605: 1295:    if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+branch  0 taken 1%
+branch  1 taken 99%
+      195: 1296:      shuffle(currentPlayer, state);
+      195: 1297:    }
+    14605: 1298:    drawCard(currentPlayer, state);
+    14605: 1299:    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+    22003: 1300:    if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 25%
+branch  1 taken 75%
 branch  2 taken 100%
 branch  3 taken 0%
 branch  4 taken 0%
 branch  5 taken 100%
-       12: 1301:      drawntreasure++;
+    10906: 1301:      drawntreasure++;
         -: 1302:    else{
-       20: 1303:      temphand[z]=cardDrawn;
-       20: 1304:      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-       20: 1305:      z++;
+     3699: 1303:      temphand[z]=cardDrawn;
+     3699: 1304:      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+     3699: 1305:      z++;
         -: 1306:    }
         -: 1307:  }
-       64: 1308:  while(z >=0){
-branch  0 taken 81%
-branch  1 taken 19%
-       26: 1309:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-       26: 1310:    z=z-1;
+    29210: 1308:  while(z >=0){
+branch  0 taken 63%
+branch  1 taken 37%
+     9152: 1309:    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+     9152: 1310:    z=z-1;
         -: 1311:  }
-        6: 1312:  return 0;
+     5453: 1312:  return 0;
         -: 1313:}
         -: 1314:
         -: 1315://play village function
