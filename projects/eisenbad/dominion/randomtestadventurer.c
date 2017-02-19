@@ -29,7 +29,7 @@
 
 int main(int argc, char *argv[]) {
   int test_cases = 7;
-  int iterations = 100;
+  int iterations = 100;  // # of iterations of each test case
   int tests = test_cases * iterations;
   int i, testnum;
   int randcard;
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 	
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
-  // perform 100 random tests
+  // iterate random tests
   for (testnum = 0; testnum < iterations; testnum++) {
     printf("\n----------- ITERATION: %d ----------\n", testnum);
 
