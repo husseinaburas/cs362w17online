@@ -2,7 +2,6 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
 all: playdom player testDrawCard testBuyCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-	rm -f *.o test.exe test testInit testInit.exe  *.gcov *.gcda *.gcno *.so
 	$(info ******** testing all *******)
   
 rngs.o: rngs.h rngs.c
@@ -74,7 +73,31 @@ cardtest3: dominion.o cardtest3.c rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 cardtest4.c dominion.o rngs.o $(CFLAGS)
 	$(info ******** compiling cardtest4 *******)
-						
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer
+	gcov -bf dominion &> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	$(info ******** compiling randomtestadventurer *******)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard1
+	gcov -bf dominion &> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	$(info ******** compiling randomtestcard1 *******)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2
+	gcov -bf dominion &> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	$(info ******** compiling randomtestcard2 *******)
+
 rununittest: unittest1 unittest2 unittest3 unittest4
 	echo "Results saved to rununittest.out" &> rununittest.out
 	./unittest1 >> rununittest.out
