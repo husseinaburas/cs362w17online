@@ -7,18 +7,18 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 0 extra card/s gained
+  TEST 4: 1 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
+    hand count = 6, expected = 5
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 6 card/s discarded
+  TEST 7: 5 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
+    discard count = 1, expected = 5
 
 ----------- ITERATION: 1 ----------
 
@@ -45,18 +45,18 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 1 extra card/s gained
+  TEST 4: 0 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
+    hand count = -1, expected = 4
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 5 card/s discarded
+  TEST 7: 6 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
+    discard count = 1, expected = 6
 
 ----------- ITERATION: 3 ----------
 
@@ -102,24 +102,28 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 1 extra card/s gained
+  TEST 4: 2 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
+    hand count = 7, expected = 6
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 5 card/s discarded
+  TEST 7: 3 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
+    discard count = 1, expected = 3
 
 ----------- ITERATION: 6 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
@@ -136,6 +140,177 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 8 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 9 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 10 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 11 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 12 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 13 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 14 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 15 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 9, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 16 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
   TEST 4: 2 extra card/s gained
     STATUS: TEST 4 FAILED
     hand count = 7, expected = 6
@@ -145,7 +320,11 @@
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
------------ ITERATION: 8 ----------
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 17 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -164,7 +343,7 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 5
 
------------ ITERATION: 9 ----------
+----------- ITERATION: 18 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -183,7 +362,235 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 5
 
------------ ITERATION: 10 ----------
+----------- ITERATION: 19 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 2 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 2
+
+----------- ITERATION: 20 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 21 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 22 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 23 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 9, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 24 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 25 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 26 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 27 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 28 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 29 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 2, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 30 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 9, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 31 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -202,7 +609,941 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 6
 
------------ ITERATION: 11 ----------
+----------- ITERATION: 32 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 33 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 34 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 35 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 36 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 37 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 38 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 39 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 40 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 41 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 42 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 9, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 43 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 44 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 45 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 46 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 47 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 9, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 48 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 49 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 50 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 51 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 2, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 52 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 53 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 54 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 55 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 56 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 57 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 58 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 59 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 60 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 61 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 62 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 63 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 64 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 7, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 65 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 66 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 67 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 8, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
+----------- ITERATION: 68 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 7, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 69 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 70 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 71 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 2 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 7, expected = 6
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 4 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 4
+
+----------- ITERATION: 72 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 73 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 74 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 75 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 76 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 77 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 5, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 78 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 79 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 80 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 81 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 82 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -221,1358 +1562,24 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 6
 
------------ ITERATION: 12 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 13 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 14 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 15 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 16 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 2, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 17 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 4 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 4
-
------------ ITERATION: 18 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 19 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 20 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 21 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 22 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 23 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 24 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 25 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 26 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 27 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 28 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 29 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 30 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 31 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 32 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 33 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 2 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
-
------------ ITERATION: 34 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 35 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 36 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 37 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 38 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 39 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 40 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 41 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 42 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 43 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 44 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 45 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 46 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 4 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 4
-
------------ ITERATION: 47 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 48 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 5, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 49 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 50 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 51 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 52 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 53 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 54 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 2, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 55 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 56 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 57 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 58 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 59 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 3: Current player receives up to two treasures from their deck
-    STATUS: TEST 3 FAILED
-    received treasures = 3, expected = 3
-    deck treasure count = 0, expected = 1
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 2 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
-
------------ ITERATION: 60 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 2 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
-
------------ ITERATION: 61 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 5, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 62 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 63 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 64 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 65 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 66 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 67 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 68 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 69 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 70 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 71 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 72 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 73 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 74 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 3 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 3
-
------------ ITERATION: 75 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 76 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 77 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 78 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 79 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 80 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 2 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
-
------------ ITERATION: 81 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 0 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = -1, expected = 4
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 6 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
-
------------ ITERATION: 82 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 2 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
-
 ----------- ITERATION: 83 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 0 extra card/s gained
+  TEST 4: 1 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 5, expected = 4
+    hand count = 6, expected = 5
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 6 card/s discarded
+  TEST 7: 5 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 6
+    discard count = 1, expected = 5
 
 ----------- ITERATION: 84 ----------
 
@@ -1599,18 +1606,18 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 2 extra card/s gained
+  TEST 4: 0 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
+    hand count = 3, expected = 4
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 4 card/s discarded
+  TEST 7: 6 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 4
+    discard count = 1, expected = 6
 
 ----------- ITERATION: 86 ----------
 
@@ -1620,14 +1627,37 @@
 
   TEST 4: 2 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
+    hand count = 8, expected = 6
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
+  TEST 7: 3 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 3
+
 ----------- ITERATION: 87 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 88 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -1646,7 +1676,60 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 5
 
------------ ITERATION: 88 ----------
+----------- ITERATION: 89 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 90 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 91 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 1 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = 6, expected = 5
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 5 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 5
+
+----------- ITERATION: 92 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -1665,96 +1748,24 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 6
 
------------ ITERATION: 89 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 90 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 1 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 5 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
-
------------ ITERATION: 91 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 7, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
------------ ITERATION: 92 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 4 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 4
-
 ----------- ITERATION: 93 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 1 extra card/s gained
+  TEST 4: 0 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 6, expected = 5
+    hand count = 2, expected = 4
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 5 card/s discarded
+  TEST 7: 6 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 5
+    discard count = 1, expected = 6
 
 ----------- ITERATION: 94 ----------
 
@@ -1762,11 +1773,6 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 3: Current player receives up to two treasures from their deck
-    STATUS: TEST 3 FAILED
-    received treasures = 3, expected = 3
-    deck treasure count = 0, expected = 1
-
   TEST 4: 2 extra card/s gained
     STATUS: TEST 4 FAILED
     hand count = 9, expected = 6
@@ -1776,11 +1782,30 @@
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 2 card/s discarded
+  TEST 7: 3 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
+    discard count = 1, expected = 3
 
 ----------- ITERATION: 95 ----------
+
+  TEST 1: 0 bonus coin/s awarded to the current player
+    STATUS: TEST 1 FAILED
+   bonus coins = 1, expected = 0
+
+  TEST 4: 0 extra card/s gained
+    STATUS: TEST 4 FAILED
+    hand count = -1, expected = 4
+
+  TEST 6: No state change occurs for other players
+    STATUS: TEST 6 FAILED
+    next player hand count = 2, expected = 0
+    next player deck count = 8, expected = 10
+
+  TEST 7: 6 card/s discarded
+    STATUS: TEST 7 FAILED
+    discard count = 1, expected = 6
+
+----------- ITERATION: 96 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
@@ -1799,43 +1824,24 @@
     STATUS: TEST 7 FAILED
     discard count = 1, expected = 5
 
------------ ITERATION: 96 ----------
-
-  TEST 1: 0 bonus coin/s awarded to the current player
-    STATUS: TEST 1 FAILED
-   bonus coins = 1, expected = 0
-
-  TEST 4: 2 extra card/s gained
-    STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
-
-  TEST 6: No state change occurs for other players
-    STATUS: TEST 6 FAILED
-    next player hand count = 2, expected = 0
-    next player deck count = 8, expected = 10
-
-  TEST 7: 4 card/s discarded
-    STATUS: TEST 7 FAILED
-    discard count = 1, expected = 4
-
 ----------- ITERATION: 97 ----------
 
   TEST 1: 0 bonus coin/s awarded to the current player
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 4: 2 extra card/s gained
+  TEST 4: 0 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 8, expected = 6
+    hand count = 5, expected = 4
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 2 card/s discarded
+  TEST 7: 6 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
+    discard count = 1, expected = 6
 
 ----------- ITERATION: 98 ----------
 
@@ -1843,23 +1849,18 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 3: Current player receives up to two treasures from their deck
-    STATUS: TEST 3 FAILED
-    received treasures = 3, expected = 3
-    deck treasure count = 0, expected = 1
-
-  TEST 4: 2 extra card/s gained
+  TEST 4: 1 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
+    hand count = 6, expected = 5
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 2 card/s discarded
+  TEST 7: 5 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
+    discard count = 1, expected = 5
 
 ----------- ITERATION: 99 ----------
 
@@ -1867,23 +1868,18 @@
     STATUS: TEST 1 FAILED
    bonus coins = 1, expected = 0
 
-  TEST 3: Current player receives up to two treasures from their deck
-    STATUS: TEST 3 FAILED
-    received treasures = 3, expected = 4
-    deck treasure count = 0, expected = 1
-
-  TEST 4: 2 extra card/s gained
+  TEST 4: 1 extra card/s gained
     STATUS: TEST 4 FAILED
-    hand count = 9, expected = 6
+    hand count = 6, expected = 5
 
   TEST 6: No state change occurs for other players
     STATUS: TEST 6 FAILED
     next player hand count = 2, expected = 0
     next player deck count = 8, expected = 10
 
-  TEST 7: 2 card/s discarded
+  TEST 7: 5 card/s discarded
     STATUS: TEST 7 FAILED
-    discard count = 1, expected = 2
+    discard count = 1, expected = 5
 
  >>>>> TESTS COMPLETE. FAILURE: 395/700 adventurer tests failed. <<<<<
 
@@ -1902,13 +1898,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 17, expected = 3
+    card 0 in hand = 17, expected = 21
 
 ----------- ITERATION: 1 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -1916,7 +1912,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 19, expected = 11
+    card 0 in hand = 17, expected = 1
 
 ----------- ITERATION: 2 ----------
 
@@ -1930,13 +1926,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 2, expected = 4
+    card 0 in hand = 4, expected = 21
 
 ----------- ITERATION: 3 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -1944,7 +1940,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 4
+    card 0 in hand = 8, expected = 1
 
 ----------- ITERATION: 4 ----------
 
@@ -1958,7 +1954,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 2, expected = 14
+    card 0 in hand = 14, expected = 6
 
 ----------- ITERATION: 5 ----------
 
@@ -1969,10 +1965,6 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 6, expected = 17
 
 ----------- ITERATION: 6 ----------
 
@@ -1986,7 +1978,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 19
+    card 0 in hand = 5, expected = 25
 
 ----------- ITERATION: 7 ----------
 
@@ -2000,7 +1992,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 19, expected = 13
+    card 0 in hand = 25, expected = 1
 
 ----------- ITERATION: 8 ----------
 
@@ -2014,7 +2006,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 2
+    card 0 in hand = 21, expected = 0
 
 ----------- ITERATION: 9 ----------
 
@@ -2028,13 +2020,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 19, expected = 3
+    card 0 in hand = 7, expected = 14
 
 ----------- ITERATION: 10 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2042,7 +2034,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 0
+    card 0 in hand = 14, expected = 21
 
 ----------- ITERATION: 11 ----------
 
@@ -2068,10 +2060,6 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 11
-
 ----------- ITERATION: 13 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
@@ -2084,567 +2072,29 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 4, expected = 6
+    card 0 in hand = 25, expected = 2
 
 ----------- ITERATION: 14 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 11, expected = 14
 
 ----------- ITERATION: 15 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 21, expected = 19
 
 ----------- ITERATION: 16 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 17 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 4, expected = 5
-
------------ ITERATION: 18 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 0
-
------------ ITERATION: 19 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 20 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 8
-
------------ ITERATION: 21 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 11, expected = 21
-
------------ ITERATION: 22 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 11
-
------------ ITERATION: 23 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 2, expected = 8
-
------------ ITERATION: 24 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 5
-
------------ ITERATION: 25 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 2
-
------------ ITERATION: 26 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 8
-
------------ ITERATION: 27 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 13
-
------------ ITERATION: 28 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 6
-
------------ ITERATION: 29 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 13
-
------------ ITERATION: 30 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 0
-
------------ ITERATION: 31 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 11
-
------------ ITERATION: 32 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 33 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 13
-
------------ ITERATION: 34 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 22
-
------------ ITERATION: 35 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 8, expected = 25
-
------------ ITERATION: 36 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 19, expected = 13
-
------------ ITERATION: 37 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 4, expected = 2
-
------------ ITERATION: 38 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 21, expected = 6
-
------------ ITERATION: 39 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 17
-
------------ ITERATION: 40 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 17, expected = 21
-
------------ ITERATION: 41 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 42 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 7
-
------------ ITERATION: 43 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 11, expected = 19
-
------------ ITERATION: 44 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 22, expected = 3
-
------------ ITERATION: 45 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 3, expected = 6
-
------------ ITERATION: 46 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 6
-
------------ ITERATION: 47 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 19
-
------------ ITERATION: 48 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 6, expected = 21
-
------------ ITERATION: 49 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 3
-
------------ ITERATION: 50 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 21
-
------------ ITERATION: 51 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 0
-
------------ ITERATION: 52 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 14
-
------------ ITERATION: 53 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 11, expected = 7
-
------------ ITERATION: 54 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 17
-
------------ ITERATION: 55 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -2658,6 +2108,548 @@
     STATUS: TEST 6 FAILED
     card 0 in hand = 22, expected = 1
 
+----------- ITERATION: 17 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 22
+
+----------- ITERATION: 18 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 5
+
+----------- ITERATION: 19 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 5
+
+----------- ITERATION: 20 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 25
+
+----------- ITERATION: 21 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 13
+
+----------- ITERATION: 22 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 13
+
+----------- ITERATION: 23 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 19
+
+----------- ITERATION: 24 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 2
+
+----------- ITERATION: 25 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 17
+
+----------- ITERATION: 26 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 21
+
+----------- ITERATION: 27 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 3
+
+----------- ITERATION: 28 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 6
+
+----------- ITERATION: 29 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 3
+
+----------- ITERATION: 30 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 19
+
+----------- ITERATION: 31 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 13
+
+----------- ITERATION: 32 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 8
+
+----------- ITERATION: 33 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 11
+
+----------- ITERATION: 34 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 2
+
+----------- ITERATION: 35 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 4
+
+----------- ITERATION: 36 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 21
+
+----------- ITERATION: 37 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 6
+
+----------- ITERATION: 38 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 22
+
+----------- ITERATION: 39 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 3
+
+----------- ITERATION: 40 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 11
+
+----------- ITERATION: 41 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 21
+
+----------- ITERATION: 42 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 4
+
+----------- ITERATION: 43 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 5
+
+----------- ITERATION: 44 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 4
+
+----------- ITERATION: 45 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 17
+
+----------- ITERATION: 46 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 14
+
+----------- ITERATION: 47 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 22
+
+----------- ITERATION: 48 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 21
+
+----------- ITERATION: 49 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 17
+
+----------- ITERATION: 50 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 7
+
+----------- ITERATION: 51 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 3
+
+----------- ITERATION: 52 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 19
+
+----------- ITERATION: 53 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 11
+
+----------- ITERATION: 54 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 0
+
+----------- ITERATION: 55 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
 ----------- ITERATION: 56 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
@@ -2670,7 +2662,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 25, expected = 3
+    card 0 in hand = 25, expected = 21
 
 ----------- ITERATION: 57 ----------
 
@@ -2684,13 +2676,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 25
+    card 0 in hand = 14, expected = 0
 
 ----------- ITERATION: 58 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2698,13 +2690,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 2, expected = 22
+    card 0 in hand = 14, expected = 17
 
 ----------- ITERATION: 59 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2712,13 +2704,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 13, expected = 1
+    card 0 in hand = 11, expected = 4
 
 ----------- ITERATION: 60 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2726,7 +2718,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 8, expected = 2
+    card 0 in hand = 17, expected = 8
 
 ----------- ITERATION: 61 ----------
 
@@ -2740,21 +2732,17 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 17
+    card 0 in hand = 7, expected = 3
 
 ----------- ITERATION: 62 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 8
 
 ----------- ITERATION: 63 ----------
 
@@ -2768,13 +2756,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 22, expected = 5
+    card 0 in hand = 13, expected = 5
 
 ----------- ITERATION: 64 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2782,7 +2770,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 17
+    card 0 in hand = 17, expected = 21
 
 ----------- ITERATION: 65 ----------
 
@@ -2794,11 +2782,15 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 4
+
 ----------- ITERATION: 66 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -2806,7 +2798,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 11, expected = 2
+    card 0 in hand = 4, expected = 3
 
 ----------- ITERATION: 67 ----------
 
@@ -2820,23 +2812,9 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 13
+    card 0 in hand = 19, expected = 17
 
 ----------- ITERATION: 68 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 3, expected = 21
-
------------ ITERATION: 69 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -2848,239 +2826,9 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 22, expected = 13
+    card 0 in hand = 19, expected = 2
 
------------ ITERATION: 70 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 3
-
------------ ITERATION: 71 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 7, expected = 25
-
------------ ITERATION: 72 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 25
-
------------ ITERATION: 73 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 7
-
------------ ITERATION: 74 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 21
-
------------ ITERATION: 75 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 76 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
------------ ITERATION: 77 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 4, expected = 22
-
------------ ITERATION: 78 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 25, expected = 22
-
------------ ITERATION: 79 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 3, expected = 11
-
------------ ITERATION: 80 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 2, expected = 7
-
------------ ITERATION: 81 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 25
-
------------ ITERATION: 82 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 13, expected = 11
-
------------ ITERATION: 83 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 0
-
------------ ITERATION: 84 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 8, expected = 13
-
------------ ITERATION: 85 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 6
-
------------ ITERATION: 86 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 25, expected = 0
-
------------ ITERATION: 87 ----------
+----------- ITERATION: 69 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3094,7 +2842,217 @@
     STATUS: TEST 6 FAILED
     card 0 in hand = 14, expected = 22
 
------------ ITERATION: 88 ----------
+----------- ITERATION: 70 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 13
+
+----------- ITERATION: 71 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 6
+
+----------- ITERATION: 72 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 22
+
+----------- ITERATION: 73 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 6, expected = 1
+
+----------- ITERATION: 74 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 5
+
+----------- ITERATION: 75 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 7
+
+----------- ITERATION: 76 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 8
+
+----------- ITERATION: 77 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 0
+
+----------- ITERATION: 78 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 5
+
+----------- ITERATION: 79 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 0
+
+----------- ITERATION: 80 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 6
+
+----------- ITERATION: 81 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 7
+
+----------- ITERATION: 82 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 11
+
+----------- ITERATION: 83 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 0
+
+----------- ITERATION: 84 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 0
+
+----------- ITERATION: 85 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3108,7 +3066,21 @@
     STATUS: TEST 6 FAILED
     card 0 in hand = 5, expected = 8
 
------------ ITERATION: 89 ----------
+----------- ITERATION: 86 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 25
+
+----------- ITERATION: 87 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3120,7 +3092,31 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 22, expected = 17
+    card 0 in hand = 3, expected = 19
+
+----------- ITERATION: 88 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 7, expected = 9
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 21
+
+----------- ITERATION: 89 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 8, expected = 10
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
 
 ----------- ITERATION: 90 ----------
 
@@ -3134,13 +3130,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 25, expected = 7
+    card 0 in hand = 5, expected = 19
 
 ----------- ITERATION: 91 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3148,7 +3144,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 22
+    card 0 in hand = 7, expected = 25
 
 ----------- ITERATION: 92 ----------
 
@@ -3162,13 +3158,13 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 5, expected = 6
+    card 0 in hand = 22, expected = 0
 
 ----------- ITERATION: 93 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3176,7 +3172,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 8, expected = 25
+    card 0 in hand = 1, expected = 3
 
 ----------- ITERATION: 94 ----------
 
@@ -3190,7 +3186,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 4
+    card 0 in hand = 11, expected = 6
 
 ----------- ITERATION: 95 ----------
 
@@ -3218,7 +3214,7 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 0, expected = 4
+    card 0 in hand = 4, expected = 0
 
 ----------- ITERATION: 97 ----------
 
@@ -3232,23 +3228,9 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 19
+    card 0 in hand = 25, expected = 1
 
 ----------- ITERATION: 98 ----------
-
-  TEST 4: No state change occurs to the victory or kingdom card piles
-    STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
-
-  TEST 5: No state change occurs for other players
-    STATUS: TEST 5 FAILED
-    next player deck count = 9, expected = 10
-
-  TEST 6: Extra cards come from player's own deck
-    STATUS: TEST 6 FAILED
-    card 0 in hand = 14, expected = 5
-
------------ ITERATION: 99 ----------
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3260,7 +3242,21 @@
 
   TEST 6: Extra cards come from player's own deck
     STATUS: TEST 6 FAILED
-    card 0 in hand = 1, expected = 14
+    card 0 in hand = 1, expected = 22
+
+----------- ITERATION: 99 ----------
+
+  TEST 4: No state change occurs to the victory or kingdom card piles
+    STATUS: TEST 4 FAILED
+    estate count = 9, expected = 11
+
+  TEST 5: No state change occurs for other players
+    STATUS: TEST 5 FAILED
+    next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 22
 
  >>>>> TESTS COMPLETE. FAILURE: 293/600 village tests failed. <<<<<
 
@@ -3297,7 +3293,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3333,7 +3329,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3369,7 +3365,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3459,7 +3455,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3477,7 +3473,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3495,7 +3491,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3531,7 +3527,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3549,7 +3545,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3603,7 +3599,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3621,7 +3617,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3639,7 +3635,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3711,7 +3707,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3747,7 +3743,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3783,7 +3779,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3819,7 +3815,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3837,7 +3833,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3855,7 +3851,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3909,7 +3905,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3927,7 +3923,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3963,7 +3959,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -3981,7 +3977,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4035,7 +4031,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4053,7 +4049,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4071,7 +4067,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4107,7 +4103,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4125,7 +4121,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4143,7 +4139,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4161,7 +4157,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4179,7 +4175,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4197,7 +4193,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4251,7 +4247,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4269,7 +4265,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4287,7 +4283,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4323,7 +4319,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4377,7 +4373,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 7, expected = 9
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4395,7 +4391,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4413,7 +4409,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4467,7 +4463,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4485,7 +4481,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4503,7 +4499,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4521,7 +4517,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4539,7 +4535,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4575,7 +4571,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4665,7 +4661,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4683,7 +4679,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4701,7 +4697,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4737,7 +4733,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4773,7 +4769,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4791,7 +4787,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4809,7 +4805,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 8, expected = 10
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4881,7 +4877,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -4917,7 +4913,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -5007,7 +5003,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -5025,7 +5021,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 9, expected = 11
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -5043,7 +5039,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 9, expected = 11
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -5061,7 +5057,7 @@
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
-    estate count = 7, expected = 9
+    estate count = 8, expected = 10
 
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
@@ -5544,45 +5540,45 @@ call    0 returned 100%
         3:  198:  return 0;
         -:  199:}
         -:  200:
-function shuffle called 825 returned 100% blocks executed 100%
-      825:  201:int shuffle(int player, struct gameState *state) {
+function shuffle called 840 returned 100% blocks executed 100%
+      840:  201:int shuffle(int player, struct gameState *state) {
         -:  202: 
         -:  203:
         -:  204:  int newDeck[MAX_DECK];
-      825:  205:  int newDeckPos = 0;
+      840:  205:  int newDeckPos = 0;
         -:  206:  int card;
         -:  207:  int i;
         -:  208:
-      825:  209:  if (state->deckCount[player] < 1)
+      840:  209:  if (state->deckCount[player] < 1)
 branch  0 taken 88% (fallthrough)
-branch  1 taken 12%
-      722:  210:    return -1;
-      103:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
+branch  1 taken 13%
+      735:  210:    return -1;
+      105:  211:  qsort ((void*)(state->deck[player]), state->deckCount[player], sizeof(int), compare); 
 call    0 returned 100%
         -:  212:  /* SORT CARDS IN DECK TO ENSURE DETERMINISM! */
         -:  213:
-      363:  214:  while (state->deckCount[player] > 0) {
+      369:  214:  while (state->deckCount[player] > 0) {
 branch  0 taken 60%
 branch  1 taken 40% (fallthrough)
-      157:  215:    card = floor(Random() * state->deckCount[player]);
+      159:  215:    card = floor(Random() * state->deckCount[player]);
 call    0 returned 100%
-      157:  216:    newDeck[newDeckPos] = state->deck[player][card];
-      157:  217:    newDeckPos++;
-      307:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
+      159:  216:    newDeck[newDeckPos] = state->deck[player][card];
+      159:  217:    newDeckPos++;
+      309:  218:    for (i = card; i < state->deckCount[player]-1; i++) {
 branch  0 taken 49%
 branch  1 taken 51% (fallthrough)
       150:  219:      state->deck[player][i] = state->deck[player][i+1];
         -:  220:    }
-      157:  221:    state->deckCount[player]--;
+      159:  221:    state->deckCount[player]--;
         -:  222:  }
-      260:  223:  for (i = 0; i < newDeckPos; i++) {
+      264:  223:  for (i = 0; i < newDeckPos; i++) {
 branch  0 taken 60%
 branch  1 taken 40% (fallthrough)
-      157:  224:    state->deck[player][i] = newDeck[i];
-      157:  225:    state->deckCount[player]++;
+      159:  224:    state->deck[player][i] = newDeck[i];
+      159:  225:    state->deckCount[player]++;
         -:  226:  }
         -:  227:
-      103:  228:  return 0;
+      105:  228:  return 0;
         -:  229:}
         -:  230:
 function playCard called 0 returned 0% blocks executed 0%
@@ -6013,54 +6009,54 @@ branch  1 never executed
     #####:  522:  return 0;
         -:  523:}
         -:  524:
-function drawCard called 1909 returned 100% blocks executed 100%
-     1909:  525:int drawCard(int player, struct gameState *state)
+function drawCard called 1922 returned 100% blocks executed 100%
+     1922:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:  int deckCounter;
-     1909:  528:  if (state->deckCount[player] <= 0){//Deck is empty
-branch  0 taken 31% (fallthrough)
-branch  1 taken 69%
+     1922:  528:  if (state->deckCount[player] <= 0){//Deck is empty
+branch  0 taken 32% (fallthrough)
+branch  1 taken 68%
         -:  529:    
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
         -:  532:    //Move discard to deck
-      691:  533:    for (i = 0; i < state->discardCount[player];i++){
+      706:  533:    for (i = 0; i < state->discardCount[player];i++){
 branch  0 taken 14%
 branch  1 taken 86% (fallthrough)
-       97:  534:      state->deck[player][i] = state->discard[player][i];
-       97:  535:      state->discard[player][i] = -1;
+       99:  534:      state->deck[player][i] = state->discard[player][i];
+       99:  535:      state->discard[player][i] = -1;
         -:  536:    }
         -:  537:
-      594:  538:    state->deckCount[player] = state->discardCount[player];
-      594:  539:    state->discardCount[player] = 0;//Reset discard
+      607:  538:    state->deckCount[player] = state->discardCount[player];
+      607:  539:    state->discardCount[player] = 0;//Reset discard
         -:  540:
         -:  541:    //Shufffle the deck
-      594:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+      607:  542:    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
 call    0 returned 100%
         -:  543:   
         -:  544:    if (DEBUG){//Debug statements
         -:  545:      printf("Deck count now: %d\n", state->deckCount[player]);
         -:  546:    }
         -:  547:    
-      594:  548:    state->discardCount[player] = 0;
+      607:  548:    state->discardCount[player] = 0;
         -:  549:
         -:  550:    //Step 2 Draw Card
-      594:  551:    count = state->handCount[player];//Get current player's hand count
+      607:  551:    count = state->handCount[player];//Get current player's hand count
         -:  552:    
         -:  553:    if (DEBUG){//Debug statements
         -:  554:      printf("Current hand count: %d\n", count);
         -:  555:    }
         -:  556:    
-      594:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
+      607:  557:    deckCounter = state->deckCount[player];//Create a holder for the deck count
         -:  558:
-      594:  559:    if (deckCounter == 0)
+      607:  559:    if (deckCounter == 0)
 branch  0 taken 84% (fallthrough)
 branch  1 taken 16%
-      497:  560:      return -1;
+      508:  560:      return -1;
         -:  561:
-       97:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-       97:  563:    state->deckCount[player]--;
-       97:  564:    state->handCount[player]++;//Increment hand count
+       99:  562:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+       99:  563:    state->deckCount[player]--;
+       99:  564:    state->handCount[player]++;//Increment hand count
         -:  565:  }
         -:  566:
         -:  567:  else{
@@ -6076,7 +6072,7 @@ branch  1 taken 16%
      1315:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-     1412:  580:  return 0;
+     1414:  580:  return 0;
         -:  581:}
         -:  582:
 function getCost called 100 returned 100% blocks executed 10%
@@ -6227,11 +6223,11 @@ call    0 returned 100%
         -:  672:    case feast:
         -:  673:      //gain card with cost up to 5
         -:  674:      //Backup hand
-      703:  675:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+      692:  675:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
 branch  0 taken 86%
 branch  1 taken 14% (fallthrough)
-      603:  676:	temphand[i] = state->hand[currentPlayer][i];//Backup card
-      603:  677:	state->hand[currentPlayer][i] = -1;//Set to nothing
+      592:  676:	temphand[i] = state->hand[currentPlayer][i];//Backup card
+      592:  677:	state->hand[currentPlayer][i] = -1;//Set to nothing
         -:  678:      }
         -:  679:      //Backup hand
         -:  680:
@@ -6282,11 +6278,11 @@ call    0 returned 100%
         -:  714:      }     
         -:  715:
         -:  716:      //Reset Hand
-      703:  717:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
+      692:  717:      for (i = 0; i <= state->handCount[currentPlayer]; i++){
 branch  0 taken 86%
 branch  1 taken 14% (fallthrough)
-      603:  718:	state->hand[currentPlayer][i] = temphand[i];
-      603:  719:	temphand[i] = -1;
+      592:  718:	state->hand[currentPlayer][i] = temphand[i];
+      592:  719:	temphand[i] = -1;
         -:  720:      }
         -:  721:      //Reset Hand
         -:  722:      			
@@ -6942,27 +6938,27 @@ branch  1 taken 0%
         -: 1173:	
         -: 1174:  //remove card from player's hand
       400: 1175:  if ( handPos == (state->handCount[currentPlayer] - 1) ) 	//last card in hand array is played
-branch  0 taken 7% (fallthrough)
-branch  1 taken 93%
+branch  0 taken 12% (fallthrough)
+branch  1 taken 88%
         -: 1176:    {
         -: 1177:      //reduce number of cards in hand
-       29: 1178:      state->handCount[currentPlayer]--;
+       48: 1178:      state->handCount[currentPlayer]--;
         -: 1179:    }
-      371: 1180:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
-branch  0 taken 47% (fallthrough)
-branch  1 taken 53%
+      352: 1180:  else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
+branch  0 taken 45% (fallthrough)
+branch  1 taken 55%
         -: 1181:    {
         -: 1182:      //reduce number of cards in hand
-      174: 1183:      state->handCount[currentPlayer]--;
+      157: 1183:      state->handCount[currentPlayer]--;
         -: 1184:    }
         -: 1185:  else 	
         -: 1186:    {
         -: 1187:      //replace discarded card with last card in hand
-      197: 1188:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
+      195: 1188:      state->hand[currentPlayer][handPos] = state->hand[currentPlayer][ (state->handCount[currentPlayer] - 1)];
         -: 1189:      //set last card to -1
-      197: 1190:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
+      195: 1190:      state->hand[currentPlayer][state->handCount[currentPlayer] - 1] = -1;
         -: 1191:      //reduce number of cards in hand
-      197: 1192:      state->handCount[currentPlayer]--;
+      195: 1192:      state->handCount[currentPlayer]--;
         -: 1193:    }
         -: 1194:	
       400: 1195:  return 0;
@@ -7022,23 +7018,23 @@ function updateCoins called 103 returned 100% blocks executed 82%
       103: 1240:  state->coins = 0;
         -: 1241:
         -: 1242:  //add coins for each Treasure card in player's hand
-      637: 1243:  for (i = 0; i < state->handCount[player]; i++)
-branch  0 taken 84%
-branch  1 taken 16% (fallthrough)
+      624: 1243:  for (i = 0; i < state->handCount[player]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
         -: 1244:    {
-      534: 1245:      if (state->hand[player][i] == copper)
+      521: 1245:      if (state->hand[player][i] == copper)
 branch  0 taken 2% (fallthrough)
 branch  1 taken 98%
         -: 1246:	{
        12: 1247:	  state->coins += 1;
         -: 1248:	}
-      522: 1249:      else if (state->hand[player][i] == silver)
+      509: 1249:      else if (state->hand[player][i] == silver)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1250:	{
     #####: 1251:	  state->coins += 2;
         -: 1252:	}
-      522: 1253:      else if (state->hand[player][i] == gold)
+      509: 1253:      else if (state->hand[player][i] == gold)
 branch  0 taken 0% (fallthrough)
 branch  1 taken 100%
         -: 1254:	{
@@ -7089,37 +7085,37 @@ call    0 returned 100%
       100: 1291:      int z = 0;  // this is the counter for the temp hand
         -: 1292:      
         -: 1293:
-      894: 1294:      while(drawntreasure<2){
-branch  0 taken 87%
-branch  1 taken 13% (fallthrough)
-      694: 1295:	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+      907: 1294:      while(drawntreasure<2){
+branch  0 taken 88%
+branch  1 taken 12% (fallthrough)
+      707: 1295:	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 branch  0 taken 32% (fallthrough)
 branch  1 taken 68%
-      225: 1296:	  shuffle(currentPlayer, state);
+      227: 1296:	  shuffle(currentPlayer, state);
 call    0 returned 100%
         -: 1297:	}
-      694: 1298:	drawCard(currentPlayer, state);
+      707: 1298:	drawCard(currentPlayer, state);
 call    0 returned 100%
-      694: 1299:	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-      694: 1300:	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-branch  0 taken 88% (fallthrough)
-branch  1 taken 12%
-branch  2 taken 92% (fallthrough)
-branch  3 taken 8%
-branch  4 taken 12% (fallthrough)
-branch  5 taken 88%
+      707: 1299:	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+      707: 1300:	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+branch  0 taken 91% (fallthrough)
+branch  1 taken 9%
+branch  2 taken 91% (fallthrough)
+branch  3 taken 9%
+branch  4 taken 14% (fallthrough)
+branch  5 taken 86%
       200: 1301:	  drawntreasure++;
         -: 1302:	else{
-      494: 1303:	  temphand[z]=cardDrawn;
-      494: 1304:	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-      494: 1305:	  z++;
+      507: 1303:	  temphand[z]=cardDrawn;
+      507: 1304:	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+      507: 1305:	  z++;
         -: 1306:	}
         -: 1307:      }
-      297: 1308:      while(z-1>=0){
-branch  0 taken 49%
-branch  1 taken 51% (fallthrough)
-       97: 1309:	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
-       97: 1310:	z=-1;
+      299: 1308:      while(z-1>=0){
+branch  0 taken 50%
+branch  1 taken 50% (fallthrough)
+       99: 1309:	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+       99: 1310:	z=-1;
         -: 1311:      }
       100: 1312:      return 0;
         -: 1313:}
