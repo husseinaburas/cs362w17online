@@ -96,6 +96,20 @@ unittestresults.out: playdom player testDrawCard testBuyCard badTestDrawCard uni
 	./card4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 
+randomtestadventurer.out: playdom player testDrawCard testBuyCard badTestDrawCard randomtestadventurer
+	rm -rf dominion.gcda
+	./randomtestadventurer -1 > randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	
+randomtestcard1.out: playdom player testDrawCard testBuyCard badTestDrawCard randomtestcard1
+	rm -rf dominion.gcda
+	./randomtestcard1 -1 > randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	
+randomtestcard2.out: playdom player testDrawCard testBuyCard badTestDrawCard randomtestcard2
+	rm -rf dominion.gcda
+	./randomtestcard2 -1 > randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
 	
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
