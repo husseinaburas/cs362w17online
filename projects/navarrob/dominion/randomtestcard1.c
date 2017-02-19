@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
 	}
 
 	else
-		seed = argv[1];
+		seed = (int) argv[1];
 
 	SelectStream(2);
 	PutSeed(seed);
@@ -55,8 +55,8 @@ int main(int argc, char **argv) {
 		initialDeckCount = G.deckCount[p] = (int) floor(Random() * MAX_DECK);
 
 		r = (int) floor(Random() * 10);
-		if (initialDeckCount == 0) {
-			G.discardCount[p] = 3;
+		if (initialDeckCount < 3) {
+			G.discardCount[p] = 4;
 			G.discard[p][0] = smithy;
 			G.discard[p][1] = adventurer;
 			G.discard[p][2] = gold;
