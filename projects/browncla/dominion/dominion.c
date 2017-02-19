@@ -1174,8 +1174,8 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   if (trashFlag < 1)
     {
       //add card to discard pile
-      state->discard[currentPlayer][state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++; //increasing the played card count...this is wrong but works for now
+      state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos]; 
+      state->discardCount[currentPlayer]++; //increasing the discardCount
     }
   
   //set played card to -1 to remove from hand of grid of hands for all players
@@ -1303,36 +1303,40 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
        int z=0;
        int drawntreasure = 0;
-       int temphand[MAX_HAND];
+
        //int startNumCards = state->handCount[currentPlayer]; // storing the starting number of cards for test
        if (state->hand[currentPlayer][handPos] != adventurer){
+        //printf("Wrong card\n");
         return -1;
        }
        if (state->phase != 0){
+        //printf("Wrong phase\n");
         return -1;
        }
        if (state->numActions <= 0){
+        //printf("Wrong number of actions\n");
         return -1;
        }
+
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
-      while(drawntreasure<1){ //BUG
-        drawCard(currentPlayer, state);
-        int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-          drawntreasure++;
-        else{
-          temphand[z]=cardDrawn; //storing the non-treasure drawn card in a temporary hand to discard before continuing play
-          state->handCount[currentPlayer]--; //removing the non-treasure card from the current hand
+      while(drawntreasure<1 && state->deckCount[currentPlayer] < z){ //BUG
         
+        drawCard(currentPlayer, state);
+
+
+        int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+          drawntreasure++;
+        }
+        else{
+          discardCard(state->hand[currentPlayer][state->handCount[currentPlayer]-1], currentPlayer, state, 0);
           z++;
-          }
+        }
+
       }
-      //discarding the non-treasure cards that were drawn. 
-      while(z-1>0){ //BUG
-        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn 
-        z=z-1;
-      }
+
+     
 
       discardCard(handPos, currentPlayer, state, 0); // discard the adventure card since it has been played
       updateCoins(currentPlayer, state, 0);
