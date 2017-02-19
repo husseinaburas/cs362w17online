@@ -26,6 +26,9 @@
 #define TESTCARD_NAME "village"
 
 int main(int argc, char *argv[]) {
+  int test_cases = 6;
+  int iterations = 100;
+  int tests = test_cases * iterations;
   int i, testnum;
   int randcard;
   int randomseed = atoi(argv[argc - 1]);  // get random seed from user input
@@ -57,8 +60,8 @@ int main(int argc, char *argv[]) {
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
   // perform 100 random tests
-  for (testnum = 0; testnum < 100; testnum++) {
-    printf("\n----------- ITERATION: %d ----------\n", i);
+  for (testnum = 0; testnum < iterations; testnum++) {
+    printf("\n----------- ITERATION: %d ----------\n", testnum);
     
     // fill player's hand with random cards
     for (i = 0; i < G.handCount[thisPlayer]; i++) {
@@ -98,8 +101,8 @@ int main(int argc, char *argv[]) {
   }
 
   /**************************************** END OF TESTS ****************************************************/
-  if (pass_count == 600) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
-  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", 600 - pass_count, 600, TESTCARD_NAME);}
+  if (pass_count == tests) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
+  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", tests - pass_count, tests, TESTCARD_NAME);}
 
   return 0;
 }
