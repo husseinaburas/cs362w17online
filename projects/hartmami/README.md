@@ -1,8 +1,8 @@
 ## Assignment 4
 
-	added randomtestcard2.c v1
+	added randomtestcard2.c
 
-	added randomtestadventurer.c v1
+	added randomtestadventurer.c
 
 	added randomtestcard1.c
 
