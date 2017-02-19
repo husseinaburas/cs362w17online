@@ -1,3 +1,15 @@
+## Assignment 4
+
+	added randomtestcard2.c v1
+
+	added randomtestadventurer.c v1
+
+	added randomtestcard1.c
+
+	added getCard() function, updated testAssert() to dominion.c and dominion.h
+
+	modified makefile
+
 ## Assignment 3
 
 	added unittests
