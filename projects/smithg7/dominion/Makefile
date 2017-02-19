@@ -104,6 +104,24 @@ unittestresults.out:
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c dominion.o interface.o
+	gcc -o randomtestadventurer randomtestadventurer.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+	./randomtestadventurer 15 >> randomtestadventurer.out
+	gcov dominion.c -b >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1: randomtestcard1.c dominion.o interface.o
+	gcc -o randomtestcard1 randomtestcard1.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+	./randomtestcard1 16 >> randomtestcard1.out
+	gcov dominion.c -b >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2: randomtestcard2.c dominion.o interface.o
+	gcc -o randomtestcard2 randomtestcard2.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+	./randomtestcard2 17 >> randomtestcard2.out
+	gcov dominion.c -b >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
