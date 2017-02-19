@@ -184,7 +184,7 @@ int main() {
   // TEST 4: verify that no state change occurs for other players
   testAssert(4, &pass_count, checkOtherPlayerState(4, card_state, G));
 	
-  // TEST 5: verify no treasures found	
+  // TEST 5: verify one treasure found	
   printf("\n  TEST 5: Current player receives one treasure from their deck\n");
   // count number of treasure cards in player's hand after playing adventurer
   for (i = 0; i < testG.handCount[thisPlayer]; i++) {
@@ -255,7 +255,7 @@ int main() {
   // TEST 4: verify that no state change occurs for other players
   testAssert(4, &pass_count, checkOtherPlayerState(4, card_state, G));
 	
-  // TEST 5: verify no treasures found	
+  // TEST 5: verify two treasures found	
   printf("\n  TEST 5: Current player receives two treasures from their deck\n");	
   // count number of treasure cards in player's hand after playing adventurer
   for (i = 0; i < testG.handCount[thisPlayer]; i++) {

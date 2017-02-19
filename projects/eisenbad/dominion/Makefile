@@ -26,6 +26,25 @@ randomtestcard1.out: randomtestcard1.c randtestfuncs.c dominion.o rngs.o
 
 randomtestcard2.out: randomtestcard2.c randtestfuncs.c dominion.o rngs.o
 	gcc -o randomtestcard2 -g randomtestcard2.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestresults.out: randomtestadventurer.c randomtestcard1.c randomtestcard2.c randtestfuncs.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard1 -g randomtestcard1.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard2 -g randomtestcard2.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+	
+	./randomtestadventurer > randomtestresults.out
+	./randomtestcard1 >> randomtestresults.out
+	./randomtestcard2 >> randomtestresults.out
+	echo --------------------- randomtestadventurer.c gcov results ------------------ >> randomtestresults.out
+	gcov -b -f randomtestadventurer.c >> randomtestresults.out
+	echo --------------------- randomtestcard1.c gcov results ------------------ >> randomtestresults.out
+	gcov -b -f randomtestcard1.c >> randomtestresults.out
+	echo --------------------- randomtestcard2.c gcov results ------------------ >> randomtestresults.out
+	gcov -b -f randomtestcard2.c >> randomtestresults.out
+	echo ------------------- dominion.c gcov results ------------------ >> randomtestresults.out
+	gcov -b -f dominion.c >> randomtestresults.out
+	echo ------------------- dominion.c.gcov ------------------ >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out  
 
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
@@ -80,7 +99,7 @@ unittestresults.out: unittests cardtests dominion.o
 	gcov -b -f unittest4.c >> unittestresults.out
 	echo ------------------- dominion.c gcov results ------------------ >> unittestresults.out
 	gcov -b -f dominion.c >> unittestresults.out
-	echo ------------------- dominion.c.gcov results ------------------ >> unittestresults.out
+	echo ------------------- dominion.c.gcov ------------------ >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out  
 
 player: player.c interface.o

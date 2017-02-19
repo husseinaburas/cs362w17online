@@ -26,6 +26,9 @@
 #define TESTCARD_NAME "village"
 
 int main(int argc, char *argv[]) {
+  int test_cases = 6;
+  int iterations = 100;  // # of iterations of each test case
+  int tests = test_cases * iterations;
   int i, testnum;
   int randcard;
   int randomseed = atoi(argv[argc - 1]);  // get random seed from user input
@@ -48,6 +51,10 @@ int main(int argc, char *argv[]) {
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
       sea_hag, tribute, smithy, council_room};
 
+  // array of all cards being used in the game used to pick random cards
+  int cards_in_game[17] = {curse, estate, duchy, province, copper, silver, gold, adventurer, embargo,
+      village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	
   // initialize game state and player cards
   initializeGame(numPlayers, k, seed, &G);
 	
@@ -56,13 +63,13 @@ int main(int argc, char *argv[]) {
 	
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
-  // perform 100 random tests
-  for (testnum = 0; testnum < 100; testnum++) {
-    printf("\n----------- ITERATION: %d ----------\n", i);
+  // iterate random tests
+  for (testnum = 0; testnum < iterations; testnum++) {
+    printf("\n----------- ITERATION: %d ----------\n", testnum);
     
     // fill player's hand with random cards
     for (i = 0; i < G.handCount[thisPlayer]; i++) {
-      randcard = rand() % 27;  // get random test card (range of cards is 0:26)
+      randcard = cards_in_game[rand() % 17];  // get random test card
       G.supplyCount[G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
       G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i] = randcard;  // put random card in hand position i 
       G.supplyCount[randcard]--;  // decrease supply of random card that was selected
@@ -70,7 +77,7 @@ int main(int argc, char *argv[]) {
 
     // fill player's deck with random cards
     for (i = 0; i < G.deckCount[thisPlayer]; i++) {
-      randcard = rand() % 27;  // get random test card (range of cards is 0:26)
+      randcard = cards_in_game[rand() % 17];  // get random test card
       G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
       G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i] = randcard;  // put random card in deck position i
       G.supplyCount[randcard]--;  // decrease supply of random card that was selected
@@ -98,8 +105,8 @@ int main(int argc, char *argv[]) {
   }
 
   /**************************************** END OF TESTS ****************************************************/
-  if (pass_count == 600) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
-  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", 600 - pass_count, 600, TESTCARD_NAME);}
+  if (pass_count == tests) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
+  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", tests - pass_count, tests, TESTCARD_NAME);}
 
   return 0;
 }

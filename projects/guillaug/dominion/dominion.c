@@ -669,9 +669,8 @@ int council_roomCall(int handPos, int currentPlayer, struct gameState *state){
 	{
 	  drawCard(currentPlayer, state);
 	}
-			
       //+1 Buy
-      state->numBuys--;
+      state->numBuys++;
 			
       //Each other player draws a card
       for (i = 0; i < state->numPlayers; i++)
@@ -684,7 +683,7 @@ int council_roomCall(int handPos, int currentPlayer, struct gameState *state){
 			
   //put played card in played card pile
   discardCard(handPos, currentPlayer, state, 0);
-	
+  
   return 0;
 }
 
@@ -1252,7 +1251,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 }
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag){
-	
   //if card is not trashed, added to Played pile 
   if (trashFlag < 1)
     {
@@ -1284,7 +1282,6 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
       //reduce number of cards in hand
       state->handCount[currentPlayer]--;
     }
-	
   return 0;
 }
 

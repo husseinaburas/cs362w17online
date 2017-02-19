@@ -42,15 +42,15 @@ randomtests: randomtestadventurer.c randomtestcard1.c randomtestcard2.c dominion
 	gcc -o randomtest3 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 
 randomtestresults.out: randomtests
-	./randomtest1 &> randomtestcard1.out
+	./randomtest1 &> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	./randomtest2 &> randomtestcard1.out
 	gcov -b dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
-	./randomtest2 &> randomtestcard2.out
+	./randomtest3 &> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
-	./randomtest3 &> randomtestcard3.out
-	gcov -b dominion.c >> randomtestcard3.out
-	cat dominion.c.gcov >> randomtestcard3.out	
+	cat dominion.c.gcov >> randomtestcard2.out	
 
 unittestresults.out: unittests cardtests
 	make unittests

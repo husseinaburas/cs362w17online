@@ -647,27 +647,33 @@ int getCost(int cardNumber)
 
 int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer, int *temphand, int cardDrawn, int z) {
   
+  //printf("IN CARD\n");
   while(drawntreasure<2){
       if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
         shuffle(currentPlayer, state);
+  
       }
 
-    drawCard(currentPlayer, state);
-    
+
+    drawCard(currentPlayer, state);    
     cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
         drawntreasure++;
     else{
         temphand[z]=cardDrawn;
         state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+       
       }
       z++;
+    
     }
 
   while(z-1>=0){
   state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
   z=z-1;
       }
+
+
       return 0;
 }
 
@@ -752,29 +758,30 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   if (card == adventurer) {
   
-  playAdventurer(drawntreasure, state, currentPlayer, temphand, cardDrawn, z);
+  return playAdventurer(drawntreasure, state, currentPlayer, temphand, cardDrawn, z);
+
 }
 
 else if (card == smithy) {
 
-  playSmithy(state, currentPlayer, handPos);
+  return playSmithy(state, currentPlayer, handPos);
   
 }
 
 else if (card == village) {
   
-  playVillage(state, currentPlayer, handPos);
+  return playVillage(state, currentPlayer, handPos);
 }
 
 else if (card == great_hall) {
 
-  playGreatHall(state, currentPlayer, handPos);
+  return playGreatHall(state, currentPlayer, handPos);
   
 }
 
 else if (card == embargo) {
   
-  playEmbargo(state, currentPlayer, handPos, choice1);
+  return playEmbargo(state, currentPlayer, handPos, choice1);
 }
 
 else {
