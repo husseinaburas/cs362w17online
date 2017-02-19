@@ -561,7 +561,7 @@ int drawCard(int player, struct gameState *state)
     if (deckCounter == 0)
       return -1;
 
-    state->hand[player][count] = state->deck[player][deckCounter - 2];//Add card to hand
+    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
     state->deckCount[player]--;
     state->handCount[player]++;//Increment hand count
   }
