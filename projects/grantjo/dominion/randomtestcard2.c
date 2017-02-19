@@ -1,3 +1,9 @@
+/*******************************************************************************
+** randomtestcard2.c
+** Assignment 4
+** Author: Jordan Grant (grantjo)
+** Description: Random test suite for the Great Hall cardEffect in dominion.c
+*******************************************************************************/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <stdio.h>
@@ -5,30 +11,29 @@
 #include <string.h>
 #include "rngs.h"
 
-#include <signal.h>
-#include <unistd.h>
-#include <execinfo.h>
+#define TEST_NUM 1000     // number of random tests to perform
+#define MAX_PLAYER 4      // maximum number of players
+#define MIN_PLAYER 2      // minimum number of players
+#define MAX_DECKSIZE 11   // limit decksize to ensure higher chance of 0 deck
+#define MAX_DISCARD 20    // maximum discard pile count
+#define MAX_HANDSIZE 10   // maximum hand size
+#define MIN_DISCARD 4     // minimum cards for discard
+#define NUM_CARDS 26      // number of cards in dominion.h
 
-#define TEST_NUM 1000
-#define MAX_PLAYER 4
-#define MIN_PLAYER 2
-#define MAX_DECKSIZE 11 // limit decksize to ensure higher chance of 0 deck
-#define MAX_DISCARD 20
-#define MAX_HANDSIZE 10
-#define MAX_TREASURE 4
-#define NUM_CARDS 26
-
+// keep track of tests passed/failed
 struct test {
   int testsPassed;
   int testsFailed;
 };
-
+// stores some information used in testing the reference logic is correct
+// and to help in the oracle logic (need to test different things if shuffle occurred)
 struct greatHDetails {
-  int currentPlayer;
-  int shuffleOccurred;
-  int tempHandCount;
+  int currentPlayer;        //track current player
+  int shuffleOccurred;      //track whether shuffle occurred
+  int tempHandCount;        //keep track of hand count from before card was played
 };
-
+// Custom asserttrue function. Returns 1 for error condition and prints Error
+// returns 0 for passed test
 int asserttrue(int condition, char* message)
 {
   if (!condition) {
@@ -38,10 +43,10 @@ int asserttrue(int condition, char* message)
   return 0;
 }
 
-// Reference adventurer logic
+// Reference Great Hall logic
 int refPlayGreatHall(struct gameState *state, struct greatHDetails *detail, int handPos) {
   detail->shuffleOccurred = 0;
-
+  // if deck is 0 a shuffle should occur
   if (state->deckCount[detail->currentPlayer] == 0)
     detail->shuffleOccurred = 1;
 
@@ -58,7 +63,10 @@ int refPlayGreatHall(struct gameState *state, struct greatHDetails *detail, int 
   return 0;
 }
 
-
+// Function to check for corruption of the game state.
+// Description: Takes an unalterred game state and a state where Great Hall
+//              has been played and compares all irrelevant variables to assert they
+//              are unchanged.
 int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPlayers, int player) {
   int i = 0,
   j = 0,
@@ -87,7 +95,7 @@ int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPl
   z++;
   error += asserttrue(z == treasure_map+1, "embargoTokens mismatch");
 
-
+  // Check each other players deck.
   for (i = 0; i < numPlayers; i++) {
     if (i != player) {
       error += asserttrue(ref->deckCount[i] == test->deckCount[i], "deckCount mismatch");
@@ -119,7 +127,23 @@ int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPl
   return error;
 }
 
+// Function to generate random game states and perform test suite to Ensure
+// proper execution of cardEffect in dominion.c
+// Description: Generates random number of players, random current player, random
+//              cards to fill players discard/deck/hand, random choices to
+//              pass to cardEffect.
+//              It creates 3 copies of the random game state. 1 to apply reference
+//              logic, 1 to apply dominion.c logic, and 1 to remain unchanged.
+//
+//              Once the cardEffect for reference and dominion.c is called it compares
+//              these changed states to the unchanged to ensure irrelevant variables
+//              were not effected.
+//              I then run some assertions to ensure that the reference logic is
+//              sound before running the oracle assertions for dominion.c logic.
+//              The Oracle compares expected values in dominion.c to the reference
+//              values.
 void performRandomTest(struct test *totalTest, int test, int rand_seed) {
+  // *********************** DECLARE TEST VARIABLES ********************
   struct gameState testG,
                    refG,
                    refUnchanged;
@@ -147,24 +171,27 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
 
   char buffer[100],
        *cardName = "Great Hall";
+  // *********************** END DECLARE TEST VARIABLES ********************
 
+  // *********************** RANDOM INPUT GENERATION ***********************
+  // generate number of players
   numPlayers = 1 + rand() % MAX_PLAYER;
   while (numPlayers < 2) numPlayers = 1 + rand() % MAX_PLAYER;
-
+  // get current player
   currentPlayer = rand() % numPlayers;
-
+  // generate size of each card pile
   handSize = rand() % MAX_HANDSIZE;
   deckSize = rand() % MAX_DECKSIZE;
-  discardSize = MAX_TREASURE + rand() % MAX_DISCARD;
-
+  discardSize = MIN_DISCARD + rand() % MAX_DISCARD;
+  // call initializeGame
   initializeGame(numPlayers, k, seed, &testG);
-
+  // keep track of currentPlayer
   testG.whoseTurn = currentPlayer;
   greatHDetails.currentPlayer = currentPlayer;
   testG.numPlayers = numPlayers;
 
   testG.handCount[currentPlayer] = handSize;
-
+  // fill hand with random cards, 1 of them Great Hall
   if (handSize > 0) {
     handPos = rand() % handSize;
     for (i = 0; i < handSize; i++) {
@@ -178,20 +205,21 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
     handPos = 0;
     testG.hand[currentPlayer][testG.handCount[currentPlayer]++] = cardToTest;
   }
-
+  // fill deck with random cards (not Great Hall)
   testG.deckCount[currentPlayer] = deckSize;
   for (i = 0; i < deckSize; i++) {
       int card = rand() % NUM_CARDS;
       while (card == cardToTest) card = rand() % NUM_CARDS;
       testG.deck[currentPlayer][i] = card;
   }
-
+  // fill discard with random cards (not Great HALl)
   testG.discardCount[currentPlayer] = discardSize;
   for (i = 0; i < discardSize; i++) {
     int card = rand() % NUM_CARDS;
     while (card == cardToTest) card = rand() % NUM_CARDS;
     testG.discard[currentPlayer][i] = card;
   }
+  // *********************** END RANDOM INPUT GENERATION ***********************
 
   printf("Test %d %s, Player %d, %d cards in deck, %d in discard and %d in hand\n",
             test, cardName, currentPlayer, deckSize, discardSize, handSize);
@@ -212,6 +240,7 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
   //call cardEffect for adventurer on player
   success = cardEffect(cardToTest, choice1, choice2, choice3, &testG, handPos, &bonus);
 
+  // ************************* TEST FOR GAME STATE CORRUPTION ***************
   // Ensure that game state corruption did not occurr
   sprintf(buffer, "Ensuring that reference %s logic did not corrupt game state", cardName);
   printf("\t%s\n", buffer);
@@ -228,7 +257,8 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
 	  printf("\t\tSuccess: Dominion.c %s does not change irrelevant game state variables\n", cardName);
   errorTotal = error;
   error = 0;
-
+  // ************************* END TEST FOR GAME STATE CORRUPTION ******************
+  // ************************* TEST REFERENCE LOGIC ***************
   printf("\tChecking %s reference logic\n", cardName);
   // assert that reference Great Hall logic is working correctly.
     // Does not count towards error_count for dominion.c code
@@ -251,10 +281,10 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
   error = 0;
   // ********** End checking reference adventurer logic
 
-  // Check reference logic against game logic
+  // ******** Check reference logic against game logic ********************
   sprintf(buffer, "Check results of %s logic against dominion.c %s logic", cardName, cardName);
   printf("\t%s\n", buffer);
-
+  // check return value
   error += asserttrue(success == 0, "Expected Function to return success");
 
   printf("\tExpecting 1 card to have been added to the hand, got %d\n", testG.handCount[currentPlayer]-(greatHDetails.tempHandCount-1));
@@ -310,27 +340,14 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
   return;
 }
 
-void handler(int sig) {
-  void *array[10];
-  size_t size;
-
-  // get void*'s for all entries on the stack
-  size = backtrace(array, 10);
-
-  // print out all the frames to stderr
-  fprintf(stderr, "Error: signal %d:\n", sig);
-  backtrace_symbols_fd(array, size, STDERR_FILENO);
-  exit(1);
-}
-
 int main(int argc, char **argv) {
   int seed,
       i = 0;
-  signal(SIGFPE, handler);   // install our handler
+
   struct test total;
   total.testsPassed = 0;
   total.testsFailed = 0;
-
+  // get seed from argument or set to 10
   if (argc < 2)
     seed = 10;
   else
@@ -339,10 +356,10 @@ int main(int argc, char **argv) {
   srand(seed);
 
   printf("------------------------ Testing Great Hall Card ------------------------------\n");
-
+  // perform TEST_NUM random tests
   for (i = 0; i < TEST_NUM; i++)
     performRandomTest(&total, i+1, seed);
-
+  // Output pass or fail messages
   if (total.testsFailed == 0)
       printf("ALL %d TESTS SUCCESSFUL, Great Hall\n", total.testsPassed);
   else

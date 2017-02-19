@@ -1,6 +1,8 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <string.h>
 #include <assert.h>
 #include "rngs.h"
@@ -31,7 +33,7 @@ int main(int argc, char *argv[]){
 	SelectStream(2);
 	PutSeed(argv[1]);
 	
-	for (i = 0; i < 125; i++){
+	for (i = 0; i < 100; i++){
 		for (j = 0; j < sizeof(struct gameState); j++){
 			((char*)&G)[j] = floor(Random() * 256);
 		}
