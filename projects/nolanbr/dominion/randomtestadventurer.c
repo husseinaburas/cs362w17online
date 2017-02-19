@@ -45,12 +45,8 @@ int deckTreasureCardCount(int player, struct gameState G){
 
 void testAdventurer(int player, struct gameState* testState, int* failures)
 {
-    int failed = 0;
-    
-    //int deckCount = testState->deckCount[player];
-    //testState->deck[player][deckCount-1] = smithy; //set first card picked up to be non-treasure, ensuring one card should be discarded
-    
-    //copy gamestate to preTest - all actions will now be performed on testState
+          
+    //copy gamestate to preTest 
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
     

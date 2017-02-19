@@ -35,9 +35,8 @@ int assertTrue(int a, int* failed, int* failures, int testNum)
 
 void testSmithy(int player, struct gameState* testState, int* failures, int handPosTest)
 {
-    int failed = 0;
-       
-    //copy gamestate to preTest - all actions will now be performed on testState
+           
+    //copy gamestate to preTest 
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
     //printf("Calling playSmithy \n");
