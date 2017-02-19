@@ -487,30 +487,7 @@ int main(int argc, char* argv[]) {
 /*-------------------------------------------------------------------------*/
     printf("**********************************************************\n");
     printf("BEGIN random test %s\n", CARD_NAME);
-
-
-// Specific requirements:
-// -- If Deck+Discard previously has 2+ Treasure:
-//     +) Hand count increased by 1 (2 Treasure drawn - 1 card played)
-//     +) Deck+Discard count decreased by 2
-//     +) 2 new Treasure added to Hand
-//     +) 2 Treasure removed from Deck+Discard
-// -- If Deck+Discard previously has 1 Treasure:
-//     +) Hand count unchanged (1 Treasure drawn - 1 card played)
-//     +) Deck+Discard count decreased by 1
-//     +) 1 new Treasure added to Hand
-//     +) 1 Treasure removed from Deck+Discard
-// -- If Deck+Discard previously has 0 Treasure:
-//     +) Hand count decreased by 1 (- 1 card played)
-//     +) Deck+Discard count unchanged
-//     +) Hand unchanged except removing played card
-//     +) Deck+Discard unchanged
-// -- The cards added to hand are the same as the cards removed from Deck+Discard
-
-// The following cases are tests:
-// -- 1 Treasure in Deck, no Treasure in Discard
-// -- No Treasure in Deck, 1 Treasure in Discard
-// -- No Treasure in Deck, no Treasure in Discard
+    
 
     /* Perform NUM_RANDOM_TESTS random tests */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {

@@ -12,9 +12,6 @@
       <in>interface.c</in>
       <in>playdom.c</in>
       <in>player.c</in>
-      <in>randomtestadventurer.c</in>
-      <in>randomtestcard1.c</in>
-      <in>randomtestcard2.c</in>
       <in>rngs.c</in>
       <in>rt.c</in>
       <in>supplyTest.c</in>
@@ -28,6 +25,15 @@
       <in>unittest3.c</in>
       <in>unittest4.c</in>
     </df>
+    <df root="." name="1">
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false"
@@ -38,6 +44,7 @@
   </logicalFolder>
   <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
   <sourceRootList>
+    <Elem>.</Elem>
     <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
@@ -56,7 +63,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile randomtestresults.out </buildCommand>
+          <buildCommand>${MAKE} -f Makefile unittestresults.out</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath></executablePath>
           <cTool>
@@ -99,18 +106,6 @@
       <item path="playdom.c" ex="false" tool="0" flavor2="2">
       </item>
       <item path="player.c" ex="false" tool="0" flavor2="2">
-      </item>
-      <item path="randomtestadventurer.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="0">
-        </cTool>
-      </item>
-      <item path="randomtestcard1.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="0">
-        </cTool>
-      </item>
-      <item path="randomtestcard2.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="0">
-        </cTool>
       </item>
       <item path="rngs.c" ex="false" tool="0" flavor2="3">
         <cTool flags="0">

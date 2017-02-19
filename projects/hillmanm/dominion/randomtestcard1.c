@@ -1,8 +1,8 @@
 /* matthew hillman
- * randomcardtest1.c (smithy)
+ * randomtestcard1.c (smithy)
+ * +3Card
  * bug: changed: for (i = 0; i < 3; i++) to: for (i = 0; i < 2; i++)
   */
-//
   
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 
 #define MAX_TESTS 100
-#define NOISY 0	//set NOISY to 0 to activate printf statements
+#define NOISY 1	//set NOISY to 0 to activate printf statements
 
 #define TESTCARD "smithy"
 
@@ -49,12 +49,13 @@ int main(int argc, char* argv[]) {
 
 	for (j=0; j<MAX_TESTS; j++) {
 		
-		//randomize number of players b/t 2 and 5
+		// randomize number of players b/t 1 and 4
 		numPlayers = (rand() % 4) + 1;
 					
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
 		
+		//randomize deckCount and handCount
 		G.deckCount[thisPlayer] = (rand() % (MAX_DECK - 1) ) + 1;
 		G.handCount[thisPlayer] = (rand() % (MAX_HAND - 1) ) + 1;
 

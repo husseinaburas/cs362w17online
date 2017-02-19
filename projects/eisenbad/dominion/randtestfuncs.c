@@ -1,6 +1,6 @@
 /* File: randtestFuncs.c
    Author: Daniel Eisenbach
-   Date: 2/16/17
+   Date: 2/18/17
   
    Description: compilation of assert functions that test various aspects 
    of the game's state after performing a card/function test.
@@ -14,32 +14,35 @@
 #include "rngs.h"
 #include <stdlib.h>
 
+// verify correct number of extra coins are awarded to current player
 int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCoins) {
   if (testG.coins - G.coins == xtraCoins) {
     *pass_count = *pass_count + 1;
     return 1;
   }
   else {
-    printf("\n  TEST %d: %d bonus coins are awarded to the current player\n", testNum, xtraCoins);
+    printf("\n  TEST %d: %d bonus coin/s awarded to the current player\n", testNum, xtraCoins);
     printf("    STATUS: TEST %d FAILED\n", testNum);
     printf("   bonus coins = %d, expected = %d\n", testG.coins - G.coins, xtraCoins);
     return 0;
   }
 }
 
+// verify correct number of extra actions are gained
 int randCheckActions(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraActions) {
   if (testG.numActions == G.numActions + xtraActions) {
     *pass_count = *pass_count + 1;
     return 1;
   }
   else {
-    printf("\n  TEST %d: %d extra actions are gained\n", testNum, xtraActions);
+    printf("\n  TEST %d: %d extra action/s gained\n", testNum, xtraActions);
     printf("    STATUS: TEST %d FAILED\n", testNum);
     printf("    actions = %d, expected = %d\n", testG.numActions , G.numActions + xtraActions);
     return 0;
   }
 }
 
+// verify correct number of extra cards are drawn
 int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards, int discarded) {
   int thisPlayer = G.whoseTurn;
 
@@ -48,13 +51,30 @@ int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct 
     return 1;
   }
   else {
-    printf("\n  TEST %d: %d extra cards are gained\n", testNum, xtraCards);
+    printf("\n  TEST %d: %d extra card/s gained\n", testNum, xtraCards);
     printf("    STATUS: TEST %d FAILED\n", testNum);
-    printf("    handcount = %d, expected = %d\n", testG.handCount[thisPlayer] , G.handCount[thisPlayer] + xtraCards - discarded);
+    printf("    hand count = %d, expected = %d\n", testG.handCount[thisPlayer] , G.handCount[thisPlayer] + xtraCards - discarded);
     return 0;
   }
 }
 
+// verify correct number of cards are discarded
+int randCheckDiscardCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int discarded) {
+  int thisPlayer = G.whoseTurn;
+
+  if (testG.discardCount[thisPlayer] == G.discardCount[thisPlayer] + discarded) {
+    *pass_count = *pass_count + 1;
+    return 1;
+  }
+  else {
+    printf("\n  TEST %d: %d card/s discarded\n", testNum, discarded);
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+    printf("    discard count = %d, expected = %d\n", testG.discardCount[thisPlayer] , G.discardCount[thisPlayer] + discarded);
+    return 0;
+  }
+}
+
+// verify that no state change occurs to victory or kingdom card piles
 int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
   if ( 
       (testG.supplyCount[estate] == G.supplyCount[estate]) &&   
@@ -99,6 +119,7 @@ int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struc
   }
 }
 
+// verify that no state change occurs for other players
 int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
   int thisPlayer = G.whoseTurn;
   int nextPlayer = thisPlayer + 1;
@@ -137,4 +158,109 @@ int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, 
 
     return 0;
   } 
+}
+
+// verify that extra cards drawn come from player's own deck
+int randCheckExtraCards(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards) {
+  int thisPlayer = G.whoseTurn;
+  int pass_check = 1;
+  int i;
+
+  for (i = 0; i < xtraCards; i++) {
+    if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i] !=  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]) {pass_check = 0;}
+  }
+
+  if (pass_check) {
+    *pass_count = *pass_count + 1;     
+    return 1;
+  }
+  else {
+    printf("\n  TEST %d: Extra cards come from player's own deck\n", testNum);
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+
+    for (i = 0; i < xtraCards; i++) {   
+      if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i] !=  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]) {
+        printf("    card %d in hand = %d, expected = %d\n", i, testG.hand[thisPlayer][testG.handCount[thisPlayer] - xtraCards + i], G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]);
+      }
+    }
+    return 0;
+  }
+}
+
+// verify that the current player receives up to two treasures from their deck after playing adventurer (adventurer specific test function)
+int randCheckExtraTreasures(int testNum, int *pass_count, struct gameState G, struct gameState testG, int *xtraCards, int *discard_pile_count) {
+  int thisPlayer = G.whoseTurn;
+  int pass_check = 1;
+  int i;
+  int init_hand_treasure_count = 0;
+  int post_hand_treasure_count = 0;
+  int init_deck_treasure_count = 0;
+  int post_deck_treasure_count = 0;
+  int rx_treasures = 0;
+  int xtraDiscards = 0;
+
+  // count initial number of treasure cards in player's hand
+  for (i = 0; i < G.handCount[thisPlayer]; i++) {
+    if ((G.hand[thisPlayer][i] == copper) ||
+        (G.hand[thisPlayer][i] == silver) ||
+        (G.hand[thisPlayer][i] == gold))
+    {init_hand_treasure_count++;}
+  }
+
+  // count post number of treasure cards in player's hand
+  for (i = 0; i < testG.handCount[thisPlayer]; i++) {
+    if ((testG.hand[thisPlayer][i] == copper) ||
+        (testG.hand[thisPlayer][i] == silver) ||
+        (testG.hand[thisPlayer][i] == gold))
+    {post_hand_treasure_count++;}
+  }
+
+  // count initial number of treasure cards in player's deck, and number of cards to be discarded
+  for (i = 0; i < G.deckCount[thisPlayer]; i++) {
+    if ((G.deck[thisPlayer][i] == copper) ||
+        (G.deck[thisPlayer][i] == silver) ||
+        (G.deck[thisPlayer][i] == gold))
+    {init_deck_treasure_count++;}
+    else {
+      if (init_deck_treasure_count < 2) {xtraDiscards++;}  // track how many cards are revealed before two treasures are found
+    }
+  }
+
+  // count post number of treasure cards in player's deck
+  for (i = 0; i < testG.deckCount[thisPlayer]; i++) {
+    if ((testG.deck[thisPlayer][i] == copper) ||
+        (testG.deck[thisPlayer][i] == silver) ||
+        (testG.deck[thisPlayer][i] == gold))
+    {post_deck_treasure_count++;}
+  }
+
+  // flag how many cards should be discarded after playing adventurer
+  *discard_pile_count = *discard_pile_count + xtraDiscards;
+
+  // determine how many treasures player should receive from deck
+  if (init_deck_treasure_count > 2) {rx_treasures = 2;}
+  else {rx_treasures = init_deck_treasure_count;}
+  *xtraCards = rx_treasures;  // flag how many extra cards should end up in player's hand
+
+  if (post_hand_treasure_count != init_hand_treasure_count + rx_treasures) {pass_check = 0;}
+  if (post_deck_treasure_count != init_deck_treasure_count - rx_treasures) {pass_check = 0;}
+
+  if (pass_check) {
+    *pass_count = *pass_count + 1;
+    return 1;
+  }
+  else {
+    printf("\n  TEST %d: Current player receives up to two treasures from their deck\n", testNum);
+    printf("    STATUS: TEST %d FAILED\n", testNum);
+
+    if (post_hand_treasure_count != init_hand_treasure_count + rx_treasures) {
+      printf("    received treasures = %d, expected = %d\n", post_hand_treasure_count - init_hand_treasure_count, init_hand_treasure_count + rx_treasures); 
+    }
+
+    if (post_deck_treasure_count != init_deck_treasure_count - rx_treasures) {
+      printf("    deck treasure count = %d, expected = %d\n", post_deck_treasure_count, init_deck_treasure_count - rx_treasures); 
+    }
+      
+   return 0; 
+  }
 }

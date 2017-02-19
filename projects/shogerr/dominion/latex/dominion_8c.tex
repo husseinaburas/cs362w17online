@@ -1,0 +1,832 @@
+\hypertarget{dominion_8c}{}\section{dominion.\+c File Reference}
+\label{dominion_8c}\index{dominion.\+c@{dominion.\+c}}
+{\ttfamily \#include \char`\"{}dominion.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}dominion\+\_\+helpers.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rngs.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for dominion.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{dominion_8c_ac70138609ef6aa6fabca57aca8681e83}{compare} (const void $\ast$a, const void $\ast$b)
+\item 
+int \hyperlink{dominion_8c_a6fa74eeadf9ff835efc03ee3668f84dd}{card\+\_\+effect\+\_\+smithy} (int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos)
+\item 
+int \hyperlink{dominion_8c_a7028ab0c3adb6330eba5e792f3f8b495}{card\+\_\+effect\+\_\+adventurer} (int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos, int drawn\+Treasure)
+\item 
+int \hyperlink{dominion_8c_ad7028283d86fd040358bd4c6daa50317}{card\+\_\+effect\+\_\+village} (int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos)
+\item 
+int \hyperlink{dominion_8c_a416c3015e530456cc1b27319efbb5a18}{card\+\_\+effect\+\_\+council\+\_\+room} (int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos)
+\item 
+int \hyperlink{dominion_8c_ab04aefe12648fccb4db81f33fa8541e7}{card\+\_\+effect\+\_\+great\+\_\+hall} (int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos)
+\item 
+struct \hyperlink{structgameState}{game\+State} $\ast$ \hyperlink{dominion_8c_a20d6b6da13e44875da266a65029a1bac}{new\+Game} ()
+\item 
+int $\ast$ \hyperlink{dominion_8c_a1706b56eb300d15f7afa13e8037b1d51}{kingdom\+Cards} (int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9, int k10)
+\item 
+int \hyperlink{dominion_8c_af206ebf3de1d4111f5933eebeb6544f5}{initialize\+Game} (int num\+Players, int \hyperlink{dominion_8h_a1706b56eb300d15f7afa13e8037b1d51}{kingdom\+Cards}\mbox{[}10\mbox{]}, int random\+Seed, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_acb3aa60b25f4fd05eaf8bb871730f382}{shuffle} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_ad583fc956b86c3de2fe37255d32c1da2}{play\+Card} (int hand\+Pos, int choice1, int choice2, int choice3, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_af9284c2af700b49fabf143a0e6ca3c23}{buy\+Card} (int supply\+Pos, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a80e71740d5c0744093f9e6d0f2822797}{num\+Hand\+Cards} (struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a26af25dd3c14239211c04edb63497854}{hand\+Card} (int hand\+Pos, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a2ccc0f2883936814c6fd886e77146f99}{supply\+Count} (int card, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a6ab32cffde54e452be9f3df58e8f91c2}{full\+Deck\+Count} (int player, int card, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_adb54d9433039a49a4d1dc3184d39e23d}{whose\+Turn} (struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a4339ef285db8fc553a9cf5f646d0887b}{end\+Turn} (struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_aba3a224e3908b15eaff198f9efc88522}{is\+Game\+Over} (struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a0685888d32af02bd5e04a4b00a19376c}{score\+For} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a7907af8e97ca3acb180fba0850daadda}{get\+Winners} (int players\mbox{[}\hyperlink{dominion_8h_a1c346c944e8204fd06dc057393c7c96d}{M\+A\+X\+\_\+\+P\+L\+A\+Y\+E\+RS}\mbox{]}, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_a0f3ff052e95889a3eed993548433418b}{draw\+Card} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$state)
+\item 
+int \hyperlink{dominion_8c_ab06cd9a487d0d1dca5ce63bcd019d319}{get\+Cost} (int card\+Number)
+\item 
+int \hyperlink{dominion_8c_a9f214fe75e5f37c1790b824b70ac2e8e}{card\+Effect} (int card, int choice1, int choice2, int choice3, struct \hyperlink{structgameState}{game\+State} $\ast$state, int hand\+Pos, int $\ast$bonus)
+\item 
+int \hyperlink{dominion_8c_a50bfd018313095559338f7d4fe6b475e}{discard\+Card} (int hand\+Pos, int current\+Player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int trash\+Flag)
+\item 
+int \hyperlink{dominion_8c_ab19b9b3759ede93bb6248db84df57336}{gain\+Card} (int supply\+Pos, struct \hyperlink{structgameState}{game\+State} $\ast$state, int to\+Flag, int player)
+\item 
+int \hyperlink{dominion_8c_a3da90076545df89f8aa70947ddcf9efc}{update\+Coins} (int player, struct \hyperlink{structgameState}{game\+State} $\ast$state, int bonus)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{dominion.\+c@{dominion.\+c}!buy\+Card@{buy\+Card}}
+\index{buy\+Card@{buy\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{buy\+Card(int supply\+Pos, struct game\+State $\ast$state)}{buyCard(int supplyPos, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int buy\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{supply\+Pos, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_af9284c2af700b49fabf143a0e6ca3c23}{}\label{dominion_8c_af9284c2af700b49fabf143a0e6ca3c23}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{dominion_8c_af9284c2af700b49fabf143a0e6ca3c23_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=329pt]{dominion_8c_af9284c2af700b49fabf143a0e6ca3c23_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+\_\+effect\+\_\+adventurer@{card\+\_\+effect\+\_\+adventurer}}
+\index{card\+\_\+effect\+\_\+adventurer@{card\+\_\+effect\+\_\+adventurer}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+\_\+effect\+\_\+adventurer(int current\+Player, struct game\+State $\ast$state, int hand\+Pos, int drawn\+Treasure)}{card_effect_adventurer(int currentPlayer, struct gameState *state, int handPos, int drawnTreasure)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+effect\+\_\+adventurer (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos, }
+\item[{int}]{drawn\+Treasure}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a7028ab0c3adb6330eba5e792f3f8b495}{}\label{dominion_8c_a7028ab0c3adb6330eba5e792f3f8b495}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a7028ab0c3adb6330eba5e792f3f8b495_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a7028ab0c3adb6330eba5e792f3f8b495_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+\_\+effect\+\_\+council\+\_\+room@{card\+\_\+effect\+\_\+council\+\_\+room}}
+\index{card\+\_\+effect\+\_\+council\+\_\+room@{card\+\_\+effect\+\_\+council\+\_\+room}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+\_\+effect\+\_\+council\+\_\+room(int current\+Player, struct game\+State $\ast$state, int hand\+Pos)}{card_effect_council_room(int currentPlayer, struct gameState *state, int handPos)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+effect\+\_\+council\+\_\+room (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a416c3015e530456cc1b27319efbb5a18}{}\label{dominion_8c_a416c3015e530456cc1b27319efbb5a18}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a416c3015e530456cc1b27319efbb5a18_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a416c3015e530456cc1b27319efbb5a18_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+\_\+effect\+\_\+great\+\_\+hall@{card\+\_\+effect\+\_\+great\+\_\+hall}}
+\index{card\+\_\+effect\+\_\+great\+\_\+hall@{card\+\_\+effect\+\_\+great\+\_\+hall}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+\_\+effect\+\_\+great\+\_\+hall(int current\+Player, struct game\+State $\ast$state, int hand\+Pos)}{card_effect_great_hall(int currentPlayer, struct gameState *state, int handPos)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+effect\+\_\+great\+\_\+hall (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ab04aefe12648fccb4db81f33fa8541e7}{}\label{dominion_8c_ab04aefe12648fccb4db81f33fa8541e7}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ab04aefe12648fccb4db81f33fa8541e7_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ab04aefe12648fccb4db81f33fa8541e7_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+\_\+effect\+\_\+smithy@{card\+\_\+effect\+\_\+smithy}}
+\index{card\+\_\+effect\+\_\+smithy@{card\+\_\+effect\+\_\+smithy}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+\_\+effect\+\_\+smithy(int current\+Player, struct game\+State $\ast$state, int hand\+Pos)}{card_effect_smithy(int currentPlayer, struct gameState *state, int handPos)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+effect\+\_\+smithy (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a6fa74eeadf9ff835efc03ee3668f84dd}{}\label{dominion_8c_a6fa74eeadf9ff835efc03ee3668f84dd}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a6fa74eeadf9ff835efc03ee3668f84dd_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a6fa74eeadf9ff835efc03ee3668f84dd_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+\_\+effect\+\_\+village@{card\+\_\+effect\+\_\+village}}
+\index{card\+\_\+effect\+\_\+village@{card\+\_\+effect\+\_\+village}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+\_\+effect\+\_\+village(int current\+Player, struct game\+State $\ast$state, int hand\+Pos)}{card_effect_village(int currentPlayer, struct gameState *state, int handPos)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+\_\+effect\+\_\+village (
+\begin{DoxyParamCaption}
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ad7028283d86fd040358bd4c6daa50317}{}\label{dominion_8c_ad7028283d86fd040358bd4c6daa50317}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ad7028283d86fd040358bd4c6daa50317_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ad7028283d86fd040358bd4c6daa50317_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!card\+Effect@{card\+Effect}}
+\index{card\+Effect@{card\+Effect}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{card\+Effect(int card, int choice1, int choice2, int choice3, struct game\+State $\ast$state, int hand\+Pos, int $\ast$bonus)}{cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)}}]{\setlength{\rightskip}{0pt plus 5cm}int card\+Effect (
+\begin{DoxyParamCaption}
+\item[{int}]{card, }
+\item[{int}]{choice1, }
+\item[{int}]{choice2, }
+\item[{int}]{choice3, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{hand\+Pos, }
+\item[{int $\ast$}]{bonus}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a9f214fe75e5f37c1790b824b70ac2e8e}{}\label{dominion_8c_a9f214fe75e5f37c1790b824b70ac2e8e}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a9f214fe75e5f37c1790b824b70ac2e8e_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{dominion_8c_a9f214fe75e5f37c1790b824b70ac2e8e_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!compare@{compare}}
+\index{compare@{compare}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{compare(const void $\ast$a, const void $\ast$b)}{compare(const void *a, const void *b)}}]{\setlength{\rightskip}{0pt plus 5cm}int compare (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{a, }
+\item[{const void $\ast$}]{b}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ac70138609ef6aa6fabca57aca8681e83}{}\label{dominion_8c_ac70138609ef6aa6fabca57aca8681e83}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ac70138609ef6aa6fabca57aca8681e83_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!discard\+Card@{discard\+Card}}
+\index{discard\+Card@{discard\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{discard\+Card(int hand\+Pos, int current\+Player, struct game\+State $\ast$state, int trash\+Flag)}{discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)}}]{\setlength{\rightskip}{0pt plus 5cm}int discard\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{hand\+Pos, }
+\item[{int}]{current\+Player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{trash\+Flag}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a50bfd018313095559338f7d4fe6b475e}{}\label{dominion_8c_a50bfd018313095559338f7d4fe6b475e}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a50bfd018313095559338f7d4fe6b475e_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!draw\+Card@{draw\+Card}}
+\index{draw\+Card@{draw\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{draw\+Card(int player, struct game\+State $\ast$state)}{drawCard(int player, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int draw\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a0f3ff052e95889a3eed993548433418b}{}\label{dominion_8c_a0f3ff052e95889a3eed993548433418b}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{dominion_8c_a0f3ff052e95889a3eed993548433418b_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a0f3ff052e95889a3eed993548433418b_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!end\+Turn@{end\+Turn}}
+\index{end\+Turn@{end\+Turn}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{end\+Turn(struct game\+State $\ast$state)}{endTurn(struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int end\+Turn (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a4339ef285db8fc553a9cf5f646d0887b}{}\label{dominion_8c_a4339ef285db8fc553a9cf5f646d0887b}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a4339ef285db8fc553a9cf5f646d0887b_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{dominion_8c_a4339ef285db8fc553a9cf5f646d0887b_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!full\+Deck\+Count@{full\+Deck\+Count}}
+\index{full\+Deck\+Count@{full\+Deck\+Count}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{full\+Deck\+Count(int player, int card, struct game\+State $\ast$state)}{fullDeckCount(int player, int card, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int full\+Deck\+Count (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{int}]{card, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a6ab32cffde54e452be9f3df58e8f91c2}{}\label{dominion_8c_a6ab32cffde54e452be9f3df58e8f91c2}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a6ab32cffde54e452be9f3df58e8f91c2_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!gain\+Card@{gain\+Card}}
+\index{gain\+Card@{gain\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{gain\+Card(int supply\+Pos, struct game\+State $\ast$state, int to\+Flag, int player)}{gainCard(int supplyPos, struct gameState *state, int toFlag, int player)}}]{\setlength{\rightskip}{0pt plus 5cm}int gain\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{supply\+Pos, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{to\+Flag, }
+\item[{int}]{player}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ab19b9b3759ede93bb6248db84df57336}{}\label{dominion_8c_ab19b9b3759ede93bb6248db84df57336}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{dominion_8c_ab19b9b3759ede93bb6248db84df57336_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ab19b9b3759ede93bb6248db84df57336_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!get\+Cost@{get\+Cost}}
+\index{get\+Cost@{get\+Cost}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{get\+Cost(int card\+Number)}{getCost(int cardNumber)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Cost (
+\begin{DoxyParamCaption}
+\item[{int}]{card\+Number}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ab06cd9a487d0d1dca5ce63bcd019d319}{}\label{dominion_8c_ab06cd9a487d0d1dca5ce63bcd019d319}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ab06cd9a487d0d1dca5ce63bcd019d319_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!get\+Winners@{get\+Winners}}
+\index{get\+Winners@{get\+Winners}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{get\+Winners(int players[M\+A\+X\+\_\+\+P\+L\+A\+Y\+E\+RS], struct game\+State $\ast$state)}{getWinners(int players[MAX_PLAYERS], struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Winners (
+\begin{DoxyParamCaption}
+\item[{int}]{players\mbox{[}\+M\+A\+X\+\_\+\+P\+L\+A\+Y\+E\+R\+S\mbox{]}, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a7907af8e97ca3acb180fba0850daadda}{}\label{dominion_8c_a7907af8e97ca3acb180fba0850daadda}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a7907af8e97ca3acb180fba0850daadda_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{dominion_8c_a7907af8e97ca3acb180fba0850daadda_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!hand\+Card@{hand\+Card}}
+\index{hand\+Card@{hand\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{hand\+Card(int hand\+Pos, struct game\+State $\ast$state)}{handCard(int handPos, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int hand\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{hand\+Pos, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a26af25dd3c14239211c04edb63497854}{}\label{dominion_8c_a26af25dd3c14239211c04edb63497854}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{dominion_8c_a26af25dd3c14239211c04edb63497854_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a26af25dd3c14239211c04edb63497854_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!initialize\+Game@{initialize\+Game}}
+\index{initialize\+Game@{initialize\+Game}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{initialize\+Game(int num\+Players, int kingdom\+Cards[10], int random\+Seed, struct game\+State $\ast$state)}{initializeGame(int numPlayers, int kingdomCards[10], int randomSeed, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int initialize\+Game (
+\begin{DoxyParamCaption}
+\item[{int}]{num\+Players, }
+\item[{int}]{kingdom\+Cards\mbox{[}10\mbox{]}, }
+\item[{int}]{random\+Seed, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_af206ebf3de1d4111f5933eebeb6544f5}{}\label{dominion_8c_af206ebf3de1d4111f5933eebeb6544f5}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_af206ebf3de1d4111f5933eebeb6544f5_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{dominion_8c_af206ebf3de1d4111f5933eebeb6544f5_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!is\+Game\+Over@{is\+Game\+Over}}
+\index{is\+Game\+Over@{is\+Game\+Over}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{is\+Game\+Over(struct game\+State $\ast$state)}{isGameOver(struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Game\+Over (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_aba3a224e3908b15eaff198f9efc88522}{}\label{dominion_8c_aba3a224e3908b15eaff198f9efc88522}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_aba3a224e3908b15eaff198f9efc88522_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!kingdom\+Cards@{kingdom\+Cards}}
+\index{kingdom\+Cards@{kingdom\+Cards}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{kingdom\+Cards(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9, int k10)}{kingdomCards(int k1, int k2, int k3, int k4, int k5, int k6, int k7, int k8, int k9, int k10)}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ kingdom\+Cards (
+\begin{DoxyParamCaption}
+\item[{int}]{k1, }
+\item[{int}]{k2, }
+\item[{int}]{k3, }
+\item[{int}]{k4, }
+\item[{int}]{k5, }
+\item[{int}]{k6, }
+\item[{int}]{k7, }
+\item[{int}]{k8, }
+\item[{int}]{k9, }
+\item[{int}]{k10}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a1706b56eb300d15f7afa13e8037b1d51}{}\label{dominion_8c_a1706b56eb300d15f7afa13e8037b1d51}
+\index{dominion.\+c@{dominion.\+c}!new\+Game@{new\+Game}}
+\index{new\+Game@{new\+Game}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{new\+Game()}{newGame()}}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf game\+State}$\ast$ new\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a20d6b6da13e44875da266a65029a1bac}{}\label{dominion_8c_a20d6b6da13e44875da266a65029a1bac}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=215pt]{dominion_8c_a20d6b6da13e44875da266a65029a1bac_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!num\+Hand\+Cards@{num\+Hand\+Cards}}
+\index{num\+Hand\+Cards@{num\+Hand\+Cards}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{num\+Hand\+Cards(struct game\+State $\ast$state)}{numHandCards(struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int num\+Hand\+Cards (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a80e71740d5c0744093f9e6d0f2822797}{}\label{dominion_8c_a80e71740d5c0744093f9e6d0f2822797}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{dominion_8c_a80e71740d5c0744093f9e6d0f2822797_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a80e71740d5c0744093f9e6d0f2822797_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!play\+Card@{play\+Card}}
+\index{play\+Card@{play\+Card}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{play\+Card(int hand\+Pos, int choice1, int choice2, int choice3, struct game\+State $\ast$state)}{playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int play\+Card (
+\begin{DoxyParamCaption}
+\item[{int}]{hand\+Pos, }
+\item[{int}]{choice1, }
+\item[{int}]{choice2, }
+\item[{int}]{choice3, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_ad583fc956b86c3de2fe37255d32c1da2}{}\label{dominion_8c_ad583fc956b86c3de2fe37255d32c1da2}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_ad583fc956b86c3de2fe37255d32c1da2_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{dominion_8c_ad583fc956b86c3de2fe37255d32c1da2_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!score\+For@{score\+For}}
+\index{score\+For@{score\+For}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{score\+For(int player, struct game\+State $\ast$state)}{scoreFor(int player, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int score\+For (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a0685888d32af02bd5e04a4b00a19376c}{}\label{dominion_8c_a0685888d32af02bd5e04a4b00a19376c}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{dominion_8c_a0685888d32af02bd5e04a4b00a19376c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{dominion_8c_a0685888d32af02bd5e04a4b00a19376c_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!shuffle@{shuffle}}
+\index{shuffle@{shuffle}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{shuffle(int player, struct game\+State $\ast$state)}{shuffle(int player, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int shuffle (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_acb3aa60b25f4fd05eaf8bb871730f382}{}\label{dominion_8c_acb3aa60b25f4fd05eaf8bb871730f382}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{dominion_8c_acb3aa60b25f4fd05eaf8bb871730f382_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_acb3aa60b25f4fd05eaf8bb871730f382_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!supply\+Count@{supply\+Count}}
+\index{supply\+Count@{supply\+Count}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{supply\+Count(int card, struct game\+State $\ast$state)}{supplyCount(int card, struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int supply\+Count (
+\begin{DoxyParamCaption}
+\item[{int}]{card, }
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a2ccc0f2883936814c6fd886e77146f99}{}\label{dominion_8c_a2ccc0f2883936814c6fd886e77146f99}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a2ccc0f2883936814c6fd886e77146f99_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!update\+Coins@{update\+Coins}}
+\index{update\+Coins@{update\+Coins}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{update\+Coins(int player, struct game\+State $\ast$state, int bonus)}{updateCoins(int player, struct gameState *state, int bonus)}}]{\setlength{\rightskip}{0pt plus 5cm}int update\+Coins (
+\begin{DoxyParamCaption}
+\item[{int}]{player, }
+\item[{struct {\bf game\+State} $\ast$}]{state, }
+\item[{int}]{bonus}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_a3da90076545df89f8aa70947ddcf9efc}{}\label{dominion_8c_a3da90076545df89f8aa70947ddcf9efc}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_a3da90076545df89f8aa70947ddcf9efc_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{dominion.\+c@{dominion.\+c}!whose\+Turn@{whose\+Turn}}
+\index{whose\+Turn@{whose\+Turn}!dominion.\+c@{dominion.\+c}}
+\subsubsection[{\texorpdfstring{whose\+Turn(struct game\+State $\ast$state)}{whoseTurn(struct gameState *state)}}]{\setlength{\rightskip}{0pt plus 5cm}int whose\+Turn (
+\begin{DoxyParamCaption}
+\item[{struct {\bf game\+State} $\ast$}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{dominion_8c_adb54d9433039a49a4d1dc3184d39e23d}{}\label{dominion_8c_adb54d9433039a49a4d1dc3184d39e23d}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dominion_8c_adb54d9433039a49a4d1dc3184d39e23d_icgraph}
+\end{center}
+\end{figure}
+
+
