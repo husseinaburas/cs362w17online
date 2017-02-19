@@ -58,26 +58,45 @@ unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >>unittestresults.out
 
-quickresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
-	rm -f unittestresults.out
-	./cardtest1 
-	./cardtest2 
-	./cardtest3 
-	./cardtest4 
-	./unittest1 
-	./unittest2 
-	./unittest3 
-	./unittest4 
+quickresults.out: randomtestadventurer randomtestcard1 randomtestcard2
+	rm -f randomtestadventurer.out
+	rm -f randomtestcard1.out
+	rm -f randomtestcard2.out
+	./randomtestadventurer
+	./randomtestcard1
+	./randomtestcard2
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -std=c99 -g randomtestadventurer.c -o randomtestadventurer dominion.o rngs.o $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -std=c99 -g randomtestcard1.c -o randomtestcard1 dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -std=c99 -g randomtestcard2.c -o randomtestcard2 dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer 
+	rm -f randomtestadventurer.out
+	./randomtestadventurer 55 &> randomtestadventurer.out
+	gcov -b -f dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1
+	rm -f randomtestcard1.out
+	./randomtestcard1 55 &> randomtestcard1.out
+	gcov -b -f dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	rm -f randomtestcard2.out
+	./randomtestcard2 55 &> randomtestcard2.out
+	gcov -b -f dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 	
 removefiles:
-	rm -f cardtest1
-	rm -f cardtest2
-	rm -f cardtest3
-	rm -f cardtest4
-	rm -f unittest1
-	rm -f unittest2
-	rm -f unittest3
-	rm -f unittest4
+	rm -f randomtestadventurer
+	rm -f randomtestcard1
+	rm -f randomtestcard2
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)

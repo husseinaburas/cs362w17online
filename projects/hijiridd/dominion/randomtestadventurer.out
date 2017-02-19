@@ -1,0 +1,231 @@
+*****************************************
+Exececuting randomtestadventurer
+*****************************************
+Starting ramdom test adventurer
+
+------------ ITERATION # 0
+Test1 (check played card change): FAILED: player #1, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #1, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Debug Data: G->handCount[p]: 6, supplyTotalPre: 4
+Test4 (check deck+discard count): SUCCESS: player #1, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #1, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 0 -> FAILED tests
+------------ ITERATION # 1
+Test1 (check played card change): FAILED: player #1, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): SUCCESS: player #1, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Test4 (check deck+discard count): FAILED: player #1, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): FAILED: player #1, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 1 -> FAILED tests
+------------ ITERATION # 2
+NOTE Player 0: did NOT find treasure in player's deck
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): SUCCESS: player #0, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Test4 (check deck+discard count): FAILED: player #0, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): FAILED: player #0, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 2 -> FAILED tests
+------------ ITERATION # 3
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #0, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Debug Data: G->handCount[p]: 6, supplyTotalPre: 4
+Test4 (check deck+discard count): SUCCESS: player #0, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #0, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 3 -> FAILED tests
+------------ ITERATION # 4
+NOTE Player 1: did NOT find Adventurer in player's hand
+NOTE Player 1: did NOT find treasure in player's discard
+Test1 (check played card change): SUCCESS: player #1, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 4 -> successfully passed tests
+------------ ITERATION # 5
+NOTE Player 0: did NOT find Adventurer in player's hand
+NOTE Player 0: did NOT find treasure in player's deck
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 5 -> successfully passed tests
+------------ ITERATION # 6
+NOTE Player 0: did NOT find Adventurer in player's hand
+NOTE Player 0: did NOT find treasure in player's deck
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 6 -> successfully passed tests
+------------ ITERATION # 7
+NOTE Player 0: did NOT find treasure in player's deck
+NOTE Player 0: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #0, check if hand count went up by -1 (minus Adventurer)
+Debug Data: G->handCount[p]: -1, supplyTotalPre: 5
+Test4 (check deck+discard count): FAILED: player #0, ccheck deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 7 -> FAILED tests
+------------ ITERATION # 8
+Test1 (check played card change): FAILED: player #2, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #2, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #2, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Debug Data: G->handCount[p]: 5, supplyTotalPre: 3
+Test4 (check deck+discard count): SUCCESS: player #2, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #2, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 8 -> FAILED tests
+------------ ITERATION # 9
+NOTE Player 1: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #1, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #1, check if hand count went up by 0 (minus Adventurer + 1 treasure cards)
+Debug Data: G->handCount[p]: 2, supplyTotalPre: 1
+Test4 (check deck+discard count): SUCCESS: player #1, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #1, check if top 1 cards of hand are treasure cards
+adventurer test - iteration 9 -> FAILED tests
+------------ ITERATION # 10
+NOTE Player 0: did NOT find treasure in player's deck
+NOTE Player 0: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #0, check if hand count went up by -1 (minus Adventurer)
+Debug Data: G->handCount[p]: 1, supplyTotalPre: 3
+Test4 (check deck+discard count): FAILED: player #0, ccheck deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 10 -> FAILED tests
+------------ ITERATION # 11
+NOTE Player 3: did NOT find treasure in player's deck
+Test1 (check played card change): FAILED: player #3, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #3, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #3, check if hand count went up by 0 (minus Adventurer + 1 treasure cards)
+Debug Data: G->handCount[p]: 2, supplyTotalPre: 1
+Test4 (check deck+discard count): SUCCESS: player #3, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #3, check if top 1 cards of hand are treasure cards
+adventurer test - iteration 11 -> FAILED tests
+------------ ITERATION # 12
+NOTE Player 0: did NOT find Adventurer in player's hand
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 12 -> successfully passed tests
+------------ ITERATION # 13
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): SUCCESS: player #0, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Test4 (check deck+discard count): FAILED: player #0, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): FAILED: player #0, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 13 -> FAILED tests
+------------ ITERATION # 14
+Test1 (check played card change): FAILED: player #1, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): SUCCESS: player #1, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Test4 (check deck+discard count): FAILED: player #1, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): FAILED: player #1, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 14 -> FAILED tests
+------------ ITERATION # 15
+NOTE Player 3: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #3, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #3, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #3, check if hand count went up by 0 (minus Adventurer + 1 treasure cards)
+Debug Data: G->handCount[p]: 2, supplyTotalPre: 1
+Test4 (check deck+discard count): SUCCESS: player #3, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #3, check if top 1 cards of hand are treasure cards
+adventurer test - iteration 15 -> FAILED tests
+------------ ITERATION # 16
+NOTE Player 0: did NOT find treasure in player's deck
+NOTE Player 0: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #0, check if hand count went up by -1 (minus Adventurer)
+Debug Data: G->handCount[p]: -1, supplyTotalPre: 2
+Test4 (check deck+discard count): FAILED: player #0, ccheck deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 16 -> FAILED tests
+------------ ITERATION # 17
+NOTE Player 2: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #2, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #2, check if total supply count has not changed
+Test3 (check hand count): SUCCESS: player #2, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Test4 (check deck+discard count): FAILED: player #2, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): FAILED: player #2, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 17 -> FAILED tests
+------------ ITERATION # 18
+NOTE Player 0: did NOT find Adventurer in player's hand
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 18 -> successfully passed tests
+------------ ITERATION # 19
+NOTE Player 0: did NOT find Adventurer in player's hand
+NOTE Player 0: did NOT find treasure in player's deck
+NOTE Player 0: did NOT find treasure in player's discard
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 19 -> successfully passed tests
+------------ ITERATION # 20
+NOTE Player 3: did NOT find Adventurer in player's hand
+NOTE Player 3: did NOT find treasure in player's deck
+Test1 (check played card change): SUCCESS: player #3, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #3, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 20 -> successfully passed tests
+------------ ITERATION # 21
+NOTE Player 2: did NOT find Adventurer in player's hand
+Test1 (check played card change): SUCCESS: player #2, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #2, check if total supply count has not changed
+Test3 (check hand count): ??? no assert performed
+Test4 (check deck+discard count): ??? no assert performed
+Test5 (check top cards of hand): ??? no assert performed
+adventurer test - iteration 21 -> successfully passed tests
+------------ ITERATION # 22
+Test1 (check played card change): FAILED: player #0, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #0, check if hand count went up by 1 (minus Adventurer + 2 treasure cards)
+Debug Data: G->handCount[p]: 7, supplyTotalPre: 5
+Test4 (check deck+discard count): SUCCESS: player #0, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #0, check if top 2 cards of hand are treasure cards
+adventurer test - iteration 22 -> FAILED tests
+------------ ITERATION # 23
+NOTE Player 1: did NOT find treasure in player's discard
+Test1 (check played card change): FAILED: player #1, check if played card has increased by 1
+Debug: G->playedCardCount: 0, Gpre.playedCardCount: 0
+Test2 (check supply count): SUCCESS: player #1, check if total supply count has not changed
+Test3 (check hand count): FAILED: player #1, check if hand count went up by 0 (minus Adventurer + 1 treasure cards)
+Debug Data: G->handCount[p]: 3, supplyTotalPre: 2
+Test4 (check deck+discard count): SUCCESS: player #1, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)
+Test5 (check top cards of hand): SUCCESS: player #1, check if top 1 cards of hand are treasure cards
+adventurer test - iteration 23 -> FAILED tests
+------------ ITERATION # 24
+NOTE Player 0: did NOT find Adventurer in player's hand
+Test1 (check played card change): SUCCESS: player #0, check if played card has increased by 0
+Test2 (check supply count): SUCCESS: player #0, check if total supply count has not changed
+Test3 (check hand count)

@@ -12,7 +12,7 @@ int passFlag = 0;
 void asserttrue(int a, int b, int testcase){
 	
 	if(a == b)
-		printf("TEST PASS.");
+		printf("TEST PASSED\n");
 	
 	else{
 		printf("TEST FAIL. ");
@@ -29,7 +29,7 @@ void asserttrue(int a, int b, int testcase){
 				break;
 				
 			case 3:
-				printf("Smithy card was notsuccessfully added to the discard pile\n");
+				printf("Smithy card was not successfully added to the discard pile\n");
 				break;
 			
 			case 4:
@@ -39,12 +39,8 @@ void asserttrue(int a, int b, int testcase){
 			case 5:
 				printf("Victory card pile was affected\n");
 				break;
-				
-			case 6:
-				printf("Kingdom card pile was affected\n");
-				break;
 			
-			case 7:
+			case 6:
 				printf("Function returned successfully with bad input of nonexistent handPos\n");
 				break;
 			
@@ -56,6 +52,7 @@ void asserttrue(int a, int b, int testcase){
 
 int testPlay_smithy(struct gameState* post, int handPos){
 	
+	printf("Beginning Card Test 1...\n");
 	//copy current gamestate into pre, get current player
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
@@ -74,7 +71,7 @@ int testPlay_smithy(struct gameState* post, int handPos){
 	
 	//test that smithy card was added to discard pile and that discard pile has more card in it
 	int y;
-	if((post->playedCards[state->playedCardCount] == smithy) && (post->playedCardCount == (pre.playedCardCount + 1)))
+	if((post->playedCards[post->playedCardCount - 1] == smithy) && (post->playedCardCount == (pre.playedCardCount + 1)))
 		y = 0;
 	else
 		y = 1;
@@ -85,10 +82,10 @@ int testPlay_smithy(struct gameState* post, int handPos){
 	int handCountFlag = 0;
 	int i;
 	for(i = 0; i < post->numPlayers; i++){
-		if(i == 1)
+		if(i == 1){}
 		
 		else{
-			if(post->handCount[i] == pre.handCount[i])
+			if(post->handCount[i] == pre.handCount[i]){}
 			
 			else
 				handCountFlag++;
@@ -98,7 +95,7 @@ int testPlay_smithy(struct gameState* post, int handPos){
 	
 	asserttrue(0, handCountFlag, 4);
 	
-	//Test that after call, victory and kingdom card piles are unchanged
+	//Test that after call, victory card pile is unchanged
 	int n;
 	if(post->supplyCount[estate] != pre.supplyCount[estate])
 		n = 1;
@@ -110,20 +107,15 @@ int testPlay_smithy(struct gameState* post, int handPos){
 		n = 0;
 	asserttrue(0, n, 5);
 	
-	int m;
-	int z = 0;
-	for (m = 0; m < 10; m++){
-		if(post->kingdomCards[m] != pre.kingdomCards[m])
-			z++;
-		else
-		
-	}
-	asserttrue(0, z, 6);
-	
 	//test with bad input
 	int q;
 	q = play_smithy(post, -100);
-	assert(1, 1, 7);
+	if(q == 0)
+		q = 1;
+	else
+		q = 0;
+	
+	asserttrue(0, q, 6);
 	
 	if(passFlag == 0)
 		printf("ALL TESTS PASSED.\n");
@@ -152,9 +144,9 @@ int main(){
 	G.handCount[2] = 4;
 	G.handCount[3] = 4;
 	G.playedCardCount = 3;
-	G.playedCard[0] = cutpurse;
-	G.playedCard[1] = cutpurse;
-	G.playedCard[2] = cutpurse;
+	G.playedCards[0] = cutpurse;
+	G.playedCards[1] = cutpurse;
+	G.playedCards[2] = cutpurse;
 	
 	G.hand[currentPlayer][2] = smithy;
 	int handPos = 2;
@@ -163,7 +155,7 @@ int main(){
 	for(j = 0; j < G.numPlayers; j++){
 		G.deckCount[j] = deckSize;
 	}
-	test_play_great_hall(&G, handPos);
+	testPlay_smithy(&G, handPos);
 	
 	return 0;
 	

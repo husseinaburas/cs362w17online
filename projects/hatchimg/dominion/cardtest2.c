@@ -48,10 +48,6 @@ void asserttrue(int a, int b, int testcase){
 				break;
 				
 			case 8:
-				printf("Kingdom card pile was affected\n");
-				break;
-				
-			case 9:
 				printf("Function returned successfully despite bad/nonexistent input\n");
 				break;
 			
@@ -63,9 +59,10 @@ void asserttrue(int a, int b, int testcase){
 
 int test_play_great_hall(struct gameState* post, int handPos){
 	
+	printf("Beginning Card Test 2...\n");
 	//copy over current gamestate to pre
 	struct gameState pre;
-	memcpy(&pre, post, sizeof struct(gameState));
+	memcpy(&pre, post, sizeof(struct gameState));
 	int player = post->whoseTurn;
 	
 	//test that player has same number of cards in hand after call (received one, discarded one)
@@ -78,9 +75,9 @@ int test_play_great_hall(struct gameState* post, int handPos){
 	
 	asserttrue(0, x, 1);
 	
-	//test that new card is in hand (i.e. that something happened despite the matching hand sizes. NOTE: It is is possible the drawn card is the same)
+	//test that new card is in hand (i.e. that something happened despite the matching hand sizes. NOTE: It is possible the drawn card is also great hall)
 	int p;
-	if(post->hand[player][handCount - 1] == pre.hand[player][handCount - 1])
+	if(post->hand[player][post->handCount[player] - 1] == great_hall)
 		p = 1;
 	else
 		p = 0;
@@ -105,7 +102,7 @@ int test_play_great_hall(struct gameState* post, int handPos){
 	
 	//test that card was discarded/discard pile has one more card in it
 	int y;
-	if((post->playedCards[state->playedCardCount] == great_hall) && (post->playedCardCount == (pre.playedCardCount + 1)))
+	if((post->playedCards[post->playedCardCount - 1] == great_hall) && (post->playedCardCount == (pre.playedCardCount + 1)))
 		y = 0;
 	else
 		y = 1;
@@ -116,10 +113,10 @@ int test_play_great_hall(struct gameState* post, int handPos){
 	int handCountFlag = 0;
 	int i;
 	for(i = 0; i < post->numPlayers; i++){
-		if(i == 1)
+		if(i == 1){}
 		
 		else{
-			if(post->handCount[i] == pre.handCount[i])
+			if(post->handCount[i] == pre.handCount[i]){}
 			
 			else
 				handCountFlag++;
@@ -129,7 +126,7 @@ int test_play_great_hall(struct gameState* post, int handPos){
 	
 	asserttrue(0, handCountFlag, 6);
 	
-	//Test that after call, victory and kingdom card piles are unchanged
+	//Test that after call, victory card pile is unchanged
 	int n;
 	if(post->supplyCount[estate] != pre.supplyCount[estate])
 		n = 1;
@@ -141,20 +138,10 @@ int test_play_great_hall(struct gameState* post, int handPos){
 		n = 0;
 	asserttrue(0, n, 7);
 	
-	int m;
-	int z = 0;
-	for (m = 0; m < 10; m++){
-		if(post->kingdomCards[m] != pre.kingdomCards[m])
-			z++;
-		else
-		
-	}
-	asserttrue(0, z, 8);
-	
 	//test using bad input
 	int q;
 	q = play_great_hall(post, -100);
-	assert(1, 1, 9);
+	asserttrue(1, 1, 8);
 	
 	if(passFlag == 0)
 		printf("ALL TESTS PASSED.\n");
@@ -181,9 +168,9 @@ int main(){
 	G.handCount[2] = 4;
 	G.handCount[3] = 4;
 	G.playedCardCount = 3;
-	G.playedCard[0] = cutpurse;
-	G.playedCard[1] = cutpurse;
-	G.playedCard[2] = cutpurse;
+	G.playedCards[0] = cutpurse;
+	G.playedCards[1] = cutpurse;
+	G.playedCards[2] = cutpurse;
 	
 	G.hand[currentPlayer][2] = great_hall;
 	int handPos = 2;

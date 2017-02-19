@@ -16,7 +16,7 @@ void asserttrue(int a, int b, int testcase){
 	else{
 		printf("TEST FAIL. ");
 		passFlag++;
-		switch(testcase):
+		switch(testcase){
 			
 			case 1:
 				printf("Call returned a value other than 0 for a nonexistent player\n");
@@ -27,16 +27,13 @@ void asserttrue(int a, int b, int testcase){
 				break;
 				
 			case 3:
-				printf("Score was not reset at start of scoreFor function, resulted in incorrect total\n");
-				break;
-				
-			case 4:
 				printf("Function did not return correct total when score was negative\n");
 				break;
 			
-			case 5:
+			case 4:
 				printf("Gamestate was changed by the call\n");
 				break;
+		}
 		
 	}
 	
@@ -44,6 +41,7 @@ void asserttrue(int a, int b, int testcase){
 
 int testScoreFor(int player, struct gameState* post){
 	
+	printf("Beginning Unit Test 4...\n");
 	//Copy current gamestate into pre
 	struct gameState pre;
 	memcpy(&pre, post, sizeof(struct gameState));
@@ -57,13 +55,6 @@ int testScoreFor(int player, struct gameState* post){
 	int y;
 	y = scoreFor(player, post);
 	asserttrue(19, y, 2);
-	
-	//try with score set > 0 beforehand to make sure it's being reset in function
-	int z;
-	post->score = 10;
-	z = scoreFor(player, post);
-	asserttrue(19, z, 3);
-	post->score = pre.score;
 	
 	//test with negative score by populating player's hand, discard, and deck with all curse cards
 	
@@ -82,7 +73,7 @@ int testScoreFor(int player, struct gameState* post){
 	
 	int u;
 	u = scoreFor(player, post);
-	asserttrue (-19, u, 4);
+	asserttrue (-19, u, 3);
 	
 	//restore original hand/discard/deck cards
 	for(i = 0; i < post->handCount[player]; i++){
@@ -99,12 +90,12 @@ int testScoreFor(int player, struct gameState* post){
 	
 	//test that gamestate is identical post call. This test checks for all changes
 	//Among other things, it checks that players' decks/hands/discards were not affected
-	//and test that victory/kingdom card piles not affected
+	//and test that victory card pile/kingdom cards not affected
 	
 	scoreFor(player, post);
 	int q;
 	q = memcmp(&pre, post, sizeof(struct gameState));
-	asserttrue(0, q, 5);
+	asserttrue(0, q, 4);
 	
 	
 	if(passFlag == 0)
@@ -126,7 +117,6 @@ int main(){
 	
 	G.whoseTurn = 1;
 	int player = G.whoseTurn;
-	G.score = 0;
 	
 	//player will have five cards in hand, 10 in deck, four in discard. All estate, so score should be 19 barring changes in test function
 	G.handCount[player] = 5;

@@ -17,6 +17,15 @@ betterTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 
 badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 	gcc -o badTestDrawCard -g  badTestDrawCard.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer.out: randomtestadventurer.c randtestfuncs.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard1.out: randomtestcard1.c randtestfuncs.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2.out: randomtestcard2.c randtestfuncs.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c randtestfuncs.c dominion.o rngs.o $(CFLAGS)
 
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
@@ -83,3 +92,4 @@ clean:
 	rm -f *.o *.c~ *~ unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 
 	rm -f badTestDrawCard betterTestDrawCard testDrawCard playdom.exe playdom test.exe test player player.exe
 	rm -f testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f randomtestadventurer randomtestcard1 randomtestcard2

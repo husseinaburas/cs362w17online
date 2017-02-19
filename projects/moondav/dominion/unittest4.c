@@ -47,6 +47,10 @@ int main() {
     int i;
     int numCardTypes = 25;
 
+    struct TestResult result;
+    result.numPassed = 0;
+    result.numFailed = 0;
+
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 
@@ -71,7 +75,7 @@ int main() {
     expected = 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Empty Province Pile: Game Status", observed, expected);
+    customAssert(testResult, "Empty Province Pile: Game Status", observed, expected, &result);
 
 
     printf("\n\nTEST 2: 3 empty supply piles.\n\n");
@@ -94,7 +98,7 @@ int main() {
     expected = 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "3 Empty Supply Piles: Game Status", observed, expected);
+    customAssert(testResult, "3 Empty Supply Piles: Game Status", observed, expected, &result);
 
     
     printf("\n\nTEST 3: 2 empty supply piles and 1 empty kingdom pile.\n\n");
@@ -117,7 +121,7 @@ int main() {
     expected = 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "2 Empty Supply Piles and 1 Empty Kingdom Pile: Game Status", observed, expected);
+    customAssert(testResult, "2 Empty Supply Piles and 1 Empty Kingdom Pile: Game Status", observed, expected, &result);
 
 
     printf("\n\nTEST 4: 2 empty supply piles.\n\n");
@@ -139,7 +143,7 @@ int main() {
     expected = 0;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "2 Empty Supply Piles: Game Status", observed, expected);
+    customAssert(testResult, "2 Empty Supply Piles: Game Status", observed, expected, &result);
 
 
     printf("\n\nTEST 5: Empty Duchy and Estate piles.\n\n");
@@ -161,9 +165,15 @@ int main() {
     expected = 0;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Empty Duchy and Estate Piles: Game Status", observed, expected);
+    customAssert(testResult, "Empty Duchy and Estate Piles: Game Status", observed, expected, &result);
     
-
+    printf("\n\n************* Summary of random testing discardCard() function. ****************\n");
+    printf("Total number of tests passed: %d\n", result.numPassed);
+    printf("Total number of tests failed: %d\n", result.numFailed);
+    int totalTests = result.numPassed + result.numFailed;
+    float percentPassed = ((float)result.numPassed / totalTests) * 100;
+    printf("Passed %.2f%% of tests.\n", percentPassed);
+    printf("*********************************************************************\n");
     printf("\n\nEND OF UNIT TEST 4\n\n");
 
     return 0;
