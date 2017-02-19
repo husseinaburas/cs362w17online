@@ -8,6 +8,6 @@
 
 int runCardTest(int deckSize, int discardSize);
 
-void asserttrue(int val1, int val2);
+int asserttrue(int val1, int val2);
 
 #endif
