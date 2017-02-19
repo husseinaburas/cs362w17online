@@ -127,6 +127,8 @@ int refPlayAdventurer(struct gameState *state, struct adventurerDetails *details
                 details->temphand[details->temphandCount-1];
     details->temphandCount--;
   }
+
+  return 0;
 }
 
 
@@ -224,11 +226,6 @@ int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPl
 }
 
 void performRandomTest(struct test *totalTest, int test, int rand_seed) {
-
-  struct test currTest;
-  currTest.testsPassed = 0;
-  currTest.testsFailed = 0;
-
   struct gameState testG,
                    refG,
                    refUnchanged;

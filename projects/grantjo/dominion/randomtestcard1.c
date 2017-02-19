@@ -54,6 +54,8 @@ int refPlayVillage(struct gameState *state, struct villageDetails *detail, int h
 
   //discard played card from hand
   discardCard(handPos, detail->currentPlayer, state, 0);
+
+  return 0;
 }
 
 
@@ -118,11 +120,6 @@ int gameStateCorruption(struct gameState *ref, struct gameState *test, int numPl
 }
 
 void performRandomTest(struct test *totalTest, int test, int rand_seed) {
-
-  struct test currTest;
-  currTest.testsPassed = 0;
-  currTest.testsFailed = 0;
-
   struct gameState testG,
                    refG,
                    refUnchanged;
