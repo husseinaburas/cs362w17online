@@ -269,7 +269,6 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
   numTreasure = 1 + rand() % MAX_TREASURE;
 
   handSize = rand() % MAX_HANDSIZE;
-
   deckSize = rand() % MAX_DECKSIZE;
   discardSize = MAX_TREASURE + rand() % MAX_DISCARD;
 
@@ -375,7 +374,7 @@ void performRandomTest(struct test *totalTest, int test, int rand_seed) {
 
   // assert that reference adventurer logic is working correctly.
   // Does not count towards error_count for dominion.c code
-  printf("\tChecking reference logic\n");
+  printf("\tChecking %s reference logic\n", cardName);
   error += asserttrue(advDetails.temphandCount == 0, "TempHand Count Should be 0, Check reference logic");
   error += asserttrue(advDetails.discardCount == refG.discardCount[currentPlayer],
     "Discard count does not match drawn cards, check reference logic");
