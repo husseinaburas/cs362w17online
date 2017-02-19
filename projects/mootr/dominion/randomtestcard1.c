@@ -12,27 +12,51 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
 int main(int argv, char** argc) {
   struct gameState G;
-  int i, j, l, handCount, deckCount, discardCount, failedTests, players;
+  int i, j, l, handCount, deckCount, discardCount, failedTests, players,
+      randomSeed, currentPlayer;
   int k[10] = {adventurer, council_room, feast,   gardens, mine,
                remodel,    smithy,       village, baron,   great_hall};
   int numOfTests = 5000;
 
-  if(argv < 2){
+  // Double check we have the right number of arguments here
+  if (argv < 2) {
     printf("You must provide a random seed number.\n");
     return 1;
   } else {
-    int randomSeed = atoi(argc[1]);
+    randomSeed = atoi(argc[1]);
   };
 
+  // Announce beginning of random testing
+  printf("\t=======\tBegin Random Testing\t=======\n");
 
+  // Running Random Tests
+  for (i = 0; i < numOfTests; i++) {
+    players = (rand() % MAX_PLAYERS) + 1;
+    initializeGame(players, k, randomSeed, &G);
+    currentPlayer = (rand() % players);
 
-  for(i = 0; i < numOfTests; i ++){
+    G.whoseTurn = currentPlayer;
+    G.handCount[currentPlayer] =
+        (rand() % MAX_HAND) + 1;  // Setting a random hand size
+    G.deckCount[currentPlayer] = (rand() % MAX_DECK) + 1;
+    G.numActions = (rand() % 5) + 1;
+    G.playedCardCount = rand() % 20;
+
 
   }
+
+  // Announce end of random testing
+  printf("\t=======\tEnd Random Testing\t=======\n");
+
 
   return 0;
 };
