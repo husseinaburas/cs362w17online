@@ -56,6 +56,15 @@ cardtest3: cardtest3.c  dominion.o rngs.o
 cardtest4: cardtest4.c  dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o  rngs.o $(CFLAGS)
 
+randomtestadventurer: randomtestadventurer.c  dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o  rngs.o $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c  dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o  rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c  dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o  rngs.o $(CFLAGS)
+
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	@echo "unittest1.c:" > unittestresults.out
 	./unittest1 >> unittestresults.out
@@ -86,6 +95,38 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	@echo "" >> unittestresults.out
 	@echo "dominion.c.gcov:" >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+
+randomtestadventurer.out: randomtestadventurer
+	@echo "randomtestadventurer.c:" > randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	@echo "" >> randomtestadventurer.out
+	@echo "gcov results for dominion.c:" >> randomtestadventurer.out
+	gcov -b -f dominion.c  >> randomtestadventurer.out
+	@echo "" >> randomtestadventurer.out
+	@echo "dominion.c.gcov:" >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1
+	@echo "randomtestcard1.c:" > randomtestcard1.out
+	./randomtestcard1 >> randomtestcard1.out
+	@echo "" >> randomtestcard1.out
+	@echo "gcov results for dominion.c:" >> randomtestcard1.out
+	gcov -b -f dominion.c  >> randomtestcard1.out
+	@echo "" >> randomtestcard1.out
+	@echo "dominion.c.gcov:" >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	@echo "randomtestcard2.c:" > randomtestcard2.out
+	./randomtestcard2 >> randomtestcard2.out
+	@echo "" >> randomtestcard2.out
+	@echo "gcov results for dominion.c:" >> randomtestcard2.out
+	gcov -b -f dominion.c  >> randomtestcard2.out
+	@echo "" >> randomtestcard2.out
+	@echo "dominion.c.gcov:" >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+
+allRandomTests: clean randomtestadventurer.out randomtestcard1.out randomtestcard2.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 

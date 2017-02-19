@@ -110,11 +110,15 @@ randomtestadventurer:  randomtestadventurer.c dominion.c rngs.o
 	
 randomtestcard.out: randomtestcard1 dominion.c rngs.o rngs.c rngs.h
 	gcc -o randomtestcard1 -g randomtestcard1.c dominion.c rngs.o $(CFLAGS)
-	./randomtestcard1 23 >> randomtestcard.out
+	./randomtestcard1 34 >> randomtestcard.out
+	gcov -b -f dominion.c >> randomtestcard.out
+	
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.c rngs.o $(CFLAGS)
+	./randomtestcard2 20 >> randomtestcard.out
 	gcov -b -f dominion.c >> randomtestcard.out
 	
 	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.c rngs.o $(CFLAGS)
-	./randomtestadventurer 23 >> randomtestcard.out
+	./randomtestadventurer 21 >> randomtestcard.out
 	gcov -b -f dominion.c >> randomtestcard.out
 	
 randomtests: randomtestcard1 randomtestcard2 randomtestadventurer

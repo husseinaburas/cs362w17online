@@ -8,6 +8,12 @@
 
 int main (int argc, char** argv) {
 
+    /* make sure user passes in argument */
+    if (argc != 2) {
+		printf("USAGE: randomtestcard1 <seed>\n");
+		exit(1);
+	}
+
     srand(time(NULL));
     
     /* we will run a for loop 1000 times to test different random values for the adventurer card */
@@ -16,7 +22,8 @@ int main (int argc, char** argv) {
     /* initialize the game variables */
  	struct gameState game;
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, smithy, council_room};
-
+    int seed = atoi(argv[1]);
+    
  	/* test name and purpose */
  	printf("-----\nStart of Random Council Room Test:\n-----\n");
  	printf("\nThis test will cover the council room card in Dominion.\n");
@@ -30,7 +37,7 @@ int main (int argc, char** argv) {
         int players = rand() % (4 - 1) + 2;
 		
         /* start the game */
-        initializeGame(players, k, rand(), &game);
+        initializeGame(players, k, seed, &game);
 
         /* get a random player */
         int player = rand() % players;
