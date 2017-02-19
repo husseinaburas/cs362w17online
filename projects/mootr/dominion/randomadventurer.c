@@ -11,3 +11,26 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
+
+int main(int argv, char** argc) {
+  struct gameState G;
+  int i, j, l, handCount, deckCount, discardCount, failedTests, players;
+  int k[10] = {adventurer, council_room, feast,   gardens, mine,
+               remodel,    smithy,       village, baron,   great_hall};
+  int numOfTests = 5000;
+
+  if(argv < 2){
+    printf("You must provide a random seed number.\n");
+    return 1;
+  } else {
+    int randomSeed = atoi(argc[1]);
+  };
+
+  
+
+  for(i = 0; i < numOfTests; i ++){
+
+  }
+
+  return 0;
+};
