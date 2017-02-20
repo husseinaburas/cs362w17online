@@ -1503,7 +1503,7 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
     if (state->hand[currentPlayer][handPos] != salvager){
       return -1;
     }
-    if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+    if (handPos > state->handCount[currentPlayer] || handPos < 0){
         return -1;
       }
 
