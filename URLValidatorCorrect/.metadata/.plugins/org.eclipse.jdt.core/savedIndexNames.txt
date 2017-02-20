@@ -1,0 +1,4 @@
+INDEX VERSION 1.129+C:\Users\jz\Desktop\osu\CS362\cs362w17online\URLValidatorCorrect\.metadata\.plugins\org.eclipse.jdt.core
+3459785222.index
+3045807591.index
+43147290.index
