@@ -32,7 +32,8 @@ int main(int argv, char **argc) {
   printf("==============\tSTART TESTING\tupdateCoins()\t==============\n");
 
   // Testing copper are being properly calculated
-  for (int i = 0; i < 5; i++) {
+  int i;
+  for (i = 0; i < 5; i++) {
     testState->hand[playerOne][i] = copper;
   }
   updateCoins(playerOne, testState, 0);
@@ -41,7 +42,7 @@ int main(int argv, char **argc) {
               "calculated\t\t\t\tRESULT:");
 
   // Testing silver are being properly calculated
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     testState->hand[playerOne][i] = silver;
   }
   updateCoins(playerOne, testState, 0);
@@ -50,7 +51,7 @@ int main(int argv, char **argc) {
               "calculated\t\t\t\tRESULT:");
 
   // Testing gold are being properly calculated
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     testState->hand[playerOne][i] = gold;
   }
   updateCoins(playerOne, testState, 0);
@@ -59,7 +60,7 @@ int main(int argv, char **argc) {
               "calculated\t\t\t\tRESULT:");
 
   // Testing bonus is calculated correctly
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     testState->hand[playerOne][i] = smithy;
   }
   updateCoins(playerOne, testState, 5);
@@ -68,7 +69,7 @@ int main(int argv, char **argc) {
               "treasure)\t\tRESULT:");
 
   // Test hand with no treasure and no bonus sets to zero coins
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     testState->hand[playerOne][i] = smithy;
   }
   updateCoins(playerOne, testState, 0);

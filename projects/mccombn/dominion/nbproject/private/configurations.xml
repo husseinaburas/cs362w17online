@@ -15,9 +15,6 @@
       <in>interface.h</in>
       <in>playdom.c</in>
       <in>player.c</in>
-      <in>randomtestadventurer.c</in>
-      <in>randomtestcard1.c</in>
-      <in>randomtestcard2.c</in>
       <in>rngs.c</in>
       <in>rngs.h</in>
       <in>rt.c</in>
@@ -32,6 +29,8 @@
       <in>unittest2.c</in>
       <in>unittest3.c</in>
       <in>unittest4.c</in>
+    </df>
+    <df root="." name="1">
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

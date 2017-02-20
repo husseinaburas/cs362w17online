@@ -140,5 +140,5 @@ int smithyCard(struct gameState *state, int handPos, int currentPlayer);
 int adventurerCard(struct gameState *state, int handPos, int currentPlayer);
 int villageCard(struct gameState *state, int handPos, int currentPlayer);
 int stewardCard(struct gameState *state, int handPos, int currentPlayer, int choice1, int choice2, int choice3);
-int tresuremapCard(struct gameState *state, int handPos, int currentPlayer);
+int treasuremapCard(struct gameState *state, int handPos, int currentPlayer);
 #endif

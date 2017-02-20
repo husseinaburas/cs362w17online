@@ -645,9 +645,14 @@ int getCost(int cardNumber)
 /*CARD FUNCTIONS*/
 
 //Adventurer
-int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand, int z)
+int playAdventurer(int currentPlayer, struct gameState *state)
 {
-	 while(drawntreasure<2){
+  int drawntreasure = 0;
+  int cardDrawn;
+  int temphand[MAX_HAND];
+  int z = 0;// this is the counter for the temp hand
+  while(drawntreasure<2)
+  {
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
@@ -666,8 +671,6 @@ int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer
 	z=z-1;
       }
       return 0;
-	
-	
 }
 
 //Smithy
@@ -790,10 +793,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      playAdventurer(drawntreasure, state, currentPlayer, cardDrawn, temphand, z);
+      playAdventurer(currentPlayer, state);
+	  return 0;
 			
     case council_room:
      playCouncilRoom(state, currentPlayer, handPos);
+	 return 0;
 			
     case feast:
       //gain card with cost up to 5
