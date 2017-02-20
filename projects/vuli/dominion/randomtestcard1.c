@@ -449,14 +449,19 @@ int main(int argc, char* argv[]) {
     }
 
 
-    /* Perform NUM_RANDOM_TESTS random tests where Hand only has card being played */
+    /* Perform NUM_RANDOM_TESTS random tests where where Deck and Discard both empty, and Hand only has card being played */
     for (i=0; i<NUM_RANDOM_TESTS; i++) {
         /* Construct game state */
         G = randomGameState(1, 0, 0);
         player = G.whoseTurn;
+        
+        for (j=0; j<MAX_DECK; j++) G.deck[player][j] = -1;
+        G.deckCount[player] = 0;        
+        for (j=0; j<MAX_DECK; j++) G.discard[player][j] = -1;
+        G.discardCount[player] = 0;
         for (j=0; j<MAX_HAND; j++) G.hand[player][j] = -1;
-        G.hand[player][0] = card;
         G.handCount[player] = 1;        
+        G.hand[player][0] = card;
         handPos = 0;
 
         /* Copy game state to preG */
@@ -465,7 +470,7 @@ int main(int argc, char* argv[]) {
         /*********/
         testCardVillage(&caseCount, &testCount, &r_main,
             card, choice1, choice2, choice3, handPos, &bonus,
-            &G, &preG);       
+            &G, &preG);         
     }
 
 

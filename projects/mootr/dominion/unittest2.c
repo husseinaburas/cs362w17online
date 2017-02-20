@@ -48,7 +48,8 @@ int main(int argv, char **argc) {
 
   // Testing 3 supply card piles being empty to end game
   int originalSupplyCounts[3] = {0};
-  for (int i = 3; i > 0; i--) {
+	int i;
+  for (i = 3; i > 0; i--) {
     originalSupplyCounts[i] = testState->supplyCount[i];
     testState->supplyCount[i] = 0;
   }
@@ -57,12 +58,12 @@ int main(int argv, char **argc) {
       "TEST CASE:\t3 Supply piles empty, game should be over\t\t\tRESULT:");
 
   // Reset supply cards to original values
-  for (int i = 3; i > 0; i--) {
+  for (i = 3; i > 0; i--) {
     testState->supplyCount[i] = originalSupplyCounts[i];
   }
 
   // Both proince cards and supply scenario
-  for (int i = 3; i > 0; i--) {
+  for (i = 3; i > 0; i--) {
     testState->supplyCount[i] = 0;
   }
   testState->supplyCount[province] = 0;
@@ -71,12 +72,12 @@ int main(int argv, char **argc) {
       "TEST CASE:\tBoth province empty & 3 supply piles empty\t\t\tRESULT:");
 
   // Reset supply piles
-  for (int i = 3; i > 0; i--) {
+  for (i = 3; i > 0; i--) {
     testState->supplyCount[i] = originalSupplyCounts[i];
   }
 
   // Only 2 supply piles are empty
-  for (int i = 2; i > 0; i--) {
+  for (i = 2; i > 0; i--) {
     testState->supplyCount[i] = 0;
   }
   UNIT_ASSERT(

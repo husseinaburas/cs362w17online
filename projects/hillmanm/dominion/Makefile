@@ -80,13 +80,13 @@ card4:
 randomcard1:
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard1.c rngs.c -o randomtestcard1 -lm -g
 	./randomtestcard1 500 >> randomtestcard1.out
-	gcov dominion.c >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
 	
 randomcard2:
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
 	./randomtestcard2 500 >> randomtestcard2.out
-	gcov dominion.c >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 	
 randomadventurer:

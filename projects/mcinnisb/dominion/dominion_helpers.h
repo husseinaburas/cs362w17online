@@ -10,7 +10,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state,
 int gainCard(int supplyPos, struct gameState *state, int toFlag, int player);
 int getCost(int cardNumber);
 int smithyCard(int currentPlayer, int handPos, struct gameState *state);
-int adventurerCard(int *temphand, int cardDrawn, int currentPlayer, struct gameState *state);
+int adventurerCard(int currentPlayer, struct gameState *state);
 int baronCard(int currentPlayer, int choice1, struct gameState *state);
 int mineCard(int handPos, int choice1, int choice2, int currentPlayer, struct gameState *state);
 int minionCard(int choice1, int choice2, int currentPlayer, int handPos, struct gameState *state);
