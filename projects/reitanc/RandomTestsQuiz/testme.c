@@ -51,28 +51,29 @@ char *inputString(char *str, size_t size)
 	int RandVal;
 
 	RandVal = (rand() % 4);
-
-	// Testing the Testing capabilities by forcing a response.
-	str[0]='r'; str[1]='e'; str[2]='s'; str[3]='e'; str[4]='t'; str[5]='\0';
-	return str;
+	if (str == NULL)
+	{
+		printf("FAIL - String pointer was a NULL Reference inside inputString()");
+		return '\0';
+	}
 
 	switch (RandVal)
 	{
 		case 1:
-			str[0]='H'; str[1]='e'; str[2]='l'; str[3]='l'; str[4]='o'; str[5]='\0';
+			str = "Hello";
 			break;
 		case 2:
-			str[0]='W'; str[1]='o'; str[2]='r'; str[3]='l'; str[4]='d'; str[5]='\0';
+			str ="World";
 			break;
 		case 3:
-			str[0]='r'; str[1]='e'; str[2]='s'; str[3]='e'; str[4]='t'; str[5]='\0';
+			str = "reset";
 			break;
 		default:
 			for (size_t i = 0; i < size; i++)
 			{
-				str[i] = inputChar();
+				str = str + inputChar();
 			}
-			str[size] = '\0';
+			str = str + '\0';
 			break;
 	}
 
@@ -85,6 +86,7 @@ void testme()
   char *s;
   char c;
   int state = 0;
+
   while (1)
   {
     tcCount++;
@@ -106,7 +108,7 @@ void testme()
        && s[4] == 't' && s[5] == '\0'
        && state == 9)
     {
-      printf("error ");
+      printf("ERROR 200: - Reset parameter was sent.");
       exit(200);
     }
   }

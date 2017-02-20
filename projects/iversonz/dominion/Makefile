@@ -1,5 +1,7 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
+RANDOMSEED = 10000
+
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
 
@@ -23,6 +25,78 @@ testAll: dominion.o testSuite.c
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
+
+randomtestadventurer:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestadventurer.c rngs.c -o randomtestadventurer -lm -g
+
+runrandomtestadventurer:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestadventurer.c rngs.c -o randomtestadventurer -lm -g
+	./randomtestadventurer $(RANDOMSEED)
+
+randomtestcard1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard1.c rngs.c -o randomtestcard1 -lm -g
+
+runrandomtestcard1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard1.c rngs.c -o randomtestcard1 -lm -g
+	./randomtestcard1 $(RANDOMSEED)
+
+randomtestcard2:
+		gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
+
+runrandomtestcard2:
+		gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
+		./randomtestcard2 $(RANDOMSEED)
+
+RAdventurer:
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	rm -f Test.out
+
+	./randomtestadventurer $(RANDOMSEED) >> Test.out
+	gcov randomtestadventurer.c >> Test.out
+	gcov -b randomtestadventurer.c >> Test.out
+	gcov dominion.c >> Test.out
+	gcov -b dominion.c >> Test.out
+
+
+RCard1:
+	gcc -o randomtestcard1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	rm -f randomtestcard1.out
+
+	./randomtestcard1	$(RANDOMSEED) >> randomtestcard1.out
+	gcov randomtestcard1.c >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+
+
+runrandomtests:
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	gcc -o randomtestcard2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+	rm -f randomtestadventurer.out
+	rm -f randomtestcard1.out
+	rm -f randomtestcard2.out
+
+	./randomtestadventurer $(RANDOMSEED) >> randomtestadventurer.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	gcov -b randomtestadventurer.c >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+
+
+	./randomtestcard1	$(RANDOMSEED) >> randomtestcard1.out
+	gcov randomtestcard1.c >> randomtestcard1.out
+	gcov -b randomtestcard1.c >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+
+	./randomtestcard2 $(RANDOMSEED) >> randomtestcard2.out
+	gcov randomtestcard2.c >>  randomtestcard2.out
+	gcov -b randomtestcard2.c >>  randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+
+
+
 
 unittest1:
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest1.c rngs.c -o unittest1 -lm -g

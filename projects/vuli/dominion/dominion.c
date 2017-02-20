@@ -1216,31 +1216,45 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3) {
-  int temphand[MAX_HAND];
+  // int temphand[MAX_HAND];
+  int temphand[2*MAX_HAND]; // del me
   int drawntreasure=0;
   int cardDrawn;
   int z = 0;// this is the counter for the temp hand
 
-  while (drawntreasure < 2) {
+  while (drawntreasure < 2 && (state->deckCount[currentPlayer] > 0 || state->discardCount[currentPlayer] > 0 )) { // del me
+  // while (drawntreasure < 2) {
     if (state->deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
+      // move all discards to deck DEL ME
+      int i;
+      for (i=0; i<state->discardCount[currentPlayer]; i++) {
+        state->deck[currentPlayer][state->deckCount[currentPlayer]] = state->discard[currentPlayer][i];
+        state->deckCount[currentPlayer]++;
+      }
+      state->discardCount[currentPlayer] = 0;
+      // DEL ME end
       shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
+    // cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //del me    
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
       drawntreasure++;
     } else {
-      temphand[++z]=cardDrawn;
+      // temphand[++z]=cardDrawn;
+      temphand[z++]=cardDrawn; // del me
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
     } 
   }
-  
+
   while (z > 0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]] = temphand[z-1]; // discard all cards in play that have been drawn
     state->discardCount[currentPlayer]++;
     z--;
   }
   
+  discardCard(handPos, currentPlayer, state, 0); // del me
+
   return 0;
 }
 
@@ -1355,129 +1369,6 @@ int cardEffectMinion(int handPos, int currentPlayer, struct gameState *state, in
   }
   return 0;
 }
-
-
-
-/*********************************************************************
-* asserttrue()
-* Params:
-*     condition: statement to check validity; true if > 0
-*     r_main: increments if pass condition
-* Returns: None.
-*********************************************************************/
-void asserttrue(int condition, int* r_main) {
-  if (condition > 0) {
-    printf("Passed!\n");
-    (*r_main)++;
-  } else {
-    printf("FAILED!\n");
-  }
-}
-
-
-/*********************************************************************
-* getCardName()
-* Returns: String of card name.
-*********************************************************************/
-char* getCardName(int card) {
-  /* Array of card names, same order as enum CARD */
-  char* cardNames[] = 
-    {"curse",
-     "estate",
-     "duchy",
-     "province",
-
-     "copper",
-     "silver",
-     "gold",
-
-     "adventurer",
-     "council_room",
-     "feast",
-     "gardens",
-     "mine",
-     "remodel",
-     "smithy",
-     "village",
-
-     "baron",
-     "great_hall",
-     "minion",
-     "steward",
-     "tribute",
-
-     "ambassador",
-     "cutpurse",
-     "embargo",
-     "outpost",
-     "salvager",
-     "sea_hag",
-     "treasure_map"
-    };
-
-    return cardNames[card];
-}
-
-
-/********************************************************************
-* printCurrentPlayer()
-* Returns: Print current player's deck, hand, discard pile
-********************************************************************/
-void printCurrentPlayer(int currentPlayer, struct gameState* state) {
-  int i;
-  printf("Hand:\t");
-  for (i=0; i<state->handCount[currentPlayer]; i++)
-    printf("%s\t", getCardName(state->hand[currentPlayer][i]));
-  printf("\n");
-  printf("Deck:\t");
-  for (i=0; i<state->deckCount[currentPlayer]; i++)
-    printf("%s\t", getCardName(state->deck[currentPlayer][i]));
-  printf("\n");
-  printf("Discard:\t");
-  for (i=0; i<state->discardCount[currentPlayer]; i++)
-    printf("%s\t", getCardName(state->discard[currentPlayer][i]));
-  printf("\n");
-}
-
-
-/*********************************************************************
-* getNumCardsHand()
-* Returns: Return number of specific card in player's Hand
-*********************************************************************/
-int getNumCardsHand(int player, int card, struct gameState* state) {
-    int count=0, i;
-    for (i=0; i<state->handCount[player]; i++) {
-        if (state->hand[player][i] == card) count++;
-    }
-    return count;
-}
-
-
-/*********************************************************************
-* getNumCardsDeck()
-* Returns: Return number of specific card in player's Deck
-*********************************************************************/
-int getNumCardsDeck(int player, int card, struct gameState* state) {
-    int count=0, i;
-    for (i=0; i<state->deckCount[player]; i++) {
-        if (state->deck[player][i] == card) count++;
-    }
-    return count;
-}
-
-
-/*********************************************************************
-* getNumCardsDiscard()
-* Returns: Return number of specific card in player's Discard
-*********************************************************************/
-int getNumCardsDiscard(int player, int card, struct gameState* state) {
-    int count=0, i;
-    for (i=0; i<state->discardCount[player]; i++) {
-        if (state->discard[player][i] == card) count++;
-    }
-    return count;
-}
-
 
 
 //end of dominion.c

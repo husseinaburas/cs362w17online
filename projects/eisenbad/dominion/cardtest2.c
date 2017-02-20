@@ -1,15 +1,15 @@
 /* File: cardtest2.c
    Author: Daniel Eisenbach
-   Date: 2/4/17
+   Date: 2/5/17
 
    Description: Tests the implementation of the dominion adventurer action card. Adventurer costs six coin to buy, 
    and when used the player will reveal cards from their deck until two treasure cards are revealed, which will
    be placed into the players hand. The remaining revealed cards are discarded.
 
    Pass Conditions:
-     1. No extra coins are awarded to the current player
+     1. No extra coins are awarded to current player
      2. No extra actions are gained
-     3. No state change occurs to the victory card piles or kingdom card piles
+     3. No state change occurs to victory card piles or kingdom card piles
      4. No state change occurs for other players
      5. Current player receives up to two treasures from their deck
      6. Cards revealed while searching for treasures are in the discard pile
@@ -30,7 +30,6 @@ int main() {
   int pass_count = 0;
 
   // variables for comparing player's state after playing card
-  int newCards = 0;
   int discarded = 1;
   int xtraCoins = 0;
   int xtraActions = 0;
@@ -56,7 +55,6 @@ int main() {
   initializeGame(numPlayers, k, seed, &G);
 	
   int thisPlayer = G.whoseTurn;
-  int nextPlayer = thisPlayer + 1;
 	
   // put testcard in 0th position of player's hand
   G.supplyCount[G.hand[thisPlayer][0]]++; // restore supply of card to be removed from hand
@@ -186,7 +184,7 @@ int main() {
   // TEST 4: verify that no state change occurs for other players
   testAssert(4, &pass_count, checkOtherPlayerState(4, card_state, G));
 	
-  // TEST 5: verify no treasures found	
+  // TEST 5: verify one treasure found	
   printf("\n  TEST 5: Current player receives one treasure from their deck\n");
   // count number of treasure cards in player's hand after playing adventurer
   for (i = 0; i < testG.handCount[thisPlayer]; i++) {
@@ -257,7 +255,7 @@ int main() {
   // TEST 4: verify that no state change occurs for other players
   testAssert(4, &pass_count, checkOtherPlayerState(4, card_state, G));
 	
-  // TEST 5: verify no treasures found	
+  // TEST 5: verify two treasures found	
   printf("\n  TEST 5: Current player receives two treasures from their deck\n");	
   // count number of treasure cards in player's hand after playing adventurer
   for (i = 0; i < testG.handCount[thisPlayer]; i++) {

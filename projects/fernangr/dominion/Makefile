@@ -33,29 +33,62 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest1:
-	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+assertFunction.o: assertFunction.h assertFunction.c
+	gcc -c assertFunction.c -g $(CFLAGS)
 
-unittest2:
-	gcc -o unittest2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+cardtest1: cardtest1.c dominion.o rngs.o assertFunction.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o assertFunction.o $(CFLAGS)
 
-unittestresults.out:
-	make clean
-	make rngs.o
-	make dominion.o
-	make unittest1
+cardtest2: cardtest2.c dominion.o rngs.o assertFunction.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+unittest1: unittest1.c dominion.o rngs.o assertFunction.o
+	gcc -o unittest1 -g unittest1.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+unittest2: unittest2.c dominion.o rngs.o assertFunction.o
+	gcc -o unittest2 -g unittest2.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+unittest3: unittest3.c dominion.o rngs.o assertFunction.o
+	gcc -o unittest3 -g unittest3.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+unittest4: unittest4.c dominion.o rngs.o assertFunction.o
+	gcc -o unittest4 -g unittest4.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o assertFunction.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o assertFunction.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o assertFunction.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o assertFunction.o $(CFLAGS)
+
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	./unittest1 >> unittestresults.out
-
-	make clean
-	make rngs.o
-	make dominion.o
-	make unittest2
 	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	gcov -b -c -f dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
-cleantests:
-	rm -rf *.out unittest1 unittest1.d* unittest2 unittest2.d*
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -bf dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1
+	./randomtestcard1 >> randomtestcard1.out
+	gcov -bf dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	./randomtestcard2 >> randomtestcard2.out
+	gcov -bf dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 *.gcov *.gcda *.gcno *.so *.d*

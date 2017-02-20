@@ -39,11 +39,32 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
 
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard3: randomtestcard3.c dominion.o rngs.o
+	gcc -o randomtestcard3 -g  randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
+
+tests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 dominion.c
+	./unittest1 &> unittestresults.out
+	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	./cardtest4 >> unittestresults.out
+	gcov -bf dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
@@ -54,10 +75,18 @@ runtests: testDrawCard
 	cat dominion.c.gcov >> unittestresult.out
 
 
+rand1:   randomtestcard1
+	./randomtestcard1 &> randomtestadventurer.out
+	./randomtestcard2 >> randomtestadventurer.out
+	./randomtestcard3 >> randomtestadventurer.out
+	gcov -bf dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard cardtest4 cardtest1 cardtest2 cardtest3 unittest1 unittest2 unittest3 unittest4
+all: playdom player testDrawCard testBuyCard badTestDrawCard cardtest4 cardtest1 cardtest2 cardtest3 unittest1 unittest2 unittest3 unittest4 tests randomtestcard2 randomtestcard3 randomtestcard1 rand1
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

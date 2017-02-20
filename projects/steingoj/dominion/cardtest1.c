@@ -41,24 +41,27 @@ int main () {
 	post.deck[0][2] = copper;
 	post.deck[0][3] = copper;
 
-	//memcpy(&pre, &post, sizeof(struct gameState));	
-  
 	post.hand[0][0] = smithy; //Doesn't matter what the card is named 
 	post.whoseTurn = 0;
 	playSmithy(&post, 0);
 
-	//Test that checks if deckCount  is unchanged
+	/*******************************************************
+	//Test that checks if deckCount decremented by 3 
+	*******************************************************/
 	a = pre.deckCount[0];
 	b = post.deckCount[0];
 	assertTrue(a-3==b,"deckCount did not decrement properly\n");
 
+	/*****************************************************
 	//Test if discardCount is incremented by 1
+	****************************************************/
 	a = pre.discardCount[0];
 	b = post.discardCount[0];
 	assertTrue(a+1==b, "discardCount did not increment\n");
 	
-
+	/***************************************************
 	//Test if handCount increases by 2 
+	***************************************************/
 	a = pre.handCount[0];
 	b = post.handCount[0];
 	assertTrue(a+2==b, "handCount did not increase\n");

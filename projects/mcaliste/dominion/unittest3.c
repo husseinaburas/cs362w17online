@@ -1,12 +1,10 @@
 // test for gainCard()
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "dominion.c"
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
-#include "rngs.c"
 #include <stdlib.h>
 #include <math.h>
 #include "assertresult.h"
@@ -35,6 +33,7 @@ int main() {
   gainCard(smithy, &state, 2, whoseTurn(&state));
   assertResult(oldHandCount == numHandCards(&state) - 1);
   assertResult(handCard(numHandCards(&state) - 1, &state) == smithy);
+  assertResult(supplyCount(smithy, &state) == 9);
 
   printf("Test add card to discard gainCard():\n");
   oldDiscardCount = state.discardCount[whoseTurn(&state)];
@@ -42,6 +41,7 @@ int main() {
   gainCard(baron, &state, 0, whoseTurn(&state));
   assertResult(oldDiscardCount == state.discardCount[whoseTurn(&state)] - 1);
   assertResult((state.discard[whoseTurn(&state)][oldDiscardCount]) == baron);
+  assertResult(supplyCount(baron, &state) == 9);
 
   printf("Test add card to deck gainCard():\n");
   oldDeckCount = state.deckCount[whoseTurn(&state)];
@@ -49,6 +49,7 @@ int main() {
   gainCard(mine, &state, 1, whoseTurn(&state));
   assertResult(oldDeckCount == state.deckCount[whoseTurn(&state)] - 1);
   assertResult((state.deck[whoseTurn(&state)][oldDeckCount]) == mine);
+  assertResult(supplyCount(mine, &state) == 9);
 
   return 0;
 }

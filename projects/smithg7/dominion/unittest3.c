@@ -60,6 +60,7 @@ int main()
            sea_hag, tribute, smithy};
   initializeGame(2, k, 2, myState);
 
+  printf("----------------- Unit Test 3: gainCard() ----------------\n");
   /******************************************
    Testing supplyPos parameter of gainCard() (first parameter)
   ******************************************/
@@ -177,6 +178,7 @@ int main()
   assertTrue(preSupplyCount, myState->supplyCount[province], "Gained card to discard pile for player 4 (in 2 player game). No change to supply Count.");
   initializeGame(2, k, 2, myState);
 
+  printf("----------------- Unit Test 2 - COMPLETE ----------------\n");
 
   return 0;
 }

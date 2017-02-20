@@ -52,6 +52,10 @@ int main() {
     int card1, card2, card3, card4, card5;
     int i = 0;
 
+    struct TestResult result;
+    result.numPassed = 0;
+    result.numFailed = 0;
+
     // initialize a game state and player cards
     initializeGame(numPlayers, k, seed, &G);
 
@@ -85,22 +89,23 @@ int main() {
 
     printf("SETUP\n");
     printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
-    printPlayerDeck(&G);
+    printPlayerDeck(&G, currentPlayer);
 
     // copy the game state to a test case
     memcpy(&testG, &G, sizeof(struct gameState));
 
     // Ensure the player's hand is populated correctly
-    printPlayerHand(&G);
+    printPlayerHand(&G, currentPlayer);
     printExpectedHand(card1, card2, card3, card4, card5);
     printf("\n");
 
     // Play the test card
-    cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
+    playCard(0, choice1, choice2, choice3, &testG);
+    // cardEffect(testCard, choice1, choice2, choice3, &testG, handPos, &bonus);
 
     // Print player's hand after the card is played
     printf("Player's hand after test card is played\n");
-    printPlayerHand(&testG);
+    printPlayerHand(&testG, currentPlayer);
     printf("\n");
 
     // Check if the player's deck count stayed the same.
@@ -108,7 +113,7 @@ int main() {
     expected = G.deckCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Deck Count", observed, expected);
+    customAssert(testResult, "Deck Count", observed, expected, &result);
 
     // Check if the player's hand count stayed the same (-1 to play the test
     // card and +1 for the card gained)
@@ -116,65 +121,72 @@ int main() {
     expected = G.handCount[currentPlayer];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Hand Count", observed, expected);
+    customAssert(testResult, "Hand Count", observed, expected, &result);
 
     // Check if the player's discard count is increased by 1.
     observed = testG.discardCount[currentPlayer];
     expected = G.discardCount[currentPlayer] + 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Discard Count", observed, expected);
+    customAssert(testResult, "Discard Count", observed, expected, &result);
 
     // Check that the played card count stayes the same.
     observed = testG.playedCardCount;
     expected = G.playedCardCount;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Played Card Count", observed, expected);
+    customAssert(testResult, "Played Card Count", observed, expected, &result);
 
     // Check that the players coins stayed the same.
     observed = testG.coins;
     expected = G.coins;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Coins", observed, expected);
+    customAssert(testResult, "Coins", observed, expected, &result);
 
     // Check that the other player's deck count stayed the same.
     observed = testG.deckCount[currentPlayer + 1];
     expected = G.deckCount[currentPlayer + 1];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Other Player's Deck Count", observed, expected);
+    customAssert(testResult, "Other Player's Deck Count", observed, expected, &result);
 
     // Check that the other player's hand count stayed the same.
     observed = testG.handCount[currentPlayer + 1];
     expected = G.handCount[currentPlayer + 1];
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Other Player's Hand Count", observed, expected);
+    customAssert(testResult, "Other Player's Hand Count", observed, expected, &result);
 
     // Check that the player's number of buys stayed the same.
     observed = testG.numBuys;
     expected = G.numBuys;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Number of Buys", observed, expected);
+    customAssert(testResult, "Number of Buys", observed, expected, &result);
 
     // Check that the supply pile of the taken card decreased by 1
     observed = testG.supplyCount[choice1];
     expected = G.supplyCount[choice1] - 1;
     if(observed == expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Supply Count of Choice", observed, expected);
+    customAssert(testResult, "Supply Count of Choice", observed, expected, &result);
 
     // Check that the cost of choice1 is less than 5
     observed = getCost(choice1);
     expected = 5;
     if(observed <= expected){testResult = PASS;}
     else{testResult = FAIL;}
-    customAssert(testResult, "Cost of Choice (observed <= expected)", observed, expected);
+    customAssert(testResult, "Cost of Choice (observed <= expected)", observed, expected, &result);
 
+    printf("\n\n************* Summary of testing the %s card. ****************\n", testCardName);
+    printf("Total number of tests passed: %d\n", result.numPassed);
+    printf("Total number of tests failed: %d\n", result.numFailed);
+    int totalTests = result.numPassed + result.numFailed;
+    float percentPassed = ((float)result.numPassed / totalTests) * 100;
+    printf("Passed %.2f%% of tests.\n", percentPassed);
+    printf("*********************************************************************\n");
     printf("\n\nEND OF %s CARD TEST\n\n", testCardName);
-
+    
     return 0;
 }

@@ -21,16 +21,19 @@
 int checkCoins(int testNum, int card_state[6], int xtraCoins, struct gameState G) {
   struct gameState testG;
 
-  printf("\n  TEST %d: %d extra coins are awarded to the current player\n", testNum, xtraCoins);
+  printf("\n  TEST %d: %d bonus coins are awarded to the current player\n", testNum, xtraCoins);
 
+  // reset bonus coins to zero
+  card_state[5] = 0;
+	
   // copy the game state to a test case
   memcpy(&testG, &G, sizeof(struct gameState));
   cardEffect(card_state[0], card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
 
-  printf("    coins = %d, expected = %d\n", testG.coins, G.coins + xtraCoins);
+  printf("   bonus coins = %d, expected = %d\n", testG.coins - G.coins, xtraCoins);
 
   // assert test passed
-  if (testG.coins == G.coins + xtraCoins) {return 1;}
+  if (testG.coins - G.coins == xtraCoins) {return 1;}
   else {return 0;}
 }
 
@@ -99,6 +102,7 @@ int checkOtherPlayerState(int testNum, int card_state[6], struct gameState G) {
   struct gameState testG;
   int thisPlayer = G.whoseTurn;
   int nextPlayer = thisPlayer + 1;
+  int pass_check = 1;
   int i;
 	
   printf("\n  TEST %d: No state change occurs for other players\n", testNum);
@@ -114,9 +118,11 @@ int checkOtherPlayerState(int testNum, int card_state[6], struct gameState G) {
   // assert test passed
   // compare next player's current deck to stored deck (hand is drawn at start of turn, so all cards stored in deck)
   for (i = 0; i < G.deckCount[nextPlayer]; i++) {
-    if (testG.deck[nextPlayer][i] != G.deck[nextPlayer][i]) {return 0;} 
+    if (testG.deck[nextPlayer][i] != G.deck[nextPlayer][i]) {pass_check = 0; break;} 
   }
 
-  if (testG.handCount[nextPlayer] != 0) {return 0;}
-  else {return 1;}
+  // check that deck/hand counts didn't change
+  if ((testG.handCount[nextPlayer] != G.handCount[nextPlayer]) || (testG.deckCount[nextPlayer] != G.deckCount[nextPlayer])) {pass_check = 0;}
+	
+  return pass_check;
 }

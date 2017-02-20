@@ -26,30 +26,117 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittestresults.out: dominion.o rngs.o unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c
+unittest1: dominion.o rngs.o unittest1.c
 	gcc -o unittest1 unittest1.c -g dominion.o rngs.o $(CFLAGS)
+
+unittest2: dominion.o rngs.o unittest2.c
 	gcc -o unittest2 unittest2.c -g dominion.o rngs.o $(CFLAGS)
+
+unittest3: dominion.o rngs.o unittest3.c
 	gcc -o unittest3 unittest3.c -g dominion.o rngs.o $(CFLAGS)
+
+unittest4: dominion.o rngs.o unittest4.c
 	gcc -o unittest4 unittest4.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest1: dominion.o rngs.o cardtest1.c
 	gcc -o cardtest1 cardtest1.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest2: dominion.o rngs.o cardtest2.c
 	gcc -o cardtest2 cardtest2.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest3: dominion.o rngs.o cardtest3.c
 	gcc -o cardtest3 cardtest3.c -g dominion.o rngs.o $(CFLAGS)
+
+cardtest4: dominion.o rngs.o cardtest4.c
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
-	unittest1 >> unittestresults.out
-	unittest2 >> unittestresults.out
-	unittest3 >> unittestresults.out
-	unittest4 >> unittestresults.out
-	cardtest1 >> unittestresults.out
-	cardtest2 >> unittestresults.out
-	cardtest3 >> unittestresults.out
-	cardtest4 >> unittestresults.out
+
+randomtestcard1: dominion.o rngs.o randomtestcard1.c
+	gcc -o randomtestcard1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: dominion.o rngs.o randomtestcard2.c
+	gcc -o randomtestcard2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: dominion.o rngs.o randomtestadventurer.c
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	./unittest1 >> unittestresults.out
+	./unittest2 >> unittestresults.out
+	./unittest3 >> unittestresults.out
+	./unittest4 >> unittestresults.out
+	./cardtest1 >> unittestresults.out
+	./cardtest2 >> unittestresults.out
+	./cardtest3 >> unittestresults.out
+	./cardtest4 >> unittestresults.out
 	echo >> unittestresults.out
-	gcov -b dominion.c
+	gcov -b dominion.c 
+	printf "\n********************* COVERAGE SUMMARY ***********************\n" \
+	  >> unittestresults.out
+	grep "function getCost" dominion.c.gcov >> unittestresults.out
+	grep "function drawCar" dominion.c.gcov >> unittestresults.out
+	grep "function updateC" dominion.c.gcov >> unittestresults.out
+	grep "function isGameO" dominion.c.gcov >> unittestresults.out
+	grep "function playAdv" dominion.c.gcov >> unittestresults.out
+	grep "function playSmi" dominion.c.gcov >> unittestresults.out
+	grep "function playVil" dominion.c.gcov >> unittestresults.out
+	sed -n 1133,1144p dominion.c.gcov >> unittestresults.out
+	printf "********************* END SUMMARY ****************************\n\n" \
+	  >> unittestresults.out
+	echo >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+	echo >> unittestresults.out
+	gcov dominion.c
 	cat dominion.c.gcov >> unittestresults.out
 
+randomtestcard1.out: randomtestcard1
+	./randomtestcard1 5 >> randomtestcard1.out
+	echo >> randomtestcard1.out
+	gcov -b dominion.c 
+	printf "\n********************* COVERAGE SUMMARY ***********************\n" \
+	  >> randomtestcard1.out
+	grep "function playVil" dominion.c.gcov >> randomtestcard1.out
+	printf "********************* END SUMMARY ****************************\n\n" \
+	  >> randomtestcard1.out
+	echo >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	echo >> randomtestcard1.out
+	gcov dominion.c
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	./randomtestcard2 5 >> randomtestcard2.out
+	echo >> randomtestcard2.out
+	gcov -b dominion.c 
+	printf "\n********************* COVERAGE SUMMARY ***********************\n" \
+	  >> randomtestcard2.out
+	sed -n 1133,1144p dominion.c.gcov >> randomtestcard2.out
+	printf "********************* END SUMMARY ****************************\n\n" \
+	  >> randomtestcard2.out
+	echo >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	echo >> randomtestcard2.out
+	gcov dominion.c
+	cat dominion.c.gcov >> randomtestcard2.out
+
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer 5  >> randomtestadventurer.out
+	echo >> randomtestadventurer.out
+	gcov -b dominion.c 
+	printf "\n********************* COVERAGE SUMMARY ***********************\n" \
+	  >> randomtestadventurer.out
+	grep "function playAdv" dominion.c.gcov >> randomtestadventurer.out
+	printf "********************* END SUMMARY ****************************\n\n" \
+	  >> randomtestadventurer.out
+	echo >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	echo >> randomtestadventurer.out
+	gcov dominion.c
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+random_tests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 clean:
-	rm -f *.o playdom test testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player testInit *.exe *.gcov *.gcda *.gcno *.so unittestresults.out
+	rm -f *.o playdom test testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 player testInit *.exe *.gcov *.gcda *.gcno *.so *.out randomtestcard1 randomtestcard2 randomtestadventurer

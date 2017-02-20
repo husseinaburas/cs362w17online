@@ -1,4 +1,4 @@
-#include "dominion.h"
+#include "dominion.h" 
 #include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
@@ -550,6 +550,8 @@ int getCost(int cardNumber) {
 		case salvager:		return 4;
 		case sea_hag:		return 4;
 		case treasure_map:	return 4;
+		case 27:			return 99;
+		case 28:			return -1;
 	}
 	return -1;
 }
@@ -574,20 +576,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			return 0;
 
 		case council_room:
-			// +4 Cards.
-			for (i = 0; i < 4; i++) {
-				drawCard(currentPlayer, state);
-			}
-			// +1 Buy.
-			state->numBuys++;
-			// Each other player draws a card.
-			for (i = 0; i < state->numPlayers; i++) {
-				if ( i != currentPlayer ) {
-					drawCard(i, state);
-				}
-			}
-			// Put played card in played card pile.
-			discardCard(handPos, currentPlayer, state, 0);
+			runCouncil_room(state, currentPlayer, handPos);
 			return 0;
 			
 		case feast:
@@ -638,28 +627,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			return -1;
 			
 		case mine:
-			j = state->hand[currentPlayer][choice1];  // Store card we will trash.
-			if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold) {
-				return -1;
-			}
-			if (choice2 > treasure_map || choice2 < curse) {
-				return -1;
-			}
-			if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) ) {
-				return -1;
-			}
-			gainCard(choice2, state, 2, currentPlayer);
-
-			// Discard card from hand.
-			discardCard(handPos, currentPlayer, state, 0);
-			// Discard trashed card.
-			for (i = 0; i < state->handCount[currentPlayer]; i++) {
-				if (state->hand[currentPlayer][i] == j) {
-					discardCard(i, currentPlayer, state, 0);
-					break;
-				}
-			}
-			return 0;
+			return runMine(state, currentPlayer, choice1, choice2, handPos);
 			
 		case remodel:
 			j = state->hand[currentPlayer][choice1];  // Store card we will trash.
@@ -906,6 +874,51 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	return -1;
 } // End cardEffect()
 
+
+int runMine(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos) {
+	int j = state->hand[currentPlayer][choice1];  // Store card we will trash.
+	if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold) {
+		return -1;
+	}
+	if (choice2 > treasure_map || choice2 < curse) {
+		return -1;
+	}
+	if ((getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2)) {
+		return -1;
+	}
+	gainCard(choice2, state, 2, currentPlayer);
+
+	// Discard card from hand.
+	discardCard(handPos, currentPlayer, state, 0);
+	// Discard trashed card.
+	int i;
+	for (i = 0; i < state->handCount[currentPlayer]; i++) {
+		if (state->hand[currentPlayer][i] == j) {
+			discardCard(i, currentPlayer, state, 0);
+			break;
+		}
+	}
+	return 0;
+}
+
+
+void runCouncil_room(struct gameState *state, int currentPlayer, int handPos) {
+	int i;
+	// +4 Cards.
+	for (i = 0; i < 4; i++) {
+		drawCard(currentPlayer, state);
+	}
+	// +1 Buy.
+	state->numBuys++;
+	// Each other player draws a card.
+	for (i = 0; i < state->numPlayers; i++) {
+		if (i != currentPlayer) {
+			drawCard(i, state);
+		}
+	}
+	// Put played card in played card pile.
+	discardCard(handPos, currentPlayer, state, 0);
+}
 
 void runAdventurer(struct gameState *state, int currentPlayer, int *temphand) {
 	int drawntreasure = 0;

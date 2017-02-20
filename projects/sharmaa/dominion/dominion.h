@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef _DOMINION_H
 #define _DOMINION_H
 

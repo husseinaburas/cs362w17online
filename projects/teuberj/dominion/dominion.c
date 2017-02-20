@@ -1352,8 +1352,9 @@ int playAdventurer(int currentPlayer, struct gameState *state, int handPos){
         z++; 
     }
  } 
- //discard all cards that were not treasure
-  while(z-1>0){
+// printf("%d\n",z);
+//discard all cards that were not treasure
+  while(z-1>=0){
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
     z = z-1;	
   }
