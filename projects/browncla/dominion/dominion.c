@@ -555,7 +555,9 @@ int drawCard(int player, struct gameState *state)
       return -1;
 
     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+
     state->deckCount[player]--;
+   
     state->handCount[player]++;//Increment hand count
   }
 
@@ -1301,10 +1303,10 @@ int updateCoins(int player, struct gameState *state, int bonus)
       */
 int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
-       int z=0;
+       
        int drawntreasure = 0;
 
-       //int startNumCards = state->handCount[currentPlayer]; // storing the starting number of cards for test
+       
        if (state->hand[currentPlayer][handPos] != adventurer){
         //printf("Wrong card\n");
         return -1;
@@ -1320,7 +1322,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
-      while(drawntreasure<1 && state->deckCount[currentPlayer] > z){ //BUG
+      while(drawntreasure<1 && state->deckCount[currentPlayer] > 0){ //BUG
         
         drawCard(currentPlayer, state);
 
@@ -1331,8 +1333,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
         }
         else{
           discardCard(state->hand[currentPlayer][state->handCount[currentPlayer]-1], currentPlayer, state, 0);
-          z++;
+          
         }
+        
 
       }
 

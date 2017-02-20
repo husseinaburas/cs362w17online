@@ -11,8 +11,8 @@
 #include <stdlib.h>
 
 #define TESTCARD "Salvager"
-#define PRINT_ALL 0 
-
+#define PRINT_ALL 0
+#define TEST_LENGTH 1000
 
 //Own assert function
 int asserttrue(int input, int number){
@@ -381,7 +381,7 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
