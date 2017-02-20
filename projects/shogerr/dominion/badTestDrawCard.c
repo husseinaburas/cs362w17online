@@ -1,6 +1,8 @@
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include <math.h>
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 #include "rngs.h"
@@ -10,16 +12,26 @@
 
 int checkDrawCard(int p, struct gameState *post) {
   int r;
-    
-  r = drawCard (p, post);
+
+  return r = drawCard(p, post);
 }
 
 int main () {
 
-  int i, n, r, p, deckCount, discardCount, handCount;
+  int i;
+  int n;
 
+  //int r; // removed for warnings
+  int p;
+
+  // removed for warnings
+  //int deckCount, discardCount, handCount;
+
+  // removed for warnings 
+  /*
   int k[10] = {adventurer, council_room, feast, gardens, mine,
-	       remodel, smithy, village, baron, great_hall};
+               remodel, smithy, village, baron, great_hall};
+  */
 
   struct gameState G;
 
