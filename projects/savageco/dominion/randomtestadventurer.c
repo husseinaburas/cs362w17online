@@ -33,7 +33,7 @@ int main(int argc, char* args[]){
     printf("\nTesting Adventurer card\n");
     
     // random test for adventurer, 500 runs
-    for (int i=0; i<500; i++) {
+    for (i=0; i<500; i++) {
         
         int cardNum;
         int coinNumPre[2] = {0,0};
@@ -52,8 +52,8 @@ int main(int argc, char* args[]){
         G.deckCount[0] = deckCount - handCount;
         
         // random card contents
-        for (int n=0; n<2; n++) {
-            for (int j=0; j<G.deckCount[n]; j++) {
+        for (n=0; n<2; n++) {
+            for (j=0; j<G.deckCount[n]; j++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -85,7 +85,7 @@ int main(int argc, char* args[]){
                     }
                 }
             }
-            for (int s=1; s<G.handCount[n]; s++) {
+            for (s=1; s<G.handCount[n]; s++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -122,7 +122,7 @@ int main(int argc, char* args[]){
         }
         playCard(0, -1, -1, -1, &G);
         
-        for (int n=0; n<G.handCount[G.whoseTurn]; n++) {
+        for (n=0; n<G.handCount[G.whoseTurn]; n++) {
             if (G.hand[G.whoseTurn][n] == gold || G.hand[G.whoseTurn][n] == silver || G.hand[G.whoseTurn][n] == copper) {
                 coinNumPost[G.whoseTurn]++;
             }
@@ -154,3 +154,4 @@ void assert_true(int result) {
     
     return;
 }
+
