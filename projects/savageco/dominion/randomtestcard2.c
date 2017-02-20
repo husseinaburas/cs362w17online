@@ -35,8 +35,8 @@ int main(int argc, char* args[]){
     
     printf("\nTesting Village card\n");
     
-    // random test for village, 500 runs
-    for (int i=0; i<500; i++) {
+    // random test for village, 50 runs
+    for (i=0; i<50; i++) {
         
         int cardNum;
         int deckCount, handCount = 0;
@@ -52,8 +52,8 @@ int main(int argc, char* args[]){
         G.deckCount[0] = deckCount - handCount;
         
         // random card contents
-        for (int n=0; n<2; n++) {
-            for (int j=0; j<G.deckCount[n]; j++) {
+        for (n=0; n<2; n++) {
+            for (j=0; j<G.deckCount[n]; j++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -85,7 +85,7 @@ int main(int argc, char* args[]){
                     }
                 }
             }
-            for (int s=1; s<G.handCount[n]; s++) {
+            for (s=1; s<G.handCount[n]; s++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -128,7 +128,7 @@ int main(int argc, char* args[]){
         
     }
     
-    printf("Number of simulations: 500\n Passed Tests: %d \n Failed Tests: %d\n", passNum, failNum);
+    printf("Number of simulations: 50\n Passed Tests: %d \n Failed Tests: %d\n", passNum, failNum);
     
     
     return 0;
