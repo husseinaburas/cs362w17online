@@ -8,24 +8,14 @@
 
 int treasureCount(int player, struct gameState *state);
 
-// const char* TEST_NAMES[7] =
-// {
-//     "OTHER PLAYER DECK SIZE",
-//     "OTHER PLAYER DISCARD PILE SIZE",
-//     "TREASURE CARDS IN CURRENT PLAYER DECK",
-//     "TREASURE CARDS IN CURRENT PLAYER DISCARD PILE",
-//     "PLAYED CARD COUNT",
-//     "CURRENT PLAYER CARDS IN HAND",
-//     "CURRENT PLAYER TREASURE CARDS IN HAND"
-// };
 // Number of tests to run and their names
-const int NUM_TESTS = 7;
+const int NUM_TESTS = 4;
 
 /*
-  Test of adventurerCard function.
+  Test of smithyCard function.
 */
 
-void randTestAdv(int seed, int* tally)
+void randTestSmithy(int seed, int* tally)
 {
     int i, j;
     // Constants defining limits of deck and discard pile sizes at init time
@@ -42,7 +32,6 @@ void randTestAdv(int seed, int* tally)
     int expected = 0;
     int got = 0;
     int result = 0;
-    //char* testName;
 
     // Size counts for all players
     int deckSizeBefore[MAX_PLAYERS];
@@ -55,18 +44,10 @@ void randTestAdv(int seed, int* tally)
     int handSizeAfterPlaying = 0;
     int playedCardsBefore = 0;
     int playedCardsAfter = 0;
-
-    // Treasure count for current player
-    int inHandBeforePlaying = 0;
-    int inHandAfterPlaying = 0;
-    int inDeckBeforePlaying = 0;
-    int inDeckAfterPlaying = 0;
-    int inDiscardBeforePlaying = 0;
-    int inDiscardAfterPlaying = 0;
+    int cardPos;
 
     // Re-initialize the currentTest count every time this is ran
     int currentTest = 1;
-
 
     /*
       SETUP PHASE - Randomize deck, discard pile, number of players
@@ -106,8 +87,9 @@ void randTestAdv(int seed, int* tally)
 
     // printf("\nHAND SIZE BEFORE PLAYING: %d\n", handSizeBeforePlaying);
 
-    // Make one of those cards the Adventurer
-    testState.hand[currentPlayer][0] = adventurer;
+    // Make one of those cards the smithy
+    testState.hand[currentPlayer][0] = smithy;
+    cardPos = 0;
 
     // Start the current player off with a random number of played cards
     testState.playedCardCount = rand() % (discardSizeBefore[currentPlayer] + 1);
@@ -116,7 +98,7 @@ void randTestAdv(int seed, int* tally)
     // printf("\nINITIAL PLAYED CARD COUNT: %d\n", playedCardsBefore);
 
     // And randomize the rest of them
-    for (i = 1; i < inHandBeforePlaying; i++)
+    for (i = 1; i < handSizeBeforePlaying; i++)
     {
         testState.hand[currentPlayer][i] = rand() % (treasure_map + 1);
     }
@@ -126,45 +108,12 @@ void randTestAdv(int seed, int* tally)
     //     printf("CARD at %d is %d\n", i, testState.hand[currentPlayer][i]);
     // }
 
-    // Count treasure cards in deck
-    for (i = 0; i < deckSizeBefore[currentPlayer]; i++)
-    {
-        j = testState.deck[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inDeckBeforePlaying++;
-        }
-    }
-    // printf("\nTREASURE IN DECK BEFORE PLAYING: %d\n", inDeckBeforePlaying);
-
-    // Count treasure cards in discard pile
-    for (i = 0; i < discardSizeBefore[currentPlayer]; i++)
-    {
-        j = testState.discard[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inDiscardBeforePlaying++;
-        }
-    }
-    // printf("\nTREASURE IN DISCARD BEFORE PLAYING: %d\n", inDiscardBeforePlaying);
-
-    // Count treasure cards in hand
-    for (i = 0; i < handSizeBeforePlaying; i++)
-    {
-        j = testState.hand[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inHandBeforePlaying++;
-        }
-    }
-    // printf("\nTREASURE IN HAND BEFORE PLAYING: %d\n", inHandBeforePlaying);
-
 
     /*
         SETUP PHASE COMPLETE - PLAYING CARD
     */
 
-    adventurerCard(&testState);
+    smithyCard(&testState, cardPos);
 
     /*
         RECORDING CHANGES TO STATE PHASE
@@ -182,42 +131,6 @@ void randTestAdv(int seed, int* tally)
     // Store the current player's new hand and played card count
     handSizeAfterPlaying = testState.handCount[currentPlayer];
     playedCardsAfter = testState.playedCardCount;
-
-    // printf("\nHAND SIZE AFTER PLAYING: %d\n", handSizeAfterPlaying);
-    // printf("\nTERMINAL PLAYED CARD COUNT: %d\n", playedCardsAfter);
-
-    // Count treasure cards in deck
-    for (i = 0; i < deckSizeAfter[currentPlayer]; i++)
-    {
-        j = testState.deck[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inDeckAfterPlaying++;
-        }
-    }
-    // printf("\nTREASURE IN DECK AFTER PLAYING: %d\n", inDeckAfterPlaying);
-
-    // Count treasure cards in discard pile
-    for (i = 0; i < discardSizeAfter[currentPlayer]; i++)
-    {
-        j = testState.discard[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inDiscardAfterPlaying++;
-        }
-    }
-    // printf("\nTREASURE IN DISCARD AFTER PLAYING: %d\n", inDiscardAfterPlaying);
-
-    // Count treasure cards in hand
-    for (i = 0; i < handSizeAfterPlaying; i++)
-    {
-        j = testState.hand[currentPlayer][i];
-        if (j >= copper && j <= gold)
-        {
-            inHandAfterPlaying++;
-        }
-    }
-    // printf("\nTREASURE IN HAND AFTER PLAYING: %d\n", inHandAfterPlaying);
 
     /*
         BEGIN TESTING RESULTS
@@ -264,47 +177,6 @@ void randTestAdv(int seed, int* tally)
     tally[currentTest++] += result; // add the result to the tally
 
 
-    // Testing direct effects of Adventurer card
-
-    //      "TREASURE CARDS IN CURRENT PLAYER DECK"
-    // Resetting testing variables
-    expected = 0;
-    result = 0;
-    got = 0;
-
-    // Determine the expected variation in treasure cards in deck
-    if (inDeckBeforePlaying >= 2)
-        expected = inDeckBeforePlaying - 2;
-    else if (inDeckBeforePlaying == 1 && inDiscardBeforePlaying >= 1)
-        expected = inDiscardBeforePlaying - 1;
-    else if (inDeckBeforePlaying == 0 && inDiscardBeforePlaying >= 2)
-        expected = inDiscardBeforePlaying - 2;
-    else
-        expected = 0;
-
-    printf("\n--> Testing For: TREASURE CARDS IN CURRENT PLAYER DECK\n");
-    got = inDeckAfterPlaying;
-    result = assertEquals(expected, got);
-    tally[currentTest++] += result;
-
-    //     "TREASURE CARDS IN CURRENT PLAYER DISCARD PILE"
-    // Resetting testing variables
-    expected = 0;
-    result = 0;
-    got = 0;
-
-    // Determine the expected variation in treasure cards in discard pile
-    if (inDeckBeforePlaying >= 2)
-        expected = inDeckBeforePlaying;
-    else if (inDiscardBeforePlaying >= 2)
-        expected = 0;
-
-    printf("\n--> Testing For: TREASURE CARDS IN CURRENT PLAYER DISCARD PILE\n");
-    got = inDiscardAfterPlaying;
-    result = assertEquals(expected, got);
-    tally[currentTest++] += result;
-
-
     //     "PLAYED CARD COUNT"
     // Resetting testing variables
     expected = 0;
@@ -315,48 +187,19 @@ void randTestAdv(int seed, int* tally)
     result = assertEquals(playedCardsBefore + 1, playedCardsAfter);
     tally[currentTest++] += result;
 
+    // Testing direct effects of smithy card
     //      "CURRENT PLAYER CARDS IN HAND"
     // Resetting testing variables
-    expected = 0;
+    expected = 3;
     result = 0;
     got = 0;
-
-    if (inDeckBeforePlaying + inDiscardBeforePlaying >= 2)
-    {
-        expected = 2;
-    }
-    else
-    {
-        expected = inDeckBeforePlaying + inDiscardBeforePlaying;
-    }
 
     printf("\n--> Testing For: CURRENT PLAYER CARDS IN HAND\n");
-    expected = handSizeBeforePlaying + expected - 1; // updating expected value
-    result = assertEquals(expected, handSizeAfterPlaying); // storing result
+    expected = handSizeBeforePlaying + expected; // updating expected value
+    got = handSizeAfterPlaying;
+    result = assertEquals(expected, got); // storing result
     tally[currentTest++] += result; // add the result to the tally
-
-
-    // Resetting testing variables
-    expected = 0;
-    result = 0;
-    got = 0;
-
-    if (inDeckBeforePlaying + inDiscardBeforePlaying >= 2)
-    {
-        expected = 2;
-    }
-    else
-    {
-        expected = inDeckBeforePlaying + inDiscardBeforePlaying;
-    }
-
-    printf("\n--> Testing For: CURRENT PLAYER TREASURE CARDS IN HAND\n");
-    expected = inHandBeforePlaying + expected;
-    got = inHandAfterPlaying;
-    result = assertEquals(expected, got);;
-    tally[currentTest++] += result;
 }
-
 
 
 int main(int argc, char *argv[])
@@ -375,12 +218,12 @@ int main(int argc, char *argv[])
 
     srand(seed);
 
-    printf("\n--- TESTING adventurerCard FUNCTION ---\n");
+    printf("\n--- TESTING smithyCard FUNCTION ---\n");
 
     // Run amount of times given above
     for (i = 0; i < runs; i++)
     {
-        randTestAdv(seed, tally);
+        randTestSmithy(seed, tally);
         ran++;
     }
 
@@ -393,8 +236,7 @@ int main(int argc, char *argv[])
     }
 
     printf("\n--- RAN TESTS %d TIMES ---", ran);
-    printf("\n--- DONE TESTING adventurerCard FUNCTION ---\n\n");
+    printf("\n--- DONE TESTING smithy FUNCTION ---\n\n");
 
     return 0;
-
 }
