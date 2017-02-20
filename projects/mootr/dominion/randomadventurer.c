@@ -1,8 +1,8 @@
 /**
- * Title:	Random tester for playSmithy() card function
+ * Title:	Random tester for playAdventurer() card function
  * Author: Richard Moot
  * Description:	Automatically runs through a series of randomized tests
- * 	to test the playSmithy() card function.
+ * 	to test the playAdventurer() card function.
  */
 #include <math.h>
 #include <stdio.h>
