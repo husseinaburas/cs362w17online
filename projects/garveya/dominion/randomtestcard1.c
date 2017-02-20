@@ -1,3 +1,5 @@
+//random tests for council room card (playCouncil_Room function)
+
 #include "dominion.h"
 
 #define CARD_NAME "Council Room"
@@ -33,9 +35,6 @@ int mockCardAction(int currentPlayer, struct gameState *state, int handPos){
 
 	return 0;
 }
-
-
-
 
 
 #include "random_test_runner.c"
