@@ -1213,7 +1213,7 @@ int playFeast(struct gameState *state, int handPos, int choice1) {
   // Backup hand
 
   // Update Coins for Buy
-  updateCoins(currentPlayer, state, 4);
+  updateCoins(currentPlayer, state, 5);
   x = 1;            // Condition to loop on
   while (x == 1) {  // Buy one card
     if (supplyCount(choice1, state) <= 0) {
@@ -1293,7 +1293,7 @@ int playMine(struct gameState *state, int handPos, int choice1, int choice2) {
 
 int playSeaHag(struct gameState *state, int handPos) {
   int currentPlayer = whoseTurn(state);
-	int i;
+  int i;
   for (i = 0; i < state->numPlayers; i++) {
     if (i != currentPlayer) {
       state->discard[i][state->discardCount[i]] =
