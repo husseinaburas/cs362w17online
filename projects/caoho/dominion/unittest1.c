@@ -29,19 +29,16 @@ int main() {
 	for (i = 0; i < num_cards; i++) {
 		int count = 0;
 		int card = i;
-		//deck
 		for (j = 0; j < state.deckCount[player]; j++) {
 			if (state.deck[player][j] == i) {
 				count++;
 			}
 		}
-		//hand
 		for (j = 0; j < state.handCount[player]; j++) {
 			if (state.hand[player][j] == i) {
 				count++;
 			}
 		}
-		//discard
 		for (j = 0; j < state.discardCount[player]; j++) {
 			if (state.discard[player][j] == i) {
 				count++;

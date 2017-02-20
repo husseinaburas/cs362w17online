@@ -644,17 +644,16 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   
 	
   //uses switch to select card and perform actions
-  switch( card ) 
-    {
+  switch( card ) {
 
-    // ***************************		
-		// ******** ADVENTURER *******
-		// ***************************		
-    case adventurer:
+  	  // ***************************
+  	  // ******** ADVENTURER *******
+  	  // ***************************
+  	  case adventurer:
       
-      // add refactored adventurer action here
-      AdventurerAction (currentPlayer, state, handPos);
-      return 0;
+  		  // add refactored adventurer action here
+  		  AdventurerAction (currentPlayer, state, handPos);
+  		  return 0;
       
 /*** Comment out original code before refactor      
       while(drawntreasure<2){
@@ -1429,6 +1428,9 @@ int TreasureMapAction (int currentPlayer, struct gameState *state, int handPos) 
 	return -1;
 }
 
+// ***********************
+// SMITHY ACTION FUNCTION
+// ***********************
 int SmithyAction (int currentPlayer, struct gameState *state, int handPos) {
   int i;
   // printf ("\nDebug: Smithy Action refactor code\n");
@@ -1453,12 +1455,15 @@ int SmithyAction (int currentPlayer, struct gameState *state, int handPos) {
 }
 
 
-
+// ***********************
+// ADVENTURER ACTION FUNCTION
+// ***********************
 int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
   int drawntreasure=0;
   int z = 0; // for temp hand counter
   int cardDrawn;
   int temphand[MAX_HAND];
+  int result; // added to stop crashing
   
   //printf ("\nDebug: Adventurer Action refactor code\n");
 
@@ -1466,21 +1471,32 @@ int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
 	  if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	  }
-	  drawCard(currentPlayer, state);
-	  cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+	  result = drawCard(currentPlayer, state);
+	  // DEBUG
+	  if (result == -1) {
+		  printf (" -- Couldn't draw card -- \n");
+		  // setting drawntreasure to 3 to get out of while loop
+		  drawntreasure = 3;
+	  } else {
+		  // end DEBUG
+
+		  //top card of hand is most recently drawn card.
+		  cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
 
 /***  Original Adventurer action without bugs
 	  if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 ***/
     // *** ADDING BUG if statement does not check for gold, just copper and silver
-	  if (cardDrawn == copper || cardDrawn == silver)
-
-	    drawntreasure++;
-	  else {
-	    temphand[z]=cardDrawn;
-	    state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
-	    z++;
+		  if (cardDrawn == copper || cardDrawn == silver) {
+			  drawntreasure++;
+			  printf ("drawntreasure = %i, cardDrawn = %i -> ", drawntreasure, cardDrawn);
+		  } else {
+			  temphand[z]=cardDrawn;
+			  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			  z++;
+		  }
 	  }
+
   }
   while(z-1>=0){
 	  state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
@@ -1491,8 +1507,9 @@ int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
 
 
 
-
-
+// ***********************
+// VILLAGE ACTION FUNCTION
+// ***********************
 int VillageAction (int currentPlayer, struct gameState *state, int handPos) {
   //printf ("\nDebug: Village Action refactor code\n");
   //+1 Card

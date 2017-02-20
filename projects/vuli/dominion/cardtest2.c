@@ -48,7 +48,7 @@ The following cases are tested:
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "unittests_helpers.h"
+#include "tests_helpers.h"
 
 #define CARD_NAME "Smithy"
 
@@ -76,7 +76,7 @@ int main() {
     int G_DeckDiscardCount, preG_DeckDiscardCount;
 
     printf("**********************************************************\n");
-    printf("BEGIN testing %s\n", CARD_NAME);
+    printf("BEGIN unit testing %s\n", CARD_NAME);
     
 
 /*-------------------------------------------------------------------------*/
@@ -90,7 +90,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -243,7 +243,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -397,7 +397,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -548,7 +548,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -700,7 +700,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -850,7 +850,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -999,7 +999,7 @@ int main() {
     memcpy(&preG, &G, sizeof(struct gameState));  // save gameState to preG
 
     /*********/
-    testCardsGeneralRequirements(caseCount, casename, &testCount, &r_main,
+    testCardGeneralRequirements(&caseCount, casename, &testCount, &r_main,
         card, choice1, choice2, choice3, handPos, &bonus,
         &G, &preG);
 
@@ -1134,7 +1134,7 @@ int main() {
     /******** Result */
     printf("---------\n");
     printf("Card %s passed %d/%d tests.\n", CARD_NAME, r_main, testCount);
-    printf("END testing %s\n", CARD_NAME);
+    printf("END unit testing %s\n", CARD_NAME);
     printf("**********************************************************\n\n");
 
     return 0;
