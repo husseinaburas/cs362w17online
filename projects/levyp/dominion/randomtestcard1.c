@@ -54,9 +54,9 @@ int main() {
             int retVal = playSmithy(p, &G, smithyPos);
 
 
-            int numberOfHandCardsAfterSmithy = G.handCount[p];
-            int playerDeckCountAfter = G.deckCount[p];
-            int playerDiscardCountAfter = G.discardCount[p];
+            //int numberOfHandCardsAfterSmithy = G.handCount[p];
+            //int playerDeckCountAfter = G.deckCount[p];
+            //int playerDiscardCountAfter = G.discardCount[p];
 
             // printf("numberOfHandCardsBeforeSmithy%d\n", numberOfHandCardsBeforeSmithy);
             // printf("numberOfHandCardsAfterSmithy%d\n", numberOfHandCardsAfterSmithy);
