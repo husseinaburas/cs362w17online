@@ -1351,6 +1351,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be smithy and the value must be between 7 and 26
+                   HandPos must be between 0 and the size of the players hand
    Post-Conditions: state->handCount[currentPlayer] should have increased by 2
                     state->numActions must be >= 0 because the number of actions is not changed in this function
                     The smithy card should be discarded
@@ -1358,6 +1359,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
 int playSmithy(struct gameState *state, int currentPlayer, int handPos){
 
+      if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
       if (state->hand[currentPlayer][handPos] != smithy){
         return -1;
       }
@@ -1389,11 +1393,15 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be village and the value must be between 7 and 26
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: state->handCount[currentPlayer] should stay the same
                     state->numActions must be increased by 2 and must be >= 0 because player gained 2 action cardss
                     The village card should be discarded
 */
 int playVillage(struct gameState *state, int currentPlayer, int handPos){
+      if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+            return -1;
+          }
    
       if (state->hand[currentPlayer][handPos] != village){
         return -1;
@@ -1425,6 +1433,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be steward and the value must be between 7 and 26
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: if choice1 = 1, then state->handCount[currentPlayer] should increase by 2
                     if choice1 = 2, then state->coins should be increased by 2
                     if choice1 = other number, then state->handCount[currentPlayer] should be decreased by 2
@@ -1433,6 +1442,9 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
 */
 int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos){
 
+  if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
   if (state->hand[currentPlayer][handPos] != steward){
     return -1;
   }
@@ -1475,6 +1487,7 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be salvager and the value must be between 7 and 26
                    Choice1 must be a valid card position in the players hand
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: state->numActions must be >= 0 because the number of actions isn't changed in this function
                     state->numBuys should be increased by 1
                     The card represented by choice1 should not be in the players deck
@@ -1487,6 +1500,9 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
     if (state->hand[currentPlayer][handPos] != salvager){
       return -1;
     }
+    if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
 
     if (state->phase != 0){
         return -1;
