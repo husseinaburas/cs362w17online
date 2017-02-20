@@ -101,6 +101,13 @@ unittestresults.out: cardtest4 cardtest3 cardtest2 cardtest1 unittest1 unittest2
 randomtestcard1: randomtestcard1.c dominion.o random_test_runner.c
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
 
+randomtestcard1.out: randomtestcard1
+	rm *.gcda
+	echo -e "Random Testing for Council Room\n" > randomtestcard1.out
+	./randomtestcard1 1 >> randomtestcard1.out
+	gcov dominion.c -b -f >> randomtestcard1.out
+	rm *.gcda
+
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
