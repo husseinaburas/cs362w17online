@@ -105,7 +105,7 @@ int main(int argc, char* argv[]) {
 		
 		//Clear the deck between tests
 		for(i = 0; i < MAX_DECK; i++){
-			G.deck[0][i] = NULL;
+			G.deck[0][i] = -1;
 		}   
 
 
