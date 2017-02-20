@@ -757,7 +757,7 @@ int main (int argc, char** argv){
 		testLocation = cardPlacement;
 		testPhase = 0;
 		testActions = 1;
-		testChoice = rand()%(2* G.handCount[currentPlayer]);
+		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		while (G.hand[currentPlayer][testChoice] == salvager){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
