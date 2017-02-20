@@ -130,6 +130,11 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
+//required to be public for testing purposes
+int drawCard(int player, struct gameState *state);
+//required to be public for testing purposes
+int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag);
+
 int playAdventurer(int currentPlayer, struct gameState *state);
 int playSmithy(int currentPlayer, struct gameState *state, int handPos);
 int playVillage(struct gameState *state, int handPos);

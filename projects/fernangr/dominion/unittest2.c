@@ -124,6 +124,6 @@ int main()
 
   printf("\n--RESULTS--");
   printf("\nPASSES: %d\nFAILS: %d\n", passes, fails);
-  printf("\n---DONE TESTING isGameOver FUNCTION ---\n\n");
+  printf("\n---DONE TESTING discardCard FUNCTION ---\n\n");
 
 }

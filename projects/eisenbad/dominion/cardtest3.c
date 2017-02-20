@@ -97,10 +97,10 @@ int main() {
   memcpy(&testG, &G, sizeof(struct gameState));
   cardEffect(card_state[0], card_state[1], card_state[2], card_state[3], &testG, card_state[4], &card_state[5]);
 
-  printf("    top card in hand = %d, expected = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1], G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]);
+  printf("    top card in hand = %d, expected = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1], G.deck[thisPlayer][G.deckCount[thisPlayer]]);
 
   // assert test 6 passed
-  testAssert(6, &pass_count, testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1] == G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]);
+  testAssert(6, &pass_count, testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1] == G.deck[thisPlayer][G.deckCount[thisPlayer]]);
 
   /**************************************** END OF TESTS ****************************************************/
   if (pass_count == 6) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}

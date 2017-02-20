@@ -1,6 +1,7 @@
 #include "dominion.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //unittest1.c
 //buyCard unit test
@@ -23,14 +24,14 @@ int main(void) {
 	p->whoseTurn = 1;
   p->supplyCount[cutpurse] = 1;
   p->numBuys = 1;
-  p->coins = r;
+  p->coins = 4;
 
   int buyCardResult = buyCard(feast, p);
 
   asserttrue(buyCardResult == 0, "Failed\n");
-  assertrue(p->supplyCount[cutpurse]==0, "# of cutpurses wrong\n");
-  assertrue(p->numBuys == 0, "Buys incorrect");
-  assertrue(p->coins == 0, "Coins incorrect");
+  asserttrue(p->supplyCount[cutpurse]==0, "# of cutpurses wrong\n");
+  asserttrue(p->numBuys == 0, "Buys incorrect");
+  asserttrue(p->coins == 0, "Coins incorrect");
 
   if(pass){
 	    printf("Test passed \n");

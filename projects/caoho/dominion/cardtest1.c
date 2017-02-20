@@ -7,6 +7,7 @@
 
 int main() {
 
+
       printf("****** Testing Method <playAdventurer ;>******\n");
 
       int k[10] = { adventurer, gardens, feast, village, minion, mine, steward,

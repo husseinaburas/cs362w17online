@@ -46,6 +46,33 @@ card3: dominion.o rngs.o cardtest3.c
 card4: dominion.o rngs.o cardtest4.c
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest4.c rngs.o -o cardtest4 -lm -g
 
+
+random1: dominion.o rngs.o randomtestcard1.c
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestcard1.c rngs.o -o randomtestcard1 -lm -g
+
+random2: dominion.o rngs.o randomtestcard2.c
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestcard2.c rngs.o -o randomtestcard2 -lm -g
+
+randomadventurer: dominion.o rngs.o randomtestadventurer.c
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestadventurer.c rngs.o -o randomtestadventurer -lm -g
+
+
+randomtestcard1.out: random1 dominion.o rngs.o
+	./randomtestcard1 		&> randomtestcard1.out
+	gcov -f dominion.c 		>> randomtestcard1.out
+	cat dominion.c.gcov 	>> randomtestcard1.out
+
+randomtestcard2.out: random2 dominion.o rngs.o
+	./randomtestcard2		&> randomtestcard2.out
+	gcov -f dominion.c 		>> randomtestcard2.out
+	cat dominion.c.gcov 	>> randomtestcard2.out
+
+randomtestadventurer.out: randomadventurer dominion.o rngs.o
+	./randomtestadventurer		&> randomtestadventurer.out
+	gcov -f dominion.c 			>> randomtestadventurer.out
+	cat dominion.c.gcov 		>> randomtestadventurer.out
+
+
 unittestresults.out: unit1 unit2 unit3 unit4 card1 card2 card3 card4 dominion.o rngs.o
 	./unittest1 &> unittestresults.out 
 	./unittest2 >> unittestresults.out 
@@ -67,6 +94,7 @@ unittestresults.out: unit1 unit2 unit3 unit4 card1 card2 card3 card4 dominion.o 
 	gcov -b cardtest4.c 	>> unittestresults.out 
 
 
+
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
@@ -79,7 +107,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unit1 unit2 unit3 unit4 card1 card2 card3 card4
+all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard1 randomtestcard2 randomtestcardadventurer *.gcov *.gcda *.gcno *.so

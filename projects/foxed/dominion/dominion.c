@@ -1339,7 +1339,7 @@ int playCouncil_Room(struct gameState *state, int currentPlayer, int handPos)
 		drawCard(currentPlayer, state);
 	}
 
-	//+1 Buya
+	//+1 Buy
 	state->numBuys++;
 
 	//Each other player draws a card
@@ -1358,4 +1358,3 @@ int playCouncil_Room(struct gameState *state, int currentPlayer, int handPos)
 }
 
 //end of dominion.c
-

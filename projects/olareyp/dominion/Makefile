@@ -1,5 +1,34 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
+randomtests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1
+	echo "Running randomtestcard1 999 and saving results to randomtestcard1.out" &> randomtestcard1.out
+	./randomtestcard1 999 >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	echo "Running randomtestcard2 999 and saving results to randomtestcard2.out" &> randomtestcard2.out
+	./randomtestcard2 999 >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+
+randomtestadventurer.out: randomtestadventurer
+	echo "Running randomtestadventurer 999 and saving results to randomtestadventurer.out" &> randomtestadventurer.out
+	./randomtestadventurer 999 >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)	
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)	
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)	
+
 unittestresults.out: cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 	echo "Running tests and saving results to unittestresults.out" &> unittestresults.out
 	./cardtest1 >> unittestresults.out
@@ -42,7 +71,6 @@ rngs.o: rngs.h rngs.c
 
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
-
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

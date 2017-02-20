@@ -1266,7 +1266,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 int Doadventurer(int drawntreasure,struct gameState *state,int currentPlayer,int cardDrawn, int *temphand, int z){
-   while(drawntreasure<3){
+   while(drawntreasure<2){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -1297,7 +1297,7 @@ int DoSmithy(int currentPlayer, struct gameState *state, int handPos)
   }
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state,0);//?
+  discardCard(handPos, currentPlayer, state,0);
 
   return 0;
 }
