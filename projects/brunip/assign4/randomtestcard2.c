@@ -1,6 +1,6 @@
 /* Name: Parker Bruni
 * CS362 Assignment 4
-* Card Test: Village 
+* Card Test: outpost 
 */
 
 #include "dominion.h"

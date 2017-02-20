@@ -11,8 +11,8 @@
 #include <stdlib.h>
 
 #define TESTCARD "Salvager"
-#define PRINT_ALL 0 
-
+#define PRINT_ALL 0
+#define TEST_LENGTH 1000
 
 //Own assert function
 int asserttrue(int input, int number){
@@ -381,7 +381,7 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
@@ -404,7 +404,7 @@ int main (int argc, char** argv){
 		testPhase = rand()%3;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -492,7 +492,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = (rand()%10)-5;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -580,7 +580,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -671,7 +671,7 @@ int main (int argc, char** argv){
 			G.hand[currentPlayer][cardPlacement] = salvager; 
 		}
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// setting phase and actions
@@ -757,9 +757,9 @@ int main (int argc, char** argv){
 		testLocation = cardPlacement;
 		testPhase = 0;
 		testActions = 1;
-		testChoice = rand()%(2* G.handCount[currentPlayer]);
-		while (G.hand[currentPlayer][testChoice] == salvager){
-			testChoice = rand()%G.handCount[currentPlayer];
+		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+			testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = salvager; 
