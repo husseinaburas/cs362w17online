@@ -78,9 +78,40 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	gcov dominion.c >> unittestresults.out
 	cardtest4 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
-	#gcov -abcfu dominion.c >> unittestresults.out
+	gcov -abcfu dominion.c >> unittestresults.out
 
+cardtestresults.out: cardtest1 cardtest2 cardtest3 cardtest4
+	cardtest1 >> cardtestresults.out
+	gcov dominion.c >> cardtestresults.out
+	cardtest2 >> cardtestresults.out
+	gcov dominion.c >> cardtestresults.out
+	cardtest3 >> cardtestresults.out
+	gcov dominion.c >> cardtestresults.out
+	gcov -abcfu dominion.c >> cardtestresults.out
 
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o assert_custom.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o assert_custom.o $(CFLAGS)
+
+randomtestadventurer.out: randomtestadventurer
+	randomtestadventurer $(SEED) >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+	gcov -abcfu dominion.c >> randomtestadventurer.out
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o assert_custom.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o assert_custom.o $(CFLAGS)
+
+randomtestcard1.out: randomtestcard1
+	randomtestcard1 $(SEED) >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+	gcov -abcfu dominion.c >> randomtestcard1.out
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o assert_custom.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o assert_custom.o $(CFLAGS)
+
+randomtestcard2.out: randomtestcard2
+	randomtestcard2 $(SEED) >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+	gcov -abcfu dominion.c >> randomtestcard2.out
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe badTestDrawCard testDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcov *.gcda *.gcno *.so *.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe badTestDrawCard testDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2 *.gcov *.gcda *.gcno *.so *.out

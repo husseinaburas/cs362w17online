@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
+#include <stdlib.h>
+#include <math.h>
 #include "rngs.h"
 
 #define DEBUG 0
@@ -14,6 +16,7 @@ int checkDrawCard(int p, struct gameState *post) {
   r = drawCard (p, post);
 
   assert (r == 0);
+  return 0;
 }
 
 int main () {

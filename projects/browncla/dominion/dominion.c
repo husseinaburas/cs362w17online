@@ -1174,8 +1174,8 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   if (trashFlag < 1)
     {
       //add card to discard pile
-      state->discard[currentPlayer][state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++; //increasing the played card count...this is wrong but works for now
+      state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][handPos]; 
+      state->discardCount[currentPlayer]++; //increasing the discardCount
     }
   
   //set played card to -1 to remove from hand of grid of hands for all players
@@ -1303,40 +1303,40 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
        int z=0;
        int drawntreasure = 0;
-       int temphand[MAX_HAND];
+
        //int startNumCards = state->handCount[currentPlayer]; // storing the starting number of cards for test
        if (state->hand[currentPlayer][handPos] != adventurer){
+        //printf("Wrong card\n");
         return -1;
        }
        if (state->phase != 0){
+        //printf("Wrong phase\n");
         return -1;
        }
        if (state->numActions <= 0){
+        //printf("Wrong number of actions\n");
         return -1;
        }
+
       // drawn treasure is the number of cards that have been drawn that are treasure cards
       // keep going until 2 treasure cards are drawn
-      while(drawntreasure<1){ //BUG
-        //if the deck is empty we need to shuffle discard and add to deck
-        if (state->deckCount[currentPlayer] <1){
-          shuffle(currentPlayer, state);
-        }
-        drawCard(currentPlayer, state);
-        int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-          drawntreasure++;
-        else{
-          temphand[z]=cardDrawn; //storing the non-treasure drawn card in a temporary hand to discard before continuing play
-          state->handCount[currentPlayer]--; //removing the non-treasure card from the current hand
+      while(drawntreasure<1 && state->deckCount[currentPlayer] > z){ //BUG
         
+        drawCard(currentPlayer, state);
+
+
+        int cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+          drawntreasure++;
+        }
+        else{
+          discardCard(state->hand[currentPlayer][state->handCount[currentPlayer]-1], currentPlayer, state, 0);
           z++;
-          }
+        }
+
       }
-      //discarding the non-treasure cards that were drawn. 
-      while(z-1>0){ //BUG
-        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn 
-        z=z-1;
-      }
+
+     
 
       discardCard(handPos, currentPlayer, state, 0); // discard the adventure card since it has been played
       updateCoins(currentPlayer, state, 0);
@@ -1351,6 +1351,7 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be smithy and the value must be between 7 and 26
+                   HandPos must be between 0 and the size of the players hand
    Post-Conditions: state->handCount[currentPlayer] should have increased by 2
                     state->numActions must be >= 0 because the number of actions is not changed in this function
                     The smithy card should be discarded
@@ -1358,6 +1359,9 @@ int playAdventurer(struct gameState *state, int currentPlayer, int handPos){
 
 int playSmithy(struct gameState *state, int currentPlayer, int handPos){
 
+      if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
       if (state->hand[currentPlayer][handPos] != smithy){
         return -1;
       }
@@ -1389,11 +1393,15 @@ int playSmithy(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be village and the value must be between 7 and 26
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: state->handCount[currentPlayer] should stay the same
                     state->numActions must be increased by 2 and must be >= 0 because player gained 2 action cardss
                     The village card should be discarded
 */
 int playVillage(struct gameState *state, int currentPlayer, int handPos){
+      if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+            return -1;
+          }
    
       if (state->hand[currentPlayer][handPos] != village){
         return -1;
@@ -1425,6 +1433,7 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
    Pre-Conditions: state->phase == 0, the player must be in the action phase
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be steward and the value must be between 7 and 26
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: if choice1 = 1, then state->handCount[currentPlayer] should increase by 2
                     if choice1 = 2, then state->coins should be increased by 2
                     if choice1 = other number, then state->handCount[currentPlayer] should be decreased by 2
@@ -1433,6 +1442,9 @@ int playVillage(struct gameState *state, int currentPlayer, int handPos){
 */
 int playSteward(struct gameState *state, int currentPlayer, int choice1, int choice2, int choice3, int handPos){
 
+  if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
   if (state->hand[currentPlayer][handPos] != steward){
     return -1;
   }
@@ -1475,6 +1487,7 @@ int playSteward(struct gameState *state, int currentPlayer, int choice1, int cho
                    state->numActions > 0, the player must have an action to play
                    The name of the card must be salvager and the value must be between 7 and 26
                    Choice1 must be a valid card position in the players hand
+                   handPos must be between 0 and the size of the players hand
    Post-Conditions: state->numActions must be >= 0 because the number of actions isn't changed in this function
                     state->numBuys should be increased by 1
                     The card represented by choice1 should not be in the players deck
@@ -1487,6 +1500,9 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
     if (state->hand[currentPlayer][handPos] != salvager){
       return -1;
     }
+    if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+      }
 
     if (state->phase != 0){
         return -1;
@@ -1495,6 +1511,9 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
       return -1;
     }
     if (choice1 < 0 || choice1 >= state->handCount[currentPlayer]){
+      return -1;
+    }
+    if (choice1 == handPos){
       return -1;
     }
 

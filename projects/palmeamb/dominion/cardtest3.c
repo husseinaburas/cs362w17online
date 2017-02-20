@@ -23,7 +23,7 @@ Functionality to test for:
 	•Smithy card is discarded
 */
 
-#define TESTCARD "smithy"
+//#define TESTCARD "smithy"
 #define NOISY_TEST 1
 
 int main(){
@@ -35,6 +35,9 @@ int main(){
      int shuffledCards = 0;
      int newActions = 0;
 	int thisPlayer = 0;
+	int i;
+	int seed = 1000;
+
 
      struct gameState G, testG;
      int  k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
@@ -42,9 +45,9 @@ int main(){
      //initialize game state and player cards
      initializeGame(numPlayers, k, seed, &G);
 
-     printf("Testing Card: &s \n", TESTCARD);
+     printf("Testing Smithy Card");
      //Test 1: Check that buy card count and deck count have changed
-     printf("TEST 1: 3 cards are added to player's hand from deck \n")
+     printf("TEST 1: 3 cards are added to player's hand from deck \n");
 
 	//copy game state to a test case
      memcpy(&testG, &G, sizeof(struct gameState));
@@ -60,7 +63,7 @@ int main(){
 	assert(testG.deckCount[thisPlayer] == G.handCount[thisPlayer] - newCards + shuffledCards);
 
 	//Test2: Check that smithy card has been discarded
-	printf("TEST 2: Check to see that smithy card has been discarded from hand\n")
+	printf("TEST 2: Check to see that smithy card has been discarded from hand\n");
 
 	printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] - discarded);
 	assert(testG.handCount[thisPlayer] == G.handCount[thisPlayer] - discarded);
@@ -70,20 +73,20 @@ int main(){
 
      printf("copper count = %d, expected = %d \n", testG.supplyCount[copper], G.supplyCount[copper]);
      printf("silver count = %d, expected = %d \n", testG.supplyCount[silver], G.supplyCount[silver]);
-     printf("gold count = %d, expected = %d \n", testG.supplyCount[gold], G.supplyCount, [gold]);
+     printf("gold count = %d, expected = %d \n", testG.supplyCount[gold], G.supplyCount[gold]);
      assert(testG.supplyCount[copper] == G.supplyCount[copper]);
      assert(testG.supplyCount[silver] == G.supplyCount[silver]);
      assert(testG.supplyCount[gold] == G.supplyCount[gold]);
 
-	for(i = 0; i < treasure_map, i++)
+	for(i = 0; i < treasure_map; i++)
           if(testG.supplyCount[i] != G.supplyCount[i])
           {
-               printf("Test Failed. Supply count changed for %d card\n", i)
+               printf("Test Failed. Supply count changed for %d card\n", i);
           }
 
      //Test 4: Check for no state changes in other players
      printf("TEST 4: Check to see that there are no state changes for other players\n");
-     for(int i = 0; i < numPlayers, i++)
+     for(int i = 0; i < numPlayers; i++)
      {
           if(i != thisPlayer)
           {
@@ -91,7 +94,6 @@ int main(){
                if(testG.deckCount[i] != G.deckCount[i])
                {
                     printf("Test Failed. Incorrect deck count change for player %d\n", i);
-                    return = -1
                }
 
                if(testG.handCount[i] != G.handCount[i])
