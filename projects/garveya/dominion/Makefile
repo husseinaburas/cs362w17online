@@ -98,6 +98,9 @@ unittestresults.out: cardtest4 cardtest3 cardtest2 cardtest1 unittest1 unittest2
 	gcov dominion.c -b -f >> unittestresults.out
 	rm *.gcda
 
+randomtestcard1: randomtestcard1.c dominion.o random_test_runner.c
+	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
+
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
