@@ -21,13 +21,10 @@ int checkGreatHallCard(int currentPlayer, struct gameState *post) {
   printf("greatHallCard runs successfully:\n");
   asserttrue(r == 0);
 
-  printf("player %f now has 1 more or max cards\n", currentPlayer);
-  asserttrue((newHandCount - prevHandCount) == 1 || newHandCount == MAX_HAND);
-
   printf("Number of actions increased by 1\n");
   asserttrue((newNumAction - prevNumAction) == 1);
 
-  printf("player %f no longer has great hall card\n", currentPlayer);
+  printf("player %d no longer has great hall card\n", currentPlayer);
   asserttrue(post->hand[currentPlayer][handPos] != great_hall );
 
 }
@@ -49,9 +46,6 @@ int main (int argc, char **argv) {
   seed = atoi(argv[1]);
 
   printf ("_______Testing great hall card_________\n");
-
-  SelectStream(2);
-  PutSeed(3);
 
   for (n = 0; n < 2000; n++) {
     memset(&G, 23, sizeof(struct gameState));

@@ -19,10 +19,10 @@ int checkSmithyCard(int currentPlayer, struct gameState *post) {
   printf("smithyCard runs successfully:\n");
   asserttrue(r == 0);
 
-  printf("player %f now has 3 more or max cards\n", currentPlayer);
+  printf("player %d now has 3 more or max cards\n", currentPlayer);
   asserttrue((newHandCount - prevHandCount) == 3 || newHandCount == MAX_HAND);
 
-  printf("player %f no longer has smithy card\n", currentPlayer);
+  printf("player %d no longer has smithy card\n", currentPlayer);
   asserttrue(post->hand[currentPlayer][handPos] != smithy );
 
 }
@@ -44,9 +44,6 @@ int main (int argc, char **argv) {
   seed = atoi(argv[1]);
 
   printf ("__________Testing smithy card____________\n");
-
-  SelectStream(2);
-  PutSeed(3);
 
   for (n = 0; n < 2000; n++) {
     memset(&G, 23, sizeof(struct gameState));
