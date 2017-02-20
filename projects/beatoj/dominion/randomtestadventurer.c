@@ -27,8 +27,8 @@ void adventurerRandomTest(int *passed, int *failed){
     //Create random seed
     int seed = rand() % 1000 +1;
     
-    //Determine players between 1 - 5
-    int numPlayers = rand() % 5 + 1;
+    //Determine players between 1 - 4
+    int numPlayers = rand() % 4 + 1;
     
     //Hold treasure count for each player
     int j;
