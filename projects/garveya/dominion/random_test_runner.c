@@ -295,6 +295,8 @@ int main(int argc, char const *argv[]){
 	//seed random number
 	srand(intToUint(seed));
 
+	puts("Randomly Testing " CARD_NAME "\n");
+
 	runRandomTests();
 
 	printf("\nNumber of random tests %d, number of failures %d\n", NUM_RANDOM_ITERATIONS, numTestsFailed);
