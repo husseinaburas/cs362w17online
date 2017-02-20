@@ -3,7 +3,7 @@ CFLAGS = -Wall -fpic -coverage -lm
 
 all: playdom player testDrawCard testBuyCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	$(info ******** testing all *******)
-  
+
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
   $(info ******** compiling rngs.o *******)
@@ -76,26 +76,29 @@ cardtest4: cardtest4.c dominion.o rngs.o
 
 randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
 	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
-	./randomtestadventurer
-	gcov -bf dominion &> randomtestadventurer.out
+	echo "Results saved to randomtestadventurer.out"
+	./randomtestadventurer  &> randomtestadventurer.out
+	gcov -bf dominion >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
-	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	rm -f *.o *.gcov *.gcda *.gcno *.so
 	$(info ******** compiling randomtestadventurer *******)
 
 randomtestcard1: randomtestcard1.c dominion.o rngs.o
 	gcc -o randomtestcard1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
-	./randomtestcard1
-	gcov -bf dominion &> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
-	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	echo "Results saved to randomtestcard1.out"
+	./randomtestcard1  &> randomtestcard1.out
+	gcov -bf dominion >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out	
+	rm -f *.o *.gcov *.gcda *.gcno *.so
 	$(info ******** compiling randomtestcard1 *******)
 
 randomtestcard2: randomtestcard2.c dominion.o rngs.o
 	gcc -o randomtestcard2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
-	./randomtestcard2
-	gcov -bf dominion &> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
-	# rm -f *.o *.gcov *.gcda *.gcno *.so
+	echo "Results saved to randomtestcard2.out"
+	./randomtestcard2  &> randomtestcard2.out
+	gcov -bf dominion >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out	
+	rm -f *.o *.gcov *.gcda *.gcno *.so
 	$(info ******** compiling randomtestcard2 *******)
 
 rununittest: unittest1 unittest2 unittest3 unittest4
