@@ -39,6 +39,7 @@ int main (int argc, char** argv) {
 
   struct gameState G, preG;
 
+  // If a command line argument is given, assign to default seed otherwise
   if (!argv[1]) {
     PutSeed((long)1);
   } else {
