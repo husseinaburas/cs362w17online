@@ -261,16 +261,17 @@ void runRandomTests(){
 		//conditional based on whether card function uses handPos as argument
 		#if USE_HAND_POS
 			int (*cardFunction)(int, struct gameState*, int) = CARD_FUNC;
-			cardFunction(numPlayer, &postState, handPos);
-			mockCardAction(numPlayer, &mockState, handPos);
+			int postRet = cardFunction(numPlayer, &postState, handPos);
+			int mockRet = mockCardAction(numPlayer, &mockState, handPos);
 		#else 
 			int (*cardFunction)(int, struct gameState*) = CARD_FUNC;
-			cardFunction(numPlayer, &postState);
-			mockCardAction(numPlayer, &mockState);
+			int postRet = cardFunction(numPlayer, &postState);
+			int mockRet = mockCardAction(numPlayer, &mockState);
 		#endif
 		//compare two states and see if they are the same
 		int equal = areGameStatesEqual(&postState, &mockState);
 		custom_assert(equal, "Testing to see if mock gameState and post gameState have the same memory layout");
+		custom_assert(postRet == mockRet, "Test to see if mock card function and real card function have same return values");
 		if(!equal){
 			printGameStateDifferences(&mockState, &postState);
 		}
