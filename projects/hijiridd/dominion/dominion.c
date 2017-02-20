@@ -1428,6 +1428,9 @@ int TreasureMapAction (int currentPlayer, struct gameState *state, int handPos) 
 	return -1;
 }
 
+// ***********************
+// SMITHY ACTION FUNCTION
+// ***********************
 int SmithyAction (int currentPlayer, struct gameState *state, int handPos) {
   int i;
   // printf ("\nDebug: Smithy Action refactor code\n");
@@ -1471,7 +1474,7 @@ int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
 	  result = drawCard(currentPlayer, state);
 	  // DEBUG
 	  if (result == -1) {
-		  printf (" -- Couldn't draw card -- ");
+		  printf (" -- Couldn't draw card -- \n");
 		  // setting drawntreasure to 3 to get out of while loop
 		  drawntreasure = 3;
 	  } else {
@@ -1504,8 +1507,9 @@ int AdventurerAction (int currentPlayer, struct gameState *state, int handPos) {
 
 
 
-
-
+// ***********************
+// VILLAGE ACTION FUNCTION
+// ***********************
 int VillageAction (int currentPlayer, struct gameState *state, int handPos) {
   //printf ("\nDebug: Village Action refactor code\n");
   //+1 Card

@@ -11,6 +11,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int getRandIntLowHigh (int low, int high);
 int printGameState (struct gameState * G);
@@ -288,7 +289,7 @@ int checkAdventurer (int p, struct gameState * G) {
 	int bonus = 0;  // not used for Adventurer
 	testresponse =  cardEffect(card, choice1, choice2, choice3, G,
 									handPos, &bonus);
-		//controlresponse = myOwnTreasureMap (p, &Gcontrol, handPos);
+	//controlresponse = myOwnTreasureMap (p, &Gcontrol, handPos);
 
 	//test1: check if played card has increased by 1 (or zero if no adventurer)
 	printf ("Test1 (check played card change): ");
@@ -362,36 +363,36 @@ int checkAdventurer (int p, struct gameState * G) {
 			errorval--;
 		}
 	} else {
-		printf ("??? no assert performed\n");
+		printf ("********** no assert performed\n");
 	}
 
 	//  test4: check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)
 	printf ("Test4 (check deck+discard count): ");
 	if ((handPos > -1) && (totalTreasure > 1)){
 		if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -2) {
-			printf ("SUCCESS: player #%d, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-1 SUCCESS: player #%d, check deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
 		} else {
-			printf ("FAILED: player #%d, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-1 FAILED: player #%d, ccheck deck+discard count decreased 2 (only 2 treasure moves to hand, rest are discard)\n", p);
 			errorval--;
 		}
-	} else if ((handPos > -1) && (treasureDeckCount+treasureDiscardCount > 0)) {
+	} else if ((handPos > -1) && (totalTreasure > 0)) {
 		// check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)
 		if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == -1) {
-			printf ("SUCCESS: player #%d, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-2 SUCCESS: player #%d, check deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)\n", p);
 		} else {
-			printf ("FAILED: player #%d, ccheck deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-2 FAILED: player #%d, ccheck deck+discard count decreased 1 (only 1 treasure moves to hand, rest are discard)\n", p);
 			errorval--;
 		}
 	} else if (handPos > -1) {
 		// check deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)
 		if (((G->deckCount[p] + G->discardCount[p]) - (Gpre.deckCount[p] + Gpre.discardCount[p])) == 0) {
-			printf ("SUCCESS: player #%d, check deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-3 SUCCESS: player #%d, check deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)\n", p);
 		} else {
-			printf ("FAILED: player #%d, ccheck deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)\n", p);
+			printf ("branch-3 FAILED: player #%d, check deck+discard count decreased 0 (only 0 treasure moves to hand, rest are discard)\n", p);
 			errorval--;
 		}
 	} else {
-		printf ("??? no assert performed\n");
+		printf ("********** no assert performed\n");
 	}
 
 
@@ -399,71 +400,91 @@ int checkAdventurer (int p, struct gameState * G) {
 	// in this case top 2 cards in hand correspond to highest index in deck array with a valid card
 	// loop backward from top of hand
 	printf ("Test5 (check top cards of hand): ");
-	if ((handPos > -1) && (totalTreasure > 1)) {
+	int topHand = G->handCount[p];
+	printf ("topHand == %d\n", topHand);
+	if ((handPos > -1) && (totalTreasure > 1)) { // if treasure exists and 2 treasure cards exists
 		int d;
 		int treasureCounter = 0;
-		int topHand = G->handCount[p];
 		for (d = 1; d <= 2; d++) {
 			if ((G->hand[p][ topHand - d ] == gold) || (G->hand[p][ topHand - d ] == silver) || (G->hand[p][ topHand - d ] == copper)) {
 						treasureCounter++; }
 		}
 		if (treasureCounter == 2) {
-			printf ("SUCCESS: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+			printf ("Branch-1 SUCCESS: player #%d, check if top 2 cards of hand are treasure cards\n", p);
 		} else {
-			printf ("FAILED: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+			printf ("Branch-1 FAILED: player #%d, check if top 2 cards of hand are treasure cards\n", p);
+			printf ("Debug Data: G->hand[topHand-2]: %d, Gpre.hand[topHand-2]): %d\n", G->hand[topHand-2], Gpre.hand[topHand-2]);
+			//printf ("printing POST game state: \n");
+			//printGameState(G);
+			//printf ("printing PRE game state: \n");
+			//printGameState (&Gpre);
 			errorval--;
 		}
-	} else if ((handPos > -1) && (treasureDeckCount+treasureDiscardCount > 0)) {
+	} else if ((handPos > -1) && (totalTreasure >= 1)) { // if treasure exists and 1 treasure card
 		// check if the top 1 cards of hand are treasure cards
 		int d;
 		int treasureCounter = 0;
-		int topHand = G->handCount[p];
 		for (d = 1; d <= 1; d++) {
 			if ((G->hand[p][ topHand - d ] == gold) || (G->hand[p][ topHand - d ] == silver) || (G->hand[p][ topHand - d ] == copper)) {
 						treasureCounter++; }
 		}
 		if (treasureCounter == 1) {
-			printf ("SUCCESS: player #%d, check if top 1 cards of hand are treasure cards\n", p);
+			printf ("Branch-2 SUCCESS: player #%d, check if top 1 cards of hand are treasure cards\n", p);
 		} else {
-			printf ("FAILED: player #%d, check if top 1 cards of hand are treasure cards\n", p);
+			printf ("Branch-2 FAILED: player #%d, check if top 1 cards of hand are treasure cards\n", p);
+			printf ("Debug Data: G->hand[topHand-1]: %d, Gpre.hand[topHand-1]): %d\n", G->hand[topHand-1], Gpre.hand[topHand-1]);
+			//printf ("printing POST game state: \n");
+			printGameState(G);
 			errorval--;
 		}
-	} else {
-		printf ("??? no assert performed\n");
+	} else { // if treasure card may or may not exist
+		if (topHand != 0) {
+			if (G->hand[topHand-1] == Gpre.hand[topHand-1]) {
+				printf ("Branch-3 SUCCESS: player #%d, check if top card of hand is unchanged\n", p);
+			} else {
+				printf ("Branch-3 FAILED: player #%d, check if top card of hand is unchanged\n", p);
+				printf ("Debug Data: G->hand[topHand-2]: %d, Gpre.hand[topHand-2]): %d\n", G->hand[topHand-2], Gpre.hand[topHand-2]);
+				printf ("printing POST game state: \n");
+				printGameState(G);
+				errorval--;
+			}
+		} else {
+			printf ("********** no assert performed, hand count was zero!!!!\n");
+		}
 	}
-
 	return errorval;
 }
 
 
 int main () {
-	printf ("Starting ramdom test adventurer\n\n");
+	printf ("Starting ramdom test adventurer. ");
 	// NOTE: MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
-	// set a reandom seed with time ??  srand((unsigned int)time(NULL));
+	srand((unsigned int)time(NULL)); // set random seed with clock
+	printf ("clock seed for random number set\n\n");
 	// PART A: Randomize initial inputs for creating base game configuration
 	// Inputs to set up a game include:
 	// # of players p (0, 1, 2, 3, 4...)
 	// initial 10 cards chosen from 20 cards (#7 through 26) # of combinations C(20, 10) = 184,756
-
-	// Debug random number
-	/* int i;
-	for (i=0; i<100; i++) { printf ("%i ", getRandIntLowHigh (0, 10));}
-	printf ("\n\n");
-	*/
 
 	int player = getRandIntLowHigh(1,4); // default # players to be replaced later
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
 	           sea_hag, smithy, treasure_map}; // default hand to be replaced
 	struct gameState G; // test game state
 	memset(&G, 23, sizeof(struct gameState)); // resets game memory
-	int randSeed = 1; // to be replaced
 	int response;
 
 	// LOOP OVER NUMBER OF RANDOM INITIAL GAME STATE
 	int numGame;
-	for (numGame=0; numGame < 100; numGame++) {
-		printf ("------------ ITERATION # %i\n", numGame);
+	for (numGame=0; numGame < 1000; numGame++) {
+		printf ("*************** ITERATION # %i ***************  \n", numGame);
+		int randSeed = getRandIntLowHigh(1,10000);
 		response = randomGameInit (player, k, randSeed, &G);
+		if (response == -1) {
+			printf ("Program could not create a valid game state!\n");
+			printf ("player = %i\n", player);
+			//printGameState (&G);
+			continue; // it means this was not a valid game state so continue on with for loop.
+		}
 		//printf ("response = %i\n", response);
 
 		// PART B: Given an initialized game state, randomize the state of play.
@@ -476,12 +497,12 @@ int main () {
 		// ------------------------------
 		//for given player, set deckCount, disardCount, and handCount
 		// ------------------------------
-		//G.deckCount[p] = getRandIntLowHigh (0, MAX_DECK);
-		//G.discardCount[p] = getRandIntLowHigh (0, MAX_DECK);
-		//G.handCount[p] = getRandIntLowHigh (0, MAX_HAND);
-		G.deckCount[p] = getRandIntLowHigh (0, 5);
-		G.discardCount[p] = getRandIntLowHigh (0, 5);
-		G.handCount[p] = getRandIntLowHigh (0, 5);
+		G.deckCount[p] = getRandIntLowHigh (0, MAX_DECK);
+		G.discardCount[p] = getRandIntLowHigh (0, MAX_DECK);
+		G.handCount[p] = getRandIntLowHigh (0, MAX_HAND);
+		//G.deckCount[p] = getRandIntLowHigh (0, 5);
+		//G.discardCount[p] = getRandIntLowHigh (0, 5);
+		//G.handCount[p] = getRandIntLowHigh (0, 5);
 
 		// ------------------------------
 		//for given player, deck, discard and hand counts, fill with random cards
