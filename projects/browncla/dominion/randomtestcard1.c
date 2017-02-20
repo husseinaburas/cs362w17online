@@ -12,6 +12,7 @@
 
 #define TESTCARD "Smithy"
 #define PRINT_ALL 0 
+#define TEST_LENGTH 1000
 
 
 
@@ -365,7 +366,7 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 

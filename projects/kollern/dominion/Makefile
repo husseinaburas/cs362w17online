@@ -1,10 +1,10 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
 rngs.o: rngs.h rngs.c
-	gcc -c rngs.c -g  $(CFLAGS)
+	gcc -c rngs.c -g $(CFLAGS)
 
 dominion.o: dominion.h dominion.c rngs.o
-	gcc -c dominion.c -g  $(CFLAGS)
+	gcc -c dominion.c -g $(CFLAGS)
 
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
@@ -24,39 +24,29 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittest1: unittest1.c dominion.o rngs.o
-	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
-	
-unittest3: unittest3.c dominion.o rngs.o
-	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)	
+RandomTestCard1: RandomTestCard1.c dominion.o rngs.o
+	gcc -o RandomTestCard1 -g RandomTestCard1.c dominion.o rngs.o $(CFLAGS)
 
-cardtest1: cardtest1.c dominion.o rngs.o
-	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+RandomTestCard2: RandomTestCard2.c dominion.o rngs.o
+	gcc -o RandomTestCard2 -g RandomTestCard2.c dominion.o rngs.o $(CFLAGS)
 
-cardtest2: cardtest2.c dominion.o rngs.o
-	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
-
-cardtest3: cardtest3.c dominion.o rngs.o
-	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+RandomTestAdventurer: RandomTestAdventurer.c dominion.o rngs.o
+	gcc -o RandomTestAdventurer -g RandomTestAdventurer.c dominion.o rngs.o $(CFLAGS)
 	
 runtests: testDrawCard 
 	./unittest1 &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-unittestresults.out: unittest1 unittest3 cardtest1 cardtest2 cardtest3
-	echo "Results saved to unittestresults.out" &> unittestresults.out
-	./unittest1 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	./unittest3 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	./cardtest1 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	./cardtest2 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	./cardtest3 >> unittestresults.out
-	gcov -b dominion.c >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+randomtestresults.out: RandomTestCard1 RandomTestCard2 RandomTestAdventurer
+	echo "Results saved to randomtestresults.out" &> randomtestresults.out
+	./RandomTestCard1.c ${ARGS} >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	./RandomTestCard2 ${ARGS} >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	./RandomTestAdventurer ${ARGS} >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
 	
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
