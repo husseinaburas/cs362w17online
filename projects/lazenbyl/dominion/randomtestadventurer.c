@@ -37,7 +37,9 @@ int treasureCount(int amountOfCards, int cardArray[]){
 
 int main(int argc, char **argv){
 
-
+	if (argc < 2) {
+		printf("You must supply a random seed!\n");
+	}
 	int randomNumber = atoi(argv[1]);
 
 	struct gameState state;
