@@ -9,23 +9,24 @@
 int treasureCount(int player, struct gameState *state);
 
 // Number of tests to run and their names
-const int NUM_TESTS = 4;
+const int NUM_TESTS = 5;
 
 /*
-  Test of smithyCard function.
+  Test of councilRoomCard function.
 */
 
-void randTestSmithy(int seed, int* tally)
+void randTestCRoom(int seed, int* tally)
 {
     int i, j;
     // Constants defining limits of deck and discard pile sizes at init time
     const int START_MAX_DECK = 100;
     const int START_MIN_HAND = 1;
     const int START_MAX_HAND = 20;
+    const int START_MAX_BUYS = 10;
 
     // Setup test conditions
     struct gameState testState;
-    int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+    int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, council_room};
     int currentPlayer;
 
     // Declare and initialize variables needed for tests
@@ -44,6 +45,8 @@ void randTestSmithy(int seed, int* tally)
     int handSizeAfterPlaying = 0;
     int playedCardsBefore = 0;
     int playedCardsAfter = 0;
+    int numBuysBeforePlaying = 0;
+    int numBuysAfterPlaying = 0;
     int cardPos;
 
     // Re-initialize the currentTest count every time this is ran
@@ -87,8 +90,8 @@ void randTestSmithy(int seed, int* tally)
 
     // printf("\nHAND SIZE BEFORE PLAYING: %d\n", handSizeBeforePlaying);
 
-    // Make one of those cards the smithy
-    testState.hand[currentPlayer][0] = smithy;
+    // Make one of those cards the councilRoom
+    testState.hand[currentPlayer][0] = council_room;
     cardPos = 0;
 
     // Start the current player off with a random number of played cards
@@ -108,12 +111,15 @@ void randTestSmithy(int seed, int* tally)
     //     printf("CARD at %d is %d\n", i, testState.hand[currentPlayer][i]);
     // }
 
+    testState.numBuys = (rand() % START_MAX_BUYS) + 1;
+    numBuysBeforePlaying = testState.numBuys;
+
 
     /*
         SETUP PHASE COMPLETE - PLAYING CARD
     */
 
-    smithyCard(&testState, cardPos);
+    councilRoomCard(&testState, cardPos);
 
     /*
         RECORDING CHANGES TO STATE PHASE
@@ -131,6 +137,9 @@ void randTestSmithy(int seed, int* tally)
     // Store the current player's new hand and played card count
     handSizeAfterPlaying = testState.handCount[currentPlayer];
     playedCardsAfter = testState.playedCardCount;
+
+    // Store the current players number of buy actions
+    numBuysAfterPlaying = testState.numBuys;
 
     /*
         BEGIN TESTING RESULTS
@@ -187,15 +196,28 @@ void randTestSmithy(int seed, int* tally)
     result = assertEquals(playedCardsBefore + 1, playedCardsAfter);
     tally[currentTest++] += result;
 
-    // Testing direct effects of smithy card
+    // Testing direct effects of councilRoom card
     //      "CURRENT PLAYER CARDS IN HAND"
     // Resetting testing variables
-    expected = 3;
+    expected = 4;
     result = 0;
     got = 0;
 
     printf("\n--> Testing For: CURRENT PLAYER CARDS IN HAND\n");
     expected = handSizeBeforePlaying + expected; // updating expected value
+    got = handSizeAfterPlaying;
+    result = assertEquals(expected, got); // storing result
+    tally[currentTest++] += result; // add the result to the tally
+
+    // Testing direct effects of councilRoom card
+    //      "CURRENT PLAYER NUMBER OF BUYS"
+    // Resetting testing variables
+    expected = 0;
+    result = 0;
+    got = 0;
+
+    printf("\n--> Testing For: CURRENT PLAYER NUMBER OF BUYS\n");
+    expected = numBuysBeforePlaying + 1; // updating expected value
     got = handSizeAfterPlaying;
     result = assertEquals(expected, got); // storing result
     tally[currentTest++] += result; // add the result to the tally
@@ -218,12 +240,12 @@ int main(int argc, char *argv[])
 
     srand(seed);
 
-    printf("\n--- TESTING smithyCard FUNCTION ---\n");
+    printf("\n--- TESTING councilRoomCard FUNCTION ---\n");
 
     // Run amount of times given above
     for (i = 0; i < runs; i++)
     {
-        randTestSmithy(seed, tally);
+        randTestCRoom(seed, tally);
         ran++;
     }
 
@@ -236,7 +258,7 @@ int main(int argc, char *argv[])
     }
 
     printf("\n--- RAN TESTS %d TIMES ---", ran);
-    printf("\n--- DONE TESTING smithyCard FUNCTION ---\n\n");
+    printf("\n--- DONE TESTING councilRoomCard FUNCTION ---\n\n");
 
     return 0;
 }

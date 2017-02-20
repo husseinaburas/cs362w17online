@@ -8,16 +8,6 @@
 
 int treasureCount(int player, struct gameState *state);
 
-// const char* TEST_NAMES[7] =
-// {
-//     "OTHER PLAYER DECK SIZE",
-//     "OTHER PLAYER DISCARD PILE SIZE",
-//     "TREASURE CARDS IN CURRENT PLAYER DECK",
-//     "TREASURE CARDS IN CURRENT PLAYER DISCARD PILE",
-//     "PLAYED CARD COUNT",
-//     "CURRENT PLAYER CARDS IN HAND",
-//     "CURRENT PLAYER TREASURE CARDS IN HAND"
-// };
 // Number of tests to run and their names
 const int NUM_TESTS = 7;
 
