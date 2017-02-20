@@ -83,7 +83,7 @@ int main(int argc, char** argv) {
       failedTests += 1;
     }
     // Testing card is in played cards deck
-    if (G.playedCards[0] != adventurer) {
+    if (G.playedCards[G.playedCardCount - 1] != adventurer) {
       iterationFailed = 1;
       failedTests += 1;
     }
