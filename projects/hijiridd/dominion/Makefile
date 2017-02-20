@@ -96,7 +96,7 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o
 	gcc -o randomtestcard2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 	echo "Results saved to randomtestcard2.out"
 	./randomtestcard2  &> randomtestcard2.out
-	gcov -bf dominion &> randomtestcard2.out
+	gcov -bf dominion >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out	
 	rm -f *.o *.gcov *.gcda *.gcno *.so
 	$(info ******** compiling randomtestcard2 *******)
