@@ -759,7 +759,7 @@ int main (int argc, char** argv){
 		testActions = 1;
 		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		while (G.hand[currentPlayer][testChoice] == salvager){
-			testChoice = rand()%G.handCount[currentPlayer];
+			testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = salvager; 
