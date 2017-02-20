@@ -146,8 +146,11 @@ void testAssert(int testNum, int *pass_count, int cmp);
 int randCheckCoins(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCoins);
 int randCheckActions(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraActions);
 int randCheckHandCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards, int discarded);
+int randCheckDiscardCount(int testNum, int *pass_count, struct gameState G, struct gameState testG, int discarded);
 int randCheckSupplyCount(int testNum, int *pass_count, struct gameState G, struct gameState testG);
 int randCheckOtherPlayerState(int testNum, int *pass_count, struct gameState G, struct gameState testG);
+int randCheckExtraCards(int testNum, int *pass_count, struct gameState G, struct gameState testG, int xtraCards);
+int randCheckExtraTreasures(int testNum, int *pass_count, struct gameState G, struct gameState testG, int *xtraCards, int *discard_pile_count);  // adventurer specific test function
 //VARIABLES
 int card_state[6];
 

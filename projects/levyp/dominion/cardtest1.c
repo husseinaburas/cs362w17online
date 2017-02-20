@@ -36,7 +36,7 @@ int main() {
         
         int numberOfCardsBeforeSmithy = G.handCount[p];
         printf("Playing smithy() should increase the current player's hand by 3 cards");
-        int retVal = playSmithy(p, &G);
+        int retVal = playSmithy(p, &G, 1);
         checkAssertion(numberOfCardsBeforeSmithy + 3, G.handCount[p], &numFailingTests, &numPassedTests);
 
         printf("Smithy() should return 0");

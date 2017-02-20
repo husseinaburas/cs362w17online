@@ -1,3 +1,7 @@
+/*Name of file: randomtestcard2.c
+  Author: Clare Brown
+  ONID: browncla
+*/
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include <string.h>
@@ -7,22 +11,26 @@
 #include <stdlib.h>
 
 #define TESTCARD "Salvager"
-
+#define PRINT_ALL 0
+#define TEST_LENGTH 1000
 
 //Own assert function
 int asserttrue(int input, int number){
-	if (input){
-		printf("\tTEST %d SUCCESSFUL\n", number);
+	if (PRINT_ALL){
+		if (input){
+			printf("\tTEST %d SUCCESSFUL\n", number);
+		}
+		else
+			printf("\tTEST %d FAILED\n", number);
 	}
-	else
-		printf("\tTEST %d FAILED\n", number);
 	return 0;
 }
 
 int verifySameState(struct gameState * G, struct gameState * testG){
 	int i, success;
 	int totalSuccess = 0;
-	printf("TEST 1: Supply counts remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 1: Supply counts remain the same\n");
 	for (i = 0; i < treasure_map + 1; i++){
 		if (G->supplyCount[i] != testG->supplyCount[i]){
 			success = 0;
@@ -38,7 +46,8 @@ int verifySameState(struct gameState * G, struct gameState * testG){
 		asserttrue(1, 1);
 	}
 
-	printf("TEST 2: Embargo tokens remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 2: Embargo tokens remain the same\n");
 	for (i = 0; i < treasure_map + 1; i++){
 		if (G->embargoTokens[i] != testG->embargoTokens[i]){
 			success = 0;
@@ -54,48 +63,57 @@ int verifySameState(struct gameState * G, struct gameState * testG){
 		asserttrue(1, 1);
 	}
 
-	printf("TEST 3: Outposts played remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 3: Outposts played remain the same\n");
 	asserttrue(G->outpostPlayed == testG->outpostPlayed, 3);
 	if (G->outpostPlayed != testG->outpostPlayed)
 		totalSuccess++;
 
-	printf("TEST 4: Outpost turn remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 4: Outpost turn remains the same\n");
 	asserttrue(G->outpostTurn == testG->outpostTurn, 4);
 	if (G->outpostTurn != testG->outpostTurn)
 		totalSuccess++;
 
-	printf("TEST 5: Number of players remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 5: Number of players remains the same\n");
 	asserttrue(G->numPlayers == testG->numPlayers, 5); 
 	if (G->numPlayers != testG->numPlayers){
 		totalSuccess++;
 	}
 
-	printf("TEST 6: Whose turn remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 6: Whose turn remains the same\n");
 	asserttrue(G->whoseTurn == testG->whoseTurn, 6);
 	if (G->whoseTurn != testG->whoseTurn)
 		totalSuccess++;
 
-	printf("TEST 7: Phase remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 7: Phase remains the same\n");
 	asserttrue(G->phase == testG->phase, 7);
 	if (G->phase != testG->phase)
 		totalSuccess++;
 
-	printf("TEST 8: Number of actions remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 8: Number of actions remains the same\n");
 	asserttrue(G->numActions == testG->numActions, 8);
 	if (G->numActions != testG->numActions)
 		totalSuccess++;
 
-	printf("TEST 9: Number of coins remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 9: Number of coins remains the same\n");
 	asserttrue(G->coins == testG->coins, 9);
 	if (G->coins != testG->coins)
 		totalSuccess++;
 
-	printf("TEST 10: Number of buys remains the same\n");
+	if (PRINT_ALL)
+		printf("TEST 10: Number of buys remains the same\n");
 	asserttrue(G->numBuys == testG->numBuys, 10);
 	if (G->numBuys != testG->numBuys)
 		totalSuccess++;
 	
-	printf("TEST 11: Hand counts remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 11: Hand counts remain the same\n");
 	for (i = 0; i < G->numPlayers; i++){
 		if (G->handCount[i] != testG->handCount[i]){
 			success = 0;
@@ -111,7 +129,8 @@ int verifySameState(struct gameState * G, struct gameState * testG){
 		asserttrue(1, 11);
 	}
 	
-	printf("TEST 12: Deck counts remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 12: Deck counts remain the same\n");
 	for (i = 0; i < G->numPlayers; i++){
 		if (G->deckCount[i] != testG->deckCount[i]){
 			success = 0;
@@ -127,7 +146,8 @@ int verifySameState(struct gameState * G, struct gameState * testG){
 		asserttrue(1, 12);
 	}
 
-	printf("TEST 13: Discard counts remain the same\n");
+	if (PRINT_ALL)
+		printf("TEST 13: Discard counts remain the same\n");
 	for (i = 0; i < G->numPlayers; i++){
 		if (G->discardCount[i] != testG->discardCount[i]){
 			success = 0;
@@ -143,7 +163,8 @@ int verifySameState(struct gameState * G, struct gameState * testG){
 		asserttrue(1, 13);
 	}		
 	
-	printf("TEST 14: Played card count remains the same\n");			
+	if (PRINT_ALL)
+		printf("TEST 14: Played card count remains the same\n");			
 	asserttrue(G->playedCardCount == testG->playedCardCount, 14);
 	if (G->playedCardCount != testG->playedCardCount)
 		totalSuccess++;
@@ -155,7 +176,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 	int i, success, tester, preCards, postCards;
 	int totalSuccess = 0;
 	int currentPlayer = G->whoseTurn;
-	printf("Test 1: Phase stays the same\n");
+	if (PRINT_ALL)
+		printf("Test 1: Phase stays the same\n");
 	if (testG->phase == G->phase){
 		asserttrue(1, 1);
 	}
@@ -164,7 +186,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 2: Number of buys increases by 1\n");
+	if (PRINT_ALL)
+		printf("Test 2: Number of buys increases by 1\n");
 	if (testG->numBuys == G->numBuys + 1){
 		asserttrue(1, 2);
 	}
@@ -173,7 +196,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 3: Number of actions stay the same\n");
+	if (PRINT_ALL)
+		printf("Test 3: Number of actions stay the same\n");
 	if (testG->numActions == G->numActions){
 		asserttrue(1, 3);
 	}
@@ -182,7 +206,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 4: handCount for current player has decreased by 2\n");
+	if (PRINT_ALL)
+		printf("Test 4: handCount for current player has decreased by 2\n");
 	if (testG->handCount[currentPlayer] == G->handCount[currentPlayer] - 2){
 		asserttrue(1, 4);
 	}
@@ -191,8 +216,9 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 5: Salvager card is in the discard pile\n");
-	if (testG->discard[currentPlayer][testG->discardCount[currentPlayer]] == salvager){
+	if (PRINT_ALL)
+		printf("Test 5: Salvager card is in the discard pile\n");
+	if (testG->discard[currentPlayer][testG->discardCount[currentPlayer]-1] == salvager){
 		asserttrue(1, 5);
 	}
 	else{
@@ -200,7 +226,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("TEST 6: Current players total number of cards has decreased by 1\n");
+	if (PRINT_ALL)
+		printf("TEST 6: Current players total number of cards has decreased by 1\n");
 	preCards = G->handCount[currentPlayer] + G->deckCount[currentPlayer] + G->discardCount[currentPlayer] + G->playedCardCount;
 	// count post number of cards
 	postCards = testG->handCount[currentPlayer] + testG->deckCount[currentPlayer] + testG->discardCount[currentPlayer] + testG->playedCardCount;
@@ -213,7 +240,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 7: Number of coins has increased by the value of choice1\n");
+	if (PRINT_ALL)
+		printf("Test 7: Number of coins has increased by the value of choice1\n");
 	tester = 0;
 	tester = 0;
 		for (i = 0; i < testG->handCount[currentPlayer]; i++){
@@ -236,7 +264,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		totalSuccess++;
 	}
 
-	printf("Test 8: Victory cards have not been affected\n");
+	if (PRINT_ALL)
+		printf("Test 8: Victory cards have not been affected\n");
 	for (i = estate; i <= province; i++){
 		if (testG->supplyCount[i] != G->supplyCount[i]){
 			asserttrue(0, 8);
@@ -252,7 +281,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		asserttrue(1, 8);
 	}
 
-	printf("Test 9: Supply cards have not been affected\n");
+	if (PRINT_ALL)
+		printf("Test 9: Supply cards have not been affected\n");
 	for (i = copper; i <= treasure_map; i++){
 		if (testG->supplyCount[i] != G->supplyCount[i]){
 			asserttrue(0, 9);
@@ -268,7 +298,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG, int cho
 		asserttrue(1, 9);
 	}
 
-	printf("Test 10: Card counts for other players have not been affected\n");
+	if (PRINT_ALL)
+		printf("Test 10: Card counts for other players have not been affected\n");
 	for (i = 0; i < G->numPlayers; i++){
 		if (i != currentPlayer){
 			if (testG->handCount[i] + testG->deckCount[i] + testG->discardCount[i] != G->handCount[i] + G->deckCount[i] + G->discardCount[i]){
@@ -346,16 +377,23 @@ int main (int argc, char** argv){
 	}
 	int j, result, cardPlacement, numPlayers, currentPlayer, totalSuccess;
 	int testLocation, testPhase, testActions, testChoice;
+	int testPassCount, testFailCount, totalTestCount, validCount, invalidCount;
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
-	printf("Testing pre-condition: Phase must be 0\n");
+	totalTestCount= 0;
+	testPassCount=0;
+	testFailCount=0;
+	validCount=0;
+	invalidCount=0;
+	printf("TEST SET 1\nTesting pre-condition: Phase must be 0\n");
 	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -366,7 +404,7 @@ int main (int argc, char** argv){
 		testPhase = rand()%3;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -378,48 +416,72 @@ int main (int argc, char** argv){
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-		
-		printf("=========================== INPUT %d =========================\n", j);
-		printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
-		printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
-		printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		if (PRINT_ALL)	{	
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
+			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		}
 		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
 		if (result == 0){
-			printf("%s received valid input\n\n", TESTCARD);
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
 			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
-			printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("===============================================================\n\n");
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
 		}
 		else{
-			printf("%s received invalid input\n\n", TESTCARD);
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
 
 			totalSuccess = verifySameState(&G, &testG);
 
-			printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("==================================================================\n\n");
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
 		}
 		
 
 		
 	}
-	printf("Testing pre-condition: Number of actions must be greater than 0\n");
+	printf("Testing phase must be 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	printf("TEST SET 2\nTesting pre-condition: Number of actions must be greater than 0\n");
+	totalTestCount= 0;
+	testPassCount=0;
+	testFailCount=0;
+	validCount=0;
+	invalidCount=0;
 	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -428,9 +490,9 @@ int main (int argc, char** argv){
 		cardPlacement = rand()%G.handCount[currentPlayer];
 		testLocation = cardPlacement;
 		testPhase = 0;
-		testActions = rand()%5;
+		testActions = (rand()%10)-5;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -442,48 +504,72 @@ int main (int argc, char** argv){
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-		
-		printf("=========================== INPUT %d =========================\n", j);
-		printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
-		printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
-		printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
+			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		}
 		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
 		if (result == 0){
-			printf("%s received valid input\n\n", TESTCARD);
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
 			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
-			printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("===============================================================\n\n");
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
 		}
 		else{
-			printf("%s received invalid input\n\n", TESTCARD);
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
 
 			totalSuccess = verifySameState(&G, &testG);
 
-			printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("==================================================================\n\n");
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
 		}
 		
 
 		
 	}
-	printf("Testing pre-condition: Name of card must be Salvager\n");
+	printf("Testing number of actions must be greater than 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	printf("TEST SET 3\nTesting pre-condition: Name of card must be Salvager\n");
+	totalTestCount= 0;
+	testPassCount=0;
+	testFailCount=0;
+	validCount=0;
+	invalidCount = 0;
 	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -494,7 +580,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -506,48 +592,162 @@ int main (int argc, char** argv){
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-		
-		printf("=========================== INPUT %d =========================\n", j);
-		printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
-		printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
-		printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
+			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		}
 		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
 		if (result == 0){
-			printf("%s received valid input\n\n", TESTCARD);
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
 			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
-			printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("===============================================================\n\n");
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
 		}
 		else{
-			printf("%s received invalid input\n\n", TESTCARD);
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
 
 			totalSuccess = verifySameState(&G, &testG);
 
-			printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
-				
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("==================================================================\n\n");
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
 		}
 		
 
 		
 	}
-	printf("Testing pre-condition: Choice1 must be a valid card in the hand\n");
+	printf("Testing name of card must be salvager...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+		printf("TEST SET 4\nTesting pre-condition: Played card must be in hand\n");
+	testPassCount = 0;
+	testFailCount=0;
+	totalTestCount=0;
+	invalidCount=0;
+	validCount=0;
 	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
+		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
+		// initialize a game state and player cards
+		initializeGame(numPlayers, k, seed, &G);
+
+		currentPlayer = whoseTurn(&G);
+		cardPlacement = rand()%(G.handCount[currentPlayer]*3)-G.handCount[currentPlayer]; //setting salvager in random place
+		testLocation = cardPlacement; //card to play from hand
+		testPhase = 0;
+		testActions = 1;
+		// placing the card in the players hand if possible
+		if (cardPlacement >= 0){
+			G.hand[currentPlayer][cardPlacement] = salvager; 
+		}
+		testChoice = rand()%G.handCount[currentPlayer];
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+			testChoice = rand()%G.handCount[currentPlayer];
+		}
+		// setting phase and actions
+		G.phase = testPhase;
+		G.numActions = testActions;
+		updateCoins(currentPlayer, &G, 0);
+		// copy the game state to a test case
+		memcpy(&testG, &G, sizeof(struct gameState));
+		
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
+			printf("Salvager Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
+		}
+		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		if (result == 0){
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
+			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
+		}
+		else{
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
+
+			totalSuccess = verifySameState(&G, &testG);
+
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
+		}
+		
+
+		
+	}
+	printf("Testing played card must be in hand...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	
+	printf("TEST SET 5\nTesting pre-condition: Choice1 must be a valid card in the hand\n");
+	totalTestCount= 0;
+	testPassCount=0;
+	testFailCount=0;
+	invalidCount=0;
+	validCount = 0;
+	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -557,9 +757,9 @@ int main (int argc, char** argv){
 		testLocation = cardPlacement;
 		testPhase = 0;
 		testActions = 1;
-		testChoice = rand()%(2* G.handCount[currentPlayer]);
-		while (G.hand[currentPlayer][testChoice] == salvager){
-			testChoice = rand()%G.handCount[currentPlayer];
+		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+			testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = salvager; 
@@ -570,49 +770,72 @@ int main (int argc, char** argv){
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-		
-		printf("=========================== INPUT %d =========================\n", j);
-		printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
-		printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
-		printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
+			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		}
 		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
 		if (result == 0){
-			printf("%s received valid input\n\n", TESTCARD);
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
 			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
-			printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("===============================================================\n\n");
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
 		}
 		else{
-			printf("%s received invalid input\n\n", TESTCARD);
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
 
 			totalSuccess = verifySameState(&G, &testG);
 
-			printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("==================================================================\n\n");
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
 		}
 		
 
 		
 	}
-
-	printf("Testing pre-condition: Choice1 must be not be the Salvager card being played\n");
+	printf("Testing choice1 is a valid card in hand...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	totalTestCount= 0;
+	testPassCount=0;
+	testFailCount=0;
+	validCount = 0;
+	invalidCount = 0;
+	printf("TEST SET 6\nTesting pre-condition: Choice1 must be not be the Salvager card being played\n");
 	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
 		// initialize a game state and player cards
 		initializeGame(numPlayers, k, seed, &G);
@@ -632,47 +855,64 @@ int main (int argc, char** argv){
 		// copy the game state to a test case
 		memcpy(&testG, &G, sizeof(struct gameState));
 		
-		
-		printf("=========================== INPUT %d =========================\n", j);
-		printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
-		printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
-		printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
+			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
+		}
 		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
 		if (result == 0){
-			printf("%s received valid input\n\n", TESTCARD);
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
 			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
-			printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("===============================================================\n\n");
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
 		}
 		else{
-			printf("%s received invalid input\n\n", TESTCARD);
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
 
 			totalSuccess = verifySameState(&G, &testG);
 
-			printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
 			
 			if (totalSuccess == 0){
-				printf("ALL TESTS PASSED\n");
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
 				
 			}
 			else{
-				printf("%d TEST(S) FAILED\n", totalSuccess);
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
 			}
-			printf("==================================================================\n\n");
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
 		}
 		
 
 		
 	}
-	
+	printf("Testing choice1 is not the salvager card...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
 	return 0;
 }
 

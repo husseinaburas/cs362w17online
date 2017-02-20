@@ -8,6 +8,9 @@
 **
 **  Description:    randomtester for the card smithy in dominion tests:
 **
+**  tester generates Pseudo random kingdom, hand, and deck cards for 2 to 4 players then
+**  	conducts all tests with full output uses getCard() helper function to
+**  	properly display all hand and deck card names
 **  verify preconditions
 **  verify smithy is at the top of curPlayer's discard pile
 **  verify curPlayer's playedCardCount has been incremented to 1
@@ -21,7 +24,14 @@
 **  previous tests verify cards came from curPlayer's deck into their hand
 **  verify all players are as expected
 **  verify treasure_map is 26
-**  run 1000 iterations
+**
+**  run 999 more iterations of the tests with limited output that can be
+**  	checked agianst the first full run to determine the specific test
+**  	which failed
+**
+**  seed, and number of players is logged for each iteration
+**
+**  finally a total count of all failed tests is output to randomtestcard1.out
 **
 ***********************************************************************************************/
 
@@ -42,7 +52,6 @@ int main()
 	int bonus = 0;
 	int bug = 0;  // if initialized to 0 then test will run additional known bug tests
 	struct gameState G;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 	int curPlayer = 0;
 	int i = 0;
 	int j = 0;
@@ -50,11 +59,25 @@ int main()
 	int deckCard1, deckCard2, deckCard3, deckCard4, deckCard5, deckCard6, deckCard7 = 0;
 	int failcount = 0;
 	int temp = 0;
+	int kingdom1, kingdom2, kingdom3, kingdom4, kingdom5, kingdom6, kingdom7, kingdom8, kingdom9, kingdom10 = 0;
 
 	for(j=0; j < 1000; j++)
 	{
 	int players = (rand() % 3) + 2;
-	initializeGame(players, k, seed, &G);  // initialize game state for 2 players
+
+	kingdom1 = smithy;
+	kingdom2 = (rand() % 19) + 7;
+	kingdom3 = (rand() % 19) + 7;
+	kingdom4 = (rand() % 19) + 7;
+	kingdom5 = (rand() % 19) + 7;
+	kingdom6 = (rand() % 19) + 7;
+	kingdom7 = (rand() % 19) + 7;
+	kingdom8 = (rand() % 19) + 7;
+	kingdom9 = (rand() % 19) + 7;
+	kingdom10 = (rand() % 19) + 7;
+	int k[10] = {kingdom1, kingdom2, kingdom3, kingdom4, kingdom5, kingdom6, kingdom7, kingdom8, kingdom9, kingdom10};
+
+	initializeGame(players, k, seed, &G);  // initialize game state
 
 	printf("\n	Pseudo Random Seed is: %d \n", seed);
 	printf("	Number of Players is: %d \n", players);
@@ -126,7 +149,6 @@ int main()
 					failcount++;
 			}
 
-
 			card2 = getCard(deckCard6);
 			if( j == 0 )
 			{
@@ -140,7 +162,6 @@ int main()
 				if(temp == 1)
 					failcount++;
 			}
-
 
 			card3 = getCard(deckCard5);
 			if( j == 0 )
@@ -175,7 +196,6 @@ int main()
 		curPlayer = 0;
 
 		printf("	Playing %s\n", TESTCARD);
-
 
 		char * card11 = {"error"};
 		char * card22 = {"error"};
