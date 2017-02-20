@@ -107,17 +107,17 @@ randomtestresults: randomtestadventurer randomtestcard1 randomtestcard2
 	./randomtestadventurer &> randomtestadventurer.out
 	./randomtestcard1 &> randomtestcard1.out
 	./randomtestcard2 &> randomtestcard2.out
-	gcov -b -c randomtestcard1.c >> randomtestcard1.out
+	gcov -b -c -f randomtestcard1.c >> randomtestcard1.out
 	cat randomtestcard1.c >> randomtestcard1.out
-	gcov -b -c dominion.c >> randomtestcard1.out
+	gcov -b -c -f dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
-	gcov -b -c randomtestcard1.c >> randomtestcard2.out
-	cat randomtestcard1.c >> randomtestcard2.out
-	gcov -b -c dominion.c >> randomtestcard2.out
+	gcov -b -c -f randomtestcard2.c >> randomtestcard2.out
+	cat randomtestcard2.c >> randomtestcard2.out
+	gcov -b -c -f dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
-	gcov -b -c randomtestadventurer.c >> randomtestadventurer.out
+	gcov -b -c -f randomtestadventurer.c >> randomtestadventurer.out
 	cat randomtestadventurer.c >> randomtestadventurer.out
-	gcov -b -c dominion.c >> randomtestadventurer.out
+	gcov -b -c -f dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 
 player: player.c interface.o

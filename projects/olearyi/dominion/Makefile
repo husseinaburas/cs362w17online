@@ -24,7 +24,24 @@ unittest3: unittest3.c
 unittest4: unittest4.c
 	gcc -o unittest4 unittest4.c dominion.o rngs.o $(CFLAGS)
 
-gcovtests: 
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	./randomtestadventurer 1314 &> randomtestadventurer.out
+	gcov -b dominion >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard1 3423 &> randomtestcard1.out
+	gcov -b dominion >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 2345 &> randomtestcard2.out
+	gcov -b dominion >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)

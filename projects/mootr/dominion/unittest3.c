@@ -33,11 +33,12 @@ int main(int argv, char **argc) {
   // Copying first player's hand to compare to result of handCard
   int error = 0;
   int currentPlayerHand[5] = {0};
-  for (int i = 0; i < 5; i++) {
+	int i;
+  for (i = 0; i < 5; i++) {
     currentPlayerHand[i] = testState->hand[0][i];
   };
   // Checking that handCard() returns the same cards for the current player
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     if (currentPlayerHand[i] != handCard(i, testState)) {
       error = 1;
     } else {
@@ -55,11 +56,11 @@ int main(int argv, char **argc) {
   testState->whoseTurn = 1;
 
   // Making a copy of next player's hand
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     currentPlayerHand[i] = testState->hand[1][i];
   }
   // Checking if the hands match
-  for (int i = 0; i < 5; i++) {
+  for (i = 0; i < 5; i++) {
     if (currentPlayerHand[i] != handCard(i, testState)) {
       error = 1;
     } else {

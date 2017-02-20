@@ -53,6 +53,15 @@ cardtest3: dominion.o cardtest3.o rngs.o
 cardtest4: dominion.o cardtest4.o rngs.o
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest4.o rngs.o -o cardtest4 -lm -g  $(CFLAGS)
 
+randomtestadventurer: dominion.o randomtestadventurer.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestadventurer.o rngs.o -o randomtestadventurer -lm -g  $(CFLAGS)
+
+randomtestcard1: dominion.o randomtestcard1.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestcard1.o rngs.o -o randomtestcard1 -lm -g  $(CFLAGS)
+
+randomtestcard2: dominion.o randomtestcard2.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o randomtestcard2.o rngs.o -o randomtestcard2 -lm -g  $(CFLAGS)
+
 consolidatedTests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 dominion.o
 	./unittest1 &> unittestresult.out
 	./unittest2 >> unittestresult.out
@@ -64,6 +73,21 @@ consolidatedTests: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 c
 	./cardtest4 >> unittestresult.out
 	gcov -b dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
+
+randtest_adv_data: randomtestadventurer dominion.o
+	./randomtestadventurer &> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randtest_c1_data: randomtestcard1 dominion.o
+	./randomtestcard1 &> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randtest_c2_data: randomtestcard2 dominion.o
+	./randomtestcard2 &> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

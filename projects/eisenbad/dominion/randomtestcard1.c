@@ -25,24 +25,12 @@
 #define TESTCARD village
 #define TESTCARD_NAME "village"
 
-int randCheckExtraCard(int testNum, int *pass_count, struct gameState G, struct gameState testG) {
-  int thisPlayer = G.whoseTurn;
-
-  if (testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1] ==  G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]) {
-    *pass_count = *pass_count + 1;     
-    return 1;
-  }
-  else {
-    printf("\n  TEST %d: Extra card comes from player's own pile\n", testNum);
-    printf("    STATUS: TEST %d FAILED\n", testNum);
-    printf("    top card in hand = %d, expected = %d\n", testG.hand[thisPlayer][testG.handCount[thisPlayer] - 1], G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]);
-    return 0;
-  }
-}
-
-
 int main(int argc, char *argv[]) {
-  int i;
+  int test_cases = 6;
+  int iterations = 100;  // # of iterations of each test case
+  int tests = test_cases * iterations;
+  int i, testnum;
+  int randcard;
   int randomseed = atoi(argv[argc - 1]);  // get random seed from user input
   srand(randomseed);  // set seed value to random seed from user unput
 	
@@ -63,6 +51,10 @@ int main(int argc, char *argv[]) {
   int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
       sea_hag, tribute, smithy, council_room};
 
+  // array of all cards being used in the game used to pick random cards
+  int cards_in_game[17] = {curse, estate, duchy, province, copper, silver, gold, adventurer, embargo,
+      village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
+	
   // initialize game state and player cards
   initializeGame(numPlayers, k, seed, &G);
 	
@@ -71,22 +63,32 @@ int main(int argc, char *argv[]) {
 	
   printf("\n----------------- Testing Card: %s ----------------\n", TESTCARD_NAME);
 
-  // perform 100 random tests
-  for (i = 0; i < 100; i++) {
-    printf("\n----------- ITERATION: %d ----------\n", i);
+  // iterate random tests
+  for (testnum = 0; testnum < iterations; testnum++) {
+    printf("\n----------- ITERATION: %d ----------\n", testnum);
     
-    handpos = rand() % 5;  // choose random hand position for testcard (player starts with 5 cards, thus range is 0:4)
+    // fill player's hand with random cards
+    for (i = 0; i < G.handCount[thisPlayer]; i++) {
+      randcard = cards_in_game[rand() % 17];  // get random test card
+      G.supplyCount[G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
+      G.hand[thisPlayer][G.handCount[thisPlayer] - 1 - i] = randcard;  // put random card in hand position i 
+      G.supplyCount[randcard]--;  // decrease supply of random card that was selected
+    }
 
-    // put testcard in random position of player's hand
+    // fill player's deck with random cards
+    for (i = 0; i < G.deckCount[thisPlayer]; i++) {
+      randcard = cards_in_game[rand() % 17];  // get random test card
+      G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i]]++; // restore supply of card to be removed from deck
+      G.deck[thisPlayer][G.deckCount[thisPlayer] - 1 - i] = randcard;  // put random card in deck position i
+      G.supplyCount[randcard]--;  // decrease supply of random card that was selected
+    }
+
+    // place testcard in random position of player's hand
+    handpos = rand() % 5;  // choose random hand position for testcard (player starts with 5 cards, thus range is 0:4)
     G.supplyCount[G.hand[thisPlayer][handpos]]++; // restore supply of card to be removed from hand
     G.hand[thisPlayer][handpos] = TESTCARD;  // put test card at random handpos location in hand
     G.supplyCount[TESTCARD]--;  // decrease supply of card being tested
 
-    // put a random card at the top of the current player's deck
-    G.supplyCount[G.deck[thisPlayer][G.deckCount[thisPlayer] - 1]]++; // restore supply of card to be removed from deck
-    G.deck[thisPlayer][G.deckCount[thisPlayer] - 1] = rand() % 27;  // put random card at top of deck (range of cards is 0:26)
-    G.supplyCount[council_room]--;  // decrease supply of random card that was selected
-	
     // reset bonus coins to zero
     bonus = 0;
         
@@ -99,12 +101,12 @@ int main(int argc, char *argv[]) {
     randCheckHandCount(3, &pass_count, G, testG, xtraCards, discarded);
     randCheckSupplyCount(4, &pass_count, G, testG);
     randCheckOtherPlayerState(5, &pass_count, G, testG);
-    randCheckExtraCard(6, &pass_count, G, testG);
+    randCheckExtraCards(6, &pass_count, G, testG, xtraCards);
   }
 
   /**************************************** END OF TESTS ****************************************************/
-  if (pass_count == 600) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
-  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", 600 - pass_count, 600, TESTCARD_NAME);}
+  if (pass_count == tests) {printf("\n >>>>> TESTS COMPLETE. SUCCESS: All %s tests passed. <<<<<\n\n", TESTCARD_NAME);}
+  else {printf("\n >>>>> TESTS COMPLETE. FAILURE: %d/%d %s tests failed. <<<<<\n\n", tests - pass_count, tests, TESTCARD_NAME);}
 
   return 0;
 }
