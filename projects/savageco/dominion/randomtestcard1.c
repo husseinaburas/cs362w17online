@@ -34,8 +34,8 @@ int main(int argc, char* args[]){
     
     printf("\nTesting Smithy card\n");
     
-    // random test for smithy, 500 runs
-    for (int i=0; i<500; i++) {
+    // random test for smithy, 50 runs
+    for (i=0; i<50; i++) {
         
         int cardNum;
         int deckCount, handCount = 0;
@@ -51,8 +51,8 @@ int main(int argc, char* args[]){
         G.deckCount[0] = deckCount - handCount;
         
         // random card contents
-        for (int n=0; n<2; n++) {
-            for (int j=0; j<G.deckCount[n]; j++) {
+        for (n=0; n<2; n++) {
+            for (j=0; j<G.deckCount[n]; j++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -84,7 +84,7 @@ int main(int argc, char* args[]){
                     }
                 }
             }
-            for (int s=1; s<G.handCount[n]; s++) {
+            for (s=1; s<G.handCount[n]; s++) {
                 cardNum = rand() % 101;
                 // kingdom cards
                 if (cardNum < 50) {
@@ -120,14 +120,14 @@ int main(int argc, char* args[]){
         }
         cardEffect(smithy, 0, 0, 0, &G, 0, 0);
         
-        assert_true(handCount == G.handCount[G.whoseTurn] + 2);
-        assert_true(deckCount == G.deckCount[G.whoseTurn] - 3);
+        assert_true(handCount == G.handCount[0] + 2);
+        assert_true(deckCount == G.deckCount[1] - 3);
         
         
         
     }
     
-    printf("Number of tests run: 500\n Passed Tests: %d \n Failed Tests: %d\n", passNum, failNum);
+    printf("Number of tests run: 50\n Passed Tests: %d \n Failed Tests: %d\n", passNum, failNum);
     
     
     return 0;
