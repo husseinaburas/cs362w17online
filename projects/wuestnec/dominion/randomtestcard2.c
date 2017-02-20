@@ -7,33 +7,30 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-#define TESTCARD "smithy"
+#define TESTCARD "village"
 #define NOISY_TEST 1				// set to 0 to remove print statements
 
-int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
+int checkPlayVillage(struct gameState *post, int hand_pos, int test_num){
 	int p, r, all_clear;
 	struct gameState pre;
 	
 	memcpy(&pre, post, sizeof(struct gameState));
+	
 	p = pre.whoseTurn;
 	
-	r = playSmithy(post, hand_pos);
-
+	r = playVillage(post, hand_pos);
+	
 	// Manually perform expected playSmithy() actions on pre gameState
-	// Current player draws 3 cards from deck, added to hand
-	// If deck runs out before 3 cards drawn, restock deck from discard pile
 	// Testing strategy learned from testDrawCard.c example
-	if(pre.deckCount[p] > 2){
-		pre.handCount[p] += 3;
-		pre.hand[p][pre.handCount[p]-3] = pre.deck[p][pre.deckCount[p]-1];
-		pre.hand[p][pre.handCount[p]-2] = pre.deck[p][pre.deckCount[p]-2];
-		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-3];
-		pre.deckCount[p] -= 3;
-	} else if(pre.deckCount[p] == 2 && pre.discardCount[p] > 0){
-		pre.handCount[p] += 2;
-		pre.hand[p][pre.handCount[p]-2] = pre.deck[p][pre.deckCount[p]-1];
-		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-2];
-		pre.deckCount[p] -= 2;
+	// Increase number of actions by 2
+	pre.numActions += 2;
+	
+	// Current player draws a card from own deck (refill deck if empty from discard)
+	if (pre.deckCount[p] > 0){
+		pre.handCount[p]++;
+		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-1];
+		pre.deckCount[p]--;
+	} else if (pre.discardCount[p] > 0){
 		memcpy(pre.deck[p], post->deck[p], sizeof(int) * pre.discardCount[p]);
 		memcpy(pre.discard[p], post->discard[p], sizeof(int)*pre.discardCount[p]);
 		pre.deckCount[p] = pre.discardCount[p];
@@ -41,31 +38,8 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 		pre.handCount[p]++;
 		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-1];
 		pre.deckCount[p]--;
-	} else if(pre.deckCount[p] == 1 && pre.discardCount[p] > 1){
-		pre.handCount[p] += 1;
-		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-1];
-		pre.deckCount[p]--;
-		memcpy(pre.deck[p], post->deck[p], sizeof(int) * pre.discardCount[p]);
-		memcpy(pre.discard[p], post->discard[p], sizeof(int)*pre.discardCount[p]);
-		pre.deckCount[p] = pre.discardCount[p];
-		pre.discardCount[p] = 0;
-		pre.handCount[p] += 2;
-		pre.hand[p][pre.handCount[p]-2] = pre.deck[p][pre.deckCount[p]-1];
-		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-2];
-		pre.deckCount[p] -= 2;
-	} else if(pre.deckCount[p] == 0 && pre.discardCount[p] > 2){
-		memcpy(pre.deck[p], post->deck[p], sizeof(int) * pre.discardCount[p]);
-		memcpy(pre.discard[p], post->discard[p], sizeof(int)*pre.discardCount[p]);
-		pre.deckCount[p] = pre.discardCount[p];
-		pre.discardCount[p] = 0;
-		pre.handCount[p] += 3;
-		pre.hand[p][pre.handCount[p]-3] = pre.deck[p][pre.deckCount[p]-1];
-		pre.hand[p][pre.handCount[p]-2] = pre.deck[p][pre.deckCount[p]-2];
-		pre.hand[p][pre.handCount[p]-1] = pre.deck[p][pre.deckCount[p]-3];
-		pre.deckCount[p] -= 3;
 	}
-
-	// Current player discards the played Smithy card (essentially replicate discardCard())
+	// Current player discards the played Village card (discardCard())
 	pre.playedCards[pre.playedCardCount] = pre.hand[p][hand_pos];
 	pre.playedCardCount++;
 	pre.hand[p][hand_pos] = -1;
@@ -78,7 +52,7 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 	}
 	
 	all_clear = 1;
-	
+
 	// Did the function return 0?
 	if(r != 0){
 #if NOISY_TEST
@@ -95,9 +69,15 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 #endif
 		all_clear = 0;
 	}
-	return all_clear;
-	// Added some extra tests with print statements to pinpoint problem if game state test fails
-	// Did the current player's hand count increase by 2 (3 new cards, 1 card discarded)?
+	// Were 2 additional actions gained as expected?
+	if(post->numActions != pre.numActions){
+#if NOISY_TEST
+		printf("Test %d failure: Action count is %d, should be %d.\n", 
+				test_num, post->numActions, pre.numActions);
+#endif
+		all_clear = 0;
+	}
+	// Did the current player's hand count increase by 1 (2 new cards, 1 card discarded)?
 	if(pre.handCount[p] != post->handCount[p]){
 #if NOISY_TEST
 	printf("Test %d failure: Hand count is %d, should be %d.\n", 
@@ -113,11 +93,11 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 #endif
 		all_clear = 0;
 	}
-	// Is the last played card a Smithy?
-	if(post->playedCards[post->playedCardCount-1] != smithy){
+	// Is the last played card a Village?
+	if(post->playedCards[post->playedCardCount-1] != village){
 #if NOISY_TEST
-		printf("Test %d failure: Last played card is %d, should be smithy (%d).\n", 
-				test_num, post->playedCards[post->playedCardCount-1], smithy);
+		printf("Test %d failure: Last played card is %d, should be village (%d).\n", 
+				test_num, post->playedCards[post->playedCardCount-1], village);
 #endif
 		all_clear = 0;
 	}
@@ -137,18 +117,20 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 #endif
 		all_clear = 0;
 	}
+	
+	return all_clear;
 }
 
 int main(int argc, char** argv){
 	int i, n, cur_player, hand_pos, seed, all_clear, all_tests_passed;
 	struct gameState G;
-	
+
 	if(argc > 1){
 		seed = atoi(argv[1]);
 	} else { 
 		printf("Please provide a seed value.\n");
 		exit(1);
-	}
+	}	
 	
 	printf("Testing %s.\n", TESTCARD);
 	printf("RANDOM TESTS.\n");
@@ -169,11 +151,13 @@ int main(int argc, char** argv){
 		G.deckCount[cur_player] = floor(Random() * MAX_DECK);
 		G.discardCount[cur_player] = floor(Random() * MAX_DECK);
 		G.playedCardCount = floor(Random() * MAX_DECK);
-		// Set played card to Smithy -- other card values do not matter as long no unexpected change.
+		// Set played card to Village -- other card values do not matter as long no unexpected change.
 		hand_pos = floor(Random() * G.handCount[cur_player]);
-		G.hand[cur_player][hand_pos] = smithy;
+		G.hand[cur_player][hand_pos] = village;
+		// Test wide range of possible action values.
+		G.numActions = (floor(Random() * 20));
 		
-		all_clear = checkPlaySmithy(&G, hand_pos, n+1);
+		all_clear = checkPlayVillage(&G, hand_pos, n+1);
 		
 		if(all_clear == 0){
 			all_tests_passed = 0;
