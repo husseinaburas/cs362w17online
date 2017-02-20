@@ -8,7 +8,7 @@
 
 #define MAX_PLAYERS 4
 
-#define DEBUG 0
+#define DEBUG 0 
 
 
 
@@ -129,12 +129,10 @@ int scoreFor(int player, struct gameState *state);
 int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
-
-int playAdventurer(struct gameState *state);
-int playSmithy(struct gameState *state, int handPos);
-int playVillage(struct gameState *state, int handPos);
-int playFeast(struct gameState *state, int choice1);
-int playCouncil_Room(struct gameState *state, int handPos);
-
+int adventurerFunc(int adventurerHandPos, struct gameState *adventurerState, int adventurerPlayer, int cardDrawn, int temphand[]);
+int smithyFunc(int smithyPlayer,struct gameState *smithyState, int smithyHandPos);
+int villageFunc(int villagePlayer, struct gameState *villageState, int villageHandPos);
+int great_hallFunc(int great_hallPlayer, struct gameState *great_hallState, int great_hallHandPos);
+int outpostFunc(struct gameState *outpostState, int outpostHandPos, int outpostPlayer);
 
 #endif

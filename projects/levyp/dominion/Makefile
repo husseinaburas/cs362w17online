@@ -60,12 +60,62 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
 
+betterTestDrawCard: betterTestDrawCard.c dominion.o rngs.o
+	gcc -o betterTestDrawCard -g betterTestDrawCard.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+	echo "*****************************" > randomtestadventurer.out;
+	echo "*   Patrick Levy            *" >> randomtestadventurer.out;
+	echo "*   levyp@oregonstate.edu   *" >> randomtestadventurer.out;
+	echo "*****************************\n\n" >> randomtestadventurer.out;
+	echo "Result of running automated random tests on playAdventurer():\n" >> randomtestadventurer.out
+	
+	echo "********************************************************************" >> randomtestcard2.out
+	echo "randomtestadventurer.c:" >> randomtestadventurer.out
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	gcov -f dominion.c >> randomtestadventurer.out
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+	echo "*****************************" > randomtestcard1.out;
+	echo "*   Patrick Levy            *" >> randomtestcard1.out;
+	echo "*   levyp@oregonstate.edu   *" >> randomtestcard1.out;
+	echo "*****************************\n\n" >> randomtestcard1.out;
+	echo "Result of running automated random tests on playSmithy():\n" >> randomtestcard1.out
+	
+	echo "********************************************************************" >> randomtestcard1.out
+	echo "randomtestcard1.c:" >> randomtestcard1.out
+	./randomtestcard1 >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	gcov -f dominion.c >> randomtestcard1.out
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+	echo "*****************************" > randomtestcard2.out;
+	echo "*   Patrick Levy            *" >> randomtestcard2.out;
+	echo "*   levyp@oregonstate.edu   *" >> randomtestcard2.out;
+	echo "*****************************\n\n" >> randomtestcard2.out;
+	echo "Result of running automated random tests on playBaron():\n" >> randomtestcard2.out
+	
+	echo "********************************************************************" >> randomtestcard2.out
+	echo "randomtestcard2.c:" >> randomtestcard2.out
+	./randomtestcard2 >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	gcov -f dominion.c >> randomtestcard2.out
+
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player unittestresults.out testUpdateCoins \
 	unittest1 unittest2 unittest3 unittest4 player.exe testInit testInit.exe \
 	cardtest1 cardtest2 cardtest3 cardtest4 \
+	betterTestDrawCard \
+	randomtestadventurer randomtestcard1 randomtestcard2 \
 	*.gcov *.gcda *.gcno *.so
 
 unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c \
