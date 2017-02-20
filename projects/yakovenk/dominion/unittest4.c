@@ -42,7 +42,7 @@ int main(){
 	//with cards left, with no cards left
 	//buy during wrong phases
 	//
-	printf("\n----------------- Test Function: gainCard() ----------------\n");
+	printf("\n----------------- Test Function: buyCard() ----------------\n");
 
 	// ----------- TEST 1  --------------
 	printf("TEST 1: Verify simple buying works with enough money\n");
@@ -188,7 +188,7 @@ int main(){
 	failFlag += assertTrue(preBuySupplyCount == G.supplyCount[embargo]); 
 
 
-	printf("\n UNIT TESTS for gainCard(): ");
+	printf("\n UNIT TESTS for buyCard(): ");
 	assertTrue(failFlag == 0);
 	printf("\n");
 	

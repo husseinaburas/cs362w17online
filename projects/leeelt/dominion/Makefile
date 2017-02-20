@@ -68,11 +68,43 @@ unittestresults.out: alltests
 	touch unittestresults.out
 	unittest1 >> unittestresults.out
 	unittest2 >> unittestresults.out
+	unittest3 >> unittestresults.out
+	unittest4 >> unittestresults.out
+	cardtest1 >> unittestresults.out
+	cardtest2 >> unittestresults.out
+	cardtest3 >> unittestresults.out
+	cardtest4 >> unittestresults.out
 	gcov -b -f dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS);
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS);
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS);
+
+randomtestcard1.out: randomtestcard1
+	touch randomtestcard1.out
+	randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c -f -b >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	touch randomtestcard2.out
+	randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c -f -b >> randomtestcard2.out
+
+randomtestadventurer.out: randomtestadventurer
+	touch randomtestadventurer.out
+	randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c -f -b >> randomtestadventurer.out
+
+randomtests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
 
 all: playdom player
 

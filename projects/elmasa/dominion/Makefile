@@ -42,7 +42,7 @@ player: player.c interface.o
 
 
 
-
+################################################ UNIT TESTS ################################################
 
 #####################################################################################
 ####### Compile Each unit test and include the asserttrue assertion helper file	#####
@@ -149,6 +149,69 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 
 
 
+################################################ RANDOM TESTS ################################################
+	### Compile Random Tests for Card Methods and create necessary gcov files ###
+randomtestcard1: dominion.o rngs.o randomtestcard1.c
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o -fprofile-arcs -ftest-coverage $(CFLAGS)
+randomtestcard2: dominion.o rngs.o randomtestcard2.c
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o -fprofile-arcs -ftest-coverage $(CFLAGS)
+randomtestadventurer: dominion.o rngs.o randomtestadventurer.c
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o -fprofile-arcs -ftest-coverage $(CFLAGS)
+
+
+############################################################################################
+###### Call ‘make ARGS=1 randomtestcard1.out’ to run all of the following indented code ######
+############################################################################################
+randomtestcard1.out: randomtestcard1
+	
+	###### Run the Executables created above to both output results to randomtestcard1.out file 
+	#	AND ALSO to have gcov output coverage results to a .gcda file (will be created if 
+	#	doesn’t exist or add it’s results to previous runs in a pre-existing .gcda file)
+
+	rm -f dominion.c.gcov dominion.gcda
+
+	./randomtestcard1 ${ARGS} > randomtestcard1.out	# Output randomtestcard1 print statements to a new randomtestcard1.out file
+	gcov --branch-probabilities --function-summaries randomtestcard1.c >> randomtestcard1.out
+	gcov -b -f dominion.c >> randomtestcard1.out		# Outputs the Summary of the gcov
+	cat dominion.c.gcov >> randomtestcard1.out  
+	rm -f dominion.c.gcov dominion.gcda
+	echo \n\n******** END OF CODE COVERAGE FOR randomtestcard1 ********\n\n >> randomtestcard1.out
+
+############################################################################################
+###### Call ‘make ARGS=1 randomtestcard2.out’ to run all of the following indented code ######
+############################################################################################
+randomtestcard2.out: randomtestcard2
+	
+	###### Run the Executables created above to both output results to randomtestcard2.out file 
+	#	AND ALSO to have gcov output coverage results to a .gcda file (will be created if 
+	#	doesn’t exist or add it’s results to previous runs in a pre-existing .gcda file)
+
+	rm -f dominion.c.gcov dominion.gcda
+
+	./randomtestcard2 ${ARGS} > randomtestcard2.out	# Output randomtestcard2 print statements to a new randomtestcard2.out file
+	gcov --branch-probabilities --function-summaries randomtestcard2.c >> randomtestcard2.out
+	gcov -b -f dominion.c >> randomtestcard2.out		# Outputs the Summary of the gcov
+	cat dominion.c.gcov >> randomtestcard2.out  
+	rm -f dominion.c.gcov dominion.gcda
+	echo \n\n******** END OF CODE COVERAGE FOR randomtestcard2 ********\n\n >> randomtestcard2.out
+
+############################################################################################
+###### Call ‘make ARGS=1 randomtestadventurer.out’ to run all of the following indented code ######
+############################################################################################
+randomtestadventurer.out: randomtestadventurer
+	
+	###### Run the Executables created above to both output results to randomtestadventurer.out file 
+	#	AND ALSO to have gcov output coverage results to a .gcda file (will be created if 
+	#	doesn’t exist or add it’s results to previous runs in a pre-existing .gcda file)
+
+	rm -f dominion.c.gcov dominion.gcda
+
+	./randomtestadventurer ${ARGS} > randomtestadventurer.out	# Output randomtestadventurer print statements to a new randomtestadventurer.out file
+	gcov --branch-probabilities --function-summaries randomtestadventurer.c >> randomtestadventurer.out
+	gcov -b -f dominion.c >> randomtestadventurer.out		# Outputs the Summary of the gcov
+	cat dominion.c.gcov >> randomtestadventurer.out  
+	rm -f dominion.c.gcov dominion.gcda
+	echo \n\n******** END OF CODE COVERAGE FOR randomtestadventurer ********\n\n >> randomtestadventurer.out
 
 
 

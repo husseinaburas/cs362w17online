@@ -64,6 +64,30 @@ unittest3: unittest3.c dominion.o rngs.o
 	
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	
+random: randomtestadventurer randomtestcard1 randomtestcard2
+	rm -f randomtestresults.out
+	./randomtestadventurer 19 &>> randomtestresults.out
+	./randomtestadventurer 20 &>> randomtestresults.out
+	./randomtestadventurer 21 &>> randomtestresults.out
+	./randomtestadventurer &>> randomtestresults.out
+	./randomtestcard1 19 &>> randomtestresults.out
+	./randomtestcard1 20 &>> randomtestresults.out
+	./randomtestcard1 21 &>> randomtestresults.out
+	./randomtestcard2 19 &>> randomtestresults.out
+	./randomtestcard2 20 &>> randomtestresults.out
+	./randomtestcard2 21 &>> randomtestresults.out
+	gcov dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
 
 all: playdom player testBuyCard badTestDrawCard cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4
 

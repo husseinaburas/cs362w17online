@@ -1,0 +1,219 @@
+Running dominion tests:
+unittest1.c:
+Test passed: coins updated for player 0, no error from updateCoins().
+Test passed: update coins for player 0, correct number count.
+Test passed: coins updated for player 1, no error from updateCoins().
+Test passed: update coins for player 1, correct number count.
+Test failed: coins updated for player 1, no error from updateCoins(). Correct Value: 0; Expected Value: -1
+Test failed: coins updated for player 1, no error from updateCoins(). Correct Value: 0; Expected Value: -1
+Test passed: Updated coins with bonus = 1. No error given by updateCoins().
+Test passed: coins updated with bonus 1, treasure count +1 bonus
+Test passed: Updated coins with bonus = -1. No error given by updateCoins().
+Test failed: coins updated with bonus 1,no change should happen if bonus is less than 0. Correct Value: 3; Expected Value: 4
+Test failed: Updated coins with bonus = 9999. No error given by updateCoins(). Correct Value: 0; Expected Value: -1
+Test failed: Coins update with a bonus = 9999, no change should happen if bonus is greater than sum of all the treasure. Correct Value: 100003; Expected Value: 4
+Test passed: Coins updated with no cards in hand, this is not an error from updateCoins().
+Test passed: update coins with no cards in hand thus coins = 0.
+Test passed: Coins updated with no treasure cards, no error from updateCoins().
+Test passed: update coins with no treasure cards meaning coins = 0.
+Test passed: Coins updated with 3 gold cards, no error from updateCoins().
+Test passed: update coins with 3 gold cards meaning coins = 9.
+Test passed: Coins updated with 2 silver cards, no error from updateCoins().
+Test passed: update coins with 2 silver cards meaning coins = 4.
+Test passed: Coins updated with 3 copper cards, no error from updateCoins().
+Test passed: update coins with 3 copper cards meaning coins = 3.
+Test passed: Coins updated with 1 gold, 1 silver, 1 copper, and 1 bonus card, no error from updateCoins().
+Test passed: update coins with 1 gold, 1 silver, 1 copper, and 1 bonus card meaning coins = 7.
+File 'dominion.c'
+Lines executed:16.82% of 559
+Branches executed:15.83% of 417
+Taken at least once:13.19% of 417
+Calls executed:7.45% of 94
+Creating 'dominion.c.gcov'
+
+unittest2.c:
+
+ Test 1 
+Testing: isGameOver() when G.supplyCount[province] is 8. Test PASS
+Test: isGameOver() when G.supplyCount[province] is 0 and setting 4 of them to equal 0. Test Pass
+Test: isGameOver() when G.supplyCount = 0.  Test Pass
+File 'dominion.c'
+Lines executed:17.35% of 559
+Branches executed:17.75% of 417
+Taken at least once:14.39% of 417
+Calls executed:7.45% of 94
+Creating 'dominion.c.gcov'
+
+unittest3.c:
+Testing buyCard()
+testBuyCard.numBuys = 0, supplyPos = 1,  return -1 
+expected = -1
+result = -1
+
+testBuyCard.numBuys = 1, supplyPos = 1,  return 0 
+expected = 0
+result = 0
+
+File 'dominion.c'
+Lines executed:20.21% of 559
+Branches executed:25.42% of 417
+Taken at least once:14.63% of 417
+Calls executed:12.77% of 94
+Creating 'dominion.c.gcov'
+
+unittest4.c:
+
+Beginning whoseTurn TEST.
+
+whoseTurn player 0 passed
+
+whoseTurn player 1 passed
+
+testwhoseTurn Completed. 
+
+Completed whoseTurn TEST.
+
+File 'dominion.c'
+Lines executed:19.68% of 559
+Branches executed:17.27% of 417
+Taken at least once:14.15% of 417
+Calls executed:10.64% of 94
+Creating 'dominion.c.gcov'
+
+cardtest1.c:
+Card Smithy - TEST 1 FAILED - Potential bug!
+Card Smithy - TEST 2 FAILED - Potential bug!
+Card Smithy - TEST 3 SUCCESFULLY COMPLETED
+Card Smithy - TEST 4 FAILED - Potential bug!
+Card Smithy - TEST 5 SUCCESFULLY COMPLETED
+Card Smithy - TEST 6 SUCCESFULLY COMPLETED
+Card Smithy - TEST 7 SUCCESFULLY COMPLETED
+Card Smithy - TEST 8 FAILED - Potential bug!
+Card Smithy - TEST 9 SUCCESFULLY COMPLETED
+Card Smithy - TEST 10 SUCCESFULLY COMPLETED
+Card Smithy - TEST 11 SUCCESFULLY COMPLETED
+Card Smithy - TEST 12 SUCCESFULLY COMPLETED
+Card Smithy - TEST 13 SUCCESFULLY COMPLETED
+Card Smithy - TEST 14 SUCCESFULLY COMPLETED
+Card Smithy - TEST 15 SUCCESFULLY COMPLETED
+Card Smithy - TEST 16 SUCCESFULLY COMPLETED
+Card Smithy - TEST 17 SUCCESFULLY COMPLETED
+Card Smithy - TEST 18 SUCCESFULLY COMPLETED
+Card Smithy - TEST 19 SUCCESFULLY COMPLETED
+Card Smithy - TEST 20 SUCCESFULLY COMPLETED
+Card Smithy - TEST 21 SUCCESFULLY COMPLETED
+Card Smithy - TEST 22 SUCCESFULLY COMPLETED
+Card Smithy - TEST 23 SUCCESFULLY COMPLETED
+Card Smithy - TEST 24 SUCCESFULLY COMPLETED
+Card Smithy - TEST 25 SUCCESFULLY COMPLETED
+Card Smithy - TEST 26 SUCCESFULLY COMPLETED
+Card Smithy - TEST 27 SUCCESFULLY COMPLETED
+Card Smithy - TEST 28 SUCCESFULLY COMPLETED
+Card Smithy - TEST 29 SUCCESFULLY COMPLETED
+Card Smithy - TEST 30 SUCCESFULLY COMPLETED
+Card Smithy - TEST 31 SUCCESFULLY COMPLETED
+Card Smithy - TEST 32 SUCCESFULLY COMPLETED
+Card Smithy - TEST 33 SUCCESFULLY COMPLETED
+Card Smithy - TEST 34 SUCCESFULLY COMPLETED
+Card Smithy - TEST 35 SUCCESFULLY COMPLETED
+Card Smithy - TEST 36 SUCCESFULLY COMPLETED
+Card Smithy - TEST 37 SUCCESFULLY COMPLETED
+Card Smithy - TEST 38 SUCCESFULLY COMPLETED
+Card Smithy - TEST 39 SUCCESFULLY COMPLETED
+Card Smithy - TEST 40 SUCCESFULLY COMPLETED
+File 'dominion.c'
+Lines executed:17.89% of 559
+Branches executed:16.79% of 417
+Taken at least once:12.95% of 417
+Calls executed:8.51% of 94
+Creating 'dominion.c.gcov'
+
+cardtest2.c:
+playAdventurer(): Fail for initial check
+playAdventurer(): Fail for discard pile check
+playAdventurer(): Pass for hand count check
+playAdventurer(): Pass for adventurer not still in hand check
+playAdventurer(): Fail for adventurer decrement numActions check
+File 'dominion.c'
+Lines executed:19.86% of 559
+Branches executed:23.74% of 417
+Taken at least once:14.63% of 417
+Calls executed:10.64% of 94
+Creating 'dominion.c.gcov'
+
+cardtest3.c:
+
+Village Card testing
+
+give current player a village card and put it in last position of hand
+Testing that current player has a village card in the last position of hand
+SUCCESS
+
+Village card in last position of hand is played. 
+Testing to see if played card was a village card.
+FAILURE
+
+Testing that player drew 1 card thus gaining 0 cards overall after discard
+(false positive)
+FAILURE
+
+Testing that 1 card was drawn from deck
+FAILURE
+
+Testing that current number of actions increased by 2
+FAILURE
+
+Testing to see if only 1 card was played
+SUCCESS
+
+Test to see if other players have same number of cards in hand as in the start
+SUCCESS
+
+Testing that other players deck count is the same
+SUCCESS
+
+Testing to see if other players have same cards in deck as during game initialization
+Card #0 SUCCESS
+
+Card #1 SUCCESS
+
+Card #2 SUCCESS
+
+Card #3 SUCCESS
+
+Card #4 SUCCESS
+
+Card #5 SUCCESS
+
+Card #6 SUCCESS
+
+Card #7 SUCCESS
+
+Card #8 SUCCESS
+
+Card #9 SUCCESS
+
+Testing to see if other players discard pile as the same amount as in start
+SUCCESS
+
+Finished Village Card testing 
+
+File 'dominion.c'
+Lines executed:20.04% of 559
+Branches executed:17.75% of 417
+Taken at least once:14.39% of 417
+Calls executed:10.64% of 94
+Creating 'dominion.c.gcov'
+
+cardtest4.c:
+
+ Test for Mine card 
+testing mine: handcount should be 1, actual 1 . test Pass
+testing mine: card should be silver. test Pass
+File 'dominion.c'
+Lines executed:23.43% of 559
+Branches executed:33.81% of 417
+Taken at least once:16.55% of 417
+Calls executed:13.83% of 94
+Creating 'dominion.c.gcov'
+

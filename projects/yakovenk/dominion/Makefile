@@ -29,6 +29,8 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+
+######### Function Unit Tests #####################
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
 
@@ -41,7 +43,23 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
 
-unittestresults.out: unittest1 unittest2 unittest3 unittest4
+
+######### Card Unit Tests ##################### 
+cardtest1: cardtest1.c dominion.o rngs.o
+	gcc -o cardtest1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+cardtest2: cardtest2.c dominion.o rngs.o
+	gcc -o cardtest2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+cardtest3: cardtest3.c dominion.o rngs.o
+	gcc -o cardtest3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+cardtest4: cardtest4.c dominion.o rngs.o
+	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+
+######### Coverage Info on Unit Tests #####################
+unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 &> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 
@@ -54,7 +72,60 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4
 	./unittest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 
-	#cat dominion.c.gcov >> unittestresults.out
+
+	./cardtest1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+	./cardtest2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+	./cardtest3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+	./cardtest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+
+	cat dominion.c.gcov >> unittestresults.out
+
+
+
+######### Card Random Tests #####################
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+
+randomtestadventurer.out: randomtestadventurer
+	./randomtestadventurer 1000 &> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+randomtestcard1.out: randomtestcard1
+	./randomtestcard1 1000 &> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+
+	cat dominion.c.gcov >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2
+	./randomtestcard2 1000 &> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+
+	cat dominion.c.gcov >> randomtestcard2.out
+
+
+
+######### Coverage Info on Random Tests #####################
+randomtestresults.out: randomtestadventurer
+	./randomtestadventurer 1000 &> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+
+
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)

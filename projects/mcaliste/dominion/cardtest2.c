@@ -57,6 +57,23 @@ int main() {
   printf("Test hand has +3 cards:\n");
   assertResult((oldHandCount + 2) == numHandCards(&state));
 
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
+
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
+
   //printf("New hand count %d\n", numHandCards(&state));
 
   printf("*** Test empty deck + shuffle discard + play smithyCard:\n");
@@ -81,8 +98,22 @@ int main() {
   assertResult((oldHandCount + 2) == numHandCards(&state2));
   //printf("New hand count %d\n", numHandCards(&state2));
 
+  printf("Test victory card count is unchanged:\n");
+  assertResult(supplyCount(estate, &state) == 8);
+  assertResult(supplyCount(duchy, &state) == 8);
+  assertResult(supplyCount(province, &state) == 8);
 
-
+  printf("Test kingdom card count is unchanged:\n");
+  assertResult(supplyCount(council_room, &state) == 10);
+  assertResult(supplyCount(feast, &state) == 10);
+  assertResult(supplyCount(gardens, &state) == 8);
+  assertResult(supplyCount(mine, &state) == 10);
+  assertResult(supplyCount(remodel, &state) == 10);
+  assertResult(supplyCount(smithy, &state) == 10);
+  assertResult(supplyCount(adventurer, &state) == 10);
+  assertResult(supplyCount(village, &state) == 10);
+  assertResult(supplyCount(baron, &state) == 10);
+  assertResult(supplyCount(great_hall, &state) == 8);
 
   return 0;
 }

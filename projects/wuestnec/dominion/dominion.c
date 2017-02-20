@@ -655,8 +655,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  // int cardDrawn;
+  // int z = 0;// this is the counter for the temp hand
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
@@ -666,7 +666,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-	  playAdventurer(state);
+	  playAdventurer(state, handPos);
 	  return 0;
       /*while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
@@ -1339,35 +1339,33 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-int playAdventurer(struct gameState *state)
-{
-	int drawnTreasure = 0,
-		currentPlayer = whoseTurn(state),
-		cardDrawn,
-		tempHand[MAX_HAND],
-		z = 0;
-	
-	while(drawnTreasure <= 2)
-	{
-		if(state->deckCount[currentPlayer] < 1){
-			shuffle(currentPlayer, state);
-		}
+int playAdventurer(struct gameState* state, int handPos){
+	int drawnTreasure, player, cardDrawn, shuffles;
+	drawnTreasure = 0;
+	shuffles = 0;
+	player = state->whoseTurn;
 		
-		drawCard(currentPlayer, state);
-		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-		
-		if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
-			drawnTreasure++;
-		} else {
-			tempHand[z] = cardDrawn;
-			state->handCount[currentPlayer]--;
-			z++;
+	while(drawnTreasure <= 2 && shuffles < 3){
+		if(state->deckCount[player] < 1){
+			shuffles++;
 		}
+		if(shuffles < 3){
+			drawCard(player, state);
+			cardDrawn = state->hand[player][state->handCount[player]-1];
+		
+			if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
+				drawnTreasure++;
+			} else {
+				state->discard[player][state->discardCount[player]] = cardDrawn;
+				state->discardCount[player]++;
+				state->handCount[player]--;
+			}
+		}
+
 	}
-	while(z > 0){
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++]=tempHand[z-1];
-		z = z-1;
-	}
+
+	discardCard(handPos, player, state, 0);
+
 	return 0;
 }
 
@@ -1409,7 +1407,7 @@ int playVillage(struct gameState *state, int handPos)
 	
 	drawCard(currentPlayer, state);
 	
-	for(i = 0; i < 3; i++){
+	for(i = 0; i <= 2; i++){
 		state->numActions++;
 	}
 	

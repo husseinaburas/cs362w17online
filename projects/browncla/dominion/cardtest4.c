@@ -204,7 +204,7 @@ int main(){
 	else{
 		asserttrue(0, 11);
 	}
-
+ 
 	// ----------- TEST 12: Test state stays same invalid input -----------
 	printf("%s TEST 12: State says the same with invalid input\n", TESTCARD);
 	

@@ -1250,6 +1250,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 ************************************/
 
 int playAdventurer(int drawntreasure, int *temphand, int z, int cardDrawn, int currentPlayer, struct gameState *state) {
+  int treasureCount;
   while(drawntreasure<2){
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
@@ -1331,7 +1332,7 @@ int playMine(int handPos, int currentPlayer, int choice1, int choice2, struct ga
 int playSmithy(int handPos, int currentPlayer, struct gameState *state) {
   int i;
   for (i = 0; i < 3; i++) {
-    drawCard(currentPlayer+1, state);
+    drawCard(currentPlayer, state);
   }
            
   discardCard(handPos, currentPlayer, state, 0);

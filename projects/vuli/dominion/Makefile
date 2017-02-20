@@ -35,25 +35,26 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	rm -rf *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.dSYM testDrawCard badTestDrawCard \
+	unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2
+
+tests_helpers.o: tests_helpers.h tests_helpers.c dominion.h dominion.c
+	gcc -c tests_helpers.c -g  $(CFLAGS)
 
 
 # ---------------------------------------------------------------------------------------
 # assn3: Unit testing
-unittests_helpers.o: unittests_helpers.h unittests_helpers.c dominion.h dominion.c
-	gcc -c unittests_helpers.c -g  $(CFLAGS)
+unittests: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o tests_helpers.o
+	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 
-unittests: unittest1.c unittest2.c unittest3.c unittest4.c dominion.o rngs.o unittests_helpers.o
-	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-
-cardtests: cardtest1.c cardtest2.c dominion.o rngs.o unittests_helpers.o
-	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
-	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o unittests_helpers.o $(CFLAGS)
+cardtests: cardtest1.c cardtest2.c dominion.o rngs.o tests_helpers.o
+	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
+	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o tests_helpers.o $(CFLAGS)
 
 unittestresults.out: unittests cardtests
 	./unittest1 > unittestresults.out
@@ -111,8 +112,51 @@ unittestresults.out: unittests cardtests
 	echo "**********************************************************\n" >> unittestresults.out
 
 	echo "**********************************************************" >> unittestresults.out
-	gcov -b unittests_helpers.c >> unittestresults.out
-	cat unittests_helpers.c.gcov >> unittestresults.out
+	gcov -b tests_helpers.c >> unittestresults.out
+	cat tests_helpers.c.gcov >> unittestresults.out
 	echo "**********************************************************\n" >> unittestresults.out
  
+
+# ---------------------------------------------------------------------------------------
+# assn4: Random testing
+RANDOM_TESTS_SEED=4
+
+randomtestcard1.out: randomtestcard1.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestcard1 $(RANDOM_TESTS_SEED) > randomtestcard1.out
+	echo "**********************************************************" >> randomtestcard1.out
+	gcov -b randomtestcard1.c >> randomtestcard1.out
+	cat randomtestcard1.c.gcov >> randomtestcard1.out
+	echo "**********************************************************\n" >> randomtestcard1.out
+	echo "**********************************************************" >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+	echo "**********************************************************\n" >> randomtestcard1.out
+
+randomtestcard2.out: randomtestcard2.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestcard2 $(RANDOM_TESTS_SEED) > randomtestcard2.out
+	echo "**********************************************************" >> randomtestcard2.out
+	gcov -b randomtestcard2.c >> randomtestcard2.out
+	cat randomtestcard2.c.gcov >> randomtestcard2.out
+	echo "**********************************************************\n" >> randomtestcard2.out
+	echo "**********************************************************" >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+	echo "**********************************************************\n" >> randomtestcard2.out
+
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o tests_helpers.o
+	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o tests_helpers.o $(CFLAGS)	
+	./randomtestadventurer $(RANDOM_TESTS_SEED) > randomtestadventurer.out
+	echo "**********************************************************" >> randomtestadventurer.out
+	gcov -b randomtestadventurer.c >> randomtestadventurer.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+	echo "**********************************************************\n" >> randomtestadventurer.out
+	echo "**********************************************************" >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+	echo "**********************************************************\n" >> randomtestadventurer.out
+
+randomtests: randomtestcard1.out randomtestcard2.out randomtestadventurer.out
+
 

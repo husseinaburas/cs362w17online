@@ -24,13 +24,18 @@ void check_results(int a)
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
-  int a, b, playersn, randomSeed, value, countDeck, countHand;
+  int a, b, playersn, randomSeed, userRandomSeed, value, countDeck, countHand;
   int currentplayer = 1;
   struct gameState game;
 
   int cards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+  userRandomSeed = 0;
+  userRandomSeed = atoi(argv[1]);
+
+  printf("User Inputed: %d \n", userRandomSeed);
+
 
   printf("\nAutomated Random Test -- ADVENTURER\n-----------\nThere are 10 rounds of testing...\nEach round has 100 random tests...\n");
 
@@ -41,8 +46,15 @@ int main()
     for(int i = 0; i < 100; i ++)
     {
       playersn = rand() % 4; // Randon Number of players
-      randomSeed = rand() % 10000; // Randon Seed
 
+      if (userRandomSeed == 0) // RandomSeed
+      {
+          randomSeed = rand() % 100000; // Random Seed
+      }
+      else
+      {
+        randomSeed = rand() % userRandomSeed;
+      }
       a = initializeGame(playersn,cards, randomSeed, &game); // Initiliaze the game
 
 
