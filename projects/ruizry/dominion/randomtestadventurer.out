@@ -1,0 +1,20 @@
+Testing Adventurer Card.
+RANDOM TESTS.
+Failed: Player 1 out of 2, 3 advCards in hand, 2 advCards in deck, 2 advCards in discard
+Failed: Player 1 out of 2, 1 advCards in hand, 3 advCards in deck, 1 advCards in discard
+Failed: Player 3 out of 4, 2 advCards in hand, 3 advCards in deck, 3 advCards in discard
+Failed: Player 1 out of 4, 2 advCards in hand, 3 advCards in deck, 1 advCards in discard
+Failed: Player 2 out of 3, 3 advCards in hand, 2 advCards in deck, 1 advCards in discard
+Failed: Player 1 out of 3, 3 advCards in hand, 1 advCards in deck, 3 advCards in discard
+Failed: Player 3 out of 4, 3 advCards in hand, 0 advCards in deck, 3 advCards in discard
+Failed: Player 3 out of 4, 2 advCards in hand, 3 advCards in deck, 1 advCards in discard
+Failed: Player 1 out of 2, 2 advCards in hand, 1 advCards in deck, 1 advCards in discard
+Failed: Player 2 out of 4, 2 advCards in hand, 3 advCards in deck, 3 advCards in discard
+TESTS FINISHED.
+File 'dominion.c'
+Lines executed:27.15% of 582
+Creating 'dominion.c.gcov'
+
+
+
+

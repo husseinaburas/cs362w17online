@@ -1,0 +1,20 @@
+Testing Smithy Card.
+RANDOM TESTS.
+Failed: Player 1 out of 2, 3 smithyCards in hand, 2 smithyCards in deck, 2 smithyCards in discard
+Failed: Player 1 out of 2, 1 smithyCards in hand, 3 smithyCards in deck, 1 smithyCards in discard
+Failed: Player 3 out of 4, 2 smithyCards in hand, 3 smithyCards in deck, 3 smithyCards in discard
+Failed: Player 1 out of 4, 2 smithyCards in hand, 3 smithyCards in deck, 1 smithyCards in discard
+Failed: Player 2 out of 3, 3 smithyCards in hand, 2 smithyCards in deck, 1 smithyCards in discard
+Failed: Player 1 out of 3, 3 smithyCards in hand, 1 smithyCards in deck, 3 smithyCards in discard
+Failed: Player 3 out of 4, 3 smithyCards in hand, 0 smithyCards in deck, 3 smithyCards in discard
+Failed: Player 3 out of 4, 2 smithyCards in hand, 3 smithyCards in deck, 1 smithyCards in discard
+Failed: Player 1 out of 2, 2 smithyCards in hand, 1 smithyCards in deck, 1 smithyCards in discard
+Failed: Player 2 out of 4, 2 smithyCards in hand, 3 smithyCards in deck, 3 smithyCards in discard
+TESTS FINISHED.
+File 'dominion.c'
+Lines executed:32.13% of 582
+Creating 'dominion.c.gcov'
+
+
+
+
