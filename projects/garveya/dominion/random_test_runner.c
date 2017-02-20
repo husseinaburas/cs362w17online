@@ -21,32 +21,6 @@
 //global variable for number of test failed
 int numTestsFailed = 0;
 
-/*
-//prints gameState out for debugging purposes
-void printGameState(struct gameState *g){
-	printf("NumPlayers: %d, whoseTurn: %d, outpostPlayed: %d outpostTurn: %d, phase: %d, numActions: %d, coins: %d, numBuys: %d, playedCardCount: %d\n",
-		g->numPlayers, g->whoseTurn, g->outpostPlayed, g->outpostTurn, g->phase, g->numActions , g->coins , g->numBuys , g->playedCardCount);
-
-	// int hand[MAX_PLAYERS][MAX_HAND];
- //  int handCount[MAX_PLAYERS];
- //  int deck[MAX_PLAYERS][MAX_DECK];
- //  int deckCount[MAX_PLAYERS];
- //  int discard[MAX_PLAYERS][MAX_DECK];
- //  int discardCount[MAX_PLAYERS];
- //  int playedCards[MAX_DECK];
-
-  printf("Current player handCount of %d\n", g->handCount[g->whoseTurn]);
-  printf("Current player hand cards in hand: ");
-  int i;
-  for(i = 0; i < g->handCount[g->whoseTurn]; ++i){
-  	printf("%d, ", g->hand[g->whoseTurn][i]);
-  }
-  //add newline at end
-  puts("");
-
-}
-*/
-
 //prints error message if test fails
 //otherwise prints that test passed
 //if shouldExit is not 0, will exit program after test fails
