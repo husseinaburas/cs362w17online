@@ -49,7 +49,6 @@ int main(int argv, char** argc) {
   UNIT_ASSERT((testState.playedCards[0] == adventurer),
               "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
-  //
   UNIT_ASSERT(
       (testState.deckCount[0] < copyState.deckCount[0] + 1),
       "TEST CASE:\tDeck has decreased by atleast two cards\t\t\t\tRESULT:");

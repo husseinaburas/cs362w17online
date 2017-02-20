@@ -39,8 +39,17 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
 	
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)	
+	
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-	./unittest1 >> unittestresults.out
+	./unittest1 &> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
@@ -57,6 +66,15 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	./cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
+	
+randomtestresults.out: randomtestcard1 randomtestcard2 randomtestadventurer
+	./randomtestcard1 5 &> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	./randomtestcard2 5 >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	./randomtestadventurer 5 >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
@@ -73,7 +91,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+all: playdom player testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestcard1 randomtestcard2 randomtestadventurer
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

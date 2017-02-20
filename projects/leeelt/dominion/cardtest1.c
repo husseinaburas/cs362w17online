@@ -21,12 +21,41 @@
 
 int main()
 {
-	runCardTest(gold, 0, 5, gold, 1, 5);
-	runCardTest(gold, 2, 5, silver, 0, 5);
-	runCardTest(silver, 0, 5, silver, 2, 5);
-	runCardTest(silver, 0, 5, gold, 0, 5);
-	runCardTest(gold, 2, 5, silver, 2, 5);
-	runCardTest(gold, 1, 5, silver, 0, 5);
+	int numPassedTests = 0;
+	int numFailedTests = 0;
+	if (runCardTest(gold, 0, 5, gold, 1, 5) == -1){
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+	if (runCardTest(gold, 2, 5, silver, 0, 5) == -1){
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+	if (runCardTest(silver, 0, 5, silver, 2, 5) == -1) {
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+	if (runCardTest(silver, 0, 5, gold, 0, 5) == -1) {
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+
+	if (runCardTest(gold, 2, 5, silver, 2, 5)== -1) {
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+	if (runCardTest(gold, 1, 5, silver, 0, 5) == -1) {
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+
+	printf("Number of passed test cases: %d\nNumber of failed tests case: %d\n", numPassedTests, numFailedTests);
     return 0;
 }
 
@@ -93,7 +122,7 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
 	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
     printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
-	asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1);
+	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == -1) return -1;
 	printf("Showing current cards in hand...\n");
 	for (i = 0; i< G.handCount[0]; i++){
 		printf("%d ", G.hand[0][i]);
@@ -102,16 +131,19 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 
 	printf("-----TEST 2: CHECK TOTAL CARDS FOR PLAYER 1 HAS NOT CHANGED-----\n");
 	printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-	asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+	if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == -1) return -1;
 	printf("\n\n");
 
 	return 0;
 }
 
-void asserttrue(int val1, int val2)
+int asserttrue(int val1, int val2)
 {
-    if (val1 != val2)
-	printf("TEST FAILED \n");
-    else
-	printf("TEST PASSED \n");
+    if (val1 != val2){
+		printf("TEST FAILED \n");
+		return -1;
+	} else {
+		printf("TEST PASSED \n");
+		return 0;
+	}
 }

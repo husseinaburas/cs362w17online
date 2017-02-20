@@ -1241,8 +1241,8 @@ int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
       drawntreasure++;
     } else {
-      temphand[++z]=cardDrawn;
-      // temphand[z++]=cardDrawn; // del me
+      // temphand[++z]=cardDrawn;
+      temphand[z++]=cardDrawn; // del me
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
     } 
   }
@@ -1253,7 +1253,7 @@ int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state
     z--;
   }
   
-  // discardCard(handPos, currentPlayer, state, 0); // del me
+  discardCard(handPos, currentPlayer, state, 0); // del me
 
   return 0;
 }

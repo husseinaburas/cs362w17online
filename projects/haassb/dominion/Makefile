@@ -21,70 +21,54 @@ testBuyCard: testDrawCard.c dominion.o rngs.o
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o
 
-cardtest1: cardtest1.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest1 -g cardtest1.c dominion.o rngs.o
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o
 
-cardtest2: cardtest2.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest2 -g cardtest2.c dominion.o rngs.o
-
-cardtest3: cardtest3.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest3 -g cardtest3.c dominion.o rngs.o
-
-cardtest4: cardtest4.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest4 -g cardtest4.c dominion.o rngs.o
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o	
 
 	
-unittest1: unittest1.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest1 -g unittest1.c dominion.o rngs.o
-
-unittest2: unittest2.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest2 -g unittest2.c dominion.o rngs.o
-
-unittest3: unittest3.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest3 -g unittest3.c dominion.o rngs.o
-
-unittest4: unittest4.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest4 -g unittest4.c dominion.o rngs.o
 	
+randomtestcard1.out: randomtestcard1.c  dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o
 
+	./randomtestcard1 >> randomtestcard1.out
+
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out	
 	
+	
+randomtestcard2.out: randomtestcard2.c  dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o
 
-unittestresults.out: cardtest1.c cardtest2.c cardtest3.c cardtest4.c unittest1.c unittest2.c unittest3.c unittest4.c  dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest1 -g cardtest1.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest2 -g cardtest2.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest3 -g cardtest3.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o cardtest4 -g cardtest4.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest1 -g unittest1.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest2 -g unittest2.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest3 -g unittest3.c dominion.o rngs.o
-	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o unittest4 -g unittest4.c dominion.o rngs.o
+	./randomtestcard2 >> randomtestcard2.out
 
-	./cardtest1 >> unittestresult.out
-	./cardtest2 >> unittestresult.out
-	./cardtest3 >> unittestresult.out
-	./cardtest4 >> unittestresult.out
-	./unittest1 >> unittestresult.out
-	./unittest2 >> unittestresult.out
-	./unittest3 >> unittestresult.out
-	./unittest4 >> unittestresult.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out		
+	
+	
+randomtestadventurer.out: randomtestadventurer.c  dominion.o rngs.o
+	gcc -fprofile-arcs -ftest-coverage -Wall -lm -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o
 
-	gcov -b dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
+	./randomtestadventurer >> randomtestadventurer.out
+
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out		
+	
+	
+	
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 	
 
-runtests: testDrawCard
-	./testDrawCard &> unittestresult.out
-	gcov dominion.c >> unittestresult.out
-	cat dominion.c.gcov >> unittestresult.out
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+all: playdom player testDrawCard testBuyCard badTestDrawCard randomtestcard1.out randomtestcard2.out randomtestadventurer.out
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe randomtestcard1 randomtestcard2 randomtestadventurer testInit testInit.exe *.gcov *.gcda *.gcno *.so

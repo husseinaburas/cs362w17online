@@ -149,7 +149,7 @@ int main(int argc, char *argv[]) {
     int testSuccesses[NUM_TESTS + 1];
     int i;
 
-    if (argc > 2) {
+    if (argc > 1) {
         seed = atoi(argv[1]);
         printf("%d", seed);
     }
