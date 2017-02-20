@@ -103,17 +103,9 @@ randomtestcard2.out: randomtestcard2
 	gcov -b -f dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 
-randomtestresults.out: randomtestadventurer randomtestcard1 randomtestcard2
-	echo "Saved to randomtestresults.out" &> randomtestresults.out
-	./randomtestadventurer 10 >> randomtestresults.out
-	gcov -b -f dominion.c >> randomtestresults.out
-	./randomtestcard1 10 >> randomtestresults.out
-	gcov -b -f dominion.c >> randomtestresults.out
-	./randomtestcard2 10 >> randomtestresults.out
-	gcov -b -f dominion.c >> randomtestresults.out
-	cat dominion.c.gcov >> randomtestresults.out
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unittestresults.out randomtestadventurer.out randomtestcard1.out randomtestcard2.out randomtestresults.out
+
+all: playdom player testDrawCard testBuyCard badTestDrawCard unittestresults.out randomtestadventurer.out randomtestcard1.out randomtestcard2.out 
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittestresults.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard1 randomtestresults.out *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe unittestresults.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard1 .out *.gcov *.gcda *.gcno *.so
