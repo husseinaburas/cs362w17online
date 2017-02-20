@@ -69,19 +69,19 @@ randomtestadventurer: dominion.o rngs.o
 	
 randomtestadventurer.out: randomtestadventurer
 	
-	./randomtestadventurer	&> randomtestadventurer.out
-	gcov -b dominion.c		>> randomtestadventurer.out
-	cat dominion.c.gcov 	>> randomtestadventurer.out
+	./randomtestadventurer 8 >> randomtestadventurer.out
+	gcov -b dominion.c		 >> randomtestadventurer.out
+	cat dominion.c.gcov 	 >> randomtestadventurer.out
 
 randomtestcard1.out: randomtestcard1
 	
-	./randomtestcard1		&> randomtestcard1.out
+	./randomtestcard1 8		>> randomtestcard1.out
 	gcov -b dominion.c		>> randomtestcard1.out
 	cat dominion.c.gcov 	>> randomtestcard1.out
 
 randomtestcard2.out: randomtestcard2
 	
-	./randomtestcard2		&> randomtestcard2.out
+	./randomtestcard2 3		>> randomtestcard2.out
 	gcov -b dominion.c		>> randomtestcard2.out
 	cat dominion.c.gcov 	>> randomtestcard2.out
 	
