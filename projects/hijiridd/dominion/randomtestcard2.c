@@ -276,13 +276,6 @@ int main () {
 	// PART A: Randomize initial inputs for creating base game configuration
 	// Inputs to set up a game include:
 	// # of players p (0, 1, 2, 3, 4...)
-	// initial 10 cards chosen from 20 cards (#7 through 26) # of combinations C(20, 10) = 184,756
-
-	// Debug random number
-	/* int i;
-	for (i=0; i<100; i++) { printf ("%i ", getRandIntLowHigh (0, 10));}
-	printf ("\n\n");
-	*/
 
 	int player = getRandIntLowHigh(1,4); // default # players to be replaced later
 
@@ -292,17 +285,18 @@ int main () {
 	           sea_hag, smithy, treasure_map}; // default hand to be replaced
 	struct gameState G; // test game state
 	memset(&G, 23, sizeof(struct gameState)); // resets game memory
-
 	printf ("created new game state G\n");
 
 	int response;
 
 	// LOOP OVER NUMBER OF RANDOM INITIAL GAME STATE
 	int numGame;
-	for (numGame=0; numGame < 100; numGame++) {
+	for (numGame=0; numGame < 1000; numGame++) {
 		printf ("------------ ITERATION # %i\n", numGame);
-		response = randomGameInit (player, k, -1, &G); // -1 for PutSeed func. x<0, state from system clock
+		int randSeed = getRandIntLowHigh(1,10000);
+		response = randomGameInit (player, k, randSeed, &G); // -1 for PutSeed func. x<0, state from system clock
 		if (response == -1) {
+			printf ("not a valid game state, randSeed = %d\n", randSeed);
 			continue; // it means this was not a valid game state so continue on with for loop.
 		}
 		//printf ("response = %i\n", response);

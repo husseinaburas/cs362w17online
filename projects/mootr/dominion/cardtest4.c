@@ -57,7 +57,8 @@ int main(int argv, char** argc) {
 
   // Testing if Smithy was actually acquire using feast
   int foundSmithy = 0;
-  for (int i = 0; i < 10; i++) {
+	int i;
+  for (i = 0; i < 10; i++) {
     if (testState.hand[0][i] == smithy) {
       foundSmithy = 1;
     }
