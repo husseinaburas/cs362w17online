@@ -14,9 +14,27 @@
 
 #define DEBUG 0
 #define NOISY_TEST 1
+#define NUMBER_TESTS 1000
 
+// test playAdventurer()
 int main(int argc, char* argv[]) {
-
+  // record random seed input
   int inputSeed = atoi(argv[1]);
-  
+  srand(inputSeed);
+
+  // randomize game states
+
+  // make calls to playAdventurer()
+
+  struct gameState gs;
+
+  int i;
+  for (i = 0; i < NUMBER_TESTS; i++) {
+    // randomize game states
+    // assign states to gs object
+
+    // call playVillage()
+  }
+
+  return 0;
 }
