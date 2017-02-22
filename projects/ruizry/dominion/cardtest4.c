@@ -131,7 +131,7 @@ int main (int argc, char** argv) {
             playCard(adventurerPos[0], -1, -1, -1, &G);
             playCard(adventurerPos[1], -1, -1, -1, &G);
 
-            assertTrue(G.coins >= 4, "Testing if current player has enough treasure cards after 3 adventurer cards played");
+            assertTrue(G.coins >= 4, "Testing if current player has enough treasure cards after 2 adventurer cards played");
             handNotSet = 1;
         }
     }
