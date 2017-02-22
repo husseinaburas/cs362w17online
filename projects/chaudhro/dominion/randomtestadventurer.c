@@ -38,49 +38,57 @@ int main(int argc, char ** argv[]){
 	
 	
 	
-	for(loops = 0; loops < 1; loops++){
+	for(loops = 0; loops < 10000; loops++){
 		
-		int deckSize = rand() % (MAX_DECK - 1) + 1;
+		int deckSize = rand() % MAX_DECK;
 		int handSize = rand() % (MAX_HAND - 1) + 1;
+		int discardSize =  rand() % (MAX_DECK - 1) + 1;
 		int numPlayer = rand() % (MAX_PLAYERS - 1) + 1;
-		
+		int handPos = rand() % handSize;
 		int testDeck[deckSize];
-		int testHand[handSize];
+		int check = 0, i1 = 0, i2 = 0;
 		
-		// int numTreasures = 0;
+		memset(&game, 23, sizeof(struct gameState));
+		a = initializeGame(numPlayer, k, seed, &game);
 		
-		// for(i = 0; i < deckSize; i++){
-			// testDeck[i] = rand() % 27;
-			// if(testDeck[i] == 4 || testDeck[i] == 5 || testDeck[i] == 6){
-				// numTreasures++;
-			// }
-		// }
-		
-		// if(numTreasures < 2){
-			// continue;
-		// }
-		
-		// for(i = 0; i < handSize; i++){
-			// testHand[i] = rand() % 27;
-		// }
-		
-		// testHand[handSize] = adventurer;
-		
-		for(i = 0; i < numPlayer; i++){
-#if (DEBUG_MESSAGES == 1)
-			printf("Adventurercard(): Random testing for player: %d\n", i);
-#endif
-			memset(&game, 23, sizeof(struct gameState));
-			a = initializeGame(numPlayer, k, seed, &game);
-			/* game.deckCount[i] = deckSize;
-			memcpy(game.deck[i], testDeck, sizeof(int) * deckSize); */
-			/* game.handCount[i] = handSize;
-			memcpy(game.hand[i], testHand, sizeof(int) * handSize); */
-			adventurercard(i, &game);
-			
-			assertTrue(game.discardCount[i] == 3);
-			assertTrue(game.handCount[i] == handSize + 1);
+		for(i = 0; i < sizeof(struct gameState); i++){
+			((char*)&game)[i] = floor(Random()* 256);
 		}
+		
+		for(i = 0; i < deckSize; i++){
+			testDeck[i] = rand() % 27;
+			if(testDeck[i] == copper || testDeck[i] == silver || testDeck[i] == gold){
+				check++;
+				i2 = i1;
+				i1 = i;
+				
+			}
+		}
+		
+		if(check < 2){
+			continue;
+		}
+	
+#if (DEBUG_MESSAGES == 1)
+		printf("Adventurercard(): Random testing\n");
+#endif
+		game.handCount[numPlayer-1] = handSize;
+		game.deckCount[numPlayer-1] = deckSize;
+		game.discardCount[numPlayer-1] = discardSize;
+		game.numPlayers = numPlayer;
+		game.playedCardCount = rand() % (MAX_DECK - 1) + 1;
+		
+		//game.deckCount[i] = deckSize;
+		memcpy(game.deck[numPlayer-1], testDeck, sizeof(int) * deckSize); 
+		/* game.handCount[i] = handSize;
+		memcpy(game.hand[i], testHand, sizeof(int) * handSize); */
+		adventurercard(numPlayer-1, &game);
+		
+		printf("TESTING FOR CORRECT AMOUNT OF CARDS IN DISCARD.\n");
+		assertTrue(game.discardCount[numPlayer-1] == discardSize + deckSize - i2 - 2);
+		printf("TESTING FOR CORRECT AMOUNT OF CARDS IN HAND.\n");
+		assertTrue(game.handCount[numPlayer-1] == handSize + 1);
+	
 	}
 
 	return 0;
