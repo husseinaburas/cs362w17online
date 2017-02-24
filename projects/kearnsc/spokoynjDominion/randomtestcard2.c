@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
 		int T2pre = G1.handCount[i];
 		int T3pre = G1.hand[i][0];
 
-		//We only want player 0 to run cardEffect(council_room) and test all other players gameState
+		//We only want player 0 to run cardEffect(mine) and test all other players gameState
 		if (i == 0)
 			cardEffect(mine, copper, gold, 0, &G1, 0, 0);
 

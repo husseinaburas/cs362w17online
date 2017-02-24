@@ -1,5 +1,5 @@
 /****************************************************************************** 
-* cardtest 2: function runAdventurer() tests dominion.c::cardEffect::adventurer.
+* cardtest 2: function runAdventure() tests dominion.c::cardEffect::adventurer.
 * cardtest2.c is a unit testing program for the above function contained within
 * dominion.c, compiled via MakeFile.
 * Chris Kearns, kearnsc@oregonstate.edu, CS325-400-W17, Assign_3, 5 Feb 2017
@@ -33,7 +33,8 @@ int main() {
 	int T3pre = G1.discardCount[0];
 	int T4pre = G1.playedCardCount;
 
-	runAdventurer(&G1, 0, temphand); // Note second arg == 0 for player 0.
+//	runAdventurer(&G1, 0, temphand); // Note second arg == 0 for player 0.
+	adventurerCard(&G1, 0, 0);
 
 	int T1post = G1.handCount[0];
 	int T2post = G1.deckCount[0];
@@ -58,7 +59,8 @@ int main() {
 	T3pre = G1.discardCount[0];
 	T4pre = G1.playedCardCount;
 
-	runAdventurer(&G1, 1, temphand); // Note second arg == 1 for player 1.
+//	runAdventurer(&G1, 1, temphand); // Note second arg == 1 for player 1.
+	adventurerCard(&G1, 1, 0);
 
 	T1post = G1.handCount[0];
 	T2post = G1.deckCount[0];

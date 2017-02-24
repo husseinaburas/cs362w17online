@@ -1,9 +1,13 @@
-/* 	Interactive Dominion Interface, Version 7
+/* 	Interactive Dominion Interface
+	Version 7
+	
 	Sam Heinith CS362
 	Questions/Comments:
 	heiniths@onid.orst.edu
 	1/26/2010
 */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -15,7 +19,7 @@
 #include "interface.h"
 #include "rngs.h"
 
-// UNCLEAR WHAT THIS FUNCTION DOES.
+
 int main2(int argc, char *argv[]) {
 	//Default cards, as defined in playDom
 	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
@@ -23,12 +27,11 @@ int main2(int argc, char *argv[]) {
 	initializeGame(2,k,1,&g);
 	printf ("SUCCESSFUL INIT\n");
 	getchar();
-
 	return 0;
 }
 
 int main(int argc, char* argv[]) {
-	char *add  = "add";
+		char *add  = "add";
 	char *buyC = "buy";
 	char *endT = "end";
 	char *exit = "exit";
@@ -102,10 +105,9 @@ int main(int argc, char* argv[]) {
 			getWinners(players, game);
 			printf("After %d turns, the winner(s) are:\n", turnNum);
 			for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
-				if(players[playerNum] == WINNER)
-					printf("Player %d\n", playerNum);
+				if(players[playerNum] == WINNER) printf("Player %d\n", playerNum);
 			}
-			for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
+		for(playerNum = 0; playerNum < game->numPlayers; playerNum++){
 				printHand(playerNum, game);
 				printPlayed(playerNum, game);
 				printDiscard(playerNum, game);

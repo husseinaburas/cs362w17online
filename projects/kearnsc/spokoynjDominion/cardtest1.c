@@ -34,7 +34,8 @@ int main() {
 	int T3pre = G1.discardCount[0];
 	int T4pre = G1.playedCardCount;
 
-	runSmithy(&G1, 0, 1);
+	// Was runSmithy(&G1, 0, 1); //**************
+	smithyCard(&G1, 0, 1);
 
 	int T1post = G1.handCount[0];
 	int T2post = G1.deckCount[0];
@@ -56,7 +57,9 @@ int main() {
 	T4pre = G1.playedCardCount;
 
 	// runSmithy on player 0, test for player 1 state change!!
-	runSmithy(&G1, 0, 1);
+	// Was runSmithy(&G1, 0, 1); //**************
+	smithyCard(&G1, 0, 1);
+
 
 	T1post = G1.handCount[1];
 	T2post = G1.deckCount[1];
@@ -78,7 +81,8 @@ int main() {
 	}
 
 	// runSmithy on player[0].
-	runSmithy(&G1, 0, 1);
+	// Was runSmithy(&G1, 0, 1); //**************
+	smithyCard(&G1, 0, 1);
 
 	for (i = 0; i < 27; i++) {
 		post[i] = G1.supplyCount[i];
@@ -100,7 +104,8 @@ int main() {
 	}
 
 	// Run Smithy by player[1].
-	runSmithy(&G1, 1, 1);
+	// Was runSmithy(&G1, 1, 1); //**************
+	smithyCard(&G1, 1, 1);
 
 	// Test for no change to player[0] hand data.
 	for (i = 0; i < G1.handCount[0]; i++) {

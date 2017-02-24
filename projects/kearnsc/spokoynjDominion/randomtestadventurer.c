@@ -59,7 +59,8 @@ int main(int argc, char** argv) {
 		T3pre = G1.discardCount[i];
 		T4pre = G1.playedCardCount;
 
-		runAdventurer(&G1, i, temphand); // Note second arg == i for player i.
+//		runAdventurer(&G1, i, temphand); // Note second arg == i for player i.
+		adventurerCard(&G1, i, 0);
 
 		T1post = G1.handCount[i];
 		T2post = G1.deckCount[i];
@@ -95,7 +96,8 @@ int main(int argc, char** argv) {
 		T3pre = G1.discardCount[i];
 		T4pre = G1.playedCardCount;
 
-		runAdventurer(&G1, 0, temphand); // Note second arg == 0 for player 0.
+//		runAdventurer(&G1, 0, temphand); // Note second arg == 0 for player 0.
+		adventurerCard(&G1, 0, 0);
 
 		T1post = G1.handCount[i];
 		T2post = G1.deckCount[i];
