@@ -55,6 +55,7 @@ void adventurerfunc(int currentPlayer, struct gameState *state, int handPos, int
 	state->discard[currentPlayer][state->discardCount[currentPlayer]]=temphand[z-1]; // discard all cards in play that have been drawn
 	--z;
       }
+      discardCard(handPos, currentPlayer, state, 0);
       return;
 }
 void feastfunc(int currentPlayer, struct gameState *state, int handPos, int * temphand, int choice1)
