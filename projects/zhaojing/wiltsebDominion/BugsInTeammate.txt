@@ -1,0 +1,16 @@
+a.	Bug #1:
+	Upon executing my randomtest1.c file, I received a “segmentation fault (core dumped) error” right after the “testing whether player x successfully played smithy card” part.  Based on how I wrote this test, I concluded this error message location meant the program could not successfully play smithy card.  Because all my other tests ran smoothly without having to do any refactoring, I suspected the problem was in my teammate’s dominion.c code and not in my test code.  I examined my teammate’s dominion.c code and realized that it was a simple mispositioning of parameters.
+	Specifically, my teammate’s dominion.c code line 646 reads: 
+	int playSmithy(struct gameState *state, int handPos, int currentPlayer){
+	Line 888-889 read:
+   	case smithy:
+	      playSmithy(state, currentPlayer, handPos);
+	
+	As we can see, the parameters in playSmithy are not aligned.  To verify that this problem was indeed what caused the seg fault, we temporarily fixed the problem in my teammate’s dominion.c file and compiled and executed randomcardtest1.c again.  Sure enough, it ran smoothly after that.
+	
+	To ensure that we do not make any permanent changes to the my teammate’s code, even though it’s a copied version in my own directory, we changed the code back to its original form after testing, but left the correct line underneath in comments.
+
+b.	Bug #2:
+
+	Because I inserted various printf commands into my test, the bug was easy to find.  I simply looked through the test results and identified the places where the tests have failed.  As we can see from the screenshot of the test results below (see Assignment-5.pdf, section 2), whenever we play smithy card when the player has enough cards in deck, his hand count would be wrong.  Note that there are other places where the tests fail, but those are separate bugs.  For the purpose of this assignment, I simply identified the single bug of failed player hand count.  When that player does not have sufficient cards in deck, this bug does not appear.  
+	The cause for this bug, on the surface, appears to be that the player is adding the incorrect number of cards to his hands.  I will discuss the debugging process and the cause for this bug in more detail in the section below (see Assignment-5.pdf, section 3).
