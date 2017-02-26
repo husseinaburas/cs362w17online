@@ -1263,7 +1263,7 @@ int councilRoomCard(struct gameState *state, int currentPlayer, int handPos) {
 }
 
 int gardensCard() {
-    return -2;
+    return -2;// **************** Should be return -1 **********************
 }
 
 int smithyCard(struct gameState *state, int currentPlayer, int handPos) {
@@ -1286,7 +1286,7 @@ int villageCard(struct gameState *state, int currentPlayer, int handPos) {
   state->numActions = state->numActions + 2;
       
   //discard played card from hand
-  discardCard((handPos-1), currentPlayer, state, 0);
+  discardCard((handPos-1), currentPlayer, state, 0);// ********* Should be discardCard((handPos), currentPlayer, state, 0); **************
   return 0;
 }
 
