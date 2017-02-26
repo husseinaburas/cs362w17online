@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------------
-# CS362-400-W17	Assignment 4 makefile		19 Feb 2017 
+# CS362-400-W17	Assignment 5 makefile		05 Mar 2017 
 # Chris Kearns		kearnsc@oregonstate.edu
 # "make unittestresults.out" will compile and run all tests indicated and write
 #	detailed gcov coverage data to a file named "unittestresults.out".
