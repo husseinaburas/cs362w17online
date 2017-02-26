@@ -74,14 +74,7 @@ Bug Report adventureEffect()
 
 Bug Report smithyEffect()
 
-	before hand count = 5
-	before deck count = 5
-	before coins = 4,
-	hand count = 7, expected = 7
-	deck count = 2, expected = 2
-	coins = 4, expected = 4
-
-	bugged dominion.c
+	
 
 	----------------- Testing Card: smithy ----------------
 		before hand count = 5
