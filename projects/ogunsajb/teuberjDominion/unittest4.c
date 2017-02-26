@@ -1,45 +1,94 @@
 /*
- * Unit Test #4: drawCard()
+ * unittest4.c
  *
- * John Teuber; CS362W17; Assign 3; 2/4/2017
+ 
  */
 
-#include <stdio.h>
-#include <string.h>
+/*
+ * Include the following lines in your makefile:
+ *
+ * unittest4: unittest4.c dominion.o refactor.o rngs.o
+ *      gcc -o unittest4 -g  unittest4.c dominion.o refactor.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
-#include "zAssert.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
-int main(){
-	//create gamestates;
-	struct gameState testState;
-	struct gameState storeState;
+#define TESTCARD "updateCoins()"
+#define ASSERT(exp, MSG) if(exp) printf("%s: PASS!\n", MSG); else printf("%s: FAILED!\n", MSG)
+#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
+#define ENDOFCARDS (treasure_map+1)
 
-	int k[10] = {adventurer, smithy, council_room, feast, village, great_hall, gardens, mine, minion, tribute};
+int main() {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
 
-	int retValue;
+    int i, j, m, error=0;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 
-	//initialize game for testing
-	initializeGame(2, k, 17, &testState);	
-	//copy to store state
-	memcpy(&storeState,&testState,sizeof(struct gameState));
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
 
-	//Start Unit Tests
-	printf("Unit Test 4 commencing - drawCard()\n");
+	printf("----------------- Testing function: %s ----------------\n", TESTCARD);
+
+	// ----------- TEST 1: validate update coins --------------
+	printf("TEST 1: validate update coins\n");
+
+	//ensure there is at least one of each in a player's hand
+	G.hand[thisPlayer][testG.handCount[thisPlayer]+1] = silver;
+	testG.handCount[thisPlayer]++;
+
+	G.hand[thisPlayer][testG.handCount[thisPlayer]+1] = gold;
+	testG.handCount[thisPlayer]++;
+
+	G.hand[thisPlayer][testG.handCount[thisPlayer]+1] = copper;
+	testG.handCount[thisPlayer]++;	
 	
-	//Test Case 1: Empty Hand and Draw Card = 1 card in hand
-	testState.handCount[0] = 0;
-	retValue = drawCard(0,&testState);
-	zAssert(retValue == 0 && testState.handCount[0] == 1,1);
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
 	
-	//Test Case 2: Ensure empty discardCount after draw
-	zAssert(retValue == 0 && testState.discardCount[0] == 0,2);
-	memcpy(&testState,&storeState,sizeof(struct gameState));
+	testG.coins = 0;
 	
-	//Test Case 3: Arbitrary # in hand and Draw Card = +1
-	retValue = drawCard(0,&testState);
-	zAssert(retValue == 0 && storeState.handCount[0]+1 == testState.handCount[0],3);
-	//Test Case 4: Ensure empty discardCount after draw:
-	zAssert(retValue == 0 && testState.discardCount[0] == 0, 4);
+	  //add coins for each Treasure card in player's hand
+    for (i = 0; i < testG.handCount[thisPlayer]; i++) {
+		//printf("DEBUG: testG.hand[thisPlayer][%d] = %d\n",i,testG.hand[thisPlayer][i]);
+      if (testG.hand[thisPlayer][i] == copper)   testG.coins += 1;
+	  else 
+		if (testG.hand[thisPlayer][i] == silver) testG.coins += 2;
+	  else 
+		if (testG.hand[thisPlayer][i] == gold)   testG.coins += 3;
+    }	
+
+    //add bonus
+    testG.coins += 50; //bonus
 	
-return 0;
+	updateCoins(thisPlayer, &G, 50);
+	
+	ASSERT((memcmp(&G, &testG, sizeof(struct gameState)) == 0));
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");	
+	
+
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+
+
+	return 0;
 }

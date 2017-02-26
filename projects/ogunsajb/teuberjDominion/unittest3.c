@@ -1,65 +1,126 @@
 /*
- * Unit Test #3: isGamaeOver()
+ * unittest3.c
  *
- * John Teuber; CS362W17; Assign 3; 2/4/2017
+ 
  */
 
-#include <stdio.h>
-#include <string.h>
+/*
+ * Include the following lines in your makefile:
+ *
+ * unittest3: unittest3.c dominion.o refactor.o rngs.o
+ *      gcc -o unittest3 -g  unittest3.c dominion.o refactor.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
-#include "zAssert.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+//#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
-int main(){
-	//create gamestates;
-	struct gameState testState;
-	struct gameState storeState;
+#define TESTCARD "gainCard()"
+#define ASSERT(exp, MSG) if(exp) printf("%s: PASS!\n", MSG); else printf("%s: FAILED!\n", MSG)
+#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
+#define ENDOFCARDS (treasure_map+1)
 
-	int k[10] = {adventurer, smithy, council_room, feast, village, great_hall, gardens, mine, minion, tribute};
+int main() {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
 
-	int retValue;
+    int i, j, m, error=0;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 
-	//initialize game for testing
-	initializeGame(2, k, 17, &testState);	
-	//copy to store state
-	memcpy(&storeState,&testState,sizeof(struct gameState));
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
 
-	//Start Unit Tests
-	printf("Unit Test 3 commencing - isGameOver()\n");
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));
 	
-	//Test Case 1: Province supply is depleted and Game ends
-	testState.supplyCount[province] = 0;
-	retValue = isGameOver(&testState);
-	zAssert(retValue == 1 && testState.supplyCount[province] ==  0,1); 
-	memcpy(&testState, &storeState, sizeof(struct gameState));
-	//Test Case 2: Province supply is not depleted and Game continues
-	testState.supplyCount[province]++;
-	retValue = isGameOver(&testState);
-	zAssert(retValue == 0  && testState.supplyCount[province] > 0, 2); 
-	memcpy(&testState, &storeState, sizeof(struct gameState));
-	//Test Case 3: No supply piles at 0
-	int i;
-	for(i = 0; i < 25; i++){
-		testState.supplyCount[i] = 1;
-	}
-	retValue = isGameOver(&testState);
-	zAssert(retValue == 0,3);  
-	memcpy(&testState, &storeState, sizeof(struct gameState));
-	//Test Case 4: All supply piles are 0
-	for(i = 0; i < 25; i++){
-		testState.supplyCount[i] = 0;
-	}
-	retValue = isGameOver(&testState);
-	zAssert(retValue == 1,4);
-	memcpy(&testState, &storeState, sizeof(struct gameState));
-	//Test Case 5: 3 supply piles at 0
-	for(i = 0; i < 25; i++){
-		testState.supplyCount[i] = 1;
-	}
-	testState.supplyCount[0] = 0;
-	testState.supplyCount[1] = 0;
-	testState.supplyCount[2] = 0;	
-	retValue = isGameOver(&testState);
-	zAssert(retValue = 1,5);
+	printf("----------------- Testing function: %s ----------------\n", TESTCARD);
+
+	// ----------- TEST 1:check if supply pile is empty --------------
+	printf("TEST 1: check if supply pile is empty \n");
+
+	for (i=0; i < ENDOFCARDS; i++)
+		G.supplyCount[i] = 0; //empty out all 
+
+
+	ASSERT((-1 == gainCard(smithy, &G, 0, thisPlayer)));
 	
-return 0;
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");
+
+	// ----------- TEST 2: check ToFlag = 0 --------------	
+	printf("TEST 2: check ToFlag = 0\n");
+	error=0;
+	
+	// restore the game state to a test case
+	memcpy(&G,&testG, sizeof(struct gameState));
+
+	testG.discard[thisPlayer][ testG.discardCount[thisPlayer] ] = smithy;
+	testG.discardCount[thisPlayer]++;
+	testG.supplyCount[smithy]--;
+
+	gainCard(smithy, &G, 0, thisPlayer);
+	
+	ASSERT((memcmp(&G, &testG, sizeof(struct gameState)) == 0));
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");
+	
+	
+	// ----------- TEST 3: check ToFlag = 1 --------------	
+	printf("TEST 3: check ToFlag = 1\n");
+	error=0;
+	
+	testG.deck[thisPlayer][ testG.deckCount[thisPlayer] ] = smithy;
+	testG.deckCount[thisPlayer]++;
+	testG.supplyCount[smithy]--;
+
+	gainCard(smithy, &G, 1, thisPlayer);
+	
+	ASSERT((memcmp(&G, &testG, sizeof(struct gameState)) == 0));
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");	
+
+
+	// ----------- TEST 4: check ToFlag = 2 --------------	
+	printf("TEST 4: check ToFlag = 2\n");
+	error=0;
+	
+	testG.hand[thisPlayer][ testG.handCount[thisPlayer] ] = smithy;
+	testG.handCount[thisPlayer]++;
+	testG.supplyCount[smithy]--;
+
+	gainCard(smithy, &G, 2, thisPlayer);
+	
+	ASSERT((memcmp(&G, &testG, sizeof(struct gameState)) == 0));
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");
+	
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+
+	return 0;
 }

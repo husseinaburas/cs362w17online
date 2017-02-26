@@ -1,159 +1,154 @@
 /*
- * Random Card Test Adventurer
+ * cardtest4.c
  *
- * John Teuber; CS362W17; Assign 4; 2/17/2017
+ 
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "rngs.h"
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest4: cardtest4.c dominion.o rngs.o
+ *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
-#include "zAssert.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
-int main(int argc, char* argv[]){
-	if(argc != 2 || atoi(argv[1]) < 0){
-		printf("Requires positive integer to use as seed.\n");
-		exit(0);
-	}
-	int randSeed = atoi(argv[1]);
-	srand(randSeed);
-	//create gamestates;
-	struct gameState testState;
-	struct gameState storeState;
-	struct gameState originalState;
+#define TESTCARD "adventurer"
+#define ASSERT_M(exp, MSG) if(!exp) {printf("%s: FAILED!\n", MSG); error = 1;}
+#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
+int error=0;
 
-	int k[10] = {adventurer, smithy, council_room, feast, village, great_hall, gardens, mine, minion, tribute};
+int checkAdventurer(struct gameState *post, int currentPlayer, int drawntreasure) {
 
-	int retValue;
+int temphand[MAX_HAND];
+int z = 0;// this is the counter for the temp hand	
+int cardDrawn, saved_dt;   
+struct gameState pre;
+
+		 
+    memcpy (&pre, post, sizeof(struct gameState));
+	saved_dt = drawntreasure;
 	
-	printf("Beginning Adventurer test suite.\n");
-
-	int i;
-	for(i=0;i<10000;i++){
-		printf("Random Test Set: #%d\n",i);
-		//initialize game for testing
-		int numPlayers = rand()%3 + 2;
-		int currentPlayer = rand() % numPlayers;
+#if 1
+	while(drawntreasure<2){
+		if (pre.deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+			shuffle(currentPlayer, &pre);
+		  }
+ 	  
+		drawCard(currentPlayer, &pre);
+		cardDrawn = pre.hand[currentPlayer][pre.handCount[currentPlayer] - 1];//?? //top card of hand is most recently drawn card.
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+			drawntreasure++;
+		else{
+			temphand[z]=cardDrawn;
+			pre.handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			z++;
+		 }
+     }
 	 
-		initializeGame(numPlayers, k, (rand()%100)+1, &testState);	
-		//copy to store state
-		memcpy(&storeState,&testState,sizeof(struct gameState));
-		memcpy(&originalState, &testState, sizeof(struct gameState));
-		//Start Unit Tests
+       
+	while(z-1>=0){
+		pre.discard[currentPlayer][pre.discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+		z=z-1;
+      }	
+
+#endif
+
+    playAdventurer(currentPlayer, post, saved_dt);
+
+#if  1
+    //ASSERT_M(( memcmp(&pre, post, sizeof(struct gameState)) == 0), "adventurer error!"  );
+	//check certain aspects of the game state....
+	for(z=0; z < MAX_HAND; z++){
 		
-	
-		//Scenario 1 - empty deck, discard has 3 coppers
-		testState.discardCount[currentPlayer] = 3;
-		testState.discard[currentPlayer][0] = copper;
-		testState.discard[currentPlayer][1] = copper;
-		testState.discard[currentPlayer][2] = copper;
-		testState.deckCount[currentPlayer] = 0;
-		testState.hand[currentPlayer][0] = adventurer;
-		memcpy(&storeState,&testState,sizeof(struct gameState));
-
-		retValue = playAdventurer(currentPlayer,&testState,0);
-
-		//Unit Test 1 - Deck Count is 1
-		zAssert(retValue == 0 && testState.deckCount[currentPlayer] == 1,1);
-		//Unit Test 2 - Player hand has net increase of 1
-		zAssert(retValue == 0 && testState.handCount[currentPlayer] == storeState.handCount[currentPlayer]+1,2);
-		//Unit Test 3 - Player hand has 1 copper in first and 1 in last spot
-		zAssert(retValue == 0 && testState.hand[currentPlayer][0] == copper && testState.hand[currentPlayer][testState.handCount[currentPlayer]-1],3);
-		//Unit Test 4 - Player Discard Pile has no additional cards
-		zAssert(retValue == 0 && testState.discardCount[currentPlayer] == 0,4);
-		//Unit Test 5 - Adventurer removed from hand
-		zAssert(retValue == 0 && testState.hand[currentPlayer][0] != adventurer,5);
-		//Unit Test 6 - Played Pile has adventurer added
-		zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount + 1,6);
-		//revert to original state for Scenario 2
-		memcpy(&storeState,&originalState,sizeof(struct gameState));
-		memcpy(&testState,&originalState,sizeof(struct gameState));
-	
-		//Scenario 2 - Deck = gold, silver, copper
-		testState.deck[currentPlayer][0] = copper;
-		testState.deck[currentPlayer][1] = silver;
-		testState.deck[currentPlayer][2] = gold;
-		testState.deckCount[currentPlayer] = 3;	 
-		testState.hand[currentPlayer][0] = adventurer;
-		memcpy(&storeState,&testState,sizeof(struct gameState));
-
-		retValue = playAdventurer(currentPlayer,&testState,0);
-	
-		//Unit Test 7 - Deck Count is 1
-		zAssert(retValue == 0 && testState.deckCount[currentPlayer] == 1,7);
-		//Unit Test 8 - Played Hand size increased by net of 1
-		zAssert(retValue == 0 && testState.handCount[currentPlayer] == storeState.handCount[currentPlayer]+1,8);
-		//Unit Test 9 - Player Hand has gold and Silver
-		zAssert(retValue == 0 && (testState.hand[currentPlayer][testState.handCount[currentPlayer]-1] == gold || testState.hand[currentPlayer][testState.handCount[currentPlayer]-1] == silver) && (testState.hand[currentPlayer][0] == gold || testState.hand[currentPlayer][0] == silver),9);
-		//Unit Test 10 - Player Discard Pile has no additional cards
-		zAssert(retValue == 0 && testState.discardCount[currentPlayer] == storeState.discardCount[currentPlayer],10);
-		//Unit Test 11 - Adventurer removed from hand
-		zAssert(retValue == 0 && testState.hand[currentPlayer][0] != adventurer,11);
-		//Unit Test 12 - Played card pile has adventurer added
-		zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount + 1,12);
-	
-		//copy original game state for scenario 3
-		memcpy(&testState, &originalState, sizeof(struct gameState));
-		memcpy(&storeState, &originalState, sizeof(struct gameState));		 
-		//Scenario 3 - Deck = copper, copper, smithy 
-		testState.deck[currentPlayer][0] = copper;
-		testState.deck[currentPlayer][1] = copper;
-		testState.deck[currentPlayer][2] = smithy;
-		testState.deckCount[currentPlayer] = 3;
-		testState.hand[currentPlayer][0] = adventurer;
-		memcpy(&storeState, &testState, sizeof(struct gameState));
-	
-		retValue = playAdventurer(currentPlayer,&testState,0);
-	
-		//Unit Test 13 - Deck Count is 0
-		zAssert(retValue == 0 && testState.deckCount[currentPlayer] == 0,13);
-		//Unit Test 14 - Player hand count has net increase of 1
-		zAssert(retValue == 0 && testState.handCount[currentPlayer] == storeState.handCount[currentPlayer]+1,14);
-		//Unit Test 15 - Player Hand has Copper and Copper
-		zAssert(retValue == 0 && testState.hand[currentPlayer][testState.handCount[currentPlayer]-1] == copper && testState.hand[currentPlayer][testState.handCount[currentPlayer]-2] == copper,15);
-		//Unit Test 16 - Player discard pile has one additional card
-		zAssert(retValue == 0 && testState.discardCount[currentPlayer] == storeState.discardCount[currentPlayer] + 1,16);
-		//Unit Test 17 - Discard top card is smithy
-		zAssert(retValue == 0 && testState.discard[currentPlayer][testState.discardCount[currentPlayer]-1] == smithy,17);
-		//Unit Test 18 - Adventurer removed from hand
-		zAssert(retValue == 0 && testState.hand[currentPlayer][0] != adventurer,18);
-		//Unit Test 19 - played pile has adventurer added
-		zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount +1,19);
-
-
-		//return to original for scenario 4
-		memcpy(&testState,&originalState,sizeof(struct gameState));
-		memcpy(&storeState,&originalState,sizeof(struct gameState));	
-
-		//Scenario 4- Deck = copper, copper, copper, village, village
-		testState.deck[currentPlayer][0] = copper;
-		testState.deck[currentPlayer][1] = copper;
-		testState.deck[currentPlayer][2] = copper;
-		testState.deck[currentPlayer][3] = village;
-		testState.deck[currentPlayer][4] = village;
-		testState.deckCount[currentPlayer] = 5;
-		testState.hand[currentPlayer][0] = adventurer;
-		memcpy(&storeState,&testState,sizeof(struct gameState));
-	
-		retValue = playAdventurer(currentPlayer,&testState,0);
-
-		//Unit Test 20 - Deck Count is 1
-		zAssert(retValue == 0 && testState.deckCount[currentPlayer] == 1,20);
-		//Unit test 21 - Player Hand has net increase of 1
-		zAssert(retValue == 0 && testState.handCount[currentPlayer] == storeState.handCount[currentPlayer]+1,21);
-		//Unit Test 22 - Player hand has copper + copper
-		zAssert(retValue == 0 && testState.hand[currentPlayer][testState.handCount[currentPlayer]-1] == copper && testState.hand[currentPlayer][testState.handCount[currentPlayer]-2] == copper,22);
-		//Unit Test 23 - Player Discard pile has 2 additional cards
-		zAssert(retValue == 0 && testState.discardCount[currentPlayer] == storeState.discardCount[currentPlayer]+2,23);
-		//Unit Test 24 - Discarded cards are both villages
-		zAssert(retValue == 0 && testState.discard[currentPlayer][testState.discardCount[currentPlayer]-1] == village && testState.discard[currentPlayer][testState.discardCount[currentPlayer]-2] == village,24);
-		//Unit Test 25 - Adventurer removed from hand
-		zAssert(retValue == 0 && testState.hand[currentPlayer][0] != adventurer,25);
-		//Unit Test 26 - Played pile has adventurer added
-		zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount + 1,26);
-		 		 
+		ASSERT_M( (pre.hand[currentPlayer][z] == post->hand[currentPlayer][z]), "adventurer hand error!");
+		if(error) printf("pre: %d; post: %d\n",pre.hand[currentPlayer][z], post->hand[currentPlayer][z]);
+		error=0;
 	}
-	 	
-return 0;
+	
+	ASSERT_M( (pre.handCount[currentPlayer] == post->handCount[currentPlayer]), "adventurer hand count error!");
+	if(error) printf("pre handCount: %d; post handCount: %d\n",pre.handCount[currentPlayer], post->handCount[currentPlayer]);
+	error=0;
+	
+	for(z=0; z < MAX_DECK; z++){
+		ASSERT_M( (pre.discard[currentPlayer][z] == post->discard[currentPlayer][z]), "adventurer discard error!");
+		if(error) printf("pre discard: %d; post discard: %d\n",pre.discard[currentPlayer][z], post->discard[currentPlayer][z]);
+		error=0;
+		
+		ASSERT_M( (pre.deck[currentPlayer][z] == post->deck[currentPlayer][z]), "adventurer deck error!");
+		if(error) printf("pre deck: %d; post deck: %d\n",pre.deck[currentPlayer][z], post->deck[currentPlayer][z]);
+		error=0;
+	}
+	
+	ASSERT_M( (pre.deckCount[currentPlayer] == post->deckCount[currentPlayer]), "adventurer deck count error!");	
+	if(error) printf("pre deckCount: %d; post deckCount: %d\n",pre.deckCount[currentPlayer], post->deckCount[currentPlayer]);
+	error=0;
+	
+	ASSERT_M( (pre.discardCount[currentPlayer] == post->discardCount[currentPlayer]), "adventurer discardCount count error!");	
+	if(error) printf("pre discardCount: %d; post discardCount: %d\n",pre.discardCount[currentPlayer], post->discardCount[currentPlayer]);	
+#endif	
 }
+
+int main(int argc, char *argv[]) {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
+
+    int i, j, m;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	int drawntreasure = 2;
+	struct gameState G, pre;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+
+	// initialize a game state and player cards
+	//initializeGame(numPlayers, k, seed, &G);
+	SelectStream(2);
+	if (argc < 2){
+		printf("use case: randomtestcard1 <seed> \n");
+		exit(1);
+	}
+	
+	PutSeed(atoi(argv[1]));
+    
+    printf("-----------------Random Testing Card: %s ----------------\n", TESTCARD);	
+	for (m =0; m<2000; m++){
+		for(i =0; i < sizeof(struct gameState); i++){
+			((char*) &G)[i] = floor(Random() * 256);
+		}
+		thisPlayer = floor(Random() * (MAX_PLAYERS-1));
+		G.deckCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
+		G.discardCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
+		G.handCount[thisPlayer] = floor(Random() * (MAX_HAND-1));
+		G.playedCardCount = floor(Random() * (MAX_DECK-1));
+			
+		for(j=0; j< MAX_HAND; j++)
+			G.hand[thisPlayer][j] = 4 + floor(Random() * 2);
+
+
+	printf("Random TEST case [%d]\n", m);
+	
+	// case of drawntreasure ==2
+	drawntreasure = 0 + floor(Random() * 2);
+	checkAdventurer(&G, thisPlayer, drawntreasure);
+	}
+
+	printf("\n >>>>> Testing complete %s <<<<<\n\n", TESTCARD);
+
+
+	return 0;
+}
+
+

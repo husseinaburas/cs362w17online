@@ -1,69 +1,84 @@
-/* 
- * Unit Test #1: discardCard()
+/*
+ * unittest1.c
  *
- * John Teuber; CS362W17; Assign 3; 2/4/2017
+ 
  */
 
-#include <stdio.h>
-#include <string.h>
+/*
+ * Include the following lines in your makefile:
+ *
+ * unittest1: unittest1.c dominion.o refactor.o rngs.o
+ *      gcc -o unittest1 -g  unittest1.c dominion.o refactor.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
-#include "zAssert.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
-int main(){
-	//create gamestates; 
-	struct gameState testState;
-	struct gameState storeState;
-
-	int k[10] = {adventurer, smithy, council_room, feast, village, great_hall, gardens, mine, minion, tribute};
+#define TESTCARD "handCard()"
+#define ASSERT(exp, MSG) if(exp) printf("%s: PASS!\n", MSG); else printf("%s: FAILED!\n", MSG)
+#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
 	
-	int retValue;
+int main() {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
 
-	//initialize game for testing
-	initializeGame(2, k, 17, &testState);
-	//copy to store state
-	memcpy(&storeState,&testState,sizeof(struct gameState));
-
-	//Start Unit Tests
-	printf("Unit Test 1 commencing - discardCard()\n");
-
-	//Test Set: Discard First Card in Hand and not trashed
-	retValue = discardCard(0, 0, &testState, 0);
-	//	Test 1: First Card equals previous last card 
-	zAssert(retValue == 0 && testState.hand[0][0] == storeState.hand[0][storeState.handCount[0]-2],1);
-	//	Test 2: HandSize is decremented by 1
-	zAssert(retValue == 0 && testState.handCount[0] == storeState.handCount[0]-1,2);	
-	//	Test 3: Discarded card added to play pile
-	zAssert(retValue == 0 && testState.playedCards[testState.playedCardCount- 1] == storeState.hand[0][0],3);	
-	//	Test 4: Played card count increments
-	zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount + 1, 4);	
-
-	//restore testState to storedState	
-	memcpy(&testState,&storeState,sizeof(struct gameState));
+    int i, j, m, error=0;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
 	
-	//Test Set: Discard Last Card in Hand and not trashed
-	retValue = discardCard(testState.handCount[0]-1, 0, &testState, 0);
-	//	Test 5: LastCard equals previous second to last card
-	zAssert(retValue == 0 && testState.hand[0][testState.handCount[0]-1] == 
-storeState.hand[0][storeState.handCount[0]-2],5);
-	//	Test 6: Handsize is decremented by 1
-	zAssert(retValue == 0 && testState.handCount[0] == storeState.handCount[0]-1,6);
-	//	Test 7: Discarded card added to play pile
-	zAssert(retValue == 0 && testState.playedCards[testState.playedCardCount- 1] == storeState.hand[0][storeState.handCount[0]-1],7);	
-	//	Test 8: Played card count increments
-	zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount + 1, 8);
+	int currentPlayer;
 	
-	memcpy(&testState,&storeState,sizeof(struct gameState));
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
 
-	//Test Set: Discard Last Card in Hand and trash the card
-	retValue = discardCard(testState.handCount[0]-1, 0, &testState, 1); 
-	//	Test 9: LsatCard equals previous seconid to last card
-	zAssert(retValue == 0 && testState.hand[0][testState.handCount[0]-1] == storeState.hand[0][storeState.handCount[0]-2],9);	
-	//	Test 10: handsize is decremented by 1
-	zAssert(retValue == 0 && testState.handCount[0] == storeState.handCount[0]-1,10);	
-	//	Test 11: Discarded card not added to play pile
-	zAssert(retValue == 0 && testState.playedCards[testState.playedCardCount - 1] != storeState.hand[0][storeState.handCount[0]-1],11);	
-	//	Test 12: Played card count remains same 
-	zAssert(retValue == 0 && testState.playedCardCount == storeState.playedCardCount, 12); 	
-return 0;
+	printf("----------------- Testing function: %s ----------------\n", TESTCARD);
+
+	// ----------- TEST 1: check handCard() --------------
+	printf("TEST 1: check if handCard()returns expected values\n");
+
+	//set player's hands to known values
+	for(i=0; i<numPlayers; i++){
+		for (j=0; j<MAX_HAND; j++){
+			G.hand[i][j] = MAX_HAND - j -1;
+			//printf("saving G.hand[%d][%d] = %d\n",i,j,G.hand[i][j]);
+		}
+	}
+	// copy the game state to a test case
+	memcpy(&testG, &G, sizeof(struct gameState));	
+
+	//check if handCard returns saved state with known values
+	for(i=0; i<numPlayers; i++){
+		G.whoseTurn = i;
+		
+		for (j=0; j<MAX_HAND; j++){
+			//printf("expected G.hand[%d][%d] = %d; actual = %d\n",i,j,testG.hand[i][j], handCard(j, &G) );
+			ASSERT((testG.hand[i][j] == handCard(j, &G)));
+		}
+				
+	}	
+	
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");
+	
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+
+	return 0;
 }
-   
+
+

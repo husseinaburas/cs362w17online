@@ -1,61 +1,66 @@
 /*
- * Unit Test #2: gainCard()
+ * unittest2.c
  *
- * John Teuber; CS362W17; Assign 3; 2/4/2017
+ 
  */
 
-#include <stdio.h>
-#include <string.h>
+/*
+ * Include the following lines in your makefile:
+ *
+ * unittest2: unittest2.c dominion.o refactor.o rngs.o
+ *      gcc -o unittest2 -g  unittest2.c dominion.o refactor.o rngs.o $(CFLAGS)
+ */
+
+
 #include "dominion.h"
-#include "zAssert.h"
+#include "dominion_helpers.h"
+#include <string.h>
+#include <stdio.h>
+//#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
 
-int main(){
-	//create gamestates;
-	struct gameState testState;
-	struct gameState storeState;
+#define TESTCARD "getCost()"
+#define ASSERT(exp, MSG) if(exp) printf("%s: PASS!\n", MSG); else printf("%s: FAILED!\n", MSG)
+#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
 
-	int k[10] = {adventurer, smithy, council_room, feast, village, great_hall, gardens, mine, minion, tribute};
+int main() {
+    int newCards = 0;
+    int discarded = 1;
+    int xtraCoins = 0;
+    int shuffledCards = 0;
 
-	int retValue;
+    int i, j, m, error=0;
+    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+    int remove1, remove2;
+    int seed = 1000;
+    int numPlayers = 2;
+    int thisPlayer = 0;
+	struct gameState G, testG;
+	//expected cost values from card enum
+	int k[] = {0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4, 4, 3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4};
 
-	//initialize game for testing
-	initializeGame(2, k, 17, &testState);	
-	//copy to store state
-	memcpy(&storeState,&testState,sizeof(struct gameState));
 
-	//Start Unit Tests
-	printf("Unit Test 2 commencing - gainCard()\n");
-	//Test Case 1: Card not in Supply
-	retValue = gainCard(treasure_map,&testState, 0, 0);
-	zAssert(retValue == -1,1);
-	memcpy(&testState,&storeState,sizeof(struct gameState));
-	//Test Case 2: Card in Supply with 0 count
-	testState.supplyCount[k[0]] = 0;
-	retValue = gainCard(k[0], &testState, 0, 0);
-	zAssert(retValue == -1, 2);
-	memcpy(&testState,&storeState,sizeof(struct gameState));
-	//Test Set: Add card to hand
-	retValue = gainCard(k[0], &testState, 2, 0);
-	//Test Case 3: Supply of card should have deceremented by 1
-	zAssert(retValue == 0 && testState.supplyCount[k[0]] == storeState.supplyCount[k[0]] - 1, 3);
-	//Test Case 4: Card added to player hand
-	zAssert(retValue == 0 && testState.handCount[0] == storeState.handCount[0] + 1,4);
+	printf("----------------- Testing function: %s ----------------\n", TESTCARD);
 
-	memcpy(&testState, &storeState,sizeof(struct gameState));	
-	//Test Set: Add card to deck
-	retValue = gainCard(k[0], &testState, 1, 0);
-	//Test Case 5: Supply of card should have decremented by 1
-	zAssert(retValue == 0 && testState.supplyCount[k[0]] == storeState.supplyCount[k[0]] - 1, 5);
-	//Test Case 6: Card added to deck
-	zAssert(retValue == 0 && testState.deckCount[0] == storeState.deckCount[0] + 1, 6);
+	// ----------- TEST 1:verify cost values returned from getCost() --------------
+	printf("TEST 1: verify cost values returned from getCost()\n");
+
+	for (i = 0; i < treasure_map+1; i++)
+		ASSERT((k[i] == getCost(i)));
+
+	// ----------- TEST 2: verify getCost() --------------
+	printf("TEST 2: verify unknown cards return -1 from getCost()\n");
+	for (i = treasure_map+1; i < (treasure_map+100); i++)
+		ASSERT((-1 == getCost(i)));
 	
-	memcpy(&testState, &storeState, sizeof(struct gameState));
-	//Test Set: Add card to discard
-	retValue = gainCard(k[0], &testState, 0, 0);
-	//Test Case 7: Supply of card should have decremented by 1
-	zAssert(retValue == 0 && testState.supplyCount[k[0]] == storeState.supplyCount[k[0]] - 1, 7);
-	//Test Case 8: Card added to discard
-	zAssert(retValue == 0 && testState.discardCount[0] == storeState.discardCount[0] + 1, 8);
+	if (error)
+		printf("TEST Failed!\n");
+	else
+		printf("TEST PASSED!\n");
 	
-return 0;
+	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
+
+
+	return 0;
 }
