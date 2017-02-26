@@ -668,7 +668,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer: 
-        return playAdventurer (temphand,drawntreasure,cardDrawn, z, state, currentPlayer) ;
+        return useAdventurer (currentPlayer, state, temphand); 
      
 			
     case council_room:
@@ -744,12 +744,12 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
-        return playSmithy(state, currentPlayer, handPos);
+        return useSmithy(handPos, currentPlayer, state);
       
       
 		
     case village:
-      return playVillage(state,currentPlayer,handPos); 
+      return useVillage(currentPlayer,handPos, state); 
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -803,7 +803,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
+
+	useGreatHall(currentPlayer, handPos, state);
+    
       drawCard(currentPlayer, state);
 			
       //+1 Actions
@@ -1232,11 +1234,12 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 //Cards Implementations
 
-//Adventurer
-
-int playAdventurer(int *temphand, int drawntreasure, int cardDrawn, int z, struct gameState *state, int currentPlayer) 
-{ 
-    
+//Adventureri
+int useAdventurer(int currentPlayer, struct gameState * state, int * temphand) {
+   int z= 0;
+   int drawntreasure = 0;
+   int cardDrawn;
+ 
     while(drawntreasure<3){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
           shuffle(currentPlayer, state);
@@ -1259,7 +1262,8 @@ int playAdventurer(int *temphand, int drawntreasure, int cardDrawn, int z, struc
 }
 
 //Smithy
-int playSmithy (struct gameState * state, int currentPlayer, int handPos) { 
+int useSmithy(int handPos, int currentPlayer, struct gameState * state){
+
     int i; 
     for (i = 0; i < 5; i++)
 	{
@@ -1273,7 +1277,7 @@ int playSmithy (struct gameState * state, int currentPlayer, int handPos) {
 }
 
 //Village
-int playVillage(struct gameState *state, int currentPlayer, int handPos){
+int useVillage(int currentPlayer, int handPos, struct gameState * state) {
 //+1 Card
       drawCard(currentPlayer, state);
 			
@@ -1370,6 +1374,17 @@ int playFeast(struct gameState * state, int currentPlayer, int choice1, int *tem
 
 }
 
+int useGreatHall(int currentPlayer, int handPos, struct gameState * state) {
+
+      // draw card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->numActions++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+}
 
 //end of dominion.c
 

@@ -1,0 +1,17 @@
+Bilal Saleem
+Teammate: Marina Kaufman 
+
+Bugs from random testing
+-	After the adventurer card was played using the playCard() function, the hand of player who played the card wasn’t correct
+-	After the smithy card was played using the playCard() function, the hand of the player who player the card wasn’t correct
+-	After the village card was played using the playCard() function, the number of actions wasn’t correct
+
+Bugs from unit testing
+-	The kingdomCards() function allowed non-kingdom cards to be assigned, multiple of the same type of card to be assigned,
+negative values to be assigned and out of range values to be assigned.
+-	Calling useSmithy() resulted in handCount not being incremented by two, smithy wasn’t placed in played cards, and deckCount was
+ not decremented by 3
+-	Calling useAdventurer() resulted in playedCardCount not being incremented appropriately, and adventurer not being placed in played cards
+-	Calling useGreatHall() resulted in numActions to not be at appropriate level
+
+
