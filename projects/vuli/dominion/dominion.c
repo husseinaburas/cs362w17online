@@ -1216,33 +1216,21 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
 int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state, int choice1, int choice2, int choice3) {
-  // int temphand[MAX_HAND];
-  int temphand[2*MAX_HAND]; // del me
+  int temphand[MAX_HAND];
   int drawntreasure=0;
   int cardDrawn;
   int z = 0;// this is the counter for the temp hand
 
-  while (drawntreasure < 2 && (state->deckCount[currentPlayer] > 0 || state->discardCount[currentPlayer] > 0 )) { // del me
-  // while (drawntreasure < 2) {
+  while (drawntreasure < 2) {
     if (state->deckCount[currentPlayer] < 1) { //if the deck is empty we need to shuffle discard and add to deck
-      // move all discards to deck DEL ME
-      int i;
-      for (i=0; i<state->discardCount[currentPlayer]; i++) {
-        state->deck[currentPlayer][state->deckCount[currentPlayer]] = state->discard[currentPlayer][i];
-        state->deckCount[currentPlayer]++;
-      }
-      state->discardCount[currentPlayer] = 0;
-      // DEL ME end
       shuffle(currentPlayer, state);
     }
     drawCard(currentPlayer, state);
-    // cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1]; //del me    
+    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]];//top card of hand is most recently drawn card.
     if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold) {
       drawntreasure++;
     } else {
-      // temphand[++z]=cardDrawn;
-      temphand[z++]=cardDrawn; // del me
+      temphand[++z]=cardDrawn;
       state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
     } 
   }
@@ -1253,8 +1241,6 @@ int cardEffectAdventurer(int handPos, int currentPlayer, struct gameState *state
     z--;
   }
   
-  discardCard(handPos, currentPlayer, state, 0); // del me
-
   return 0;
 }
 
