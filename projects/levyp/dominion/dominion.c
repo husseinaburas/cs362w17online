@@ -1182,7 +1182,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 // Smithy - draw +3 cards
 int playSmithy(int player, struct gameState *state, int handPos) {
   int i;
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i <= 3; i++) {
     drawCard(player, state);
   }
   //discard card from hand
