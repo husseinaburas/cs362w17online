@@ -65,9 +65,6 @@ int main (int argc, char **argv) {
 
   printf ("_______Testing adventurer card_________\n");
 
-  SelectStream(2);
-  PutSeed(3);
-
   for (n = 0; n < 2000; n++) {
     memset(&G, 23, sizeof(struct gameState));
     initializeGame(2, k, seed, &G); 

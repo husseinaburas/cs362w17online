@@ -1,0 +1,20 @@
+Testing Village Card.
+RANDOM TESTS.
+Failed: Player 1 out of 2, 3 villCards in hand, 2 villCards in deck, 2 villCards in discard
+Failed: Player 1 out of 2, 1 villCards in hand, 3 villCards in deck, 1 villCards in discard
+Failed: Player 3 out of 4, 2 villCards in hand, 3 villCards in deck, 3 villCards in discard
+Failed: Player 1 out of 4, 2 villCards in hand, 3 villCards in deck, 1 villCards in discard
+Failed: Player 2 out of 3, 3 villCards in hand, 2 villCards in deck, 1 villCards in discard
+Failed: Player 1 out of 3, 3 villCards in hand, 1 villCards in deck, 3 villCards in discard
+Failed: Player 3 out of 4, 3 villCards in hand, 0 villCards in deck, 3 villCards in discard
+Failed: Player 3 out of 4, 2 villCards in hand, 3 villCards in deck, 1 villCards in discard
+Failed: Player 1 out of 2, 2 villCards in hand, 1 villCards in deck, 1 villCards in discard
+Failed: Player 2 out of 4, 2 villCards in hand, 3 villCards in deck, 3 villCards in discard
+TESTS FINISHED.
+File 'dominion.c'
+Lines executed:30.58% of 582
+Creating 'dominion.c.gcov'
+
+
+
+

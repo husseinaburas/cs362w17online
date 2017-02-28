@@ -141,5 +141,6 @@ int adventurerCard(struct gameState *state, int currentPlayer);
 int councilroomCard(struct gameState *state, int currentPlayer, int handPos);
 int mineCard(struct gameState *state, int currentPlayer, int handPos, int choice1, int choice2);
 int gardensCard();
+int greathallCard(struct gameState *state, int currentPlayer, int handPos);
 
 #endif

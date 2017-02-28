@@ -11,8 +11,8 @@
 #include <stdlib.h>
 
 #define TESTCARD "Salvager"
-#define PRINT_ALL 0 
-
+#define PRINT_ALL 0
+#define TEST_LENGTH 1000
 
 //Own assert function
 int asserttrue(int input, int number){
@@ -381,7 +381,7 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
@@ -404,7 +404,7 @@ int main (int argc, char** argv){
 		testPhase = rand()%3;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -490,9 +490,9 @@ int main (int argc, char** argv){
 		cardPlacement = rand()%G.handCount[currentPlayer];
 		testLocation = cardPlacement;
 		testPhase = 0;
-		testActions = rand()%5;
+		testActions = (rand()%10)-5;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -580,7 +580,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == salvager){
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -649,7 +649,98 @@ int main (int argc, char** argv){
 		
 	}
 	printf("Testing name of card must be salvager...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
-	printf("TEST SET 4\nTesting pre-condition: Choice1 must be a valid card in the hand\n");
+		printf("TEST SET 4\nTesting pre-condition: Played card must be in hand\n");
+	testPassCount = 0;
+	testFailCount=0;
+	totalTestCount=0;
+	invalidCount=0;
+	validCount=0;
+	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
+		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
+		// initialize a game state and player cards
+		initializeGame(numPlayers, k, seed, &G);
+
+		currentPlayer = whoseTurn(&G);
+		cardPlacement = rand()%(G.handCount[currentPlayer]*3)-G.handCount[currentPlayer]; //setting salvager in random place
+		testLocation = cardPlacement; //card to play from hand
+		testPhase = 0;
+		testActions = 1;
+		// placing the card in the players hand if possible
+		if (cardPlacement >= 0){
+			G.hand[currentPlayer][cardPlacement] = salvager; 
+		}
+		testChoice = rand()%G.handCount[currentPlayer];
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+			testChoice = rand()%G.handCount[currentPlayer];
+		}
+		// setting phase and actions
+		G.phase = testPhase;
+		G.numActions = testActions;
+		updateCoins(currentPlayer, &G, 0);
+		// copy the game state to a test case
+		memcpy(&testG, &G, sizeof(struct gameState));
+		
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
+			printf("Salvager Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
+		}
+		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		if (result == 0){
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
+			totalSuccess = verifyDifferentState(&G, &testG, testChoice);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
+		}
+		else{
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
+
+			totalSuccess = verifySameState(&G, &testG);
+
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
+		}
+		
+
+		
+	}
+	printf("Testing played card must be in hand...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	
+	printf("TEST SET 5\nTesting pre-condition: Choice1 must be a valid card in the hand\n");
 	totalTestCount= 0;
 	testPassCount=0;
 	testFailCount=0;
@@ -666,9 +757,9 @@ int main (int argc, char** argv){
 		testLocation = cardPlacement;
 		testPhase = 0;
 		testActions = 1;
-		testChoice = rand()%(2* G.handCount[currentPlayer]);
-		while (G.hand[currentPlayer][testChoice] == salvager){
-			testChoice = rand()%G.handCount[currentPlayer];
+		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
+		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+			testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = salvager; 
@@ -742,7 +833,7 @@ int main (int argc, char** argv){
 	testFailCount=0;
 	validCount = 0;
 	invalidCount = 0;
-	printf("TEST SET 5\nTesting pre-condition: Choice1 must be not be the Salvager card being played\n");
+	printf("TEST SET 6\nTesting pre-condition: Choice1 must be not be the Salvager card being played\n");
 	for (j = 1; j <= test_length; j++){
 		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
