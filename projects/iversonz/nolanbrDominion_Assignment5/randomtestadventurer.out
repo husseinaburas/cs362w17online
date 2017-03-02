@@ -1,0 +1,44 @@
+User Inputed: 10000 
+
+Automated Random Test -- ADVENTURER
+-----------
+There are 10 rounds of testing...
+Each round has 100 random tests...
+Testing Round 1
+Testing Round 2
+Testing Round 3
+Testing Round 4
+Testing Round 5
+Testing Round 6
+Testing Round 7
+Testing Round 8
+Testing Round 9
+Testing Round 10
+
+Results
+----------
+Test's Passed: 1000
+Test's Failed: 0
+Total Number of Test's: 1000
+File 'randomtestadventurer.c'
+Lines executed:94.74% of 38
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+File 'randomtestadventurer.c'
+Lines executed:94.74% of 38
+Branches executed:100.00% of 10
+Taken at least once:80.00% of 10
+No calls
+randomtestadventurer.c:creating 'randomtestadventurer.c.gcov'
+
+File 'dominion.c'
+Lines executed:31.38% of 650
+dominion.c:creating 'dominion.c.gcov'
+
+File 'dominion.c'
+Lines executed:31.38% of 650
+Branches executed:36.87% of 415
+Taken at least once:22.41% of 415
+No calls
+dominion.c:creating 'dominion.c.gcov'
+
