@@ -28,25 +28,25 @@ void testSmithy(int player, struct gameState* testState)
     {
         testState->hand[player][i] = smithy;
     }
-    
+
     //copy gamestate to preTest - all actions will now be performed on testState
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
-    
-    playSmithy(player, testState, 0); //run function we are testing
-    
+
+    playSmithy(testState, player, 0); //run function we are testing
+
     //NOTE: TESTS 1 AND 2 WILL FAIL DUE TO BUGS IN THE CODE - THIS IS INTENTIONAL (FOR NOW)!
-    
+
     /***********************************************************************
      TEST 1 - HAND SHOULD HAVE 2 MORE CARDS (DRAW 3 THEN DISCARD SMITHY)
      ***********************************************************************/
     assertTrue(preTest.handCount[player]+2, testState->handCount[player], &failed, 1);
-    
+
     /***********************************************************************
      TEST 2 - DECK SHOULD BE DECREASED BY 3 CARDS
      ***********************************************************************/
     assertTrue(preTest.deckCount[player]-3, testState->deckCount[player], &failed, 2);
-    
+
     //test if no changes to other players
     int j = 1;
     for (j = 1; j < preTest.numPlayers-1; j++) //loop through all other players
@@ -73,12 +73,12 @@ void testSmithy(int player, struct gameState* testState)
             assertTrue(preTest.discard[j][i], testState->discard[j][i], &failed, 5);
         }
     }
-    
+
     /***********************************************************************
      TEST 6 - PLAYEDCARDCOUNT SHOULD BE INCREMENTED
      ***********************************************************************/
     assertTrue(preTest.playedCardCount + 1, testState->playedCardCount, &failed, 6);
-    
+
     /***********************************************************************
      TEST 7 - SMITHY SHOULD BE ON TOP OF PLAYED CARDS PILE
      ***********************************************************************/
@@ -94,10 +94,10 @@ int main(){
     struct gameState G;
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy};
-    
+
     initializeGame(2, k, 1, &G);
-    
+
     testSmithy(0, &G);
-    
+
     return 0;
 }

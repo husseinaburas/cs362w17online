@@ -29,36 +29,36 @@ void testVillage(int player, struct gameState* testState, int* failures)
     //copy gamestate to preTest - all actions will now be performed on testState
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
-    
-    playVillage(player, testState, handCount-1); //run function we are testing
-    
+
+    playVillage(testState, player, handCount-1); //run function we are testing
+
     /***********************************************************************
      TEST 1 - HAND SHOULD BE THE SAME SIZE (DRAW 1, PLAY 1)
      ***********************************************************************/
     assertTrue(preTest.handCount[player] == testState->handCount[player], &failed, failures, 1);
-    
+
     /***********************************************************************
      TEST 2 - NUMACTIONS SHOULD INCREASE BY 2
      ***********************************************************************/
     assertTrue(preTest.numActions+2 == testState->numActions, &failed, failures, 2);
-    
+
     //NOTE: TESTS 3 AND 4 WILL FAIL DUE TO BUGS IN THE CODE - THIS IS INTENTIONAL (FOR NOW)!
     /***********************************************************************
      TEST 3 - PLAYED CARD COUNT SHOULD BE INCREMENTED
      ***********************************************************************/
     assertTrue(preTest.playedCardCount+1 == testState->playedCardCount, &failed, failures, 3);
-    
+
     /***********************************************************************
      TEST 4 - TOP OF PLAYED CARDS SHOULD BE VILLAGE
      ***********************************************************************/
     int playedCount = testState->playedCardCount;
     assertTrue(testState->playedCards[playedCount] == village, &failed, failures, 4);
-    
+
     /***********************************************************************
      TEST 5 - DECKCOUNT SHOULD BE DECREMENTED
      ***********************************************************************/
     assertTrue(preTest.deckCount[player]-1 == testState->deckCount[player], &failed, failures, 5);
-    
+
     //test if no changes to other players
     int j = 1;
     int i = 0;
@@ -89,7 +89,7 @@ void testVillage(int player, struct gameState* testState, int* failures)
             }
         }
     }
-    
+
     //if (failed == 0)
         //printf("playVillage TEST PASSED\n");
 }
@@ -102,14 +102,14 @@ int main(int argc, char *argv[]){
         exit(0);
     }
     srand(atoi(argv[1])); //seed random number generator with command line argument
-    
+
     int failures[NUMTESTS]; //array to hold number of failures of each test
     int i = 0;
     for (i = 0; i < NUMTESTS; i++) //zero out array
     {
         failures[i] = 0;
     }
-    
+
     //run tests 2000 times
     for (i = 0; i < 2000; i++)
     {
@@ -117,21 +117,21 @@ int main(int argc, char *argv[]){
         int numPlayers = rand() % 3 + 2; //random in range 2-4
         int currPlayer = rand() % numPlayers; //random in range 0 to numPlayers-1 (valid player id)
         int randomSeed = rand() % 1000 + 1; //random in range 1-1000
-        
+
         struct gameState G;
         int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
             sea_hag, tribute, smithy};
-        
+
         initializeGame(numPlayers, k, randomSeed, &G);
-        
+
         testVillage(currPlayer, &G, failures);
     }
-    
+
     //print out results
     for (i = 0; i < NUMTESTS; i++)
     {
         printf("VILLAGE TEST #%d: %d FAILURES\n", i+1, failures[i]);
     }
-    
+
     return 0;
 }

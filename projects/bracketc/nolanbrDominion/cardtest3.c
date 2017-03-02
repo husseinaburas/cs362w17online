@@ -33,24 +33,24 @@ void testVillage(int player, struct gameState* testState)
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
     
-    playVillage(player, testState, 0); //run function we are testing
-    
+    playVillage(testState, player, 0); //run function we are testing
+
     /***********************************************************************
      TEST 1 - HAND SHOULD BE THE SAME SIZE (DRAW 1, PLAY 1)
      ***********************************************************************/
     assertTrue(preTest.handCount[player] == testState->handCount[player], &failed, 1);
-    
+
     /***********************************************************************
      TEST 2 - NUMACTIONS SHOULD INCREASE BY 2
      ***********************************************************************/
     assertTrue(preTest.numActions+2 == testState->numActions, &failed, 2);
-    
+
     //NOTE: TESTS 3 AND 4 WILL FAIL DUE TO BUGS IN THE CODE - THIS IS INTENTIONAL (FOR NOW)!
     /***********************************************************************
      TEST 3 - PLAYED CARD COUNT SHOULD BE INCREMENTED
      ***********************************************************************/
     assertTrue(preTest.playedCardCount+1 == testState->playedCardCount, &failed, 3);
-    
+
     /***********************************************************************
      TEST 4 - TOP OF PLAYED CARDS SHOULD BE VILLAGE
      ***********************************************************************/
@@ -61,7 +61,7 @@ void testVillage(int player, struct gameState* testState)
      TEST 5 - DECKCOUNT SHOULD BE DECREMENTED
      ***********************************************************************/
     assertTrue(preTest.deckCount[player]-1 == testState->deckCount[player], &failed, 5);
-    
+
     //test if no changes to other players
     int j = 1;
     for (j = 1; j < preTest.numPlayers-1; j++) //loop through all other players
@@ -98,10 +98,10 @@ int main(){
     struct gameState G;
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy};
-    
+
     initializeGame(2, k, 1, &G);
-    
+
     testVillage(0, &G);
-    
+
     return 0;
 }

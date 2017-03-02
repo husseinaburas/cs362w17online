@@ -23,27 +23,27 @@ int assertTrue(int a, int* failed, int* failures, int testNum)
 void testSmithy(int player, struct gameState* testState, int* failures)
 {
     int failed = 0;
-    int handCount = testState->handCount[player];
-    testState->hand[player][handCount-1] = smithy; //set last card in hand to smithy so we can play it
-    
+    //int handCount = testState->handCount[player];
+    testState->hand[player][0] = smithy; //set last card in hand to smithy so we can play it
+
     //copy gamestate to preTest - all actions will now be performed on testState
     struct gameState preTest;
     memcpy(&preTest, testState, sizeof(struct gameState));
     
-    playSmithy(player, testState, handCount-1); //run function we are testing
-    
+    playSmithy(testState, player, 0); //run function we are testing
+
     //NOTE: TESTS 1 AND 2 WILL FAIL DUE TO BUGS IN THE CODE - THIS IS INTENTIONAL (FOR NOW)!
-    
+
     /***********************************************************************
      TEST 1 - HAND SHOULD HAVE 2 MORE CARDS (DRAW 3 THEN DISCARD SMITHY)
      ***********************************************************************/
     assertTrue(preTest.handCount[player]+2 == testState->handCount[player], &failed, failures, 1);
-    
+
     /***********************************************************************
      TEST 2 - DECK SHOULD BE DECREASED BY 3 CARDS
      ***********************************************************************/
     assertTrue(preTest.deckCount[player]-3 == testState->deckCount[player], &failed, failures, 2);
-    
+
     //test if no changes to other players
     int j = 0;
     int i = 0;
@@ -74,18 +74,18 @@ void testSmithy(int player, struct gameState* testState, int* failures)
             }
         }
     }
-    
+
     /***********************************************************************
      TEST 6 - PLAYEDCARDCOUNT SHOULD BE INCREMENTED
      ***********************************************************************/
     assertTrue(preTest.playedCardCount + 1 == testState->playedCardCount, &failed, failures, 6);
-    
+
     /***********************************************************************
      TEST 7 - SMITHY SHOULD BE ON TOP OF PLAYED CARDS PILE
      ***********************************************************************/
     int playedCount = testState->playedCardCount;
     assertTrue(testState->playedCards[playedCount-1] == smithy, &failed, failures, 7);
-    
+
     //if (failed == 0)
         //printf("playSmithy TEST PASSED\n");
 }
@@ -98,14 +98,14 @@ int main(int argc, char *argv[]){
         exit(0);
     }
     srand(atoi(argv[1])); //seed random number generator with command line argument
-    
+
     int failures[NUMTESTS]; //array to hold number of failures of each test
     int i = 0;
     for (i = 0; i < NUMTESTS; i++) //zero out array
     {
         failures[i] = 0;
     }
-    
+
     //run tests 2000 times
     for (i = 0; i < 2000; i++)
     {
@@ -113,21 +113,21 @@ int main(int argc, char *argv[]){
         int numPlayers = rand() % 3 + 2; //random in range 2-4
         int currPlayer = rand() % numPlayers; //random in range 0 to numPlayers-1 (valid player id)
         int randomSeed = rand() % 1000 + 1; //random in range 1-1000
-        
+
         struct gameState G;
         int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
             sea_hag, tribute, smithy};
-        
+
         initializeGame(numPlayers, k, randomSeed, &G);
-        
+
         testSmithy(currPlayer, &G, failures);
     }
-    
+
     //print out results
     for (i = 0; i < NUMTESTS; i++)
     {
         printf("SMITHY TEST #%d: %d FAILURES\n", i+1, failures[i]);
     }
-    
+
     return 0;
 }
