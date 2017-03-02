@@ -199,5 +199,7 @@ hartmami_unittestresults.out: hartmami_unittest1 hartmami_unittest2 hartmami_uni
 
 all: hartmami_unittestresults.out hartmami_randomtestcard1.out hartmami_randomtestcard2.out hartmami_randomtestadventurer.out
 
+allen_all: unittestresults.out randomtestcard1.out randomtestcard2.out randomtestadventurer.out
+
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 randomtestcard1 randomtestcard2 randomtestadventurer
