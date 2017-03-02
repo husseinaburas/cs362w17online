@@ -125,8 +125,79 @@ randomtestadventurer.out: randomtestadventurer
 	gcov dominion.c -b -f >> randomtestadventurer.out
 	rm *.gcda
 
+hartmami_randomtestcard1: hartmami_randomtestcard1.c dominion.o rngs.o
+	gcc -o hartmami_randomtestcard1 -g  hartmami_randomtestcard1.c dominion.o rngs.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard
+hartmami_randomtestcard2: hartmami_randomtestcard2.c dominion.o rngs.o
+	gcc -o hartmami_randomtestcard2 -g  hartmami_randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_randomtestadventurer: hartmami_randomtestadventurer.c dominion.o rngs.o
+	gcc -o hartmami_randomtestadventurer -g  hartmami_randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_randomtestcard1.out: hartmami_randomtestcard1
+	echo "Results saved to randomtestcard1.out" &> randomtestcard1.out
+	./hartmami_randomtestcard1 >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out
+
+hartmami_randomtestcard2.out: hartmami_randomtestcard2
+	echo "Results saved to randomtestcard2.out" &> randomtestcard2.out
+	./hartmami_randomtestcard2 >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out
+
+hartmami_randomtestadventurer.out: hartmami_randomtestadventurer
+	echo "Results saved to randomtestadventurer.out" &> randomtestadventurer.out
+	./hartmami_randomtestadventurer >> randomtestadventurer.out
+	gcov -b dominion.c >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out
+
+hartmami_unittest1: hartmami_unittest1.c dominion.o rngs.o
+	gcc -o hartmami_unittest1 -g  hartmami_unittest1.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_unittest2: hartmami_unittest2.c dominion.o rngs.o
+	gcc -o hartmami_unittest2 -g  hartmami_unittest2.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_unittest3: hartmami_unittest3.c dominion.o rngs.o
+	gcc -o hartmami_unittest3 -g  hartmami_unittest3.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_unittest4: hartmami_unittest4.c dominion.o rngs.o
+	gcc -o hartmami_unittest4 -g  hartmami_unittest4.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_cardtest1: hartmami_cardtest1.c dominion.o rngs.o
+	gcc -o hartmami_cardtest1 -g  hartmami_cardtest1.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_cardtest2: hartmami_cardtest2.c dominion.o rngs.o
+	gcc -o hartmami_cardtest2 -g  hartmami_cardtest2.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_cardtest3: hartmami_cardtest3.c dominion.o rngs.o
+	gcc -o hartmami_cardtest3 -g  hartmami_cardtest3.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_cardtest4: hartmami_cardtest4.c dominion.o rngs.o
+	gcc -o hartmami_cardtest4 -g  hartmami_cardtest4.c dominion.o rngs.o $(CFLAGS)
+
+hartmami_unittestresults.out: hartmami_unittest1 hartmami_unittest2 hartmami_unittest3 hartmami_unittest4 hartmami_cardtest1 hartmami_cardtest2 hartmami_cardtest3 hartmami_cardtest4
+	echo "Results saved to unittestresults.out" &> unittestresults.out
+	./hartmami_unittest1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_unittest2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_unittest3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_unittest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_cardtest1 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_cardtest2 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_cardtest3 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	./hartmami_cardtest4 >> unittestresults.out
+	gcov -b dominion.c >> unittestresults.out
+	cat dominion.c.gcov >> unittestresults.out
+
+
+all: hartmami_unittestresults.out hartmami_randomtestcard1.out hartmami_randomtestcard2.out hartmami_randomtestadventurer.out
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 randomtestcard1 randomtestcard2 randomtestadventurer
