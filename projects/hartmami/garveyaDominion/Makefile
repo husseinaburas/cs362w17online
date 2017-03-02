@@ -24,7 +24,7 @@ testAll: dominion.o testSuite.c
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-runtests: testDrawCard 
+runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
@@ -62,12 +62,12 @@ unittestresults.out: cardtest4 cardtest3 cardtest2 cardtest1 unittest1 unittest2
 	./unittest1 >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	rm *.gcda
-	
+
 	echo -e "\nunittest2\n" >> unittestresults.out
 	./unittest2 >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	rm *.gcda
-	
+
 	echo -e "\nunittest3\n" >> unittestresults.out
 	./unittest3 >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
@@ -97,6 +97,7 @@ unittestresults.out: cardtest4 cardtest3 cardtest2 cardtest1 unittest1 unittest2
 	./cardtest4 >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	rm *.gcda
+	cat dominion.c.gcov >> unittestresults.out
 
 randomtestcard1: randomtestcard1.c dominion.o random_test_runner.c
 	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
@@ -106,6 +107,7 @@ randomtestcard1.out: randomtestcard1
 	./randomtestcard1 1 >> randomtestcard1.out
 	gcov dominion.c -b -f >> randomtestcard1.out
 	rm *.gcda
+	cat dominion.c.gcov >> randomtestcard1.out
 
 randomtestcard2: randomtestcard2.c dominion.o random_test_runner.c
 	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
@@ -115,6 +117,7 @@ randomtestcard2.out: randomtestcard2
 	./randomtestcard2 1 >> randomtestcard2.out
 	gcov dominion.c -b -f >> randomtestcard2.out
 	rm *.gcda
+	cat dominion.c.gcov >> randomtestcard2.out
 
 randomtestadventurer: randomtestadventurer.c dominion.o random_test_runner.c
 	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
@@ -124,6 +127,7 @@ randomtestadventurer.out: randomtestadventurer
 	./randomtestadventurer 1 >> randomtestadventurer.out
 	gcov dominion.c -b -f >> randomtestadventurer.out
 	rm *.gcda
+	cat dominion.c.gcov >> randomtestadventurer.out
 
 hartmami_randomtestcard1: hartmami_randomtestcard1.c dominion.o rngs.o
 	gcc -o hartmami_randomtestcard1 -g  hartmami_randomtestcard1.c dominion.o rngs.o $(CFLAGS)
