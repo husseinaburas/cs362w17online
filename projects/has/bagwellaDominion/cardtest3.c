@@ -1,69 +1,159 @@
-/*
-- Andrew Bagwell
-- CS362 Assignment 3 
-- bagwella@oregonGS.edu
-- Test of dominion's council_room card via the cardEffect function 
-*/
+// Author: Steven Ha
+// Date: Feb 3, 2017
+// Class: CS362-400
+// Assignment 3: Card Test 3
+// File Name: cardtest3.c
+// Description: This program will run tests on the dominion card great hall
 
 #include "dominion.h"
-#include "dominion_helpers.h"
 #include "rngs.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
+// function prototypes
+void assertTrue(int val1, int val2, char* testName, char* cardName, int testCase, int testCount, int* passFlag);
 
-//custom assert function
+int main(int argc, char** argv){
+    
+    //arguments that need to be set to initialize the game
+    int numberPlayers = 2;
+    struct gameState game;
+    int kingdomCards[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy};
+    
+    // initialize the game
+    initializeGame(numberPlayers, kingdomCards, 1, &game);    
+    
+    // int used to determine if program successfully passed (0 - pass)
+    int* pass = 0;
 
-void assertTrue(int val1, int val2) {
+	// int defining number of tests
+	int numTests = 5;
+	
+	// int store the current player
+    int currentPlayer;
+    
+    // int storing the number of played cards
+    int playedCardCount;
+    
+    // int storing the card that was played
+    int playedCard;
+    
+    // int stores the number of actions a player has
+    int numActions;
+    
+    // int stores number of cards in players hand
+    int numCards;
+    
+    // int stores the card
+    int card;
+    
+    currentPlayer = game.whoseTurn;
+	
+	// set the first card in the current player's hand to great_hall
+	game.hand[currentPlayer][0] = great_hall;
+	game.hand[currentPlayer][1] = copper;
+	game.hand[currentPlayer][2] = copper;
+	game.hand[currentPlayer][3] = copper;
+	game.hand[currentPlayer][4] = copper;
+	
+	// set up the deck
+	game.deck[currentPlayer][0] = gold;
+	game.deck[currentPlayer][1] = gold;	
+	game.deck[currentPlayer][2] = gold;	
+	game.deck[currentPlayer][3] = gold;	
+	game.deck[currentPlayer][4] = gold;	
+	
+	// call the function to test
+	playGreatHall(&game, 0, 0);
+	
+	printf("///// ----- STARTING CARD TEST 3 (GREAT HALL) -----/////\n");
 
-	if (val1 != val2)
-		printf("Test Case - FAILED\n");
-	else 
-		printf("Test Case - PASSED\n");
+		
+	//======================================================================================
+	
+	/* Test Case 1
+	 * Description: playedCardCount should be 1 after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
+	playedCardCount = game.playedCardCount;
+	
+	assertTrue(playedCardCount, 1, "CARD TEST 3", "great hall", 1, numTests, &pass);
+	
+	//======================================================================================
+	
+	/* Test Case 2
+	 * Description: the first played card should be greathall after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
+	playedCard = game.playedCards[0];
+	
+	assertTrue(playedCard, great_hall, "CARD TEST 3", "great hall", 2, numTests, &pass);
 
+	//======================================================================================
+	
+	/* Test Case 3
+	 * Description: number of actions should be 1 after calling playgreathall()
+	 * This test should FAIL.
+	 */
+	 
+	numActions = game.numActions;
+	
+	assertTrue(numActions, 1, "CARD TEST 3", "great hall", 3, numTests, &pass);
+	
+	//======================================================================================
+	
+	/* Test Case 4
+	 * Description: player's handcount should be 5 after calling playgreathall()
+	 * This test should PASS.
+	 */
+	 
+	numCards = game.handCount[currentPlayer];
+	
+	assertTrue(numCards, 5, "CARD TEST 3", "great hall", 4, numTests, &pass);
+		
+	//======================================================================================
+	
+	/* Test Case 5
+	 * Description: player's first card in their hand should be gold after calling playgreathall()
+	 * This test should PASS.
+	 */
+	
+	card = game.hand[currentPlayer][0];
+
+	assertTrue(card, gold, "CARD TEST 3", "great hall", 5, numTests, &pass);
+		
+	//======================================================================================
+		
+    if( pass == 0){
+    	printf("**CARD TEST 3 SUCCESSFULLY PASSED**\n");
+    }
+    else{
+    	printf("**CARD TEST 3 FAILED**\n");
+    }
+
+	
+    return 0;
 }
 
-//Testing council room card
-
-int main() {
-	
-	//set up variables for testing
-	struct gameState GS;
-	int c[10] = {adventurer, ambassador, gardens, great_hall, mine, minion, smithy, salvager, steward, village};
-	
-	printf("*************************************\n");
-	printf("cardtest3:\n");
-  	printf("TESTING -- council_room card -- BEGIN\n");
-	
-	//Standard initialization across all my tests...except you need 3 players here for testing
-	initializeGame(2, c, 5, &GS);
-
-	//give each player a single card...
-	GS.handCount[0] = 1;
-	GS.handCount[1] = 1;
-	
-	//Player 1 has 1 buy
-	GS.numBuys = 1;
-	
-	//Play the council_room card
-	printf("TESTING - council_room executes successfully\n");
-	assertTrue(cardEffect(council_room, 0, 0, 0, &GS, 0, NULL), 0);
-	
-	printf("TESTING - council_room's increase of handCount of owner +3 \n");
-	assertTrue(GS.handCount[0], 4);
-
-	printf("TESTING - council_room's increase of buys +1 \n");
-	assertTrue(GS.numBuys, 2);
-	
-	printf("TESTING - council_room's increase of handCount for other players +1 \n");
-	assertTrue(GS.handCount[1],2);
-
-	printf("TESTING - council_room is discarded\n");
-	assertTrue(GS.discard[0][0], council_room);
-	
-
-	printf("TESTING--council_room card -- COMPLETE\n\n");
-	
-	return 0;
+/* Function Name: Assert True
+ * Description: Compares 2 values and prints out message if the values are not the same
+ * Parameters: int val1 - value that needs to be checked
+ *             int val2 - value that is being compared against
+ *             char* testName - name of the test
+ *             char* cardName - name of the card
+ *             int testCase - test case id
+ *             int* passFlag - pointer to int storing pass/fail
+ * Pre-Conditions: game should be initialized
+ * Post-Conditions: if the val1 and val2 are not the same an error message will print and the passFlag will be set to 1
+ */
+void assertTrue(int val1, int val2, char* testName, char* cardName, int testCase, int testCount, int* passFlag){
+	if(val1 != val2){
+		printf("%s: Test Case %i of %i of card '%s' FAILED\n", testName, testCase, testCount, cardName);
+		*passFlag = 1;
+	}
+	else{
+		printf("%s: Test Case %i of %i of card '%s' PASSED\n", testName, testCase, testCount, cardName);
+	}
 }
