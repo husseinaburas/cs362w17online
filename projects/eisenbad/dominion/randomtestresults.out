@@ -3269,10 +3269,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3280,6 +3276,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 6, expected = 3
+    card 1 in hand = 3, expected = 17
+    card 2 in hand = 17, expected = 8
 
 ----------- ITERATION: 1 ----------
 
@@ -3287,10 +3289,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3298,6 +3296,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 11
+    card 1 in hand = 11, expected = 0
+    card 2 in hand = 0, expected = 22
 
 ----------- ITERATION: 2 ----------
 
@@ -3305,10 +3309,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3316,6 +3316,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 8
+    card 1 in hand = 8, expected = 4
+    card 2 in hand = 4, expected = 17
 
 ----------- ITERATION: 3 ----------
 
@@ -3323,10 +3329,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3334,6 +3336,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 6
+    card 1 in hand = 6, expected = 13
+    card 2 in hand = 13, expected = 7
 
 ----------- ITERATION: 4 ----------
 
@@ -3341,10 +3349,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3352,6 +3356,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 8
+    card 1 in hand = 8, expected = 21
+    card 2 in hand = 21, expected = 2
 
 ----------- ITERATION: 5 ----------
 
@@ -3359,10 +3369,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -3370,6 +3376,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 1
+    card 2 in hand = 1, expected = 17
 
 ----------- ITERATION: 6 ----------
 
@@ -3377,10 +3388,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3388,6 +3395,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 3
+    card 1 in hand = 3, expected = 7
+    card 2 in hand = 7, expected = 5
 
 ----------- ITERATION: 7 ----------
 
@@ -3395,10 +3408,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3406,6 +3415,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 3
+    card 1 in hand = 3, expected = 1
+    card 2 in hand = 1, expected = 22
 
 ----------- ITERATION: 8 ----------
 
@@ -3413,10 +3428,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3424,6 +3435,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 25
+    card 1 in hand = 25, expected = 11
+    card 2 in hand = 11, expected = 4
 
 ----------- ITERATION: 9 ----------
 
@@ -3431,10 +3448,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3442,6 +3455,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 8
+    card 1 in hand = 8, expected = 25
+    card 2 in hand = 25, expected = 3
 
 ----------- ITERATION: 10 ----------
 
@@ -3449,10 +3468,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3460,6 +3475,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 7
+    card 1 in hand = 7, expected = 11
+    card 2 in hand = 11, expected = 2
 
 ----------- ITERATION: 11 ----------
 
@@ -3467,10 +3488,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3478,6 +3495,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 25
+    card 1 in hand = 25, expected = 14
+    card 2 in hand = 14, expected = 3
 
 ----------- ITERATION: 12 ----------
 
@@ -3485,10 +3508,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3496,6 +3515,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 0
+    card 1 in hand = 0, expected = 21
+    card 2 in hand = 21, expected = 17
 
 ----------- ITERATION: 13 ----------
 
@@ -3503,10 +3528,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3514,6 +3535,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 19
+    card 1 in hand = 19, expected = 5
+    card 2 in hand = 5, expected = 13
 
 ----------- ITERATION: 14 ----------
 
@@ -3521,10 +3548,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3532,6 +3555,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 1 in hand = 13, expected = 3
+    card 2 in hand = 3, expected = 2
 
 ----------- ITERATION: 15 ----------
 
@@ -3539,10 +3567,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3550,6 +3574,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 21
+    card 1 in hand = 21, expected = 4
+    card 2 in hand = 4, expected = 22
 
 ----------- ITERATION: 16 ----------
 
@@ -3557,10 +3587,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3569,15 +3595,17 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 25
+    card 1 in hand = 25, expected = 11
+    card 2 in hand = 11, expected = 1
+
 ----------- ITERATION: 17 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3587,15 +3615,17 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 5
+    card 1 in hand = 5, expected = 0
+    card 2 in hand = 0, expected = 11
+
 ----------- ITERATION: 18 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3605,15 +3635,16 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 1
+    card 1 in hand = 1, expected = 3
+
 ----------- ITERATION: 19 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -3629,10 +3660,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3640,6 +3667,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 0
+    card 1 in hand = 0, expected = 17
+    card 2 in hand = 17, expected = 0
 
 ----------- ITERATION: 21 ----------
 
@@ -3647,10 +3680,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3658,6 +3687,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 22
+    card 1 in hand = 22, expected = 14
+    card 2 in hand = 14, expected = 22
 
 ----------- ITERATION: 22 ----------
 
@@ -3665,10 +3700,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3676,6 +3707,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 6
+    card 1 in hand = 6, expected = 3
+    card 2 in hand = 3, expected = 11
 
 ----------- ITERATION: 23 ----------
 
@@ -3683,10 +3720,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3694,6 +3727,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 11
+    card 1 in hand = 11, expected = 2
+    card 2 in hand = 2, expected = 13
 
 ----------- ITERATION: 24 ----------
 
@@ -3701,10 +3740,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -3712,6 +3747,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 25
+    card 1 in hand = 25, expected = 3
+    card 2 in hand = 3, expected = 1
 
 ----------- ITERATION: 25 ----------
 
@@ -3719,10 +3760,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3730,6 +3767,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 14
+    card 1 in hand = 14, expected = 22
+    card 2 in hand = 22, expected = 19
 
 ----------- ITERATION: 26 ----------
 
@@ -3737,10 +3780,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3748,6 +3787,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 6
+    card 1 in hand = 6, expected = 21
+    card 2 in hand = 21, expected = 7
 
 ----------- ITERATION: 27 ----------
 
@@ -3755,10 +3800,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3766,6 +3807,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 0
+    card 1 in hand = 0, expected = 4
+    card 2 in hand = 4, expected = 7
 
 ----------- ITERATION: 28 ----------
 
@@ -3773,10 +3820,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3784,6 +3827,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 5
+    card 1 in hand = 5, expected = 6
+    card 2 in hand = 6, expected = 25
 
 ----------- ITERATION: 29 ----------
 
@@ -3791,10 +3840,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3802,6 +3847,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 14
+    card 1 in hand = 14, expected = 19
+    card 2 in hand = 19, expected = 0
 
 ----------- ITERATION: 30 ----------
 
@@ -3809,10 +3860,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3820,6 +3867,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 13
+    card 1 in hand = 13, expected = 7
+    card 2 in hand = 7, expected = 25
 
 ----------- ITERATION: 31 ----------
 
@@ -3827,10 +3880,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -3838,6 +3887,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 14
+    card 1 in hand = 14, expected = 22
+    card 2 in hand = 22, expected = 25
 
 ----------- ITERATION: 32 ----------
 
@@ -3845,10 +3900,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3856,6 +3907,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 4
+    card 1 in hand = 4, expected = 13
+    card 2 in hand = 13, expected = 19
 
 ----------- ITERATION: 33 ----------
 
@@ -3863,10 +3920,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3874,6 +3927,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 6, expected = 25
+    card 1 in hand = 25, expected = 5
+    card 2 in hand = 5, expected = 2
 
 ----------- ITERATION: 34 ----------
 
@@ -3881,10 +3940,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3892,6 +3947,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 21
+    card 1 in hand = 21, expected = 22
+    card 2 in hand = 22, expected = 25
 
 ----------- ITERATION: 35 ----------
 
@@ -3899,10 +3960,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3910,6 +3967,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 6, expected = 22
+    card 1 in hand = 22, expected = 14
+    card 2 in hand = 14, expected = 2
 
 ----------- ITERATION: 36 ----------
 
@@ -3917,10 +3980,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3928,6 +3987,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 7
+    card 1 in hand = 7, expected = 5
 
 ----------- ITERATION: 37 ----------
 
@@ -3935,10 +3999,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3946,6 +4006,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 0
+    card 1 in hand = 0, expected = 2
+    card 2 in hand = 2, expected = 8
 
 ----------- ITERATION: 38 ----------
 
@@ -3953,10 +4019,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3964,6 +4026,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 22
+    card 1 in hand = 22, expected = 11
+    card 2 in hand = 11, expected = 22
 
 ----------- ITERATION: 39 ----------
 
@@ -3971,10 +4039,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -3982,6 +4046,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 13
+    card 1 in hand = 13, expected = 19
+    card 2 in hand = 19, expected = 8
 
 ----------- ITERATION: 40 ----------
 
@@ -3989,10 +4059,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4000,6 +4066,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 14
+    card 1 in hand = 14, expected = 22
+    card 2 in hand = 22, expected = 4
 
 ----------- ITERATION: 41 ----------
 
@@ -4007,10 +4079,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4018,6 +4086,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 7
+    card 1 in hand = 7, expected = 13
+    card 2 in hand = 13, expected = 4
 
 ----------- ITERATION: 42 ----------
 
@@ -4025,10 +4099,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4036,6 +4106,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 11
+    card 1 in hand = 11, expected = 7
+    card 2 in hand = 7, expected = 19
 
 ----------- ITERATION: 43 ----------
 
@@ -4043,10 +4119,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -4054,6 +4126,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 22
+    card 1 in hand = 22, expected = 6
+    card 2 in hand = 6, expected = 1
 
 ----------- ITERATION: 44 ----------
 
@@ -4061,10 +4139,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4072,6 +4146,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 8
+    card 1 in hand = 8, expected = 2
+    card 2 in hand = 2, expected = 19
 
 ----------- ITERATION: 45 ----------
 
@@ -4079,10 +4159,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4090,6 +4166,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 6
+    card 1 in hand = 6, expected = 7
+    card 2 in hand = 7, expected = 5
 
 ----------- ITERATION: 46 ----------
 
@@ -4097,10 +4179,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -4108,6 +4186,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 4
+    card 1 in hand = 4, expected = 19
+    card 2 in hand = 19, expected = 13
 
 ----------- ITERATION: 47 ----------
 
@@ -4115,10 +4199,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4126,6 +4206,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 17, expected = 4
+    card 2 in hand = 4, expected = 17
 
 ----------- ITERATION: 48 ----------
 
@@ -4133,10 +4218,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4144,6 +4225,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 13
+    card 1 in hand = 13, expected = 17
+    card 2 in hand = 17, expected = 22
 
 ----------- ITERATION: 49 ----------
 
@@ -4151,10 +4238,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -4162,6 +4245,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 19
+    card 2 in hand = 19, expected = 2
 
 ----------- ITERATION: 50 ----------
 
@@ -4169,10 +4257,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4180,6 +4264,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 5
+    card 1 in hand = 5, expected = 13
+    card 2 in hand = 13, expected = 1
 
 ----------- ITERATION: 51 ----------
 
@@ -4187,10 +4277,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4198,6 +4284,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 22
+    card 1 in hand = 22, expected = 0
+    card 2 in hand = 0, expected = 8
 
 ----------- ITERATION: 52 ----------
 
@@ -4205,10 +4297,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4216,6 +4304,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 6
+    card 1 in hand = 6, expected = 1
+    card 2 in hand = 1, expected = 21
 
 ----------- ITERATION: 53 ----------
 
@@ -4223,10 +4317,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4234,6 +4324,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 7
+    card 1 in hand = 7, expected = 6
+    card 2 in hand = 6, expected = 13
 
 ----------- ITERATION: 54 ----------
 
@@ -4241,10 +4337,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -4252,6 +4344,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 3
+    card 1 in hand = 3, expected = 1
+    card 2 in hand = 1, expected = 4
 
 ----------- ITERATION: 55 ----------
 
@@ -4259,10 +4357,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4270,6 +4364,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 7
+    card 1 in hand = 7, expected = 14
+    card 2 in hand = 14, expected = 2
 
 ----------- ITERATION: 56 ----------
 
@@ -4277,10 +4377,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4288,6 +4384,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 11
+    card 1 in hand = 11, expected = 3
+    card 2 in hand = 3, expected = 0
 
 ----------- ITERATION: 57 ----------
 
@@ -4295,10 +4397,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4306,6 +4404,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 4
+    card 1 in hand = 4, expected = 0
+    card 2 in hand = 0, expected = 19
 
 ----------- ITERATION: 58 ----------
 
@@ -4313,10 +4417,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 7, expected = 9
@@ -4324,6 +4424,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 3
+    card 1 in hand = 3, expected = 5
+    card 2 in hand = 5, expected = 25
 
 ----------- ITERATION: 59 ----------
 
@@ -4331,10 +4437,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4342,6 +4444,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 25
+    card 1 in hand = 25, expected = 2
+    card 2 in hand = 2, expected = 25
 
 ----------- ITERATION: 60 ----------
 
@@ -4349,10 +4457,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4361,15 +4465,17 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 3
+    card 1 in hand = 3, expected = 14
+    card 2 in hand = 14, expected = 11
+
 ----------- ITERATION: 61 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -4379,15 +4485,16 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 13, expected = 1
+    card 2 in hand = 1, expected = 8
+
 ----------- ITERATION: 62 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -4396,6 +4503,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 7
+    card 1 in hand = 7, expected = 19
+    card 2 in hand = 19, expected = 8
 
 ----------- ITERATION: 63 ----------
 
@@ -4403,10 +4516,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4414,6 +4523,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 13
+    card 1 in hand = 13, expected = 6
+    card 2 in hand = 6, expected = 14
 
 ----------- ITERATION: 64 ----------
 
@@ -4421,10 +4536,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4432,6 +4543,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 6
+    card 1 in hand = 6, expected = 4
+    card 2 in hand = 4, expected = 25
 
 ----------- ITERATION: 65 ----------
 
@@ -4439,10 +4556,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4450,6 +4563,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 19
+    card 1 in hand = 19, expected = 17
+    card 2 in hand = 17, expected = 5
 
 ----------- ITERATION: 66 ----------
 
@@ -4457,10 +4576,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4468,6 +4583,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 11, expected = 13
+    card 1 in hand = 13, expected = 22
+    card 2 in hand = 22, expected = 14
 
 ----------- ITERATION: 67 ----------
 
@@ -4475,10 +4596,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4486,6 +4603,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 6, expected = 1
+    card 1 in hand = 1, expected = 21
+    card 2 in hand = 21, expected = 17
 
 ----------- ITERATION: 68 ----------
 
@@ -4493,10 +4616,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4504,6 +4623,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 1, expected = 14
+    card 1 in hand = 14, expected = 2
+    card 2 in hand = 2, expected = 1
 
 ----------- ITERATION: 69 ----------
 
@@ -4511,10 +4636,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4522,6 +4643,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 19
+    card 1 in hand = 19, expected = 13
+    card 2 in hand = 13, expected = 0
 
 ----------- ITERATION: 70 ----------
 
@@ -4529,10 +4656,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4540,6 +4663,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 6
+    card 1 in hand = 6, expected = 17
+    card 2 in hand = 17, expected = 14
 
 ----------- ITERATION: 71 ----------
 
@@ -4547,10 +4676,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4558,6 +4683,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 19, expected = 4
+    card 1 in hand = 4, expected = 11
+    card 2 in hand = 11, expected = 25
 
 ----------- ITERATION: 72 ----------
 
@@ -4565,10 +4696,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4576,6 +4703,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 0, expected = 8
+    card 1 in hand = 8, expected = 22
+    card 2 in hand = 22, expected = 13
 
 ----------- ITERATION: 73 ----------
 
@@ -4583,10 +4716,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4594,6 +4723,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 7
+    card 1 in hand = 7, expected = 4
+    card 2 in hand = 4, expected = 3
 
 ----------- ITERATION: 74 ----------
 
@@ -4601,10 +4736,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4612,6 +4743,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 21
+    card 1 in hand = 21, expected = 3
 
 ----------- ITERATION: 75 ----------
 
@@ -4619,10 +4755,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4630,6 +4762,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 13
+    card 1 in hand = 13, expected = 21
+    card 2 in hand = 21, expected = 13
 
 ----------- ITERATION: 76 ----------
 
@@ -4637,10 +4775,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4648,6 +4782,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 5, expected = 25
+    card 1 in hand = 25, expected = 6
+    card 2 in hand = 6, expected = 5
 
 ----------- ITERATION: 77 ----------
 
@@ -4655,10 +4795,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4666,6 +4802,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 5
+    card 1 in hand = 5, expected = 4
+    card 2 in hand = 4, expected = 21
 
 ----------- ITERATION: 78 ----------
 
@@ -4673,10 +4815,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4684,6 +4822,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 8
+    card 1 in hand = 8, expected = 4
+    card 2 in hand = 4, expected = 19
 
 ----------- ITERATION: 79 ----------
 
@@ -4691,10 +4835,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4702,6 +4842,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 22, expected = 14
+    card 2 in hand = 14, expected = 0
 
 ----------- ITERATION: 80 ----------
 
@@ -4709,10 +4854,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4720,6 +4861,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 21
+    card 1 in hand = 21, expected = 4
+    card 2 in hand = 4, expected = 8
 
 ----------- ITERATION: 81 ----------
 
@@ -4727,10 +4874,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4738,6 +4881,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 19
+    card 2 in hand = 19, expected = 7
 
 ----------- ITERATION: 82 ----------
 
@@ -4745,10 +4893,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4756,6 +4900,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 1 in hand = 0, expected = 21
+    card 2 in hand = 21, expected = 8
 
 ----------- ITERATION: 83 ----------
 
@@ -4763,10 +4912,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4774,6 +4919,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 17
+    card 1 in hand = 17, expected = 14
+    card 2 in hand = 14, expected = 21
 
 ----------- ITERATION: 84 ----------
 
@@ -4781,10 +4932,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4792,6 +4939,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 19
+    card 2 in hand = 19, expected = 14
 
 ----------- ITERATION: 85 ----------
 
@@ -4799,10 +4951,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4810,6 +4958,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 3
+    card 1 in hand = 3, expected = 6
+    card 2 in hand = 6, expected = 14
 
 ----------- ITERATION: 86 ----------
 
@@ -4817,10 +4971,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4828,6 +4978,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 0
+    card 1 in hand = 0, expected = 4
+    card 2 in hand = 4, expected = 7
 
 ----------- ITERATION: 87 ----------
 
@@ -4835,10 +4991,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4846,6 +4998,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 4, expected = 3
+    card 1 in hand = 3, expected = 6
+    card 2 in hand = 6, expected = 4
 
 ----------- ITERATION: 88 ----------
 
@@ -4853,10 +5011,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4864,6 +5018,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 11
+    card 1 in hand = 11, expected = 22
+    card 2 in hand = 22, expected = 5
 
 ----------- ITERATION: 89 ----------
 
@@ -4871,10 +5031,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4882,6 +5038,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 1
+    card 1 in hand = 1, expected = 5
+    card 2 in hand = 5, expected = 2
 
 ----------- ITERATION: 90 ----------
 
@@ -4889,10 +5051,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4900,6 +5058,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 19
+    card 1 in hand = 19, expected = 8
+    card 2 in hand = 8, expected = 22
 
 ----------- ITERATION: 91 ----------
 
@@ -4907,10 +5071,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -4918,6 +5078,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 1
+    card 1 in hand = 1, expected = 5
+    card 2 in hand = 5, expected = 14
 
 ----------- ITERATION: 92 ----------
 
@@ -4925,10 +5091,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4936,6 +5098,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 7, expected = 21
+    card 1 in hand = 21, expected = 7
+    card 2 in hand = 7, expected = 11
 
 ----------- ITERATION: 93 ----------
 
@@ -4943,10 +5111,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4954,6 +5118,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 14, expected = 4
+    card 1 in hand = 4, expected = 3
+    card 2 in hand = 3, expected = 17
 
 ----------- ITERATION: 94 ----------
 
@@ -4961,10 +5131,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4972,6 +5138,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 2, expected = 7
+    card 1 in hand = 7, expected = 13
 
 ----------- ITERATION: 95 ----------
 
@@ -4979,10 +5150,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 9, expected = 11
@@ -4990,6 +5157,11 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 21
+    card 1 in hand = 21, expected = 2
 
 ----------- ITERATION: 96 ----------
 
@@ -4997,10 +5169,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -5009,15 +5177,17 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 8, expected = 0
+    card 1 in hand = 0, expected = 1
+    card 2 in hand = 1, expected = 21
+
 ----------- ITERATION: 97 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -5027,15 +5197,17 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 3, expected = 6
+    card 1 in hand = 6, expected = 22
+    card 2 in hand = 22, expected = 17
+
 ----------- ITERATION: 98 ----------
 
   TEST 2: 0 extra action/s gained
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
-
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
 
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
@@ -5044,6 +5216,12 @@
   TEST 5: No state change occurs for other players
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
+
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 25, expected = 3
+    card 1 in hand = 3, expected = 21
+    card 2 in hand = 21, expected = 19
 
 ----------- ITERATION: 99 ----------
 
@@ -5051,10 +5229,6 @@
     STATUS: TEST 2 FAILED
     actions = 3, expected = 1
 
-  TEST 3: 3 extra card/s gained
-    STATUS: TEST 3 FAILED
-    hand count = 8, expected = 7
-
   TEST 4: No state change occurs to the victory or kingdom card piles
     STATUS: TEST 4 FAILED
     estate count = 8, expected = 10
@@ -5063,7 +5237,12 @@
     STATUS: TEST 5 FAILED
     next player deck count = 9, expected = 10
 
- >>>>> TESTS COMPLETE. FAILURE: 400/600 smithy tests failed. <<<<<
+  TEST 6: Extra cards come from player's own deck
+    STATUS: TEST 6 FAILED
+    card 0 in hand = 21, expected = 1
+    card 1 in hand = 1, expected = 21
+
+ >>>>> TESTS COMPLETE. FAILURE: 399/600 smithy tests failed. <<<<<
 
 --------------------- randomtestadventurer.c gcov results ------------------
 Function 'main'
@@ -6009,13 +6188,13 @@ branch  1 never executed
     #####:  522:  return 0;
         -:  523:}
         -:  524:
-function drawCard called 1922 returned 100% blocks executed 100%
-     1922:  525:int drawCard(int player, struct gameState *state)
+function drawCard called 1822 returned 100% blocks executed 100%
+     1822:  525:int drawCard(int player, struct gameState *state)
         -:  526:{	int count;
         -:  527:  int deckCounter;
-     1922:  528:  if (state->deckCount[player] <= 0){//Deck is empty
-branch  0 taken 32% (fallthrough)
-branch  1 taken 68%
+     1822:  528:  if (state->deckCount[player] <= 0){//Deck is empty
+branch  0 taken 33% (fallthrough)
+branch  1 taken 67%
         -:  529:    
         -:  530:    //Step 1 Shuffle the discard pile back into a deck
         -:  531:    int i;
@@ -6060,19 +6239,19 @@ branch  1 taken 16%
         -:  565:  }
         -:  566:
         -:  567:  else{
-     1315:  568:    int count = state->handCount[player];//Get current hand count for player
+     1215:  568:    int count = state->handCount[player];//Get current hand count for player
         -:  569:    int deckCounter;
         -:  570:    if (DEBUG){//Debug statements
         -:  571:      printf("Current hand count: %d\n", count);
         -:  572:    }
         -:  573:
-     1315:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
-     1315:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-     1315:  576:    state->deckCount[player]--;
-     1315:  577:    state->handCount[player]++;//Increment hand count
+     1215:  574:    deckCounter = state->deckCount[player];//Create holder for the deck count
+     1215:  575:    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+     1215:  576:    state->deckCount[player]--;
+     1215:  577:    state->handCount[player]++;//Increment hand count
         -:  578:  }
         -:  579:
-     1414:  580:  return 0;
+     1314:  580:  return 0;
         -:  581:}
         -:  582:
 function getCost called 100 returned 100% blocks executed 10%
@@ -7060,11 +7239,11 @@ call    0 returned 100%
         -: 1272:    int i;
         -: 1273:
         -: 1274:    //+3 Cards
-      500: 1275:    for (i = 0; i <= 3; i++)
-branch  0 taken 80%
-branch  1 taken 20% (fallthrough)
+      400: 1275:    for (i = 0; i < 3; i++)
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
         -: 1276:	{
-      400: 1277:	  drawCard(currentPlayer, state);
+      300: 1277:	  drawCard(currentPlayer, state);
 call    0 returned 100%
         -: 1278:	}
         -: 1279:			
