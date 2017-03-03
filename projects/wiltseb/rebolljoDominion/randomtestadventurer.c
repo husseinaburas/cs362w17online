@@ -23,10 +23,12 @@ int main(int argc, char** argv){
 	int i, h, c, j;
 	int initNumTreasure, nonTreasureDrawn, currNumTreasure;
 	int numPlayers;
-	int turns;
 	int initHandCount, initDeckCount;
 	int opInitHandCount, opInitTreasureCount, opInitDeckCount, opCurrTreasureCount;
-	int targetCard;
+	int drawntreasure = 0;
+	int temphand[MAX_HAND];
+	int z = 0;
+	int cardDrawn = 0;
 
 	
 	printf("Random Test for Adventurer-----------------------------------------------------------------\n");
@@ -83,7 +85,7 @@ int main(int argc, char** argv){
 			
 		//put adventurer in currPlayer's hand 
 		gainCard(adventurer, &TestGame1, 2, currPlayer);
-		initHandCount + 1;
+		initHandCount++;
 		
 		//make multiple copies for testing
 		memcpy(&TestGame2, &TestGame1, sizeof(struct gameState));
@@ -128,7 +130,8 @@ int main(int argc, char** argv){
 		*/
 		testFlag = 0;
 		
-		playAdventurer(&TestGame1, currPlayer);
+
+		callAdventurer(drawntreasure, &TestGame1, currPlayer, temphand, z, cardDrawn);
 		
 		//Should be a "played card", not discarded until end of Action phase
 		assertTrue(TestGame1.playedCardCount == 1, "only one card should be played", TestGame1.playedCardCount, 1, &testFlag);
