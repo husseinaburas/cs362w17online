@@ -9,16 +9,22 @@
 #define NOISY_TEST 1
 
 int main () {
-	int r;
-	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
-	struct gameState G;
-	r = initializeGame(4, k, 1, &G);
-	printf ("initializeGame(4, k, 1, &G) = %d\n", r);
-	assert(r == 0);
 
-	r = supplyCount(adventurer, &G);
-	printf ("supplyCount(adventurer, &G) = %d\n", r);
-	assert(r == 10);
+  int r;
+
+  int k[10] = {adventurer, council_room, feast, gardens, mine,
+	       remodel, smithy, village, baron, great_hall};
+
+  struct gameState G;
   
-	return 0;
+  r = initializeGame(4, k, 1, &G);
+
+  printf ("initializeGame(4, k, 1, &G) = %d\n", r);
+  assert(r == 0);
+
+  r = supplyCount(adventurer, &G);
+  printf ("supplyCount(adventurer, &G) = %d\n", r);
+  assert(r == 10);
+  
+  return 0;
 }
