@@ -182,6 +182,7 @@ randomtestadventurerLee: dominionLee.o rngsLee.o randomtestadventurer.c
 
 lee_test=unittest1Lee unittest2Lee unittest3Lee unittest4Lee cardtest1Lee cardtest2Lee cardtest3Lee cardtest4Lee
 lee_results=unittestresults.Lee randomtestcard1.Lee randomtestcard2.Lee randomtestadventurer.Lee
+lee_random=randomtestcard1Lee randomtestcard2Lee randomtestadventurerLee
 
 unittestresults.Lee: ${lee_test}	
 	./unittest1Lee >> unittestresults.Lee
@@ -300,6 +301,7 @@ randomtestadventurerHat: dominionHat.o rngsHat.o randomtestadventurer.c
 
 hat_test=unittest1Hat unittest2Hat unittest3Hat unittest4Hat cardtest1Hat cardtest2Hat cardtest3Hat cardtest4Hat
 hat_results=unittestresults.Hat randomtestcard1.Hat randomtestcard2.Hat randomtestadventurer.Hat
+hat_random=randomtestcard1Hat randomtestcard2Hat randomtestadventurerHat
 
 unittestresults.Hat: ${hat_test}	
 	./unittest1Hat >> unittestresults.Hat
@@ -382,4 +384,4 @@ player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 clean:
-	rm -f *.o playdom test testDrawCard badTestDrawCard ${main_test} ${lee_test} ${lee_results} ${hat_test} ${hat_results} player testInit *.exe *.gcov *.gcda *.gcno *.so *.out randomtestcard1 randomtestcard2 randomtestadventurer
+	rm -f *.o playdom test testDrawCard badTestDrawCard ${main_test} ${lee_test} ${lee_random} ${lee_results} ${hat_test} ${hat_random} ${hat_results} player testInit *.exe *.gcov *.gcda *.gcno *.so *.out randomtestcard1 randomtestcard2 randomtestadventurer
