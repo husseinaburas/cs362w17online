@@ -1,0 +1,58 @@
+User Inputed: 10000 
+
+Automated Random Test -- Smithy
+-----------
+There are 20 rounds of testing...
+Each round has 100 random tests...
+Testing Round 1
+Testing Round 2
+Testing Round 3
+Testing Round 4
+Testing Round 5
+Testing Round 6
+Testing Round 7
+Testing Round 8
+Testing Round 9
+Testing Round 10
+Testing Round 11
+Testing Round 12
+Testing Round 13
+Testing Round 14
+Testing Round 15
+Testing Round 16
+Testing Round 17
+Testing Round 18
+Testing Round 19
+Testing Round 20
+
+Results
+----------
+Test's - Card Effect - Passed: 2000
+Test's - Card Effect - Failed: -1000
+Total Number of Card Effect Test's: 1000
+----------
+Test's - Number of Cards -  Passed: 27
+Test's - Number of Cards -  Failed: 973
+Total Number of Number of Cards Test's: 1000
+File 'randomtestcard2.c'
+Lines executed:95.83% of 48
+randomtestcard2.c:creating 'randomtestcard2.c.gcov'
+
+File 'randomtestcard2.c'
+Lines executed:95.83% of 48
+Branches executed:100.00% of 12
+Taken at least once:83.33% of 12
+No calls
+randomtestcard2.c:creating 'randomtestcard2.c.gcov'
+
+File 'dominion.c'
+Lines executed:37.23% of 650
+dominion.c:creating 'dominion.c.gcov'
+
+File 'dominion.c'
+Lines executed:37.23% of 650
+Branches executed:41.69% of 415
+Taken at least once:27.23% of 415
+No calls
+dominion.c:creating 'dominion.c.gcov'
+

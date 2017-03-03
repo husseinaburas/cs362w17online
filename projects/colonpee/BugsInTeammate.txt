@@ -1,0 +1,11 @@
+While unit testing the isGameOver function I found that Jordan introduced a bug in the counter that verifies if three supply piles are at 0. He changed the for loop to go to treasure_map+1 instead of 25 which checks the supply for all cards. 
+
+While testing the testScoreFor function on my teammates code the function failed. It also failed on my code because it seems that this bug was on the original dominion code.
+
+While unit testing the smithy card, my teammates code was drawing 4 cards instead of the 3 cards smithy should draw. The for loop in the playSmithy was set to 4 instead of 3. The random tests also verified this bug.
+
+While unit testing the adventurer card, my teammates code has a bug on the while loop. This causes the function to only draw one treasure card instead of the 2 treasure cards adventurer should draw. The random tests also verified this bug.
+
+While unit testing the Village card I noticed my teammates code has a bug in the number of cards it draws. The drawcard function is called twice instead of once, so instead of drawing one card, village draws two cards. I also noticed that it is only incrementing the number of actions for the player by 1, instead of the required 2.
+
+Unit testing the Gardens card on my teammates code, I noticed it had exactly the same bugs as my code had. Concluding that this bug was present in the original dominion code. When testing the random tests for this card with the same seed, it gave the same errors. As previously stated, the bugs seem to be present in the original dominion code.

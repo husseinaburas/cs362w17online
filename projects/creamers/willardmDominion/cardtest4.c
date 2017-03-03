@@ -1,20 +1,16 @@
 /* -----------------------------------------------------------------------
  * Stephanie Creamer - CS 362, Winter 2017
  * Assignment 3
- * cardtest3.c - Testing great_hall card function
+ * cardtest4.c - Testing village card function
  * Test 1: Play village, 1 card drawn from deck.
  * Test 2: Play village, verify action is the same before and after playing card.
  * Test 3: Play village, 0 cards in deck.
  * Test 4: Play village, verify action is the same before and after playing card.
  * Include the following lines in your makefile:
  *
- * cardtest3: cardtest3.c dominion.o rngs.o
- *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+ * cardtest4: cardtest4.c dominion.o rngs.o
+ *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
  *
- * Include the following lines in your makefile:
- *
- * unittest1: unittest1.c dominion.o rngs.o
- *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
  * -----------------------------------------------------------------------
  */
 
@@ -59,7 +55,7 @@ int main() {
 #endif
     
     //store test result -- number of actions should be the same; action gained replaces the action used to play the card
-    testResults[1] = asserttrue(preActionCount, postActionCount+1);
+    testResults[1] = asserttrue(preActionCount+2, postActionCount);
     
 #if (NOISY_TEST == 1)
     printf("\nTEST 3: Play village, insufficient number of cards are in deck.\n");
@@ -84,7 +80,7 @@ int main() {
 #endif
     
     //store test result -- number of actions should be the same; action gained replaces the action used to play the card
-    testResults[3] = asserttrue(preActionCount, postActionCount+1);
+    testResults[3] = asserttrue(preActionCount+2, postActionCount);
 
 //assess test results
     for (int i = 0; i < 4; i++)

@@ -90,7 +90,7 @@ int main() {
     postCardGoldCount = coinCounter[2];
     
     //store test result
-    testResults[0] = asserttrue(postCardGoldCount+1, preCardGoldCount);
+    testResults[0] = asserttrue(postCardGoldCount, preCardGoldCount+1);
     
 #if (NOISY_TEST == 1)
     printf("\nTEST 2: 0 treasures in deck.\n");
@@ -140,7 +140,7 @@ int main() {
     coinCount(&G, coinCounter, 0);
     postCardGoldCount = coinCounter[2];
         
-    testResults[2] = asserttrue(postCardGoldCount+1, preCardGoldCount);
+    testResults[2] = asserttrue(postCardGoldCount, preCardGoldCount+1);
     
     
 //assess test results
