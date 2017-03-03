@@ -1,66 +1,51 @@
-/*
- * unittest2.c
- *
- 
- */
-
-/*
- * Include the following lines in your makefile:
- *
- * unittest2: unittest2.c dominion.o refactor.o rngs.o
- *      gcc -o unittest2 -g  unittest2.c dominion.o refactor.o rngs.o $(CFLAGS)
- */
-
-
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
 #include <string.h>
 #include <stdio.h>
-//#include <assert.h>
-#include "rngs.h"
+#include <math.h>
 #include <stdlib.h>
+#include <assert.h>
 
-#define TESTCARD "getCost()"
-#define ASSERT(exp, MSG) if(exp) printf("%s: PASS!\n", MSG); else printf("%s: FAILED!\n", MSG)
-#define ASSERT(exp) if(!exp) {printf("Test FAILED!\n"); error = 1;}
-
-int main() {
-    int newCards = 0;
-    int discarded = 1;
-    int xtraCoins = 0;
-    int shuffledCards = 0;
-
-    int i, j, m, error=0;
-    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
-    int remove1, remove2;
-    int seed = 1000;
-    int numPlayers = 2;
-    int thisPlayer = 0;
-	struct gameState G, testG;
-	//expected cost values from card enum
-	int k[] = {0, 2, 5, 8, 0, 3, 6, 6, 5, 4, 4, 5, 4, 4, 3, 4, 3, 5, 3, 5, 3, 4, 2, 5, 4, 4, 4};
-
-
-	printf("----------------- Testing function: %s ----------------\n", TESTCARD);
-
-	// ----------- TEST 1:verify cost values returned from getCost() --------------
-	printf("TEST 1: verify cost values returned from getCost()\n");
-
-	for (i = 0; i < treasure_map+1; i++)
-		ASSERT((k[i] == getCost(i)));
-
-	// ----------- TEST 2: verify getCost() --------------
-	printf("TEST 2: verify unknown cards return -1 from getCost()\n");
-	for (i = treasure_map+1; i < (treasure_map+100); i++)
-		ASSERT((-1 == getCost(i)));
+//Unit test 2 tests cards existance, can we buy the card, 
+// and re-check card amount 
+int main (int argc, char** argv)	{
+	struct gameState G;
+	printf("\n** Unit test 2: Buying Cards **\n");
 	
-	if (error)
-		printf("TEST Failed!\n");
-	else
-		printf("TEST PASSED!\n");
+	G.numBuys = 2;
+	G.coins = 2;
+	printf("\nDo we lack Coins in our hand?\n");
+ 	int test = buyCard(2, &G);
+		if(test == -1)
+			printf("Test Passed\n");
+		else
+			printf("Test Failed\n");
+		
+	printf("\nAttempting to buy desired card!\n");
+	G.coins = 10;
+	test = buyCard(2, &G);
+		if(test == 0)
+			printf("Testing Passed\n");
+		else
+			printf("Testing Failed\n");
+		
+ 	printf("\nCan we check amount?\n");
+ 	test = buyCard(2, &G);
+		if(test == 0)
+			printf("Test Passed\n");
+		else
+			printf("Test Failed\n");
+		
+ 	printf("Check to see if user still has existing Buys: \n");
+ 	G.coins = 6;
+	test = buyCard(2, &G);
+		if(test == -1)
+			printf("Test Passed\n");
+		else
+			printf("Test Failed\n");
+		
+ 	printf("\n** End of Unit Test 2: Buying Cards **\n"); 
 	
-	printf("\n >>>>> SUCCESS: Testing complete %s <<<<<\n\n", TESTCARD);
-
-
-	return 0;
+ 	return 0;	
 }
