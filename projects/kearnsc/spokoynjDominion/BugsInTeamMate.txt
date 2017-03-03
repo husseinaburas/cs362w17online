@@ -1,4 +1,4 @@
-Bugs In TeamMate Code
+Bugs In TeamMate "spokoyny" Code
 
 Bug 1:
 int gardensCard() {
