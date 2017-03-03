@@ -1234,6 +1234,7 @@ int playSmithy(struct gameState *state, int handPos, int currentPlayer){
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
 
+  //printf("I'm playing smithy!\n");
   return 0;
 }
 

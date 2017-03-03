@@ -18,14 +18,18 @@ int reSmithy(struct gameState *state, int currentPlayer, int handPos){
     return 0;
 }
 
-int reAdventurer(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z ){
-    while(drawntreasure<3){//bug
+int reAdventurer(int currentPlayer, struct gameState *state){
+	int z=0; 
+	int cardDrawn;
+	int drawntreasure;
+	int temphand[MAX_HAND];// moved above the if statement
+	while(drawntreasure<2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+	if (cardDrawn == copper || cardDrawn == silver)
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
@@ -38,6 +42,7 @@ int reAdventurer(struct gameState *state, int currentPlayer, int drawntreasure, 
 	z=z-1;
       }
       return 0;
+	
 }
 
 int reCouncilRoom(struct gameState *state, int currentPlayer, int handPos){
@@ -757,7 +762,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      reAdventurer(state, currentPlayer, drawntreasure, cardDrawn, temphand, z);
+      reAdventurer(currentPlayer, state);
       return 0;
 			
     case council_room:

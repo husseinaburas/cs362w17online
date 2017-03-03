@@ -59,14 +59,26 @@ unittest4: unittest4.c dominion.o rngs.o
 cardtest1: cardtest1.c dominion.o rngs.o
 	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
 
-cardtest2: cardtest2.c dominion.o rngs.o
-	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
+#cardtest2: cardtest2.c dominion.o rngs.o
+#	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
 
-cardtest3: cardtest3.c dominion.o rngs.o
-	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
+#cardtest3: cardtest3.c dominion.o rngs.o
+#	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
 
-cardtest4: cardtest4.c dominion.o rngs.o
-	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
+#cardtest4: cardtest4.c dominion.o rngs.o
+#	gcc -o $@ $< -g dominion.o rngs.o  $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c randomtest.o dominion.o rngs.o
+	gcc -o $@ $< -g `echo $(filter-out $<, $^)` $(CFLAGS)
+
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o $@ $< -g `echo $(filter-out $<, $^)` $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o $@ $< -g `echo $(filter-out $<, $^)` $(CFLAGS)
+
+randomtest.o: randomtest.h randomtest.c
+	gcc -c randomtest.c -g
 
 clean:
 	rm -f *.o *.out playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

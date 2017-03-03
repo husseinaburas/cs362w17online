@@ -1,0 +1,494 @@
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 2 of 2**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING GREAT HALL: PLAYER 1 of 2**
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 0 out of 2...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 1 out of 2...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 1
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 2 of 2...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+
+** TESTING ADVENTURER: PLAYER 1 of 3**
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 0
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 2 of 3**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 3 of 3**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING GREAT HALL: PLAYER 1 of 3**
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 0 out of 3...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 1 out of 3...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 2 out of 3...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 1
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 2 of 3...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 3 of 3...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+
+** TESTING ADVENTURER: PLAYER 1 of 4**
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 1
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 0
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+last card adventurer OK...
+Num of cards in hand before adventurer played: 5
+Num of cards in hand after adventurer played: 8
+HAND COUNT: TEST FAILED.
+Num of cards in deck before adventurer played: 5
+Num of cards in deck after adventurer played: 0
+DECK COUNT: TEST FAILED.
+CHECKED HAND FOR TREASURE; TEST PASSED.
+DISCARD TEST; LAST CARD NOT ADVENTURER: TEST PASSED.
+
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 2 of 4**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 3 of 4**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING SMITHY: PLAYER 4 of 4**
+--
+Num of cards in deck before smithy played: 5
+Num of cards in deck after smithy played: 2
+DECK COUNT: TEST PASSED.
+DISCARD TEST; LAST CARD STILL SMITHY: TEST FAILED.
+
+
+** TESTING GREAT HALL: PLAYER 1 of 4**
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+last card great hall OK...
+Num of cards in hand before great hall played: 5
+Num of cards in hand after great hall played: 4
+HAND COUNT: TEST FAILED.
+Num of cards in deck before great hall played: 5
+Num of cards in deck after great hall played: 4
+DECK COUNT: TEST PASSED.
+ACTION COUNT: TEST FAILED.
+DISCARD TEST; LAST CARD NOT GREAT HALL: TEST PASSED.
+
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 0 out of 4...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 1 out of 4...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 2 out of 4...
+
+--
+game state valid...
+valid hand count...
+DISCARD PILE MISMATCH.
+DISCARD TEST UNSUCCESSFUL. TEST FAILED.
+
+Testing trash for player 3 out of 4...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 1
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 2 of 4...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 3 of 4...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 6
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 6
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+
+Testing player 4 of 4...
+
+--
+Testing add to discard...
+Expected discard value: 7 Actual value: 0
+Expected discard count: 1 Actual discard count: 1
+ADD TO DISCARD UNSUCCESSFUL. TEST FAILED.
+Testing add to deck...
+Expected deck value: 7 Actual value: 4
+Expected deck count: 6 Actual deck count: 5
+ADD TO DECK UNSUCCESSFUL. TEST FAILED.
+Testing add to hand...
+Expected hand value: 7 Actual value: 0
+Expected hand count: 6 Actual hand count: 5
+ADD TO HAND UNSUCCESSFUL. TEST FAILED.
+File 'dominion.c'
+Lines executed:37.72% of 562
+Branches executed:32.23% of 422

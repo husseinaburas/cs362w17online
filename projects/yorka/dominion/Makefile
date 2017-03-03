@@ -3,6 +3,7 @@
 # Dominion Makefile
 
 CFLAGS = -Wall -fpic -coverage -lm
+SEED = 1000
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -54,6 +55,96 @@ cardtest3: cardtest3.c dominion.o rngs.o
 	
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
+	echo "" > randomtestadventurer.out
+	echo "Results of Random Test of Adventurer" >> randomtestadventurer.out
+	echo "" >> randomtestadventurer.out
+	echo "Change PRINT_TESTS to 1 to see prinouts." >> randomtestadventurer.out
+	
+	echo "" >> randomtestadventurer.out
+	echo "=============================================" >> randomtestadventurer.out
+	echo "" >> randomtestadventurer.out
+	
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestadventurer $(SEED) >> randomtestadventurer.out
+	
+	echo "" >> randomtestadventurer.out
+	echo "=============================================" >> randomtestadventurer.out
+	echo "" >> randomtestadventurer.out
+	
+	echo "gcov results:" >> randomtestadventurer.out
+	gcov -b -f dominion.c >> randomtestadventurer.out
+	#cat dominion.c.gcov >> randomtestadventurer.out
+	
+	echo "=============================================" >> randomtestadventurer.out
+	echo "" >> randomtestadventurer.out
+	
+	echo "Done!" >> randomtestadventurer.out
+	echo "" >> randomtestadventurer.out
+	
+randomtestcard1.out: randomtestcard1.c dominion.o rngs.o
+	echo "" > randomtestcard1.out
+	echo "Results of Random Test of Smithy" >> randomtestcard1.out
+	echo "" >> randomtestcard1.out
+	echo "Change PRINT_TESTS to 1 to see prinouts." >> randomtestcard1.out
+	
+	echo "" >> randomtestcard1.out
+	echo "=============================================" >> randomtestcard1.out
+	echo "" >> randomtestcard1.out
+	
+	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestcard1 $(SEED) >> randomtestcard1.out
+	
+	echo "" >> randomtestcard1.out
+	echo "=============================================" >> randomtestcard1.out
+	echo "" >> randomtestcard1.out
+	
+	echo "gcov results:" >> randomtestcard1.out
+	gcov -b -f dominion.c >> randomtestcard1.out
+	#cat dominion.c.gcov >> randomtestcard1.out
+	
+	echo "=============================================" >> randomtestcard1.out
+	echo "" >> randomtestcard1.out
+	
+	echo "Done!" >> randomtestcard1.out
+	echo "" >> randomtestcard1.out
+	
+randomtestcard2.out: randomtestcard2.c dominion.o rngs.o
+	echo "" > randomtestcard2.out
+	echo "Results of Random Test of Village" >> randomtestcard2.out
+	echo "" >> randomtestcard2.out
+	echo "Change PRINT_TESTS to 1 to see prinouts." >> randomtestcard2.out
+	
+	echo "" >> randomtestcard2.out
+	echo "=============================================" >> randomtestcard2.out
+	echo "" >> randomtestcard2.out
+	
+	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
+	randomtestcard2 $(SEED) >> randomtestcard2.out
+	
+	echo "" >> randomtestcard2.out
+	echo "=============================================" >> randomtestcard2.out
+	echo "" >> randomtestcard2.out
+	
+	echo "gcov results:" >> randomtestcard2.out
+	gcov -b -f dominion.c >> randomtestcard2.out
+	#cat dominion.c.gcov >> randomtestcard2.out
+	
+	echo "=============================================" >> randomtestcard2.out
+	echo "" >> randomtestcard2.out
+	
+	echo "Done!" >> randomtestcard2.out
+	echo "" >> randomtestcard2.out
 
 runtests: testDrawCard 
 	./testDrawCard &> unittestresult.out
@@ -147,4 +238,4 @@ unittestresults.out: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o *.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcda *.gcno *.gcov playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o *.out randomtestadventurer randomtestcard1 randomtestcard2 testDrawCard badTestDrawCard unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcda *.gcno *.gcov playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

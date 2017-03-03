@@ -6,9 +6,9 @@
 #include <stdlib.h>
 
 //Refactored smithy code
-void runSmithy(int currentPlayer, struct gameState *state) {
+void runSmithy(struct gameState *state, int currentPlayer) {
     //+3 Cards
-    for (int i = 0; i < 5; i++)//*
+    for (int i = 0; i < 3; i++)//FIXED BUG*
     {
         drawCard(currentPlayer, state);
     }
@@ -16,11 +16,10 @@ void runSmithy(int currentPlayer, struct gameState *state) {
 
 //Refactored adventurer code
 void runAdventurer (struct gameState *state, int currentPlayer) {
-    int drawntreasure=1;//*
+    int drawntreasure=0;//FIXED BUG*
     int cardDrawn;
     int temphand[MAX_HAND];
     int z = 0;
-    
     while(drawntreasure<2){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
@@ -39,7 +38,6 @@ void runAdventurer (struct gameState *state, int currentPlayer) {
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
         z=z-1;
     }
-    
 };
 
 //Refactored village code
@@ -47,7 +45,7 @@ void runVillage (struct gameState *state, int currentPlayer) {
     
     //+1 Card
     drawCard(currentPlayer, state);
-    drawCard(currentPlayer, state);//*
+    //drawCard(currentPlayer, state);//FIXED BUG
     
     
     //+2 Actions
@@ -93,7 +91,7 @@ int runMine (struct gameState *state, int currentPlayer, int choice1, int choice
 
 //Refactored cutpurse code
 void runCutPurse (struct gameState *state, int currentPlayer) {
-    updateCoins(currentPlayer, state, 5);//*
+    updateCoins(currentPlayer, state, 2);//FIXED BUG
     for (int i = 0; i < state->numPlayers; i++) {
         if (i != currentPlayer) {
             for (int j = 0; j < state->handCount[i]; j++) {
@@ -434,20 +432,22 @@ int fullDeckCount(int player, int card, struct gameState *state) {
     int i;
     int count = 0;
     
-    for (i = 0; i < state->deckCount[player]; i++)
-    {
-        if (state->deck[player][i] == card) count++;
-    }
+    count = state->deckCount[player] + state->handCount[player] + state->discardCount[player];
+
+    // for (i = 0; i < state->deckCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
-    for (i = 0; i < state->handCount[player]; i++)
-    {
-        if (state->hand[player][i] == card) count++;
-    }
+    // for (i = 0; i < state->handCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
-    for (i = 0; i < state->discardCount[player]; i++)
-    {
-        if (state->discard[player][i] == card) count++;
-    }
+    // for (i = 0; i < state->discardCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
     return count;
 }
@@ -550,7 +550,7 @@ int scoreFor (int player, struct gameState *state) {
     }
     
     //score from deck
-    for (i = 0; i < state->discardCount[player]; i++)
+    for (i = 0; i < state->deckCount[player]; i++)
     {
         if (state->deck[player][i] == curse) { score = score - 1; };
         if (state->deck[player][i] == estate) { score = score + 1; };
@@ -647,7 +647,7 @@ int drawCard(int player, struct gameState *state)
         state->deckCount[player] = state->discardCount[player];
         state->discardCount[player] = 0;//Reset discard
         
-        //Shufffle the deck
+        //Shuffle the deck
         shuffle(player, state);//Shuffle the deck up and make it so that we can draw
         
         if (DEBUG){//Debug statements
@@ -785,7 +785,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     
     else if (card == smithy) {
         //refactored code
-        runSmithy(currentPlayer, state);
+        runSmithy(state, currentPlayer);
         
         //discard card from hand
         discardCard(handPos, currentPlayer, state, 0);
@@ -1351,17 +1351,17 @@ int gainCard(int supplyPos, struct gameState *state, int toFlag, int player)
     
     if (toFlag == 1)
     {
-        state->deck[ player ][ state->deckCount[player] ] = supplyPos;
+        state->deck[player][state->deckCount[player]] = supplyPos;
         state->deckCount[player]++;
     }
     else if (toFlag == 2)
     {
-        state->hand[ player ][ state->handCount[player] ] = supplyPos;
+        state->hand[player][state->handCount[player]] = supplyPos;
         state->handCount[player]++;
     }
     else
     {
-        state->discard[player][ state->discardCount[player] ] = supplyPos;
+        state->discard[player][state->discardCount[player]] = supplyPos;
         state->discardCount[player]++;
     }
     

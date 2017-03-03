@@ -1,0 +1,12 @@
+Stephanie Creamer
+CS 362 - Winter 2017
+
+Bugs in TeamMate Code
+Bug #1
+This bug was found in the playSmithy() module in williardmDominion.  The smithy card is not removed from the player’s hand after the card is played.  This bug was identified by cardtest2 (lines 60-74) and randomtestcard1 (lines 84-98).  In both instances of the script, the playSmithy() function test failed at Test 2, which verifies smithy is removed from the player’s hand by checking the position where the Smithy card was before playing and verifying that hand position is not still occupied by a Smithy card. This suspected bug was confirmed by visual inspection from willardm’s code on line 1230.  The discardCard function call is commented out, 
+indicating that the Smithy card is never removed from the player’s hand.
+
+Bug #2
+This bug was found in playAdventurer() module in willardmDominion.  The playAdventurer function continues to draw cards until 3 or more treasures are found instead of 2.  This bug was not recognized from my test script; instead, I relied on visual inspection of the source code to find this bug.  This indicates my playAdventurer() test scripts are not robust enough and do not test enough aspects of the playAdventurer() function to be considered sufficient to verify correct functionality.  
+
+This bug is visible on line 1244 and 1245 in willardmDominion.  On line 1244, the original while loop guard is set to draw cards until the user receives 2 or more Treasure cards is commented out.  Instead, the program is using line 1245, which is a while loop guard set to draw cards until the user receives 3 or more Treasure cards.  This would allow a player to potentially draw one extra Treasure using the Adventurer card than is allowed by the game (and card) rules.  This particular bug is a good example of how hard coded values can be difficult to find and correct when erroneous.
