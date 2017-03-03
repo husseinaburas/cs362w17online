@@ -121,8 +121,7 @@ make randomtestcard2.Lee
   - creates randomtestcard1.Lee file with results of random test and gcov data
   
   Sub make rule: 
-
-  make randomtestcard2Lee
+  - make randomtestcard2Lee
 
 make randomtestadventurer.Lee
   - generates randomtestadventurerLee (Adventurer Card random test with
@@ -130,8 +129,7 @@ make randomtestadventurer.Lee
   - creates randomtestadventurer.Lee file with results of random test and gcov data
   
   Sub make rule: 
+  - make randomtestadventurerLee
 
-  make randomtestadventurerLee
-
-make random_tests_hat 
+make random_tests_lee
   - makes randomtestcard1.Lee randomtestcard2.Lee and randomtestadventurer.Lee
