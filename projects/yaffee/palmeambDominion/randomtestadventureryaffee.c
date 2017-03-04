@@ -32,14 +32,15 @@ int main(int argc, char* argv[]) {
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 	struct gameState G;
 	int numPlayers, numDeck, numHand, numDiscard;
+        int choice1 = 0;
+        int choice2 = 0;
+        int choice3 = 0;
+        int handpos;
+        int bonus = 0;
 	srand(time(NULL));
 
 	//for loop controls random test runs
-	for(n=0; n<500000; n++) {	
-		int temphand[MAX_HAND] = {0};
-		int drawntreasure = 0;
-		int cardDrawn = -1;
-		int z = 0;
+	for(n=0; n<5; n++) {	
 		int preHandTreas = 0, preDeckTreas = 0, preDiscardTreas = 0, preDeckDisc = 0;
 		int postHandTreas = 0, postDeckTreas = 0, postDiscardTreas = 0, postDeckDisc = 0;
 		int postHandTreasPlayer = 0, postDeckTreasPlayer = 0, postDiscardTreasPlayer = 0, postDeckDiscPlayer = 0;
@@ -60,7 +61,7 @@ int main(int argc, char* argv[]) {
 		G.deckCount[0] = numDeck;
 		G.handCount[0] = numHand;
 		G.discardCount[0] = numDiscard;
-
+		G.whoseTurn = 0;
 		//rand()%17 because the card enum uses the first 17 cards (0-16)
 		for(i=0; i<numDeck; i++) {
 			G.deck[0][i] = rand()%17;
@@ -76,7 +77,7 @@ int main(int argc, char* argv[]) {
 
 		//place adventurer in hand
 		G.hand[0][i] = adventurer;
-
+		handpos=i;
 		//copy pre-adventurer card treasure numbers
 		for(i=0; i<G.deckCount[0]; i++) {
 			if(G.deck[0][i] == copper || G.deck[0][i] == silver || G.deck[0][i] == gold)
@@ -93,8 +94,7 @@ int main(int argc, char* argv[]) {
 				preDiscardTreas++;
 		}
 		//call adventurer card
-		adventurerCard(&G, drawntreasure, 0, temphand, cardDrawn, z);
-
+		cardEffect(adventurer, choice1, choice2, choice3, &G, handpos, &bonus);
 		//count treasures in player's cards
 
 		for(i=0; i<G.deckCount[0]; i++) {

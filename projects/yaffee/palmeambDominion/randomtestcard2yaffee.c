@@ -32,6 +32,11 @@ int main(int argc, char* argv[]) {
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
 	struct gameState G;
 	int numPlayers, numDeck, numHand, numDiscard, numPlayed, numActions;
+	int choice1 = 0;
+	int choice2 = 0;
+	int choice3 = 0;
+	int handpos;
+	int bonus = 0;
 	srand(time(NULL));
 
 	//for loop controls random test runs
@@ -77,10 +82,9 @@ int main(int argc, char* argv[]) {
 
 		//place smithy in hand
 		G.hand[0][i] = great_hall;
-
+		handpos = i;
 		//call great hall card
-		great_hallCard(&G, 0, 0);
-
+		cardEffect(great_hall, choice1, choice2, choice3, &G, handpos, &bonus);
 		//if there are enough cards in the deck,
 		//deck should be -1, hand +1, discard no change
 		if(numDeck >= 1) {

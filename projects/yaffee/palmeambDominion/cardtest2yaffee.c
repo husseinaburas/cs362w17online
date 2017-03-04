@@ -49,6 +49,11 @@ int main() {
    struct gameState G;
    struct gameState test;
    struct gameState control;
+   int choice1 = 0;
+   int choice2 = 0;
+   int choice3 = 0;
+   int handpos = 4;
+   int bonus = 0;
 
    initializeGame(2, k, 1, &G);
    memcpy(&test, &G, sizeof(struct gameState));
@@ -71,7 +76,7 @@ int main() {
    printf("------------------------------------------------------------------\n");
 
    printf("Test Case: great hall draws from deck\n");
-   great_hallCard(&test, 0, 4);
+   cardEffect(great_hall, choice1, choice2, choice3, &test, handpos, &bonus);
    control.hand[0][4] = copper;
    control.deckCount[0] = 9;
    control.playedCards[0] = great_hall;
@@ -96,7 +101,7 @@ int main() {
    memcpy(&control, &test, sizeof(struct gameState));
    
    printf("Test Case: no deck cards to draw from, must shuffle discards\n");
-   great_hallCard(&test, 0, 4);
+   cardEffect(great_hall, choice1, choice2, choice3, &test, handpos, &bonus);
    control.hand[0][4] = copper;
    control.deckCount[0] = 9;
    control.discardCount[0] = 0;
