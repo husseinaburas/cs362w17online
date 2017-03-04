@@ -69,9 +69,7 @@
 
 ## Assignment 1
 
-
-
-	## clone repo to local machine
+	clone repo to local machine:
 
 	install git
 
@@ -79,24 +77,14 @@
 
 	clone repo
 
-	## make onid directory
-
 	cd to target directory
 
-	mkdir
-
 	cp dominion code to onid directory
-
-	## add onid directory
 
 	git add onid directory
 
 	git commit -m "comments"
 
 	git push origin master
-
-	## make README
-
-	I AM THE README
 
 	add, commit, push README
