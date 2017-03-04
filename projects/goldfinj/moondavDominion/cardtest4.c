@@ -58,7 +58,8 @@ int main(void) {
     p2beforeDeckCount =     testG.deckCount[2];
 
     /* play the card */
-    playSeaHag(&testG);
+    /*playSeaHag(&testG);*/
+    cardEffect(sea_hag, 0, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -152,7 +153,8 @@ int main(void) {
     p2beforeDeckCount =     testG.deckCount[2];
 
     /* play the card */
-    playSeaHag(&testG);
+    /*playSeaHag(&testG);*/
+    cardEffect(sea_hag, 0, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -248,7 +250,8 @@ int main(void) {
     p2beforeDeckCount =     testG.deckCount[2];
 
     /* play the card */
-    playSeaHag(&testG);
+    /*playSeaHag(&testG);*/
+    cardEffect(sea_hag, 0, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -344,7 +347,8 @@ int main(void) {
     p2beforeDeckCount =     testG.deckCount[2];
 
     /* play the card */
-    playSeaHag(&testG);
+    /*playSeaHag(&testG);*/
+    cardEffect(sea_hag, 0, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -447,7 +451,8 @@ int main(void) {
     p2beforeDeckCount =     testG.deckCount[2];
 
     /* play the card */
-    playSeaHag(&testG);
+    /*playSeaHag(&testG);*/
+    cardEffect(sea_hag, 0, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];

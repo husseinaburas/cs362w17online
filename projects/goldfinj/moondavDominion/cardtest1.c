@@ -54,7 +54,7 @@ int main(void) {
     expectedSecond =        testG.deck[currentPlayer][0];
 
     /* play the card */
-    playAdventurer(&testG);
+    playAdventurer(&testG, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -111,7 +111,7 @@ int main(void) {
     expectedSecond =        testG.deck[currentPlayer][4];
 
     /* play the card */
-    playAdventurer(&testG);
+    playAdventurer(&testG, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -175,7 +175,7 @@ int main(void) {
     expectedSecond =        testG.discard[currentPlayer][1];
 
     /* play the card */
-    playAdventurer(&testG);
+    playAdventurer(&testG, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -238,7 +238,7 @@ int main(void) {
     expectedSecond =        testG.discard[currentPlayer][0];
 
     /* play the card */
-    playAdventurer(&testG);
+    playAdventurer(&testG, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];

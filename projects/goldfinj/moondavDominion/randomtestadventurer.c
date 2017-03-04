@@ -91,7 +91,7 @@ void testAdventurer(int *testArr, int seed) {
     beforePlayedCount =     testG.playedCardCount;
 
     /* play the card */
-    playAdventurer(&testG);
+    playAdventurer(&testG, 0);
 
     /* record altered state */
     for (i = 0; i != numPlayers; ++i) {

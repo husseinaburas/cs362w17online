@@ -59,7 +59,8 @@ int main(void) {
     beforeCoins =           testG.coins;
 
     /* play the card */
-    playSalvager(&testG, trashPos, cardPos);
+    /*playSalvager(&testG, trashPos, cardPos);*/
+    cardEffect(salvager, trashPos, 0, 0, &testG, cardPos, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -140,7 +141,8 @@ int main(void) {
     beforeCoins =           testG.coins;
 
     /* play the card */
-    playSalvager(&testG, trashPos, cardPos);
+    /*playSalvager(&testG, trashPos, cardPos);*/
+    cardEffect(salvager, trashPos, 0, 0, &testG, cardPos, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -221,7 +223,8 @@ int main(void) {
     beforeCoins =           testG.coins;
 
     /* play the card */
-    playSalvager(&testG, trashPos, cardPos);
+    /*playSalvager(&testG, trashPos, cardPos);*/
+    cardEffect(salvager, trashPos, 0, 0, &testG, cardPos, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];
@@ -299,7 +302,8 @@ int main(void) {
     beforeCoins =           testG.coins;
 
     /* play the card */
-    playSalvager(&testG, trashPos, cardPos);
+    /*playSalvager(&testG, trashPos, cardPos);*/
+    cardEffect(salvager, trashPos, 0, 0, &testG, cardPos, 0);
 
     /* record altered state */
     afterDiscardCount =     testG.discardCount[currentPlayer];

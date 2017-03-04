@@ -74,7 +74,8 @@ void testSalvager(int *testArr, int seed) {
     beforeCoins =           testG.coins;
 
     /* play the card */
-    playSalvager(&testG, trashPos, 0);
+    /*playSalvager(&testG, trashPos, 0);*/
+    cardEffect(salvager, trashPos, 0, 0, &testG, 0, 0);
 
     /* record altered state */
     for (i = 0; i != numPlayers; ++i) {
