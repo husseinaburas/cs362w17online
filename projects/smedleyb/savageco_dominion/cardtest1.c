@@ -35,14 +35,29 @@ int main(){
 
   int oldhandcount = s->handCount[player];
 
-  playSmithy(s, handPos, player);
+  s->whoseTurn = 0;
+  s->numActions = 1; // give player an action in order to draw card
+  handPos = 0; // first card should be a smithy
+  // int playCard(int handPos, int choice1, int choice2, int choice3, struct gameState *state);
+  playCard(handPos, 0, 0, 0, s);
+
   /* expectation: post-conditions:
    * 1. OG smithy card will be discarded
    * 2. 3 cards will be drawn into hand
    */
 
   // CASE 1: smithy card will be discarded
-  printf("TEST 1 - pass if smithy card was discarded to playedCards pile\n");
+  printf("TEST 1 - pass if smithy card was discarded to discard pile\n");
+  printf("discard[player0]:\n");
+  if (s->playedCards[player] == -1)
+    printf("empty\n");
+  else{
+    int i = 0;
+    while (s->playedCards[i]){
+      printf("%d\n", s->playedCards[i]);
+      i++;
+    }
+  }
   if (s->playedCards[0] == smithy)
     printf("TEST 1 - SUCCESS\n");
   else
