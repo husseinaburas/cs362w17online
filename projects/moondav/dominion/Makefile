@@ -45,6 +45,10 @@ cardtest4: cardtest4.c dominion.o rngs.o unittest1.h
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
+testsmithy: cardtest1 randomtestcard1
+	./cardtest1 >> testsmithy.out
+	./randomtestcard1 3 >> testsmithy.out
+
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 >> unittestresult.out
 	./unittest2 >> unittestresult.out
