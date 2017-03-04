@@ -38,33 +38,30 @@
 
 ## Assignment 2
 
-	Part 3
+	These cases were modified to call the functions in cardEffect's switch:
 
-## These cases were modified to call the functions in cardEffect's switch:
+		case adventurer
 
-	case adventurer
+		case mine
 
-	case mine
-			
-	case remodel
-	
-	case smithy
+		case remodel
 
-	case baron
+		case smithy
 
-## bugs were added to:
+		case baron
 
-	adventurer
-			
-	remodel
-	
-	smithy
+	bugs were added to:
 
-	baron
+		adventurer
 
-## udpated README
+		remodel
 
-	commit, push README
+		smithy
+
+		baron
+
+	udpated README
+
 
 
 ## Assignment 1
