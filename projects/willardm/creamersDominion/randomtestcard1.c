@@ -31,15 +31,18 @@ void asserttrue (int bln, char* msg) {
 
 int main(int argc, char **argv) {
   // srand(time(NULL));
+  printf("----------------- Random Testing Card: %s ----------------\n", TESTCARD);
   srand(atoi(argv[1]));
-	struct gameState G;
+	// struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
   int n;
   int numPlayers, curPlayer;
   int seed;
-  printf("----------------- Random Testing Card: %s ----------------\n", TESTCARD);
   for (n = 0; n < MAX_TESTS; n++) {
     printf("----------------- Test Round: %d ----------------\n", n);
+    struct gameState G;
+    numPlayers = 0, curPlayer = 0;
+    seed = 0;
     seed = rand();
     numPlayers = 2;
     curPlayer = rand() % numPlayers;
