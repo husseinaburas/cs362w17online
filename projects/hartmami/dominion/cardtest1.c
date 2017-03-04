@@ -37,7 +37,7 @@ int main()
 {
 	int bonus = 0;
 	int seed = 772;
-	int bug = 0;  // if initialized to 0 then test will run additional known bug tests
+	int bug = 1;  // if initialized to 0 then test will run additional known bug tests
 	struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
