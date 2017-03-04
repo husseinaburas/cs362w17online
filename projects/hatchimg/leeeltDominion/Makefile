@@ -18,38 +18,38 @@ badTestDrawCard: badTestDrawCard.c dominion.o rngs.o
 testBuyCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
-unit1:	unittest1.c dominion.o rngs.o
-	gcc -o unit1 -g unittest1.c dominion.o rngs.o $(CFLAGS)
+myunit1: myunittest1.c dominion.o rngs.o
+	gcc -o myunit1 -g myunittest1.c dominion.o rngs.o $(CFLAGS)
 
-unit2: unittest2.c dominion.o rngs.o
-	gcc -o unit2 -g unittest2.c dominion.o rngs.o $(CFLAGS)
+myunit2: myunittest2.c dominion.o rngs.o
+	gcc -o myunit2 -g myunittest2.c dominion.o rngs.o $(CFLAGS)
 
-unit3: unittest3.c dominion.o rngs.o
-	gcc -o unit3 -g unittest3.c dominion.o rngs.o $(CFLAGS)
+myunit3: myunittest3.c dominion.o rngs.o
+	gcc -o myunit3 -g myunittest3.c dominion.o rngs.o $(CFLAGS)
 
-unit4: unittest4.c dominion.o rngs.o
-	gcc -o unit4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
+myunit4: myunittest4.c dominion.o rngs.o
+	gcc -o myunit4 -g myunittest4.c dominion.o rngs.o $(CFLAGS)
 
-card1: cardtest1.c dominion.o rngs.o
-	gcc -o card1 -g cardtest1.c dominion.o rngs.o $(CFLAGS)
+mycard1: mycardtest1.c dominion.o rngs.o
+	gcc -o mycard1 -g mycardtest1.c dominion.o rngs.o $(CFLAGS)
 
-card2: cardtest2.c dominion.o rngs.o
-	gcc -o card2 -g cardtest2.c dominion.o rngs.o $(CFLAGS)
+mycard2: mycardtest2.c dominion.o rngs.o
+	gcc -o mycard2 -g mycardtest2.c dominion.o rngs.o $(CFLAGS)
 
-card3: cardtest3.c dominion.o rngs.o
-	gcc -o card3 -g cardtest3.c dominion.o rngs.o $(CFLAGS)
+mycard3: mycardtest3.c dominion.o rngs.o
+	gcc -o mycard3 -g mycardtest3.c dominion.o rngs.o $(CFLAGS)
 
-card4: cardtest4.c dominion.o rngs.o
-	gcc -o card4 -g cardtest4.c dominion.o rngs.o $(CFLAGS)
+mycard4: mycardtest4.c dominion.o rngs.o
+	gcc -o mycard4 -g mycardtest4.c dominion.o rngs.o $(CFLAGS)
 
-randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
-	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+myrandomtestadventurer: myrandomtestadventurer.c dominion.o rngs.o
+	gcc -o myrandomtestadventurer -g myrandomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
-randomtestcard1: randomtestcard1.c dominion.o rngs.o
-	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+myrandomtestcard1: myrandomtestcard1.c dominion.o rngs.o
+	gcc -o myrandomtestcard1 -g myrandomtestcard1.c dominion.o rngs.o $(CFLAGS)
 
-randomtestcard2: randomtestcard2.c dominion.o rngs.o
-	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+myrandomtestcard2: myrandomtestcard2.c dominion.o rngs.o
+	gcc -o myrandomtestcard2 -g myrandomtestcard2.c dominion.o rngs.o $(CFLAGS)
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
@@ -66,7 +66,7 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-all: playdom player testDrawCard testBuyCard badTestDrawCard unit1 unit2 unit3 unit4 card1 card2 card3 card4 randomtestadventurer randomtestcard1 randomtestcard2
+all: playdom player testDrawCard testBuyCard badTestDrawCard myunit1 myunit2 myunit3 myunit4 mycard1 mycard2 mycard3 mycard4 myrandomtestadventurer myrandomtestcard1 myrandomtestcard2
 
 unittestresults.out: playdom player testDrawCard testBuyCard badTestDrawCard unit1 unit2 unit3 unit4 card1 card2 card3 card4
 	rm -rf dominion.gcda
