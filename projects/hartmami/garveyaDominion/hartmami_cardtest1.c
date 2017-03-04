@@ -37,7 +37,7 @@ int main()
 {
 	int bonus = 0;
 	int seed = 772;
-	int bug = 0;  // if initialized to 0 then test will run additional known bug tests
+	int bug = 1;  // if initialized to 0 then test will run additional known bug tests
 	struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse, sea_hag, tribute, smithy, council_room};
 
@@ -142,6 +142,11 @@ int main()
 
 		printf("Verify Player 1 has 7 cards in their hand:  ");
 		testAssert(G.handCount[0] == 7);  // run testAssert
+		printf("\n");
+		printf("Player 1 has %d cards in their hand  \n", G.handCount[0]);
+		printf("Player 1 has %d cards in their deck  \n", G.deckCount[0]);
+		printf("The fifth card in Player 1's hand is a %d:  ", G.hand[0][0]);
+
 		printf("\n");
 
 		if( bug == 0 )
