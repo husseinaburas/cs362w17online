@@ -37,6 +37,11 @@ int main() {
    struct gameState G;
    struct gameState test;
    struct gameState control;
+   int choice1 = 0;
+   int choice2 = 0;
+   int choice3 = 0;
+   int handpos = 4;
+   int bonus = 0;
 
    initializeGame(2, k, 1, &G);
 
@@ -60,7 +65,7 @@ int main() {
    printf("------------------------------------------------------------------\n");
 
    printf("Test Case: outpost is played once\n");
-   outpostCard(&test, 0, 4);
+   cardEffect(outpost, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = 4;
    control.outpostPlayed = 1;
    control.playedCards[0] = outpost;
@@ -85,8 +90,9 @@ int main() {
    test.hand[0][4] = outpost;
    memcpy(&control, &test, sizeof(struct gameState));
   
-   outpostCard(&test, 0, 4);
-   outpostCard(&test, 0, 3);
+   cardEffect(outpost, choice1, choice2, choice3, &test, handpos, &bonus);
+   handpos = handpos - 1;
+   cardEffect(outpost, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = 3;
    control.outpostPlayed = 2;
    control.playedCards[0] = outpost;
