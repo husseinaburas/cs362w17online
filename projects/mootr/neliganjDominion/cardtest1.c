@@ -1,110 +1,75 @@
+/**
+ * Title:	Unit test for playSmithy() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of playSmithy card function. Runs
+ *  through several scenarios to ensure playSmithy correctly draws 3 new cards
+ *  into a player's hand (and the other rules of the game are followed)
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char** argc) {
+  struct gameState testState, copyState;
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
 
-int main() {
-	int i;
-	int seed = 3000;
-	int numPlayer = 2;
-	int maxSmithys = 3;
-	int p, r, handCount;
-	int smithyCount;
-	int k[10] = {adventurer, council_room, feast, gardens, mine
-			, remodel, smithy, village, baron, great_hall};
-	struct gameState G;
-	int maxHandCount = 5;
-	int testPassed = 1;
+  initializeGame(players, kingdomCards, randomSeed, &testState);
+  memcpy(&copyState, &testState, sizeof(struct gameState));
 
-	// arrays of all coppers, silvers, golds, and adventurers
-	int coppers[MAX_HAND];
-	int smithys[MAX_HAND];
+  printf("==============\tSTART TESTING\tplaySmithy()\t==============\n");
 
-	for (i = 0; i < MAX_HAND; i++)
-	{
-		coppers[i] = copper;
-		smithys[i] = smithy;
-	}
+  // Setting first card of first player's hand to be Smithy
+  testState.hand[0][0] = smithy;
+  // Playing smithy
+  playSmithy(&testState, 0);
 
-	printf ("\nTESTING playSmithy():\n");
-	for (p = 0; p < numPlayer; p++)
-	{
-		for (handCount = maxSmithys; handCount <= maxHandCount; handCount++)
-		{
-			for (smithyCount = 1; smithyCount <= maxSmithys; smithyCount++)
-			{
-				#if (NOISY_TEST == 1)
-					printf("Test player %d with %d total cards and %d Smithy card(s).\n", p, handCount, smithyCount);
-				#endif
+  // Checking discard count to ensure the card was not discarded
+  UNIT_ASSERT((testState.discardCount[0] == 0),
+              "TEST CASE:\tCheck card has not been discarded\t\t\t\tRESULT:");
 
-				memset(&G, 23, sizeof(struct gameState));   // clear the game state
-				r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-				G.handCount[p] = handCount;                 // set the number of cards on hand
+  // Checking player's hand has increased by 2 (3 from drawing, played 1)
+  UNIT_ASSERT((testState.handCount[0] == copyState.handCount[0] + 2),
+              "TEST CASE:\tHand count has increased by 2 (1 played, 3 "
+              "gained)\t\tRESULT:");
 
-				if (p == 1)
-				{
-					G.whoseTurn++;
-				}
+  // Card has made it into the played cards deck
+  UNIT_ASSERT((testState.playedCards[0] == smithy),
+              "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
-				memcpy(G.hand[p], smithys, sizeof(int) * smithyCount); // set smithy cards
-				memcpy(G.hand[p + smithyCount], coppers, sizeof(int) * (handCount - smithyCount)); // set remaining cards to coppers
+  // Player's deck has decreased by 3
+  UNIT_ASSERT((testState.deckCount[0] == copyState.deckCount[0] - 3),
+              "TEST CASE:\tDeck has decreased by 3 cards\t\t\t\t\tRESULT:");
 
-				if (smithyCount == 1)
-				{
-					playSmithy(&G, 0);  // play Smithy from 0 hand position
-				}
-				else
-				{
-					playSmithy(&G, 1);  // play Smithy from 1 hand position
-				}
+  UNIT_ASSERT((testState.deckCount[1] == copyState.deckCount[1]),
+              "TEST CASE:\tPlayer 2 deck count unchanged\t\t\t\t\tRESULT:");
 
-				int total_in_hand = 0;
-				int smithys_in_hand = 0;
-				for (i = 0; i <= G.handCount[p]; i++)
-				{
-					total_in_hand++;
+  UNIT_ASSERT((testState.handCount[1] == copyState.handCount[1]),
+              "TEST CASE:\tPlayer 2 hand count unchanged\t\t\t\t\tRESULT:");
 
-					if (G.hand[p][i] == smithy)
-					{
-						smithys_in_hand++;
-					}
-				}
+  UNIT_ASSERT((testState.deckCount[2] == copyState.deckCount[2]),
+              "TEST CASE:\tPlayer 3 deck count unchanged\t\t\t\t\tRESULT:");
 
-				#if (NOISY_TEST == 1)
-					printf("Cards in hand after playSmithy() = %d, expected = %d\n", total_in_hand, handCount + 3);
-				#endif
+  UNIT_ASSERT((testState.handCount[2] == copyState.handCount[2]),
+              "TEST CASE:\tPlayer 3 hand count unchanged\t\t\t\t\tRESULT:");
 
-				#if (NOISY_TEST == 1)
-					printf("Smithys in hand = %d, expected = %d\n", smithys_in_hand, smithyCount - 1);
-				#endif
+  UNIT_ASSERT(
+      (testState.supplyCount[province] == copyState.supplyCount[province]),
+      "TEST CASE:\tProvince piles have not changed\t\t\t\t\tRESULT:");
 
-				if (total_in_hand == handCount + 3 && smithys_in_hand == smithyCount - 1)
-				{
-					// pass
-				}
-				else
-				{
-					// fail
-					testPassed = 0;	
-				}
-			}
-		}
-	}
-
-	if (testPassed == 1)
-	{
-		printf("TEST PASSED\n\n");
-	}
-	else
-	{
-		printf("TEST FAILED\n\n");
-	}
-
-	return 0;
-}
+  printf("==============\tEnd TESTING\tplaySmithy()\t==============\n");
+  return 0;
+};

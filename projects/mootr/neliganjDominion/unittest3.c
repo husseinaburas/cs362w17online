@@ -1,105 +1,100 @@
+/**
+ * Title:	Unit test for handCard() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of handOver function. Runs through
+ * 	several scenarios to test whether handOver correctly places card in a
+ * given
+ * 	player's hand in the correct hand position.
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
-#include <time.h>
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char **argc) {
+  struct gameState *testState = newGame();
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
+  initializeGame(players, kingdomCards, randomSeed, testState);
 
-int main() {
-	int i, p, r;
-	int total_copper_count = 0;
-	int total_gold_count = 0;
-	int seed = 4000;
-	int numPlayer = 4;
-	int copper_card = 4;
-	int gold_card = 6;
-	int coppers[MAX_HAND];
-	int golds[MAX_HAND];
-	int testPassed = 1;
-	for (i = 0; i < MAX_HAND; i++)
-	{
-		coppers[i] = copper;
-		golds[i] = gold;
-	}
-	int k[10] = {adventurer, council_room, feast, gardens, mine
-			, remodel, smithy, village, baron, great_hall};
-	struct gameState G;
+  printf("==============\tSTART TESTING\thandCard()\t==============\n");
 
-	r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-	int expected_copper_count = 28;  // expected count of all cards after initialing a 4 player game, minus 10 for player 3 who has golds
-	int expected_gold_count = 10;
-
-	printf ("\nTESTING fullDeckCount():\n");
-	for (p = 0; p < numPlayer; p++)
-	{
-		if (p == 3)
-		{
-			memcpy(G.deck[p], golds, sizeof(int) * G.deckCount[p]); // set all the cards in deck to gold
-			memcpy(G.hand[p], golds, sizeof(int) * G.deckCount[p]); // set all the cards in hand to gold
-		}
-		else
-		{
-			memcpy(G.deck[p], coppers, sizeof(int) * G.deckCount[p]); // set all the cards in deck to copper
-			memcpy(G.hand[p], coppers, sizeof(int) * G.deckCount[p]); // set all the cards in hand to copper
-		}
-
-
-		// discard a card with and without trash flag
-		discardCard(0, p, &G, 0);
-		discardCard(0, p, &G, 1);
-
-		int player_copper_count = fullDeckCount(p, copper_card, &G);
-		int player_gold_count = fullDeckCount(p, gold_card, &G);
-
-		#if (NOISY_TEST == 1)
-			printf("Player %d copper count: %d\n", p, player_copper_count);
-			printf("Player %d gold count: %d\n", p, player_gold_count);
-		#endif
-
-		total_copper_count += player_copper_count;
-		total_gold_count += player_gold_count;
-	}
-
-	#if (NOISY_TEST == 1)
-		printf("\nTotal copper count: %d\nExpected copper count: %d\n", total_copper_count, expected_copper_count);
-	#endif
-
-	if (expected_copper_count == total_copper_count)
-	{
-		// pass
-	}
-	else
-	{
-		// fail
-		testPassed = 0;
-	}
-
-	#if (NOISY_TEST == 1)
-		printf("Total gold count: %d\nExpected gold count: %d\n", total_gold_count, expected_gold_count);
-	#endif
-
-	if (expected_gold_count == total_gold_count)
-	{
-		// pass
-	}
-	else
-	{
-		// fail
-	}
-
-	if (testPassed == 1)
-    {
-        printf("TEST PASSED\n\n");
+  // Copying first player's hand to compare to result of handCard
+  int error = 0;
+  int currentPlayerHand[5] = {0};
+	int i;
+  for (i = 0; i < 5; i++) {
+    currentPlayerHand[i] = testState->hand[0][i];
+  };
+  // Checking that handCard() returns the same cards for the current player
+  for (i = 0; i < 5; i++) {
+    if (currentPlayerHand[i] != handCard(i, testState)) {
+      error = 1;
+    } else {
+      continue;
     }
-    else
-    {
-        printf("TEST FAILED\n\n");
-    }
+  };
 
-	return 0;
-}
+  UNIT_ASSERT((error == 0),
+              "TEST CASE:\tCheck function matches copied hand for first "
+              "player\t\tRESULT:");
+  // Resetting error flag
+  error = 0;
+  // Setting it as next player's turn, to ensure handCard() returns new players
+  // cards
+  testState->whoseTurn = 1;
+
+  // Making a copy of next player's hand
+  for (i = 0; i < 5; i++) {
+    currentPlayerHand[i] = testState->hand[1][i];
+  }
+  // Checking if the hands match
+  for (i = 0; i < 5; i++) {
+    if (currentPlayerHand[i] != handCard(i, testState)) {
+      error = 1;
+    } else {
+      continue;
+    }
+  };
+  UNIT_ASSERT((error == 0),
+              "TEST CASE:\tCheck function matches next player's hand "
+              "after ending turn\tRESULT:");
+
+  // Setting hand to ensure it pulls correct card at the correct position
+  testState->hand[1][0] = smithy;
+  testState->hand[1][1] = adventurer;
+  testState->hand[1][2] = adventurer;
+  testState->hand[1][3] = adventurer;
+  testState->hand[1][4] = adventurer;
+
+  UNIT_ASSERT((handCard(0, testState) != adventurer),
+              "TEST CASE:\tCheck function returns correct card at 1st "
+              "position out of 5\tRESULT:");
+  UNIT_ASSERT((handCard(1, testState) == adventurer),
+              "TEST CASE:\tCheck function returns correct card at 2nd "
+              "position out of 5\tRESULT:");
+  UNIT_ASSERT((handCard(2, testState) == adventurer),
+              "TEST CASE:\tCheck function returns correct card at 3rd "
+              "position out of 5\tRESULT:");
+  UNIT_ASSERT((handCard(3, testState) == adventurer),
+              "TEST CASE:\tCheck function returns correct card at 4th "
+              "position out of 5\tRESULT:");
+  UNIT_ASSERT((handCard(4, testState) == adventurer),
+              "TEST CASE:\tCheck function returns correct card at 5th "
+              "position out of 5\tRESULT:");
+
+  printf("==============\tEND TESTING\thandCard()\t==============\n");
+
+  return 0;
+};

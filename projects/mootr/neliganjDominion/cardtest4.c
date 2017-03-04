@@ -1,80 +1,93 @@
+/**
+ * Title:	Unit test for playFeast() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of playFeast card function.
+ * Runs through several scenarios to ensure playFeast card draws is trashed an
+ * a card costing up to 5 is acquired.
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char** argc) {
+  struct gameState testState, copyState;
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
 
-int main() {
+  initializeGame(players, kingdomCards, randomSeed, &testState);
+  memcpy(&copyState, &testState, sizeof(struct gameState));
+
+  printf("==============\tSTART TESTING\tplayFeast()\t==============\n");
+
+  // Setting first card of first player's hand to be Feast rest to adventurer
+  testState.hand[0][0] = feast;
+  testState.hand[0][1] = adventurer;
+  testState.hand[0][2] = adventurer;
+  testState.hand[0][3] = adventurer;
+  testState.hand[0][4] = adventurer;
+  // Playing feast
+  playFeast(&testState, 0, smithy);
+
+  // Checking discard count to ensure the card was not discarded
+  UNIT_ASSERT((testState.deckCount[0] == copyState.deckCount[0]),
+              "TEST CASE:\tCheck deck count has not changed\t\t\t\tRESULT:");
+
+  // Checking player's hand played one gained one
+  UNIT_ASSERT((testState.handCount[0] == copyState.handCount[0]),
+              "TEST CASE:\tHand count has not changed (play one, gain "
+              "one)\t\t\tRESULT:");
+
+  // Card has not made it into the played cards deck (supposed to trash it)
+  UNIT_ASSERT(
+      (testState.discard[0][0] != feast),
+      "TEST CASE:\tPlayed card is not in played cards deck\t\t\t\tRESULT:");
+
+  // Testing if Smithy was actually acquire using feast
+  int foundSmithy = 0;
 	int i;
-	int testPassed = 1;
-    int seed = 1000;
-    int numPlayer = 4;
-    int p, r, handCount, handPos, temp_num_buys, temp_hand_count_0, temp_hand_count_1, temp_hand_count_2, temp_hand_count_3;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-            , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
-    int maxHandCount = 5;
+  for (i = 0; i < 10; i++) {
+    if (testState.hand[0][i] == smithy) {
+      foundSmithy = 1;
+    }
+  }
+  UNIT_ASSERT((foundSmithy == 1),
+              "TEST CASE:\tSmithy was acquired using feast\t\t\t\t\tRESULT:");
 
-	printf ("\nTESTING playCouncil_Room():\n");
+  UNIT_ASSERT((testState.playedCards[0] != smithy),
+              "TEST CASE:\tSmithy is not in played cards deck\t\t\t\tRESULT:");
 
-	for (handCount = 1; handCount <= maxHandCount; handCount++)
-	{
-		for (handPos = 0; handPos < handCount; handPos++)
-		{
-			#if (NOISY_TEST == 1)
-				printf("Test player 0 with %d cards in hand and Council Room card in hand pos %d.\n", handCount, handPos);
-				for (i = 1; i < numPlayer; i++)
-				{
-					printf("Player %d: %d cards\n", i, G.handCount[i]);
-				}
-				printf("\n");
-			#endif
+  UNIT_ASSERT((testState.discard[0][0] != smithy),
+              "TEST CASE:\tSmithy is not in discard cards deck\t\t\t\tRESULT:");
 
-			memset(&G, 23, sizeof(struct gameState));   // clear the game state
-			r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-			for (i = 0; i < numPlayer; i++)
-			{
-				G.handCount[i] = handCount;
-			}
+  UNIT_ASSERT((testState.deckCount[1] == copyState.deckCount[1]),
+              "TEST CASE:\tPlayer 2 deck count unchanged\t\t\t\t\tRESULT:");
 
-			temp_hand_count_0 = G.handCount[0];
-			temp_hand_count_1 = G.handCount[1];
-			temp_hand_count_2 = G.handCount[2];
-			temp_hand_count_3 = G.handCount[3];
+  UNIT_ASSERT((testState.handCount[1] == copyState.handCount[1]),
+              "TEST CASE:\tPlayer 2 hand count unchanged\t\t\t\t\tRESULT:");
 
-			G.numBuys = handPos; // vary number of buy actions available
+  UNIT_ASSERT((testState.deckCount[2] == copyState.deckCount[2]),
+              "TEST CASE:\tPlayer 3 deck count unchanged\t\t\t\t\tRESULT:");
 
-			playCouncil_Room(&G, handPos);
+  UNIT_ASSERT((testState.handCount[2] == copyState.handCount[2]),
+              "TEST CASE:\tPlayer 3 hand count unchanged\t\t\t\t\tRESULT:");
 
-			#if (NOISY_TEST == 1)
-				printf("Expected num buy actions: %d; actual: %d\n", handPos + 1, G.numBuys);
-				printf("Expected player 0 hand count: %d; actual: %d\n", temp_hand_count_0 + 3, G.handCount[0]);
-				printf("Expected player 1 hand count: %d; actual: %d\n", temp_hand_count_1 + 1, G.handCount[1]);
-				printf("Expected player 2 hand count: %d; actual: %d\n", temp_hand_count_2 + 1, G.handCount[2]);
-				printf("Expected player 3 hand count: %d; actual: %d\n\n", temp_hand_count_3 + 1, G.handCount[3]);
-			#endif
+  UNIT_ASSERT(
+      (testState.supplyCount[province] == copyState.supplyCount[province]),
+      "TEST CASE:\tProvince piles have not changed\t\t\t\t\tRESULT:");
 
-			if ( ! ( (temp_hand_count_0 + 3 == G.handCount[0]) && (temp_hand_count_1 + 1 == G.handCount[1]) && 
-			         (temp_hand_count_2 + 1 == G.handCount[2]) && (temp_hand_count_3 + 1 == G.handCount[3]) ) ) 
-			{
-				testPassed = 0;
-			}
-		}
-	}
-
-	if (testPassed == 1)
-	{
-		printf("TEST PASSED\n\n");
-	}
-	else
-	{
-		printf("TEST FAILED\n\n");
-	}
-
-	return 0;
-}
+  printf("==============\tEnd TESTING\tplayFeast()\t==============\n");
+  return 0;
+};

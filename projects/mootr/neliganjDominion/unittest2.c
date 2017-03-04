@@ -1,72 +1,90 @@
+/**
+ * Title:	Unit test for isGameOver() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of isGameOver function. Runs through
+ * 	several scenarios to test whether isGameOver can properly detect that
+ * the
+ * 	Dominion game should end. A game ends if isGameOver return 1, otherwise,
+ * it
+ * 	should return 0.
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
-#include <time.h>
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char **argc) {
+  struct gameState *testState = newGame();
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
+  initializeGame(players, kingdomCards, randomSeed, testState);
 
-int main() {
-	int i, p, r;
-	int seed = time(NULL);
-	int numPlayer = 4;
-	int k[10] = {adventurer, council_room, feast, gardens, mine
-			, remodel, smithy, village, baron, great_hall};
-	struct gameState G;
-	int testPassed = 1;
+  // Testing that game isn't over when it is started
+  printf("==============\tSTART TESTING\tisGameOver()\t==============\n");
+  UNIT_ASSERT(
+      (isGameOver(testState) == 0),
+      "TEST CASE:\tGame initialized, test that game isn't over\t\t\tRESULT:");
 
-	printf ("\nTESTING shuffle():\n");
-	for (p = 0; p < numPlayer; p++)
-	{
+  // Testing that game ends when province count == 0
+  int provinceCount = testState->supplyCount[province];
+  testState->supplyCount[province] = 0;
+  UNIT_ASSERT(
+      (isGameOver(testState) == 1),
+      "TEST CASE:\tSet province cards to zero, game should end\t\t\tRESULT:");
 
-		#if (NOISY_TEST == 1)
-			printf("Test player %d deck shuffle\n", p);
-		#endif
+  // Reseting province count to original value
+  testState->supplyCount[province] = provinceCount;
 
-		memset(&G, 23, sizeof(struct gameState));   // clear the game state
-		r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
+  // Testing 3 supply card piles being empty to end game
+  int originalSupplyCounts[3] = {0};
+	int i;
+  for (i = 3; i > 0; i--) {
+    originalSupplyCounts[i] = testState->supplyCount[i];
+    testState->supplyCount[i] = 0;
+  }
+  UNIT_ASSERT(
+      (isGameOver(testState) == 1),
+      "TEST CASE:\t3 Supply piles empty, game should be over\t\t\tRESULT:");
 
-		int temp_deck[MAX_HAND];
-		memcpy(temp_deck, G.deck[p], sizeof(int) * G.deckCount[p]);
+  // Reset supply cards to original values
+  for (i = 3; i > 0; i--) {
+    testState->supplyCount[i] = originalSupplyCounts[i];
+  }
 
+  // Both proince cards and supply scenario
+  for (i = 3; i > 0; i--) {
+    testState->supplyCount[i] = 0;
+  }
+  testState->supplyCount[province] = 0;
+  UNIT_ASSERT(
+      (isGameOver(testState) == 1),
+      "TEST CASE:\tBoth province empty & 3 supply piles empty\t\t\tRESULT:");
 
-		r = shuffle(p, &G);
-		int same_count = 0;
+  // Reset supply piles
+  for (i = 3; i > 0; i--) {
+    testState->supplyCount[i] = originalSupplyCounts[i];
+  }
 
-		for (i = 0; i < G.deckCount[p]; i++)
-		{
-			if (temp_deck[i] == G.deck[p][i]) {
-				same_count++;
-			}
-		}
-		double percent_same = ((float)same_count / (float)G.deckCount[p]) * 100;
-		#if (NOISY_TEST == 1)
-			printf("%d of %d cards in same position after shuffle: %g%%\n", same_count, G.deckCount[p], percent_same);
-		#endif
+  // Only 2 supply piles are empty
+  for (i = 2; i > 0; i--) {
+    testState->supplyCount[i] = 0;
+  }
+  UNIT_ASSERT(
+      (isGameOver(testState) == 0),
+      "TEST CASE:\tOnly 2 supply piles empty, game shouldn't end\t\t\tRESULT:");
 
-		if (percent_same < 99)
-		{
-			// pass
-		}
-		else
-		{
-			// fail
-			testPassed = 0;
-		}
-	}
+  printf("==============\tEND TESTING\tisGameOver()\t==============\n");
 
-	if (testPassed == 1)
-    {
-        printf("TEST PASSED\n\n");
-    }
-    else
-    {
-        printf("TEST FAILED\n\n");
-    }
-
-	return 0;
-}
+  return 0;
+};

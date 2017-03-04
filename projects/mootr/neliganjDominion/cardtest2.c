@@ -1,131 +1,74 @@
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include <string.h>
+/**
+ * Title:	Unit test for playAdventurer() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of playAdventurer card function. Runs
+ *  through several scenarios to ensure playAdventurer card draws carrds until
+ *  2 treasure cards have been revealed and are in the player's hand.
+ */
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+#include <string.h>
+#include "dominion.h"
+#include "dominion_helpers.h"
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char** argc) {
+  struct gameState testState, copyState;
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
 
-int main() {
-	int p = 0;
-    int set_smithy = 0;
-	int seed = 3000;
-	int numPlayer = 2;
-	int maxTreasureCount = 5;
-    int maxDeckCount = 20;
-    int startDeckCount = 5;
-	int i, r, j, deckCount, range, expected_treasure;
-	int treasureCount;
-	int k[10] = {adventurer, council_room, feast, gardens, mine
-			, remodel, smithy, village, baron, great_hall};
-	struct gameState G;
-	int maxHandCount = 5;
-	int testPassed = 1;
-    int treasureSlots[MAX_DECK];
+  initializeGame(players, kingdomCards, randomSeed, &testState);
+  memcpy(&copyState, &testState, sizeof(struct gameState));
 
-	int adventurers[MAX_HAND];
-	for (i = 0; i < MAX_HAND; i++)
-	{
-		adventurers[i] = adventurer;
-	}
+  printf("==============\tSTART TESTING\tplayAdventurer()\t==============\n");
 
-	printf ("\nTESTING playAdventurer():\n");
+  // Setting first card of first player's hand to be adventurer
+  testState.hand[0][0] = adventurer;
+  // Playing adventurer
+  playAdventurer(&testState, 0);
+  updateCoins(0, &testState, 0);
+  // Checking discard count to ensure the card was not discarded
+  UNIT_ASSERT((testState.deckCount[0] != copyState.deckCount[0]),
+              "TEST CASE:\tCheck deck count has changed\t\t\t\t\tRESULT:");
 
-    for (deckCount = startDeckCount; deckCount <= maxDeckCount; deckCount++)
-    {
-        for (treasureCount = 0; treasureCount <= deckCount; treasureCount++)
-        {
-            #if (NOISY_TEST == 1)
-                printf("Test player %d with %d cards in deck and %d treasure card(s) in deck.\n", p, deckCount, treasureCount);
-            #endif
+  // Checking player's hand has increased by 2 (for both treasure cards)
+  UNIT_ASSERT((testState.handCount[0] == copyState.handCount[0] + 2),
+              "TEST CASE:\tHand count has increased by 2\t\t\t\t\tRESULT:");
 
-            memset(&G, 23, sizeof(struct gameState));   // clear the game state
-            r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-            G.deckCount[p] = deckCount;                 // set the number of cards in deck
-            
-            memcpy(G.hand[p], adventurers, sizeof(int) * 1); // set adventurer card as first card in hand
+  // Card has made it into the played cards deck
+  UNIT_ASSERT((testState.playedCards[0] == adventurer),
+              "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
-            // assign treasure cards at random points in the deck
-            for (i = 0; i < treasureCount; i++)
-            {
-                treasureSlots[i] = rand() % deckCount;
-            }
+  UNIT_ASSERT(
+      (testState.deckCount[0] < copyState.deckCount[0] + 1),
+      "TEST CASE:\tDeck has decreased by atleast two cards\t\t\t\tRESULT:");
 
-            for (i = 0; i < deckCount; i++)
-            {
-                set_smithy = 1;
-                for (j = 0; j <= treasureCount; j++)
-                {
-                    if (treasureSlots[j] == i && treasureCount > 0)
-                    {
-                        G.deck[p][i] = silver; // set treasure card
-                        set_smithy = 0;
-                        break;
-                    }
-                }
-                if (set_smithy == 1)
-                {
-                    G.deck[p][i] = smithy; // set abritrary non-treasure card
-                }
-            }
+  UNIT_ASSERT((testState.deckCount[1] == copyState.deckCount[1]),
+              "TEST CASE:\tPlayer 2 deck count unchanged\t\t\t\t\tRESULT:");
 
-            playAdventurer(&G);
+  UNIT_ASSERT((testState.handCount[1] == copyState.handCount[1]),
+              "TEST CASE:\tPlayer 2 hand count unchanged\t\t\t\t\tRESULT:");
 
-            int adventurers_in_hand = 0;
-            int treasures_in_deck = 0;
-            for (i = 0; i <= G.deckCount[p]; i++)
-            {   
-                if (G.deck[p][i] == silver)
-                {
-                    treasures_in_deck++;
-                }
-                else if (G.hand[p][i] == adventurer)
-                {
-                    adventurers_in_hand++;
-                }
-            }
+  UNIT_ASSERT((testState.deckCount[2] == copyState.deckCount[2]),
+              "TEST CASE:\tPlayer 3 deck count unchanged\t\t\t\t\tRESULT:");
 
-            if (treasureCount < 2)
-            {
-                expected_treasure = 0;
-            }
-            else
-            {
-                expected_treasure = treasureCount - 2;
-            }
+  UNIT_ASSERT((testState.handCount[2] == copyState.handCount[2]),
+              "TEST CASE:\tPlayer 3 hand count unchanged\t\t\t\t\tRESULT:");
 
-            #if (NOISY_TEST == 1)
-                printf("Treasure cards in deck after playAdventurer() = %d, expected = %d\n", treasures_in_deck, expected_treasure);
-            #endif
+  UNIT_ASSERT(
+      (testState.supplyCount[province] == copyState.supplyCount[province]),
+      "TEST CASE:\tProvince piles have not changed\t\t\t\t\tRESULT:");
 
-            #if (NOISY_TEST == 1)
-                printf("Adventurers in hand = %d, expected = %d\n", adventurers_in_hand, 0);
-            #endif
-
-            if (treasures_in_deck == expected_treasure && adventurers_in_hand == 0)
-            {
-                // pass
-            }
-            else
-            {
-                // fail
-                testPassed = 0;	
-            }
-        }
-    }
-
-	if (testPassed == 1)
-	{
-		printf("TEST PASSED\n\n");
-	}
-	else
-	{
-		printf("TEST FAILED\n\n");
-	}
-
-	return 0;
-}
+  printf("==============\tEnd TESTING\tplayAdventurer()\t==============\n");
+  return 0;
+};

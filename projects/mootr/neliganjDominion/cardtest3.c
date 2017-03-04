@@ -1,68 +1,78 @@
+/**
+ * Title:	Unit test for playCouncilRoom() function
+ * Author: Richard Moot
+ * Description:	Tests proper functionality of playCouncilRoom card function.
+ * Runs
+ *  through several scenarios to ensure playCouncilRoom card draws 4 cards and
+ *  gets 1 additional buy (all other players draw 1 card as well)
+ */
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
 #include "rngs.h"
 
+#define UNIT_ASSERT(conditional, message) \
+  if (!conditional) {                     \
+    printf("%s FAIL\n", message);         \
+  } else {                                \
+    printf("%s PASS\n", message);         \
+  }
 
-// set NOISY_TEST to 0 to remove printfs from output
-#define NOISY_TEST 1
+int main(int argv, char** argc) {
+  struct gameState testState, copyState;
+  int kingdomCards[10] = {adventurer, gardens,  embargo, village, minion,
+                          mine,       cutpurse, sea_hag, tribute, smithy};
+  int randomSeed = 1000;
+  int players = 3;
 
-int main() {
-	int i;
-	int testPassed = 1;
-    int seed = 1000;
-    int numPlayer = 2;
-    int p, r, handCount, handPos, temp_actions, temp_hand_count;
-    int k[10] = {adventurer, council_room, feast, gardens, mine
-            , remodel, smithy, village, baron, great_hall};
-    struct gameState G;
-    int maxHandCount = 5;
+  initializeGame(players, kingdomCards, randomSeed, &testState);
+  memcpy(&copyState, &testState, sizeof(struct gameState));
 
-	printf ("\nTESTING playVillage():\n");
+  printf("==============\tSTART TESTING\tplayCouncilRoom()\t==============\n");
 
-    for (p = 0; p < numPlayer; p++)
-    {
-        for (handCount = 1; handCount <= maxHandCount; handCount++)
-        {
-			for (handPos = 0; handPos < handCount; handPos++)
-			{
-				#if (NOISY_TEST == 1)
-					printf("Test player %d with %d cards in hand and Village card in hand pos %d.\n", p, handCount, handPos);
-				#endif
+  // Setting first card of first player's hand to be council room
+  testState.hand[0][0] = council_room;
+  // Playing council room
+  playCouncil_Room(&testState, 0);
 
-				memset(&G, 23, sizeof(struct gameState));   // clear the game state
-				r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
-				G.handCount[p] = handCount;
+  // Checking discard count to ensure the card was not discarded
+  UNIT_ASSERT((testState.deckCount[0] != copyState.deckCount[0]),
+              "TEST CASE:\tCheck deck count has changed\t\t\t\t\tRESULT:");
 
-				G.numActions = handPos;  // set varying number of temp_actions
+  // Checking player's hand has increased by 3 (4 draw - 1 played)
+  UNIT_ASSERT((testState.handCount[0] == copyState.handCount[0] + 3),
+              "TEST CASE:\tHand count has increased by 4\t\t\t\t\tRESULT:");
 
-				temp_actions = G.numActions;
-				temp_hand_count = G.handCount[p];
-				playVillage(&G, handPos);
+  // Card has made it into the played cards deck
+  UNIT_ASSERT((testState.playedCards[0] == council_room),
+              "TEST CASE:\tPlayed card is in played cards deck\t\t\t\tRESULT:");
 
-				#if (NOISY_TEST == 1)
-					printf("Expected num actions: %d; actual: %d\n", temp_actions + 2, G.numActions);
-					printf("Expected hand count: %d; actual: %d\n\n", temp_hand_count, G.handCount[p]);
-				#endif
+  // Checking that the deck has decreased by 4 for
+  UNIT_ASSERT((testState.deckCount[0] == copyState.deckCount[0] - 4),
+              "TEST CASE:\tDeck has decreased by 4 cards\t\t\t\t\tRESULT:");
 
-				if ( ! ( (temp_actions + 2 == G.numActions) && (temp_hand_count == G.handCount[p]) ) )
-				{
-					testPassed = 0;
-				}
-			}
-        }
-    }
+  UNIT_ASSERT((testState.numBuys == copyState.numBuys + 1),
+              "TEST CASE:\tCheck number of buys increase by 1\t\t\t\tRESULT:")
 
-	if (testPassed == 1)
-	{
-		printf("TEST PASSED\n\n");
-	}
-	else
-	{
-		printf("TEST FAILED\n\n");
-	}
+  UNIT_ASSERT((testState.deckCount[1] == copyState.deckCount[1] - 1),
+              "TEST CASE:\tPlayer 2 deck count decrease by 1\t\t\t\tRESULT:");
 
-	return 0;
-}
+  UNIT_ASSERT((testState.handCount[1] == copyState.handCount[1] + 1),
+              "TEST CASE:\tPlayer 2 hand count increase by 1\t\t\t\tRESULT:");
+
+  UNIT_ASSERT((testState.deckCount[2] == copyState.deckCount[2] - 1),
+              "TEST CASE:\tPlayer 3 deck count decrease by 1\t\t\t\tRESULT:");
+
+  UNIT_ASSERT((testState.handCount[2] == copyState.handCount[2] + 1),
+              "TEST CASE:\tPlayer 3 hand count increase by 1\t\t\t\tRESULT:");
+
+  UNIT_ASSERT(
+      (testState.supplyCount[province] == copyState.supplyCount[province]),
+      "TEST CASE:\tProvince piles have not changed\t\t\t\t\tRESULT:");
+
+  printf("==============\tEnd TESTING\tplayCouncilRoom()\t==============\n");
+  return 0;
+};
