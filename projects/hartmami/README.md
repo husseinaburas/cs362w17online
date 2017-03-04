@@ -1,3 +1,15 @@
+## Assignment 5
+
+	modified cardtest1.c and dominion.c
+	
+	added BugsInTeammate.txt
+
+	added getCard() function, updated testAssert() to garveya dominion.c and dominion.h
+
+	modified garveya makefile
+	
+	added garveyaDominion files
+	
 ## Assignment 4
 
 	added randomtestcard2.c
@@ -57,9 +69,9 @@
 
 ## Assignment 1
 
-	Part 2
 
-## clone repo to local machine
+
+	## clone repo to local machine
 
 	install git
 
@@ -67,7 +79,7 @@
 
 	clone repo
 
-## make onid directory
+	## make onid directory
 
 	cd to target directory
 
@@ -75,7 +87,7 @@
 
 	cp dominion code to onid directory
 
-## add onid directory
+	## add onid directory
 
 	git add onid directory
 
@@ -83,7 +95,7 @@
 
 	git push origin master
 
-## make README
+	## make README
 
 	I AM THE README
 
