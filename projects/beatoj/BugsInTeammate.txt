@@ -1,0 +1,76 @@
+BugsInTeammate.txt
+Author: Jeanvally G.Beato
+Date  : 3/5/17
+Course: CS 362 - Assignment 5
+Teammate ONID:  eisenbad
+__________________________________________________________________________________
+Bug #1:  dominion.c = Extra drawCard() call in council_room_refact()
+
+I did not create a random test generator for this card, however, it was one of the functions I created unit tests for in Assignment #3.  I went through the unittestresults.out file and saw that a test had failed, therefore compared my team mate’s council_room_refact with the original council_room function.  I discovered that my team mate inserted an additional drawCard() function in the for loop.  Essentially, every other player draws TWO cards instead of 1, which is what caused this unit test to fail.  
+
+CODE (dominion.c):
+
+int council_room_refact(struct gameState *state, int handPos) {
+      int currentPlayer = whoseTurn(state);
+      int i;
+
+      //+4 Cards
+      for (i = 0; i < 4; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+			
+      //+1 Buy
+      state->numBuys++;
+			
+      //Each other player draws a card
+      for (i = 0; i < state->numPlayers; i++)
+	{
+	  if ( i != currentPlayer )
+	    {
+	      drawCard(i, state);
+	      drawCard(i, state);
+	    }
+	}
+			
+      //put played card in played card pile
+      discardCard(handPos, currentPlayer, state, 0);
+			
+      return 0;
+}
+
+__________________________________________________________________________________Bug #2:  dominion.c = 1 was added to the currentPlayer variable in village_refact()This was a little bit harder to find as I did not create any unit or random tests for it.  I however, did go over all of the standalone functions that were created and checked it against the original to see what changes were made.  Had I used my team mate’s unit and/or random tests, then I probably would’ve caught this in my .out files that generated.  While it seems to be a very small change, the person whom we think should be playing this card is always an index behind.  This means the expected player to play this card never plays it.  
+
+CODE (dominion.c):  
+
+int village_refact(struct gameState *state, int handPos) {
+      int currentPlayer = whoseTurn(state) + 1;
+
+      //+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+2 Actions
+      state->numActions = state->numActions + 2;
+			
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+__________________________________________________________________________________Bug #3 (unidentified):  dominion.c = smithy_refact failing all random testsWhen observing my randomtestcard1.out file, out of 1000 runs, all failed.  The reason being is that the game could not initialize successfully.  When scrolling up to the code part, the file mentions that smithy_refact() was called 744 times and returned 100% blocks with 100% executed.  This was odd to me because randomtestadventurer.c is structured the exact same way where the game gets initialized within the file, THEN the function to play the adventurer card is called.  The only difference between the two random card test files are the functions.  Which I compared my teammate’s smithy_refact() method to the original and he did not make any changes.  I’m really not sure where the bug could be but I’m certain because of the number of failed tests, that it exists somewhere either within my randomtestcard1.c file, or something in dominion.c having to do with initializing the game. 
+
+CODE (dominion.c): 
+
+int smithy_refact(struct gameState *state, int handPos) {
+    int currentPlayer = whoseTurn(state);
+    int i;
+
+    //+3 Cards
+    for (i = 0; i <= 3; i++)
+	{
+	  drawCard(currentPlayer, state);
+	}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
