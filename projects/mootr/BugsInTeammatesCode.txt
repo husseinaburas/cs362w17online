@@ -3,17 +3,14 @@ Bugs in Teammate’s Code
   The most glaring bug of James’ code was line 1321 of dominion.c, which is a
 part of the playFeast() function. There is a while loop controlled by the x
 variable being equal to 1, and this line was commented out, which prevented x
-from changing and let the while loop continue infinitely. This appears to occur
-any time the playFeast() function would be called, since the loop appears to be
-intended to manage the process of acquiring the desired card. Outside of that
-bug, there is also a bug in that there is no way of correctly handling the
+from changing and let the while loop continue infinitely. This appears to
+occur any time the playFeast() function would be called, since the loop appears
+to be intended to manage the process of acquiring the desired card. Outside of
+that bug, there is also a bug in that there is no way of correctly handling the
 player selecting a card that is more expensive than 5 coins. If this occurs,
 there would always be an infinite loop (regardless of the bug at line 1321).
-Additionally, it was clear from the unit tests that the selected card was not
-making it into the player’s hand, which appears to be due to line 1331 to 1334
-where the player’s hand is reset to how it was at the beginning of the
-function, essentially wiping any changes or acquisitions of cards made in the
-rest of the function.
+This was apparent due to the unit test never completing, which is why an
+alteration to the source code was made to further test for additional bugs.
 
   Another bug is in playCouncil_Room(), which has the current player acquire a
 lot more cards than they should. Line 1355-1358 is where this appears to
