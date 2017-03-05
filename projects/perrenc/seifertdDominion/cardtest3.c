@@ -23,35 +23,43 @@ long sucesses = 0;
 long failures = 0;
 
 int main(int argc, char** argv) {
-    struct gameState G, G_copy;
+    struct gameState G;
     int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
         sea_hag, tribute, smithy};
 
-    
-    unsigned int arbitrary_hand_count_max = MAX_HAND - 3;
+    unsigned int arbitrary_hand_count_max = MAX_HAND - 2;
     
     for(int l = 0 ; l < 4 ; l++){
         for(int i = 1 ; i < arbitrary_hand_count_max ; i++){
             initializeGame(4, k, 65432, &G);
-            G.handCount[0] = arbitrary_hand_count_max;
+            G.handCount[l] = arbitrary_hand_count_max;
             G.whoseTurn = l;
-
-            G_copy = G;
-
-            drawCard(0, &G_copy);
-            drawCard(0, &G_copy);
-            drawCard(0, &G_copy);
-            discardCard(i, l, &G_copy, 0);
-
-            playSmithy(&G, i);
-
-            testing_assert(G.handCount[l] == G_copy.handCount[l], 0);
-
-            for(int j = 0 ; j < arbitrary_hand_count_max ; j++){
-                testing_assert((G.hand[l][j] >= curse) && (G.hand[l][j] <= treasure_map), 0);
-                testing_assert((G_copy.hand[l][j] >= curse) && (G_copy.hand[l][j] <= treasure_map), 0);
+            
+            int temp_hand[MAX_HAND];
+            playAdventurer(0, &G, G.whoseTurn, temp_hand, 0);
+            
+            testing_assert(G.handCount[l] == arbitrary_hand_count_max + 2, 0);
+            testing_assert((G.hand[l][G.handCount[l] - 1] >= copper) && (G.hand[l][G.handCount[l] - 1] <= gold), 0);
+            testing_assert((G.hand[l][G.handCount[l] - 2] >= copper) && (G.hand[l][G.handCount[l] - 2] <= gold), 0);
+            
+            initializeGame(4, k, 65432, &G);
+            G.handCount[l] = arbitrary_hand_count_max;
+            G.whoseTurn = l;
+            G.deckCount[l] = 0;
+            
+            for(int m = 0 ; m < MAX_DECK ; m += 3){
+                G.discard[l][m] = copper;
+                G.discard[l][m + 1] = silver;
+                G.discard[l][m + 2] = gold;
+                G.discardCount[l] += 3;
             }
+            
+            playAdventurer(0, &G, G.whoseTurn, temp_hand, 0);
 
+            testing_assert(G.handCount[l] == arbitrary_hand_count_max + 2, 0);
+            testing_assert((G.hand[l][G.handCount[l] - 1] >= copper) && (G.hand[l][G.handCount[l] - 1] <= gold), 0);
+            testing_assert((G.hand[l][G.handCount[l] - 2] >= copper) && (G.hand[l][G.handCount[l] - 2] <= gold), 0);
+            
         }
     }
     
@@ -81,5 +89,4 @@ int testing_assert(int expression, int should_print) {
         return 0;
     }
 }
-
 
