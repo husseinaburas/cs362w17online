@@ -224,7 +224,7 @@ uint intToUint(int d){
 
 //returns 0 based index of random player in gameState
 int pickRandomPlayer(struct gameState *g){
-	return randIntInclusive(0, g->numPlayers);
+	return randIntInclusive(0, g->numPlayers - 1);
 }
 
 //takes 0 based index of player and gameState
