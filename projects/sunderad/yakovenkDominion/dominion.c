@@ -655,34 +655,22 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
   int tributeRevealedCards[2] = {-1, -1};
   int temphand[MAX_HAND];// moved above the if statement
-  int drawntreasure=0;
-  int cardDrawn;
-  int z = 0;// this is the counter for the temp hand
+  
+
+
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
   
-  //new functions
-  if(card == adventurer)
-    adventurerCard(state, drawntreasure, currentPlayer, temphand, cardDrawn, z);
-
-  else if(card == smithy)
-    smithyCard(state, currentPlayer, handPos);
-
-  else if(card == embargo)
-    embargoCard(state, currentPlayer, handPos, choice1);
-
-  else if(card == outpost)
-    outpostCard(state, currentPlayer, handPos);
-
-  else if(card == great_hall)
-    great_hallCard(state, currentPlayer, handPos);
-
-  //remaining cards
+	
   //uses switch to select card and perform actions
-  else{
   switch( card ) 
     {
+    case adventurer:
+      	  
+	  return cardAdventurer(currentPlayer, state);
+
+			
     case council_room:
       //+4 Cards
       for (i = 0; i < 4; i++)
@@ -764,39 +752,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return -1;
 			
     case mine:
-      j = state->hand[currentPlayer][choice1];  //store card we will trash
-
-      if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
-	{
-	  return -1;
-	}
-		
-      if (choice2 > treasure_map || choice2 < curse)
-	{
-	  return -1;
-	}
-
-      if ( (getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2) )
-	{
-	  return -1;
-	}
-
-      gainCard(choice2, state, 2, currentPlayer);
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-
-      //discard trashed card
-      for (i = 0; i < state->handCount[currentPlayer]; i++)
-	{
-	  if (state->hand[currentPlayer][i] == j)
-	    {
-	      discardCard(i, currentPlayer, state, 0);			
-	      break;
-	    }
-	}
-			
-      return 0;
+      
+	  return cardMine(choice1, choice2, state, handPos, currentPlayer);
 			
     case remodel:
       j = state->hand[currentPlayer][choice1];  //store card we will trash
@@ -823,6 +780,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
       return 0;
+		
+    case smithy:
+      
+	  return cardSmithy(handPos, currentPlayer, state);
 		
     case village:
       //+1 Card
@@ -885,6 +846,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	    
       
       return 0;
+		
+    case great_hall:
+      return cardGreatHall(handPos, currentPlayer, state);
 		
     case minion:
       //+1 action
@@ -1111,6 +1075,27 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
       return 0;
 
+		
+    case embargo: 
+      //+2 Coins
+      state->coins = state->coins + 2;
+			
+      //see if selected pile is in play
+      if ( state->supplyCount[choice1] == -1 )
+	{
+	  return -1;
+	}
+			
+      //add embargo token to selected supply pile
+      state->embargoTokens[choice1]++;
+			
+      //trash card
+      discardCard(handPos, currentPlayer, state, 1);		
+      return 0;
+		
+    case outpost:
+      return cardOutpost(handPos, currentPlayer, state);
+		
     case salvager:
       //+1 buy
       state->numBuys++;
@@ -1169,63 +1154,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     }
 	
   return -1;
-}
-}
-
-//new functions
-int adventurerCard(struct gameState *state, int drawntreasure, int currentPlayer, int *temphand, int cardDrawn, int z) {
-  while(drawntreasure<2) {
-    if (state->deckCount[currentPlayer] <= 1){
-      shuffle(currentPlayer, state);
-    }
-    drawCard(currentPlayer, state);
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];
-    if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-      drawntreasure++;
-    else {
-      temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]--;
-      z++;
-    }
-  }
-  while(z-1>=0) {
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
-    z=z-1;
-  }
-  return 0;
-}
-
-int smithyCard(struct gameState *state, int currentPlayer, int handPos) {
-  //draw cards
-  int i;
-  for(i = 0; i < 3; i++) {
-    drawCard(currentPlayer, state);
-  }
-  //discard smithy card
-  discardCard(handPos, currentPlayer, state, 0);
-  return 0;
-}
-
-int embargoCard(struct gameState *state, int currentPlayer, int handPos, int choice1) {
-  state->coins = 2;
-  if(state->supplyCount[choice1] == -1)
-     return -1;
-  state->embargoTokens[choice1]++;
-  discardCard(handPos, currentPlayer, state, 1);
-  return 0;
-}
-
-int outpostCard(struct gameState *state, int currentPlayer, int handPos) {
-  state->outpostPlayed++;
-  discardCard(handPos, currentPlayer, state, 1);
-  return 0;
-}
-
-int great_hallCard(struct gameState *state, int currentPlayer, int handPos) {
-  drawCard(currentPlayer, state);
-  state->numActions--;
-  discardCard(handPos, currentPlayer, state, 0);
-  return 0;
 }
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
@@ -1333,6 +1261,119 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
+//implements the effects of the adventurer card.
+int cardAdventurer(int currentPlayer, struct gameState *state){
+	int drawntreasure=0;
+	int cardDrawn;
+	int temphand[MAX_HAND];
+	int z = 0;// this is the counter for the temp hand
+	
+	while(drawntreasure < 2){
+		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+			shuffle(currentPlayer, state);
+		}
+		drawCard(currentPlayer, state);
+		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+			drawntreasure++;
+		else{
+			temphand[z]=cardDrawn;
+			state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+			z++;
+		}
+      }
+      while(z-1>=0){
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++]+=temphand[z]; // discard all cards in play that have been drawn
+		z=z-1;
+      }
+      return 0;
+}
+
+
+//implements the effects of the smithy card.
+int cardSmithy(int handPos, int currentPlayer, struct gameState *state){
+	int i;
+		
+//+3 Cards
+      for (i = 0; i <= 3; i++){
+			drawCard(currentPlayer, state);
+		}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 1);
+      return 0;
+}
+
+
+//implements the effects of the outpost card.
+int cardOutpost(int handPos, int currentPlayer, struct gameState *state){
+//set outpost flag
+      state->outpostPlayed;
+			
+      //discard card
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+
+int cardGreatHall(int handPos, int currentPlayer, struct gameState *state){
+	//+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->numActions++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+
+int cardMine(int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer){
+	  int j;
+	  int i;
+	j = state->hand[currentPlayer][choice2];  //store card we will trash
+
+      if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+	{
+	  return -1;
+	}
+		
+      if (choice2 > treasure_map || choice2 < curse)
+	{
+	  return -1;
+	}
+
+      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+	{
+	  return -1;
+	}
+
+      gainCard(choice2, state, 2, currentPlayer);
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+
+      //discard trashed card
+      for (i = 0; i < state->handCount[currentPlayer]; i++)
+	{
+	  if (state->hand[currentPlayer][i] == j)
+	    {
+	      discardCard(i, currentPlayer, state, 0);			
+	      break;
+	    }
+	}
+			
+      return 0;
+}
+
+int assertTrue(int val) {
+    if (val <= 0) {
+        printf("TEST FAILED.\n");
+        return 1;
+    }
+    else
+        printf("TEST SUCCEEDED.\n");
+        return 0;
+}
 
 //end of dominion.c
 

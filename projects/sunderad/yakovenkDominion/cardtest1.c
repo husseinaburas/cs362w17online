@@ -51,7 +51,7 @@ int main(int argc, char const *argv[])
 	G.hand[0][5]=adventurer;
 	copyG.handCount[0]++;
 	copyG.hand[0][5]=adventurer;
-	playAdventurer(&G);
+	cardAdventurer(0, &G);
 
 	//make sure there are two new treasure cards
 	if( treasureCardCount(0, G) != (treasureCardCount(0, copyG)+2) ){
@@ -68,8 +68,8 @@ int main(int argc, char const *argv[])
 		printf("Error with overall card count (sum of deck+hand+discard). Expected 12 has %d.\n",(G.discardCount[0] + G.deckCount[0] + G.handCount[0]));
 		errorFlag++;
 	}
-	int advenCard = cardCount(0, G, adventurer);
-	if(  advenCard != 0){
+
+	if( cardCount(0, G, adventurer) != 0){
 		printf("Error adventurer card still in hand (not discarded)\n");
 		errorFlag++;
 	}
