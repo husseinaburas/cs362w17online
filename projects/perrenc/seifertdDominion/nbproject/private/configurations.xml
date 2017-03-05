@@ -2,34 +2,14 @@
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
-      <in>badTestDrawCard.c</in>
-      <in>betterTestDrawCard.c</in>
-      <in>cardtest1.c</in>
+      <in>BugsInTeammate.txt</in>
       <in>cardtest2.c</in>
       <in>cardtest3.c</in>
-      <in>cardtest4.c</in>
       <in>dominion.c</in>
       <in>dominion.h</in>
       <in>dominion_helpers.h</in>
-      <in>interface.c</in>
-      <in>interface.h</in>
-      <in>playdom.c</in>
-      <in>player.c</in>
-      <in>randomtestadventurer.c</in>
-      <in>randomtestcard1.c</in>
-      <in>randomtestcard2.c</in>
       <in>rngs.c</in>
       <in>rngs.h</in>
-      <in>rt.c</in>
-      <in>supplyTest.c</in>
-      <in>testBuyCard.c</in>
-      <in>testDrawCard.c</in>
-      <in>testInit.c</in>
-      <in>testShuffle.c</in>
-      <in>unittest1.c</in>
-      <in>unittest2.c</in>
-      <in>unittest3.c</in>
-      <in>unittest4.c</in>
     </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -57,8 +37,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>

@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
             drawCard(0, &G_copy);
             discardCard(i, l, &G_copy, 0);
 
-            playSmithy(&G, i);
+            playSmithy(&G, i, G.whoseTurn);
 
             testing_assert(G.handCount[l] == G_copy.handCount[l], 0);
 
