@@ -1,0 +1,26 @@
+Bugs Found:
+
+I. In the playSmithy function there are several bugs
+
+	1. The function does not return the expected value (0). In fact, it returns nothing despite it not being a void function.
+	2. Smithy does not draw the proper number of cards. In fact, it draws 5 cards rather than the expected 3. The responsible line of code is "for (i = 0; i < 5; i++)"
+
+These were the two major bugs I found. Interestingly this differs from the bugs I had in my own playSmithy function. In my own function the Smithy card was not properly discarded, in addition to drawing 4 cards rather than 3.
+
+
+II. In the playAdventurer function there is one major bug that causes two observable issues.
+
+	-Adventurer drew too many cards from the deck.
+	-Adventurer did not draw the expected number of cards from the deck
+
+	Those two statements are from my unit test of the playAdventurer function. 
+	
+	Using my randomtestadventurer function I found that of the 60000 value checks, 4610 of them failed. And this was consistent on multiple runs.
+	Using this information I was able to find the bug. 
+	
+	The bug-causing line in the playAdventurer function is "if (cardDrawn == copper || cardDrawn == silver)".
+	Because of that line, the function will fail to treat gold as a treasure and will thus fail to draw and discard the proper number of cards from the deck.
+	
+	
+
+Overall I found 3 bugs split over 2 functions with my unit/card/random tests.
