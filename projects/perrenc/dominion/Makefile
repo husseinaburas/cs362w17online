@@ -131,6 +131,9 @@ randomtests:
 	gcov dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 	
+buggytests:
+	gcc -o cardtest2 cardtest2.c dominion.c rngs.c -g $(CFLAGS)
+	
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so *.out
 	rm -f randomtestadventurer randomtestcard1 randomtestcard2

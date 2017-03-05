@@ -1,0 +1,26 @@
+Breakpoint 1 at 0x401770: file randomtestcard2.c, line 97.
+Starting program: /home/daniel/Desktop/cs362w17online/projects/eisenbad/dominion/a.out 
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffd738) at randomtestcard2.c:97
+warning: Source file is more recent than executable.
+97	    cardEffect(TESTCARD, choice1, choice2, choice3, &testG, handpos, &bonus);
+Hardware watchpoint 2: testG.numActions > 1
+cardEffect (card=13, choice1=0, choice2=0, choice3=0, state=0x7fffffff6f70, handPos=2, bonus=0x7fffffff07e4) at dominion.c:653
+653	  int currentPlayer = whoseTurn(state);
+654	  int nextPlayer = currentPlayer + 1;
+656	  int tributeRevealedCards[2] = {-1, -1};
+658	  if (nextPlayer > (state->numPlayers - 1)){
+664	  switch( card ) 
+790	      smithy_refact(state, handPos);
+793	      village_refact(state, handPos);
+village_refact (state=0x7fffffff6f70, handPos=2) at dominion.c:1316
+1316	      int currentPlayer = whoseTurn(state) + 1;
+1319	      drawCard(currentPlayer, state);
+1322	      state->numActions = state->numActions + 2;
+Hardware watchpoint 2: testG.numActions > 1
+
+Old value = 0
+New value = 1
+village_refact (state=0x7fffffff6f70, handPos=2) at dominion.c:1325
+1325	      discardCard(handPos, currentPlayer, state, 0);
+$1 = 3

@@ -1,0 +1,47 @@
+Village()
+Bug 1: 
+	+2 action is not given to the current player after using the Village card.
+
+Pointers:
+	The bug occurs at line 1283: state-> numActions = state-> numActions + 1 
+
+Cause: 
+	The bug occurs because state-> numActions = state->numActions +1 should be state->numActions = state -> numActions +2;
+
+Symptoms: 
+Number of actions increased by +1 instead of +2 for current player.
+
+How it was found:
+	I found the bug through unit test for village card. The difference between number of action prior to using the card and after using the card should always be 2. In our case it was only 1. 
+
+Council Room()
+Bug 2: 
+	Other players hand count does not increase by 1 after playing the card.
+
+Pointers:
+	The bug occurs at line 1362: if ( i == currentPlayer){ drawCard(i ,state);} 
+
+Cause:
+	The bug occurs because if ( i == currentPlayer){ drawCard(i ,state);} should be if ( i != currentPlayer){ drawCard(i ,state);}
+
+Symptoms:
+	The bug will not draw card for other players after current player has used the card.
+
+How it was found:
+	I found the bug through unit test for council room card. Once current player uses council room card, the difference between number of hands for other players prior to using the card and after using the card should be 1. In our case it was 0, so the other player didn’t draw any card.
+
+Adventurer ()
+Bug 3: 
+	Adventurer draws 3 treasure cards.
+
+Pointers: 
+	The bug occurs at line 1226: while (drawntreasure < 3) 
+
+Cause:
+	The bug occurs because while (drawntreasure < 3) should be while (drawntreasure < 2) 
+
+Symptoms:
+	The bug will draw 3 treasure cards instead of drawing 2 treasure cards.
+
+How it was found:
+	I detected it while analyzing my teammate’s refactored functions.

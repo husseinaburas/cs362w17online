@@ -1,0 +1,21 @@
+<map id="test_card_smithy" name="test_card_smithy">
+<area shape="rect" id="node2" href="$rngs_8c.html#af6956caec1509dadd719fddaaf692489" title="Random" alt="" coords="778,195,849,221"/>
+<area shape="rect" id="node3" href="$dominion_8c.html#a9f214fe75e5f37c1790b824b70ac2e8e" title="cardEffect" alt="" coords="176,423,259,449"/>
+<area shape="rect" id="node7" href="$dominion_8c.html#ac70138609ef6aa6fabca57aca8681e83" title="compare" alt="" coords="777,625,849,652"/>
+<area shape="rect" id="node4" href="$dominion_8c.html#adb54d9433039a49a4d1dc3184d39e23d" title="whoseTurn" alt="" coords="529,93,616,120"/>
+<area shape="rect" id="node5" href="$dominion_8c.html#a7028ab0c3adb6330eba5e792f3f8b495" title="card_effect_adventurer" alt="" coords="315,397,469,424"/>
+<area shape="rect" id="node6" href="$dominion_8c.html#acb3aa60b25f4fd05eaf8bb871730f382" title="shuffle" alt="" coords="668,397,729,424"/>
+<area shape="rect" id="node8" href="$dominion_8c.html#a0f3ff052e95889a3eed993548433418b" title="drawCard" alt="" coords="533,499,612,525"/>
+<area shape="rect" id="node9" href="$dominion_8c.html#a416c3015e530456cc1b27319efbb5a18" title="card_effect_council_room" alt="" coords="307,701,477,728"/>
+<area shape="rect" id="node10" href="$dominion_8c.html#a50bfd018313095559338f7d4fe6b475e" title="discardCard" alt="" coords="527,600,619,627"/>
+<area shape="rect" id="node11" href="$dominion_8c.html#a3da90076545df89f8aa70947ddcf9efc" title="updateCoins" alt="" coords="345,651,439,677"/>
+<area shape="rect" id="node12" href="$dominion_8c.html#a2ccc0f2883936814c6fd886e77146f99" title="supplyCount" alt="" coords="525,271,620,297"/>
+<area shape="rect" id="node13" href="$dominion_8c.html#ab06cd9a487d0d1dca5ce63bcd019d319" title="getCost" alt="" coords="358,752,426,779"/>
+<area shape="rect" id="node14" href="$dominion_8c.html#ab19b9b3759ede93bb6248db84df57336" title="gainCard" alt="" coords="355,245,429,272"/>
+<area shape="rect" id="node15" href="$dominion_8c.html#a6fa74eeadf9ff835efc03ee3668f84dd" title="card_effect_smithy" alt="" coords="325,549,459,576"/>
+<area shape="rect" id="node16" href="$dominion_8c.html#ad7028283d86fd040358bd4c6daa50317" title="card_effect_village" alt="" coords="327,499,457,525"/>
+<area shape="rect" id="node17" href="$dominion_8c.html#aba3a224e3908b15eaff198f9efc88522" title="isGameOver" alt="" coords="345,144,439,171"/>
+<area shape="rect" id="node18" href="$dominion_8c.html#ab04aefe12648fccb4db81f33fa8541e7" title="card_effect_great_hall" alt="" coords="317,600,467,627"/>
+<area shape="rect" id="node19" href="$dominion_8c.html#a80e71740d5c0744093f9e6d0f2822797" title="numHandCards" alt="" coords="335,43,449,69"/>
+<area shape="rect" id="node20" href="$dominion_8c.html#a26af25dd3c14239211c04edb63497854" title="handCard" alt="" coords="353,93,431,120"/>
+</map>

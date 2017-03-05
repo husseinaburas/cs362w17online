@@ -1226,7 +1226,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 int playSmithy(struct gameState *state, int handPos, int currentPlayer){
   //+3 Cards
   int i;
-  for (i = 0; i <= 3; i++)
+  for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }			
@@ -1234,6 +1234,7 @@ int playSmithy(struct gameState *state, int handPos, int currentPlayer){
   //discard card from hand
   discardCard(handPos, currentPlayer, state, 0);
 
+  //printf("I'm playing smithy!\n");
   return 0;
 }
 

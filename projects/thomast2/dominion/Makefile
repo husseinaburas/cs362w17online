@@ -58,6 +58,20 @@ card4:
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c cardtest4.c rngs.c -o cardtest4 -lm -g
 
 
+randomTests:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestadventurer.c rngs.c -o randomtestadventurer -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard1.c rngs.c -o randomtestcard1 -lm -g
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c randomtestcard2.c rngs.c -o randomtestcard2 -lm -g
+	./randomtestadventurer &> randomtestresult.out
+	./randomtestcard1 >> randomtestcard1.out
+	./randomtestcard2 >> randomtestcard2.out
+	gcov randomtestadventurer.c >> randomtestadventurer.out
+	gcov randomtestcard1.c >> randomtestcard1.out
+	gcov randomtestcard2.c >> randomtestcard2.out
+	cat randomtestadventurer.c.gcov >> randomtestadventurer.out
+	cat randomtestcard1.c.gcov >> randomtestcard1.out
+	cat randomtestcard2.c.gcov >> randomtestcard2.out
+	
 myTest:
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest1.c rngs.c -o unittest1 -lm -g
 	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.c unittest2.c rngs.c -o unittest2 -lm -g
