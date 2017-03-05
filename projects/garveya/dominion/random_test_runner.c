@@ -18,6 +18,8 @@
 //number of times random tests should run
 #define NUM_RANDOM_ITERATIONS 1000
 
+#define TOTAL_NUM_KINGDOM_CARDS 20
+
 //global variable for number of test failed
 int numTestsFailed = 0;
 
@@ -139,7 +141,7 @@ void printGameStateDifferences(struct gameState *mock, struct gameState *real){
 
 //fill kingdom cards holder with random kingdom cards
 void pickRandomKindomCards(int kingdomCardsHolder[10]){
-	int kingdomCards[20] = {
+	int kingdomCards[TOTAL_NUM_KINGDOM_CARDS] = {
 		   adventurer,
 		   /* If no/only 1 treasure found, stop when full deck seen */
 		   council_room,
@@ -165,9 +167,17 @@ void pickRandomKindomCards(int kingdomCardsHolder[10]){
 		   sea_hag,
 		   treasure_map
 		  };
+
+	//shuffle kingdom cards, and then pick first 10
 	int i;
+	for(i = 0; i < TOTAL_NUM_KINGDOM_CARDS; ++i){
+		int randIndex = randIntInclusive(0, TOTAL_NUM_KINGDOM_CARDS - 1);
+		int temp = kingdomCards[i];
+		kingdomCards[i] = kingdomCards[randIndex];
+		kingdomCards[randIndex] = temp;
+	}  
 	for(i = 0; i < 10; ++i){
-		kingdomCardsHolder[i] = kingdomCards[randIntInclusive(0, 20 - 1)];
+		kingdomCardsHolder[i] = kingdomCards[i];
 	}
 }
 
