@@ -1,0 +1,22 @@
+Steven Ha
+March 3, 2017
+CS362-400
+Assignment 5 - Bugs
+
+BUG # 1
+Program attempts to access invalid card in discard pile when calling playAdventurer().
+
+BUG DESCRIPTION
+A bug that I found in the adventurer card was due to my tests trying to access portions of the discard pile that were not being assigned properly. Upon further examination of the refactored adventurer card, I could see that the discard pile was being assigned cards from the temporary array being used to keep track of cards that were being drawn from the player’s deck. The issue is that the counter being used to keep track of the number of cards that needed to be added to the discard pile was incrementing incorrectly and that resulted in the temporary array containing memory slots that did not contain any content. The discard pile would then be assigned the values in the temporary array. If the program tries to access those invalid memory slots, the program would seg fault.
+
+POSSIBLE SOLUTION
+Move the z counter to inside the if-else statement. The current location will increment regardless of the card type.
+
+BUG # 2
+Incorrect number of actions added when calling playVillage().
+
+BUG DESCRIPTION
+My random tests of the playVillage() showed that the tests failed when checking if the number of actions was incremented by 2. Each failed test showed that 3 was being added instead.
+
+POSSIBLE SOLUTION
+Remove the '+' sign from the '+=' operator. 

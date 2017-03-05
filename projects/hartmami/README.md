@@ -1,3 +1,15 @@
+## Assignment 5
+
+	modified cardtest1.c and dominion.c
+	
+	added BugsInTeammate.txt
+
+	added getCard() function, updated testAssert() to garveya dominion.c and dominion.h
+
+	modified garveya makefile
+	
+	added garveyaDominion files
+	
 ## Assignment 4
 
 	added randomtestcard2.c
@@ -26,40 +38,35 @@
 
 ## Assignment 2
 
-	Part 3
+	These cases were modified to call the functions in cardEffect's switch:
 
-## These cases were modified to call the functions in cardEffect's switch:
+		case adventurer
 
-	case adventurer
+		case mine
 
-	case mine
-			
-	case remodel
-	
-	case smithy
+		case remodel
 
-	case baron
+		case smithy
 
-## bugs were added to:
+		case baron
 
-	adventurer
-			
-	remodel
-	
-	smithy
+	bugs were added to:
 
-	baron
+		adventurer
 
-## udpated README
+		remodel
 
-	commit, push README
+		smithy
+
+		baron
+
+	udpated README
+
 
 
 ## Assignment 1
 
-	Part 2
-
-## clone repo to local machine
+	clone repo to local machine:
 
 	install git
 
@@ -67,24 +74,14 @@
 
 	clone repo
 
-## make onid directory
-
 	cd to target directory
 
-	mkdir
-
 	cp dominion code to onid directory
-
-## add onid directory
 
 	git add onid directory
 
 	git commit -m "comments"
 
 	git push origin master
-
-## make README
-
-	I AM THE README
 
 	add, commit, push README

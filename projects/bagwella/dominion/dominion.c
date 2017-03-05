@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdlib.h>
 
+
 int compare(const void* a, const void* b) {
   if (*(int*)a > *(int*)b)
     return 1;
@@ -680,7 +681,7 @@ int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer
 int playSmithy(struct gameState *state, int currentPlayer, int handPos) {
     
     int i; 
-    for (i = 0; i <= 3; i++)
+    for (i = 0; i < 3; i++)
   {
     drawCard(currentPlayer, state);
   }

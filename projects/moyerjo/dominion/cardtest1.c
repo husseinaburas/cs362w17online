@@ -181,7 +181,7 @@ int main(int argc, char** argv) {
 			pre.discardCount[curPlayer] = 0;
 			post = pre;
 			smithyPlay(curPlayer, handPos, &post);
-			if (pre.handCount[curPlayer] != post.handCount[curPlayer] - 1) {
+			if (pre.handCount[curPlayer] != post.handCount[curPlayer] + 1) {
 				printf("Test failed\n");
 				numFailed++;
 			}
@@ -223,6 +223,7 @@ int main(int argc, char** argv) {
 			printf("Testing drawing with fewer than with fewer than 3 cards in deck/discard (2):\n");
 			pre = temp;
 			pre.deckCount[curPlayer] = 0;
+			pre.discardCount[curPlayer] = 2;
 			post = pre;
 			smithyPlay(curPlayer, handPos, &post);
 			if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {

@@ -1,0 +1,44 @@
+Michael Hartman 
+Assignment 5: BugsInTeammate
+
+Bug 1:
+
+I found this bug by running my unit tests and observing the results. In updateCoins() there is a problem when using the Bonus: 
+Verify adding a silver and 9 bonus adds 11 coins:  TEST FAILED
+player1 coins: 16 
+player1 expected coins: 17 
+when adding 9 bonus the expected outcome was off by 1
+
+Verify adding a gold and -1 bonus doesn't work:  TEST FAILED
+player1 coins: 9 
+player1 expected coins: 17 
+when adding -1 bonus the expected outcome was that a negative input would not work, however somehow adding a gold (+3) and a -1 bonus removed 8 coins. 
+
+Verify adding a gold and -1 bonus adds 3 coins:  TEST SUCCESSFULLY COMPLETED
+player1 coins: 12 
+player1 expected coins: 12
+Yet in the second test with -1 it had no effect and the +3 from the gold was added.
+
+
+Bug 2:
+
+I found this bug by running my unit tests and observing the results. In discardCard() there is a problem with players being able to discard more cards than they have in their hand:
+Verify Player 1 cannot discard more cards than in hand:  TEST FAILED
+Verify Player 2 cannot discard more cards than in hand:  TEST FAILED
+Both players could discard more cards than they had in their hand.  This should not be possible.
+
+
+Bug 3:
+
+I found this bug by running my unit tests and observing the results. In smithy() there is a problem with the function only adding one card to the players hand:
+Verify Player 1 has 7 cards in their hand:  TEST FAILED
+Verify Player 1 has 4 cards in their deck:  TEST FAILED
+Verify the fifth card in Player 1's hand is a silver:  TEST FAILED
+Verify the sixth card in Player 1's hand is a gold:  TEST FAILED
+Verify the seventh card in Player 1's hand is a embargo:  TEST FAILED
+There is a bug with the smithy card.  I needed to add additional output statements to my original unit test to help me identify what is happening.
+Player 1 has 5 cards in their hand  
+Player 1 has 6 cards in their deck  
+The fifth card in Player 1's hand is a silver
+These statements combined with the context from the tests tell me that the smithy card has been played and sent to the discard pile, but only one card: a silver (was at the top of the deck) has been added to the deck.  
+There should have been 2 more cards added.  The problem does not appear to be localized inside the smithy function, but rather to occur due to interaction with other functions.
