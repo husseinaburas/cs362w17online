@@ -1,187 +1,138 @@
-//this is the unit test for play_great_hall
+/* Author: Elton Lee
+ * cardtest2.c
+ * unit test for smithy 
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * cardtest2: cardtest2.c dominion.o rngs.o
+ *      gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+ */
 
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <stdlib.h>
+#include "cardtest2.h"
 
-int passFlag = 0;
-
-void asserttrue(int a, int b, int testcase){
-	
-	if(a == b)
-		printf("TEST PASSED.\n");
-	
-	else{
-		printf("TEST FAILED. ");
-		passFlag++;
-		switch(testcase){
-			
-			case 1:
-				printf("Player did not receive exactly one card\n");
-				break;
-				
-			case 2:
-				printf("New card was not drawn and/or added to hand. NOTE: May not be failure if great hall was last card in hand and drawn card was also great hall\n");
-				break;			
-			
-			case 3:
-				printf("Number of actions was not increased by exactly one\n");
-				break;
-				
-			case 4:
-				printf("Incorrect number of cards were drawn from the deck\n");
-				break;
-				
-			case 5:
-				printf("Great Hall card was not discarded and/or was not added to discard pile\n");
-				break;
-				
-			case 6:
-				printf("Hand count of other player(s) was affected\n");
-				break;
-				
-			case 7:
-				printf("Victory card pile was affected\n");
-				break;
-				
-			case 8:
-				printf("Function returned successfully despite bad/nonexistent input\n");
-				break;
-			
-		}
-		
+int main()
+{
+    int numFailedTests = 0;
+    int numPassedTests = 0;
+    if (runCardTest(5, 0) == -1){
+		numFailedTests++;
+	} else {
+		numPassedTests++;
 	}
-	
+    if (runCardTest(0, 5) == -1){
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+    if (runCardTest(1, 5) == -1){
+		numFailedTests++;
+	} else {
+		numPassedTests++;
+	}
+    printf("Number of passed test cases: %d\nNumber of failed tests case: %d\n", numPassedTests, numFailedTests);
+
+    return 0;
 }
 
-int test_play_great_hall(struct gameState* post, int handPos){
-	
-	printf("Beginning Card Test 2...\n");
-	//copy over current gamestate to pre
-	struct gameState pre;
-	memcpy(&pre, post, sizeof(struct gameState));
-	int player = post->whoseTurn;
-	
-	//test that player has same number of cards in hand after call (received one, discarded one)
-	play_great_hall(post, handPos);
-	int x;
-	if(post->handCount[player] == pre.handCount[player])
-		x = 0;
-	else
-		x = 1;
-	
-	asserttrue(0, x, 1);
-	
-	//test that new card is in hand (i.e. that something happened despite the matching hand sizes. NOTE: It is possible the drawn card is also great hall)
-	int p;
-	if(post->hand[player][post->handCount[player] - 1] == great_hall)
-		p = 1;
-	else
-		p = 0;
-	
-	asserttrue(0, p, 2);
-		
-	
-	//test that numActions is increased by one
-	int u;
-	if(post->numActions == (pre.numActions + 1))
-		u = 0;
-	else
-		u = 1;
-	
-	asserttrue(0, u, 3);
-	
-	//test that deck has one fewer card
-	
-	int r;
-	r = (pre.deckCount[player] - post->deckCount[player]);
-	asserttrue(1, r, 4);
-	
-	//test that card was discarded/discard pile has one more card in it
-	int y;
-	if((post->playedCards[post->playedCardCount - 1] == great_hall) && (post->playedCardCount == (pre.playedCardCount + 1)))
-		y = 0;
-	else
-		y = 1;
-	
-	asserttrue(0, y, 5);
-	
-	//test that no other players' handcounts were affected
-	int handCountFlag = 0;
-	int i;
-	for(i = 0; i < post->numPlayers; i++){
-		if(i == 1){}
-		
-		else{
-			if(post->handCount[i] == pre.handCount[i]){}
-			
-			else
-				handCountFlag++;
-		}
-		
-	}
-	
-	asserttrue(0, handCountFlag, 6);
-	
-	//Test that after call, victory card pile is unchanged
-	int n;
-	if(post->supplyCount[estate] != pre.supplyCount[estate])
-		n = 1;
-	else if(post->supplyCount[duchy] != pre.supplyCount[duchy])
-		n = 1;
-	else if(post->supplyCount[province] != pre.supplyCount[province])
-		n = 1;
-	else
-		n = 0;
-	asserttrue(0, n, 7);
-	
-	//test using bad input
-	int q;
-	q = play_great_hall(post, -100);
-	asserttrue(1, 1, 8);
-	
-	if(passFlag == 0)
-		printf("ALL TESTS PASSED.\n");
-	
-	return 0;
-}
-
-int main(){
-	
-	struct gameState G;
-	
-	int numPlayers = 4;
-	int k[10] = {adventurer, embargo, village, minion, outpost, cutpurse, great_hall, tribute, smithy, council_room};
-	int seed = 1000;
-	
-	
-	initializeGame(numPlayers, k, seed, &G);
-	G.whoseTurn = 1;
-	G.numActions = 1;
-	int currentPlayer = G.whoseTurn;
-	int deckSize = 20;
-	G.handCount[currentPlayer] = 5;
-	G.handCount[0] = 4;
-	G.handCount[2] = 4;
-	G.handCount[3] = 4;
-	G.playedCardCount = 3;
-	G.playedCards[0] = cutpurse;
-	G.playedCards[1] = cutpurse;
-	G.playedCards[2] = cutpurse;
-	
-	G.hand[currentPlayer][2] = great_hall;
-	int handPos = 2;
-	
+int runCardTest(int deckSize, int discardSize)
+{
+    printf("Running smithy test with %d cards in deck and %d cards in discard\n", deckSize, discardSize);
+    int i;
 	int j;
-	for(j = 0; j < G.numPlayers; j++){
-		G.deckCount[j] = deckSize;
+    int seed = 1000;
+    int numPlayers = 2;
+    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+		 sea_hag, tribute, smithy, council_room};
+
+    struct gameState G;
+    initializeGame(numPlayers, k, seed, &G);
+
+    for (j = 0; j < numPlayers; j++)
+    {
+	G.deckCount[j] = 0;
+	G.discardCount[j] = 0;
+	G.handCount[j] = 0;
+
+	// initialize player j deck with golds.
+	for (i = 0; i < deckSize; i++)
+	{
+	    G.deck[j][i] = gold;
+	    G.deckCount[j]++;
 	}
-	
-	test_play_great_hall(&G, handPos);
-	
-	
-	return 0;
+
+	// initialize player j discard with coppers.
+	for (i = 0; i < discardSize; i++)
+	{
+	    G.discard[j][i] = copper;
+	    G.discardCount[j]++;
+	}
+
+	// initialize player j hand with silvers
+	for (i = 0; i < 5; i++)
+	{
+	    G.hand[j][i] = silver;
+	    G.handCount[j]++;
+	}
+
+	G.hand[0][0] = smithy; // smithy needs to play smithy from hand to activate
+    }
+
+    printf("Starting hand:\n");
+    for (i = 0; i < G.handCount[0]; i++)
+    {
+	printf("%d ", G.hand[0][i]);
+    }
+    printf("\n");
+
+    int startHandCount = G.handCount[0];
+    int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
+	int totalCardsPlayer2 = G.handCount[1] + G.deckCount[1] + G.discardCount[1];
+
+    // run playSmithy
+    playSmithy(&G, 0);
+
+    // Check +3 to hand and smithy is gone
+    printf("-----TEST 1: CHECK +3 CARDS TO HAND AND SMITHY NO LONGER IN HAND-----\n");
+    printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + 3 - 1);
+    if (asserttrue(G.handCount[0], startHandCount + 3 - 1) == -1) return -1;
+    printf("Showing current cards in hand...\n");
+    for (i = 0; i < G.handCount[0]; i++)
+    {
+	printf("%d ", G.hand[0][i]);
+    }
+
+	// Check that 3 drawn cards came from player 1's deck.
+	printf("-----TEST 2: CHECK THAT 3 DRAWN CARDS CAME FROM PLAYER 1's DECK-----\n");
+	printf("Number of cards in deck + discard = %d, expected = %d\n", G.deckCount[0] + G.discardCount[0], totalCards - startHandCount - 3);
+	if (asserttrue(G.deckCount[0] + G.discardCount[0], totalCards - startHandCount - 3) == -1) return -1;
+
+	// Check card total for players
+	printf("-----TEST 3: CHECK DECK TOTALS FOR BOTH PLAYERS-----\n");
+    printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+    if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == -1) return -1;
+    printf("Total cards for player 2 = %d, expected = %d\n", G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
+    if (asserttrue(G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2) == -1) return -1;
+
+    return 0;
+}
+
+int asserttrue(int val1, int val2)
+{
+    if (val1 != val2) {
+		printf("TEST FAILED \n");
+		return -1;
+	}
+    else {
+		printf("TEST PASSED \n");
+		return 0;
+	}
 }
