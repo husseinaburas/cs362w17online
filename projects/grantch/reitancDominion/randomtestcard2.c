@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
         numOfPlayers = (rand() % (MAX_PLAYERS + 1 - 2) + 2);
         returnValue = initializeGame(numOfPlayers, k, seed, &game);
 
-        game.handCount[0] = (rand() % (MAX_HAND + 1 - 2) + 2);
+        game.handCount[0] = (rand() % (497 + 1 - 2) + 2);
         cardPosInput = rand() % game.handCount[0];
 
         for (j = 0; j < MAX_HAND; j++)
