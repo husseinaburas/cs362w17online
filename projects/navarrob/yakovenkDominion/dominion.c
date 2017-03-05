@@ -1375,5 +1375,13 @@ int assertTrue(int val) {
         return 0;
 }
 
+void customAssert(int val) {
+	if (val == 0) {
+		printf("TEST FAILED!\n");
+	}
+	else
+		printf("TEST PASSED!\n");
+}
+
 //end of dominion.c
 

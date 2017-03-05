@@ -85,6 +85,8 @@ int main(int argc, char **argv) {
 		customAssert(G.playedCardCount  == 1);
 		printf("Confirm that number of actions has decreased by 1\n");
 		customAssert(G.numActions == initialActions - 1);
+		printf("Number of cards played: %d\n", G.playedCardCount );
+		printf("Number of cards discarded %d\n", G.discardCount[p]);
 
 		seed++;
 	}
