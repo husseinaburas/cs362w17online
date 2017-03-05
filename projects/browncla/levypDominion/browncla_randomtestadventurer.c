@@ -460,7 +460,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = cardEffect(adventurer, 0, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -546,7 +547,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = cardEffect(adventurer, 0, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -630,7 +632,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = cardEffect(adventurer, 0, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -713,7 +716,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = cardEffect(adventurer, 0, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -825,7 +829,8 @@ int main (int argc, char** argv){
 			printf("Adventurer Location: %d  Tested Card Location: %d  Deck Size: %d\n\n", cardPlacement, testLocation, testDeckSize);
 			printf("Number of treasure cards: %d\n", testTreasureCount);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = cardEffect(adventurer, 0, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)

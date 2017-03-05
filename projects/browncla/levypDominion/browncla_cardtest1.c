@@ -43,7 +43,8 @@ int main(){
 	printf("\nTESTS FOR VALID INPUT\n");
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 3);
+	//result = playAdventurer(currentPlayer, &testG);
+	result = cardEffect(adventurer, 0, 0, 0, &testG, 3, NULL);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -212,7 +213,8 @@ int main(){
 
 	// ----------- TEST 12 : Test correct return statements for wrong card name -----------
 	printf("%s TEST 12: Correct return statements for wrong card name\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 4);
+	//result = playAdventurer(currentPlayer, &testG);
+	result = cardEffect(adventurer, 0, 0, 0, &testG, 4, NULL);
 	if (result == -1){
 		asserttrue(1, 12);
 	}
@@ -275,7 +277,8 @@ int main(){
 
 	// ----------- TEST 14 : Test correct return statements for wrong phase -----------
 	printf("%s TEST 14: Correct return statements for wrong phase\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 3);
+	//result = playAdventurer(currentPlayer, &testG);
+	result = cardEffect(adventurer, 0, 0, 0, &testG, 3, NULL);
 	if (result == -1){
 		asserttrue(1, 14);
 	}
@@ -338,7 +341,8 @@ int main(){
 
 	// ----------- TEST 16 : Test correct return statements for wrong number of actions-----------
 	printf("%s TEST 16: Correct return statements for wrong number of actions\n", TESTCARD);
-	result = playAdventurer(&testG, currentPlayer, 3);
+	//result = playAdventurer(currentPlayer, &testG);
+	result = cardEffect(adventurer, 0, 0, 0, &testG, 3, NULL);
 	if (result == -1){
 		asserttrue(1, 16);
 	}

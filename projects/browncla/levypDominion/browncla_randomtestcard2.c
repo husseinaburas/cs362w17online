@@ -422,7 +422,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -510,7 +511,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -598,7 +600,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -687,7 +690,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Salvager Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -776,7 +780,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -861,7 +866,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = cardEffect(salvager, testChoice, 0, 0, &testG, testLocation, NULL);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
