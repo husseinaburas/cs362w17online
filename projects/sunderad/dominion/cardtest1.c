@@ -68,8 +68,8 @@ int main(int argc, char const *argv[])
 		printf("Error with overall card count (sum of deck+hand+discard). Expected 12 has %d.\n",(G.discardCount[0] + G.deckCount[0] + G.handCount[0]));
 		errorFlag++;
 	}
-
-	if( cardCount(0, G, adventurer) != 0){
+	int advenCard = cardCount(0, G, adventurer);
+	if(  advenCard != 0){
 		printf("Error adventurer card still in hand (not discarded)\n");
 		errorFlag++;
 	}
