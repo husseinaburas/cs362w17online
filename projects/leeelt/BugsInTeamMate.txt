@@ -1,0 +1,14 @@
+play_adventurer bugs
+Bug 1 – adventurer is not removed from hand after being played
+	Discovered in both unit tests and random tests.
+Bug 2 – when there are no treasures in the deck and discard pile, adventurer will cause two cards to be discarded.
+	Discovered for unit test case of 0 treasures in draw and discard.
+Bug 3 – the nextPlayer never gets a turn
+Discovered while reviewing code. Was not caught during unit tests or random tests because test suite did not cover this interaction. It is my personal opinion that this bug would be caught during integration testing instead.
+
+play_smithy bugs
+Bug 1 – extra card is being drawn
+	Revealed in all unit tests and random tests
+	The for loop should be i < 3 instead of i <= 3
+Bug 2 – smithy is missing after play_smithy resolves.
+	Found in test function that checks that the total amount of cards in the deck, discard, and hand remains constant.
