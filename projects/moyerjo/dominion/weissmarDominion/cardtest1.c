@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 	printf("=============================================\n");
 	printf("Beginning testing of SMITHY card:\n");
 	printf("=============================================\n\n");
-	smithyPlay(curPlayer, handPos, &post);
+	playSmithy(curPlayer, &post, handPos);
 
 	printf("Testing hand count increase:\n"); //should be net gain of two cards
 		if (pre.handCount[curPlayer] + 2 != post.handCount[curPlayer]) {
@@ -91,7 +91,7 @@ int main(int argc, char** argv) {
 			pre = temp;
 			pre.deckCount[curPlayer] = 2;
 			post = pre;
-			smithyPlay(curPlayer, handPos, &post);
+			playSmithy(curPlayer, &post, handPos);
 			if (pre.handCount[curPlayer] + 2 != post.handCount[curPlayer]) {
 				printf("Test failed\n");
 				numFailed++;
@@ -135,7 +135,7 @@ int main(int argc, char** argv) {
 			pre = temp;
 			pre.deckCount[curPlayer] = 0;
 			post = pre;
-			smithyPlay(curPlayer, handPos, &post);
+			playSmithy(curPlayer, &post, handPos);
 			if (pre.handCount[curPlayer] + 2 != post.handCount[curPlayer]) {
 				printf("Test failed\n");
 				numFailed++;
@@ -180,7 +180,7 @@ int main(int argc, char** argv) {
 			pre.deckCount[curPlayer] = 0;
 			pre.discardCount[curPlayer] = 0;
 			post = pre;
-			smithyPlay(curPlayer, handPos, &post);
+			playSmithy(curPlayer, &post, handPos);
 			if (pre.handCount[curPlayer] != post.handCount[curPlayer] + 1) {
 				printf("Test failed\n");
 				numFailed++;
@@ -225,7 +225,7 @@ int main(int argc, char** argv) {
 			pre.deckCount[curPlayer] = 0;
 			pre.discardCount[curPlayer] = 2;
 			post = pre;
-			smithyPlay(curPlayer, handPos, &post);
+			playSmithy(curPlayer, &post, handPos);
 			if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
 				printf("Test failed\n");
 				numFailed++;

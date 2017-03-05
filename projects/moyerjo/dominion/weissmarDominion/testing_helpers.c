@@ -421,9 +421,8 @@ void shuffleCards(int curPlayer, int deckSection, struct gameState * state){
 	}
 }
 
-int validateAdventurerDraw(int curPlayer, int handPos, struct gameState *state1, struct gameState *state2) {
+int validateAdventurerDraw(int curPlayer, struct gameState *state1, struct gameState *state2) {
 	int i;
-	int coinIndex1 = -1, coinIndex2 = -1;
 	int failed = 0;
 	int coinCount = 0;
 	int cardsToDiscard = 0;
@@ -431,34 +430,10 @@ int validateAdventurerDraw(int curPlayer, int handPos, struct gameState *state1,
 	//checks cards in deck
 	for (i = state1->deckCount[curPlayer] - 1; i >= 0 && coinCount < 2; i--) {
 		if (state1->deck[curPlayer][i] == copper || state1->deck[curPlayer][i] == silver || state1->deck[curPlayer][i] == gold) {
-			//NEED TO DEAL WITH THE HANDPOS BEING 0
-			/*if (state2->hand[curPlayer][state2->handCount[curPlayer] - (2 - coinCount)] != state1->deck[curPlayer][i]) {
+			if (state2->hand[curPlayer][state2->handCount[curPlayer] - (2 - coinCount)] != state1->deck[curPlayer][i]) {
 				//incorrect position of the drawn card
 				printf("Test Failed - Incorrect position of treasure cards drawn\n");
 				failed = 1;
-			}*/
-			/*if(handPos == 0){
-				if(state2->hand[curPlayer][0] != state1->deck[curPlayer][i] && coinCount == 1){
-					printf("Test Failed - When Adventurer in handPos 0, first drawn treasure not moved there.\n");
-					failed = 1;
-				}
-				else if(state2->hand[curPlayer][state2->handCount[curPlayer] - 1] != state1->deck[curPlayer][i]){
-					printf("Test Failed - When Adventurer in handPos 0, second treasure incorrectly placed in Hand.\n");
-					failed = 1;
-				}
-			}
-			else{
-				if (state2->hand[curPlayer][state2->handCount[curPlayer] - (2 - coinCount)] != state1->deck[curPlayer][i]) {
-				//incorrect position of the drawn card
-				printf("Test Failed - Incorrect position of treasure cards drawn\n");
-				failed = 1;
-			}
-			}*/
-			if(coinCount == 0){
-				coinIndex1 = i;
-			}
-			else if (coinCount == 1){
-				coinIndex2 = i;
 			}
 			coinCount++;
 		}
@@ -468,48 +443,9 @@ int validateAdventurerDraw(int curPlayer, int handPos, struct gameState *state1,
 		}
 	}
 	if (coinCount >= 2) {
-		if(handPos == 0){
-			if(state2->hand[curPlayer][0] != state1->deck[curPlayer][coinIndex2]){
-				printf("Test Failed - When Adventurer in handPos 0, first drawn treasure not moved there.\n");
-				failed = 1;
-			}
-			else if(state2->hand[curPlayer][state2->handCount[curPlayer] - 1] != state1->deck[curPlayer][coinIndex1]){
-				printf("Test Failed - When Adventurer in handPos 0, second treasure incorrectly placed in Hand.\n");
-				failed = 1;
-			}
-		}
-		else if(handPos == state1->handCount[curPlayer] - 1){
-			if(state2->hand[curPlayer][state2->handCount[curPlayer] - 2] != state1->deck[curPlayer][coinIndex2]){
-				printf("Test Failed - When Adventurer in last handPos, first drawn treasure not moved there.\n");
-				failed = 1;
-			}
-			else if(state2->hand[curPlayer][state2->handCount[curPlayer] - 1] != state1->deck[curPlayer][coinIndex1]){
-				printf("Test Failed - When Adventurer in last handPos, second treasure incorrectly placed in Hand.\n");
-				failed = 1;
-			}
-		}
-		
-		else if(state2->hand[curPlayer][handPos] != state1->deck[curPlayer][coinIndex2] || state2->hand[curPlayer][state2->handCount[curPlayer] - 1] != state1->deck[curPlayer][coinIndex1]){
-			printf("Test Failed - Incorrect position of treasure cards drawn when 2+ treasure available\n");
-			failed = 1;
-		}
-		
 		if (state1->discardCount[curPlayer] + cardsToDiscard != state2->discardCount[curPlayer]) {
 			printf("Test Failed - Discard did not increase by number of non-treasure cards drawn\n");
 			failed = 1;
-		}
-	}
-	else if (coinCount == 1){
-		if(handPos == 0){
-			if(state2->hand[curPlayer][0] != state1->deck[curPlayer][coinIndex1]){
-				printf("Test Failed - When advenuter in handPos 0 and only one treasure available.\n");
-				failed = 1;
-			}
-		}
-		else if(state2->hand[curPlayer][state2->handCount[curPlayer] - 1] != state1->deck[curPlayer][coinIndex1]){
-			printf("Test Failed - When adventurer not in handPos 0 and only one treasure available.n");
-			failed = 1;
-			
 		}
 	}
 	else {

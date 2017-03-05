@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
 	printf("Beginning testing of Adventurer card:\n");
 	printf("=============================================\n\n");
 
-	adventurerPlay(curPlayer, handPos, &post);
+	playAdventurer(curPlayer, &post);
 	//TESTING COPPER
 	printf("Testing 2 cards were drawn for copper:\n");
 		if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
@@ -94,10 +94,9 @@ int main(int argc, char** argv) {
 
 			post = pre;
 
-			adventurerPlay(curPlayer, handPos, &post);
+			playAdventurer(curPlayer, &post);
 
-			printf("Testing 2 cards were drawn for silver:\n");
-
+			printf("Testing 2 cards were drawn for silver:\n"); 
 				if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
 					printf("Test Failed\n");
 					numFailed++;
@@ -108,7 +107,7 @@ int main(int argc, char** argv) {
 				totalTests++;
 
 				printf("Testing 2 cards drawn were silver:\n");
-					if (post.hand[curPlayer][post.handCount[curPlayer] - 1] != silver || post.hand[curPlayer][0] != silver) {
+					if (post.hand[curPlayer][post.handCount[curPlayer] - 1] != silver || post.hand[curPlayer][post.handCount[curPlayer] - 2] != silver) {
 						//printf("%d %d\n", post.hand[curPlayer][post.handCount[curPlayer] - 1], post.hand[curPlayer][post.handCount[curPlayer] - 2]);
 						printf("Test Failed\n");
 						numFailed++;
@@ -159,7 +158,7 @@ int main(int argc, char** argv) {
 
 					post = pre;
 
-					adventurerPlay(curPlayer, handPos, &post);
+					playAdventurer(curPlayer, &post);
 
 					printf("Testing 2 cards were drawn for gold:\n");
 						if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
@@ -172,7 +171,7 @@ int main(int argc, char** argv) {
 						totalTests++;
 
 						printf("Testing 2 cards drawn were gold:\n");
-							if (post.hand[curPlayer][post.handCount[curPlayer] - 1] != gold || post.hand[curPlayer][0] != gold) {
+							if (post.hand[curPlayer][post.handCount[curPlayer] - 1] != gold || post.hand[curPlayer][post.handCount[curPlayer] - 2] != gold) {
 								printf("Test Failed\n");
 								numFailed++;
 							}
@@ -226,7 +225,7 @@ int main(int argc, char** argv) {
 							totalTests++;
 
 							post = pre;
-							adventurerPlay(curPlayer, handPos, &post);
+							playAdventurer(curPlayer, &post);
 							printf("Testing correct cards in discard:\n");
 							if (post.discardCount[curPlayer] != 5) {
 								printf("Test Failed - s/b five cards in discard\n");
@@ -240,7 +239,6 @@ int main(int argc, char** argv) {
 							printf("Testing correct number of cards drawn\n");
 							if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
 								printf("Test Failed - did not draw correct number of cards\n");
-								numFailed++;
 							}
 							else {
 								printf("Test Passed\n");
@@ -248,9 +246,8 @@ int main(int argc, char** argv) {
 							totalTests++;
 
 							printf("Testing correct number of cards in deck:\n");
-							if(pre.deckCount[curPlayer] != post.deckCount[curPlayer] + 2){
+							if(pre.deckCount[curPlayer] != post.deckCount[curPlayer] - 2){
 								printf("Test Failed - incorrect number of cards in deck\n");
-								numFailed++;
 							}
 							else {
 								printf("Test Passed\n");
@@ -304,10 +301,10 @@ int main(int argc, char** argv) {
 
 							post = pre;
 
-							adventurerPlay(curPlayer, handPos, &post);
-							
+							playAdventurer(curPlayer, &post);
+
 							printf("Testing there are enough cards in discard:\n");
-							if (post.discardCount[curPlayer] < 4) {
+							if (post.discardCount[curPlayer >= 4]) {
 								printf("Test Failed - s/b at least 4 cards in discard\n");
 								numFailed++;
 							}
@@ -319,7 +316,6 @@ int main(int argc, char** argv) {
 							printf("Testing correct number of cards drawn:\n");
 							if (pre.handCount[curPlayer] + 1 != post.handCount[curPlayer]) {
 								printf("Test Failed - did not draw correct number of cards\n");
-								numFailed++;
 							}
 							else {
 								printf("Test Passed\n");
@@ -327,9 +323,8 @@ int main(int argc, char** argv) {
 							totalTests++;
 
 							printf("Testing correct  number of cards in deck:\n");
-							if (post.deckCount[curPlayer] > 4) {
+							if (post.deckCount[curPlayer] <= 4) {
 								printf("Test Failed - incorrect number of cards in deck\n");
-								numFailed++;
 							}
 							else {
 								printf("Test Passed\n");
@@ -382,10 +377,10 @@ int main(int argc, char** argv) {
 
 							post = pre;
 
-							adventurerPlay(curPlayer, handPos, &post);
+							playAdventurer(curPlayer, &post);
 
 							printf("Testing there are enough cards in discard pile:\n");
-							if (post.discardCount[curPlayer] != 9) {
+							if (post.discardCount[curPlayer == 9]) {
 								printf("Test Failed - s/b 9 cards in discard\n");
 								numFailed++;
 							}
@@ -457,9 +452,9 @@ int main(int argc, char** argv) {
 
 							post = pre;
 
-							adventurerPlay(curPlayer, handPos, &post);
+							playAdventurer(curPlayer, &post);
 
-							if (post.discardCount[curPlayer] != 10) {
+							if (post.discardCount[curPlayer == 10]) {
 								printf("Test Failed - s/b 10 cards in discard\n");
 								numFailed++;
 							}

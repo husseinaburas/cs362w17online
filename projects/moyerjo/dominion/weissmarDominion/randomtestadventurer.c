@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 		pre.hand[curPlayer][handPos] = adventurer;
 		post = pre;
 
-		adventurerPlay(curPlayer, handPos, &post);
+		playAdventurer(curPlayer, &post);
 
 		if (supplyUnchanged(&pre, &post) == 0) {
 			printf("Test Failed: Supply Unexpectedly Changed\n");
@@ -64,12 +64,12 @@ int main(int argc, char** argv) {
 				}
 				else {
 					//test that correct coins were drawn
-					if (validateAdventurerDraw(curPlayer, handPos, &pre, &post) == 0) {
+					if (validateAdventurerDraw(curPlayer, &pre, &post) == 0) {
 						printf("Test Failed - Incorrectly drawing treasure\n");
 						failedCount++;
 						
 					}
-					totalTests++;
+					totalTests += 5;
 				}
 				
 			}
