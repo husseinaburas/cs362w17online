@@ -44,14 +44,15 @@ void assertTrue(struct gameState *test, struct gameState *control) {
 
 int main() {
    int i;
-   int temphand[MAX_HAND];
-   int cardDrawn;
-   int drawntreasure;
-   int z;
    int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
    struct gameState G;
    struct gameState test;
    struct gameState control;
+   int choice1 = 0;
+   int choice2 = 0;
+   int choice3 = 0;
+   int handpos = 4;
+   int bonus = 0;
    
    initializeGame(2, k, 1, &G);
    memcpy(&test, &G, sizeof(struct gameState));
@@ -72,10 +73,7 @@ int main() {
       test.discard[0][i] = copper;
    test.hand[0][4] = adventurer;
    memcpy(&control, &test, sizeof(struct gameState));
-   drawntreasure=0;
-   cardDrawn = -1;
-   z=0;
-   adventurerCard(&test, drawntreasure, 0, temphand, cardDrawn, z);
+   cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = 6;
    control.hand[0][4] = copper;
    control.hand[0][5] = copper;
@@ -98,10 +96,7 @@ int main() {
       test.discard[0][i] = copper;
    test.hand[0][4] = adventurer;
    memcpy(&control, &test, sizeof(struct gameState));
-   drawntreasure=0;
-   cardDrawn = -1;
-   z=0;
-   adventurerCard(&test, drawntreasure, 0, temphand, cardDrawn, z);
+   cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = 6;
    control.hand[0][4] = copper;
    control.hand[0][5] = copper;
@@ -123,10 +118,7 @@ int main() {
       test.discard[0][i] = estate;
    test.hand[0][4] = adventurer;
    memcpy(&control, &test, sizeof(struct gameState));
-   drawntreasure=0;
-   cardDrawn = -1;
-   z=0;
-   adventurerCard(&test, drawntreasure, 0, temphand, cardDrawn, z);
+   cardEffect(adventurer, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = 4;
    control.hand[0][4] = -1;
    control.deckCount[0] = 0;

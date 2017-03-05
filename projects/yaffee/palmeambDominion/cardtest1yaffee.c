@@ -41,6 +41,11 @@ int main() {
    struct gameState G;
    struct gameState test;
    struct gameState control;
+   int choice1 = 0;
+   int choice2 = 0;
+   int choice3 = 0;
+   int handpos = 4;
+   int bonus = 0;
 
    //initialize game
    initializeGame(2, k, 1, &G);
@@ -68,7 +73,7 @@ int main() {
 
    //test draw when there are at least 3 cards in deck to draw from (no shuffle required)
    printf("Test Case: enough cards in deck to draw from\n");
-   smithyCard(&test, 0, 4);
+   cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
    //add 3 from smithy to hand, minus one for discarding smithy
    control.handCount[0] = control.handCount[0] + 2;
    control.deckCount[0] = control.deckCount[0] - 3;
@@ -95,7 +100,7 @@ int main() {
 
    //test when there is 1 card in deck, must shuffle discard
    printf("Test Case: not enough cards in deck, must use discard pile\n");
-   smithyCard(&test, 0, 4);
+   cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
    control.handCount[0] = control.handCount[0] + 2;
    control.discardCount[0] = 0;
    control.playedCards[0] = smithy;
@@ -120,7 +125,7 @@ int main() {
 
    //test when there is 1 card deck, no discards (ie, smithy can only draw 1)
    printf("Test Case: one card in deck, no cards in discard pile\n");
-   smithyCard(&test, 0, 4);
+   cardEffect(smithy, choice1, choice2, choice3, &test, handpos, &bonus);
    control.playedCardCount = 1;
    control.playedCards[0] = smithy;
    control.deckCount[0] = 0;
