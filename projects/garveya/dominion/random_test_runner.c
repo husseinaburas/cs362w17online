@@ -22,6 +22,7 @@
 
 //global variable for number of test failed
 int numTestsFailed = 0;
+int numTestsPassed = 0;
 
 //prints error message if test fails
 //otherwise prints that test passed
@@ -34,11 +35,12 @@ void custom_assert(int test, char *testName){
 			exit(1);
 		}
 	}
-	#if ASSERT_PRINT_SUCCESS
 	else{
-		printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
+		numTestsPassed++;
+		#if ASSERT_PRINT_SUCCESS
+			printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
+		#endif
 	}
-	#endif
 }
 
 //returns a random integer between min and max (inclusive)
@@ -69,6 +71,10 @@ int areGameStatesEqual(struct gameState *g1, struct gameState *g2){
 void printIntDiff(int d1, int d2, char *fieldName){
 	if(d1 != d2){
 		printf("%s are different. Mock %d, Real %d\n", fieldName, d1, d2);
+		numTestsFailed++;
+	}
+	else{
+		numTestsPassed++;
 	}
 }
 
@@ -309,7 +315,7 @@ int main(int argc, char const *argv[]){
 
 	runRandomTests();
 
-	printf("\nNumber of random tests %d, number of failures %d\n", NUM_RANDOM_ITERATIONS, numTestsFailed);
+	printf("\nNumber of iterations %d, number of assertions passed %d, number of assertions failed %d\n", NUM_RANDOM_ITERATIONS, numTestsPassed, numTestsFailed);
 
 	return 0;
 }
