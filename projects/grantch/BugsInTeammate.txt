@@ -176,3 +176,5 @@ Num of Players: 4 test number 469
 ***END OF GREAT HALL TESTS***
 
 Now this only happens in about 1/10,000 tests. I am not 100% if this is an edge case or a fault in my test. I have run it a few times and it usually happens in the random test at least once each run of 10,000 random test. (I think for an improvement for this test I will also have it output the all the conditions the test was in at that time).
+
+Update: This was a fault in my test. My random hand size was going to 500-502 when the max hand size was 500. This was causing it to write into player twos memory. I have fixed this and this is no longer a problem.
