@@ -1,0 +1,221 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: *  Method buyCard
+        -:    3: *  --------------
+        -:    4: * unittest2: unittest2.c dominion.o rngs.o
+        -:    5: *      gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include "asserttrue.h"
+        -:   14:#include "rngs.h"
+        -:   15:
+        -:   16:
+        -:   17:// set NOISY_TEST to 0 to remove printfs from output
+        -:   18:#define NOISY_TEST 1
+        -:   19:#define CARDORFUNCTIONTOTEST "buyCard"
+        -:   20:
+        -:   21:
+function main called 1 returned 100% blocks executed 80%
+        -:   22:int main() {
+        -:   23:    
+        -:   24:    /****************************** Main Setup ******************************/
+        -:   25:    
+        1:   26:    int constantSeedForRandomSeed = 1;
+        1:   27:    int numPlayer = 2;
+        -:   28:    struct gameState NewGameStateStruct, OldVersionOfGameStruct, resetVersionOfGameStruct;
+        -:   29:    
+        1:   30:    memset(&NewGameStateStruct, 23, sizeof(struct gameState));      // clear the game state
+        1:   31:    memset(&OldVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
+        1:   32:    memset(&resetVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
+        -:   33:    
+        1:   34:    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   35:        sea_hag, tribute, smithy, council_room};
+        -:   36:    
+        -:   37:    // initialize a game state and player cards
+        1:   38:    initializeGame(numPlayer, k, constantSeedForRandomSeed, &NewGameStateStruct);
+        -:   39:    //memcpy(&NewGameStateStruct, &OldVersionOfGameStruct, sizeof(struct gameState)); // copy game state to have before - after comparision
+        1:   40:    resetVersionOfGameStruct = NewGameStateStruct;
+        -:   41:    
+        1:   42:    printf("----------------- Testing: %s ----------------\n", CARDORFUNCTIONTOTEST);
+        -:   43:    
+        -:   44:    // Did Any Test Fail Variable
+        1:   45:    int atLeast1TestFailed = 0;
+        -:   46:    
+        -:   47:    
+        -:   48:    //Invariable Conditions for all Tests
+        1:   49:    int enumOfCardBeingBought = estate;
+        1:   50:    int indexCurrentPlayer = 0;
+        -:   51:    
+        -:   52:    
+        -:   53:    
+        -:   54:    // ----------- TEST 1: Test no more buys left --------------
+        -:   55:    //Invariable Conditions for this Test
+        1:   56:    NewGameStateStruct.numBuys = 0;
+        1:   57:    NewGameStateStruct.supplyCount[estate] = 3;
+        1:   58:    NewGameStateStruct.coins = 2;
+        -:   59:    
+        1:   60:    printf("--- TEST 1: Test no more buys left\n");
+        -:   61:    // copy the game state to compare (before + expected) with after
+        1:   62:    OldVersionOfGameStruct = NewGameStateStruct;
+        -:   63:    
+        -:   64:    /**** Call Func ****/
+        1:   65:    int resultBuyCard = buyCard(enumOfCardBeingBought, &NewGameStateStruct);
+        -:   66:    
+        1:   67:    asserttrue(resultBuyCard == -1, &atLeast1TestFailed);
+        -:   68:    
+        -:   69:    // copy the game state to compare (before + expected) with after
+        1:   70:    OldVersionOfGameStruct = NewGameStateStruct;
+        1:   71:    printf("Buy Success Status = %d, expected = %d\n", buyCard(enumOfCardBeingBought, &NewGameStateStruct), -1);
+        -:   72:    
+        -:   73:    /**** Assert Results ****/
+        1:   74:    asserttrue(buyCard(enumOfCardBeingBought, &NewGameStateStruct) == -1, &atLeast1TestFailed);
+        -:   75:    
+        1:   76:    printf("Coin Count = %d, expected = %d\n", NewGameStateStruct.coins, OldVersionOfGameStruct.coins);
+        1:   77:    asserttrue(NewGameStateStruct.coins == OldVersionOfGameStruct.coins, &atLeast1TestFailed);
+        -:   78:    
+        1:   79:    printf("num Buys Count = %d, expected = %d\n", NewGameStateStruct.numBuys, OldVersionOfGameStruct.numBuys);
+        1:   80:    asserttrue(NewGameStateStruct.numBuys == OldVersionOfGameStruct.numBuys, &atLeast1TestFailed);
+        -:   81:    
+        1:   82:    printf("handCount Count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer]);
+        1:   83:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer], &atLeast1TestFailed);
+        -:   84:    
+        1:   85:    printf("supply Count = %d, expected = %d\n", NewGameStateStruct.supplyCount[estate], OldVersionOfGameStruct.supplyCount[estate]);
+        1:   86:    asserttrue(NewGameStateStruct.supplyCount[estate] == OldVersionOfGameStruct.supplyCount[estate], &atLeast1TestFailed);
+        -:   87:    
+        -:   88:    /**** End Assert Results ****/
+        -:   89:    
+        -:   90:    
+        -:   91:    // ----------- TEST 2: Test no more estate card left --------------
+        -:   92:    //Invariable Conditions for this Test
+        1:   93:    NewGameStateStruct = resetVersionOfGameStruct;
+        1:   94:    NewGameStateStruct.numBuys = 2;
+        1:   95:    NewGameStateStruct.supplyCount[estate] = 0;
+        1:   96:    NewGameStateStruct.coins = 2;
+        -:   97:    
+        1:   98:    printf("--- TEST 2: Test no more estate card left\n");
+        -:   99:    /**** Call Func ****/
+        1:  100:    OldVersionOfGameStruct = NewGameStateStruct;
+        1:  101:    resultBuyCard = buyCard(enumOfCardBeingBought, &NewGameStateStruct);
+        1:  102:    asserttrue(resultBuyCard == -1, &atLeast1TestFailed);
+        -:  103:    
+        -:  104:    // copy the game state to compare (before + expected) with after
+        -:  105:    
+        1:  106:    printf("Buy Success Status = %d, expected = %d\n", resultBuyCard, -1);
+        -:  107:    
+        -:  108:    /**** Assert Results ****/
+        1:  109:    asserttrue(resultBuyCard == -1, &atLeast1TestFailed);
+        -:  110:    
+        1:  111:    printf("Coin Count = %d, expected = %d\n", NewGameStateStruct.coins, OldVersionOfGameStruct.coins);
+        1:  112:    asserttrue(NewGameStateStruct.coins == OldVersionOfGameStruct.coins, &atLeast1TestFailed);
+        -:  113:    
+        1:  114:    printf("num Buys Count = %d, expected = %d\n", NewGameStateStruct.numBuys, OldVersionOfGameStruct.numBuys);
+        1:  115:    asserttrue(NewGameStateStruct.numBuys == OldVersionOfGameStruct.numBuys, &atLeast1TestFailed);
+        -:  116:    
+        1:  117:    printf("handCount Count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer]);
+        1:  118:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer], &atLeast1TestFailed);
+        -:  119:    
+        1:  120:    printf("supply Count = %d, expected = %d\n", NewGameStateStruct.supplyCount[estate], OldVersionOfGameStruct.supplyCount[estate]);
+        1:  121:    asserttrue(NewGameStateStruct.supplyCount[estate] == OldVersionOfGameStruct.supplyCount[estate], &atLeast1TestFailed);
+        -:  122:    
+        -:  123:    /**** End Assert Results ****/
+        -:  124:    
+        -:  125:    
+        -:  126:    // ----------- TEST 3: Test not enough coins for Estate buy --------------
+        -:  127:    //Invariable Conditions for this Test
+        1:  128:    NewGameStateStruct = OldVersionOfGameStruct;
+        1:  129:    NewGameStateStruct.numBuys = 2;
+        1:  130:    NewGameStateStruct.supplyCount[estate] = 3;
+        1:  131:    NewGameStateStruct.coins = 1;
+        -:  132:    
+        1:  133:    printf("--- TEST 3: Test not enough coins for Estate buy\n");
+        -:  134:    // copy the game state to compare (before + expected) with after
+        1:  135:    NewGameStateStruct = OldVersionOfGameStruct ;
+        -:  136:    
+        -:  137:    /**** Call Func ****/
+        1:  138:    resultBuyCard = buyCard(enumOfCardBeingBought, &NewGameStateStruct);
+        1:  139:    asserttrue(resultBuyCard == -1, &atLeast1TestFailed);
+        -:  140:    
+        -:  141:    // copy the game state to compare (before + expected) with after
+        1:  142:    OldVersionOfGameStruct = NewGameStateStruct;
+        1:  143:    printf("Buy Success Status = %d, expected = %d\n", resultBuyCard, -1);
+        -:  144:    
+        -:  145:    /**** Assert Results ****/
+        1:  146:    asserttrue(buyCard(enumOfCardBeingBought, &NewGameStateStruct) == -1, &atLeast1TestFailed);
+        -:  147:    
+        1:  148:    printf("Coin Count = %d, expected = %d\n", NewGameStateStruct.coins, OldVersionOfGameStruct.coins);
+        1:  149:    asserttrue(NewGameStateStruct.coins == OldVersionOfGameStruct.coins, &atLeast1TestFailed);
+        -:  150:    
+        1:  151:    printf("num Buys Count = %d, expected = %d\n", NewGameStateStruct.numBuys, OldVersionOfGameStruct.numBuys);
+        1:  152:    asserttrue(NewGameStateStruct.numBuys == OldVersionOfGameStruct.numBuys, &atLeast1TestFailed);
+        -:  153:    
+        1:  154:    printf("handCount Count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer]);
+        1:  155:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer], &atLeast1TestFailed);
+        -:  156:    
+        1:  157:    printf("supply Count = %d, expected = %d\n", NewGameStateStruct.supplyCount[estate], OldVersionOfGameStruct.supplyCount[estate]);
+        1:  158:    asserttrue(NewGameStateStruct.supplyCount[estate] == OldVersionOfGameStruct.supplyCount[estate], &atLeast1TestFailed);
+        -:  159:    
+        -:  160:    /**** End Assert Results ****/
+        -:  161:    
+        -:  162:    
+        -:  163:    // ----------- TEST 4: Test Sufficient Conditions to Buy Estate --------------
+        -:  164:    //Invariable Conditions for this Test
+        1:  165:    NewGameStateStruct = OldVersionOfGameStruct;
+        1:  166:    NewGameStateStruct.numBuys = 1;
+        1:  167:    NewGameStateStruct.supplyCount[estate] = 2;
+        1:  168:    NewGameStateStruct.coins = 2;
+        -:  169:    
+        -:  170:    
+        1:  171:    printf("--- TEST 4: Test Sufficient Conditions to Buy Estate\n");
+        -:  172:    /**** Call Func ****/
+        -:  173:    
+        -:  174:    
+        -:  175:    // copy the game state to compare (before + expected) with after
+        1:  176:    OldVersionOfGameStruct = NewGameStateStruct;
+        1:  177:    NewGameStateStruct.numBuys = 1;
+        1:  178:    NewGameStateStruct.supplyCount[estate] = 2;
+        1:  179:    NewGameStateStruct.coins = 2;
+        -:  180:    
+        1:  181:    resultBuyCard = buyCard(enumOfCardBeingBought, &NewGameStateStruct);
+        1:  182:    printf("Buy Success Status = %d, expected = %d\n", resultBuyCard, 0);
+        -:  183:    
+        -:  184:    /**** Assert Results ****/
+        -:  185:    
+        1:  186:    asserttrue(resultBuyCard == 0 , &atLeast1TestFailed);
+        -:  187:    
+        1:  188:    printf("Coin Count = %d, expected = %d\n", NewGameStateStruct.coins, OldVersionOfGameStruct.coins - (getCost(estate)));
+        1:  189:    asserttrue(NewGameStateStruct.coins == OldVersionOfGameStruct.coins - (getCost(estate)), &atLeast1TestFailed);
+        -:  190:    
+        1:  191:    printf("num Buys Count = %d, expected = %d\n", NewGameStateStruct.numBuys, OldVersionOfGameStruct.numBuys - 1);
+        1:  192:    asserttrue(NewGameStateStruct.numBuys == OldVersionOfGameStruct.numBuys -1, &atLeast1TestFailed);
+        -:  193:    
+        1:  194:    printf("handCount Count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer] + 1);
+        1:  195:    asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer] + 1, &atLeast1TestFailed);
+        -:  196:    
+        1:  197:    printf("supply Count = %d, expected = %d\n", NewGameStateStruct.supplyCount[estate], OldVersionOfGameStruct.supplyCount[estate] -1);
+        1:  198:    asserttrue(NewGameStateStruct.supplyCount[estate] == OldVersionOfGameStruct.supplyCount[estate] - 1, &atLeast1TestFailed);
+        -:  199:    
+        -:  200:    /**** End Assert Results ****/
+        -:  201:    
+        -:  202:    
+        -:  203:    
+        -:  204:    
+        -:  205:    
+        -:  206:    
+        1:  207:    if (atLeast1TestFailed == 0) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  208:        printf("All TESTS PASSED...\n");
+    #####:  209:    }else{
+        1:  210:        printf("All TESTS DID NOT PASS X...\n");
+        -:  211:    }
+        1:  212:    return 0;
+        -:  213:}

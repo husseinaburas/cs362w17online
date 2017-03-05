@@ -18,8 +18,11 @@
 //number of times random tests should run
 #define NUM_RANDOM_ITERATIONS 1000
 
+#define TOTAL_NUM_KINGDOM_CARDS 20
+
 //global variable for number of test failed
 int numTestsFailed = 0;
+int numTestsPassed = 0;
 
 //prints error message if test fails
 //otherwise prints that test passed
@@ -32,11 +35,12 @@ void custom_assert(int test, char *testName){
 			exit(1);
 		}
 	}
-	#if ASSERT_PRINT_SUCCESS
 	else{
-		printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
+		numTestsPassed++;
+		#if ASSERT_PRINT_SUCCESS
+			printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
+		#endif
 	}
-	#endif
 }
 
 //returns a random integer between min and max (inclusive)
@@ -67,6 +71,10 @@ int areGameStatesEqual(struct gameState *g1, struct gameState *g2){
 void printIntDiff(int d1, int d2, char *fieldName){
 	if(d1 != d2){
 		printf("%s are different. Mock %d, Real %d\n", fieldName, d1, d2);
+		numTestsFailed++;
+	}
+	else{
+		numTestsPassed++;
 	}
 }
 
@@ -139,7 +147,7 @@ void printGameStateDifferences(struct gameState *mock, struct gameState *real){
 
 //fill kingdom cards holder with random kingdom cards
 void pickRandomKindomCards(int kingdomCardsHolder[10]){
-	int kingdomCards[20] = {
+	int kingdomCards[TOTAL_NUM_KINGDOM_CARDS] = {
 		   adventurer,
 		   /* If no/only 1 treasure found, stop when full deck seen */
 		   council_room,
@@ -165,9 +173,17 @@ void pickRandomKindomCards(int kingdomCardsHolder[10]){
 		   sea_hag,
 		   treasure_map
 		  };
+
+	//shuffle kingdom cards, and then pick first 10
 	int i;
+	for(i = 0; i < TOTAL_NUM_KINGDOM_CARDS; ++i){
+		int randIndex = randIntInclusive(0, TOTAL_NUM_KINGDOM_CARDS - 1);
+		int temp = kingdomCards[i];
+		kingdomCards[i] = kingdomCards[randIndex];
+		kingdomCards[randIndex] = temp;
+	}  
 	for(i = 0; i < 10; ++i){
-		kingdomCardsHolder[i] = kingdomCards[randIntInclusive(0, 20 - 1)];
+		kingdomCardsHolder[i] = kingdomCards[i];
 	}
 }
 
@@ -214,7 +230,7 @@ uint intToUint(int d){
 
 //returns 0 based index of random player in gameState
 int pickRandomPlayer(struct gameState *g){
-	return randIntInclusive(0, g->numPlayers);
+	return randIntInclusive(0, g->numPlayers - 1);
 }
 
 //takes 0 based index of player and gameState
@@ -299,7 +315,7 @@ int main(int argc, char const *argv[]){
 
 	runRandomTests();
 
-	printf("\nNumber of random tests %d, number of failures %d\n", NUM_RANDOM_ITERATIONS, numTestsFailed);
+	printf("\nNumber of iterations %d, number of assertions passed %d, number of assertions failed %d\n", NUM_RANDOM_ITERATIONS, numTestsPassed, numTestsFailed);
 
 	return 0;
 }

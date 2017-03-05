@@ -110,11 +110,33 @@ int main(int argc, char *argv[]) {
     int thisPlayer = 0;
 	int drawntreasure = 2;
 	struct gameState G, pre;
-	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
-			sea_hag, tribute, smithy, council_room};
+	//int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+	//		sea_hag, tribute, smithy, council_room};
 
-	// initialize a game state and player cards
-	//initializeGame(numPlayers, k, seed, &G);
+    int tcc_hand, tcc_deck, tcc_discard, tcc_total;	//tcc = treasure card count	
+	int NUMCARDS = 27;
+	int NUMCARDS_IN_PLAY = 17;
+	int TOT_KCARDS = 20;
+	int KCARD_FIRSTINDEX = adventurer;
+	int MAX_KCARDS = 10;
+	int MIN_STARTING_CARDS = 2;
+	int MAX_STARTING_CARDS = 15;
+	int k[MAX_KCARDS];					// array storing 10 cards to use in a single game
+	int NUMTREASURECARDS = 3;
+	int TREASURE_FIRSTINDEX = copper;
+	
+	// declare random test variables
+	int rand_kcard[MAX_KCARDS];			// adventurer and 9 other randomly selected kingdom cards
+	int rand_numhandcards;				// starting number of cards in hand from 2 to 10
+	int rand_numdeckcards;				// starting number of cards in deck from 2 to 10
+	int rand_numdiscards;				// starting number of cards in discard from 2 to 10
+	int rand_thiscard;					// 1 of 17 cardtypes in play (1 curse, 3 victory 3 treasure, 10 kingdom)
+	int rand_isTreasure;				// boolean determining whether a card is a Treasure card
+
+	int cardtype[NUMCARDS];				// counts of each card type in deck and discard (potential discards)			
+			
+			
+
 	SelectStream(2);
 	if (argc < 2){
 		printf("use case: randomtestcard1 <seed> \n");
@@ -125,17 +147,94 @@ int main(int argc, char *argv[]) {
     
     printf("-----------------Random Testing Card: %s ----------------\n", TESTCARD);	
 	for (m =0; m<2000; m++){
-		for(i =0; i < sizeof(struct gameState); i++){
-			((char*) &G)[i] = floor(Random() * 256);
+//		for(i =0; i < sizeof(struct gameState); i++){
+//			((char*) &G)[i] = floor(Random() * 256);
+//		}
+
+	// initialize a game state and player cards
+	initializeGame(numPlayers, k, seed, &G);
+	
+//borrowed from professor's assignment 4 solution in git -- begin
+
+		//		establish number of cards in hand from 2 to 10
+		rand_numhandcards = (rand() % (MAX_STARTING_CARDS - MIN_STARTING_CARDS + 1)) + MIN_STARTING_CARDS;
+		//printf("\tstarting cards in hand: %d\n", rand_numhandcards);
+		G.handCount[thisPlayer] = rand_numhandcards;
+		G.hand[thisPlayer][0] = adventurer;
+
+		//		establish number of cards in deck from 2 to 10
+		rand_numdeckcards = (rand() % (MAX_STARTING_CARDS - MIN_STARTING_CARDS + 1)) + MIN_STARTING_CARDS;
+		//printf("\tstarting cards in deck: %d\n", rand_numdeckcards);
+		G.deckCount[thisPlayer] = rand_numdeckcards;
+
+		//		establish number of cards in discard from 2 to 10
+		rand_numdiscards = (rand() % (MAX_STARTING_CARDS - MIN_STARTING_CARDS + 1)) + MIN_STARTING_CARDS;
+		//printf("\tstarting cards in discard: %d\n", rand_numdiscards);
+		G.discardCount[thisPlayer] = rand_numdiscards;
+
+		//		establish each card
+		//			cards in hand
+		G.hand[thisPlayer][0] = adventurer;
+		for (i=1; i<rand_numhandcards; i++) {
+			rand_isTreasure = rand() % 2;
+			if (rand_isTreasure) {
+				G.hand[thisPlayer][i] = (rand() % NUMTREASURECARDS) + TREASURE_FIRSTINDEX;
+				tcc_hand++;
+			}
+			else {
+				rand_thiscard = rand() % (NUMCARDS_IN_PLAY - NUMTREASURECARDS);
+				if (rand_thiscard < TREASURE_FIRSTINDEX)
+					G.hand[thisPlayer][i] = rand_thiscard;
+				else {
+					G.hand[thisPlayer][i] = k[rand_thiscard - TREASURE_FIRSTINDEX];
+				}
+			}
 		}
-		thisPlayer = floor(Random() * (MAX_PLAYERS-1));
-		G.deckCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
-		G.discardCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
-		G.handCount[thisPlayer] = floor(Random() * (MAX_HAND-1));
-		G.playedCardCount = floor(Random() * (MAX_DECK-1));
-			
-		for(j=0; j< MAX_HAND; j++)
-			G.hand[thisPlayer][j] = 4 + floor(Random() * 2);
+
+		//			cards in deck
+		for (i=0; i<rand_numdeckcards; i++) {
+			rand_isTreasure = rand() % 2;
+			if (rand_isTreasure) {
+				G.deck[thisPlayer][i] = (rand() % NUMTREASURECARDS) + TREASURE_FIRSTINDEX;
+				tcc_deck++;
+			}
+			else {
+				rand_thiscard = rand() % (NUMCARDS_IN_PLAY - NUMTREASURECARDS);
+				if (rand_thiscard < TREASURE_FIRSTINDEX)
+					G.deck[thisPlayer][i] = rand_thiscard;
+				else
+					G.deck[thisPlayer][i] = k[rand_thiscard - TREASURE_FIRSTINDEX];
+			}
+		}
+		for (i=0; i<rand_numdeckcards; i++) cardtype[G.deck[thisPlayer][i]]++;
+		//for (i=0; i<rand_numdeckcards; i++) printf("\t\tdeckcard[%d] = %s\n", i, card[G.deck[thisPlayer][i]]);
+
+		//			cards in discard
+		for (i=0; i<rand_numdiscards; i++) {
+			rand_isTreasure = rand() % 2;
+			if (rand_isTreasure) {
+				G.discard[thisPlayer][i] = (rand() % NUMTREASURECARDS) + TREASURE_FIRSTINDEX;
+				tcc_discard++;
+			}
+			else {
+				rand_thiscard = rand() % (NUMCARDS_IN_PLAY - NUMTREASURECARDS);
+				if (rand_thiscard < TREASURE_FIRSTINDEX)
+					G.discard[thisPlayer][i] = rand_thiscard;
+				else
+					G.discard[thisPlayer][i] = k[rand_thiscard - TREASURE_FIRSTINDEX];
+			}
+		}
+		for (i=0; i<rand_numdiscards; i++) cardtype[G.discard[thisPlayer][i]]++;
+//borrowed from professor's assignment 4 solution in git -- end		
+		
+//		thisPlayer = floor(Random() * (MAX_PLAYERS-1));
+//		G.deckCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
+//		G.discardCount[thisPlayer] = floor(Random() * (MAX_DECK-1));
+//		G.handCount[thisPlayer] = floor(Random() * (MAX_HAND-1));
+//		G.playedCardCount = floor(Random() * (MAX_DECK-1));
+//			
+//		for(j=0; j< MAX_HAND; j++)
+//			G.hand[thisPlayer][j] = 4 + floor(Random() * 2);
 
 
 	printf("Random TEST case [%d]\n", m);

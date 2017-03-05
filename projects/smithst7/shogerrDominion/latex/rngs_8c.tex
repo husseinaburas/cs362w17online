@@ -1,0 +1,205 @@
+\hypertarget{rngs_8c}{}\section{rngs.\+c File Reference}
+\label{rngs_8c}\index{rngs.\+c@{rngs.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$time.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}rngs.\+h\char`\"{}}\\*
+Include dependency graph for rngs.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{rngs_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{rngs_8c_a9bc1fe94bf8c1b9aaef3dade106b6304}{M\+O\+D\+U\+L\+US}~2147483647 /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/
+\item 
+\#define \hyperlink{rngs_8c_ab7ffb5a0ee7b15aecd0b32e84b93e2ee}{M\+U\+L\+T\+I\+P\+L\+I\+ER}~48271      /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/
+\item 
+\#define \hyperlink{rngs_8c_a4ccc9878008def89d325d0bb7efdbd6b}{C\+H\+E\+CK}~399268537  /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/
+\item 
+\#define \hyperlink{rngs_8c_a69c79c9f8eebc35ba5d0eb6f1f8c40c4}{S\+T\+R\+E\+A\+MS}~256        /$\ast$ \# of streams, D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE    $\ast$/
+\item 
+\#define \hyperlink{rngs_8c_af66077ad8750eb59999b068d4ec93b89}{A256}~22925      /$\ast$ jump multiplier, D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE $\ast$/
+\item 
+\#define \hyperlink{rngs_8c_a3da44afeba217135a680a7477b5e3ce3}{D\+E\+F\+A\+U\+LT}~123456789  /$\ast$ initial seed, use 0 $<$ D\+E\+F\+A\+U\+LT $<$ \hyperlink{rngs_8c_a9bc1fe94bf8c1b9aaef3dade106b6304}{M\+O\+D\+U\+L\+US}  $\ast$/
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{rngs_8c_af6956caec1509dadd719fddaaf692489}{Random} (void)
+\item 
+void \hyperlink{rngs_8c_a5f9cd4cc749fd1f25c12b28db2e73865}{Plant\+Seeds} (long x)
+\item 
+void \hyperlink{rngs_8c_a20f35470499c5475ec86e360a7b91df9}{Put\+Seed} (long x)
+\item 
+void \hyperlink{rngs_8c_a82d16331abed0c6296e861ec3590a833}{Get\+Seed} (long $\ast$x)
+\item 
+void \hyperlink{rngs_8c_a8c2fc7157e98523c751b6ba534206ba4}{Select\+Stream} (int index)
+\item 
+void \hyperlink{rngs_8c_ae5c2a668f6fdbd3c5e5044aa6cc6177f}{Test\+Random} (void)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{rngs.\+c@{rngs.\+c}!A256@{A256}}
+\index{A256@{A256}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{A256}{A256}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A256~22925      /$\ast$ jump multiplier, D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE $\ast$/}\hypertarget{rngs_8c_af66077ad8750eb59999b068d4ec93b89}{}\label{rngs_8c_af66077ad8750eb59999b068d4ec93b89}
+\index{rngs.\+c@{rngs.\+c}!C\+H\+E\+CK@{C\+H\+E\+CK}}
+\index{C\+H\+E\+CK@{C\+H\+E\+CK}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{C\+H\+E\+CK}{CHECK}}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+E\+CK~399268537  /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/}\hypertarget{rngs_8c_a4ccc9878008def89d325d0bb7efdbd6b}{}\label{rngs_8c_a4ccc9878008def89d325d0bb7efdbd6b}
+\index{rngs.\+c@{rngs.\+c}!D\+E\+F\+A\+U\+LT@{D\+E\+F\+A\+U\+LT}}
+\index{D\+E\+F\+A\+U\+LT@{D\+E\+F\+A\+U\+LT}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{D\+E\+F\+A\+U\+LT}{DEFAULT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+F\+A\+U\+LT~123456789  /$\ast$ initial seed, use 0 $<$ D\+E\+F\+A\+U\+LT $<$ {\bf M\+O\+D\+U\+L\+US}  $\ast$/}\hypertarget{rngs_8c_a3da44afeba217135a680a7477b5e3ce3}{}\label{rngs_8c_a3da44afeba217135a680a7477b5e3ce3}
+\index{rngs.\+c@{rngs.\+c}!M\+O\+D\+U\+L\+US@{M\+O\+D\+U\+L\+US}}
+\index{M\+O\+D\+U\+L\+US@{M\+O\+D\+U\+L\+US}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{M\+O\+D\+U\+L\+US}{MODULUS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+O\+D\+U\+L\+US~2147483647 /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/}\hypertarget{rngs_8c_a9bc1fe94bf8c1b9aaef3dade106b6304}{}\label{rngs_8c_a9bc1fe94bf8c1b9aaef3dade106b6304}
+\index{rngs.\+c@{rngs.\+c}!M\+U\+L\+T\+I\+P\+L\+I\+ER@{M\+U\+L\+T\+I\+P\+L\+I\+ER}}
+\index{M\+U\+L\+T\+I\+P\+L\+I\+ER@{M\+U\+L\+T\+I\+P\+L\+I\+ER}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{M\+U\+L\+T\+I\+P\+L\+I\+ER}{MULTIPLIER}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+U\+L\+T\+I\+P\+L\+I\+ER~48271      /$\ast$ D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE                  $\ast$/}\hypertarget{rngs_8c_ab7ffb5a0ee7b15aecd0b32e84b93e2ee}{}\label{rngs_8c_ab7ffb5a0ee7b15aecd0b32e84b93e2ee}
+\index{rngs.\+c@{rngs.\+c}!S\+T\+R\+E\+A\+MS@{S\+T\+R\+E\+A\+MS}}
+\index{S\+T\+R\+E\+A\+MS@{S\+T\+R\+E\+A\+MS}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{S\+T\+R\+E\+A\+MS}{STREAMS}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+T\+R\+E\+A\+MS~256        /$\ast$ \# of streams, D\+ON\textquotesingle{}T C\+H\+A\+N\+GE T\+H\+IS V\+A\+L\+UE    $\ast$/}\hypertarget{rngs_8c_a69c79c9f8eebc35ba5d0eb6f1f8c40c4}{}\label{rngs_8c_a69c79c9f8eebc35ba5d0eb6f1f8c40c4}
+
+
+\subsection{Function Documentation}
+\index{rngs.\+c@{rngs.\+c}!Get\+Seed@{Get\+Seed}}
+\index{Get\+Seed@{Get\+Seed}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Get\+Seed(long $\ast$x)}{GetSeed(long *x)}}]{\setlength{\rightskip}{0pt plus 5cm}void Get\+Seed (
+\begin{DoxyParamCaption}
+\item[{long $\ast$}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_a82d16331abed0c6296e861ec3590a833}{}\label{rngs_8c_a82d16331abed0c6296e861ec3590a833}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{rngs_8c_a82d16331abed0c6296e861ec3590a833_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{rngs.\+c@{rngs.\+c}!Plant\+Seeds@{Plant\+Seeds}}
+\index{Plant\+Seeds@{Plant\+Seeds}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Plant\+Seeds(long x)}{PlantSeeds(long x)}}]{\setlength{\rightskip}{0pt plus 5cm}void Plant\+Seeds (
+\begin{DoxyParamCaption}
+\item[{long}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_a5f9cd4cc749fd1f25c12b28db2e73865}{}\label{rngs_8c_a5f9cd4cc749fd1f25c12b28db2e73865}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{rngs_8c_a5f9cd4cc749fd1f25c12b28db2e73865_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rngs_8c_a5f9cd4cc749fd1f25c12b28db2e73865_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{rngs.\+c@{rngs.\+c}!Put\+Seed@{Put\+Seed}}
+\index{Put\+Seed@{Put\+Seed}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Put\+Seed(long x)}{PutSeed(long x)}}]{\setlength{\rightskip}{0pt plus 5cm}void Put\+Seed (
+\begin{DoxyParamCaption}
+\item[{long}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_a20f35470499c5475ec86e360a7b91df9}{}\label{rngs_8c_a20f35470499c5475ec86e360a7b91df9}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rngs_8c_a20f35470499c5475ec86e360a7b91df9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{rngs.\+c@{rngs.\+c}!Random@{Random}}
+\index{Random@{Random}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Random(void)}{Random(void)}}]{\setlength{\rightskip}{0pt plus 5cm}double Random (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_af6956caec1509dadd719fddaaf692489}{}\label{rngs_8c_af6956caec1509dadd719fddaaf692489}
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rngs_8c_af6956caec1509dadd719fddaaf692489_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{rngs.\+c@{rngs.\+c}!Select\+Stream@{Select\+Stream}}
+\index{Select\+Stream@{Select\+Stream}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Select\+Stream(int index)}{SelectStream(int index)}}]{\setlength{\rightskip}{0pt plus 5cm}void Select\+Stream (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_a8c2fc7157e98523c751b6ba534206ba4}{}\label{rngs_8c_a8c2fc7157e98523c751b6ba534206ba4}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{rngs_8c_a8c2fc7157e98523c751b6ba534206ba4_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rngs_8c_a8c2fc7157e98523c751b6ba534206ba4_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{rngs.\+c@{rngs.\+c}!Test\+Random@{Test\+Random}}
+\index{Test\+Random@{Test\+Random}!rngs.\+c@{rngs.\+c}}
+\subsubsection[{\texorpdfstring{Test\+Random(void)}{TestRandom(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void Test\+Random (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{rngs_8c_ae5c2a668f6fdbd3c5e5044aa6cc6177f}{}\label{rngs_8c_ae5c2a668f6fdbd3c5e5044aa6cc6177f}
+
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rngs_8c_ae5c2a668f6fdbd3c5e5044aa6cc6177f_cgraph}
+\end{center}
+\end{figure}
+
+

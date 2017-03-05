@@ -138,7 +138,7 @@ int refactorSmithy(struct gameState *state, int currentPlayer, int handPos)
 {
       int i = 0;
       //+3 Cards
-      for (i = 1; i < 3; i++)
+      for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}

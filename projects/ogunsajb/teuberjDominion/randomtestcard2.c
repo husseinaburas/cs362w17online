@@ -119,7 +119,7 @@ int checkVillage(int p, struct gameState *post, int hp) {
   //  printf ("drawCard PRE: p %d HC %d DeC %d DiC %d\n",
   //	  p, pre.handCount[p], pre.deckCount[p], pre.discardCount[p]);
   hold_hp = hp;  
-  playVillage (post, p, hp);
+  playVillage (p, post, hp);
 
   //printf ("drawCard POST: p %d HC %d DeC %d DiC %d\n",
   //      p, post->handCount[p], post->deckCount[p], post->discardCount[p]);

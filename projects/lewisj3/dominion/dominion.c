@@ -649,6 +649,10 @@ int playAdventurer(struct gameState *state){
 	int temphand[MAX_HAND];
 	int drawntreasure,z = 0;
 	
+	if(state->deckCount[currentPlayer] < 1){
+		shuffle(currentPlayer, state);
+	}
+	
 	while(drawntreasure<2){
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer]
@@ -658,6 +662,7 @@ int playAdventurer(struct gameState *state){
 			drawntreasure++;
 		else{
 			temphand[z]=cardDrawn;
+			z++;
 			//this should just remove the top card (the most recently drawn one).
 			state->handCount[currentPlayer]--; 
 		}

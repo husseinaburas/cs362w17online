@@ -1232,7 +1232,7 @@ Postconditions:
 int playAdventurer(struct gameState *state, int handPos)
 {
     int currentPlayer = whoseTurn(state);
-    int drawnTreasure = 0;
+    int drawnTreasure = 1;
     int cardDrawn;
     int temphand[MAX_HAND];
     int tempCardCount = 0;
