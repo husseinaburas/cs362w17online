@@ -58,7 +58,7 @@ int main( int argc, char *argv[])
 
 int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int discardTreasure, int discardTreasureCount, int discardSize)
 {
-	printf("RUNNING playAdventurer WITH %d TREASURES(enum = %d) IN DECK AND %d TREASURES(enum = %d) DISCARD\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
+	printf("RUNNING play_adventurer WITH %d TREASURES(enum = %d) IN DECK AND %d TREASURES(enum = %d) DISCARD\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
 	int i;
 	int seed = 1000;
 	int numPlayers = 2;
@@ -113,8 +113,8 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 	int startHandCount = G.handCount[0];
 	int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
 
-	// run playAdventurer
-    playAdventurer(&G);
+	// run play_adventurer
+    play_adventurer(&G);
 
 	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
 	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
