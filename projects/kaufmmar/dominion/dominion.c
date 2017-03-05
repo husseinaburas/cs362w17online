@@ -1261,7 +1261,7 @@ int playAdventurer(int *temphand, int drawntreasure, int cardDrawn, int z, struc
 //Smithy
 int playSmithy (struct gameState * state, int currentPlayer, int handPos) { 
     int i; 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}

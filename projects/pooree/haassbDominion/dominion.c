@@ -667,7 +667,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-		playAdventurer(state);
+		  playAdventurer(state);
+      return 0;
 			
     case feast:
       //gain card with cost up to 5
@@ -759,6 +760,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case village:
 	  playVillage(state, handPos);
+    return 0;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -1263,7 +1265,7 @@ int playAdventurer(struct gameState *state)
 		}
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-		if (cardDrawn = copper || cardDrawn == silver || cardDrawn == gold)
+		if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
 		  drawntreasure++;
 		else{
 		  temphand[z]=cardDrawn;

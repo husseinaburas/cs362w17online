@@ -29,81 +29,93 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
-unittest1: unittest1.c dominion.o rngs.o
-	gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+browncla_unittest1: browncla_unittest1.c dominion.o rngs.o
+	gcc -o browncla_unittest1 -g  browncla_unittest1.c dominion.o rngs.o $(CFLAGS)
 
-unittest2: unittest2.c dominion.o rngs.o
-	gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+browncla_unittest2: browncla_unittest2.c dominion.o rngs.o
+	gcc -o browncla_unittest2 -g  browncla_unittest2.c dominion.o rngs.o $(CFLAGS)
 
-unittest3: unittest3.c dominion.o rngs.o
-	gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+browncla_unittest3: browncla_unittest3.c dominion.o rngs.o
+	gcc -o browncla_unittest3 -g  browncla_unittest3.c dominion.o rngs.o $(CFLAGS)
 
-unittest4: unittest4.c dominion.o rngs.o
-	gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+browncla_unittest4: browncla_unittest4.c dominion.o rngs.o
+	gcc -o browncla_unittest4 -g  browncla_unittest4.c dominion.o rngs.o $(CFLAGS)
 
-cardtest1: cardtest1.c dominion.o rngs.o
-	gcc -o cardtest1 -g  cardtest1.c dominion.o rngs.o $(CFLAGS)
+browncla_cardtest1: browncla_cardtest1.c dominion.o rngs.o
+	gcc -o browncla_cardtest1 -g  browncla_cardtest1.c dominion.o rngs.o $(CFLAGS)
 
-cardtest2: cardtest2.c dominion.o rngs.o
-	gcc -o cardtest2 -g  cardtest2.c dominion.o rngs.o $(CFLAGS)
+browncla_cardtest2: browncla_cardtest2.c dominion.o rngs.o
+	gcc -o browncla_cardtest2 -g  browncla_cardtest2.c dominion.o rngs.o $(CFLAGS)
 
-cardtest3: cardtest3.c dominion.o rngs.o
-	gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+browncla_cardtest3: browncla_cardtest3.c dominion.o rngs.o
+	gcc -o browncla_cardtest3 -g  browncla_cardtest3.c dominion.o rngs.o $(CFLAGS)
 
-cardtest4: cardtest4.c dominion.o rngs.o
-	gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+browncla_cardtest4: browncla_cardtest4.c dominion.o rngs.o
+	gcc -o browncla_cardtest4 -g  browncla_cardtest4.c dominion.o rngs.o $(CFLAGS)
 
-randomtestcard1: randomtestcard1.c dominion.o rngs.o
-	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+browncla_randomtestcard1: browncla_randomtestcard1.c dominion.o rngs.o
+	gcc -o browncla_randomtestcard1 -g  browncla_randomtestcard1.c dominion.o rngs.o $(CFLAGS)
 
-randomtestcard2: randomtestcard2.c dominion.o rngs.o
-	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+browncla_randomtestcard2: browncla_randomtestcard2.c dominion.o rngs.o
+	gcc -o browncla_randomtestcard2 -g  browncla_randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 
-randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
-	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+browncla_randomtestadventurer: browncla_randomtestadventurer.c dominion.o rngs.o
+	gcc -o browncla_randomtestadventurer -g  browncla_randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
-unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-	./unittest1 &> unittestresults.out
-	./unittest2 >> unittestresults.out
-	./unittest3 >> unittestresults.out
-	./unittest4 >> unittestresults.out
-	./cardtest1 >> unittestresults.out
-	./cardtest2 >> unittestresults.out
-	./cardtest3 >> unittestresults.out
-	./cardtest4 >> unittestresults.out
+unittestresults.out: browncla_unittest1 browncla_unittest2 browncla_unittest3 browncla_unittest4 browncla_cardtest1 browncla_cardtest2 browncla_cardtest3 browncla_cardtest4
+	./browncla_unittest1 &> unittestresults.out
+	./browncla_unittest2 >> unittestresults.out
+	./browncla_unittest3 >> unittestresults.out
+	./browncla_unittest4 >> unittestresults.out
+	./browncla_cardtest1 >> unittestresults.out
+	./browncla_cardtest2 >> unittestresults.out
+	./browncla_cardtest3 >> unittestresults.out
+	./browncla_cardtest4 >> unittestresults.out
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
-randomtestcard1.out: randomtestcard1
-	./randomtestcard1 30 &> randomtestcard1.out
+randomtestcard1.out: browncla_randomtestcard1
+	./browncla_randomtestcard1 30 &> randomtestcard1.out
 	gcov -b dominion.c >> randomtestcard1.out
 	cat dominion.c.gcov >> randomtestcard1.out
 
-randomtestcard2.out: randomtestcard2
-	./randomtestcard2 30 &> randomtestcard2.out
+randomtestcard2.out: browncla_randomtestcard2
+	./browncla_randomtestcard2 30 &> randomtestcard2.out
 	gcov -b dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 
-randomtestadventurer.out: randomtestadventurer
-	./randomtestadventurer 30 &> randomtestadventurer.out
+randomtestadventurer.out: browncla_randomtestadventurer
+	./browncla_randomtestadventurer 30 &> randomtestadventurer.out
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 
-randomtests: randomtestcard1 randomtestcard2 randomtestadventurer
-	./randomtestcard1 30 &> randomtestcard1.out
-	gcov -b dominion.c >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
-	./randomtestcard2 30 &> randomtestcard2.out
-	gcov -b dominion.c >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
-	./randomtestadventurer 30 &> randomtestadventurer.out
-	gcov -b dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
+randomtestresults.out: browncla_randomtestcard1 browncla_randomtestcard2 browncla_randomtestadventurer
+	./browncla_randomtestcard1 30 &> randomtestresults.out
+	./browncla_randomtestcard2 30 >> randomtestresults.out
+	./browncla_randomtestadventurer 30 >> randomtestresults.out
+	gcov -b dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
+
+allTestResults.out: browncla_unittest1 browncla_unittest2 browncla_unittest3 browncla_unittest4 browncla_cardtest1 browncla_cardtest2 browncla_cardtest3 browncla_cardtest4 browncla_randomtestcard1 browncla_randomtestcard2 browncla_randomtestadventurer
+	./browncla_unittest1 &> allTestResults.out
+	./browncla_unittest2 >> allTestResults.out
+	./browncla_unittest3 >> allTestResults.out
+	./browncla_unittest4 >> allTestResults.out
+	./browncla_cardtest1 >> allTestResults.out
+	./browncla_cardtest2 >> allTestResults.out
+	./browncla_cardtest3 >> allTestResults.out
+	./browncla_cardtest4 >> allTestResults.out
+	./browncla_randomtestcard1 30 >> allTestResults.out
+	./browncla_randomtestcard2 30 >> allTestResults.out
+	./browncla_randomtestadventurer 30 >> allTestResults.out
+	gcov -b dominion.c >> allTestResults.out
+	cat dominion.c.gcov >> allTestResults.out
+
 
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so 

@@ -64,12 +64,12 @@ int main(int argc, char** argv) {
 				}
 				else {
 					//test that correct coins were drawn
-					if (validateAdventurerDraw(curPlayer, &pre, &post) == 0) {
+					if (validateAdventurerDraw(curPlayer, handPos, &pre, &post) == 0) {
 						printf("Test Failed - Incorrectly drawing treasure\n");
 						failedCount++;
 						
 					}
-					totalTests += 5;
+					totalTests++;
 				}
 				
 			}

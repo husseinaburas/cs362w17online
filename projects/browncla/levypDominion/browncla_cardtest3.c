@@ -41,7 +41,8 @@ int main(){
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	//result = playSalvager(&testG, currentPlayer, choice1, 3);
+	result = cardEffect(salvager, choice1, 0, 0, &testG, 3, NULL);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -224,7 +225,8 @@ int main(){
 
 	// ----------- TEST 12 : Test correct return statements for wrong card name -----------
 	printf("%s TEST 12: Correct return statements for wrong card name\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 4);
+	//result = playSalvager(&testG, currentPlayer, choice1, 4);
+	result = cardEffect(salvager, choice1, 0, 0, &testG, 4, NULL);
 	if (result == -1){
 		asserttrue(1, 12);
 	}
@@ -287,7 +289,8 @@ int main(){
 
 	// ----------- TEST 14 : Test correct return statements for wrong phase -----------
 	printf("%s TEST 14: Correct return statements for wrong phase\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	//result = playSalvager(&testG, currentPlayer, choice1, 3);
+	result = cardEffect(salvager, choice1, 0, 0, &testG, 3, NULL);
 	if (result == -1){
 		asserttrue(1, 14);
 	}
@@ -350,7 +353,8 @@ int main(){
 
 	// ----------- TEST 16 : Test correct return statements for wrong number of actions-----------
 	printf("%s TEST 16: Correct return statements for wrong number of actions\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	//result = playSalvager(&testG, currentPlayer, choice1, 3);
+	result = cardEffect(salvager, choice1, 0, 0, &testG, 3, NULL);
 	if (result == -1){
 		asserttrue(1, 16);
 	}
@@ -413,7 +417,8 @@ int main(){
 
 	// ----------- TEST 18 : Test correct return statements for choice1 not being in hand-----------
 	printf("%s TEST 18: Correct return statements for choice1 not being a valid card\n", TESTCARD);
-	result = playSalvager(&testG, currentPlayer, choice1, 3);
+	//result = playSalvager(&testG, currentPlayer, choice1, 3);
+	result = cardEffect(salvager, choice1, 0, 0, &testG, 3, NULL);
 	if (result == -1){
 		asserttrue(1, 18);
 	}
