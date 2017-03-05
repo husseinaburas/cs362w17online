@@ -10,8 +10,9 @@ What version it was detected on: lamaa's Assignment 4 code
 
 Summary of bug: Three treasures are drawn by refacAdventurer() instead of two.
 
-How to make it happen: Calling refacAdventurer() normally during gameplay will
-always trigger this bug.
+How to make it happen: Calling refacAdventurer() normally during gameplay if
+more than two treasure cards are available in the player’s deck  will always
+trigger this bug.
 
 Estimated severity and priority: This is a severe error in the gameplay logic,
 meaning that the game cannot be played correctly. It is a high priority to fix
