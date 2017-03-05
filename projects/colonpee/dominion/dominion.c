@@ -45,7 +45,7 @@ void runVillage (struct gameState *state, int currentPlayer) {
     
     //+1 Card
     drawCard(currentPlayer, state);
-    drawCard(currentPlayer, state);//*
+    //drawCard(currentPlayer, state);//FIXED BUG
     
     
     //+2 Actions
@@ -91,7 +91,7 @@ int runMine (struct gameState *state, int currentPlayer, int choice1, int choice
 
 //Refactored cutpurse code
 void runCutPurse (struct gameState *state, int currentPlayer) {
-    updateCoins(currentPlayer, state, 5);//*
+    updateCoins(currentPlayer, state, 2);//FIXED BUG
     for (int i = 0; i < state->numPlayers; i++) {
         if (i != currentPlayer) {
             for (int j = 0; j < state->handCount[i]; j++) {
@@ -432,20 +432,22 @@ int fullDeckCount(int player, int card, struct gameState *state) {
     int i;
     int count = 0;
     
-    for (i = 0; i < state->deckCount[player]; i++)
-    {
-        if (state->deck[player][i] == card) count++;
-    }
+    count = state->deckCount[player] + state->handCount[player] + state->discardCount[player];
+
+    // for (i = 0; i < state->deckCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
-    for (i = 0; i < state->handCount[player]; i++)
-    {
-        if (state->hand[player][i] == card) count++;
-    }
+    // for (i = 0; i < state->handCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
-    for (i = 0; i < state->discardCount[player]; i++)
-    {
-        if (state->discard[player][i] == card) count++;
-    }
+    // for (i = 0; i < state->discardCount[player]; i++)
+    // {
+    //     count++;
+    // }
     
     return count;
 }
@@ -548,7 +550,7 @@ int scoreFor (int player, struct gameState *state) {
     }
     
     //score from deck
-    for (i = 0; i < state->discardCount[player]; i++)
+    for (i = 0; i < state->deckCount[player]; i++)
     {
         if (state->deck[player][i] == curse) { score = score - 1; };
         if (state->deck[player][i] == estate) { score = score + 1; };

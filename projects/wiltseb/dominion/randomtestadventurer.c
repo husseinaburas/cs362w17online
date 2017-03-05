@@ -31,7 +31,7 @@ int main(int argc, char** argv){
 	
 	printf("Random Test for Adventurer-----------------------------------------------------------------\n");
 
-	for (j = 0; j < 100000; j++){
+	for (j = 0; j < 100; j++){
 		//determine number of players (2 - 4 playrs)
 		numPlayers = (rand() % (MAX_PLAYERS - 1)) + 2;
 			
@@ -136,7 +136,7 @@ int main(int argc, char** argv){
 		assertTrue(TestGame1.handCount[currPlayer] == initHandCount + 1, "number of cards in P1 hand", TestGame1.handCount[currPlayer], initHandCount + 1, &testFlag);
 		
 		//Hand should have 2 more treasure cards
-		currNumTreasure = 0;
+		currNumTreasure = initNumTreasure;
 		nonTreasureDrawn = 0;
 		for (i = 0; i < TestGame1.handCount[currPlayer]; i++){
 			h = TestGame1.hand[currPlayer][i];
