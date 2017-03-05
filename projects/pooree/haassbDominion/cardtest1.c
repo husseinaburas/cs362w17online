@@ -46,7 +46,7 @@ int main() {
 
     // copy the game state to a test case 
     memcpy(&testG, &G, sizeof(struct gameState));
-    playSmithy(handpos, thisPlayer, &testG);
+    playSmithy(&testG, handpos);
     
     printf("hand count = %d, expected = %d\n", testG.handCount[thisPlayer], G.handCount[thisPlayer] + newCards - discarded);
     if(testG.handCount[thisPlayer] != G.handCount[thisPlayer] + newCards - discarded)

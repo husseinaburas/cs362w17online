@@ -83,7 +83,7 @@ int main (int argc, char** argv) {
     memcpy(&preG, &G, sizeof(struct gameState)); // Copy game state prior to playing card for comparisons
     
     // Play the card from the function created outside of cardEffect
-    playSmithy(r, p, &G);
+    playSmithy(&G, r);
 
     // Test hand count increases by 2 overall (3 new cards - 1 discard)
     if (NOISY == 1) printf("hand count = %d, expected = %d\n", G.handCount[p], preG.handCount[p] + 2);

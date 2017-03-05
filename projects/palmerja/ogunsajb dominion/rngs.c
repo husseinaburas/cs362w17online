@@ -35,6 +35,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "rngs.h"
+#pragma warning(disable:4996)
 
 #define MODULUS    2147483647 /* DON'T CHANGE THIS VALUE                  */
 #define MULTIPLIER 48271      /* DON'T CHANGE THIS VALUE                  */

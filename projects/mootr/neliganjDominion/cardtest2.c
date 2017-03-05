@@ -35,7 +35,7 @@ int main(int argv, char** argc) {
   // Setting first card of first player's hand to be adventurer
   testState.hand[0][0] = adventurer;
   // Playing adventurer
-  playAdventurer(&testState, 0);
+  playAdventurer(&testState);
   updateCoins(0, &testState, 0);
   // Checking discard count to ensure the card was not discarded
   UNIT_ASSERT((testState.deckCount[0] != copyState.deckCount[0]),

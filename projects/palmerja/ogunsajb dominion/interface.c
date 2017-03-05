@@ -11,6 +11,7 @@ Sam Heinith CS362
 #include "rngs.h"
 #include "interface.h"
 #include "dominion.h"
+#pragma warning(disable:4996)
 
 
 void cardNumToName(int card, char *name){
