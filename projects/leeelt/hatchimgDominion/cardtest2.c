@@ -113,6 +113,18 @@ int runCardTest(int deckSize, int discardSize)
 		printf("%d ", G.hand[0][i]);
     }
 	printf("\n");
+	printf("Showing current cards in discard...\n");
+	for (i = 0; i < G.discardCount[0]; i++)
+	{
+		printf("%d ", G.discard[0][i]);
+	}
+	printf("\n");
+	printf("Showing current cards in deck....\n");
+	for (i = 0; i < G.deckCount[0]; i++)
+	{
+		printf("%d ", G.deck[0][i]);
+	}
+	printf("\n");
     if ( asserttrue(G.handCount[0], startHandCount + 3 - 1) == 1 ) test_failed_flag = 1;
 
 	// Check that 3 drawn cards came from player 1's deck.
