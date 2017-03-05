@@ -33,8 +33,6 @@
       <in>unittest3.c</in>
       <in>unittest4.c</in>
     </df>
-    <df root="." name="1">
-    </df>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
