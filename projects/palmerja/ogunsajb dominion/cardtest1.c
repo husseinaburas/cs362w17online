@@ -10,7 +10,8 @@
 int main()
 {
 	
-	int x, treas, draw;
+	int x, draw;
+	int treas = 0;
 	int treas1 = 0;
 	int treas2 = 0;
 	int i = 0;
