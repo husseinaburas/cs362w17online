@@ -399,7 +399,8 @@ int isGameOver(struct gameState *state) {
 
   //if three supply pile are at 0, the game ends
   j = 0;
-  for (i = 0; i < 25; i++)
+  //FIXED: includes treasure_map and sea hag now
+  for (i = 0; i <= treasure_map; i++)
     {
       if (state->supplyCount[i] == 0)
 	{
@@ -426,7 +427,8 @@ int scoreFor (int player, struct gameState *state) {
       if (state->hand[player][i] == duchy) { score = score + 3; };
       if (state->hand[player][i] == province) { score = score + 6; };
       if (state->hand[player][i] == great_hall) { score = score + 1; };
-      if (state->hand[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+	  //includes all cards in hand, deck, discard now
+      if (state->hand[player][i] == gardens) { score = score + ( (state->handCount[player] + state->deckCount[player] + state->discardCount[player]) / 10 ); };
     }
 
   //score from discard
@@ -437,7 +439,8 @@ int scoreFor (int player, struct gameState *state) {
       if (state->discard[player][i] == duchy) { score = score + 3; };
       if (state->discard[player][i] == province) { score = score + 6; };
       if (state->discard[player][i] == great_hall) { score = score + 1; };
-      if (state->discard[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+	  //includes all cards in hand, deck, discard now
+      if (state->discard[player][i] == gardens) { score = score + ( (state->handCount[player] + state->deckCount[player] + state->discardCount[player]) / 10 ); };
     }
 
   //score from deck
@@ -448,7 +451,8 @@ int scoreFor (int player, struct gameState *state) {
       if (state->deck[player][i] == duchy) { score = score + 3; };
       if (state->deck[player][i] == province) { score = score + 6; };
       if (state->deck[player][i] == great_hall) { score = score + 1; };
-      if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };
+	  //includes all cards in hand, deck, discard now
+      if (state->deck[player][i] == gardens) { score = score + ( (state->handCount[player] + state->deckCount[player] + state->discardCount[player]) / 10 ); };
     }
 
   return score;
@@ -649,8 +653,10 @@ int adventurerPlay(int currentPlayer, int handPos, struct gameState* state) {
 	int z = 0;				//temphand counter
 	int cardDrawn;			//the card drawn
 	int temphand[MAX_HAND];	//array representing temphand
+	int i;
 
-	while (drawntreasure<2) {
+	//added code to ensure an empty deck and empty discard will break the loop
+	while (drawntreasure<2 && (state->deckCount[currentPlayer] > 0 || state->discardCount[currentPlayer] > 0)) {
 
 		drawCard(currentPlayer, state);
 		cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];//top card of hand is most recently drawn card.
@@ -662,11 +668,15 @@ int adventurerPlay(int currentPlayer, int handPos, struct gameState* state) {
 			z++;
 		}
 	}
-	while (z - 1 >= 0) {
-		z = z - 1;
-		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
-		
+	for(i = 0; i < z; i++){
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[i];
 	}
+	/*while (z - 1 >= 0) {
+		//FIXED: Reversed order of these statements to alter z AFTER performing operation
+		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // discard all cards in play that have been drawn
+		z = z - 1;
+		
+	}*/
 
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
@@ -675,7 +685,8 @@ int adventurerPlay(int currentPlayer, int handPos, struct gameState* state) {
 
 int smithyPlay(int currentPlayer, int handPos, struct gameState* state) {
 	int i;
-	for (i = 1; i < 3; i++)
+	//FIXED: start loop at 0
+	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -693,7 +704,7 @@ int greatHallPlay(int currentPlayer, int handPos, struct gameState* state) {
 	state->numActions++;
 
 	//discard card from hand
-	discardCard(handPos, currentPlayer, state, 1);
+	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }
 
@@ -754,9 +765,12 @@ int treasureMapPlay(int currentPlayer, int handPos, struct gameState* state) {
 	//search hand for another treasure_map
 	int i, index;
 	index = -1;
+	//FIXED: discard the treasure map that was played first, as deleting it may alter the indexes used later
+	discardCard(handPos, currentPlayer, state, 1);
+	//FIXED: remove the checking to make sure indexed card was not handPos, as this is no longer necessary
 	for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
-		if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
+		if (state->hand[currentPlayer][i] == treasure_map)
 		{
 			index = i;
 			break;
@@ -764,14 +778,15 @@ int treasureMapPlay(int currentPlayer, int handPos, struct gameState* state) {
 	}
 	if (index > -1)
 	{
-		//trash both treasure cards
-		discardCard(handPos, currentPlayer, state, 1);
+		//trash other treasure card
+		//discardCard(handPos, currentPlayer, state, 1); This has already been trashed
 		discardCard(index, currentPlayer, state, 1);
 
 		//gain 4 Gold cards
 		for (i = 0; i < 4; i++)
 		{
-			gainCard(gold, state, 0, currentPlayer);
+			//FIXED: Made gold cards go on top of deck, rather than discard
+			gainCard(gold, state, 1, currentPlayer);
 		}
 
 		//return success
