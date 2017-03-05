@@ -97,18 +97,19 @@ int runCardTest(int deckSize, int discardSize)
     int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
 	int totalCardsPlayer2 = G.handCount[1] + G.deckCount[1] + G.discardCount[1];
 
-    // run playSmithy
-    playSmithy(&G, 0);
+    // run play_smithy
+    play_smithy(&G, 0);
 
     // Check +3 to hand and smithy is gone
     printf("-----TEST 1: CHECK +3 CARDS TO HAND AND SMITHY NO LONGER IN HAND-----\n");
     printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + 3 - 1);
-    if (asserttrue(G.handCount[0], startHandCount + 3 - 1) == -1) return -1;
-    printf("Showing current cards in hand...\n");
+	printf("Showing current cards in hand...\n");
     for (i = 0; i < G.handCount[0]; i++)
     {
-	printf("%d ", G.hand[0][i]);
+		printf("%d ", G.hand[0][i]);
     }
+	printf("\n");
+    if (asserttrue(G.handCount[0], startHandCount + 3 - 1) == -1) return -1;
 
 	// Check that 3 drawn cards came from player 1's deck.
 	printf("-----TEST 2: CHECK THAT 3 DRAWN CARDS CAME FROM PLAYER 1's DECK-----\n");
