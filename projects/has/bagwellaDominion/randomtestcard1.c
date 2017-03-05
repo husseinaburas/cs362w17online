@@ -238,11 +238,12 @@ int main(int argc, char** argv){
 			/* check if two actions were added to the players total
 			 */			
 			assertRet = assertTrue(game->numActions, pre.numActions + 2 ,checkNumber + 1 + (testCount*numChecks), NUM_TESTS * numChecks, &numPass, &numFail);
-
+			
 			if(assertRet){
 				printf("Test %i Failed (Added 2 Actions)\n", checkNumber + 1 + (testCount*numChecks));
 				checkFailureCount = checkFailureCount + 1;
 				checkArr[checkNumber] = 1;
+
 			}
 
 			passFailArr[checkNumber][assertRet] = passFailArr[checkNumber][assertRet] + 1;
