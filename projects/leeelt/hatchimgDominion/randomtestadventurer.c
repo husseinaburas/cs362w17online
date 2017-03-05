@@ -45,7 +45,7 @@ int main( int argc, char *argv[])
 		int discardTreasure = rand() % (2 + 1);  // initialize discard pile with copper, silver, or gold
 		int discardTreasureCount = rand() % (130 + 1); // intialize discard with 0 - 130 treasure cards
 		int discardCount = rand() % ((200 - discardTreasureCount) + 1); // initialize discard with 0 to 200 treasure cards
-		if (runCardTest(deckTreasure, deckTreasureCount, deckSize, discardTreasure, discardTreasureCount, discardCount) == -1){
+		if (runCardTest(deckTreasure, deckTreasureCount, deckSize, discardTreasure, discardTreasureCount, discardCount) == 1){
 			++numFailedTests;
 		} else {
 			++numPassedTests;
@@ -56,10 +56,16 @@ int main( int argc, char *argv[])
     return 0;
 }
 
+
+// Function: runCardTest()
+// Description: Calls the adventurer card with the following user-provided pre-conditions.
+// Pre-conditions: Pass it a deck treasure id, the number of treasures, the deck size, the discard treeasure, the number of treasures in the discard, and the discard pile size.
+// Post-conditions: Returns 1 if test failed. Returns 0 if passed.
 int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int discardTreasure, int discardTreasureCount, int discardSize)
 {
 	printf("RUNNING play_adventurer WITH %d TREASURES(enum = %d) IN DECK AND %d TREASURES(enum = %d) DISCARD\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
 	int i;
+	int test_fail_flag = 0;  // set to 1 if test fails
 	int seed = 1000;
 	int numPlayers = 2;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
@@ -119,7 +125,7 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
 	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
     printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
-	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == -1) return -1;
+	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == 1) test_fail_flag = 1;
 	printf("Showing current cards in hand...\n");
 	for (i = 0; i< G.handCount[0]; i++){
 		printf("%d ", G.hand[0][i]);
@@ -128,21 +134,21 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 
 	printf("-----TEST 2: CHECK TOTAL CARDS FOR PLAYER 1 HAS NOT CHANGED-----\n");
 	printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-	if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == -1) return -1;
+	if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == 1) test_fail_flag = 1;
 
 	printf("\n\n");
 
 	return 0;
 }
 
-// checks val1 == val2
-// true returns 0
-// false returns -1
+// Function: asserttrue()
+// Description: Implementation of isEqual for integers used for testing.
+//				Returns 1 if values are equal. Else return 0.
 int asserttrue(int val1, int val2)
 {
     if (val1 != val2) {
 		printf("TEST FAILED \n");
-		return -1;
+		return 1;
 	}
     else {
 		printf("TEST PASSED \n");

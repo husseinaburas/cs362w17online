@@ -23,17 +23,17 @@ int main()
 {
     int numFailedTests = 0;
     int numPassedTests = 0;
-    if (runCardTest(5, 0) == -1){
+    if (runCardTest(5, 0) == 1){
 		numFailedTests++;
 	} else {
 		numPassedTests++;
 	}
-    if (runCardTest(0, 5) == -1){
+    if (runCardTest(0, 5) == 1){
 		numFailedTests++;
 	} else {
 		numPassedTests++;
 	}
-    if (runCardTest(1, 5) == -1){
+    if (runCardTest(1, 5) == 1){
 		numFailedTests++;
 	} else {
 		numPassedTests++;
@@ -43,11 +43,15 @@ int main()
     return 0;
 }
 
+// Function: runCardTest()
+// Description: Tests the smithy card. User provides a deck size and a discard size.
+//				Returns 0 if test passed. Returns 1 if test failed.
 int runCardTest(int deckSize, int discardSize)
 {
-    printf("Running smithy test with %d cards in deck and %d cards in discard\n", deckSize, discardSize);
+    printf("\nRunning smithy test with %d cards in deck and %d cards in discard\n", deckSize, discardSize);
     int i;
 	int j;
+	int test_failed_flag = 0;  // set to 1 if a test fails
     int seed = 1000;
     int numPlayers = 2;
     int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
@@ -109,28 +113,30 @@ int runCardTest(int deckSize, int discardSize)
 		printf("%d ", G.hand[0][i]);
     }
 	printf("\n");
-    if (asserttrue(G.handCount[0], startHandCount + 3 - 1) == -1) return -1;
+    if ( asserttrue(G.handCount[0], startHandCount + 3 - 1) == 1 ) test_failed_flag = 1;
 
 	// Check that 3 drawn cards came from player 1's deck.
 	printf("-----TEST 2: CHECK THAT 3 DRAWN CARDS CAME FROM PLAYER 1's DECK-----\n");
 	printf("Number of cards in deck + discard = %d, expected = %d\n", G.deckCount[0] + G.discardCount[0], totalCards - startHandCount - 3);
-	if (asserttrue(G.deckCount[0] + G.discardCount[0], totalCards - startHandCount - 3) == -1) return -1;
-
+	if (asserttrue(G.deckCount[0] + G.discardCount[0], totalCards - startHandCount - 3) == 1) test_failed_flag = 1;
 	// Check card total for players
 	printf("-----TEST 3: CHECK DECK TOTALS FOR BOTH PLAYERS-----\n");
     printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
-    if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == -1) return -1;
+    asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
     printf("Total cards for player 2 = %d, expected = %d\n", G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2);
-    if (asserttrue(G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2) == -1) return -1;
-
-    return 0;
+    if (asserttrue(G.handCount[1] + G.deckCount[1] + G.discardCount[1], totalCardsPlayer2) == 1) test_failed_flag = 1;
+    return test_failed_flag;
 }
 
+
+// Function: asserttrue()
+// Description: Implementation of isEqual for integers used for testing.
+//				Returns 1 if values are equal. Else return 0.
 int asserttrue(int val1, int val2)
 {
     if (val1 != val2) {
 		printf("TEST FAILED \n");
-		return -1;
+		return 1;
 	}
     else {
 		printf("TEST PASSED \n");
