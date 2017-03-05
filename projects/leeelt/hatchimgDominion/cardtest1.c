@@ -117,16 +117,18 @@ int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int disca
 	int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
 
 	// run playAdventurer
-    playAdventurer(&G);
+    play_adventurer(&G);
 
 	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
 	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
     printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
-	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == -1) return -1;
 	printf("Showing current cards in hand...\n");
 	for (i = 0; i< G.handCount[0]; i++){
 		printf("%d ", G.hand[0][i]);
 	}
+	printf("\n");
+	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == -1) return -1;
+
 	printf("\n");
 
 	printf("-----TEST 2: CHECK TOTAL CARDS FOR PLAYER 1 HAS NOT CHANGED-----\n");
