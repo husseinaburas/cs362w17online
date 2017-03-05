@@ -1,71 +1,74 @@
-/* Author: Bilal Saleem
- * Date: 2/1/17
- * Function to test: int getCost(int)
- */
+/* Name: Marina Kaufman
+OSU_CS362_Assignment 3
+Due Date: 02.07.17
+Description: Test Unit for a method shuffle(). 
+*/
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef int bool;
-#define true 1
-#define false 0
-
-
-void assert(bool j, char * msg){
-	if(j == false) {
-		printf("Test Failed -- %s \n", msg);
-	}
-}
 
 int main(){
-
-	printf("unittest4.c\n");
-	/*************** TEST ONE ***********************************
- 	* Should return approriate cost for each card.
- 	* All cost values used for comparison obtained
- 	* from: http://wiki.dominionstrategy.com/index.php/Main_Page
- 	* **********************************************************/
-	assert(getCost(curse) == 0, " has wrong cost returned");	
-	assert(getCost(estate) == 2, " has wrong cost returned");		
-	assert(getCost(duchy) == 5, " has wrong cost returned");	
-	assert(getCost(province) == 8, " has wrong cost returned");	
-	assert(getCost(copper) == 0, " has wrong cost returned");	
-	assert(getCost(silver) == 3, "silver has wrong cost returned");	
-	assert(getCost(gold) == 6, "gold has wrong cost returned");	
-	assert(getCost(adventurer) == 6, "adventurer has wrong cost returned");	
-	assert(getCost(council_room) == 5, "council_room has wrong cost returned");	
-	assert(getCost(feast) == 4, "feast has wrong cost returned");	
-	assert(getCost(gardens) == 4, "gardens has wrong cost returned");	
-	assert(getCost(mine) == 5, "mine has wrong cost returned");	
-	assert(getCost(remodel) == 4, "remodel has wrong cost returned");	
-	assert(getCost(smithy) == 4, "smithy has wrong cost returned");	
-	assert(getCost(village) == 3, "village has wrong cost returned");	
-	assert(getCost(baron) == 4, "baron has wrong cost returned");	
-	assert(getCost(great_hall) == 3, "great_hall has wrong cost returned");	
-	assert(getCost(minion) == 5, "minion has wrong cost returned");	
-	assert(getCost(steward) == 3, "steward has wrong cost returned");	
-	assert(getCost(tribute) == 5, "tribute has wrong cost returned");	
-	assert(getCost(ambassador) == 3, "ambassador has wrong cost returned");	
-	assert(getCost(cutpurse) == 4, "cutpurse has wrong cost returned");	
-	assert(getCost(embargo) == 2, "embargo has wrong cost returned");	
-	assert(getCost(outpost) == 5, "outpost has wrong cost returned");	
-	assert(getCost(salvager) == 4, "salvager has wrong cost returned");
-	assert(getCost(sea_hag) == 4, "sea_hag has wrong cost returned");	
-	assert(getCost(treasure_map) == 4, "treasure_map has wrong cost returned");	
+	struct gameState G, testG;
+	int result; 
+	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall};
+	int seed = 1000; 
+	int num_players = 2; 
+	int success = 0; 
 	
-	/**************** TEST TWO *****************************
- 	* Should return -1 if asked to get a cost for a card that
- 	* isn't in the game or if function receives negative value
- 	* ******************************************************/
+	//initialize the game
+	initializeGame(num_players, k, seed, &G);
+	
+	memcpy(&testG, &G, sizeof(struct gameState));
+	
+	printf("------------------------ Testing a function shuffle() -------------------------\n");
 
-	assert(getCost(100) == -1, "returned a cost for card that doesn't exist");
-	assert(getCost(treasure_map + 1) == -1, "returned a cost for card that doesn't exist");
-	assert(getCost(-1) == -1, "returned a cost for a card that doesn't exist (neg)");
-	assert(getCost(-10) == -1, "returned a cost for a card that doesn't exist (neg)");
-
+    printf("\nTEST 1:\n Shuffling a deck with a count < 1\n");
+	G.deckCount[1] = -5;
+	result = shuffle(1, &G);
+	printf("shuffle = %d, expected = %d\n",result,-1);
+	success = result == -1;
+	
+	
+	printf("\nTEST 2:\n Shuffling a deck with a count >0\n");
+	G.deckCount[1] = 5;
+	result = shuffle(1, &G);
+	printf("shuffle = %d, expected = %d\n",result,0);
+	success = success && result == 0;
+	
+	printf("\nTEST 3:\n A method does not change the game state\n");
+	// the same player still has the turn   
+    printf("player = %d, expected = %d\n", testG.whoseTurn, G.whoseTurn); 
+    success = success && testG.whoseTurn == G.whoseTurn; 
+	
+	// victory cards pile should stay the same
+  printf( "supplyCount[estate] = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
+  success = success && testG.supplyCount[estate] == G.supplyCount[estate]; 
+  printf( "supplyCount[duchy] = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
+  success = success && testG.supplyCount[duchy] == G.supplyCount[duchy]; 
+  printf( "supplyCount[province] = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
+  success = success && testG.supplyCount[province] == G.supplyCount[province];
+  
+  // curse cards pile should stay the same 
+  printf( "supplyCount[curse] = %d, expected = %d\n", testG.supplyCount[curse], G.supplyCount[curse]);
+  success = success && testG.supplyCount[curse] == G.supplyCount[curse]; 
+ 
+  
+  // treasure cards pile should stay the same
+  printf( "supplyCount[copper] = %d, expected = %d\n", testG.supplyCount[copper], G.supplyCount[copper]);
+  success = success && testG.supplyCount[copper] == G.supplyCount[copper]; 
+  printf( "supplyCount[silver] = %d, expected = %d\n", testG.supplyCount[silver], G.supplyCount[silver]);
+  success = success && testG.supplyCount[silver] == G.supplyCount[silver]; 
+  printf( "supplyCount[gold] = %d, expected = %d\n", testG.supplyCount[gold], G.supplyCount[gold]);
+  success = success && testG.supplyCount[gold] == G.supplyCount[gold];
+	
+  //output the test results
+  if(success){
+    printf("\n >>>>> SUCCESS: Testing complete for: shuffle()<<<<<\n\n");
+  }else{
+    printf("\n >>>>> FAILURE: Testing failed for: shuffle() <<<<<\n\n");
+  }
 	return 0;
 }

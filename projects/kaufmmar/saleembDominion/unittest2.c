@@ -1,113 +1,159 @@
-/* Author: Bilal Saleem
- * Date: 1/31/17
- * Function to test: int* kingdomCards(int, int, int, int, int, int, int, int, int, int)
- */
+/* Name: Marina Kaufman
+OSU_CS362_Assignment 3
+Due Date: 02.07.17
+Description: TEst Unit for a method scoreFor()
+*/
 
-#include "dominion.h"
-#include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include "dominion.h"
 
-typedef int bool;
-#define true 1
-#define false 0
+int main(){
+  int i;
+  int result;
+  int countTotal;
+  int success = 0;
+  int player = 0;
+  int num_players = 2; 
+  int seed = 1000; 
+	struct gameState G, testG;
+	int k[10] = {adventurer, great_hall, gardens, minion, mine, cutpurse,
+    sea_hag, tribute, smithy, council_room};
+	
+	//initialize the game
+	initializeGame(num_players, k, seed, &G);
+  memcpy(&testG, &G, sizeof(struct gameState));
 
-
-void assert(bool j, char * msg){
-	if(j == false) {
-		printf("Test Failed -- %s \n", msg);
+	printf("------------------------ Testing a function scoreFor() -------------------------\n");
+	
+	printf("\nTEST 1:\n Score from playerHand\n");
+	for(i=0; i<testG.deckCount[player];i++){
+      testG.deck[player][i]=smithy;
 	}
-}
-
-int main() {
-	int i, k; // iterator
-	int numAdv, numFeast, numGarden, numMine, numVillage;  // used in TEST THREE for determining how many decks were created for									       // adventurer, feast, gardens, mine, and village
-	int * kCards = 0;
-
-	printf("unittest2.c\n");
-	/************** TEST ONE *****************
- 	* Should not return a null value
- 	* ****************************************/
-
-	kCards = kingdomCards(adventurer, council_room, feast, gardens,
-				mine, remodel, smithy, village, baron, great_hall);
-
-	assert(kCards != 0, "Memory not allocated");
-
-	free(kCards);
-
-	/************* TEST TWO ***********************
- 	* Should not be able to assign non-kingdom cards
- 	* *********************************************/
-	
-	kCards = kingdomCards(curse, estate, duchy, province, copper, silver, gold,
-				adventurer, council_room, feast);
-
-	for(i = 0; i < 10; ++i){
-		assert(kCards[i] > gold, "Non-kingdom card assigned");	// all enumerated CARD types are kingdom cards after gold CARD	
-
+	for(i=0; i<testG.handCount[player];i++){
+      testG.hand[player][i]=smithy;
 	}
-	
-	free(kCards);
+	for(i=0; i<testG.discardCount[player];i++){
+      testG.discard[player][i]=smithy; 
+	}
+	//set up playerHand 
+	testG.handCount[player]=5;
+	testG.hand[player][0]= estate;
+	testG.hand[player][1]= province;
+	testG.hand[player][2]= duchy;
+	testG.hand[player][3]= great_hall;
+	testG.hand[player][4]= curse;
+	countTotal = 1+6+3+1-1;
 
-	/*************** TEST THREE ************************
- 	* Should not be able to assign the same card multiple
- 	* times
- 	* *************************************************/
+	result = scoreFor(player,&testG);
+	printf(" scoreFor returned %d, expected %d\n",result,countTotal);
+	success = result == countTotal; 
 	
-	numAdv = numFeast = numGarden = numMine = numVillage = 0;
-	
-	kCards = kingdomCards(adventurer, adventurer, feast, feast, gardens, mine,
-				gardens, mine, village, adventurer);
-
-	// check and see how many of each deck has been "created"
-	for(i = 0; i < 10; ++i){
-		if(kCards[i] == adventurer)
-			numAdv++;
-		else if(kCards[i] == feast)
-			numFeast++;
-		else if(kCards[i] == gardens)
-			numGarden++;
-		else if(kCards[i] == mine)
-			numMine++;
-		else if(kCards[i] == village)
-			numVillage++;
+	 printf("\nTEST 2:\n Score from the deck\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+	for(i=0; i<testG.deckCount[player];i++){
+      testG.deck[player][i]=smithy;
+	}
+	for(i=0; i<testG.handCount[player];i++){
+      testG.hand[player][i]=smithy;
+	}
+	for(i=0; i<testG.discardCount[player];i++){
+      testG.discard[player][i]=smithy;
 	}
 	
-	assert(numAdv <= 1, "Multiple adventurer decks created");
-	assert(numFeast <= 1, "Multiple feast decks created");
-	assert(numGarden <= 1, "Multiple garden decks created");
-	assert(numMine <= 1, "Multiple mine decks created");
-	assert(numVillage <= 1, "Multiple village decks created");
+	//set up deck
+	testG.deckCount[player]=5;
+	testG.deck[player][0]= estate;
+	testG.deck[player][1]= province;
+	testG.deck[player][2]= duchy;
+	testG.deck[player][3]= great_hall;
+	testG.deck[player][4]= curse;
+	countTotal = 1+6+3+1-1;
+
+	result = scoreFor(player,&testG);
+	printf("scoreFor = %d, expected = %d\n",result,countTotal);
+    success = success && result == countTotal; 
 	
-	free(kCards);
-
-	/************* TEST FOUR ******************
- 	* Should not accept negative values
- 	* ****************************************/
-
-	kCards = kingdomCards(-1, -2, -3, -4, -5, -6, -7, -8, -9, -10);
-
-	for(i = 0; i < 10; ++i){
-		assert(kCards[i] > 0, "Negative values assigned to deck array");		
-
+	 printf("\nTEST 3:\n Score from discard pile\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+	for(i=0; i<testG.deckCount[player];i++){
+      testG.deck[player][i]=adventurer;
+	}
+	for(i=0; i<testG.handCount[player];i++){
+      testG.hand[player][i]=adventurer;
 	}
 	
-	free(kCards);
+	//set up discard pile 
+	testG.discardCount[player] = 5;
+	testG.discard[player][0]= estate;
+	testG.discard[player][1]= province;
+	testG.discard[player][2]= duchy;
+	testG.discard[player][3]= great_hall;
+	testG.discard[player][4]= curse;
+	countTotal = 1+6+3+1-1;
 
-	/************* TEST FIVE ****************
- 	* Should not accept card value greater than
- 	* treasure_map (last enumerated CARD type)
- 	* ***************************************/
+	result = scoreFor(player,&testG);
+	printf("scoreFor = %d, expected = %d\n",result,countTotal);
+    success = success && result == countTotal; 
+  
 
-	kCards = kingdomCards(treasure_map+1, treasure_map+2, treasure_map+3, treasure_map+4,
-			treasure_map+5, treasure_map+6, treasure_map+7, treasure_map+8,
-			treasure_map+9, treasure_map+10);
-
-	for(i = 0; i < 10; ++i){
-		assert(kCards[i] <= treasure_map, "Value greater than last enumerated CARD type assigned");
+  printf("\nTEST 4:\n Score for garden card\n");
+    memcpy(&testG, &G, sizeof(struct gameState));
+	testG.deckCount[player]=5;
+	testG.handCount[player]=5;
+	testG.discardCount[player]=5;
+	
+	for(i=0; i<testG.deckCount[player];i++){
+      testG.deck[player][i]=smithy;
 	}
-	return 0;
+	for(i=0; i<testG.handCount[player];i++){
+      testG.hand[player][i]=smithy;
+	}
+	for(i=0; i<testG.discardCount[player];i++){
+      testG.discard[player][i]=smithy;
+	}
+	
+	//set up playerHand with one garden card 
+	testG.hand[player][0]= gardens;
+	countTotal = (testG.discardCount[player]+testG.deckCount[player]+testG.handCount[player])/10;
+
+	result = scoreFor(player,&testG);
+	printf("scoreFor = %d, expected = %d\n",result,countTotal);
+	success = success && result == countTotal; 
+  
+    printf("\nTEST 5:\n A method does not change the game state\n");
+	// the same player still has the turn   
+  printf("player = %d, expected = %d\n", testG.whoseTurn, G.whoseTurn); 
+  success = success && testG.whoseTurn == G.whoseTurn; 
+  
+  // victory cards pile should stay the same
+  printf( "supplyCount[estate] = %d, expected = %d\n", testG.supplyCount[estate], G.supplyCount[estate]);
+  success = success && testG.supplyCount[estate] == G.supplyCount[estate]; 
+  printf( "supplyCount[duchy] = %d, expected = %d\n", testG.supplyCount[duchy], G.supplyCount[duchy]);
+  success = success && testG.supplyCount[duchy] == G.supplyCount[duchy]; 
+  printf( "supplyCount[province] = %d, expected = %d\n", testG.supplyCount[province], G.supplyCount[province]);
+  success = success && testG.supplyCount[province] == G.supplyCount[province];
+  
+  // curse cards pile should stay the same 
+  printf( "supplyCount[curse] = %d, expected = %d\n", testG.supplyCount[curse], G.supplyCount[curse]);
+  success = success && testG.supplyCount[curse] == G.supplyCount[curse]; 
+ 
+  
+  // treasure cards pile should stay the same
+  printf( "supplyCount[copper] = %d, expected = %d\n", testG.supplyCount[copper], G.supplyCount[copper]);
+  success = success && testG.supplyCount[copper] == G.supplyCount[copper]; 
+  printf( "supplyCount[silver] = %d, expected = %d\n", testG.supplyCount[silver], G.supplyCount[silver]);
+  success = success && testG.supplyCount[silver] == G.supplyCount[silver]; 
+  printf( "supplyCount[gold] = %d, expected = %d\n", testG.supplyCount[gold], G.supplyCount[gold]);
+  success = success && testG.supplyCount[gold] == G.supplyCount[gold];
+  
+    //output test resuls
+	if(success){
+    printf("\n >>>>> SUCCESS: Testing complete for: scoreFor()<<<<<\n\n");
+  }else{
+    printf("\n >>>>> FAILURE: Testing failed for: scoreFor() <<<<<\n\n");
+  }
+	
+	
+  return 0;
 }

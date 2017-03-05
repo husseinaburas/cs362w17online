@@ -1,188 +1,106 @@
-/* Card being tested: village
- * Bilal Saleem
- * Intro to SE II - Assignment 4 - 2/11/17
- */
+/* Name: Marina Kaufman
+OSU_CS362_Assignment 3
+Due Date: 02.07.17
+Description: Random tester for card Salvager. Postcondition: Player has one more Buy, one card is 
+trashed, get the number of coins == cost of a trashed card. 
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include "rngs.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <assert.h>
+#include "rngs.h"
+#include <time.h>
 
-void setDeck(struct gameState * G, int * deck, int numCards, int playerNum);
-void setHand(struct gameState * G, int * hand, int numCards, int playerNum);
-/* compareArrs two arrays for equality of their values (order matters); returns 1 if not equal, 0 if equal */
-int compareArr(int * one, int * two, int num);
+#define TESTCARD "salvager"
 
-int main(int argc, char ** argv) {
-    
-    // get user to provide a seed value for the srand function
-//    printf("Enter a random number to serve as a seed: ");
-    int randomSeed = atoi(argv[1]);
-//    scanf("%d", &randomSeed);
-    srand(randomSeed);
-    
-    /*********** RANDOMIZATION TEST 1 *************
-     * Initialize the game with a random number of
-     * players between 2 and 4.  See if it passes
-     * unit tests.
-     **********************************************/
-    printf("TEST ONE\n");
-    
-    struct gameState * G = newGame();       // will be used in random testing
-    struct gameState * GCopy = newGame();   // used for comparisons and resetting struct G
-    
-    // generate a random number of players for the game within the range of 2-4 players
-    // use formula numPlayers = rand() % (maxPlayers + 1 - minPlayers) + minPlayers
-    int numPlayers = rand() % (4 + 1 - 2) + 2;
-    
-    int * kCards;       // holds the set of kingdom cards to be used in the game
-    kCards = kingdomCards(smithy, adventurer, village, great_hall, council_room, feast,
-                          gardens, mine, remodel, outpost);
-    
-    initializeGame(numPlayers, kCards, randomSeed, G);
+int main(){
+  int testNum = 1; 
+  int i; 
+  int numTests = 10; 
+  int handPos = 0;
+  int player;
+  int seed = 1000; 
+  int ch1 = 1;
+  int ch2 = 0; 
+  int ch3 = 0; 
+  int newBuys = 1;
+  int discarded = 1;   
+  
+  
+   srand((unsigned)time(NULL));
+   
+	struct gameState G, testG;
+	int k[10] = {smithy, great_hall, salvager, minion, mine, cutpurse,
+    sea_hag, tribute, adventurer, council_room};
+	
+	for (i = 0; i < numTests; i++){ 
+	
+	int success=0; 
+	int num_players = rand()% 4 +1; 
+	int discardedCost = rand() % 15; 
+    player = rand()% 2 + 1; 
+	G.deckCount[player] = rand()% MAX_DECK+1;
+    G.discardCount[player] = rand()%MAX_DECK+1;
+    G.handCount[player] =rand()%MAX_HAND+1;
+	
+	//initialize the game 
+	initializeGame(num_players, k, seed, &G);
+  memcpy(&testG, &G, sizeof(struct gameState));
 
-    // re-initialize deck so that it is known what card will be drawn
-    // when village is played
-    int deckInitializer[10] = {
-        // bottom of deck
-        copper,
-        copper,
-        copper,
-        silver,
-        smithy, //fifth from bottom
-        village,
-        silver,
-        sea_hag,
-        silver,
-        treasure_map
-        // top of deck
-    };
+	printf("-------------------------- Test # %d Card: %s ------------------------\n", testNum,TESTCARD);
+	
+	printf("\nTEST 1:\n Player draws Salvager Card and trashes card with cost %d \n", discardedCost);
+	
+  //player gets salvager card
+  testG.hand[player][handPos]= salvager;
+  
+  //player will trash silver card with cost == 3
+  testG.hand[player][ch1]= silver;
+  cardEffect(salvager,ch1,ch2,ch3,&testG,handPos,0); 
+  
+  // the number of Buys is increased by 1 
+  printf("numBuys = %d, expected = %d\n",testG.numBuys, G.numBuys+newBuys);
+  success = testG.numBuys== G.numBuys+newBuys;
 
-    int i;
-    
-    for(i = 0; i < numPlayers; ++i) {
-        setDeck(G, deckInitializer, 10, i);
-    }
+  // number of coins is increased by the cost of trashed card == 3 
+  printf("coins = %d, expected  = %d\n",testG.coins, G.coins+discardedCost);
+  success =  success && testG.coins == G.coins+discardedCost;
+  
+    //  discarded card is not in playerHand
+  printf("discarded card pos = %d, expected != %d\n",testG.hand[player][ch1], silver);
+  success = success && testG.hand[player][ch1] != silver;
 
-    // re-initialize hand so that it will be known what the hand should look like
-    // when village is played
-    int handInitializer[5] = {
-        copper,
-        copper,
-        copper,
-        copper,
-        village
-    };
-    
-    
-    for(i = 0; i < numPlayers; ++i){
-        setHand(G, handInitializer, 5, i);
-    }
-    
-    // make sure player 1 goes first
-    G->whoseTurn = 0;
-    
-    // make copy of the gameState for comparison and resetting purposes
-    memcpy(GCopy, G, sizeof(struct gameState));
-    
-    // play adventurer card
-    playCard(4, 0, 0, 0, G);
-    
-    // correct hand at this point should be copper, copper, copper
-    // copper and treasure_map
-    int correctHand[5] = {
-            copper, copper, copper, copper, treasure_map
-    };
-    
-    if(compareArr(G->hand[0], correctHand, 5)){
-        printf("Test Failed: Hand of player 1 not correct.\n");
-    }
-    
-    // correct deck at this point should be: copper, copper, copper,
-    // silver, smithy, village, silver, sea_hag and silver
-    int correctDeck[9] = {
-            copper, copper, copper, silver, smithy, village, silver, sea_hag, silver
-    };
-    
-    if(compareArr(G->deck[0], correctDeck, 9)){
-        printf("Test Failed: Deck of player 1 not correct. \n");
-    }
-    
-    // correct number of actions should be two
-    if(G->numActions != 2){
-        printf("Test Failed: Number of actions is not correct.\n");
-    }
-    
-    // reset game
-    memcpy(G, GCopy, sizeof(struct gameState));
+   // salvager card is not in playerHand
+  printf("salvager card pos = %d, expected != %d\n",testG.hand[player][handPos], salvager);
+  success = success && testG.hand[player][ch1] != salvager;
 
-    /************* RANDOMIZATION TEST 2 ******************
-     * This test will randomize which player plays the
-     * village card.
-     *****************************************************/
-    printf("TEST TWO\n");
-    
-    // randomly select whose turn it will be
-    G->whoseTurn = rand() % numPlayers;
-    
-    // play adventurer card
-    playCard(4, 0, 0, 0, G);
+  // discard pile receives a discarded card 
+  printf("discardCount = %d, expected = %d\n",testG.discardCount[player],G.discardCount[player]+discarded);
+  success = success && testG.discardCount[player]==G.discardCount[player]+discarded;
+  
+  // deck doesn't not receive a discarded card
+  printf("deckCount = %d, expected =  %d\n",testG.deckCount[player],G.deckCount[player]);
+  success = success && testG.deckCount[player]==G.deckCount[player];
 
-    // correct hand at this point should be copper, copper, copper
-    // copper and treasure_map
-    if(compareArr(G->hand[G->whoseTurn], correctHand, 5)){
-        printf("Test Failed: Hand of player %d not correct.\n", G->whoseTurn + 1);
-    }
-    
-    // correct deck at this point should be: copper, copper, copper,
-    // silver, smithy, village, silver, sea_hag and silver
-    if(compareArr(G->deck[G->whoseTurn], correctDeck, 9)){
-        printf("Test Failed: Deck of player %d not correct. \n", G->whoseTurn + 1);
-    }
-    
-    // correct number of actions should be two
-    if(G->numActions != 2){
-        printf("Test Failed: Number of actions is not correct.\n");
-    }
+  
+  printf("\nTEST 2:\n The  game G phase didn't change \n");
+  
+  // the same player still has the turn   
+  printf("player = %d, expected = %d\n", testG.whoseTurn, G.whoseTurn); 
+  success = success && testG.whoseTurn == G.whoseTurn; 
 
-    
-    return 0;
-}
-
-
-void setDeck(struct gameState * G, int * deck, int numCards, int playerNum) {
-    int i;
-    
-    // set deck to new deck and update number of cards in deck count
-    for(i = 0; i < numCards; ++i){
-        G->deck[playerNum][i] = deck[i];
-    }
-    
-    G->deckCount[playerNum] = numCards;
-    
-}
-
-void setHand(struct gameState * G, int * hand, int numCards, int playerNum){
-    int i;
-    
-    // set hand and update number of cards in hand
-    for(i = 0; i < numCards; ++i){
-        G->hand[playerNum][i] = hand[i];
-    }
-    
-    G->handCount[playerNum] = numCards;
-}
-
-
-int compareArr(int * one, int * two, int num) {
-    int i;
-    
-    for(i = 0; i < num; ++i){
-        if(one[i] != two[i]){
-            return 1;
-        }
-    }
-    
-    return 0;
+  //output test results
+  
+   printf("Test Number: %d", testNum); 
+  testNum++;
+  
+  if(success){
+    printf("\n >>>>> SUCCESS: Testing complete for: %s <<<<<\n\n", TESTCARD);
+  }else{
+    printf("\n >>>>> FAILURE: Testing failed for:  %s <<<<<\n\n", TESTCARD);
+  }
+	}
+  return 0;
 }
