@@ -5,6 +5,11 @@
 #include <string.h>
 #include <assert.h>
 
+//to mimic booleans
+#define BOOL int
+#define TRUE 1
+#define FALSE 0
+
 //color output based on:
 //http://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -21,8 +26,26 @@
 #define TOTAL_NUM_KINGDOM_CARDS 20
 
 //global variable for number of test failed
-int numTestsFailed = 0;
-int numTestsPassed = 0;
+int numIterationsPassed = 0;
+BOOL isCurrentIterationPassing = TRUE;
+int numTotalAssertions = 0;
+int numAssertionsPassed = 0;
+
+//updates global variables after assertion
+void assertFinished(BOOL passed){
+	if(passed){
+		numAssertionsPassed++;
+	}
+	else{
+		isCurrentIterationPassing = FALSE;
+	}
+	numTotalAssertions++;
+}
+
+//return percentage of passed tests
+double percentagePassed(int numPassed, int numTotal){
+	return 100.0 * numPassed / numTotal;
+}
 
 //prints error message if test fails
 //otherwise prints that test passed
@@ -30,17 +53,16 @@ int numTestsPassed = 0;
 void custom_assert(int test, char *testName){
 	if(!test){
 		printf(ANSI_COLOR_RED "%s FAILED!\n" ANSI_COLOR_RESET, testName);
-		numTestsFailed++;
 		if(ASSERT_SHOULD_EXIT){
 			exit(1);
 		}
 	}
-	else{
-		numTestsPassed++;
-		#if ASSERT_PRINT_SUCCESS
+	#if ASSERT_PRINT_SUCCESS
+		else{
 			printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
-		#endif
-	}
+		}
+	#endif
+	assertFinished(test);
 }
 
 //returns a random integer between min and max (inclusive)
@@ -69,13 +91,11 @@ int areGameStatesEqual(struct gameState *g1, struct gameState *g2){
 
 //prints differences in integer values if they are different
 void printIntDiff(int d1, int d2, char *fieldName){
-	if(d1 != d2){
+	BOOL passed = (d1 == d2);
+	if(passed == FALSE){
 		printf("%s are different. Mock %d, Real %d\n", fieldName, d1, d2);
-		numTestsFailed++;
 	}
-	else{
-		numTestsPassed++;
-	}
+	assertFinished(passed);
 }
 
 
@@ -265,6 +285,7 @@ void runRandomTests(){
 
 	int i;
 	for(i = 0; i < NUM_RANDOM_ITERATIONS; ++i){
+		isCurrentIterationPassing = TRUE;
 		initializeRandomGameState(&originalState, kingdomCardsHolder);
 		//pick random player to play the card, and make sure the player
 		//has the card to be played, and get the index of it
@@ -291,6 +312,9 @@ void runRandomTests(){
 		if(!equal){
 			printGameStateDifferences(&mockState, &postState);
 		}
+		if(isCurrentIterationPassing){
+			numIterationsPassed++;
+		}
 	}
 }
 
@@ -315,7 +339,7 @@ int main(int argc, char const *argv[]){
 
 	runRandomTests();
 
-	printf("\nNumber of iterations %d, number of assertions passed %d, number of assertions failed %d\n", NUM_RANDOM_ITERATIONS, numTestsPassed, numTestsFailed);
+	printf("\nNumber of iterations passed %d/%d (%.2f%%)\nNumber of assertions passed %d/%d (%.2f%%)\n", numIterationsPassed, NUM_RANDOM_ITERATIONS, percentagePassed(numIterationsPassed, NUM_RANDOM_ITERATIONS), numAssertionsPassed, numTotalAssertions, percentagePassed(numAssertionsPassed, numTotalAssertions));
 
 	return 0;
 }
