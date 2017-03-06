@@ -86,7 +86,6 @@ struct TestResult randomTestSmithy(){
 
     // Setup
     currentPlayer = rand() % numPlayers;
-    G.whoseTurn = currentPlayer;
     printf("Current player is: %d\n\n", currentPlayer);
 
     // Put the test card at handPos 0, and randomly populate the rest of the
@@ -106,9 +105,6 @@ struct TestResult randomTestSmithy(){
     G.hand[currentPlayer][4] = card5;
 
     G.handCount[currentPlayer] = HAND_COUNT;
-
-    G.numActions = 2;
-    G.phase = 0;
 
     // Populate all player's decks with a random number of random cards
     // Each deck size will be between minDeck and maxDeck cards

@@ -665,11 +665,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     {
     case adventurer:
       adventurer_refact(state);
-	  return 0;
 			
     case council_room:
-      council_room_refact(state, handPos);
-	  return 0;
+     council_room_refact(state, handPos);
 			
     case feast:
       //gain card with cost up to 5
@@ -790,11 +788,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
       smithy_refact(state, handPos);
-		return 0;
 		
     case village:
       village_refact(state, handPos);
-		return 0;
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -849,7 +845,6 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case great_hall:
       great_hall_refact(state, handPos);
-	  return 0;
 		
     case minion:
       //+1 action
@@ -1277,7 +1272,7 @@ int smithy_refact(struct gameState *state, int handPos) {
     int i;
 
     //+3 Cards
-    for (i = 0; i < 3; i++)
+    for (i = 0; i <= 3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}

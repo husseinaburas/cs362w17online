@@ -33,15 +33,6 @@ cardtest3: cardtest3.c dominion.o rngs.o
 cardtest4: cardtest4.c dominion.o rngs.o
 	gcc -o cardtest4 cardtest4.c -g dominion.o rngs.o $(CFLAGS)
 
-randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
-	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
-
-randomtest1: randomtest1.c dominion.o rngs.o
-	gcc -o randomtest1 randomtest1.c -g dominion.o rngs.o $(CFLAGS)
-
-randomtest2: randomtest2.c dominion.o rngs.o
-	gcc -o randomtest2 randomtest2.c -g dominion.o rngs.o $(CFLAGS)
-
 testDrawCard: testDrawCard.c dominion.o rngs.o
 	gcc -o testDrawCard -g  testDrawCard.c dominion.o rngs.o $(CFLAGS)
 
@@ -74,25 +65,10 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
-randomtest1.out: randomtest1
-	./randomtest1 1000 0 > randomtest1.out
-	gcov dominion.c >> randomtest1.out
-	cat dominion.c.gcov >> randomtest1.out
-
-randomtest2.out: randomtest2
-	./randomtest2 1000 0 > randomtest2.out
-	gcov dominion.c >> randomtest2.out
-	cat dominion.c.gcov >> randomtest2.out
-
-randomtestadventurer.out: randomtestadventurer
-	./randomtestadventurer 1000 0 > randomtestadventurer.out
-	gcov dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testDrawCard badTestDrawCard testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtest1 randomtest2 *.gcov *.gcda *.gcno *.so unittestresults.out randomtest1.out randomtest2.out randomtestadventurer.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testDrawCard badTestDrawCard testInit.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 *.gcov *.gcda *.gcno *.so unittestresults.out

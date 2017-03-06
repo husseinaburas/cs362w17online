@@ -139,7 +139,7 @@ int playCouncil_Room(struct gameState *state, int handPos);
 void adventurerx(struct gameState *state, int currentPlayer, int temphand[], int cardDrawn );
 void smithyx(struct gameState *state, int currentPlayer, int handPos);
 void council_roomx(struct gameState *state, int currentPlayer, int handPos);
-int remodelx(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
+void remodelx(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos);
 int gardensx();
 
 

@@ -59,7 +59,7 @@ int main() {
 #endif
     
     //store test result -- number of actions should be the same; action gained replaces the action used to play the card
-    testResults[1] = asserttrue(preActionCount+2, postActionCount);
+    testResults[1] = asserttrue(preActionCount, postActionCount+1);
     
 #if (NOISY_TEST == 1)
     printf("\nTEST 3: Play village, insufficient number of cards are in deck.\n");
@@ -84,7 +84,7 @@ int main() {
 #endif
     
     //store test result -- number of actions should be the same; action gained replaces the action used to play the card
-    testResults[3] = asserttrue(preActionCount+2, postActionCount);
+    testResults[3] = asserttrue(preActionCount, postActionCount+1);
 
 //assess test results
     for (int i = 0; i < 4; i++)

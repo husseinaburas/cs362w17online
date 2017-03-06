@@ -644,8 +644,7 @@ int getCost(int cardNumber)
 
 int smithyCard(int currentPlayer, struct gameState *state, int handPos){
 	int i;
-	//for (i = 0; i < 4; i++)	drawCard(currentPlayer, state);
-	for (i = 0; i < 3; i++)	drawCard(currentPlayer, state);
+	for (i = 0; i < 4; i++)	drawCard(currentPlayer, state);
 	discardCard(handPos, currentPlayer, state, 0);
 	return 0;
 }

@@ -261,7 +261,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     }
 	
   //reduce number of actions
-  state->numActions--;
+  //state->numActions--;
 
   //update coins (Treasure cards may be added with card draws)
   updateCoins(state->whoseTurn, state, coin_bonus);

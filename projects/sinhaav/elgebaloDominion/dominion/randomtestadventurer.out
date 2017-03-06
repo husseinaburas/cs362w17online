@@ -1,0 +1,10 @@
+Saved to randomtestadventurer.out
+Random test adventurer completed
+number of tests passed = 6000 
+number of tests failed = 4000 
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+

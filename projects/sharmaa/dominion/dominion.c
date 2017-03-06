@@ -656,14 +656,14 @@ void adventurerx(struct gameState *state, int currentPlayer, int temphand[], int
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
-	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+	  state->handCount[currentPlayer]++; //this should just remove the top card (the most recently drawn one).
 	  z++;
 	}
       }
       while(z-1>=0){
-	state->discard[currentPlayer][state->discardCount[currentPlayer]--]=temphand[z-1]; // discard all cards in play that have been drawn
+	state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 	z=z-1;
-	  }
+      }
 }
 
 void smithyx(struct gameState *state, int currentPlayer, int handPos)
@@ -705,7 +705,7 @@ void council_roomx(struct gameState *state, int currentPlayer, int handPos)
 			
 }
 
-int remodelx(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos)
+void remodelx(struct gameState *state, int currentPlayer, int choice1, int choice2, int handPos)
 {
 	int j;
 	 j = state->hand[currentPlayer][choice1];  //store card we will trash

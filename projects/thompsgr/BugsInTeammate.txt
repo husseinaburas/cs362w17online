@@ -1,0 +1,212 @@
+Report By: Grace Thompson
+Course: CS 362 W17 online Assignment 5
+Title: Bug Report for Clare Brown's refactored Dominion code
+Due Date: 3/5/17
+
+
+BUG REPORT 1:
+
+Title: discardCard places card in Discard pile instead of Played Cards pile
+Class: "Serious Bug"
+
+Concerning Function: discardCard()
+Is it reproducible: Yes
+
+Description:
+-----------
+When discarding a card during the player's turn, the card is currently being placed directly into the player's Discard pile
+when it should be placed in the game's Played Cards pile.
+
+Steps to Produce:
+----------------
+1. Initialize Game
+2. Have current player discard a card from their hand (any card is fine).
+3. Check location of card after discardCard() has been called.
+
+Expected Results:
+----------------
+The card is expected to be the most recent card placed in the Played Cards pile.
+
+Actual Results:
+--------------
+The card is found in the player's Discard pile, as the most recently discarded card.
+
+Other Information:
+-----------------
+This bug is due to confusion regarding the name of this method, and its function. Contrary to the assumption that
+the discardCard method should "discard" the card, the method actually places the card in a temporary Played Cards pile,
+to ensure that the played card cannot be used twice in one turn. If the played card is placed directly into the Discard pile,
+and the player has additional Actions, it could result in the player receiving the played card a second time in the same
+turn, allowing the player to play it twice. This scenario is avoided if the discarded card is placed in a Played Cards pile
+until the end of the player's turn, at which point it can then be safely placed in the Discard pile.
+Additional tests must be run on the methods called at the end of the player's turn, to ensure that the played card makes its
+way to the player's Discard pile.
+
+
+BUG REPORT 2:
+
+Title: Smithy draws one card too many
+Class: "Serious Bug"
+
+Concerning Function: playSmithy()
+Is it reproducible: Yes
+
+Description:
+-----------
+When playing the Smithy card, the player draws 4 cards instead of the expected 3.
+
+Steps to Produce:
+----------------
+1. Initialize Game
+2. Set up current player with Smithy card, and play the card.
+3. Once played, check the player's hand and count the added cards, and check that Smithy has been discarded from hand.
+
+Expected Results:
+----------------
+Player is expected to have 3 additional cards drawn from their deck, and the Smithy card discarded from hand.
+So, player should have a count 2 higher than before playing the card.
+
+Actual Results:
+--------------
+Player draws 4 additional cards from their deck, and discards Smithy card from hand.
+
+Other Information:
+-----------------
+Most likely bug is due to this section of code:
+
+for (i = 0; i <= 3; i++)
+{
+    drawCard(currentPlayer, state);
+}
+
+
+BUG REPORT 3:
+
+Title: Smithy card fails when card position is greater than 13
+Class: "Potentially Minor Bug"
+
+Concerning Function: playSmithy()
+Is it reproducible: Yes
+
+Description:
+-----------
+Smithy card fails to draw cards when played if the hand position is greater than the integer value of the Smithy card.
+
+Steps to Produce:
+----------------
+1. Initialize Game
+2. Set player to have more than 13 cards in hand (20, for example).
+3. Place Smithy card in a hand position greater than 13 (15, for example).
+4. Play Smithy card and check result.
+
+Expected Results:
+----------------
+Smithy card should be able to play successfully, and player should have 3 cards drawn from the deck, with Smithy
+discarded from hand. Player should have one less Action than before.
+
+Actual Results:
+--------------
+Player has one less Action than before playing the card, but no additional cards have been drawn, nor has
+the Smithy card been discarded.
+
+Other Information:
+-----------------
+Something to note is that this bug only occurs in the player has more than 13 cards in their hand. In the
+game, it is typically unlikely that a player would have that many cards in their hand (since they draw 5 to start their turn),
+and therefore this bug may not show up in actual play very often. This bug appears most frequently in random testing,
+where hand counts are much higher than would typically happen during live game play.
+
+The bug appears to originate from this section of code:
+
+if (handPos > state->hand[currentPlayer][handPos] || handPos < 0){
+        return -1;
+ }
+
+Another aspect of this bug to consider outside of the playSmithy() function is that while the function returns a -1
+error in this scenario, the cardEffect() function returns a 0, which tells playCard() to continue execution as if
+the card were successfully played. This accounts for why the Action count is decremented, even though no new cards were
+drawn and the Smithy card was not truly played.
+
+
+BUG REPORT 4:
+
+Title: Adventurer draws one too few treasure cards, discards incorrect card(s)
+Class: "Serious Bug"
+
+Concerning Function: playAdventurer()
+Is it reproducible: Yes
+
+Description:
+-----------
+When a player plays the Adventure card, they only draw until one treasure is found, and discard the wrong card
+if a non-treasure card is drawn first.
+
+Steps to Produce:
+----------------
+1. Initialize Game
+2. Setup game so player has to draw one (or more) non-treasure cards before a treasure card appears.
+3. Have player play the Adventure card, and check their resulting Hand and Discard piles.
+
+Example:
+- Setup Deck so that the first card drawn is an Estate card, and the second is a Copper card.
+
+Expected Results:
+----------------
+Player should have 2 new treasure cards in their hand, any drawn non-treasure cards should be in the discard pile,
+and the Adventure card should be discarded from hand.
+
+Actual Results:
+--------------
+In the example above, the Copper card that was drawn is found in the Discard pile, and the Estate card that was drawn
+is found in the player's Hand. Adventurer card is found discarded from hand.
+
+Other Information:
+-----------------
+This bug is due to this section of code in the playAdventurer() function:
+
+while(drawntreasure<1 && state->deckCount[currentPlayer] > 0) { … }
+
+As a result, as soon as drawntreasure is greater than 1 (so one treasure card has been drawn), the program exits the loop
+and does not draw any more cards.
+
+
+BUG REPORT 5:
+
+Title: Feast needs to allow player to re-select card if chosen is unavailable
+Class: "Serious Bug"
+
+Concerning Function: cardEffect() : Feast
+Is it reproducible: Yes
+
+Description:
+-----------
+[BUG FOUND IN ORIGINAL FEAST CODE, NOT TEAMMATE REFACTORED CODE]
+Feast card returns an error message if the card selected is unavailable, but does not provide a way for the player
+to re-select a card.
+
+Steps to Produce:
+----------------
+1. Initialize Game.
+2. Set supply pile of selected card (e.g. Silver) to 0.
+3. Setup player with Feast card and play the card, requesting the selected card from above.
+4. Check the response.
+
+Alternative:
+1. Initialize Game
+2. Setup player with Feast card and play the card, requesting a card that is more than 5 coins (e.g. Province).
+3. Check the response.
+
+Expected Results:
+----------------
+Program is expected to return a message that the card requested is unavailable (too expensive, empty supply),
+and cancel playing the Feast card (allowing the player to re-play the Feast card again, with another card choice).
+Player's Action count should not be decremented if the card was not played Successfully.
+
+Actual Results:
+--------------
+Program does not contain a resolution for this situation, returns an error message but does not cancel playing the card,
+or give the player an option to select another card.
+
+Other Information:
+-----------------
+This bug is found in the original Dominion code, and is not a part of my teammate's refactored functions. 

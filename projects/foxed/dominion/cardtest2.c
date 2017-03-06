@@ -17,7 +17,7 @@ typedef enum { false, true } bool; // Used for true and false.
 // We were told to create our own assert function printing success and failure. The standard assert
 // function can crash, and prevent coverage from being collected. 
 
-void asserttrue(int left, int right)
+int asserttrue(int left, int right)
 {
 	if (left == right)
 	{
@@ -48,7 +48,7 @@ int main()
 	int k[10] = { adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall };
 
 	printf("--------- TESTING ADVENTURER CARD --------\n");
-	printf("test can be found in randomtestadventure.c\n\n");
+	printf("test can be found in cardtest2.c\n\n");
 
 	// Initialize game
 

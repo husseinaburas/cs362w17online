@@ -83,9 +83,9 @@ int main(int argc, char **argv) {
     }
     printf("Number of Treasure Cards Post: %d\n", numTreasurePost);
     asserttrue(numTreasurePost == (numTreasurePre + 2), "+2 Treasure Cards?  ");
-    printf(" Hand Count Post:  %d  ", G.handCount[curPlayer]);
-    printf(" Deck Count Post:  %d\n", G.deckCount[curPlayer]);
-    asserttrue(((G.deckCount[curPlayer] + G.handCount[curPlayer]) == (deckCountPre + handCountPre)), "Cards from deck to hand?  ");
+    printf(" Hand Count Post:  %d  ", G.handCount[0]);
+    printf(" Deck Count Post:  %d\n", G.deckCount[0]);
+    asserttrue(((G.deckCount[0] + G.handCount[0]) == (deckCountPre + handCountPre)), "Cards from deck to hand?  ");
 
   }
   printf("\n >>>>> Testing complete %s <<<<<\n\n", TESTCARD);
