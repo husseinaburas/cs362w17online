@@ -42,7 +42,8 @@ int main(){
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
 	// ----------- TEST 1: Test correct return statements for valid input -----------
 	printf("%s TEST 1: Correct return statements for valid input\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 3);
+	//result = playVillage(&testG, currentPlayer, 3);
+	result = playCard(3, 0, 0, 0, &testG);
 	if (result == 0){
 		asserttrue(1, 1);
 	}
@@ -197,7 +198,8 @@ int main(){
 
 	// ----------- TEST 11 : Test correct return statements for wrong card name -----------
 	printf("%s TEST 11: Correct return statements for wrong card name\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 4);
+	//result = playVillage(&testG, currentPlayer, 4);
+	result = playCard(4, 0, 0, 0, &testG);
 	if (result == -1){
 		asserttrue(1, 11);
 	}
@@ -260,7 +262,8 @@ int main(){
 
 	// ----------- TEST 13 : Test correct return statements for wrong phase -----------
 	printf("%s TEST 13: Correct return statements for wrong phase\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 3);
+	//result = playVillage(&testG, currentPlayer, 3);
+	result = playCard(3, 0, 0, 0, &testG);
 	if (result == -1){
 		asserttrue(1, 13);
 	}
@@ -323,7 +326,8 @@ int main(){
 
 	// ----------- TEST 15 : Test correct return statements for wrong number of actions-----------
 	printf("%s TEST 15: Correct return statements for wrong number of actions\n", TESTCARD);
-	result = playVillage(&testG, currentPlayer, 3);
+	//result = playVillage(&testG, currentPlayer, 3);
+	result = playCard(3, 0, 0, 0, &testG);
 	if (result == -1){
 		asserttrue(1, 15);
 	}
