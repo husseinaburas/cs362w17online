@@ -32,103 +32,103 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
-unittest1: unittest1.c  dominion.o rngs.o
-	gcc -o unittest1 -g unittest1.c dominion.o  rngs.o $(CFLAGS)
+weissmarUnittest1: weissmarUnittest1.c  dominion.o rngs.o
+	gcc -o weissmarUnittest1 -g weissmarUnittest1.c dominion.o  rngs.o $(CFLAGS)
 
-unittest2: unittest2.c  dominion.o rngs.o
-	gcc -o unittest2 -g unittest2.c dominion.o  rngs.o $(CFLAGS)
+weissmarUnittest2: weissmarUnittest2.c  dominion.o rngs.o
+	gcc -o weissmarUnittest2 -g weissmarUnittest2.c dominion.o  rngs.o $(CFLAGS)
 
-unittest3: unittest3.c  dominion.o rngs.o
-	gcc -o unittest3 -g unittest3.c dominion.o  rngs.o $(CFLAGS)
+weissmarUnittest3: weissmarUnittest3.c  dominion.o rngs.o
+	gcc -o weissmarUnittest3 -g weissmarUnittest3.c dominion.o  rngs.o $(CFLAGS)
 
-unittest4: unittest4.c  dominion.o rngs.o
-	gcc -o unittest4 -g unittest4.c dominion.o  rngs.o $(CFLAGS)
+weissmarUnittest4: weissmarUnittest4.c  dominion.o rngs.o
+	gcc -o weissmarUnittest4 -g weissmarUnittest4.c dominion.o  rngs.o $(CFLAGS)
 
-cardtest1: cardtest1.c  dominion.o rngs.o
-	gcc -o cardtest1 -g cardtest1.c dominion.o  rngs.o $(CFLAGS)
+weissmarCardtest1: weissmarCardtest1.c  dominion.o rngs.o
+	gcc -o weissmarCardtest1 -g weissmarCardtest1.c dominion.o  rngs.o $(CFLAGS)
 
-cardtest2: cardtest2.c  dominion.o rngs.o
-	gcc -o cardtest2 -g cardtest2.c dominion.o  rngs.o $(CFLAGS)
+weissmarCardtest2: weissmarCardtest2.c  dominion.o rngs.o
+	gcc -o weissmarCardtest2 -g weissmarCardtest2.c dominion.o  rngs.o $(CFLAGS)
 
-cardtest3: cardtest3.c  dominion.o rngs.o
-	gcc -o cardtest3 -g cardtest3.c dominion.o  rngs.o $(CFLAGS)
+weissmarCardtest3: weissmarCardtest3.c  dominion.o rngs.o
+	gcc -o weissmarCardtest3 -g weissmarCardtest3.c dominion.o  rngs.o $(CFLAGS)
 
-cardtest4: cardtest4.c  dominion.o rngs.o
-	gcc -o cardtest4 -g cardtest4.c dominion.o  rngs.o $(CFLAGS)
+weissmarCardtest4: weissmarCardtest4.c  dominion.o rngs.o
+	gcc -o weissmarCardtest4 -g weissmarCardtest4.c dominion.o  rngs.o $(CFLAGS)
 
-randomtestadventurer: randomtestadventurer.c  dominion.o rngs.o
-	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o  rngs.o $(CFLAGS)
+weissmarRandomtestadventurer: weissmarRandomtestadventurer.c  dominion.o rngs.o
+	gcc -o weissmarRandomtestadventurer -g weissmarRandomtestadventurer.c dominion.o  rngs.o $(CFLAGS)
 
-randomtestcard1: randomtestcard1.c  dominion.o rngs.o
-	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o  rngs.o $(CFLAGS)
+weissmarRandomtestcard1: weissmarRandomtestcard1.c  dominion.o rngs.o
+	gcc -o weissmarRandomtestcard1 -g weissmarRandomtestcard1.c dominion.o  rngs.o $(CFLAGS)
 
-randomtestcard2: randomtestcard2.c  dominion.o rngs.o
-	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o  rngs.o $(CFLAGS)
+weissmarRandomtestcard2: weissmarRandomtestcard2.c  dominion.o rngs.o
+	gcc -o weissmarRandomtestcard2 -g weissmarRandomtestcard2.c dominion.o  rngs.o $(CFLAGS)
 
-unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
-	@echo "unittest1.c:" > unittestresults.out
-	./unittest1 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "unittest2.c:" >> unittestresults.out
-	./unittest2 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "unittest3.c:" >> unittestresults.out
-	./unittest3 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "unittest4.c:" >> unittestresults.out
-	./unittest4 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "cardtest1.c:" >> unittestresults.out
-	./cardtest1 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "cardtest2.c:" >> unittestresults.out
-	./cardtest2 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "cardtest3.c:" >> unittestresults.out
-	./cardtest3 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "cardtest4.c:" >> unittestresults.out
-	./cardtest4 >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "gcov results for dominion.c:" >> unittestresults.out
-	gcov -b -f dominion.c  >> unittestresults.out
-	@echo "" >> unittestresults.out
-	@echo "dominion.c.gcov:" >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+weissmarUnittestresults.out: weissmarUnittest1 weissmarUnittest2 weissmarUnittest3 weissmarUnittest4 weissmarCardtest1 weissmarCardtest2 weissmarCardtest3 weissmarCardtest4
+	@echo "weissmarUnittest1.c:" > weissmarUnittestresults.out
+	./weissmarUnittest1 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarUnittest2.c:" >> weissmarUnittestresults.out
+	./weissmarUnittest2 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarUnittest3.c:" >> weissmarUnittestresults.out
+	./weissmarUnittest3 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarUnittest4.c:" >> weissmarUnittestresults.out
+	./weissmarUnittest4 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarCardtest1.c:" >> weissmarUnittestresults.out
+	./weissmarCardtest1 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarCardtest2.c:" >> weissmarUnittestresults.out
+	./weissmarCardtest2 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarCardtest3.c:" >> weissmarUnittestresults.out
+	./weissmarCardtest3 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "weissmarCardtest4.c:" >> weissmarUnittestresults.out
+	./weissmarCardtest4 >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "gcov results for dominion.c:" >> weissmarUnittestresults.out
+	gcov -b -f dominion.c  >> weissmarUnittestresults.out
+	@echo "" >> weissmarUnittestresults.out
+	@echo "dominion.c.gcov:" >> weissmarUnittestresults.out
+	cat dominion.c.gcov >> weissmarUnittestresults.out
 
-randomtestadventurer.out: randomtestadventurer
-	@echo "randomtestadventurer.c:" > randomtestadventurer.out
-	./randomtestadventurer >> randomtestadventurer.out
-	@echo "" >> randomtestadventurer.out
-	@echo "gcov results for dominion.c:" >> randomtestadventurer.out
-	gcov -b -f dominion.c  >> randomtestadventurer.out
-	@echo "" >> randomtestadventurer.out
-	@echo "dominion.c.gcov:" >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
+weissmarRandomtestadventurer.out: weissmarRandomtestadventurer
+	@echo "weissmarRandomtestadventurer.c:" > weissmarRandomtestadventurer.out
+	./weissmarRandomtestadventurer >> weissmarRandomtestadventurer.out
+	@echo "" >> weissmarRandomtestadventurer.out
+	@echo "gcov results for dominion.c:" >> weissmarRandomtestadventurer.out
+	gcov -b -f dominion.c  >> weissmarRandomtestadventurer.out
+	@echo "" >> weissmarRandomtestadventurer.out
+	@echo "dominion.c.gcov:" >> weissmarRandomtestadventurer.out
+	cat dominion.c.gcov >> weissmarRandomtestadventurer.out
 
-randomtestcard1.out: randomtestcard1
-	@echo "randomtestcard1.c:" > randomtestcard1.out
-	./randomtestcard1 >> randomtestcard1.out
-	@echo "" >> randomtestcard1.out
-	@echo "gcov results for dominion.c:" >> randomtestcard1.out
-	gcov -b -f dominion.c  >> randomtestcard1.out
-	@echo "" >> randomtestcard1.out
-	@echo "dominion.c.gcov:" >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
+weissmarRandomtestcard1.out: weissmarRandomtestcard1
+	@echo "weissmarRandomtestcard1.c:" > weissmarRandomtestcard1.out
+	./weissmarRandomtestcard1 >> weissmarRandomtestcard1.out
+	@echo "" >> weissmarRandomtestcard1.out
+	@echo "gcov results for dominion.c:" >> weissmarRandomtestcard1.out
+	gcov -b -f dominion.c  >> weissmarRandomtestcard1.out
+	@echo "" >> weissmarRandomtestcard1.out
+	@echo "dominion.c.gcov:" >> weissmarRandomtestcard1.out
+	cat dominion.c.gcov >> weissmarRandomtestcard1.out
 
-randomtestcard2.out: randomtestcard2
-	@echo "randomtestcard2.c:" > randomtestcard2.out
-	./randomtestcard2 >> randomtestcard2.out
-	@echo "" >> randomtestcard2.out
-	@echo "gcov results for dominion.c:" >> randomtestcard2.out
-	gcov -b -f dominion.c  >> randomtestcard2.out
-	@echo "" >> randomtestcard2.out
-	@echo "dominion.c.gcov:" >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
+weissmarRandomtestcard2.out: weissmarRandomtestcard2
+	@echo "weissmarRandomtestcard2.c:" > weissmarRandomtestcard2.out
+	./weissmarRandomtestcard2 >> weissmarRandomtestcard2.out
+	@echo "" >> weissmarRandomtestcard2.out
+	@echo "gcov results for dominion.c:" >> weissmarRandomtestcard2.out
+	gcov -b -f dominion.c  >> weissmarRandomtestcard2.out
+	@echo "" >> weissmarRandomtestcard2.out
+	@echo "dominion.c.gcov:" >> weissmarRandomtestcard2.out
+	cat dominion.c.gcov >> weissmarRandomtestcard2.out
 
-allRandomTests: clean randomtestadventurer.out randomtestcard1.out randomtestcard2.out
+allweissmarRandomTests: clean weissmarRandomtestadventurer.out weissmarRandomtestcard1.out weissmarRandomtestcard2.out
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so 
