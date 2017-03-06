@@ -88,6 +88,17 @@ int chooseCard (int k[10]) {
 int fillValidCards (int k[10], int p, struct gameState * G) {
 	int i;
 
+
+	// default fill random discard pile
+	for (i=0; i<G->discardCount[p]; i++){
+		G->discard[p][i] = chooseCard(k);
+	}
+
+	// default fill random deck pile
+	for (i=0; i<G->deckCount[p]; i++){
+		G->deck[p][i] = chooseCard(k);
+	}
+
 	// fill hand, track if adventurer in hand
 	int adventurerInHand = 0;
 	for (i=0; i<G->handCount[p]; i++){
@@ -111,7 +122,7 @@ int fillValidCards (int k[10], int p, struct gameState * G) {
 		}
 	}
 
-	// fill discard, track if treasure card
+	// fill discard, track if treasure card in discard
 	int treasureInDiscard = 0;
 	for (i=0; i<G->discardCount[p]; i++){
 		G->discard[p][i] = chooseCard(k);
