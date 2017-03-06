@@ -1,0 +1,23 @@
+Title: Discovered bugs in yaffee's version of dominion.c
+
+Problem: Players only drawing two cards when playing Smithy (smithyCard() function)
+Function: smithyCard()
+Problem: When a player plays the Smithy card, (s)he should draw three cards from his or her deck. However,
+		my unit and random tests for smithyCard() discovered that after the function finished executing, the 
+		current player's hand contained one fewer card than expected and his or her deck contained one more card
+		than expected. I discovered that this issue was due to a bug on line 1203, where a for loop is set up.
+		This loop, within which the current player draws a card from the deck and adds it to the hand, will loop
+		only two times instead of the three times that are required.
+Solution: Changing the loop on line 1203 so that the code within executes three times instead of two would
+		fix this issue (example: (i = 0; i < 3; i++)).
+		
+Problem: Adventurer card not being discarded after being played
+Function: adventurerCard()
+Problem: My unit and random tests found that, after playing an Adventurer card, the current player was
+		ending up with one-too-many cards in his or her hand than expected. Additionally, the played
+		cards pile contained one-too-few cards, and the last-played card was not an Adventurer (as would
+		be expected). I found that the source of this bug was the lack of a discardCard() call (or other
+		bit of code for the current player to discard the played Adventurer card) following the execution
+		of the rest of the function. The card should be discarded at approximately line 1195.
+Solution: Add a discardCard() method call or similar code to move the Adventurer card from the current
+		player's deck to the played cards pile.

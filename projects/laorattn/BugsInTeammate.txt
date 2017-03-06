@@ -1,0 +1,23 @@
+CS362 Asssignment5
+Namtalay Laorattanavech
+
+####Bug1####
+Function/name: Adventurer function 
+Details: The cards in hand after using adventurer card did not change at all. It supposed to be handAfter = handBefore+2. 
+Possible Casue: There is something wrong with drawCard function call. 
+
+####Bug2####
+Function/name: Smithy function 
+Details: The card in hand after using smithy card had one more card than it supposed to be. The hand after using the card should be handAfter = handBefore+2.
+Possible Casue: the drawCard function must had been called wrongly (one extra time).  
+
+####Bug3####
+Function/name: Great Hall function 
+Details: The action after using Great hall card did not change at all. The action supposed to be actionAfter = actionBefore+1. 
+Possible Casue: there must be something wrong when incrementing numAction. 
+
+####Bug4####
+Function/name: Steward function 
+Details: The played cards after was three cards more than played cards after using Steward card. The played cards pile before and after using the card must be equal. 
+Possible Casue: There must be something wrong discard card function call.
+

@@ -1,0 +1,109 @@
+Author: Jordan Grant
+Assignment 5 Bug Report
+System Under Test: hatchimgDominion/dominion.c
+
+All unittests can be created with the following make commands
+
+make unittestresults.Hat
+make random_tests_hat
+
+Bug 1)
+
+Found By: cardtest4
+Found In: play_great_hall
+
+Example Output from cardtest 4
+
+ 256 Test 1 Great Hall, Player 2 default deck, 10 cards in deck, 0 in discard, and only Great Hall in hand
+ 257     Expecting Great Hall does not alter other players deck or irrelevent game state variables
+ 258         Success: Great Hall does not change other players hand or irrelevant game state variables
+ 259     Expecting handCount 1 and received 2
+ 260         Error: handCount does not match reference
+ 261     Expecting 1 cards to have been added to the hand, got 2
+ 262         Error: Should have only drawn 1 card
+ 263     Expecting 2 if numActions of returned to match reference, got 2
+ 264     Expects 1 if card drawn in reference and returned are the same got 1
+ 265     Expects 0 if returned hand doesnt have Great Hall card and got 0
+ 266     Expects 9 if returned deck matches reference and got 8
+ 267         Error: Reference deck should match returned
+ 268     Expects 9 if reference deckCount matches returned got 8
+ 269         Error: deckCount does not match reference
+ 270     Expects 1 if Great Hall is in played pile and got 1
+ 271     Expects 0 if reference discardCount matches returned got 0
+ 272 
+ 273     4 Tests Failed, Player 2 default deck
+
+The four failures above point to 1 additional card being drawn into the players
+hand in the great hall logic.
+
+
+The error can be found at line 1354 of hatchimgDominion/dominion.c. This line
+should be deleted
+
+
+Bug 2)
+
+Found By: cardtest3
+Found In: play_village
+
+Example Output from cardtest3
+
+ 215 Test 2 Village, Player1 discard empty, deck has 12 cards with, 3 copper in hand with Village in pos 1
+ 216     Expecting Village does not alter other players deck or irrelevent game state variables
+ 217         Success: Village does not change irrelevant game state variables
+ 218     Expecting handCount 4 and received 4
+ 219     Expecting 1 card to have been added to the hand, got 1
+ 220     Expects 1 if cards drawn in reference and returned are the same got 1
+ 221     Expecting 3 if cards originally in hand are unchanged, got 3
+ 222     Expects 1 if the card drawn came from the top of the deck and got 1
+ 223     Expects 3 if the numActions in the reference equals returned, got 2
+ 224         Error: numActions should be equal between reference and returned
+ 225     Expects 0 if returned hand doesnt have Village card and got 0
+ 226     Expects 11 if returned deck matches reference and got 11
+ 227     Expects 1 if village is in played pile and got 1
+ 228     Expects 11 if reference deckCount matches returned got 11
+ 229     Expects 0 if reference discardCount matches returned got 0
+ 230 
+ 231     1 Tests Failed, Test 2 Village, Player1 discard empty, deck has 12 cards with, 3 copper in hand with Village in pos 1
+
+
+The above example output shows that the village logic is adding only 1 action to the play when it should be adding 2 additional actions.
+
+The error can be found at line 1373 of hatchimgDominion/dominion.c. It should
+say state->numActions = state->numActions + 2;
+
+Bug 3)
+Found By: cardtest2
+Found In: play_smithy
+
+Example Output from cardtest2
+
+ 153 Test 2 Smithy, Player1 discard empty, deck has 12 cards with, 3 copper in
+     hand with smithy in pos 1
+ 154     Expecting Smithy does not alter other players deck or irrelevent game
+         state variables
+ 155         Success: Smithy does not change irrelevant game state variables
+ 156     Expecting handCount 6 and received 7
+ 157         Error: handCount does not match reference
+ 158     Expecting 3 cards to have been added to the hand, got 4
+ 159         Error: Should have only drawn 3 cards
+ 160     Expecting 3 if cards originally in hand are unchanged, got 3
+ 161     Expects 3 if cards drawn in reference and returned are the same got 2
+ 162         Error: Reference and returned hand should match
+ 163     Expects 1 if smithy is in played pile and got 1
+ 164     Expects 3 if the 3 cards drawn came from the top of the deck and got 0
+ 165         Error: 3 Cards should come from top of the deck.
+ 166     Expects 0 if returned hand doesnt have smithy card and got 0
+ 167     Expects 9 if returned deck matches reference and got 8
+ 168         Error: Reference deck should match returned
+ 169     Expects 9 if reference deckCount matches returned got 8
+ 170         Error: deckCount does not match reference
+ 171     Expects 0 if reference discardCount matches returned got 0
+ 172 
+ 173     6 Tests Failed, Test 2 Smithy, Player1 discard empty, deck has 12 cards with, 3 copper in hand with smithy in pos 1
+
+The above example shows the Smithy card drawing 1 additional card into the
+players hand. It should draw 3 cards and it is drawing 4 cards.
+
+The error occurs on line 1337 of hatchimgDominion/dominion.c. THe for loop uses
+<= when it should use <.

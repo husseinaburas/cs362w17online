@@ -1,0 +1,203 @@
+Teammate ONID: mcguigro
+
+The following functions / cards were tested.
+
+unitTest1 – whoseTurn()
+unitTest2 – getCost()
+unitTest3 – updateCoins()
+unitTest4 – supplyCount ()
+cardTest1 - smithy
+cardTest2 – village
+cardTest3 – Great Hall
+cardTest4 – Adventurer
+
+Bugs were found in the following functions
+
+adventureEffect()
+smithyEffect()
+villageEffect()
+
+Bug Report adventureEffect()
+
+		----------------- Testing Card: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 6, expected = 7
+		deck count = 4, expected = 3
+		discard = 0
+		ASSERT HAS FAILED: msg 1
+		ASSERT HAS FAILED: msg 2
+		----------------- Test 2: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 6, expected = 6
+		deck count = 0, expected = 0
+		discard = 4
+		----------------- Test 3: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 5, expected = 5
+		deck count = 0, expected = 0
+		discard = 5
+
+		 >>>>> SUCCESS: Testing complete Adventurer <<<<<
+
+	A bug was located at line 1270 of dominion.c and corrected to 
+
+	 while (drawntreasure < 2) {
+	 
+	the test was conducted after correction and the following was obtained
+
+
+		----------------- Testing Card: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 7, expected = 7
+		deck count = 3, expected = 3
+		discard = 0
+		----------------- Test 2: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 6, expected = 6
+		deck count = 0, expected = 0
+		discard = 4
+		----------------- Test 3: Adventurer ----------------
+		before Hand count = 5
+		before Deck count = 5
+		hand count = 5, expected = 5
+		deck count = 0, expected = 0
+		discard = 5
+
+		 >>>>> SUCCESS: Testing complete Adventurer <<<<<
+
+
+
+Bug Report smithyEffect()
+
+	
+
+	----------------- Testing Card: smithy ----------------
+		before hand count = 5
+		before deck count = 5
+		before coins = 4,
+		hand count = 8, expected = 7
+		deck count = 1, expected = 2
+		coins = 4, expected = 4
+		ASSERT HAS FAILED: msg 1
+		ASSERT HAS FAILED: msg 2
+		Verify no change to the supply card piles
+		supply card count = 10, expected = 10
+		supply card count = 8, expected = 8
+		supply card count = 8, expected = 8
+		supply card count = 8, expected = 8
+		supply card count = 46, expected = 46
+		supply card count = 40, expected = 40
+		supply card count = 30, expected = 30
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		other players deck count = 10, expected = 10
+		other players hand count = 0, expected 0
+
+		>>>>> SUCCESS: Testing complete smithy <<<<<
+
+	A bug was located at line 1296 of dominion.c and corrected to 
+
+		for (i = 0; i < 3; i++)
+	 
+	the test was conducted after correction and the following was obtained
+
+
+	----------------- Testing Card: smithy ----------------
+		before hand count = 5
+		before deck count = 5
+		before coins = 4,
+		hand count = 7, expected = 7
+		deck count = 2, expected = 2
+		coins = 4, expected = 4
+		Verify no change to the supply card piles
+		supply card count = 10, expected = 10
+		supply card count = 8, expected = 8
+		supply card count = 8, expected = 8
+		supply card count = 8, expected = 8
+		supply card count = 46, expected = 46
+		supply card count = 40, expected = 40
+		supply card count = 30, expected = 30
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		supply card count = -1, expected = -1
+		supply card count = 10, expected = 10
+		supply card count = -1, expected = -1
+		other players deck count = 10, expected = 10
+		other players hand count = 0, expected 0
+
+		>>>>> SUCCESS: Testing complete smithy <<<<<
+
+
+
+Bug Report villageEffect()
+
+		----------------- Testing Card: Village ----------------
+		before hand count = 5, expected = 4
+		before deck count = 5, expected = 5
+		before coins = 4, expected = 4
+		before actions = 1, expected = 1
+		hand count = 5, expected = 5
+		deck count = 4, expected = 4
+		coins = 4, expected = 4
+		actions = 2, expected = 3
+		ASSERT HAS FAILED: msg 4
+
+	A bug was located at line 1313 of dominion.c and corrected to 
+
+		state->numActions = state->numActions + 2;
+	 
+	the test was conducted after correction and the following was obtained
+
+
+		----------------- Testing Card: Village ----------------
+		before hand count = 5, expected = 4
+		before deck count = 5, expected = 5
+		before coins = 4, expected = 4
+		before actions = 1, expected = 1
+		hand count = 5, expected = 5
+		deck count = 4, expected = 4
+		coins = 4, expected = 4
+		actions = 3, expected = 3
+
+
+
+
+

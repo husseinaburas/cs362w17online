@@ -1,0 +1,30 @@
+Ben Ford
+3/4/2017
+Bugs In Teammates Code
+
+Bug #1
+playSmithy
+After running my unittests for playSmithy I got the following results:
+----------------- Testing Card: Smithy ----------------
+TEST FAILED - Players hand did not increase by 2
+TEST FAILED - Deck count did not decrease by 3
+
+Function Tested: playSmithy(gameState,curPlayer,handPos)
+Expected Result: Player draws 3 new cards, Smithy is added to the discard pile
+Actual Result: Player draws 2 new cards, Smithy is added to the discard pile
+Cause: The for loop on line 1282 in dominion.c is set to only run 2 time.
+Symptoms: Player only draws 2 cards and deck only decreases by 2
+
+
+
+Bug #2 
+playGreatHall
+After running my unittests for playGreatHall I got the following results:
+----------------- Testing Card: GreatHall ----------------
+TEST FAILED - Actions did not increase by 1
+
+Function Tested: playGreatHall(gameState,curPlayer,handPos)
+Expected Result: Player draws 1 new card, Player has 1 additional action, Great Hall is added to the discard pile
+Actual Result: Player draws 1 new card, Player has 2 additional actions, Great Hall is added to the discard pile.
+Cause: On line 1330 in dominion.c the number of actions are incrementing by 2 and not 1.
+Symptom: Player gets 2 added actions and not 1.

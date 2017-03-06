@@ -1,0 +1,83 @@
+Bug 1
+==============================
+
+Title:    Calculation Error in Smithy Card
+
+Class:
+Minor Bug
+
+Date: 2017/03/05          
+Reported By: Konstantin Yakovenko  
+Email: yakovenk@oregonstate.edu     
+
+
+Product:  Dominion              Version: 1       
+
+Is it reproducible: Yes
+
+Description
+===========
+Implementation of Smithy Card erroneously gives out more cards than it is supposed to.
+
+
+Steps to Produce/Reproduce
+--------------------------
+-Initialize gameplay.
+-Record number and which cards are in hand.
+-Play Smithy.
+-Check the hand again.
+
+
+Expected Results
+----------------
+-Smithy card should put 3 new cards in hand, and remove itself.
+
+
+Actual Results
+--------------
+-Smithy card is removed, but 4 cards are added.
+
+Other:
+------
+Line 1257 of dominion.c: for (i = 0; i <= 3; i++) 
+should cycle through 3 cards, not 4.
+
+
+Bug 2
+==============================
+
+Title:    Adventurer Not Being Removed From Hand
+
+Class:
+Minor Bug
+
+Date: 2017/03/05            
+Reported By: Konstantin Yakovenko  
+Email: yakovenk@oregonstate.edu     
+
+
+Product: Dominion               Version: 1
+
+
+Is it reproducible: Yes
+
+Description
+===========
+Implementation of the Adventurer Card does not remove the adventurer card from hand after the actions are completed.
+
+
+Steps to Produce/Reproduce
+--------------------------
+-Initialize gameplay.
+-Record number of cards in hand, and where the adventurer card is in hand.
+-Play adventurer Card.
+-Check whether it is still in hand. 
+
+Expected Results
+----------------
+-Adventurer card should be gone from the hand after its' action is completed.
+
+
+Actual Results
+--------------
+-Adventurer card is still there.

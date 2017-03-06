@@ -1,0 +1,99 @@
+Village()
+Bug 1: 
+	+2 action is not given to the current player after using the Village card.
+
+Pointers to code to expose the bug:
+	-Intialize the game: initializeGame(numPlayers, kingdomCardsList, seedVal, &gameStateTest)
+	-Give current player a Village card: gameStateTest.hand[player1][0] = village;
+	-Trace current player's number of actions before using the Village card:
+		beforeNumAction = gameStateTest.numActions
+	-Use the card: cardEffect(village,0,0,0,&gameStateTest,0,0);
+	-Trace current player's number of actions after using the Village card:
+		afterNumAction = gameStateTest.numActions
+	-Subtract before and after values for numActions:
+		difference = afterNumAction - beforeNumAction
+	-Compare whether difference is equal to 2.
+		
+
+Cause and Symptoms: 
+	The bug occurs on line 1283 because state-> numActions = state->numActions +1 should be state->numActions = state -> numActions +2;
+	When you use the Village card, the number of actions should increase by 2 for the player using the card.The above line accesses 
+	the state of the player and increments the number of actions to only 1 instead of 2. Changing +1 in the code to +2 fixes the issue.
+
+How it was found:
+	I found the bug through my unit test for Village card. I stored the number of actions the current player has
+	before using the Village card. Then I stored the number of actions the current player has after using the Village card. Comparing 
+	the before and after values should give a difference of 2. The unit test showed a difference of 1.
+
+	---- Card Test 3: Village ----
+	---- Test2: +2 Actions increase -----
+	Action count before Village card used = 1 
+	Action hand count after = 2, expected = 3 
+	Test Failed.
+
+
+
+
+
+
+Council Room()
+Bug 2: 
+	Other players hand count does not increase by 1 after playing the card.
+
+Pointers to code to expose the bug:
+	-Intialize the game: initializeGame(numPlayers, kingdomCardsList, seedVal, &gameStateTest)
+	-Give current player a Council Room card: gameStateTest.hand[player1][0] = council_room;
+	-Trace other player's number of hands before using the Council Room card:
+		beforeNumHands = gameStateTest.handCount[player2]
+	-Use the card: cardEffect(council_room,0,0,0,&gameStateTest,0,0);
+	-Trace current player's number of hands after after using the Council Room card:
+		afterNumHands = gameStateTest.handCount[player2]
+	-Subtract before and after values for numActions:
+		difference = afterNumHands - beforeNumHands
+	-Compare whether difference is equal to 1. 
+
+Cause and Symptoms:
+	The bug occurs on line 1362 because if ( i == currentPlayer){ drawCard(i ,state);} should be if ( i != currentPlayer){ drawCard(i ,state);}
+	When current player uses Council Room, it also makes other players draw a card. The above line of code is responsible for making other players 
+	draw a card. But since i == currentPlayer, it will draw a card(5th time) for the current player, and will not draw card for other players.
+	To fix this issue, we change it to i!= currentPlayer, assuring every player aside from current player draws a card.
+
+How it was found:
+	I found the bug through unit test for council room card. I stored the number of hands other players have
+	before current player uses the Council Room card. Then I stored the number of hands the other players have after current player uses the Council
+	Room card. Comparing the before and after values for other players should give a difference of 1. The unit test showed a difference of 0.
+
+	---- Card Test 4: Council Room ----
+	---- Test5: Player 2 hand count should increase by 1 ----
+	Hand count before Council Room card used = 0 
+	Hand count after = 0, expected = 1 
+	Test Failed.
+
+
+
+Adventurer ()
+Bug 3: 
+	Adventurer draws 3 treasure cards instead of 2 treasure cards.
+
+Pointers to code to expose the bug: 
+	-Intialize the game: initializeGame(numPlayers, kingdomCardsList, seedVal, &gameStateTest)
+	-Give current player an Adventurer card: gameStateTest.hand[player1][0] = adventurer;
+	-Trace current player's number of hands before using the Adventurer card:
+		beforeNumHands = gameStateTest.handCount[player1]
+	-Use the card: cardEffect(adventurer,0,0,0,&gameStateTest,0,0);
+	-Trace current player's number of hands after using the Adventurer card:
+		afterNumHands = gameStateTest.handCount[player1]
+	-Subtract before and after values for numActions:
+		difference = afterNumHands - beforeNumHands
+	-Compare whether difference is equal to 2. 
+	-If difference is 2, assure the 2 cards in drawn are treasure cards.
+
+Cause and Symptoms:
+	The bug occurs on line 1226 because while (drawntreasure < 3) should be while (drawntreasure < 2).
+	The drawntreasure is initilized to 0 outside of while loop. In the above line of code, when 
+	current player uses the Adventurer card, the while loop will iterate from 0 to 2, and draw
+	3 treasure cards. To fix this issue, change the code to while(drawntreasure < 2). This will
+	draw 2 treasure cards.
+
+How it was found:
+	I detected it while analyzing my teammate’s refactored functions.

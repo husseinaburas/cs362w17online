@@ -1,0 +1,35 @@
+Bugs in Team Mate dominion.c code:
+
+Bug title: Discarded smithy card going to trash instead of played card pile in playSmithy()
+
+Bug description: The smithy card in play should be added to the played card pile (and subsequently the discard pile) by calling the discardCard (with the trashFlag set to 0). In this version of playSmithy(), the smithy card in play is sent to the trash because the trashFlag parameter for discardCard() is set to 1. 
+
+Bug replication: The bug can be replicated with any implementation of playSmithy().
+
+Bug fix: It is recommended that the trashFlag for the call to the discardCard() function is changed from 1 to 0, like such:
+	discardCard(handPos, currentPlayer, state, 0);
+**********************************************************************************
+
+Bug title: Not all cards being transferred from temporary deck to discard pile in playAdventurer().
+
+Bug description: In the normal implementation of the adventurer card, the player continues to draw cards from the deck until 2 total treasure cards are drawn. The non-treasure cards that are drawn are placed into a temporary array, which is emptied into the discard pile at the end of the playAdventurer() function. In this version of playAdventurer(), all but the first card in the temporary array are being transferred to the discard pile. This is causing the discard count to be off by one.
+
+Bug replication: This bug can be replicated by any implementation of playAdventurer() in which there are at least two treasure cards in the deck or discard pile.
+
+Bug Fix: It is recommended that the ‘>’ in the expression ‘z-1>0’ in line 1204 is changed to ‘>=“, like so:
+	while(z-1>=0)
+	{
+	    state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
+	    z=z-1;
+	}
+
+*********************************************************************************
+
+Bugtitle: In playBaron(), coin count being set to 4 (instead of incremented by 4) when player cashes in estate card.
+
+Bug description: In the normal implementation of the baron card, if the choice1 flag is set, and the player has an estate card in hand, the amount of coins is supposed to increase by 4. However, in this version of playBaron(), the number of coins is always set to 4 when choice1 flag is set and the player has an estate card in hand.
+
+Bug replication: This bug can be replicated by first seeding the player’s hand with at least 1 estate card. When the playBaron() function is called, the choice1 parameter should be set to 1.
+
+Bug Fix: It is recommended that the ‘=‘ on line 1284 is replaced with ‘+=‘, like so:
+	state->coins += 4;

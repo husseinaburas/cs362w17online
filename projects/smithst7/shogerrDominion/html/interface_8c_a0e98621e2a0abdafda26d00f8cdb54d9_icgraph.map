@@ -1,0 +1,5 @@
+<map id="getCardCost" name="getCardCost">
+<area shape="rect" id="node2" href="$interface_8h.html#a72df42ddc629927aca258391808d6457" title="printSupply" alt="" coords="149,31,236,57"/>
+<area shape="rect" id="node3" href="$interface_8h.html#a315090fac682ce17ffb8eef9c1353a95" title="executeBotTurn" alt="" coords="284,5,399,32"/>
+<area shape="rect" id="node4" href="$player_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="447,31,497,57"/>
+</map>

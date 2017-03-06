@@ -1,0 +1,109 @@
+        -:    0:Source:testme.c
+        -:    0:Graph:testme.gcno
+        -:    0:Data:testme.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <string.h>
+        -:    3:#include <stdlib.h>
+        -:    4:#include <time.h>
+        -:    5:
+        -:    6:char inputChar(int st)
+        -:    7:{
+        -:    8:	int toCast;
+        -:    9:
+ 40155181:   10:	if(st == 9){
+        -:   11:		//lowercase only, ASCII 97(dec) to 122(dec)
+ 40151064:   12:		toCast = (rand() % 26) + 97;
+ 40151064:   13:		if(toCast > 122){
+    #####:   14:    		printf("Number out of range, High\n");
+    #####:   15:    		exit (1);
+        -:   16:    	}
+ 40151064:   17:    	if(toCast < 97){
+    #####:   18:    		printf("Number out of range, Low\n");
+    #####:   19:    		exit (1);
+        -:   20:    	}	
+ 40151064:   21:	}
+        -:   22:	else{
+        -:   23:		//all chars from ASCII 32(dec) to 126(dec)
+     4117:   24:		toCast = (rand() % 95) + 32;
+     4117:   25:    	if(toCast > 126){
+    #####:   26:    		printf("Number out of range, High\n");
+    #####:   27:    		exit (1);
+        -:   28:    	}
+     4117:   29:    	if(toCast < 32){
+    #####:   30:    		printf("Number out of range, Low\n");
+    #####:   31:    		exit (1);
+        -:   32:    	}
+        -:   33:	}
+        -:   34:
+        -:   35:    
+ 40155181:   36:    return (char) toCast;
+        -:   37:}
+        -:   38:
+        -:   39:char *inputString(int st)
+        -:   40:{
+        -:   41:	int i;
+        -:   42:	int buildLength;
+        -:   43:	char* word;
+        -:   44:
+  6692445:   45:	if(st == 9){
+        -:   46:		//if state is 9 then only build 5 char strings
+  6691844:   47:		buildLength = 5;
+  6691844:   48:	}
+        -:   49:	else{
+        -:   50:		//length of string to build, 1 to 10 charachters
+      601:   51:    	buildLength = (rand() % 11) + 1;	
+        -:   52:	}
+  6692445:   53:	word = malloc(buildLength + 1);
+        -:   54:
+ 80310362:   55:	for(i=0; i<buildLength; i=i+1){
+ 33462736:   56:		word[i]=inputChar(st);
+ 33462736:   57:	} 
+  6692445:   58:	word[buildLength]='\0';
+        -:   59:
+  6692445:   60:    return word;
+        -:   61:}
+        -:   62:
+        -:   63:void testme()
+        -:   64:{
+        1:   65:  int tcCount = 0;
+        -:   66:  char *s;
+        -:   67:  char c;
+        1:   68:  int state = 0;
+  6692445:   69:  while (1)
+        -:   70:  {
+  6692445:   71:    tcCount++;
+  6692445:   72:    c = inputChar(state);
+  6692445:   73:    s = inputString(state);
+  6692445:   74:    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+        -:   75:
+  6692456:   76:    if (c == '[' && state == 0) state = 1;
+  6692453:   77:    if (c == '(' && state == 1) state = 2;
+  6692451:   78:    if (c == '{' && state == 2) state = 3;
+  6692452:   79:    if (c == ' ' && state == 3) state = 4;
+  6951030:   80:    if (c == 'a' && state == 4) state = 5;
+  6950396:   81:    if (c == 'x' && state == 5) state = 6;
+  6692451:   82:    if (c == '}' && state == 6) state = 7;
+  6692450:   83:    if (c == ')' && state == 7) state = 8;
+  6692452:   84:    if (c == ']' && state == 8) state = 9;
+  6949246:   85:    if (s[0] == 'r' && s[1] == 'e'
+   267238:   86:       && s[2] == 's' && s[3] == 'e'
+      439:   87:       && s[4] == 't' && s[5] == '\0'
+        2:   88:       && state == 9)
+        -:   89:    {
+        1:   90:      printf("error ");
+        1:   91:      free(s);
+        1:   92:      exit(200);
+        -:   93:    }
+  6692444:   94:    free(s);
+        -:   95:  }
+    #####:   96:}
+        -:   97:
+        -:   98:
+        -:   99:int main(int argc, char *argv[])
+        -:  100:{
+        1:  101:    srand(time(NULL));
+        1:  102:    testme();
+        1:  103:    return 0;
+        -:  104:}

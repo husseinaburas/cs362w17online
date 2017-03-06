@@ -1,0 +1,13 @@
+dominion/player
+dominion/test
+dominion/playdom
+dominion/testInit
+dominion/*.gcov
+dominion/*.gcda
+dominion/*.gcno
+dominion/*.so
+dominion/*.exe
+dominion/badTestDrawCard
+dominion/testDrawCard
+dominion/*.o
+.nfs*

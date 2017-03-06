@@ -1,0 +1,210 @@
+Bug Report
+
+==========
+
+
+Title: Smithy card draws too many card
+
+
+Class: Serious Bug
+
+Date: 03/05/2017 
+
+
+Reported By: John Steiner
+Email:steinerj@oregonstate.edu
+
+
+
+
+Product: dominion.c             Version:
+
+Platform: linux (flip server)   Version:
+
+Browser: n/a                    Version:
+
+URL: n/a
+   
+
+
+Is it reproducible: Yes
+
+
+
+Description
+
+===========
+
+The card Smithy is supposed to cause the player to draw 3 cards. Currently
+the function smithyCard() causes the player to draw 6 cards. At the end of a
+turn the player has 5 additional cards (after discarding Smithy) instead of 2.
+
+
+Steps to Produce/Reproduce
+
+--------------------------
+
+-Create external code linked to dominio.h and dominionhelpers.h
+-Create two gameState instances.
+-Initialize a game using the initializeGame() function.
+-Copy the data from the initialized game into the other gameState
+-Call the smithyCard() function.
+-To confirm the bug compare the handCount of the current player in thegameState
+that was unchanged and the handCount of the current player gameState where smithyCard() was called.
+
+
+
+
+
+Expected Results
+
+----------------
+
+The current player's handCount should be increased by 2 (3 cards drawn and Smithy discarded)
+
+
+
+
+
+Actual Results
+
+--------------
+
+Current player's handCount is increased by 5.
+
+
+
+
+
+
+Workarounds
+
+-----------
+The game can be played but Smithy's behavior will not be consistent with its terms.
+
+
+
+
+
+Attachments
+
+-----------
+
+None.
+
+
+
+
+
+
+Other Information
+
+-----------------
+
+
+
+None.
+
+
+Bug Report
+
+==========
+
+Title: Village card increases player's actions by 1 instead of 2
+Class: Serious Bug
+Date: 03/05/2017
+
+Reported By: John Steiner
+Email:steinerj@oregonstate.edu
+
+
+
+Product: dominion.c             Version:
+ n/a
+Platform: linux (flip server)   Version: n/a
+Browser: n/a                    Version: n/a
+URL: n/a
+   
+
+
+Is it reproducible: Yes
+
+
+
+Description
+
+===========
+
+The Village card is supposed to increase the player's number of actions by 2.
+Currently the function villageCard() increases the player's number of actions by 1.
+
+
+
+
+Steps to Produce/Reproduce
+
+--------------------------
+
+
+
+-Create external code linked to dominio.h and dominionhelpers.h
+-Create two gameState instances.
+-Initialize a game using the initializeGame() function.
+-Copy the data from the initialized game into the other gameState
+-Call the villageCard() function.
+-To confirm the bug compare the numActions of the gameState that was unchanged and
+the numActions of the gameState where villageCard() was called.
+
+
+
+
+Expected Results
+
+----------------
+
+The player's number of actions is increased by 2
+
+.
+
+
+
+
+Actual Results
+
+--------------
+
+The player's number of actions is increased by 1
+
+.
+
+
+
+
+Workarounds
+
+-----------
+The game can still be played but Village will not be consistene with its terms.
+
+
+
+
+
+
+
+Attachments
+
+-----------
+
+None.
+
+
+
+
+
+
+Other Information
+
+-----------------
+
+
+None.
