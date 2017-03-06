@@ -1,72 +1,41 @@
+/* unittest2.c
+
+	for testing the drawcard function
+
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <time.h>
 #include "rngs.h"
+#include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+ 
+int main() {
+	
 
-#define DEBUG 0
-#define NOISY_TEST 1
+	struct gameState* testGame = newGame();
 
-#define MAX_ROUNDS 1000
+	int testcards[10];
+	int i;
+	for (i=0;i<10;i++){
 
-int test_updateCoins(int p, struct gameState *G, int c)
-{
-  int i;
-  struct gameState _G;
+		testcards[i] = i+1;
+	}
 
-  memcpy(&_G, G, sizeof(struct gameState));
+	initializeGame(2, testcards, 5, testGame);
 
-  for (i = 0; i < _G.handCount[p]; i++)
-  {
-    switch (_G.hand[p][i])
-    {
-      case copper:
-        _G.coins++;
-        break;
-      case silver:
-        _G.coins += 2;
-        break;
-      case gold:
-        _G.coins += 3;
-        break;
-    }
-  }
+	int testdeck[MAX_HAND];
+	for (i=0; i< testGame->deckCount[1]; i++)
+	{
+		testdeck[i] = testGame->deck[1][i];
 
-  assert(memcmp(&_G, G, sizeof(struct gameState)) == 0);
+	}
+	
+	drawCard(1, testGame);
 
-  return 0;
-}
+	if (testdeck!= testGame->deck[1])
+	{	printf("draw test pass\n");	}
+	else printf ("draw test fail\n");	
 
-int main()
-{
-  srand(time(NULL));
-
-  int c, p, i, j;
-
-  struct gameState G;
-
-  printf("Testing getCost()\n");
-
-  for (i = 0; i < MAX_ROUNDS; i++)
-  {
-    // Create a gameState
-    for (j = 0; j < sizeof(struct gameState); j++)
-      ((char*)&G)[j] = floor(Random()*256);
-
-    c                 = 0;
-    p                 = floor(Random()*MAX_PLAYERS); // set some players
-    G.deckCount[p]    = floor(Random()*MAX_DECK);    // set some decks
-    G.discardCount[p] = floor(Random()*MAX_DECK);    // create a discard pile
-    G.handCount[p]    = floor(Random()*MAX_HAND);    // create some hands
-
-    test_updateCoins(p, &G, c);
-  }
-
-  printf("Finished.\n");
-
-  return 0;
 }
