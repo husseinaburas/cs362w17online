@@ -1297,7 +1297,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 //************ADVENTURER
 
 int playAdventurer(struct gameState *state) {
-	int drawntreasure = 0;
+	int drawntreasure = 3;
 	int currentPlayer = whoseTurn(state);
 	int cardDrawn;
 	int temphand[MAX_HAND];

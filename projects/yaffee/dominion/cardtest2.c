@@ -9,38 +9,11 @@
 #include "rngs.h"
 
 void assertTrue(struct gameState *test, struct gameState *control) {
-   int failFound = 0;
-   if(control->handCount[0] != test->handCount[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Hand Count\n");
-   }
-   if(control->hand[0][4] != test->hand[0][4]) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Drawn Card\n");
-   }
-   if(control->deckCount[0] != test->deckCount[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Deck Count\n");
-   }
-   if(control->discardCount[0] != test->discardCount[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Discard Count\n");
-   }
-   if(control->playedCards[0] != test->playedCards[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Played Card Incorrect\n");
-   }
-   if(control->playedCardCount != test->playedCardCount) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Played Card Count\n");
-   }
-   if(control->numActions != test->numActions) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Played Card Count\n");
-   }
-   if(failFound == 0){
-      printf("No Errors Found\n");
-   }
+   if(memcmp(test, control, sizeof(struct gameState)) == 0)
+      printf("Test Case PASSED\n");
+   else
+      printf("Test Case FAILED\n");
+   return;
 }
 
 int main() {
@@ -55,7 +28,6 @@ int main() {
    test.handCount[0] = 5;
    test.discardCount[0] = 10;
    test.deckCount[0] = 10;
-   test.playedCardCount = 0;
    for(i=0; i<(test.handCount[0]-1); i++)
       test.hand[0][i] = copper;
    for(i=0; i<test.deckCount[0]; i++)
@@ -73,9 +45,9 @@ int main() {
    printf("Test Case: great hall draws from deck\n");
    great_hallCard(&test, 0, 4);
    control.hand[0][4] = copper;
-   control.deckCount[0] = 9;
+   control.deckCount[0]--;
    control.playedCards[0] = great_hall;
-   control.playedCardCount = 1;
+   control.playedCardCount++;
    control.numActions++;
    assertTrue(&test, &control);
 
@@ -99,7 +71,6 @@ int main() {
    great_hallCard(&test, 0, 4);
    control.hand[0][4] = copper;
    control.deckCount[0] = 9;
-   control.discardCount[0] = 0;
    control.playedCardCount = 1;
    control.playedCards[0] = great_hall;
    control.numActions++;

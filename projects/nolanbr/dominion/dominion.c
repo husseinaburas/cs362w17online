@@ -645,7 +645,7 @@ int getCost(int cardNumber)
 /*CARD FUNCTIONS*/
 
 //Adventurer
-int playAdventurer(struct gameState *state, int currentPlayer)
+int playAdventurer(int currentPlayer, struct gameState *state)
 {
   int drawntreasure = 0;
   int cardDrawn;

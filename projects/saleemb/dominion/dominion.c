@@ -65,11 +65,6 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         }
     }
 
-// check if selected cards are within range
-  for(i = 0; i < 10; ++i){
-     if(kingdomCards[i] < adventurer || kingdomCards[i] > treasure_map)
-	return -1;
-  }
 
   //initialize supply
   ///////////////////////////////

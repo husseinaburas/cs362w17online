@@ -1182,9 +1182,11 @@ int updateCoins(int player, struct gameState *state, int bonus)
 // Smithy - draw +3 cards
 int playSmithy(int player, struct gameState *state, int handPos) {
   int i;
-  for (i = 0; i <= 3; i++) {
+  for (i = 0; i < 3; i++) {
     drawCard(player, state);
   }
+  //discard card from hand
+  discardCard(handPos, player, state, 0);
   return 0;
 }
 
@@ -1195,7 +1197,7 @@ int playAdventurer(int currentPlayer, struct gameState *state) {
   int cardDrawn;
   int z = 0;// this is the counter for the temp hand
 
-  while(drawntreasure<3){
+  while(drawntreasure<2){
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
@@ -1220,12 +1222,12 @@ int playAdventurer(int currentPlayer, struct gameState *state) {
 int playBaron(int currentPlayer, struct gameState *state, int choice1) {
   state->numBuys++;//Increase buys by 1!
   state->playedCardCount++;
-  if (choice1 > 1) {//Boolean true or going to discard an estate
+  if (choice1 > 0) {//Boolean true or going to discard an estate
     int p = 0;//Iterator for hand!
     int card_not_discarded = 1;//Flag for discard set!
     while(card_not_discarded){
       if (state->hand[currentPlayer][p] == estate){//Found an estate card!
-        state->coins += 5;//Add 4 coins to the amount of coins
+        state->coins += 4;//Add 4 coins to the amount of coins
         state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
         state->discardCount[currentPlayer]++;
         for (;p < state->handCount[currentPlayer]; p++){
@@ -1241,7 +1243,7 @@ int playBaron(int currentPlayer, struct gameState *state, int choice1) {
           printf("Must gain an estate if there are any\n");
         }
         if (supplyCount(estate, state) > 0){
-          gainCard(estate, state, 1, currentPlayer);
+          gainCard(estate, state, 2, currentPlayer);
           // The following line might be a bug becuase the supply is already decremented in gaincard!!!!
           state->supplyCount[estate]--;//Decrement estates
           if (supplyCount(estate, state) == 0){
@@ -1258,7 +1260,7 @@ int playBaron(int currentPlayer, struct gameState *state, int choice1) {
   }        
   else {
     if (supplyCount(estate, state) > 0){
-      gainCard(estate, state, 1, currentPlayer);//Gain an estate
+      gainCard(estate, state, 2, currentPlayer);//Gain an estate
       // the below is a bug! gaincard already decrements!
       //state->supplyCount[estate]--;//Decrement Estates
       if (supplyCount(estate, state) == 0){
@@ -1333,7 +1335,7 @@ int playMinion(int currentPlayer, struct gameState *state, int choice1, int choi
           }
               
           //draw 4
-          for (j = 0; j < 5; j++) {
+          for (j = 0; j < 4; j++) {
             drawCard(i, state);
           }
         }

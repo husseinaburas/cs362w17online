@@ -9,26 +9,11 @@
 #include "rngs.h"
 
 void assertTrue(struct gameState *test, struct gameState *control) {
-   int failFound = 0;
-   if(control->handCount[0] != test->handCount[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Hand Count\n");
-   }
-   if(control->playedCards[0] != test->playedCards[0]) {
-      failFound = 1;
-      printf("Test Case Failed: Played Card Incorrect\n");
-   }
-   if(control->playedCards[1] != test->playedCards[1]) {
-      failFound = 1;
-      printf("Test Case Failed: Played Card Incorrect\n");
-   }
-   if(control->playedCardCount != test->playedCardCount) {
-      failFound = 1;
-      printf("Test Case Failed: Incorrect Played Card Count\n");
-   }
-   if(failFound == 0){
-      printf("No Errors Found\n");
-   }
+   if(memcmp(test, control, sizeof(struct gameState)) == 0)
+      printf("Test Case PASSED\n");
+   else
+      printf("Test Case FAILED\n");
+   return;
 }
 
 int main() {
@@ -44,8 +29,6 @@ int main() {
    test.handCount[0] = 5;
    test.discardCount[0] = 10;
    test.deckCount[0] = 10;
-   test.outpostPlayed = 0;
-   test.playedCardCount = 0;
    for(i=0; i<(test.handCount[0]-1); i++)
       test.hand[0][i] = copper;
    for(i=0; i<test.deckCount[0]; i++)
@@ -61,10 +44,11 @@ int main() {
 
    printf("Test Case: outpost is played once\n");
    outpostCard(&test, 0, 4);
-   control.handCount[0] = 4;
-   control.outpostPlayed = 1;
+   control.handCount[0]--;
+   control.hand[0][4] = -1;
+   control.outpostPlayed++;
    control.playedCards[0] = outpost;
-   control.playedCardCount = 1;
+   control.playedCardCount++;
    assertTrue(&test, &control);
 
    printf("Test Case: outpost is played twice in one turn\n");
@@ -73,8 +57,6 @@ int main() {
    test.handCount[0] = 5;
    test.discardCount[0] = 10;
    test.deckCount[0] = 10;
-   test.outpostPlayed = 0;
-   test.playedCardCount = 0;
    for(i=0; i<(test.handCount[0]-1); i++)
       test.hand[0][i] = copper;
    for(i=0; i<test.deckCount[0]; i++)
@@ -86,12 +68,18 @@ int main() {
    memcpy(&control, &test, sizeof(struct gameState));
   
    outpostCard(&test, 0, 4);
-   outpostCard(&test, 0, 3);
-   control.handCount[0] = 3;
-   control.outpostPlayed = 2;
+   control.handCount[0]--;
+   control.hand[0][4] = -1;
+   control.outpostPlayed++;
    control.playedCards[0] = outpost;
+   control.playedCardCount++;
+   outpostCard(&test, 0, 3);
+   control.handCount[0]--;
+   control.hand[0][3] = -1;
+   control.outpostPlayed++;
    control.playedCards[1] = outpost;
-   control.playedCardCount = 2;
+   control.playedCardCount++;
+   control.handCount[0]--;
    assertTrue(&test, &control);
 
    printf("------------------------------------------------------------------\n");

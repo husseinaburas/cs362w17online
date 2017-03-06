@@ -53,18 +53,18 @@ int main(int argc, char **argv) {
     //  Store Preconditions
     int handCountPre = G.handCount[curPlayer];
     int deckCountPre = G.deckCount[curPlayer];
-    int discardCountPre = G.discardCount[curPlayer];
+    int discardCountPre = G.discardCount[0];
     int playedCardCountPre = G.playedCardCount;
     cardEffect(smithy, 0, 0, 0, &G, 0, 0);
     //  Check Postconditions
     printf("\n >>>>> Postcondition Check <<<<<\n");
     //  Player 0 should have +3, -1 more cards now
-    printf(" hand count:  %d\n", G.deckCount[curPlayer]);
-    asserttrue((G.handCount[curPlayer] == (handCountPre + 2)), "+3 Cards in Hand");
+    printf(" hand count:  %d\n", G.deckCount[0]);
+    asserttrue((G.handCount[0] == (handCountPre + 2)), "+3 Cards in Hand");
     printf(" deck count:  %d\n", G.deckCount[0]);
-    asserttrue((G.deckCount[curPlayer] == (deckCountPre - 3)), "3 less cards deck");
+    asserttrue((G.deckCount[0] == (deckCountPre - 3)), "3 less cards deck");
     printf(" discard count:  %d\n", G.discardCount[0]);
-    asserttrue((G.discardCount[curPlayer] == (discardCountPre + 1)), "Discarded");
+    asserttrue((G.discardCount[0] == (discardCountPre + 1)), "Discarded");
     printf(" played card count:  %d\n", G.playedCardCount);
     asserttrue((G.playedCardCount == (playedCardCountPre + 1)), "Played Count");
 

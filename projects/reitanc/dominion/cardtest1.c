@@ -64,11 +64,11 @@ int main() {
 	for (i = 0; i < testG.handCount[thisPlayer]; i++){
 		printf("%i; ", testG.hand[thisPlayer][i]);
 	}
-	printf("\ncards in player deck before smithy: ");
+	printf("\ncards in player deck before adventurer: ");
 	for (i = 0; i < G.deckCount[thisPlayer]; i++){
 		printf("%i; ", G.deck[thisPlayer][i]);
 	}
-	printf("\ncards in player deck after smithy: ");
+	printf("\ncards in player deck after adventurer: ");
 	for (i = 0; i < testG.deckCount[thisPlayer]; i++){
 		printf("%i; ", testG.discard[thisPlayer][i]);
 	}

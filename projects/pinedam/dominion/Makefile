@@ -93,38 +93,12 @@ runcardtest4:  cardtest4
 	-gcov -b dominion.c >> unittestresults.out
 	-cat dominion.c.gcov >> unittestresults.out
 
-randomTestCard1: dominion.o randomtestcard1.c
-	gcc -o randomTestCard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
-
-runRandomTestCard1:  randomTestCard1
-	-./randomTestCard1 1234 &> randomTestCard1.out
-	-gcov -b dominion.c >> randomTestCard1.out
-	-cat dominion.c.gcov >> randomTestCard1.out
-
-randomTestCard2: dominion.o randomtestcard2.c
-	gcc -o randomTestCard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
-
-runRandomTestCard2:  randomTestCard2
-	-./randomTestCard2 1234 &> randomTestCard2.out
-	-gcov -b dominion.c >> randomTestCard2.out
-	-cat dominion.c.gcov >> randomTestCard2.out
-
-randomTestCard3: dominion.o randomtestcard3.c
-	gcc -o randomTestCard3 randomtestcard3.c -g dominion.o rngs.o $(CFLAGS)
-
-runRandomTestCard3:  randomTestCard3
-	-./randomTestCard3 1234 &> randomTestCard3.out
-	-gcov -b dominion.c >> randomTestCard3.out
-	-cat dominion.c.gcov >> randomTestCard3.out
-
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 alltest: rununittest1 rununittest2 rununittest3 rununittest4 runcardtest1 runcardtest2 runcardtest3 runcardtest4
-
-alltestrandom: runRandomTestCard1 runRandomTestCard2 runRandomTestCard3
 
 clean:
 	rm -f *.o playdom.exe playdom unittest1 test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

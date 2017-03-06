@@ -250,7 +250,7 @@ int checkSmithy (int p, struct gameState * G) {
 int main () {
 	printf ("Starting ramdom test for SMITHY\n\n");
 	// NOTE: MAX_HAND = 500, MAX_DECK = 500, MAX_PLAYERS = 4
-	srand((unsigned int)time(NULL)); // set random seed with clock
+	// set a reandom seed with time ??  srand((unsigned int)time(NULL));
 	// PART A: Randomize initial inputs for creating base game configuration
 	// Inputs to set up a game include:
 	// # of players p (0, 1, 2, 3, 4...)
@@ -267,17 +267,14 @@ int main () {
 	           sea_hag, smithy, treasure_map}; // default hand to be replaced
 	struct gameState G; // test game state
 	memset(&G, 23, sizeof(struct gameState)); // resets game memory
+	int randSeed = 1; // to be replaced
 	int response;
 
 	// LOOP OVER NUMBER OF RANDOM INITIAL GAME STATE
 	int numGame;
-	for (numGame=0; numGame < 1000; numGame++) {
+	for (numGame=0; numGame < 100; numGame++) {
 		printf ("------------ ITERATION # %i\n", numGame);
-		int randSeed = getRandIntLowHigh(1,10000);
-		response = randomGameInit (player, k, randSeed, &G); // -1 for PutSeed func. x<0, state from system clock
-		if (response == -1) {
-			continue; // it means this was not a valid game state so continue on with for loop.
-		}
+		response = randomGameInit (player, k, randSeed, &G);
 		//printf ("response = %i\n", response);
 
 		// PART B: Given an initialized game state, randomize the state of play.

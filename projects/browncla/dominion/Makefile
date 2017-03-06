@@ -94,16 +94,5 @@ randomtestadventurer.out: randomtestadventurer
 	gcov -b dominion.c >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out
 
-randomtests: randomtestcard1 randomtestcard2 randomtestadventurer
-	./randomtestcard1 30 &> randomtestcard1.out
-	gcov -b dominion.c >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
-	./randomtestcard2 30 &> randomtestcard2.out
-	gcov -b dominion.c >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
-	./randomtestadventurer 30 &> randomtestadventurer.out
-	gcov -b dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
-
 clean:
 	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so 

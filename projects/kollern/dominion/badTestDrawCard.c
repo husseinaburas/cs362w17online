@@ -8,13 +8,13 @@
 #define DEBUG 0
 #define NOISY_TEST 1
 
-int checkDrawCard(int p, struct gameState *post){
+int checkDrawCard(int p, struct gameState *post) {
   int r;
     
   r = drawCard (p, post);
 }
 
-int main() {
+int main () {
 
   int i, n, r, p, deckCount, discardCount, handCount;
 
