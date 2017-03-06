@@ -1224,17 +1224,25 @@ int cardAdventurer(struct gameState *state){
     int tempHandCount = 0;
     int currentPlayer = whoseTurn(state);
     int temphand[MAX_HAND];
+    int shuffleCount = 0;
 
     while(drawntreasure < 2){
         if(state->deckCount[currentPlayer] < 1){
+            //keeps the function from a edge case infinte loop
+            if (shuffleCount > 0)
+            {
+              return -2;
+            }
             //shuffels discard deck and readds it to the deck.
             shuffle(currentPlayer, state);
+            shuffleCount++;
         }
+
         drawCard(currentPlayer, state);
+
         cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1];
 
         if(cardDrawn == copper || cardDrawn == silver || cardDrawn == gold){
-            drawntreasure++;
             drawntreasure++;
         }else{
             temphand[tempHandCount] = cardDrawn;
@@ -1245,9 +1253,13 @@ int cardAdventurer(struct gameState *state){
         while(tempHandCount - 1 >= 0){
             state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[tempHandCount - 1];
             tempHandCount -= 1;
-        }
-    }
 
+        }
+
+    }
+    if(shuffleCount == 1){
+      return -1;
+    }
     //change later
     return 0;
 }
@@ -1258,7 +1270,7 @@ int cardSmithy(struct gameState *state, int handPos){
     int currentPlayer = whoseTurn(state);
 
     //add three cards
-    for(i = 0; i <= 3; i++){
+    for(i = 0; i < 3; i++){
         drawCard(currentPlayer, state);
     }
 
@@ -1315,7 +1327,7 @@ int cardCutpurse(struct gameState *state, int handPos){
     int j;
     int k;
     int currentPlayer = whoseTurn(state);
-    updateCoins(currentPlayer, state, 3);
+    updateCoins(currentPlayer, state, 2);
     for(i = 0; i < state->numPlayers; i++){
         if(i != currentPlayer){
             for(j = 0; j < state->handCount[i]; j++){
@@ -1344,6 +1356,7 @@ int cardGreatHall(struct gameState *state, int handPos){
       int currentPlayer = whoseTurn(state);
       //+1 Card
       drawCard(currentPlayer, state);
+      state->numActions++;
 
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
