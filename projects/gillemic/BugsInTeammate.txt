@@ -1,0 +1,10 @@
+Adveturer:
+-shuffles the deck every draw
+-does not decrease player's handcount after discarding non-treasure card
+
+Smithy:
+-For loop allows player to draw 4 cards instead of 3
+-sends card to trash instead of discard
+
+Council Room:
+-Four extra buys are given instead of one

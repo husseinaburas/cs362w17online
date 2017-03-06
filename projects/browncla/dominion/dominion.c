@@ -1522,12 +1522,11 @@ int playSalvager(struct gameState *state, int currentPlayer, int choice1, int ha
 
    //+1 buy
     state->numBuys++;
-    if (choice1 == 2){ //BUG
-      //gain coins equal to trashed card
-      state->coins = state->coins + getCost( state->hand[currentPlayer][choice1] );
-      //trash card
-      discardCard(choice1, currentPlayer, state, 0);  //BUG
-    }
+    
+    //gain coins equal to trashed card
+    state->coins = state->coins + getCost( state->hand[currentPlayer][choice1] );
+    //trash card
+    discardCard(choice1, currentPlayer, state, 1);  
     //discard  salvager card
     discardCard(handPos, currentPlayer, state, 0);
     updateCoins(currentPlayer, state, 0);
