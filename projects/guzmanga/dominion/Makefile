@@ -6,15 +6,6 @@ rngs.o: rngs.h rngs.c
 dominion.o: dominion.h dominion.c rngs.o
 	gcc -c dominion.c -g  $(CFLAGS)
 
-randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
-	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
-
-randomtestcard1: randomtestcard1.c dominion.o rngs.o
-		gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
-
-randomtestcard2: randomtestcard2.c dominion.o rngs.o
-		gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
-
 playdom: dominion.o playdom.c
 	gcc -o playdom playdom.c -g dominion.o rngs.o $(CFLAGS)
 
@@ -29,6 +20,45 @@ testBuyCard: testDrawCard.c dominion.o rngs.o
 
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
+
+unit1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o unittest1.c rngs.c -o unittest1 -lm -g
+
+unit2:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o unittest2.c rngs.c -o unittest2 -lm -g
+
+unit3:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o unittest3.c rngs.c -o unittest3 -lm -g
+
+unit4:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o unittest4.c rngs.c -o unittest4 -lm -g
+
+card1:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest1.c rngs.c -o cardtest1 -lm -g
+
+card2:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest2.c rngs.c -o cardtest2 -lm -g
+
+card3:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest3.c rngs.c -o cardtest3 -lm -g
+
+card4:
+	gcc -fprofile-arcs -ftest-coverage -Wall -std=c99 dominion.o cardtest4.c rngs.c -o cardtest4 -lm -g
+
+myTest:
+		./unittest1 &> unittestresult.out
+		./unittest2 >> unittestresult.out
+		./unittest3 >> unittestresult.out
+		./unittest4 >> unittestresult.out
+		./cardtest1 >> unittestresult.out
+		./cardtest2 >> unittestresult.out
+		./cardtest3 >> unittestresult.out
+		./cardtest4 >> unittestresult.out
+		gcov dominion.c >> unittestresult.out
+		cat dominion.c.gcov >> unittestresult.out
+
+unittestresult.out: unit1 unit2 unit3 unit4 card1 card2 card3 card4 myTest
+
 
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)

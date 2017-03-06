@@ -1,0 +1,19 @@
+Bugs in Teammate Code
+
+Smithy
+
+Failures of unit and random tests were as follows: discard count not increased by 1 after card, hand count of player not +2 after card, deck count of player not -3 after card, and last discard card of player is not smithy. The results of other tests were successful.
+
+The deck count not being decremented by 3 was a consistent repeating error across multiple random game states tested. This appeared to indicate a problem with the “draw 3 cards” requirement of smithy. The draw problem of smithy was in the test expression of the for loop in playSmithy. Instead of i < 3, the test expression was i <= 3, resulting in an extra trip through the for loop. Fixing this fault removed hand count deck count failures. Discard-related errors remain and appear to indicate a separate problem with the discard function. 
+
+The fault was on line 1275, with the fixed version being for (i = 0; i < 3; i++)
+
+
+
+
+
+Adventurer
+
+Failures from tests of this card included the following expected states: top 2 in hand are treasures, played count is +1, last played is adventurer, and adventurer not in hand position from before card played. Additionally, the unit test and some runs of random tests also showed a discard problem.
+
+One of these problems (last played wasn’t adventurer) was solved by adding a call to discardCard in playAdventurer. Because discardCard requires the hand position of the card being discarded, I also added the handPos parameter to playAdventurer and updated the instance in which it’s called in cardEffect. The fault was on line 1288 where discardCard is now called, with the fixed version being discardCard(handPos, currentPlayer, state, 0);

@@ -1315,7 +1315,7 @@ int playGreatHall(int currentPlayer, struct gameState *state, int handPos){
 int playSmithy(int currentPlayer, struct gameState *state, int handPos){
   //player draws 3 cards
   int i = 0;
-  for (i=0; i <= 3; i++){
+  for (i=0; i < 3; i++){
     drawCard(currentPlayer, state);
   }
 

@@ -103,7 +103,7 @@
 
  int checkPlayAdventurer(int handPos, int p, struct gameState *post, int expDeckLoss, int expDiscardInc) {
    struct gameState pre;
-   int r;
+   int r, i;
    //make copy of state before playing card
    memcpy(&pre, post, sizeof(struct gameState));
    r = playCard(handPos, -1, -1, -1, post);
@@ -126,6 +126,8 @@
 
    int treasure = 0;
    int idx = pre.deckCount[p]-1;
+   int temp[MAX_HAND] = {-1};
+   int tempCount = 0;
    while (treasure < 2 && idx >= 0) {
      if (pre.deck[p][idx] >= copper && pre.deck[p][idx] <= gold) {
        //add treasure card to hand
@@ -133,17 +135,26 @@
        pre.handCount[p]++;
        treasure++;
      } else {
-       //add non-treasure card to discard pile
-       pre.discard[p][pre.discardCount[p]] = pre.deck[p][idx];
-       pre.discardCount[p]++;
+       //add non-treasure card to temp discard pile
+       temp[tempCount] = pre.deck[p][idx];
+       tempCount++;
+       //pre.discard[p][pre.discardCount[p]] = pre.deck[p][idx];
+       //pre.discardCount[p]++;
      }
      //move to next card in deck
      pre.deckCount[p]--;
      idx--;
    }
-   //remove adventurer card from hand, add to discard pile
-   pre.discard[p][pre.discardCount[p]] = adventurer;
-   pre.discardCount[p]++;
+   //place drawn non-treasure cards in discard pile
+   for (i = tempCount - 1; i >= 0; i--) {
+     pre.discard[p][pre.discardCount[p]] = temp[i];
+     pre.discardCount[p]++;
+   }
+   //remove adventurer card from hand, add to played card pile
+   pre.playedCards[pre.playedCardCount] = adventurer;
+   pre.playedCardCount++;
+   //pre.discard[p][pre.discardCount[p]] = adventurer;
+   //pre.discardCount[p]++;
    //replace discarded card with last card in hand
    pre.hand[p][handPos] = pre.hand[p][pre.handCount[p]-1];
    //set last card position to -1

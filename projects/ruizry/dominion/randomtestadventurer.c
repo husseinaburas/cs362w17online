@@ -42,7 +42,7 @@ int main (int argc, char** argv) {
 
   printf("seed num: %d\n", atoi(argv[1]));
 
-  for (n = 0; n < 20; n++) {
+  for (n = 0; n < 2000; n++) {
   totalplayers = (rand() % 3) + 2;
 
   initializeGame(totalplayers, k, atoi(argv[1]), &G);

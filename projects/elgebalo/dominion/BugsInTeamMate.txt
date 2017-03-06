@@ -1,0 +1,18 @@
+Bugs in TeamMate code:
+
+I found multiple bugs in my teammates code. 
+
+Smithy: In the smithy function, the first for loop is supposed to iterate from 0 to 3. Instead, the carrot is switched around so that the function iterates from 0 until while I is greater than 3 which doesn’t 
+make sense as smithy is supposed to allow you to draw 3 cards. I found this bug through the smithy unit test as the player 1 hand count and deck count both failed their tests.
+ 
+Remodel: In the playRemodel() function, I found a bug in the statement where we store the card that we will trash. That statement is affected by choice2 instead of choice1. 
+I also noticed that the discard trashed card loop decrements I instead of incrementing, which means we won’t be able to properly discard trashed cards. I found this bug just by looking through this function.
+
+Council Room: In the playCouncil_room function, I found a bug through the council room unit test. 
+Both the tests that tested if council_room increases buys by 1 and increases handCount of owner by 3 failed. This led to the discovery of the bug in the for loop in that function. 
+It increments from 0 to 7 instead of from 0 to 4, which means that the player will receive 7 cards. This explains the test for increasing handCount failing but what about the test for increasing buys? 
+This led me to the discovery that the number of buys is decremented instead of incremented so the player would lose buys upon drawing this card.
+
+Village: I found the bug for playVillage() rather easily in a coincidental fashion. The function is conveniently right above playCouncil_room, 
+so while scrolling through I noticed a comment that said +5 actions. That didn’t make sense since I know for a fact that the village card increases actions by 2 and allows you to draw one card. 
+Therefore, playVillage() should only add two to numActions instead of 5.

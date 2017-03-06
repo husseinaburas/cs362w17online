@@ -1,0 +1,5 @@
+<map id="buyCard" name="buyCard">
+<area shape="rect" id="node2" href="$interface_8h.html#a315090fac682ce17ffb8eef9c1353a95" title="executeBotTurn" alt="" coords="124,5,239,32"/>
+<area shape="rect" id="node4" href="$playdom_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="156,56,207,83"/>
+<area shape="rect" id="node3" href="$player_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="287,5,337,32"/>
+</map>

@@ -1,0 +1,17 @@
+
+John Teuber
+CS 362
+Assignment 5
+Bugs in Teammate.txt
+
+playAdventurer()
+	playAdventurer() doesn't take the correct arguments. Any input of a hand position other than the first position results in test cases failing. This seems to be due to the input arguments that are requested by the function. The 3rd argument should be hand position rather than drawnTreasure (according to the header file).
+
+playCouncil_room()
+	playCouncil_room has two bugs that I noticed. The first bug is that the number of buys is calculated incorrectly. The second bug is that in some cases, all of the players in the game do not properly draw a card.
+
+playSmithy()
+	playSmithy potentially has two bugs in the code. The first bug that has occurred in all scenarios (random and unit testing) has the player drawing an incorrect number of cards. The second bug only comes up in the situation where the smithy card is played from the first hand position. Under this scenario, the last card in the hand previously does not fill the first spot in the hand. This may be due to an error within the discardCard function itself.  
+
+playVillage()
+	There were no bugs found during the execution of the unit tests for the playVillage function. 
