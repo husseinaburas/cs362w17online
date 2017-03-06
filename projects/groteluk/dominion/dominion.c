@@ -1130,7 +1130,7 @@ int playAdventurer(struct gameState *state)
     int z = 0;// this is the counter for the temp hand
     
     
-    while(drawntreasure<=2){
+    while(drawntreasure < 2){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -1166,6 +1166,8 @@ int playSmithy(struct gameState *state, int handPos)
     discardCard(handPos, currentPlayer, state, 1);
     return 0;
 }
+
+
 
 
 int playVillage(struct gameState *state, int handPos)
@@ -1272,6 +1274,17 @@ int playCouncil_Room(struct gameState *state, int handPos)
     
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 int discardCard(int handPos, int currentPlayer, struct gameState *state, int trashFlag)
