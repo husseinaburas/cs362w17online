@@ -16,6 +16,10 @@ int main(){
 	int numPlayers = 2;
 	int player1 = 0, player2 = 1;
 	int testTreasureCount, expTreasureCount;
+	int drawnTreasure = 0;
+	int tempHand[MAX_HAND];
+	int cardDrawn = -1;
+	int z = 0;
 	struct gameState g, test_g;
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel,
 			smithy, village, baron, great_hall};
@@ -31,7 +35,12 @@ int main(){
 	// Give current player a village card to play
 	g.hand[player1][handPos] = adventurer;
 	memcpy(&test_g, &g, sizeof(struct gameState));
-	r = playAdventurer(&test_g, handPos);
+	
+	/* Must update function call due to different implementation
+	r = playAdventurer(&test_g); */
+	
+	// Updated call based on group member's code:
+	r = adventurerCard(&test_g, drawnTreasure, player1, tempHand, cardDrawn, z);
 	
 	// Did the function work (should return 0)?
 	asserttrue("returned 0 as expected", r, 0);

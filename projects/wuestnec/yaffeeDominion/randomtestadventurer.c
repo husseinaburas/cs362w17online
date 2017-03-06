@@ -10,20 +10,26 @@
 #define TESTCARD "adventurer"
 #define NOISY_TEST 1				// set to 0 to remove print statements
 
-int checkPlayAdventurer(struct gameState *post, int hand_pos, int num_treasures, int test_num){
+int checkPlayAdventurer(struct gameState *post, int cur_player, int hand_pos, int num_treasures, int test_num){
 	int i, j, p, r;
 	int card, pre_treasures, post_treasures, all_clear, pre_dd, post_dd;
 	int cards_discarded = 1;
+	int drawn_treasure = 0;
+	int card_drawn = -1;
+	int z = 0;
+	int temp_hand[MAX_HAND] = {0};
 	struct gameState pre;
 	
 	memcpy(&pre, post, sizeof(struct gameState));
 	
 	p = pre.whoseTurn;
+	/* Must update function call due to different implementation
+	r = playAdventurer(post, hand_pos); */
 	
-	r = playAdventurer(post, hand_pos);
+	// Updated function call to match implementation by group member:
+	r = adventurerCard(post, drawn_treasure, cur_player, temp_hand, card_drawn, z);
 	
 	all_clear = 1;
-	
 	// Find number of treasures in current player's hand in pre and post game states.
 	pre_treasures = 0;
 	for(i = 0; i < pre.handCount[p]; i++){
@@ -158,7 +164,10 @@ int main(int argc, char** argv){
 	int i, j, n;
 	int cur_player, hand_pos, seed, card, treasures, 
 			all_clear, all_tests_passed;
+	int placeholder_num_players = 2;
 	struct gameState G;
+	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel,
+			smithy, village, baron, great_hall};
 	
 	if(argc > 1){
 		seed = atoi(argv[1]);
@@ -176,9 +185,15 @@ int main(int argc, char** argv){
 	all_tests_passed = 1;
 	
 	for (n = 0; n < 2000; n++) {
+		
+		/* Creating gameState like this was causing segmentation fault
 		for (i = 0; i < sizeof(struct gameState); i++){
 			((char*)&G)[i] = floor(Random() * 256);
-		}
+		}*/
+		
+		// Used initializeGame(), like I did for cardtest2, to fix segmentation fault
+		initializeGame(placeholder_num_players, k, floor(Random() *2000)+1, &G);
+		
 		G.numPlayers = floor(Random() * (MAX_PLAYERS+1));
 		cur_player = floor(Random() * G.numPlayers);
 		G.whoseTurn = cur_player;
@@ -209,7 +224,7 @@ int main(int argc, char** argv){
 			G.discard[cur_player][j] = card;
 		}
 		
-		all_clear = checkPlayAdventurer(&G, hand_pos, treasures, n+1);
+		all_clear = checkPlayAdventurer(&G, cur_player, hand_pos, treasures, n+1);
 		
 		if(all_clear == 0){
 			all_tests_passed = 0;

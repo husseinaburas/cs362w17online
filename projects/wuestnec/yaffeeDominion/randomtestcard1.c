@@ -10,14 +10,18 @@
 #define TESTCARD "smithy"
 #define NOISY_TEST 1				// set to 0 to remove print statements
 
-int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
+int checkPlaySmithy(struct gameState *post, int cur_player, int hand_pos, int test_num){
 	int p, r, all_clear;
 	struct gameState pre;
 	
 	memcpy(&pre, post, sizeof(struct gameState));
 	p = pre.whoseTurn;
 	
-	r = playSmithy(post, hand_pos);
+	/* Must update function call due to different implementation
+	r = playSmithy(post, hand_pos); */
+	
+	// Updated function call:
+	r = smithyCard(post, cur_player, hand_pos);
 
 	// Manually perform expected playSmithy() actions on pre gameState
 	// Current player draws 3 cards from deck, added to hand
@@ -95,7 +99,6 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 #endif
 		all_clear = 0;
 	}
-	return all_clear;
 	// Added some extra tests with print statements to pinpoint problem if game state test fails
 	// Did the current player's hand count increase by 2 (3 new cards, 1 card discarded)?
 	if(pre.handCount[p] != post->handCount[p]){
@@ -137,6 +140,7 @@ int checkPlaySmithy(struct gameState *post, int hand_pos, int test_num){
 #endif
 		all_clear = 0;
 	}
+	return all_clear;
 }
 
 int main(int argc, char** argv){
@@ -173,7 +177,7 @@ int main(int argc, char** argv){
 		hand_pos = floor(Random() * G.handCount[cur_player]);
 		G.hand[cur_player][hand_pos] = smithy;
 		
-		all_clear = checkPlaySmithy(&G, hand_pos, n+1);
+		all_clear = checkPlaySmithy(&G, cur_player, hand_pos, n+1);
 		
 		if(all_clear == 0){
 			all_tests_passed = 0;

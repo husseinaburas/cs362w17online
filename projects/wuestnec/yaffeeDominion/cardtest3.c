@@ -6,16 +6,16 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-#define TESTCARD "adventurer"
+#define TESTCARD "village"
 
 int main(){
 	int i, j, r;
-	int newTreasure = 2, discardedCard = 1;
+	int addedCard = 1, discardedCard = 1;
+	int addedActions = 2;
 	int handPos = 0;
 	int seed = 1000;
 	int numPlayers = 2;
 	int player1 = 0, player2 = 1;
-	int testTreasureCount, expTreasureCount;
 	struct gameState g, test_g;
 	int k[10] = {adventurer, council_room, feast, gardens, mine, remodel,
 			smithy, village, baron, great_hall};
@@ -24,31 +24,36 @@ int main(){
 			"remodel", "smithy", "village", "baron", "great_hall", "minion", "steward", 
 			"tribute", "ambassador", "cutpurse", "embargo", "outpost", "salvager", 
 			"sea_hag", "treasure_map"};
-			
+	
 	printf("--------------- Testing Card: %s ---------------\n", TESTCARD);
 	// Initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &g);
 	// Give current player a village card to play
-	g.hand[player1][handPos] = adventurer;
+	g.hand[player1][handPos] = village;
 	memcpy(&test_g, &g, sizeof(struct gameState));
-	r = playAdventurer(&test_g, handPos);
+	
+	/* Must update function call due to different implementation
+	r = playVillage(&test_g, handPos); */
+	
+	// Updated call based on original Dominion code:
+	// Used 0 for choices and bonus because variables not used for this card.
+	r = cardEffect(village, 0, 0, 0, &test_g, handPos, 0);
 	
 	// Did the function work (should return 0)?
 	asserttrue("returned 0 as expected", r, 0);
 	
-	// Did current player receive 2 new cards and discard the played adventurer card?
-	asserttrue("current player's hand", test_g.handCount[player1], g.handCount[player1] + newTreasure - discardedCard);
-	// Did current player receive 2 treasure cards?
-	testTreasureCount = treasure_in_hand(&test_g, player1);
-	expTreasureCount = treasure_in_hand(&g, player1);
-	asserttrue("current player treasure cards", testTreasureCount, expTreasureCount + newTreasure);
-	// Did current player discard adventurer card to the played pile?
+	// Did current player receive the correct effects from the card?
+	// Did current player receive 1 new card and discard the played card?
+	asserttrue("current player hand count", test_g.handCount[player1], g.handCount[player1] + addedCard - discardedCard);
+	// Did current player receive 2 additional actions?
+	asserttrue("actions count", test_g.numActions, g.numActions + addedActions);
+	// Did current player discard card to the played pile?
 	asserttrue("played card count", test_g.playedCardCount, g.playedCardCount + discardedCard);
-	// Is the last played card a adventurer card?
+	// Is top card in played pile a village?
 	if(test_g.playedCardCount > 0)
-		asserttrue("last played card", test_g.playedCards[test_g.playedCardCount-1], adventurer);
+		asserttrue("last played card", test_g.playedCards[test_g.playedCardCount-1], village);
 	else
-		asserttrue("last played card", -1, adventurer);
+		asserttrue("last played card", -1, village);
 	
 	// Did any other players experience a state change?
 	asserttrue("non-current player hand count", test_g.handCount[player2], g.handCount[player2]);
