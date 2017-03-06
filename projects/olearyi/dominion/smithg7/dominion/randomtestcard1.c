@@ -18,7 +18,7 @@ int main(int ranseed) {
     int passed = 0;
 	int failed = 0;
 	int currentPlayer;
-    int tests = 300000;
+    int tests = 10;
     int j;
     int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
     int seed = ranseed;
@@ -39,24 +39,38 @@ for (j = 0; j < tests; j++){
 		int deckI=0;
 		int handF=0;
 		int deckF=0;
+		int actI = 0;
+		int actF = 0;
 
+		
 
 		
 		deckI = G.deckCount[currentPlayer];
 		handI = G.handCount[currentPlayer];
+		actI = G.numActions;
 
-		cardEffect(smithy, choice1, choice2, choice3, &G, handpos, &bonus);
+		printf("handI = %d , deckI = %d , actI = %d, currentPlayer = %d", handI, deckI, actI, currentPlayer);
 
+
+		handleSmithy(currentPlayer, &G, handpos);
+
+
+		
 		deckF = G.deckCount[currentPlayer];
 		handF = G.handCount[currentPlayer];
+		actF = G.numActions;
+
+		printf("handF = %d , deckF = %d , actF = %d, currentPlayer = %d", handF, deckF, actF, currentPlayer);
 
 		int handChange = handF - handI;
 		int deckChange = deckF - deckI;
+		int actChange = actF - actI;
 
 		if(handChange == 3){
 			passed++;
 		}
 		else{
+			// printf("handChange = %d out of 3, deckChange = %d out of 0, actChange = %d out of 0", handChange, deckChange, actChange);
 			failed++;
 		}
 

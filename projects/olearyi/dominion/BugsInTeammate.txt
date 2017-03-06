@@ -1,0 +1,2 @@
+For the smith card that was changed the counter would need to be changed to   for (i = 0; i < 3; i++) instead of   for (i = 0; i <= 3; i++).
+While looking at the village card I found that the steward’s discard value was set to trash their card when set to only discard, which would cause the card to be trashed upon playing it. Line 1352 should have: discardCard(handPos, currentPlayer, state, 0); instead of discardCard(handPos, currentPlayer, state, 1);.
