@@ -53,7 +53,7 @@ for (j = 0; j < tests; j++){
 		handI = G.handCount[currentPlayer];
 		actI = G.numActions;
 
-		cardEffect(smithy, choice1, choice2, choice3, &G, handpos, &bonus);
+		cardEffect(village, choice1, choice2, choice3, &G, handpos, &bonus);
 
 		deckF = G.deckCount[currentPlayer];
 		handF = G.handCount[currentPlayer];
