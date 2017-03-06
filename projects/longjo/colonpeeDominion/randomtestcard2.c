@@ -26,7 +26,7 @@ The Two Variables I decided to randomize are:
 #include <stdlib.h>
 
 //deifne maxtests
-#define TEST_COUNT 200
+#define TEST_COUNT 2000000
 
 
 //Added this function to help me with my testing....
