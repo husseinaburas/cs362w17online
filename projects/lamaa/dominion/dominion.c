@@ -671,7 +671,7 @@ int refacSmithy(int handPos, int currentPlayer, struct gameState *state)
 {
 	int i;
 
-	for (i = 0; i <=3; i++)
+	for (i = 0; i <3; i++)
 	{
 	  drawCard(currentPlayer, state);
 	}
