@@ -1,112 +1,77 @@
+/***************************************
+* Name: James Stewart
+* Date: 1/31/2017
+* File: cardtest1.c
+* Description: Tests the discardCard() Function
+***************************************/
+
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
+#include "unittest.h"
 
+int main() {
+    int testResult = FAIL;
+    int observed, expected, i;
+    int seed = 5;
+    int numPlayers = 2;
+	struct gameState G, testG;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+			sea_hag, tribute, smithy, council_room};
+    int currentPlayer = 1;
 
-// Unit test for isGameOver found in dominion.c
-// Funciton call: int isGameOver(struct gameState *state) 
-// Note: isGameOver function currently starts line 390 from dominion.c
+	void process(int trashed, int discardPos){
+		// copy the game state to a test case
+		memcpy(&testG, &G, sizeof(struct gameState));
 
-void testisGameOver() {
-    printf("----TEST isGameOver Function-----\n");
+		printf("Player %d Deck Count: %d\n\n", currentPlayer, G.deckCount[currentPlayer]);
+		discardCard(discardPos, currentPlayer, &testG, trashed);
+			
+		observed = testG.handCount[currentPlayer];
+		expected = G.handCount[currentPlayer] - 1;
+		if(observed == expected){testResult = PASS;}
+		else{testResult = FAIL;}
+		assertTrue(testResult, "Hand Count", observed, expected);
 
-    int k[10] = {adventurer, gardens, feast, village, minion, mine, steward,
-        sea_hag, tribute, smithy};
-    int seed = 41;
-   
-   int i;
-//---GS1 TEST----  In Game State 1 we will check to verify game is marked over with no province cards.
-   struct gameState *GS1 = newGame();
-    initializeGame(2,k,seed,GS1);
+		observed = testG.playedCardCount;
+		expected = G.playedCardCount;
+		if(observed == expected){testResult = PASS;}
+		else{testResult = FAIL;}
+		assertTrue(testResult, "Played Cards", observed, expected);
 
-   GS1->supplyCount[province] = 0;  //Set province to 0
-   int GS1result = isGameOver(GS1);
-   int GS1expectedResult = 1;  //The function should return 1 to indicate game is over as there are no province cards lift.
+		observed = testG.discardCount[currentPlayer];
+		expected = G.discardCount[currentPlayer] + 1;
+		if(observed == expected){testResult = PASS;}
+		else{testResult = FAIL;}
+		assertTrue(testResult, "Discards", observed, expected);
 
-  
-//---GS2 TEST---- Verify that when 3 piles are empty (copper/silver/gold), game is marked as over.
-   // Also verify handels cards of value -1 properly, as cards not in game session will
-   // be marked as -1 as seen in dominion.c
-   struct gameState *GS2 = newGame();
-   initializeGame(2,k,seed,GS2);
-   for(i=0;i<27;i++)
-   {
-    GS2->supplyCount[i] = 10;  //Set all supplies to 10
-   }  
-   GS2->supplyCount[copper] = 0;
-   GS2->supplyCount[estate] = -1;
-   GS2->supplyCount[silver] = 0;
-   GS2->supplyCount[gold] = 0;
-   int GS2result = isGameOver(GS2);
-   int GS2expectedResult = 1;
+		observed = testG.deckCount[currentPlayer];
+		expected = G.deckCount[currentPlayer];
+		if(observed == expected){testResult = PASS;}
+		else{testResult = FAIL;}
+		assertTrue(testResult, "Deck Count", observed, expected);
+	}
+	
+	initializeGame(numPlayers, k, seed, &G);
+	printf("\n\n----------------- TESTING discardCard() FUNCTION -----------------\n\n");
+    printf("TEST 1: Discard a card (not trashed)\n");
+	process(0,2);
 
-//---GS3 TEST---- Test for situation where there are remaining province cards and 2 piles are empty.  
-   // This is somewhat of an edge case to tests that if only 2 piles are empty, game is not maked over.
-   struct gameState *GS3 = newGame();
-    initializeGame(2,k,seed,GS3);
-   for(i=0;i<27;i++)
-   {
-    GS3->supplyCount[i] = 10;  //Set all supplies to 10
-   }  
-   GS3->supplyCount[copper] = 0;
-   GS3->supplyCount[gold] = 0;
-   int GS3result = isGameOver(GS3);
-   int GS3expectedResult = 0;
+    printf("\nTEST 2: Discard a card (trashed)\n");
+	process(1,2);
 
-//---GS4 TEST---- This tests is where no supplies are empty.  This would simulate a new game as game was just initalized.
-   // The expected return value should be 0 as this is what is set for an game that is ending.
-   struct gameState *GS4 = newGame();
-    initializeGame(2,k,seed,GS4);
-   int GS4result = isGameOver(GS4);
-   int GS4expectedResult = 0;
+    printf("\nTEST 3: Try discard from empty hand\n");
+    for(i = 0; i < G.handCount[currentPlayer]; i++){
+        G.hand[currentPlayer][i] = -1;
+    }
+    G.handCount[currentPlayer] = 0;
+	process(0,2);
 
+    printf(" >>>>> SUCCESS: Testing discardCard() complete <<<<<\n\n");
 
-   if(GS1result==GS1expectedResult)
-   {
-    printf("PASS for ending game with no province cards remaining.  Return Value Expected:%i  Actual Return Value:%i \n",GS1expectedResult, GS1result);
-   }
-   else
-   {
-    printf("FAIL for ending game with no province cards remaining.  Return Value Expected:%i  Actual Return Value:%i \n",GS1expectedResult, GS1result);
-   }
-
-      if(GS2result==GS2expectedResult)
-   {
-    printf("PASS for ending game with three piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS2expectedResult, GS2result);
-   }
-   else
-   {
-    printf("FAIL for ending game three piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS2expectedResult, GS2result);
-   }
-
-    if(GS3result==GS3expectedResult)
-   {
-    printf("PASS for not ending game with two piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS3expectedResult, GS3result);
-   }
-   else
-   {
-    printf("FAIL for not ending game two piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS3expectedResult, GS3result);
-   }
-   
-    if(GS4result==GS4expectedResult)
-   {
-    printf("PASS for not ending game with no piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS4expectedResult, GS4result);
-   }
-   else
-   {
-    printf("FAIL for not ending game no piles empty.  Return Value Expected:%i  Actual Return Value:%i \n",GS4expectedResult, GS4result);
-   }     
-
-    return;
-}
-
-
-
-
-int main(int argc, char *argv[])
-{
-    testisGameOver();
     return 0;
 }

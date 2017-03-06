@@ -1,67 +1,157 @@
-#include "dominion.h"
-#include "dominion_helpers.h"
+/* Author: Elton Lee
+ * randomtestadventurer.c
+ * random testing for adventurer
+ */
+
+/*
+ * Include the following lines in your makefile:
+ *
+ * randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+ * gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS);
+ */
+
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <string.h>
 #include <assert.h>
-#include "rngs.h"
 
-int checkAdventurer(struct gameState *post){
+#include "rngs.h"
+#include "randomtestadventurer.h"
+#include "dominion.h"
+#include "dominion_helpers.h"
+
+int main( int argc, char *argv[])
+{
+	// seed program with user input or call srand with time
+	int test_seed;
+	time_t t;
+	if ( argc == 2) {
+		test_seed = atoi(argv[1]);
+	} else {
+		test_seed = (unsigned) time(&t);
+	}
+	srand(test_seed);
+
+	int i;
+	int numFailedTests = 0;
+	int numPassedTests = 0;
+	for (i = 0; i < 1000; ++i){
+		// Using rand to get a number = [min_number, max_number]
+		// rand() % (max_number + 1 - min_number) + min_number
+		int deckTreasure = rand() % (6 + 1 - 4) + 4; // enum 4-6 represents copper, silver, gold
+		int deckTreasureCount = rand() % (130 + 1);  // initialize deck with copper, silver, or gold
+		int deckSize = rand() % ((200-deckTreasureCount) + 1);  // initialize deck with 0 - 200 cards
+		int discardTreasure = rand() % (2 + 1);  // initialize discard pile with copper, silver, or gold
+		int discardTreasureCount = rand() % (130 + 1); // intialize discard with 0 - 130 treasure cards
+		int discardCount = rand() % ((200 - discardTreasureCount) + 1); // initialize discard with 0 to 200 treasure cards
+		if (runCardTest(deckTreasure, deckTreasureCount, deckSize, discardTreasure, discardTreasureCount, discardCount) == 1){
+			++numFailedTests;
+		} else {
+			++numPassedTests;
+		}
+	}
+	printf("\nSeed used: %d\n", test_seed);
+	printf("Number of unit tests passed: %d\nNumber of unit tests failed: %d\n", numPassedTests, numFailedTests);
+    return 0;
+}
+
+
+// Function: runCardTest()
+// Description: Calls the adventurer card with the following user-provided pre-conditions.
+// Pre-conditions: Pass it a deck treasure id, the number of treasures, the deck size, the discard treeasure, the number of treasures in the discard, and the discard pile size.
+// Post-conditions: Returns 1 if test failed. Returns 0 if passed.
+int runCardTest(int deckTreasure, int deckTreasureCount, int deckSize, int discardTreasure, int discardTreasureCount, int discardSize)
+{
+	printf("RUNNING play_adventurer WITH %d TREASURES(enum = %d) IN DECK AND %d TREASURES(enum = %d) DISCARD\n", deckTreasureCount, deckTreasure, discardTreasureCount, discardTreasure);
+	int i;
+	int test_fail_flag = 0;  // set to 1 if test fails
+	int seed = 1000;
+	int numPlayers = 2;
+	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+		 sea_hag, tribute, smithy, council_room};
+	int expectedTreasure = discardTreasureCount + deckTreasureCount; // holds the amount of treasure that we will draw
+	if (expectedTreasure > 2){
+		expectedTreasure = 2;
+	}
+    struct gameState G;
+	initializeGame(numPlayers, k, seed, &G);
+	G.deckCount[0] = 0;
+
+    // initialize player 1 deck.
+    for (i = 0; i < deckTreasureCount; i++)
+    {
+	G.deck[0][i] = deckTreasure;
+	G.deckCount[0]++;
+    }
+
+    for (i = G.deckCount[0]; i < deckSize; i++)
+    {
+	G.deck[0][i] = smithy;
+	G.deckCount[0]++;
+    }
+
+    // initialize player 1 discard
+    for (i = 0; i < discardTreasureCount; i++)
+    {
+	G.discard[0][i] = discardTreasure;
+	G.discardCount[0]++;
+    }
+    for (i = G.discardCount[0]; i < discardSize; i++)
+    {
+	G.discard[0][i] = smithy;
+	G.discardCount[0]++;
+    }
+
+    // initialize player 1 hand
+    G.hand[0][0] = adventurer;
+	G.hand[0][1] = gold;
+	G.hand[0][2] = silver;
+    G.hand[0][3] = smithy;
+   	G.hand[0][4] = adventurer;
+    G.handCount[0] = 5;
+	printf("Starting hand:\n");
+	for (i = 0; i< G.handCount[0]; i++){
+		printf("%d ", G.hand[0][i]);
+	}
+	printf("\n");
 	
-	int x;
-	
-	x = play_adventurer(post);
-	
-	assert(x == 0);
-	
+	int startHandCount = G.handCount[0];
+	int totalCards = G.handCount[0] + G.deckCount[0] + G.discardCount[0];
+
+	// run play_adventurer
+    play_adventurer(&G);
+
+	// Unit Test 1 -> Check that we have the correct number of treasure cards in hand
+	printf("-----TEST 1: CHECK +2 TREASURE CARD TO HAND AND ADVENTURER NO LONGER IN HAND-----\n");
+    printf("Number of cards in hand = %d, expected = %d\n", G.handCount[0], startHandCount + expectedTreasure - 1);
+	if (asserttrue(G.handCount[0], startHandCount + expectedTreasure - 1) == 1) test_fail_flag = 1;
+	printf("Showing current cards in hand...\n");
+	for (i = 0; i< G.handCount[0]; i++){
+		printf("%d ", G.hand[0][i]);
+	}
+	printf("\n");
+
+	printf("-----TEST 2: CHECK TOTAL CARDS FOR PLAYER 1 HAS NOT CHANGED-----\n");
+	printf("Total cards for player 1 = %d, expected = %d\n", G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards);
+	if (asserttrue(G.handCount[0] + G.deckCount[0] + G.discardCount[0], totalCards) == 1) test_fail_flag = 1;
+
+	printf("\n\n");
+
 	return 0;
 }
 
-int main(int argc, char *argv[]){
-	
-	if(argc != 2)
-		printf("Must provide one number for random seed. Please run program again.\n");
-	
-	else{
-	int i, j, p;
-	
-	struct gameState G;
-		
-	printf("Performing random tests on play_adventurer.\n");
-	
-	SelectStream(2);
-	PutSeed(argv[1]);
-	
-	for (i = 0; i < 100; i++){
-		for (j = 0; j < sizeof(struct gameState); j++){
-			((char*)&G)[j] = floor(Random() * 256);
-		}
-		p = floor(Random() * 2);
-		G.whoseTurn = p;
-		G.deckCount[p] = floor(Random() * MAX_DECK);
-		
-		//make sure there are three treasure cards in the deck (should be two, but inserted bug) and in different indices
-		int randomIndex1 = (Random() * G.deckCount[p]) - 1;
-		G.deck[p][randomIndex1] = copper;
-		int randomIndex2;
-		do{
-			randomIndex2 = (Random() * G.deckCount[p]) - 1;
-		}while(randomIndex2 == randomIndex1);
-		G.deck[p][randomIndex2] = copper;
-		int randomIndex3;
-		do{
-			randomIndex3 = (Random() * G.deckCount[p]) - 1;
-		}while(randomIndex3 == randomIndex1 || randomIndex3 == randomIndex2);
-		G.deck[p][randomIndex3] = copper;
-		
-		G.discardCount[p] = floor(Random() * MAX_DECK);
-		G.handCount[p] = floor(Random() * MAX_HAND);
-		checkAdventurer(&G);
+// Function: asserttrue()
+// Description: Implementation of isEqual for integers used for testing.
+//				Returns 1 if values are equal. Else return 0.
+int asserttrue(int val1, int val2)
+{
+    if (val1 != val2) {
+		printf("TEST FAILED \n");
+		return 1;
 	}
-	
-	printf("ALL TESTS PASSED\n");
-	
-	return 0;
+    else {
+		printf("TEST PASSED \n");
+		return 0;
 	}
 }

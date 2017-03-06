@@ -1,39 +1,45 @@
+/* unittest1.c
+
+	for testing the shuffle function
+
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <time.h>
 #include "rngs.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int main() {
+	
 
-#define DEBUG 0
-#define NOISY_TEST 1
+	struct gameState* testGame = newGame();
 
-#define TEST_HANDS 10
+	int testcards[10];
+	int i;
+	for (i=0;i<10;i++){
 
-int main()
-{
-  srand(time(NULL));
-  int i, r;
+		testcards[i] = i+1;
+	}
 
-  int h[TEST_HANDS];
+	initializeGame(2, testcards, 5, testGame);
 
-  struct gameState G;
+	int testhand[MAX_HAND];
+	for (i=0; i< testGame->deckCount[1]; i++)
+	{
+		testhand[i] = testGame->deck[1][i];
 
-  printf ("Testing numHandCards()...\n");
+	}
+	
+	for (i=0; i< testGame->deckCount[1]; i++)
+	{
+		discardCard(i, 1, testGame, 0);
+	}
+	shuffle(1, testGame);
 
-  for(i = 0; i < TEST_HANDS; i++)
-  {
-    h[i] = rand()%TEST_HANDS;
-    G.whoseTurn = i;
-    G.handCount[i] = h[i];
-    r = numHandCards(&G);
-
-    assert(h[i] == r);
-  }
-
-  printf ("Finished.\n");
-
-  return 0;
+	if (testhand == testGame->deck[1]){
+		printf("shuffle test failed\n");
+	}
+	else printf("shuffle test passed\n");
 }

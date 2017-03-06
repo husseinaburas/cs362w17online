@@ -1,0 +1,187 @@
+Title:    playAdventurer doesn't discard played card
+
+Class: Serious Bug
+
+
+Date:   3/5/17        
+Reported By:  Thomas Adamcewicz 
+Email:  adamcewt@oregonstate.edu    
+
+
+Product:  dominion.c            Version: groteluk
+Platform:                       Version:
+      
+
+Is it reproducible: Yes
+
+Description
+===========
+The playAdventurer function does not discard the adventurer card from
+the player's hand. This is because the discardCard function is never called
+after the adventurer is played, so the card remains in the player's hand.
+This happens any time the playAdventurer function is called, with any
+player.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Call the playAdventurer function with the adventurer card in the player's hand.
+
+
+Expected Results
+----------------
+The adventurer card should be discarded from the player's hand and added to the discard pile.
+
+
+Actual Results
+--------------
+The adventurer card remains in the player's hand and not put into the discard pile.
+
+
+Workarounds
+-----------
+No workarounds at the moment, other than fixing the function and addingthe discardCard
+function to the playAdventurer function.
+
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+Title:    playAdventurer doesn't draw the correct amount of treasure
+
+Class: Serious Bug
+
+
+Date:   3/5/17        
+Reported By:  Thomas Adamcewicz 
+Email:  adamcewt@oregonstate.edu    
+
+
+Product:  dominion.c            Version: groteluk
+Platform:                       Version:
+      
+
+Is it reproducible: Yes
+
+Description
+===========
+The playAdventurer function does not draw the correct amount of treasure when
+at least 3 treasure cards are available. If there are 3 treasure cards available
+the function should only add 2 at maximum. The function will add 3 treasure instead
+of the expected 2 when more than 2 treasure cards are in the deck. This is due
+to the while loop going until up to 3 treasure has been found.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Call the playAdventurer function with the adventurer card in the player's hand.
+
+
+Expected Results
+----------------
+At maximum, two treasure cards should be added to the player's hand if they are in the player's deck.
+
+
+Actual Results
+--------------
+The adventurer adds up to 3 cards to the player's hand if there are 3 availble in the player's deck.
+
+
+Workarounds
+-----------
+No workarounds at the moment, other than fixing the function and changing the while loop so it goes
+while(drawntreasure<2) instead of while(drawntreasure<=2)
+
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+Title:    playAdventurer doesn't put kingdom cards into discard after shuffling through deck.
+
+Class: Serious Bug
+
+
+Date:   3/5/17        
+Reported By:  Thomas Adamcewicz 
+Email:  adamcewt@oregonstate.edu    
+
+
+Product:  dominion.c            Version: groteluk
+Platform:                       Version:
+      
+
+Is it reproducible: Yes
+
+Description
+===========
+The playAdventurer function puts cards drawn into the player's discard pile that are not
+kingdom cards. All cards that are discarded should be within the kingdom card set.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Call the playAdventurer function with the adventurer card in the player's hand.
+
+
+Expected Results
+----------------
+All cards in the player's discard pile should be kingdom cards.
+
+
+Actual Results
+--------------
+There are non kingdom cards in the player's discard pile.
+
+
+Workarounds
+-----------
+No workarounds at the moment.
+
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+Title:    playSmithy doesn't update handCount and deckCount properly
+
+Class: Serious Bug
+
+
+Date:   3/5/17        
+Reported By:  Thomas Adamcewicz 
+Email:  adamcewt@oregonstate.edu    
+
+
+Product:  dominion.c            Version: groteluk
+Platform:                       Version:
+      
+
+Is it reproducible: Yes
+
+Description
+===========
+The playSmithy function does not update the handCount and deckCount
+values properly for players 1 and 2 only. The function should add 2 to the
+handCount and remove 3 from the deckCount. This may be due to bug in how
+the smithy is discarded.
+
+
+Steps to Produce/Reproduce
+--------------------------
+Call the playSmithy function with the smithy card in player 1 or 2's hand.
+
+
+Expected Results
+----------------
+The player's handCount should be incremented by 2 and deckCount should be decremented by 3.
+
+
+Actual Results
+--------------
+The player's handCount and deckCount values aren't being incremented and decremented properly.
+
+
+Workarounds
+-----------
+No workarounds at the moment, other than fixing the discardCard call in the playSmithy function.
+
+
+----------------------------------------------------------------------------------------------------------

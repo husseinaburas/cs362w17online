@@ -1,0 +1,38 @@
+Tested code: \ogunsajbDominion
+
+Teammate identified Bug smithy:
+***********
+Error in playsmithy() where smithy call draws zero cards at a time. This is indicative of line 831 where there is only a playsmithy
+call and not a forloop to start a drawing card process. This bug continues in case smithy because there isn't a discardCard call either.
+I found this bug when attempting to insert a draw command directly into my testing files which showed that no cards have been discarded either.
+***********
+
+** Card Test 2: Smithy **
+Expected value: 5, Result: 0
+Expected card count: 3, Result: 0
+** End Card Test 2: Smithy **
+
+
+
+Teammate identified Bug greathall: 
+***********
+Error in great_hall() where great hall card doesn't draw a card, doesn't add an action nor removes the card from hand. This is shown on line
+859 that the case great_hall is blank, only a call to playGreat_hall. In short, like playsmithy() call, the lines were deleated rather than tampered with.
+When calling the great_hall command, noticed that I wasn't adding a card to my hand. With forcing a card to my hand, I wasn't allowed to play another action. 
+This second finding forced the idea of my unittest to force both +1 card and +1 action lead to great_hall never being discarded from the hand. At somepoints this created
+an infinate loop because the players hand could never reach 0 and "pass the turn" because great_hall was never discarded.
+***********
+
+
+** Card Test 2: Great Hall **
+Expected value: 1, Result: 0
+Expected card count: 4, Result: 5
+** End Card Test 2: Great Hall **
+
+
+additional bug changes:
+***********
+In the initialize game function it did not draw 5 cards into the players hand like the game should, so I manually fixed that mechanic.
+ In the fullDeckCount function it was not counting the full deck, it was only counted if there was a certain card in the deck (i.e the card I was testing), 
+ so I fixed that by just having a count variable and adding deckCount, discardCount, and handCount to my files.
+ ***********

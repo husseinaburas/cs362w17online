@@ -6,8 +6,8 @@
 
 
 // Unit test for villageAction found in dominion.c
-// Funciton call: int villageAction(int currentPlayer, int handPos, struct gameState *state)
-// Note: villageAction function currently starts line 1323 from dominion.c
+// NEW Funciton call: int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+// PREVIOUS Funciton call: int villageAction(int currentPlayer, int handPos, struct gameState *state)
 
 void testvillageAction() {
   printf("----TEST villageAction Function-----\n");
@@ -34,6 +34,7 @@ void testvillageAction() {
   GS1->deck[playerZero][4] = duchy;  
   GS1->discardCount[playerZero] = 1;
   GS1->discard[playerZero][0] = feast;
+  GS1->whoseTurn = playerZero; 
 
 //---GS2 TEST---- Verify the number of actions increases by 2.
   struct gameState *GS2 = newGame();
@@ -53,6 +54,7 @@ void testvillageAction() {
   GS2->deck[playerZero][4] = duchy;  
   GS2->discardCount[playerZero] = 1;
   GS2->discard[playerZero][0] = feast;
+  GS2->whoseTurn = playerZero; 
 
 //---GS3 TEST---- Verify village card is in the discard pile
   struct gameState *GS3 = newGame();
@@ -72,6 +74,7 @@ void testvillageAction() {
   GS3->deck[playerZero][4] = duchy;  
   GS3->discardCount[playerZero] = 1;
   GS3->discard[playerZero][0] = feast;
+  GS3->whoseTurn = playerZero; 
 
 //---GS4 TEST---- Verify village card is in the discard pile
   struct gameState *GS4 = newGame();
@@ -90,6 +93,7 @@ void testvillageAction() {
   GS4->deck[playerZero][4] = duchy;  
   GS4->discardCount[playerZero] = 1;
   GS4->discard[playerZero][0] = feast;
+  GS4->whoseTurn = playerZero; 
 
 //---GS5 TEST---- Verify playCards increments by one (trash flag not set)
   struct gameState *GS5 = newGame();
@@ -109,10 +113,13 @@ void testvillageAction() {
   GS5->deck[playerZero][4] = duchy;  
   GS5->discardCount[playerZero] = 1;
   GS5->discard[playerZero][0] = feast;
+  GS5->whoseTurn = playerZero; 
 
 
   int j;
-  villageAction(playerZero,0,GS1);
+
+  cardEffect(village, 0,0,0, GS1,0,0);
+  //villageAction(playerZero,0,GS1);
   int expectedCardsInHandGS1 = 5;  //Gain 1 and discard 1 (5+1-1=1)
   if(expectedCardsInHandGS1 == GS1->handCount[playerZero]){
         printf("PASS for success on drawing 1 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
@@ -122,7 +129,8 @@ void testvillageAction() {
         printf("FAIL for success on drawing 1 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
     }
 
-  villageAction(playerZero,0,GS2);
+  cardEffect(village, 0,0,0, GS2,0,0);
+  //villageAction(playerZero,0,GS2);
   int expectedNumOfActionsGS2 = 4;  //Start with 2 and add 2 (2+2=4)
   if(expectedNumOfActionsGS2 == GS2->numActions){
         printf("PASS for success on incrementing number of actions by 2.  Actions Expected:%i  Actions Returned:%i \n", expectedNumOfActionsGS2, GS2->numActions);
@@ -131,8 +139,9 @@ void testvillageAction() {
     {
         printf("FAIL for success on incrementing number of actions by 2.  Actions Expected:%i  Actions Returned:%i \n", expectedNumOfActionsGS2, GS2->numActions);
     }
-
-  villageAction(playerZero,0,GS3);
+  
+  cardEffect(village, 0,0,0, GS3,0,0);
+  //villageAction(playerZero,0,GS3);
   int isVillageInDiscard = 0;
   for(j=0; j < GS3->discardCount[playerZero]; j++)
   {
@@ -184,8 +193,8 @@ void testvillageAction() {
   }
  */
 
-
-  villageAction(playerZero,0,GS4);
+  cardEffect(village, 0,0,0, GS4,0,0);
+  //villageAction(playerZero,0,GS4);
   int isVillageInHand = 1;
   for(j=0; j < GS4->handCount[playerZero]; j++)
   {
@@ -203,8 +212,8 @@ void testvillageAction() {
         printf("FAIL for success on removing Village from Hand.  Success Flag:%i  isVillageInHand:%i \n", 1, isVillageInHand);
     }
 
-
-  villageAction(playerZero,0,GS5);
+  cardEffect(village, 0,0,0, GS5,0,0);
+  //villageAction(playerZero,0,GS5);
   int expectedPlayedCardCountGS5 = 1;  //Gain 1 and discard 1 (5+1-1=1)
   if(expectedPlayedCardCountGS5 == GS5->playedCardCount){
         printf("PASS for incrementing played cards (trash flag not set).  PlayedCards Expected:%i  PlayedCards Returned:%i \n", expectedPlayedCardCountGS5, GS5->playedCardCount);

@@ -5,9 +5,9 @@
 #include "dominion_helpers.h"
 
 
-// Unit test for smithyAction found in dominion.c
-// Funciton call: int smithyAction(int currentPlayer,int handPos,struct gameState *state)
-// Note: smithyAction function currently starts line 1311 from dominion.c
+// Unit testing for play_smithy_card function from dominion.c
+// NEW Funciton call: int play_smithy_card(struct gameState *state, int currentPlayer, int handPos)
+// PREVIOUS Funciton call: int smithyAction(int currentPlayer,int handPos,struct gameState *state)
 
 void testsmithyAction() {
   printf("----TEST smithyAction Function-----\n");
@@ -109,7 +109,9 @@ void testsmithyAction() {
 
   int j;
 
-  smithyAction(playerZero,2,GS1);
+  //smithyAction(playerZero,2,GS1);
+  play_smithy_card(GS1,playerZero,2);
+
   int expectedCardsInHandGS1 = 7;  //Gain 3 and discard 1 (5+3-1=7)
   if(expectedCardsInHandGS1 == GS1->handCount[playerZero]){
         printf("PASS for success on drawing 3 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
@@ -120,7 +122,8 @@ void testsmithyAction() {
     }
 
 
-  smithyAction(playerZero,2,GS2);
+  //smithyAction(playerZero,2,GS2);
+    play_smithy_card(GS2,playerZero,2);
   int expectedCardsInHandGS2 = 7;  //Gain 3 and discard 1 (5+3-1=7)
   if(expectedCardsInHandGS2 == GS2->handCount[playerZero]){
         printf("PASS for success on drawing 3 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS2, GS2->handCount[playerZero]);
@@ -130,7 +133,8 @@ void testsmithyAction() {
         printf("FAIL for success on drawing 3 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS2, GS2->handCount[playerZero]);
     }
 
-  smithyAction(playerZero,2,GS3);  //Check to see if any discard card is a smithy
+  //smithyAction(playerZero,2,GS3);  //Check to see if any discard card is a smithy
+  play_smithy_card(GS3,playerZero,2);
   int isSmithyInDiscard = 0;
   for(j=0; j < GS3->discardCount[playerZero]; j++)
   {
@@ -148,7 +152,8 @@ void testsmithyAction() {
         printf("FAIL for success on discarding Smithy Card.  Success Flag:%i  isSmithyInDiscard:%i \n", 1, isSmithyInDiscard);
     }
 
-  smithyAction(playerZero,2,GS4); 
+  //smithyAction(playerZero,2,GS4); 
+  play_smithy_card(GS4,playerZero,2);
   int isSmithyInHand = 1;
   for(j=0; j < GS4->handCount[playerZero]; j++)
   {
@@ -166,7 +171,8 @@ void testsmithyAction() {
         printf("FAIL for success on removing Smithy from Hand.  Success Flag:%i  isSmithyInHand:%i \n", 1, isSmithyInHand);
     }
 
-  smithyAction(playerZero,2,GS5);  //Check to see if any discard card is a smithy
+  //smithyAction(playerZero,2,GS5);  //Check to see if any discard card is a smithy
+  play_smithy_card(GS5,playerZero,2);
   int expectedPlayedCardCountGS5 = 1;  //Gain 1 and discard 1 (5+1-1=1)
   if(expectedPlayedCardCountGS5 == GS5->playedCardCount){
         printf("PASS for incrementing played cards (trash flag not set).  PlayedCards Expected:%i  PlayedCards Returned:%i \n", expectedPlayedCardCountGS5, GS5->playedCardCount);

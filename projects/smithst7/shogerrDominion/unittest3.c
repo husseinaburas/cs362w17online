@@ -1,29 +1,35 @@
+/* unittest3.c
+
+	for testing the scorefor function
+
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
 #include "rngs.h"
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+ 
+int main() {
+	
 
-#define TEST_MAX 100
+	struct gameState* testGame = newGame();
 
-int main()
-{
-  int i;
+	int testcards[10];
+	int i;
+	for (i=0;i<10;i++){
 
-  printf ("Testing newGame()...\n");
+		testcards[i] = i+1;
+	}
 
-  for(i = 0; i < TEST_MAX; i++)
-  {
-    // Create a new game
-    struct gameState *G = (struct gameState*)newGame();
-    assert(G); // ensure not null
-    free(G);   // cleanup
-    G = 0;
-  }
+	initializeGame(2, testcards, 5, testGame);
 
-  printf ("Finished.\n");
+	
+	int score;
+	score = scoreFor(1, testGame);
+	if (score!=3)
+	{	printf("scorefor test fail\n");	}
+	else printf ("scorefor test pass\n");	
 
-  return 0;
 }

@@ -39,7 +39,8 @@ int villageCard(struct gameState *state, int currentPlayer, int handPos) {
   return 0;
 }
 This bug was first revealed by unittest3.c when test 9 failed, specifically, state->playedCardCount
-did not increment as expected.
+did not increment as expected. Since the trashFlag is < 1 in case: village's discardCard() call when
+played in cardEffect, in function discardCard(), the playedCardCount should have been incremented.
 
 Bug 4:
 int adventurerCard(struct gameState *state, int currentPlayer, int handPos) {

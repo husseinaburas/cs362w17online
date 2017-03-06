@@ -1,0 +1,7 @@
+had to change function call names
+had to redo the way I sent turn to function
+	i had it in the function call
+	he uses the whoseturn function of the game state
+
+had to add a couple more includes to test so they compile
+	intent to run one at a time, not with makefile

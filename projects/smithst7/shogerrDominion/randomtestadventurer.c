@@ -8,6 +8,9 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "dominion.c"
+#include "rngs.c"
+
 int main(argc, argv){
 
 
@@ -15,7 +18,12 @@ int main(argc, argv){
 	
 	int test_deck_size;
 	int test_hand_size;
+
+	int repeat;
+	int repeats;
+	repeats = 100;
 	
+	for (repeat=0; repeat < repeats; repeat++){
 	test_deck_size = rand()%60 + 10;
 	//a player's hand should be five cards for most of the time,
 	//however, it is feasible that he or she would have anywhere from 
@@ -37,18 +45,21 @@ int main(argc, argv){
         initializeGame(players, testcards, 5, testGame);
 
 	int whoseturn = rand()%players;
+	testGame->whoseTurn = whoseturn;
 	
 	for (i=0; i<test_hand_size; i++){
 	
        		 drawCard(whoseturn, testGame);
 	}
 
-	adventurer_func(whoseturn, testGame);
+	playAdventurer(testGame);
 
 	if (testGame->handCount[whoseturn] > test_hand_size+2)
 	{
 		printf("adventurer draw issue");
 	}
 	else printf("adventurer test passed");
+
+	}
 
 }

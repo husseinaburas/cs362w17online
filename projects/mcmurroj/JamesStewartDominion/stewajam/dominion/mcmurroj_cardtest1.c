@@ -5,9 +5,9 @@
 #include "dominion_helpers.h"
 
 
-// Unit test for adventurerAction found in dominion.c
-// Funciton call: int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
-// Note: adventurerAction function currently starts line 1282 from dominion.c
+// Unit testing for play_adventurer_card function from dominion.c
+// New Funciton call: int play_adventurer_card(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
+// PREVIOUS Funciton call: int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
 
 void testadventurerAction() {
   printf("----TEST adventurerAction Function-----\n");
@@ -18,7 +18,9 @@ void testadventurerAction() {
   int playerZero = 0;
   int temphand[MAX_HAND];
 
-
+  int  drawntreasure=0;
+  int  cardDrawn=0;
+  int  z=0;
 
 //---GS1 TEST---- Check to verify that the two tresure cards in the deck (copper/silver)
   //are drawn
@@ -118,7 +120,8 @@ void testadventurerAction() {
   }
  */
 
-  adventurerAction(playerZero,GS1,temphand);
+  //adventurerAction(playerZero,GS1,temphand);
+  play_adventurer_card(GS1,playerZero, drawntreasure, cardDrawn, temphand, z);
   int expectedCardsInHandGS1 = 7;
   if(expectedCardsInHandGS1 == GS1->handCount[playerZero]){
         printf("PASS for success on drawing 2 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
@@ -128,7 +131,16 @@ void testadventurerAction() {
         printf("FAIL for success on drawing 2 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
     }
 
-  adventurerAction(playerZero,GS2,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
+  int expectedCardsInDiscard=2;
+  if(expectedCardsInDiscard == GS1->discardCount[playerZero]){
+        printf("PASS for correct number of cards in discard pile.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInDiscard, GS1->discardCount[playerZero]);
+      }
+    else
+    {
+        printf("FAIL for incorrect number of cards in discard pile.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInDiscard, GS1->discardCount[playerZero]);
+    }
+  
+  play_adventurer_card(GS1,playerZero, drawntreasure, cardDrawn, temphand, z);  //adventurerAction(playerZero,GS2,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
   int expectedCardsInHandGS2 = 5;
   if(expectedCardsInHandGS2 == GS2->handCount[playerZero]){
         printf("PASS for success draws no cards when no treasure cards in deck.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS2, GS2->handCount[playerZero]);
@@ -138,7 +150,8 @@ void testadventurerAction() {
         printf("FAIL for success draws no cards when no treasure cards in deck.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS2, GS2->handCount[playerZero]);
     }
 
-  adventurerAction(playerZero,GS3,temphand);  
+  play_adventurer_card(GS3,playerZero, drawntreasure, cardDrawn, temphand, z);
+  //adventurerAction(playerZero,GS3,temphand);  
   int expectedCardsInHandGS3 = 7;
   if(expectedCardsInHandGS3 == GS3->handCount[playerZero]){
         printf("PASS for success draws 2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS3, GS3->handCount[playerZero]);
@@ -147,8 +160,9 @@ void testadventurerAction() {
     {
         printf("FAIL for success draws 2 cards from discard.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS3, GS3->handCount[playerZero]);
     }
-
-  adventurerAction(playerZero,GS4,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
+  
+  play_adventurer_card(GS4,playerZero, drawntreasure, cardDrawn, temphand, z);
+  //adventurerAction(playerZero,GS4,temphand);  //Note: Passes but could pass even with treasure cards present due to bug
   int expectedCardsInHandGS4 = 5;
   if(expectedCardsInHandGS4 == GS4->handCount[playerZero]){
         printf("PASS for success draws no cards as there is no deck or discard cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS4, GS4->handCount[playerZero]);

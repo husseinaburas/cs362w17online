@@ -6,9 +6,9 @@
 #include "dominion_helpers.h"
 
 
-// Random testing for villageAction function from dominion.c
-// Funciton call: int villageAction(int currentPlayer, int handPos, struct gameState *state)
-// Note: smithyAction function currently starts line 1323 from dominion.c
+// Random test for villageAction found in dominion.c
+// NEW Funciton call: int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+// PREVIOUS Funciton call: int villageAction(int currentPlayer, int handPos, struct gameState *state)
 
 void testRandVillageAction() {
   
@@ -72,6 +72,7 @@ void testRandVillageAction() {
     randGameState->deckCount[randPlayer] = preDeckSize;
     randGameState->handCount[randPlayer] = preHandSize;
     randGameState->discardCount[randPlayer] = preDiscardSize;
+    randGameState->whoseTurn = randPlayer;
 
     //----Assign Hand Location to Manually Add Village Card----
     randVillageHandLocation = (rand() % preHandSize);  // Use for if statement when assigning in deck
@@ -121,8 +122,8 @@ void testRandVillageAction() {
     playedCardPre = randGameState->playedCardCount;
    
     //----Call Tested Function----
-    villageAction(randPlayer, randVillageHandLocation, randGameState);
-    
+    //villageAction(randPlayer, randVillageHandLocation, randGameState);
+    cardEffect(village, 0,0,0, randGameState,randVillageHandLocation,0);
 
     //----Gather Post Execution Data----
     playedCardPost = randGameState->playedCardCount;

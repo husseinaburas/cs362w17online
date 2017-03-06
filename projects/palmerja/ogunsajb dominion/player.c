@@ -18,6 +18,7 @@
 #include "dominion.h"
 #include "interface.h"
 #include "rngs.h"
+#pragma warning(disable:4996)
 
 
 int main2(int argc, char *argv[]) {

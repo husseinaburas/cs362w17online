@@ -1,0 +1,122 @@
+Bug Report:
+
+**Title: Teammate smedleyb's Dominion code bug report
+**Product: Dominion code
+**Classification: 
+Version : Assignment 2 smedleyb
+Changed on 1/18/2017
+Github hash: 994bf18466cb54174e1be926ef240f8745276116
+**Can it be reproduced?Yes
+**Summary Description:Unit testing failed for the playAdventurer, playSmithy, playVillage, playFeast, playCard function test.
+**Contact Information: lishih@oregonstate.edu
+
+/***********************************************************************/
+Issue id 1:
+**Summary: 
+  Descrption:
+  The playSymithy current player deckcount and card number (playcard)incorrect.
+	-current player deck count is 1
+	-cardNum = smithy result = 3
+
+  Expected: 
+	-current player deck count is 2
+	-cardNum = smithy result = 4
+
+**Steps to reproduce: 
+	Run the unit testing for cardtest1 and unittest1.
+
+**Workaround:
+	Update the playSymithy for:   for (i = 0; i < 3; i++)
+
+**Attachments: 
+46          printf("Hand Count = %d, Expected = %d\n", testCardEffect.handCount[currentPlayer], C.handCount[currentPlayer] + drawNewCards-1);
+(gdb) p testCardEffect.handCount[currentPlayer]
+$3 = 7
+(gdb) p C.handCount[currentPlayer]
+$4 = 5
+(gdb) p drawNewCards
+$5 = 2
+(gdb) n
+Hand Count = 7, Expected = 6
+
+/***********************************************************************/
+Issue id 2:
+**Summary: 
+  Descrption:
+	The playAdventurer current player hand count incorrect.
+	-current player hand count is 7
+  Expected: current player hand count is 6
+
+**Steps to reproduce: 
+	Run the unit testing for cardtest2.
+
+**Workaround:
+  Update the playAdventurer for:   
+	else{
+	  temphand[z]=cardDrawn;
+	  state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+	  z ++;
+
+**Attachments: 
+46          printf("Hand Count = %d, Expected = %d\n", testCardEffect.handCount[currentPlayer], C.handCount[currentPlayer] + drawNewCards-1);
+(gdb) p testCardEffect.handCount[currentPlayer]
+$3 = 7
+(gdb) p C.handCount[currentPlayer]
+$4 = 5
+(gdb) p drawNewCards
+$5 = 2
+(gdb) n
+Hand Count = 7, Expected = 6
+
+/***********************************************************************/
+Issue id 3:
+**Summary: 
+  Descrption:
+	The playVillage current player action count incorrect.
+	-current player action count is 2
+  Expected: current player action count is 3
+
+**Steps to reproduce: 
+	Run the unit testing for cardtest3.
+
+**Workaround:
+	Update the playVillage for:   
+	state->numActions = state->numActions + 2;
+
+**Attachments: 
+48          printf("Actions = %d, expected = %d\n", testCardEffect.numActions, C.numActions + 2);
+(gdb) p C.numActions
+$1 = 1
+(gdb) n
+Actions = 2, expected = 3
+
+/***********************************************************************/
+Issue id 4:
+**Summary: 
+  Descrption:
+	The playFeast current player deck count incorrect.
+	-current player deck count is 5
+  Expected: current player deck count is 4
+
+**Steps to reproduce: 
+	Run the unit testing for cardtest4.
+
+**Workaround:
+	Update the playAdventurer for:   
+	a.
+	int x=1;
+     	 while(x == 1) {//Buy one card
+	  
+	b.
+	gainCard(choice1, state, 0, currentPlayer);//Gain the card
+		  x= 0;//No more buying cards
+	
+**Attachments: 
+Hand Count = 5, Expected = 5
+47          printf("Deck Count = %d, Expected = %d\n", testCardEffect.deckCount[currentPlayer], C.deckCount[currentPlayer] - drawNewCards);
+(gdb) p testCardEffect.deckCount[currentPlayer]
+$4 = 5
+(gdb) p  C.deckCount[currentPlayer]
+$5 = 5
+(gdb) n
+Deck Count = 5, Expected = 4

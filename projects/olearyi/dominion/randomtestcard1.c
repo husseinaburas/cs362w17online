@@ -23,7 +23,7 @@ int main(int ranseed) {
     int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
     int seed = ranseed;
     int numPlayers = 4;
-	struct gameState G, testG;
+	struct gameState G;
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, great_hall};
 
@@ -35,7 +35,6 @@ for (j = 0; j < tests; j++){
 		currentPlayer = (rand() % numPlayers);
 		G.handCount[currentPlayer] = (rand() % 10) +1;
 		G.deckCount[currentPlayer] = 10 - G.handCount[currentPlayer];
-		memcpy(&testG, &G, sizeof(struct gameState));
 		int handI=0;
 		int deckI=0;
 		int handF=0;
@@ -54,7 +53,7 @@ for (j = 0; j < tests; j++){
 		int handChange = handF - handI;
 		int deckChange = deckF - deckI;
 
-		if(handChange == 0 && deckChange == 3){
+		if(handChange == 3){
 			passed++;
 		}
 		else{

@@ -31,7 +31,7 @@ int main(){
 	// Give current player a village card to play
 	g.hand[player1][handPos] = adventurer;
 	memcpy(&test_g, &g, sizeof(struct gameState));
-	r = playAdventurer(&test_g);
+	r = playAdventurer(&test_g, handPos);
 	
 	// Did the function work (should return 0)?
 	asserttrue("returned 0 as expected", r, 0);

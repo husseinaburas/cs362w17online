@@ -1,0 +1,52 @@
+Script started on Sun Mar  5 13:29:30 2017
+[?1034hbash-3.2$ lldb cardtest1
+(lldb) target create "cardtest1"
+Current executable set to 'cardtest1' (x86_64).
+(lldb) [1G[2m(lldb) [22m[8Gb 62
+Breakpoint 1: where = cardtest1`main + 840 at cardtest1.c:62, address = 0x0000000100001ca8
+(lldb) [1G[2m(lldb) [22m[8Gb7[K[1G[2m(lldb) [22m[9G 72
+Breakpoint 2: where = cardtest1`main + 1258 at cardtest1.c:72, address = 0x0000000100001e4a
+(lldb) [1G[2m(lldb) [22m[8Grun
+Process 6923 launched: '/Users/adam/Desktop/cs362w17online/projects/sunderad/dominion/cardtest1' (x86_64)
+-------------------------------------------------------------------------------------------------------------------------------------
+Running Card Test 1: Adventurer Card
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Process 6923 stopped
+* thread #1: tid = 0x4d343c, 0x0000000100001ca8 cardtest1`main(argc=1, argv=0x00007fff5fbffa80) + 840 at cardtest1.c:62, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
+    frame #0: 0x0000000100001ca8 cardtest1`main(argc=1, argv=0x00007fff5fbffa80) + 840 at cardtest1.c:62
+   59  			errorFlag++;
+   60  		}
+   61  		//make sure there are two new cards minus the played card
+-> 62  		if( G.handCount[0] != (copyG.handCount[0] + 1) ){
+   63  			printf("Error with hand card count. Expected 7 has %d.\n", G.handCount[0]);
+   64  			errorFlag++;
+   65  		}
+(lldb) [1G[2m(lldb) [22m[8Gp G.[K[1G[2m(lldb) [22m[11G[K[1G[2m(lldb) [22m[10GG.handCount[0]
+(int) $0 = 8
+(lldb) [1G[2m(lldb) [22m[8GcopyG.handCount[0]
+error: 'copyG' is not a valid command.
+error: Unrecognized command 'copyG.handCount[0]'.
+(lldb) [1G[2m(lldb) [22m[8GcopyG.handCount[0][1G[2m(lldb) [22m[26G[1@pc[1G[2m(lldb) [22m[9G[1@ c[1G[2m(lldb) [22m[10G
+(int) $1 = 6
+(lldb) [1G[2m(lldb) [22m[8Gcontinue
+Process 6923 resuming
+Error with hand card count. Expected 7 has 8.
+Process 6923 stopped
+* thread #1: tid = 0x4d343c, 0x0000000100001e4a cardtest1`main(argc=1, argv=0x00007fff5fbffa80) + 1258 at cardtest1.c:72, queue = 'com.apple.main-thread', stop reason = breakpoint 2.1
+    frame #0: 0x0000000100001e4a cardtest1`main(argc=1, argv=0x00007fff5fbffa80) + 1258 at cardtest1.c:72
+   69  			errorFlag++;
+   70  		}
+   71  		int advenCard = cardCount(0, G, adventurer);
+-> 72  		if(  advenCard != 0){
+   73  			printf("Error adventurer card still in hand (not discarded)\n");
+   74  			errorFlag++;
+   75  		}
+(lldb) [1G[2m(lldb) [22m[8Gp advenCard
+(int) $2 = 1
+(lldb) [1G[2m(lldb) [22m[8Gexit
+Quitting LLDB will kill one or more processes. Do you really want to proceed: [Y/n] Y
+bash-3.2$ exit
+exit
+
+Script done on Sun Mar  5 13:31:38 2017

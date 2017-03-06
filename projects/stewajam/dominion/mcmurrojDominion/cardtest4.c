@@ -1,158 +1,122 @@
+/***************************************
+* Name: James Stewart
+* Date: 1/31/2017
+* File: cardtest1.c
+* Description: Tests the Council Room card
+***************************************/
+
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
+#include "unittest.h"
 
+int main() {
+    int testResult = FAIL;
+    int observed, expected;
+    int seed = 5;
+    int numPlayers = 2;
+    int currentPlayer = 0;
+    int choice1 = 0, choice2 = 0, choice3 = 0;
+    struct gameState G, testG;
+    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+            sea_hag, tribute, smithy, council_room};
+    int testCard = council_room;
+    char *testCardName = "Council Room";
+    int card1, card2, card3, card4, card5;
+    int i = 0;
 
-// Unit test for sea_hagAction found in dominion.c
-// Funciton call: int sea_hagAction(int currentPlayer, struct gameState *state)
-// Note: sea_hagAction function currently starts line 1334 from dominion.c
+    // initialize a game state and player cards
+    initializeGame(numPlayers, k, seed, &G);
 
-void testsea_hagAction() {
-  printf("----TEST sea_hagAction Function-----\n");
+    printf("\n\n----------------- TESTING %s CARD -----------------\n\n", testCardName);
 
-  int k[10] = {adventurer, gardens, feast, village, minion, mine, steward,
-        sea_hag, tribute, smithy};
-  int seed = 44;
-  int playerZero = 0;
-  int playerOne = 1; 
+    printf("TEST 1: Play %s card.\n\n", testCardName);
+    currentPlayer = 0;
+    card1 = testCard;
+    card2 = silver;
+    card3 = gold;
+    card4 = adventurer;
+    card5 = council_room;
+    G.hand[currentPlayer][0] = card1;
+    G.hand[currentPlayer][1] = card2;
+    G.hand[currentPlayer][2] = card3;
+    G.hand[currentPlayer][3] = card4;
+    G.hand[currentPlayer][4] = card5;
+    G.handCount[currentPlayer] = 5;
 
-//---GS1 TEST---- 
-  struct gameState *GS1 = newGame();
-  initializeGame(2,k,seed,GS1);
-  GS1->numPlayers = 2;
-  GS1->handCount[playerZero] = 5;
-  GS1->hand[playerZero][0] = village;  
-  GS1->hand[playerZero][1] = adventurer;  
-  GS1->hand[playerZero][2] = smithy;  
-  GS1->hand[playerZero][3] = sea_hag;  
-  GS1->hand[playerZero][4] = gardens; 
-  GS1->deckCount[playerZero] = 5;
-  GS1->deck[playerZero][0] = estate;  
-  GS1->deck[playerZero][1] = silver;  
-  GS1->deck[playerZero][2] = great_hall;  
-  GS1->deck[playerZero][3] = copper;  
-  GS1->deck[playerZero][4] = duchy;  
-  GS1->discardCount[playerZero] = 1;
-  GS1->discard[playerZero][0] = minion;
-
-  GS1->deckCount[playerOne] = 10;
-  GS1->deck[playerOne][0] = estate;  
-  GS1->deck[playerOne][1] = silver;  
-  GS1->deck[playerOne][2] = great_hall;  
-  GS1->deck[playerOne][3] = copper;  
-  GS1->deck[playerOne][4] = duchy;
-  GS1->deck[playerOne][0] = estate;  
-  GS1->deck[playerOne][1] = silver;  
-  GS1->deck[playerOne][2] = great_hall;  
-  GS1->deck[playerOne][3] = copper;  
-  GS1->deck[playerOne][4] = duchy;  
-  GS1->discardCount[playerOne] = 1;
-  GS1->discard[playerOne][0] = great_hall;
-
-
-
-  int j;
-
-  sea_hagAction(playerZero,GS1);
-  int isCurseInOpponentDeck = 0;
-  for(j=0; j < GS1->deckCount[playerOne]; j++)
-  {
-    if(GS1->deck[playerOne][j] == curse)
-    {
-      isCurseInOpponentDeck =1;
+    G.deckCount[currentPlayer] = 10;
+    for(i = 0; i < G.deckCount[currentPlayer]; i++){
+        G.deck[currentPlayer][i] = adventurer;
     }
-  }
+    printf("SETUP\n");
+    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
+    printDeck(&G);
 
-  if(isCurseInOpponentDeck == 1){
-        printf("PASS for success on adding Curse to Opponent Deck.  Success Flag:%i  isCurseInOpponentDeck:%i \n", 1, isCurseInOpponentDeck);
-    }
-  else
-    {
-        printf("FAIL for success on adding Curse to Opponent Deck.  Success Flag:%i  isCurseInOpponentDeck:%i \n", 1, isCurseInOpponentDeck);
-    }
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-  int isCurseInCurrentPlayerDeck = 1;
-  for(j=0; j < GS1->deckCount[playerZero]; j++)
-  {
-    if(GS1->deck[playerZero][j] == curse)
-    {
-      isCurseInCurrentPlayerDeck =0;
-    }
-  }
+    printHand(&G);
+    printExpHand(card1, card2, card3, card4, card5);
+    printf("\n");
 
-  if(isCurseInCurrentPlayerDeck == 1){
-        printf("PASS for success on no Curse added to current player's deck.  Success Flag:%i  isCurseInCurrentPlayerDeck:%i \n", 1, isCurseInCurrentPlayerDeck);
-    }
-  else
-    {
-        printf("FAIL for success on no Curse added to current player's deck.  Success Flag:%i  isCurseInCurrentPlayerDeck:%i \n", 1, isCurseInCurrentPlayerDeck);
-    }
+    playCard(0, choice1, choice2, choice3, &testG);
+    printf("Player's hand after test card is played\n");
+    printHand(&testG);
+    printf("\n");
 
-  int expecteddeckCountplayerZeroGS1 = 5;  //Expected to replace top card with curse card, deck count remain 5
-  if(expecteddeckCountplayerZeroGS1 == GS1->deckCount[playerZero]){
-        printf("PASS for success on current players deck count.  Expected Count:%i  Returned Count:%i \n", expecteddeckCountplayerZeroGS1, GS1->deckCount[playerZero]);
-    }
-  else
-    {
-        printf("FAIL for success on current players deck count.  Expected Count:%i  Returned Count:%i \n", expecteddeckCountplayerZeroGS1, GS1->deckCount[playerZero]);
-    }
+    observed = testG.deckCount[currentPlayer];
+    expected = G.deckCount[currentPlayer] - 4;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Deck Count", observed, expected);
 
-  int expecteddeckCountplayerOneGS1 = 10;  //Expected to replace top card with curse card, deck count remain 10
-  if(expecteddeckCountplayerOneGS1 == GS1->deckCount[playerOne]){
-        printf("PASS for success on opponents deck count.  Expected Count:%i  Returned Count:%i \n", expecteddeckCountplayerOneGS1, GS1->deckCount[playerOne]);
-    }
-  else
-    {
-        printf("FAIL for success on opponents deck count.  Expected Count:%i  Returned Count:%i \n", expecteddeckCountplayerOneGS1, GS1->deckCount[playerOne]);
-    }
+    observed = testG.handCount[currentPlayer];
+    expected = G.handCount[currentPlayer] + 3;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Hand Count", observed, expected);
 
-  int expecteddiscardCountplayerZeroGS1 = 2;  //Expected to incrase by one after playing sea_hag (1+1=2)
-  if(expecteddiscardCountplayerZeroGS1 == GS1->discardCount[playerZero]){
-        printf("PASS for success on current players discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerZeroGS1, GS1->discardCount[playerZero]);
-    }
-  else
-    {
-        printf("FAIL for success on current players discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerZeroGS1, GS1->discardCount[playerZero]);
-    }
+    observed = testG.discardCount[currentPlayer];
+    expected = G.discardCount[currentPlayer];
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Discard Count", observed, expected);
 
-  int expecteddiscardCountplayerOneGS1 = 1;  //Expected to incrase by one after playing sea_hag and curse card added (1+1=2)
-  if(expecteddiscardCountplayerOneGS1 == GS1->discardCount[playerOne]){
-        printf("PASS for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerOne]);
-    }
-  else
-    {
-        printf("FAIL for success on opponents discard count.  Expected Count:%i  Returned Count:%i \n", expecteddiscardCountplayerOneGS1, GS1->discardCount[playerOne]);
-    }
+    observed = testG.playedCardCount;
+    expected = G.playedCardCount + 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Played Card Count", observed, expected);
 
-  int isSea_hagInHand = 1;
-  for(j=0; j < GS1->handCount[playerZero]; j++)
-  {
-    if(GS1->hand[playerZero][j] == sea_hag)
-    {
-      isSea_hagInHand =0;
-    }
-  }
+    observed = testG.coins;
+    expected = G.coins;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Coins", observed, expected);
 
-  if(isSea_hagInHand == 1){
-        printf("PASS for success on removing sea_hag from Hand.  Success Flag:%i  isSea_hagInHand:%i \n", 1, isSea_hagInHand);
-    }
-    else
-    {
-        printf("FAIL for success on removing sea_hag from Hand.  Success Flag:%i  isSea_hagInHand:%i \n", 1, isSea_hagInHand);
-    }
+    observed = testG.deckCount[currentPlayer + 1];
+    expected = G.deckCount[currentPlayer + 1] - 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Other Player's Deck Count", observed, expected);
 
+    observed = testG.handCount[currentPlayer + 1];
+    expected = G.handCount[currentPlayer + 1] + 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Other Player's Hand Count", observed, expected);
 
-    return;
-}
+    observed = testG.numBuys;
+    expected = G.numBuys + 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Number of Buys", observed, expected);
 
-  
+    printf("\n\nEND OF %s CARD TEST\n\n", testCardName);
 
-
-
-int main(int argc, char *argv[])
-{
-    testsea_hagAction();
     return 0;
 }

@@ -6,9 +6,9 @@
 #include "dominion_helpers.h"
 
 
-// Random testing for smithyAction function from dominion.c
-// Funciton call: int smithyAction(int currentPlayer,int handPos,struct gameState *state)
-// Note: smithyAction function currently starts line 1311 from dominion.c
+// Random testing for play_smithy_card function from dominion.c
+// NEW Funciton call: int play_smithy_card(struct gameState *state, int currentPlayer, int handPos)
+// PREVIOUS Funciton call: int smithyAction(int currentPlayer,int handPos,struct gameState *state)
 
 void testRandSmithyAction() {
   
@@ -114,8 +114,9 @@ void testRandSmithyAction() {
 
    
     //----Call Tested Function----
-    smithyAction(randPlayer, randSmithyHandLocation, randGameState);
-
+    //smithyAction(randPlayer, randSmithyHandLocation, randGameState);
+    play_smithy_card(randGameState,randPlayer,randSmithyHandLocation);
+    
     //----Gather Post Execution Data----
     postDeckSize= randGameState->deckCount[randPlayer];
     postHandSize= randGameState->handCount[randPlayer];
