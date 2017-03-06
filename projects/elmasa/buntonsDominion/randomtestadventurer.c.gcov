@@ -1,0 +1,165 @@
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/* -----------------------------------------------------------------------
+        -:    2: *  Card Adventurer
+        -:    3: *  ---------------
+        -:    4: * cardtest4: cardtest4.c dominion.o rngs.o
+        -:    5: *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+        -:    6: * -----------------------------------------------------------------------
+        -:    7: */
+        -:    8:
+        -:    9:#include "dominion.h"
+        -:   10:#include "dominion_helpers.h"
+        -:   11:#include <string.h>
+        -:   12:#include <stdio.h>
+        -:   13:#include <stdlib.h>     // needed for srand and rand
+        -:   14:#include "asserttrue.h"
+        -:   15:#include "rngs.h"
+        -:   16:
+        -:   17:
+        -:   18:// set NOISY_TEST to 0 to remove printfs from output
+        -:   19:#define NOISY_TEST 1
+        -:   20:#define CARDORFUNCTIONTOTEST "Adventurer"
+        -:   21:
+function main called 1 returned 100% blocks executed 96%
+        -:   22:int main(int argc, char** argv) {
+        -:   23:    
+        -:   24:    
+        1:   25:    int passedSeed = atoi(argv[1]); // first char is '/'
+        1:   26:    srand(passedSeed); // seed the random number generator with the passed int that is passed from the command line when running the program
+        -:   27:    
+        -:   28:    
+        -:   29:    
+        -:   30:    
+        -:   31:    /****************************** Main Setup ******************************/
+        -:   32:    struct gameState NewGameStateStruct, OldVersionOfGameStruct;
+        -:   33:    
+        1:   34:    memset(&NewGameStateStruct, 23, sizeof(struct gameState));      // clear the game state
+        1:   35:    memset(&OldVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
+        -:   36:    
+        -:   37:    
+        1:   38:    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   39:        sea_hag, tribute, smithy, council_room};
+        -:   40:    
+        -:   41:
+        -:   42:    
+        1:   43:    printf("----------------- Testing Card: %s ----------------\n", CARDORFUNCTIONTOTEST);
+        -:   44:    
+        -:   45:    // Did Any Test Fail Variable
+        1:   46:    int atLeast1TestFailed = 0;
+        -:   47:    
+        -:   48:    
+        -:   49:    //Invariable Conditions for all Tests
+        1:   50:    int expectedNumCardAddedToHand = 2;
+        1:   51:    int indexCurrentPlayer = 0;
+        -:   52:    
+        1:   53:    int numRandomTestRuns = 5000;                           // Number of Random Tests to Run
+        -:   54:    
+    10002:   55:    for (int i = 0; i < numRandomTestRuns; i++)
+branch  0 taken 99%
+branch  1 taken 1%
+        -:   56:    {
+        -:   57:        //Randomized Variable Conditions
+     5000:   58:        int numPlayer = 2 + (rand()%2);
+        -:   59:        
+        -:   60:        // Clear out all Game State Structs
+     5000:   61:        memset(&NewGameStateStruct, 23, sizeof(struct gameState));      // clear the game state
+     5000:   62:        memset(&OldVersionOfGameStruct, 23, sizeof(struct gameState));  // clear the old game state (used to compare before after effect of method call)
+        -:   63:
+        -:   64:        // initialize a game state and player cards
+     5000:   65:        initializeGame(numPlayer, k, passedSeed, &NewGameStateStruct);
+        -:   66:        //memcpy(&NewGameStateStruct, &OldVersionOfGameStruct, sizeof(struct gameState)); // copy game state to have before - after comparision
+        -:   67:
+        -:   68:        
+        -:   69:        
+     5000:   70:        NewGameStateStruct.hand[indexCurrentPlayer][0] = adventurer; //set the first card in player's hand to adventurer to guarantee he has adventurer to use
+     5000:   71:        int currentHandCount = 1+(rand()%4); // choose a random number of cards in current hand from 1 to 5
+        -:   72:        // Discard the difference between the former handcount (5) and the randomized handcount
+    34954:   73:        for (int currentCardInHand=5; currentCardInHand > currentHandCount; currentCardInHand--) {
+branch  0 taken 71%
+branch  1 taken 29%
+    12477:   74:            NewGameStateStruct.discard[indexCurrentPlayer][NewGameStateStruct.discardCount[indexCurrentPlayer]] = NewGameStateStruct.hand[indexCurrentPlayer][currentCardInHand];       // copy the current card in hand to discard pile
+    12477:   75:            NewGameStateStruct.discardCount[indexCurrentPlayer]++;                  // increment discard count
+    12477:   76:            NewGameStateStruct.hand[indexCurrentPlayer][currentCardInHand] = -1;    // reset the removed card position to -1
+    12477:   77:            NewGameStateStruct.handCount[indexCurrentPlayer] -= 1;                  // decrement hand count
+    12477:   78:        }
+        -:   79:        
+     5000:   80:        if (rand()%5 == 0) {                                                        // Fill all cards in Deck with non Treasure cards 20% of the time
+branch  0 taken 20%
+branch  1 taken 80%
+  1005006:   81:            for (int i = 0; i < MAX_HAND; i++)
+branch  0 taken 99%
+branch  1 taken 1%
+        -:   82:            {
+   501500:   83:                NewGameStateStruct.deck[indexCurrentPlayer][i] = estate;
+   501500:   84:            }
+     1003:   85:        }
+        -:   86:
+        -:   87:        
+        -:   88:        
+        -:   89:        // ----------- TEST 1: Test playAdventurer --------------
+     5000:   90:        printf("TEST %d: Test playAdventurer with Treasure Cards\n", i);
+        -:   91:        // copy the game state to compare (before + expected) with after
+     5000:   92:        OldVersionOfGameStruct = NewGameStateStruct;
+        -:   93:        
+        -:   94:        
+        -:   95:        // Capture number of Cards in Deck before first 2 Treasure Cards (will be discarded)
+     5000:   96:        int countTreasureCards = 0;
+     5000:   97:        int countCardsRevealedBefore2TreasureCardsRevealed = 0;
+        -:   98:        
+    44012:   99:        for (int i = 0; i < NewGameStateStruct.deckCount[indexCurrentPlayer]; i++) {
+branch  0 taken 95%
+branch  1 taken 5%
+    47021:  100:            if (NewGameStateStruct.deck[indexCurrentPlayer][i] == copper || NewGameStateStruct.deck[indexCurrentPlayer][i] == silver || NewGameStateStruct.deck[indexCurrentPlayer][i] == gold ) {
+branch  0 taken 62%
+branch  1 taken 38%
+branch  2 taken 100%
+branch  3 taken 0%
+branch  4 taken 0%
+branch  5 taken 100%
+     7994:  101:                countTreasureCards++;
+     7994:  102:                if (countTreasureCards >= 2) {
+branch  0 taken 50%
+branch  1 taken 50%
+     3997:  103:                    break;      // Break out of loop once found 2 Treasure cards
+        -:  104:                }
+        -:  105:                
+     3997:  106:            } else {
+    13009:  107:                countCardsRevealedBefore2TreasureCardsRevealed++;
+        -:  108:            }
+    17006:  109:        }
+        -:  110:        
+        -:  111:        // Afterward: • deckCount -= countCardsRevealedBefore2TreasureCardsRevealed
+        -:  112:        // Afterward: • discardCount += countCardsRevealedBefore2TreasureCardsRevealed
+        -:  113:        // Afterward: • handCount += 2
+        -:  114:        
+        -:  115:        /**** Call Func ****/
+     5000:  116:        printf("Testing Successful Return of 0 for calling Method\n");
+     5000:  117:        int resultPlayAdventurer = playAdventurer(&NewGameStateStruct);
+     5000:  118:        asserttrue(resultPlayAdventurer == 0, &atLeast1TestFailed);
+        -:  119:        /**** End Call Func ****/
+        -:  120:        /**** Assert Results ****/
+     5000:  121:        printf("hand count = %d, expected = %d\n", NewGameStateStruct.handCount[indexCurrentPlayer], OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardAddedToHand);
+     5000:  122:        asserttrue(NewGameStateStruct.handCount[indexCurrentPlayer] == OldVersionOfGameStruct.handCount[indexCurrentPlayer] + expectedNumCardAddedToHand, &atLeast1TestFailed);
+        -:  123:        
+     5000:  124:        printf("discard count = %d, expected = %d\n", NewGameStateStruct.discardCount[indexCurrentPlayer], OldVersionOfGameStruct.discardCount[indexCurrentPlayer] + countCardsRevealedBefore2TreasureCardsRevealed);
+     5000:  125:        asserttrue(NewGameStateStruct.discardCount[indexCurrentPlayer] == OldVersionOfGameStruct.discardCount[indexCurrentPlayer] - countCardsRevealedBefore2TreasureCardsRevealed, &atLeast1TestFailed);
+        -:  126:        
+     5000:  127:        printf("deck count = %d, expected = %d\n", NewGameStateStruct.deckCount[indexCurrentPlayer], OldVersionOfGameStruct.deckCount[indexCurrentPlayer] + countCardsRevealedBefore2TreasureCardsRevealed);
+     5000:  128:        asserttrue(NewGameStateStruct.deckCount[indexCurrentPlayer] == OldVersionOfGameStruct.deckCount[indexCurrentPlayer] -  countCardsRevealedBefore2TreasureCardsRevealed, &atLeast1TestFailed);
+        -:  129:        /**** End Assert Results ****/
+        -:  130:        
+     5000:  131:    }
+        -:  132:    
+        1:  133:    if (atLeast1TestFailed == 0) {
+branch  0 taken 0%
+branch  1 taken 100%
+    #####:  134:        printf("All TESTS PASSED...\n");
+    #####:  135:    }else{
+        1:  136:        printf("All TESTS DID NOT PASS X...\n");
+        -:  137:    }
+        1:  138:    return 0;
+        -:  139:}

@@ -1,5 +1,25 @@
 /*
 Card to test: Adventurer
+struct gameState {
+  int numPlayers; //number of players
+  int supplyCount[treasure_map+1];  //this is the amount of a specific type of card given a specific number.
+  int embargoTokens[treasure_map+1];
+  int outpostPlayed;
+  int outpostTurn;
+  int whoseTurn;
+  int phase;
+  int numActions; /* Starts at 1 each turn 
+  int coins; /* Use as you see fit! 
+  int numBuys; /* Starts at 1 each turn 
+  int hand[MAX_PLAYERS][MAX_HAND];
+  int handCount[MAX_PLAYERS];
+  int deck[MAX_PLAYERS][MAX_DECK];
+  int deckCount[MAX_PLAYERS];
+  int discard[MAX_PLAYERS][MAX_DECK];
+  int discardCount[MAX_PLAYERS];
+  int playedCards[MAX_DECK];
+  int playedCardCount;
+};
 */
 #include "dominion.h"
 #include "dominion_helpers.h"
@@ -11,127 +31,134 @@ void comparer(int x, int y) // used to check if two values are the same.
 	if (x != y)
 	{
 		printf("Test failed!\n");
-		return 1;
 	}
 	else 
 	{
 		printf("Test passed!\n");
-		return 0;
 	}
 }
 
-int main () 
+int main (int argc , char * argv[]) 
 {
-	printf("-----CURRENT TEST: Adventurer Card-----\n");
+	srand(time(NULL));
+	printf("-----CURRENT TEST: Random Adventurer Card-----\n");
 	struct gameState currentgame; // create new game and set num players
-	int numplayers = 2;
-	int x, cardDrawn;
-	int randomseed = 777;
+	int x, n, i, drawnCard, cardDrawn = 0;
 	int k[10] = {adventurer, council_room, feast, gardens, mine
                , remodel, smithy, village, baron, great_hall}; // set kingdom cards array
-	
-	for(j = 0; j < 200; j++) // major loop to test new game states every time
-	{
-	int players[3] = {2,3,4};
-	int numplayers  = players[rand() % 3]; 
-	memset(&currentgame, 23, sizeof(struct gameState));
-	int gameinit = initializeGame(numplayers, k, randoomseed, &currentgame); // initialize the game
-	// randoomize the game state so that we are at some randoom point in the game rather than the beginning
-
-	int randoom_player =  players[rand() % 3]; // randoom player to play the card
-	
-	
- 	currentgame.numActions = rand() % 4 + 1;
-	pre2 = currentgame.numActions;
-	currentgame.numBuys = rand() % 3 + 1;
-	
-	for (i = 0; i < currentgame.numPlayers; i ++) // randoomize everyones hands
-	{
-		int x;
-		int rando =  rand() % 8;
-		currentgame.handCount[i] = rando;
-		prehand = rando;
-		for (x = 0; x < rando; x++)
-		{
-			currentgame.hand[i][x] = rand() % 20;
-		}
-	}
-	
-	for (i = 0; i < currentgame.numPlayers; i ++) // randoomize everyones decks
-	{
-		int x;
-		int rando =  rand() %  75;
-		currentgame.deckCount[i] = rando;
-		predeck = rando;
-		for (x = 0; x < rando; x++)
-		{
-			currentgame.deck[i][x] = rand() % 20;
-		}
-	}
-	
-	for (i = 0; i < currentgame.numPlayers; i ++) // randoomize everyones discards
-	{
-		int x;
-		int rando =  rand() % 75;
-		currentgame.discardCount[i] = rando;
-		predis = rando;
-		for (x = 0; x < rando; x++)
-		{
-			currentgame.discard[i][x] = rand() % 20;
-		}
-	}
-	
-	currentgame.playedCardCount = rand() % 5;  // randoomize played card pile
-	preplay = currentgame.playedCardCount;
-	for (i = 0; i < currentgame.playedCardCount; i++)
-	{
-		currentgame.playedCards[i] = rand() % 20;
-	} 
+	int numplayers  = (rand() % 3) + 2;
+	int randomseed = argv[1];
+	initializeGame(numplayers, k, randomseed, &currentgame);
 
 	
-	currentgame.whoseTurn = randoom_player;
-	currentgame.hand[randoom_player][0]  = adventurer; // force into players hand
-	
-	// Now we know there should be 2 discards during the adventurer call.
-	
-	int temphand[MAX_HAND];
-	adventurerx(&currentgame, randoom_player, temphand,  cardDrawn);
-	
-	//Test hand count, should be 2 more
-	printf("Testing if hand count is properly increased.\n");
-	comparer(currentgame.handCount[0] , prehand + 2);
-	
-	// Test that these new cards are treasures
-	printf("Testing if new cards in hand are treasures.\n");
-	comparer(currentgame.hand[randoom_player][prehand + 2] , 5);
-	comparer(currentgame.hand[randoom_player][prehand + 1] , 6);
-	
-	// Test to see if the discard pile was incremented by 2
-	printf("Testing if discard pile is properly incremented.\n");
-	comparer(currentgame.discardCount[0] , predis + 2); // was empty before so we should have 2
-	
-	//Test to see if the played card pile is incremented
-	printf("Checking if the played card count is incremented.\n");
-	comparer (old + 1 , currentgame.playedCardCount); // This is the first played card, should have 1 more
-
-	// Test to see if the discarded cards are not treasures
-	printf("Testing is the discarded cards are NOT treasures.\n");
-	int t;
-	for(t = 0; t < 2; t++)
+	for(n = 0; n < 2000; n++) // for loop determines how many tests to run
 	{
-		if ((currentgame.discard[0][t] > 4) && (currentgame.discard[0][t] < 6))
+		for(i=0; i < sizeof(struct gameState); i++)// loop to populate random struct
 		{
-			printf("Test failed! Cards in discard pile are treasure.\n");
+			((char*)&currentgame)[i] = floor(Random() * 256);
 		}
-		else 
-		{
-			printf("Test passed! Cards in discard pile are not treasure.\n");
-		}
-	}
+		
+		//--------POPULATE ALL PROPER VARIABLES BEFORE PLAYING THE CARD---------
+		
 
-	// Make sure deck count is decremented by 4
-	printf("Checking if deck count is decremented by 4.\n");
-	comparer(currentgame.deckCount[0] , 1); // was 5 before
-	
+		int random_player = 0; // random player to play the card
+		currentgame.whoseTurn = random_player;
+		currentgame.deckCount[random_player] = floor(rand() % (MAX_DECK - 1)); // define variables to meet preconditions
+		currentgame.discardCount[random_player] = floor(rand() % (MAX_DECK - 1));
+		currentgame.handCount[random_player] = floor(rand() % (MAX_HAND - 1));
+		currentgame.playedCardCount = floor(rand() % 25);
+		// currentgame.hand[random_player][0]  = adventurer; // force into players hand
+
+		int prehand = currentgame.handCount[random_player]; 
+		int predeck = currentgame.deckCount[random_player];
+		int prediscard = currentgame.discardCount[random_player];
+		int preplayed = currentgame.playedCardCount;
+		
+		int drawntreasure, cardsDrawn, drawnCard = 0;
+		
+		for(x = currentgame.deckCount[random_player]; x >= 0; x--)
+		{
+			if (drawntreasure >= 2)
+			{
+				break;
+			}
+			drawnCard = currentgame.deck[random_player][x - 1];
+			if (drawnCard == copper || drawnCard == silver || drawnCard == gold)
+			{
+				drawntreasure++;
+				cardsDrawn++;
+			}
+			else
+			{
+				cardsDrawn++;
+			}
+		}
+		
+		if (drawntreasure < 2) // if there arent enough in the deck
+		{
+			continue;
+		}
+		
+		int temphand[MAX_HAND];
+		
+		adventurerx(&currentgame, random_player, temphand,  cardDrawn); // call it
+		
+		//Test hand count, should be 2 more
+		printf("Testing if hand count is properly increased. Iteration %d.\n" , n + 1);
+		comparer(currentgame.handCount[random_player] , prehand + 2);
+		
+		// Test that these new cards are treasures
+		printf("Testing if new cards in hand are treasures. Iteration %d.\n" , n + 1);
+		int card1 = currentgame.hand[random_player][prehand + 1];
+		int card2 = currentgame.hand[random_player][prehand];
+		int check = 0;
+		if (!(card1 == copper || card1 == silver || card1 == gold))
+		{
+			printf("Test failed! One of the kept cards is not a treasure card!\n");
+			check = 1;
+		}
+		if (!(card2 == copper || card2 == silver || card2 == gold))
+		{
+			printf("Test failed! One of the kept cards is not a treasure card!\n");
+			check = 1;
+		}
+		if (check == 0)
+		{
+			printf("Test passed! All drawn cards are indeed treasures!\n");
+		}
+		
+		// Test to see if the discard pile was incremented by cardsDrawn - 2
+		printf("Testing if discard pile is properly incremented. Iteration %d.\n" , n + 1);
+		comparer(currentgame.discardCount[0] , prediscard + cardsDrawn - 2); // was empty before so we should have 2
+		
+		//Test to see if the played card pile is incremented
+		printf("Checking if the played card count is incremented. Iteration %d.\n" , n + 1);
+		comparer (preplayed + 1 , currentgame.playedCardCount); // This is the first played card, should have 1 more
+
+		// Test to see if the discarded cards are not treasures
+		printf("Testing is the discarded cards are NOT treasures. Iteration %d.\n" , n + 1);
+		int t, checker;
+		for(t = 1; t < cardsDrawn - 2; t++)
+		{
+			int currentcard = currentgame.discard[random_player][currentgame.discardCount[random_player] - t];
+			if (currentcard == copper || currentcard == silver || currentcard == gold)
+			{
+				printf("Test failed! Treasure cards were discarded!\n");
+			}
+			else
+			{
+				checker = 1;
+			}
+		}
+		if (checker == 1)
+		{
+			printf("Test passed! No treasure cards were discarded!\n");
+			
+		}
+		// Make sure deck count is decremented by 4
+		printf("Checking if deck count is decremented properly. Iteration %d. \n" , n + 1);
+		comparer(currentgame.deckCount[random_player] , predeck - cardsDrawn); // was 5 before
+		printf("-------------------------------------------------------------------\n");
+	}
 	return 0;
 }

@@ -1,0 +1,11 @@
+<map id="main2" name="main2">
+<area shape="rect" id="node2" href="$dominion_8c.html#af206ebf3de1d4111f5933eebeb6544f5" title="initializeGame" alt="" coords="111,107,215,133"/>
+<area shape="rect" id="node3" href="$rngs_8c.html#a8c2fc7157e98523c751b6ba534206ba4" title="SelectStream" alt="" coords="263,5,364,32"/>
+<area shape="rect" id="node5" href="$rngs_8c.html#a20f35470499c5475ec86e360a7b91df9" title="PutSeed" alt="" coords="549,24,621,51"/>
+<area shape="rect" id="node6" href="$dominion_8c.html#acb3aa60b25f4fd05eaf8bb871730f382" title="shuffle" alt="" coords="426,132,487,159"/>
+<area shape="rect" id="node9" href="$dominion_8c.html#a0f3ff052e95889a3eed993548433418b" title="drawCard" alt="" coords="274,157,353,184"/>
+<area shape="rect" id="node10" href="$dominion_8c.html#a3da90076545df89f8aa70947ddcf9efc" title="updateCoins" alt="" coords="266,208,361,235"/>
+<area shape="rect" id="node4" href="$rngs_8c.html#a5f9cd4cc749fd1f25c12b28db2e73865" title="PlantSeeds" alt="" coords="412,5,501,32"/>
+<area shape="rect" id="node7" href="$dominion_8c.html#ac70138609ef6aa6fabca57aca8681e83" title="compare" alt="" coords="549,93,621,120"/>
+<area shape="rect" id="node8" href="$rngs_8c.html#af6956caec1509dadd719fddaaf692489" title="Random" alt="" coords="550,144,621,171"/>
+</map>
