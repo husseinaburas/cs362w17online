@@ -1,9 +1,0 @@
-<map id="cardNumToName" name="cardNumToName">
-<area shape="rect" id="node2" href="$interface_8h.html#a9736e6d05f5eaf9cb89c60ab4e9caf67" title="printHand" alt="" coords="337,5,415,32"/>
-<area shape="rect" id="node3" href="$player_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="481,157,532,184"/>
-<area shape="rect" id="node4" href="$interface_8h.html#a79033647c652a00c5bb877ffe97607e7" title="printDeck" alt="" coords="337,107,415,133"/>
-<area shape="rect" id="node5" href="$interface_8h.html#a0b5c274889c795b3034800fc69321d13" title="printPlayed" alt="" coords="181,157,268,184"/>
-<area shape="rect" id="node6" href="$interface_8h.html#a81598f2a28ab5cb73e31e90d86091562" title="printDiscard" alt="" coords="179,208,271,235"/>
-<area shape="rect" id="node7" href="$interface_8h.html#a72df42ddc629927aca258391808d6457" title="printSupply" alt="" coords="181,259,268,285"/>
-<area shape="rect" id="node8" href="$interface_8h.html#a315090fac682ce17ffb8eef9c1353a95" title="executeBotTurn" alt="" coords="319,309,433,336"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="fullDeckCount" name="fullDeckCount">
-<area shape="rect" id="node2" href="$dominion_8h.html#a0685888d32af02bd5e04a4b00a19376c" title="scoreFor" alt="" coords="159,56,232,83"/>
-<area shape="rect" id="node3" href="$dominion_8h.html#a7907af8e97ca3acb180fba0850daadda" title="getWinners" alt="" coords="280,5,368,32"/>
-<area shape="rect" id="node5" href="$interface_8h.html#adcc11b1cd6ed2d555286c260d6fc113d" title="printScores" alt="" coords="280,56,368,83"/>
-<area shape="rect" id="node6" href="$playdom_8c.html#a3c04138a5bfe5d72780bb7e82a18e627" title="main" alt="" coords="299,107,349,133"/>
-<area shape="rect" id="node4" href="$player_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="416,31,467,57"/>
-</map>

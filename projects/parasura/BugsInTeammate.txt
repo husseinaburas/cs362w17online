@@ -1,9 +1,0 @@
-Aravind Parasurama
-Assignment 5
-
-Bugs in Teammate’s Code
-In William Miller’s code, bugs were found in the Adventurer and Smithy cards.
-
-The smithy card seems to discard one less cards than it should, causing an overflow later on. This is probably a simple fix with an iterator.
-
-The adventurer card appears to incorrectly trash the wrong player’s cards, affecting the player casting the card instead.

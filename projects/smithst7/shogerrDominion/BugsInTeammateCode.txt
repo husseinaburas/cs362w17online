@@ -1,7 +1,0 @@
-Bug 1: Other players do not get cards from Council Room
-
-	When testing the Council Room card refactor, it appears that other players do not receive a card as they are supposed to. The behavior is somewhat inconsistent, as it appears that some players in 6-player games do receive cards. Stepping through the program with GDB, the issue appears to stem from line 100 in dominion.c . The variable “i” is reused from a previous for-loop and not reinitialized to zero. Thus in games with five or fewer players, the end condition of the for loop is immediately triggered and the subroutine that allows other players to draw cards is skipped completely. In six or more player games, the players in positions 0-4 do not receive cards and players 5+ do.
-
-Bug 2: Smithy results in inconsistent card draw
-	
-	Calling the Smithy function should result in the current player’s hand increasing by three. However, this bug causes the player to gain widely varying numbers of cards. Tracing this bug seems to originate in line 22 of dominion.c . Similar to bug 1, it appears that the for-loop variable is not initialized to zero, causing the draw card loop to run an undefined number of times.

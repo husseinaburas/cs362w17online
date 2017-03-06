@@ -1,9 +1,0 @@
-<map id="SelectStream" name="SelectStream">
-<area shape="rect" id="node2" href="$badTestDrawCard_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="201,5,251,32"/>
-<area shape="rect" id="node3" href="$dominion_8h.html#af206ebf3de1d4111f5933eebeb6544f5" title="initializeGame" alt="" coords="174,56,278,83"/>
-<area shape="rect" id="node6" href="$interface_8h.html#a94302829f53609bc163808cdd3caa76d" title="selectKingdomCards" alt="" coords="155,107,297,133"/>
-<area shape="rect" id="node7" href="$rngs_8h.html#a5f9cd4cc749fd1f25c12b28db2e73865" title="PlantSeeds" alt="" coords="181,157,271,184"/>
-<area shape="rect" id="node8" href="$rngs_8h.html#ae5c2a668f6fdbd3c5e5044aa6cc6177f" title="TestRandom" alt="" coords="345,171,443,197"/>
-<area shape="rect" id="node4" href="$betterTestDrawCard_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="369,44,419,71"/>
-<area shape="rect" id="node5" href="$player_8c.html#a75c2e94360fa8e46050b4f66fe444d6b" title="main2" alt="" coords="365,95,423,121"/>
-</map>

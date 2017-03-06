@@ -1,35 +1,0 @@
-Author: Emiliano Colon
-Assignment 5 Bug Report
-System Under Test: grantjoDominion/dominion.c
-
-Bug 1) 
-
-Found By: unittest4
-Found In: isGameOver
-
-While unit testing the isGameOver function I found that Jordan introduced a bug in the counter that verifies if three supply piles are at 0. He changed the for loop to go to treasure_map+1 instead of 25 which checks the supply for all cards. -------------------------------------------------------------//if three supply pile are at 0, the game ends  j = 0;  for (i = 0; i < treasure_map+1; i++)  {    if (state->supplyCount[i] == 0)    {      j++;    }  }-------------------------------------------------------------Bug 2) 
-
-Found By: unittest1
-Found In: scoreFor
-
-While testing the ScoreFor function on my teammates code the function failed. It also failed on my code because it seems that this bug was on the original dominion code. The counter that gets the score from the deck is using the discardCount instead of the deckCount.----------------------------------------------------------------------------//score from deck  for (i = 0; i < state->discardCount[player]; i++)  {    if (state->deck[player][i] == curse) { score = score - 1; };    if (state->deck[player][i] == estate) { score = score + 1; };    if (state->deck[player][i] == duchy) { score = score + 3; };    if (state->deck[player][i] == province) { score = score + 6; };    if (state->deck[player][i] == great_hall) { score = score + 1; };    if (state->deck[player][i] == gardens) { score = score + ( fullDeckCount(player, 0, state) / 10 ); };  }----------------------------------------------------------------------------Bug 3) 
-
-Found By: cardtest1, randomtestcard1
-Found In: playSmithy
-
-While unit testing the smithy card, my teammates code was drawing 4 cards instead of the 3 cards smithy should draw. The for loop in the playSmithy was set to 4 instead of 3. The random tests also verified this bug.-------------------------------------------------------------//+3 Cards  for (i = 0; i < 4; i++)  {    drawCard(currentPlayer, state);  }-------------------------------------------------------------Bug 4) 
-
-Found By: cardtest2, randomtestadventurer
-Found In: playAdventurer
-
-While unit testing the adventurer card, my teammates code has a bug on the while loop. This causes the function to only draw one treasure card instead of the 2 treasure cards adventurer should draw. The random tests also verified this bug.----------------------------------------------------------------------------  while(drawntreasure<1)  {    if (state->deckCount[currentPlayer] <1) //if the deck is empty we need to shuffle discard and add to deck    {      shuffle(currentPlayer, state);    }    drawCard(currentPlayer, state);    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.    if (cardDrawn == copper || cardDrawn == silver || cardDrawn != gold )      drawntreasure++;    else    {      temphand[z]=cardDrawn;      state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).      z++;    }  }----------------------------------------------------------------------------Bug 5) 
-
-Found By: cardtest3
-Found In: playVillage 
-
-While unit testing the Village card I noticed my teammates code has a bug in the number of cards it draws. The drawcard function is called twice instead of once, so instead of drawing one card, village draws two cards. I also noticed that it is only incrementing the number of actions for the player by 1, instead of the required 2.-------------------------------------------------------------//+1 Card  drawCard(currentPlayer, state);  drawCard(currentPlayer, state);  //+2 Actions  state->numActions = state->numActions + 1;-------------------------------------------------------------Bug 6) 
-
-Found By: cardtest4, randomtestcard2
-Found In: scoreFor, fullDeckCount 
-
-Unit testing the Gardens card on my teammates code, I noticed it had exactly the same bugs as my code had. Concluding that this bug was present in the original dominion code. When testing the random tests for this card with the same seed, it gave the same errors. As previously stated, the bugs seem to be present in the original dominion code. This bug is explained in more detail in the bug fixes section.

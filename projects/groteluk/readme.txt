@@ -1,1 +1,0 @@
-groteluk readme file.

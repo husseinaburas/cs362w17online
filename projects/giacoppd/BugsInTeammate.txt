@@ -1,8 +1,0 @@
-Bugs in code:
-Adventurer:
-Still doesn’t discard itself in his version either. I don’t think anyone fixed that bug, mostly because we aren’t sure if we are supposed to. In dominion.c, line 1331/1332
-I found it by manually comparing his code to my code and seeing that it was generally the same. Then I ran my tests and checked the hands, and I was correct in my guess.
-Great Hall
-It doesn’t actually add a victory point to the player’s total. I found that bug not with any testing on my end, but I was looking at his village code and great hall is directly below it, and it seemed rather off to me. It was. Look at his useGreatHall function in dominion.c, near the bottom of the file
-Village:
-The cardEffect switch statement bit that calls his useVillage function doesn’t have a return or a break on the end, which allows it to escape that block and hit the error return at the bottom, which doesn’t cause any issues at this time but should still be fixed. Line 820 in dominion.c

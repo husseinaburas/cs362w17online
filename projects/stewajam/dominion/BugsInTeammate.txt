@@ -1,4 +1,0 @@
-Bugs in Teammates code
-
-Bug #1: drawnTreasure variable is incremented even when a Treasure card is not drawn. This is due to an extra drawntreasure++ statement outside the conditional if statement in Line 1301. This bug was found by examining the test results output and noting a discrepancy in treasure cards reported.
-Bug #2: Smithy card draws 4 cards instead of 3. This is due to the for loop max counter set to 4 instead of 3. Thus, the for loop is executed 4 times, resulting in an extra card drawn. The bug is located in line 1313. This bug was found by noting the drawCard counter being incorrectly reported when Smithy card is drawn in test results output. After further investigation, the incorrect parameter was discovered in the smithyAction function.

@@ -1,7 +1,0 @@
-For my testme.c file, I decided to make the inputChar() function print random values
-between 32 and 126 because that includes the alphabet and all the symbols required to
-staisfy the state transitions. For the inputStr() function, I thought it would be best
-to allocate all the space for the string, make an array with all the alphabet in it,
-and then tack on a null character at the end. I forgot to put the null character on at
-first and I waited for 11 million iterations before I realized it wasn't going to
-produce an error. After I fixed that however, the program exited just fine.
