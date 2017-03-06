@@ -1,0 +1,40 @@
+Breakpoint 1 at 0x40126b: file cardtest3.c, line 56.
+The program is not being run.
+Starting program: /nfs/stak/students/h/hatchimg/dominiontest/dominion/card3 
+
+Breakpoint 1, test_play_adventurer (post=0x7fffffff79a0) at cardtest3.c:56
+56		play_adventurer(post);
+Missing separate debuginfos, use: debuginfo-install glibc-2.17-106.el7_2.8.x86_64
+No line 1313 in the current file.
+Make breakpoint pending on future shared library load? (y or [n]) play_adventurer (state=0x7fffffff79a0) at dominion.c:1301
+1301	  int currentPlayer = whoseTurn(state);
+Breakpoint 2 at 0x40677e: file dominion.c, line 1313.
+Continuing.
+
+Breakpoint 2, play_adventurer (state=0x7fffffff79a0) at dominion.c:1313
+1313		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+No symbol "drawnTreasure" in current context.
+$1 = 0
+Continuing.
+
+Breakpoint 2, play_adventurer (state=0x7fffffff79a0) at dominion.c:1313
+1313		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+$2 = 1
+Continuing.
+
+Breakpoint 2, play_adventurer (state=0x7fffffff79a0) at dominion.c:1313
+1313		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+$3 = 1
+Continuing.
+
+Breakpoint 2, play_adventurer (state=0x7fffffff79a0) at dominion.c:1313
+1313		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+$4 = 1
+Continuing.
+
+Breakpoint 2, play_adventurer (state=0x7fffffff79a0) at dominion.c:1313
+1313		if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+$5 = 2
+Continuing.
+[Inferior 1 (process 15308) exited normally]
+No symbol "drawntreasure" in current context.

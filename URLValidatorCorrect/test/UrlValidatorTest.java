@@ -88,10 +88,14 @@ public class UrlValidatorTest extends TestCase {
       assertTrue(urlVal.isValid("http://www.google.com/"));
       int statusPerLine = 60;
       int printed = 0;
+      int count = 0;	//for debugging
       if (printIndex)  {
          statusPerLine = 6;
       }
       do {
+    	 count++;
+    	 //System.out.print("Count:");	//for debugging
+    	 //System.out.println(count);		//for debugging
          StringBuffer testBuffer = new StringBuffer();
          boolean expected = true;
          for (int testPartsIndexIndex = 0; testPartsIndexIndex < testPartsIndex.length; ++testPartsIndexIndex) {
@@ -284,6 +288,9 @@ public class UrlValidatorTest extends TestCase {
             }
          }
          maxIndex &= (index == (part.length - 1));
+         //System.out.print(testPartsIndexIndex);
+         //System.out.print(":");
+         //System.out.println(testPartsIndex[testPartsIndexIndex]);
       }
 
 

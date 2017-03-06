@@ -51,8 +51,15 @@ int mockCardAction(int currentPlayer, struct gameState *state){
 		if(isTreasureCard(state->discard[currentPlayer][i])){
 			//add card to hand
 			state->hand[currentPlayer][state->handCount[currentPlayer]] = state->discard[currentPlayer][i];
-			//swap last card in discard with the card we found
-			state->discard[currentPlayer][i] = state->discard[currentPlayer][state->discardCount[currentPlayer] - 1];
+			if(state->discardCount[currentPlayer] > 1){
+				//swap last card in discard with the card we found
+				state->discard[currentPlayer][i] = state->discard[currentPlayer][state->discardCount[currentPlayer] - 1];
+			}
+			else{
+				//only one card in discard
+				state->discard[currentPlayer][i] = -1;
+			}
+			
 			//add to handcount and subtract from discard
 			state->handCount[currentPlayer] = state->handCount[currentPlayer] + 1;
 			state->discardCount[currentPlayer] = state->discardCount[currentPlayer] - 1;

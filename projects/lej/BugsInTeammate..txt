@@ -1,0 +1,37 @@
+Bugs founded in Teammate: Gabriel Guzman
+
+For adventurer card function-
+In randomtestadventurer.c, sometimes there would be at least 1-3 errors,
+sometimes there would be no errors, and sometimes there would be a error
+that would lead to a segmentation fault out of 150 different runs. 
+
+Assertion passed: Adventurer Card Effect
+Assertion failed: handCount
+Assertion failed: Treasures
+
+Number of times adventurer function run successfuly is always.
+Number of cards in hand would somtimes fail.
+Number of cards in deck is correct.
+Number of treasure cards would sometimes be incorrect.
+
+For mine card function-
+In randomtest1.c, out of 150 runs I would average around 231 total errors
+for running the mine card effect, finding the hand count, and the treasure
+count.
+
+Assertion passed: Mine Card Effect
+Assertion failed: handCount
+Assertion failed: Treasures
+
+
+Assertion passed: Mine Card Effect
+Assertion passed: handCount
+Assertion failed: Treasures
+
+
+Assertion failed: Mine Card Effect
+Assertion failed: handCount
+Assertion passed: Treasures
+
+None of the tests have all successfully passed at the same time, and each time
+would resort in an assertion fail for different tests.

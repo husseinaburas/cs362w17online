@@ -404,7 +404,7 @@ int main (int argc, char** argv){
 		testPhase = rand()%3;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+		while (testChoice == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -422,7 +422,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -492,7 +493,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = (rand()%10)-5;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+		while (testChoice == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -510,7 +511,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -580,7 +582,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+		while (testChoice == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -598,7 +600,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -671,7 +674,7 @@ int main (int argc, char** argv){
 			G.hand[currentPlayer][cardPlacement] = salvager; 
 		}
 		testChoice = rand()%G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+		while (testChoice == cardPlacement){
 			testChoice = rand()%G.handCount[currentPlayer];
 		}
 		// setting phase and actions
@@ -685,9 +688,10 @@ int main (int argc, char** argv){
 			printf("=========================== INPUT %d =========================\n", j);
 			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
-			printf("Salvager Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
+			printf("Salvager Location: %d  Tested Card Location: %d Choice 1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -758,7 +762,7 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
-		while (G.hand[currentPlayer][testChoice] == cardPlacement){
+		while (testChoice == cardPlacement){
 			testChoice = rand()%(3* G.handCount[currentPlayer])-G.handCount[currentPlayer];
 		}
 		// placing the card in the players hand
@@ -776,7 +780,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -861,7 +866,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d  Buys: %d\n", G.numActions, G.phase, G.numBuys);
 			printf("Salvager Location: %d  Tested Card Location: %d  Choice1 Location: %d\n\n", cardPlacement, testLocation, testChoice);
 		}
-		result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		//result = playSalvager(&testG, currentPlayer, testChoice, testLocation);
+		result = playCard(testLocation, testChoice, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)

@@ -1,0 +1,53 @@
+Nipun Bathini
+Assignment-5 BugsInteammate.tx
+
+
+BUG(Error)#1: Although he has a refactored function called smithyFunc, he does not call it, so the original smithy code is run. I found this first, because I was confused as to why Smithy
+was passing when I thought we were asked to place bugs.
+-----------------------------------------
+case smithy:
+      //+3 Cards
+      for (i = 0; i < 3; i++)
+	
+{
+	 
+ drawCard(currentPlayer, state);
+	
+}
+			
+     
+ //discard card from hand
+      
+discardCard(handPos, currentPlayer, state, 0);
+  
+    return 0;	
+
+------------------------------------
+
+BUG #2: This bug is in smithyFunc, I temporarily changed my test to run smithyFunc, because it wasn't called as shown in Bug(error)#1. Sure enough, my test failed. There should be 3 cards drawn when smithy 
+is played but you can see that the for loop, loops 4 times instead of 3. This means 4 cards are drawn instead of 3. To fix this we just need to change 4 to 3.
+-----------------------------------------
+ for (i = 0; i < 4; i++)
+	
+{
+	  
+drawCard(currentPlayer, state);
+
+}	
+
+------------------------------------
+
+
+BUG # 3: The third bug that I found, I had to find manually, because my tests did not catch it. I found in his adventuererFunc, that if the deck count is greater than 1 the deck will shuffle. The deck should only
+shuffle the discard, if the deck count is LESS than 1, so the sign should be flipped from ‘>” to ‘<’. The reason this was missed in my test, was because there was not a test for deckCount in my card test. Which is 
+something, I missed and could bring my 93% coverage to 100%.
+-----------------------------------------
+ for (i = 0; i < 4; i++)
+	
+{
+	  
+drawCard(currentPlayer, state);
+
+}	
+
+------------------------------------

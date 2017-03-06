@@ -668,7 +668,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      playAdventurer(state);
+      playAdventurer(state, currentPlayer, temphand);
       return 0;
 
     case council_room:
@@ -1277,14 +1277,12 @@ int updateCoins(int player, struct gameState *state, int bonus)
 }
 
 // refactored code to implement adventurer card
-void playAdventurer(struct gameState *state) {
+void playAdventurer(struct gameState *state, int currentPlayer, int *temphand) {
     int drawntreasure = 3;
-    int currentPlayer = whoseTurn(state);
     int cardDrawn;
-    int temphand[MAX_HAND];
     int z = 0;
 
-    while(drawntreasure<2){
+    while(drawntreasure<1){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
             shuffle(currentPlayer, state);
         }
@@ -1327,8 +1325,8 @@ void playVillage(struct gameState *state, int handPos) {
   drawCard(currentPlayer, state);
 
   //+2 Actions
-  //	state->numActions = state->numActions + 2; //commented out because this is *CORRECT* adding only 1 is a bug
-  state->numActions = state->numActions + 2; //*** ADDED BUG ****
+  //	state->numActions = state->numActions + 2;
+  state->numActions = state->numActions + 1;
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);

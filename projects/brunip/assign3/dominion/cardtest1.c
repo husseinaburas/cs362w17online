@@ -31,7 +31,6 @@ int main() {
 	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
 			sea_hag, tribute, smithy, council_room};
 
-			
 	// initialize a game state and player cards
 	initializeGame(numPlayers, k, seed, &G);
 

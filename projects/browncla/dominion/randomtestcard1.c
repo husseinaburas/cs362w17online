@@ -403,7 +403,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -486,7 +487,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -570,7 +572,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -657,7 +660,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)

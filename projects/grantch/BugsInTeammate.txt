@@ -1,0 +1,180 @@
+Christopher Grant
+CS-362-online
+Winter 2017
+Project - 5
+
+Bugs in Team Mate Code
+Testing code from my team mate Craig Allan Reitan (reitanc).
+In running both the unit tests and randomized tests I was able to find bugs in two different functions; in the Adventurer function and the Smithy function. (also, a possible bug in great hall but not 100% sure on that one. I will go into more detail later on this).
+Bugs in Adventurer:
+Unit tests:
+***START OF ADVENTURER TESTS***
+playAdventurer() error 1
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2
+
+playAdventurer() error 2
+2nd to last card in hand is not a treasure
+Num of Players: 2
+
+playAdventurer() error 3
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3
+
+playAdventurer() error 4
+2nd to last card in hand is not a treasure
+Num of Players: 3
+
+playAdventurer() error 5
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4
+
+playAdventurer() error 6
+2nd to last card in hand is not a treasure
+Num of Players: 4
+
+***END OF ADVENTURER TESTS***
+
+The randomized testing also found this problem. I will only include a few sample lines of its error output because it outputted 20,000 errors but that is expected because each test found two errors and I ran 10,000 random tests. Here is a sample of the output of random testing for adventure (the full output can be found in ransomtestadventurer.out):
+playAdventurer() error 19996
+discard: 11
+new deck: 263 old deck: 275
+Diff (if two tres cards have been put in hand): 10
+Num of Players: 3 test number 9998
+
+playAdventurer() error 19997
+player 1 hand should have 7 cards but has 6 cards
+Num of Players: 2 test number 9999
+
+playAdventurer() error 19998
+discard: 0
+new deck: 408 old deck: 409
+Diff (if two tres cards have been put in hand): -1
+Num of Players: 2 test number 9999
+
+playAdventurer() error 19999
+player 1 hand should have 7 cards but has 6 cards
+Num of Players: 2 test number 10000
+
+playAdventurer() error 20000
+discard: 2
+new deck: 185 old deck: 188
+Diff (if two tres cards have been put in hand): 1
+Num of Players: 2 test number 10000
+
+***END OF ADVENTURER TESTS***
+
+In looking over the function’s code in the dominion.c file it was quick to see that the main while-loop is off by one. This card is meant to draw two cards. while(drawntreasure<1) needs to be changed to while(drawntreasure<2).
+
+Bugs in Smithy:
+
+Unit tests:
+
+***START OF SMITHY TESTS***
+playSmithy() error 1
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2 Hand pos: 0
+
+playSmithy() error 2
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2 Hand pos: 1
+
+playSmithy() error 3
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2 Hand pos: 2
+
+playSmithy() error 4
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2 Hand pos: 3
+
+playSmithy() error 5
+player 1 hand should have 7 but has 6 cards
+Num of Players: 2 Hand pos: 4
+
+playSmithy() error 6
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3 Hand pos: 0
+
+playSmithy() error 7
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3 Hand pos: 1
+
+playSmithy() error 8
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3 Hand pos: 2
+
+playSmithy() error 9
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3 Hand pos: 3
+
+playSmithy() error 10
+player 1 hand should have 7 but has 6 cards
+Num of Players: 3 Hand pos: 4
+
+playSmithy() error 11
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4 Hand pos: 0
+
+playSmithy() error 12
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4 Hand pos: 1
+
+playSmithy() error 13
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4 Hand pos: 2
+
+playSmithy() error 14
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4 Hand pos: 3
+
+playSmithy() error 15
+player 1 hand should have 7 but has 6 cards
+Num of Players: 4 Hand pos: 4
+
+***END OF SMITHY TESTS***
+
+The randomized testing also found this problem. I will only include a few sample lines of its error output because it outputted 10,021 errors. Again, with 10,000 random tests it is expected to have that many outputs because the unit tests found them as well. Here is a sample of the output of random testing for Smithy (the full output can be found in ransomtestcard1.out):
+playSmithy() error 9994
+player 1 hand should have 37 but has 36 cards
+Num of Players: 2 Hand pos: 7 test number 9972
+
+playSmithy() error 9995
+player 1 hand should have 109 but has 108 cards
+Num of Players: 3 Hand pos: 33 test number 9973
+
+playSmithy() error 9996
+player 1 hand should have 322 but has 321 cards
+Num of Players: 3 Hand pos: 63 test number 9974
+
+playSmithy() error 9997
+player 1 hand should have 287 but has 286 cards
+Num of Players: 4 Hand pos: 239 test number 9975
+
+playSmithy() error 9998
+player 1 hand should have 60 but has 59 cards
+Num of Players: 3 Hand pos: 11 test number 9976
+
+playSmithy() error 9999
+player 1 hand should have 298 but has 297 cards
+Num of Players: 2 Hand pos: 53 test number 9977
+
+playSmithy() error 10000
+player 1 hand should have 210 but has 209 cards
+Num of Players: 2 Hand pos: 137 test number 9978
+
+
+In looking at the code for playSmithy() in the dominion code it was quick to see that it was an off by one error again. This card should draw 3 cards but it is only getting two. After looking at the function its for-loop is for (i = 0; i < 2; i++), when it should be for (i = 0; i < 3; i++).
+
+Possible bug in great hall:
+
+***START OF GREAT HALL TESTS***
+
+GreatHall() error 1
+Player 2 hand was modified when player 1 was updated
+Num of Players: 4 test number 469
+
+***END OF GREAT HALL TESTS***
+
+Now this only happens in about 1/10,000 tests. I am not 100% if this is an edge case or a fault in my test. I have run it a few times and it usually happens in the random test at least once each run of 10,000 random test. (I think for an improvement for this test I will also have it output the all the conditions the test was in at that time).
+
+Update: This was a fault in my test. My random hand size was going to 500-502 when the max hand size was 500. This was causing it to write into player twos memory. I have fixed this and this is no longer a problem.

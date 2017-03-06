@@ -45,7 +45,6 @@ int testSmithy() {
 
     int deckSize;
     int handSize;
-    int discardSize;
 
     
 
@@ -54,19 +53,16 @@ int testSmithy() {
     for (int currentPlayer = 0; currentPlayer < numPlayers; currentPlayer++) {
       deckSize = rand() % DECKSIZE;
       handSize = rand() % HANDSIZE;
-      discardSize = rand() % DECKSIZE;
 
       //set player's deck and hand size
       G.deckCount[currentPlayer] = deckSize;
       G.handCount[currentPlayer] = handSize;
-      G.discardCount[currentPlayer] = discardSize;
 
 
       int deckCount = G.deckCount[currentPlayer];
       int handCount = G.handCount[currentPlayer];
-      int discardCount = G.discardCount[currentPlayer];
       
-      printf ("Player #%d deckCount = %d, handCount = %d, discardCount = %d\n", currentPlayer+1, deckCount, handCount, discardCount);
+      printf ("Player #%d deckCount = %d, handCount = %d\n", currentPlayer+1, deckCount, handCount);
       
       //run Adventurer code
       printf("PLAYING SMITHY ON PLAYER %d\n", currentPlayer+1);
@@ -74,18 +70,17 @@ int testSmithy() {
 
       int deckCountAfter = G.deckCount[currentPlayer];
       int handCountAfter = G.handCount[currentPlayer];
-      int discardCountAfter = G.discardCount[currentPlayer];
-      printf ("Player #%d deckCount = %d, handCount = %d, discardCount = %d\n\n", currentPlayer+1, deckCountAfter, handCountAfter, discardCountAfter);
+      printf ("Player #%d deckCount = %d, handCount = %d\n\n", currentPlayer+1, deckCountAfter, handCountAfter);
       if (deckCount >= 3) {
         asserttrue(handCountAfter == handCount+3, "Should have drawn three cards\n");
       }
-      else if ((deckCount == 2 && discardCount < 1) || (deckCount == 0 && discardCount == 2)) {
+      else if (deckCount == 2) {
         asserttrue(handCountAfter == handCount+2, "Should have drawn two cards\n");
       }
-      else if ((deckCount == 1 && discardCount < 2) || (deckCount == 0 && discardCount == 1)) {
-        asserttrue(handCountAfter == handCount+1, "Should have drawn one card\n");
+      else if (deckCount == 1) {
+        asserttrue(handCountAfter == handCount+1, "Should have drawn one cards\n");
       }
-      else if (deckCount == 0 && discardCount == 0) {
+      else if (deckCount == 0) {
         asserttrue(handCountAfter == handCount, "Should have drawn no cards\n");
       }
     }

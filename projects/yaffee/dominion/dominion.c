@@ -1198,7 +1198,7 @@ int adventurerCard(struct gameState *state, int drawntreasure, int currentPlayer
 int smithyCard(struct gameState *state, int currentPlayer, int handPos) {
   //draw cards
   int i;
-  for(i = 1; i < 3; i++) {
+  for(i = 0; i < 3; i++) {
     drawCard(currentPlayer, state);
   }
   //discard smithy card

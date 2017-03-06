@@ -1247,7 +1247,7 @@ int playAdventurer(struct gameState *state, int handPos)
         }
 
         //if the deck is empty and there are cards in the discount pile, we need to shuffle discard and add to deck
-        if (state->deckCount[currentPlayer] < 1 && state->discardCount[currentPlayer] > 0){
+        if (state->deckCount[currentPlayer] < 1 && state->discardCount[currentPlayer] > 1){
             shuffle(currentPlayer, state);
         }
 

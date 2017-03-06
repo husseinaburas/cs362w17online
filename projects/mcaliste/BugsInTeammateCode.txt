@@ -1,0 +1,16 @@
+mcaliste
+
+Bugs In Teammate's Code
+
+My teammate introduced the same bug into Smithy as I did:  changing the loop condition
+to draw four cards instead of three:  for (i = 0; i <= 3; i++)
+
+Similarly, my teammate also changed Council Room to make the player draw five cards
+instead of four.  However, they again changed the loop:  for (i = 0; i <= 4; i++)
+
+My unit test for Adventurer did not catch the bug my teammate introduced that caused
+the player to draw three treasure cards instead of two, as it only checked that the
+player had two additional treasure cards.  My random test had additional checks for
+an increase of one and two treasure cards in the player’s hand by comparing their hand
+count before and after playing Adventurer.  
+The random test found the bug in the loop: while (drawntreasure <= 2)

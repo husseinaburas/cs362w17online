@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
 	//test
 	result = playCard(0, 0, 0, 0, &G);
 	printf("testing whether card correctly plays \n");
-	asserttrue(result == 0);
+	asserttrue(result == -1);
 	printf("testing whether the turn still belongs to the same player\n");
 	asserttrue(whoseTurn == G.whoseTurn);
 	printf("testing player1 hand count\n");
