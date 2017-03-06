@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
             g1.deckCount[currPlayer]++;
         }
         //Play the Adventurer card in the first players hand
-        playAdventurer(&g1, 0 , 0);
+        playAdventurer(&g1, 0, 0);
 
         //2 - Test to see if curpurse is up
         if(assertTrue((g1.discard[currPlayer][0] == cutpurse), 2) == 0) { testsFailed++; }
