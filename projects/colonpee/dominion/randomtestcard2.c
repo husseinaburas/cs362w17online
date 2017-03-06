@@ -45,7 +45,7 @@ int testGardens() {
 
     int deckSize;
     int handSize;
-    int gardenSize;
+    int gardens;
     int discardSize;
 
     
@@ -55,7 +55,7 @@ int testGardens() {
     for (int currentPlayer = 0; currentPlayer < numPlayers; currentPlayer++) {
       deckSize = rand() % DECKSIZE;
       handSize = rand() % HANDSIZE;
-      gardenSize = rand() % DECKSIZE;
+      gardens = rand() % DECKSIZE;
       discardSize = rand() % DECKSIZE;
 
       //set player's deck and hand size
@@ -78,11 +78,6 @@ int testGardens() {
         G.hand[currentPlayer][l] = estate;
       }
 
-      //making the discardPile worthless cards
-      for (int g = 0; g <discardSize; g++) {
-        G.discard[currentPlayer][g] = -1;
-      }
-
       int score = scoreFor(currentPlayer, &G);
 
       printf ("Player #%d deckCount = %d, handCount = %d, discardCount = %d\n", currentPlayer+1, G.deckCount[currentPlayer], G.handCount[currentPlayer], G.discardCount[currentPlayer]);
@@ -93,13 +88,12 @@ int testGardens() {
       asserttrue(score == firstScore, correctScore);
 
       //add gardens to deck
-      for (int x = 0; x < gardenSize; x++) {
-        G.deck[currentPlayer][G.deckCount[currentPlayer]] = gardens;
+      for (int x = 0; x < gardens; x++) {
+        G.hand[currentPlayer][G.deckCount[currentPlayer]] = gardens;
         G.deckCount[currentPlayer]++;
       }
       
-      
-      printf ("\nAdded %d gardens to deck...\n\n", gardenSize);
+      printf ("\nAdded %d gardens to deck...\n\n", gardens);
 
       printf ("Player #%d deckCount = %d, handCount = %d, discardCount = %d\n", currentPlayer+1, G.deckCount[currentPlayer], G.handCount[currentPlayer], G.discardCount[currentPlayer]);
 
@@ -110,7 +104,7 @@ int testGardens() {
       printf ("Current Score = %d\n\n", scoreAfter);
       int fullCount = G.deckCount[currentPlayer] + G.handCount[currentPlayer] + G.discardCount[currentPlayer];
       snprintf(correctScore, 100, "Score should be %d", (firstScore + fullCount/10));
-      asserttrue(scoreAfter == (firstScore + (gardenSize * (fullCount/10))), correctScore);
+      asserttrue(scoreAfter == (firstScore + fullCount/10), correctScore);
 
     }
   }

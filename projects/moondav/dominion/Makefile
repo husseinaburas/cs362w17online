@@ -45,10 +45,6 @@ cardtest4: cardtest4.c dominion.o rngs.o unittest1.h
 testAll: dominion.o testSuite.c
 	gcc -o testSuite testSuite.c -g  dominion.o rngs.o $(CFLAGS)
 
-testsmithy: cardtest1 randomtestcard1
-	./cardtest1 >> testsmithy.out
-	./randomtestcard1 3 >> testsmithy.out
-
 unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
 	./unittest1 >> unittestresult.out
 	./unittest2 >> unittestresult.out
@@ -124,4 +120,4 @@ player: player.c interface.o
 all: playdom player
 
 clean:
-	rm -f *.o *.out badTestDrawCard cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard2 randomtestcard1 testDrawCard unittest1 unittest2 unittest3 unittest4 playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so
+	rm -f *.o *.out playdom.exe playdom test.exe test player player.exe testInit testInit.exe *.gcov *.gcda *.gcno *.so

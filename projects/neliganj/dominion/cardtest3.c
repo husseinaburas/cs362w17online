@@ -3,7 +3,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <assert.h>
-#include <stdlib.h>
 #include "rngs.h"
 
 
@@ -15,8 +14,7 @@ int main() {
 	int testPassed = 1;
     int seed = 1000;
     int numPlayer = 2;
-    int p, r, handCount, handPos, temp_actions;
-	int temp_hand_count;
+    int p, r, handCount, handPos, temp_actions, temp_hand_count;
     int k[10] = {adventurer, council_room, feast, gardens, mine
             , remodel, smithy, village, baron, great_hall};
     struct gameState G;
@@ -37,8 +35,6 @@ int main() {
 				memset(&G, 23, sizeof(struct gameState));   // clear the game state
 				r = initializeGame(numPlayer, k, seed, &G); // initialize a new game
 				G.handCount[p] = handCount;
-				G.deckCount[p] = rand() % 15;
-				G.discardCount[p] = (rand() % 15) + 1;
 
 				G.numActions = handPos;  // set varying number of temp_actions
 
@@ -51,7 +47,7 @@ int main() {
 					printf("Expected hand count: %d; actual: %d\n\n", temp_hand_count, G.handCount[p]);
 				#endif
 
-				if ( (temp_actions + 2 != G.numActions) || (temp_hand_count != G.handCount[p]) )
+				if ( ! ( (temp_actions + 2 == G.numActions) && (temp_hand_count == G.handCount[p]) ) )
 				{
 					testPassed = 0;
 				}

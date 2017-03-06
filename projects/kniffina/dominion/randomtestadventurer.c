@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
             g1.deckCount[currPlayer]++;
         }
         //Play the Adventurer card in the first players hand
-        playAdventurer(&g1);
+        playAdventurer(&g1, 0 , 0);
 
         //2 - Test to see if curpurse is up
         if(assertTrue((g1.discard[currPlayer][0] == cutpurse), 2) == 0) { testsFailed++; }
@@ -84,14 +84,14 @@ int main(int argc, char* argv[]) {
         int numberTreasureOld = 0;
         for (j = 0; j < g2.handCount[currPlayer]; j++) {
             if (g2.hand[currPlayer][j] == gold || g2.hand[currPlayer][j] == silver ||
-                    g2.hand[currPlayer][j] == copper)
+                g2.hand[currPlayer][j] == copper)
                 numberTreasureOld++;
         }
 
         int numberTreasureNew = 0;
         for (j = 0; j < g1.handCount[currPlayer]; j++) {
             if (g1.hand[currPlayer][j] == gold || g1.hand[currPlayer][j] == silver ||
-                    g1.hand[currPlayer][j] == copper)
+                g1.hand[currPlayer][j] == copper)
                 numberTreasureNew++;
         }
 
@@ -113,17 +113,17 @@ int main(int argc, char* argv[]) {
 
                 //9 - Test that players have same as when game initialized
                 if(assertTrue((g1.handCount[j] == 0), 9)  == 0) { testsFailed++; }
-                    printf("Player %d has a handcount of 0\n", j + 1);
-                }
-                else {
-                    for (y = 0; y < g1.handCount[j]; y++) {
-                        //10 - test that hands are all the same
-                        if(assertTrue((g1.hand[j][y] == g2.hand[j][y]), 10) == 0) { testsFailed++; }
-                    }
-                }
-
-
+                printf("Player %d has a handcount of 0\n", j + 1);
             }
+            else {
+                for (y = 0; y < g1.handCount[j]; y++) {
+                    //10 - test that hands are all the same
+                    if(assertTrue((g1.hand[j][y] == g2.hand[j][y]), 10) == 0) { testsFailed++; }
+                }
+            }
+
+
+        }
         //11 - Test that players hand has 2 more cards
         if(assertTrue((g1.handCount[currPlayer] == g2.handCount[currPlayer] + 2), 11) == 0) { testsFailed++; }
 
@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
         if(assertTrue((g1.hand[currPlayer][count - 2] == copper || g1.hand[currPlayer][count - 2] == silver ||
                        g1.hand[currPlayer][count - 2] == gold), 13) == 0) { testsFailed++; }
 
-        }
+    }
 
 
     return 0;

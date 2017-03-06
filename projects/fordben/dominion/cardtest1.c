@@ -17,7 +17,6 @@
 void placeCardInHand(struct gameState *state, int player,int card, int handPos){
 	
 	state->hand[player][handPos] = card;
-	state->handCount[player]++;
 	
 	return;
 }
@@ -41,7 +40,6 @@ int main(){
 	const int gameSeed = 5;
 	const int handPos = 0;
 	int testsPassed = 1;
-	int returnVal =-1;
 	
 	
 	printf("----------------- Testing Card: %s ----------------\n", TESTCARD);
@@ -49,12 +47,11 @@ int main(){
 	//Init game
 	initializeGame(players,kCards,gameSeed,&game);
 	
-	//place smithy in players hand
-	placeCardInHand(&game,1,smithy,handPos);
-	
 	//Save the game state for test
 	memcpy(&testGame, &game, sizeof(struct gameState));
 	
+	//place smithy in players hand
+	placeCardInHand(&game,1,smithy,handPos);
 	
 	//play the smithy card
 	playSmithy(1,&game,handPos);
@@ -71,9 +68,14 @@ int main(){
 		printf("TEST FAILED - Deck count did not decrease by 3\n");
 		testsPassed = 0;
 	}
+		//Test discard count, shoud go up by one
+	if(game.discardCount[1] != (testGame.discardCount[1] + 1)){
+		printf("TEST FAILED - Discard count did not increase by 1\n");
+		testsPassed = 0;
+	}
 	
 	
-	//Test Played Count
+		//Test Played Count
 	//Should go up by 1
 	if(game.playedCardCount != (testGame.playedCardCount+1)){
 		printf("TEST FAILED - Played count didnt increase by 1\n");

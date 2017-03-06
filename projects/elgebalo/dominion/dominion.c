@@ -1286,7 +1286,7 @@ int playAdventurer (struct gameState *state, int currentPlayer) {
   // this is the counter for the temp hand
   int z = 0;
 
-  while(drawntreasure<4) {
+  while(drawntreasure<2) { //fixed bug here
     if (state->deckCount[currentPlayer] <1) {
       //if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);

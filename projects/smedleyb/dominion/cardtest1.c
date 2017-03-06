@@ -42,15 +42,14 @@ int main(){
    */
 
   // CASE 1: smithy card will be discarded
-  printf("TEST 1 - pass if smithy card was discarded to playedCards pile\n");
-  if (s->playedCards[0] == smithy)
+  printf("TEST 1 - pass if smithy card was discarded to discard pile\n");
+  if (s->discard[player][0] == smithy)
     printf("TEST 1 - SUCCESS\n");
   else
     printf("TEST 1 - FAIL\n");
 
   // CASE 2: player now has (5-1+3=) 7 cards in hand
   printf("TEST 2 - pass if player has 7 cards in hand; started w/ 5\n");
-  printf("handCount: %d\n", s->handCount[player]);
   if (s->handCount[player] == 7)
     printf("TEST 2 - SUCCESS\n");
   else
@@ -58,7 +57,7 @@ int main(){
 
   // CASE 3: discard count is 1
   printf("TEST 3 - pass if discard count is 1\n");
-  if (s->playedCardCount == 1)
+  if (s->discardCount[player] == 1)
     printf("TEST 3 - SUCCESS\n");
   else
     printf("TEST 3 - FAIL\n");

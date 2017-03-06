@@ -1,4 +1,3 @@
-Ben Ford Dominion
-User: ford2bm
+User: fordben
 Email: fordben@oregonstate.edu
 README File For Dominion
