@@ -17,7 +17,10 @@
 #include "dominion_helpers.h"
 #include "rngs.h"
 
-int testing_assert(int expression);
+int testing_assert(int expression, int should_print);
+
+long sucesses = 0;
+long failures = 0;
 
 int main(int argc, char** argv) {
     struct gameState G, G_copy;
@@ -42,25 +45,39 @@ int main(int argc, char** argv) {
 
             playSmithy(&G, i);
 
-            testing_assert(G.handCount[l] == G_copy.handCount[l]);
+            testing_assert(G.handCount[l] == G_copy.handCount[l], 0);
 
             for(int j = 0 ; j < arbitrary_hand_count_max ; j++){
-                testing_assert((G.hand[l][j] >= curse) && (G.hand[l][j] <= treasure_map));
-                testing_assert((G_copy.hand[l][j] >= curse) && (G_copy.hand[l][j] <= treasure_map));
+                testing_assert((G.hand[l][j] >= curse) && (G.hand[l][j] <= treasure_map), 0);
+                testing_assert((G_copy.hand[l][j] >= curse) && (G_copy.hand[l][j] <= treasure_map), 0);
             }
 
         }
     }
     
+    printf("Run complete!\n");
+    printf("SUCCESSES: %ld\n", sucesses);
+    
+    if(failures > 0){
+        printf("Some tests failed!!!\n");
+        printf("FAILURES: %ld\n", failures);
+    }
+    
     return (EXIT_SUCCESS);
 }
 
-int testing_assert(int expression) {
+int testing_assert(int expression, int should_print) {
     if (expression) {
-        printf("TEST SUCCEEDED!\n");
+        if(should_print){
+            printf("TEST SUCCEEDED!\n");
+        }
+        sucesses++;
         return 1;
     } else {
-        printf("TEST FAILED!\n");
+        if(should_print){
+            printf("TEST FAILED!\n");
+        }
+        failures++;
         return 0;
     }
 }

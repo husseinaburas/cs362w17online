@@ -5,6 +5,11 @@
 #include <string.h>
 #include <assert.h>
 
+//to mimic booleans
+#define BOOL int
+#define TRUE 1
+#define FALSE 0
+
 //color output based on:
 //http://stackoverflow.com/questions/3219393/stdlib-and-colored-output-in-c
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -18,8 +23,29 @@
 //number of times random tests should run
 #define NUM_RANDOM_ITERATIONS 1000
 
+#define TOTAL_NUM_KINGDOM_CARDS 20
+
 //global variable for number of test failed
-int numTestsFailed = 0;
+int numIterationsPassed = 0;
+BOOL isCurrentIterationPassing = TRUE;
+int numTotalAssertions = 0;
+int numAssertionsPassed = 0;
+
+//updates global variables after assertion
+void assertFinished(BOOL passed){
+	if(passed){
+		numAssertionsPassed++;
+	}
+	else{
+		isCurrentIterationPassing = FALSE;
+	}
+	numTotalAssertions++;
+}
+
+//return percentage of passed tests
+double percentagePassed(int numPassed, int numTotal){
+	return 100.0 * numPassed / numTotal;
+}
 
 //prints error message if test fails
 //otherwise prints that test passed
@@ -27,16 +53,16 @@ int numTestsFailed = 0;
 void custom_assert(int test, char *testName){
 	if(!test){
 		printf(ANSI_COLOR_RED "%s FAILED!\n" ANSI_COLOR_RESET, testName);
-		numTestsFailed++;
 		if(ASSERT_SHOULD_EXIT){
 			exit(1);
 		}
 	}
 	#if ASSERT_PRINT_SUCCESS
-	else{
-		printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
-	}
+		else{
+			printf(ANSI_COLOR_GREEN "%s PASSED!\n" ANSI_COLOR_RESET, testName);
+		}
 	#endif
+	assertFinished(test);
 }
 
 //returns a random integer between min and max (inclusive)
@@ -65,9 +91,11 @@ int areGameStatesEqual(struct gameState *g1, struct gameState *g2){
 
 //prints differences in integer values if they are different
 void printIntDiff(int d1, int d2, char *fieldName){
-	if(d1 != d2){
+	BOOL passed = (d1 == d2);
+	if(passed == FALSE){
 		printf("%s are different. Mock %d, Real %d\n", fieldName, d1, d2);
 	}
+	assertFinished(passed);
 }
 
 
@@ -139,7 +167,7 @@ void printGameStateDifferences(struct gameState *mock, struct gameState *real){
 
 //fill kingdom cards holder with random kingdom cards
 void pickRandomKindomCards(int kingdomCardsHolder[10]){
-	int kingdomCards[20] = {
+	int kingdomCards[TOTAL_NUM_KINGDOM_CARDS] = {
 		   adventurer,
 		   /* If no/only 1 treasure found, stop when full deck seen */
 		   council_room,
@@ -165,9 +193,17 @@ void pickRandomKindomCards(int kingdomCardsHolder[10]){
 		   sea_hag,
 		   treasure_map
 		  };
+
+	//shuffle kingdom cards, and then pick first 10
 	int i;
+	for(i = 0; i < TOTAL_NUM_KINGDOM_CARDS; ++i){
+		int randIndex = randIntInclusive(0, TOTAL_NUM_KINGDOM_CARDS - 1);
+		int temp = kingdomCards[i];
+		kingdomCards[i] = kingdomCards[randIndex];
+		kingdomCards[randIndex] = temp;
+	}  
 	for(i = 0; i < 10; ++i){
-		kingdomCardsHolder[i] = kingdomCards[randIntInclusive(0, 20 - 1)];
+		kingdomCardsHolder[i] = kingdomCards[i];
 	}
 }
 
@@ -214,7 +250,7 @@ uint intToUint(int d){
 
 //returns 0 based index of random player in gameState
 int pickRandomPlayer(struct gameState *g){
-	return randIntInclusive(0, g->numPlayers);
+	return randIntInclusive(0, g->numPlayers - 1);
 }
 
 //takes 0 based index of player and gameState
@@ -249,6 +285,7 @@ void runRandomTests(){
 
 	int i;
 	for(i = 0; i < NUM_RANDOM_ITERATIONS; ++i){
+		isCurrentIterationPassing = TRUE;
 		initializeRandomGameState(&originalState, kingdomCardsHolder);
 		//pick random player to play the card, and make sure the player
 		//has the card to be played, and get the index of it
@@ -275,6 +312,9 @@ void runRandomTests(){
 		if(!equal){
 			printGameStateDifferences(&mockState, &postState);
 		}
+		if(isCurrentIterationPassing){
+			numIterationsPassed++;
+		}
 	}
 }
 
@@ -299,7 +339,7 @@ int main(int argc, char const *argv[]){
 
 	runRandomTests();
 
-	printf("\nNumber of random tests %d, number of failures %d\n", NUM_RANDOM_ITERATIONS, numTestsFailed);
+	printf("\nNumber of iterations passed %d/%d (%.2f%%)\nNumber of assertions passed %d/%d (%.2f%%)\n", numIterationsPassed, NUM_RANDOM_ITERATIONS, percentagePassed(numIterationsPassed, NUM_RANDOM_ITERATIONS), numAssertionsPassed, numTotalAssertions, percentagePassed(numAssertionsPassed, numTotalAssertions));
 
 	return 0;
 }

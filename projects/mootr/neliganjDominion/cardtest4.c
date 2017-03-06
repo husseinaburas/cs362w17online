@@ -39,7 +39,7 @@ int main(int argv, char** argc) {
   testState.hand[0][3] = adventurer;
   testState.hand[0][4] = adventurer;
   // Playing feast
-  playFeast(&testState, 0, smithy);
+  playFeast(&testState, smithy);
 
   // Checking discard count to ensure the card was not discarded
   UNIT_ASSERT((testState.deckCount[0] == copyState.deckCount[0]),
@@ -57,7 +57,7 @@ int main(int argv, char** argc) {
 
   // Testing if Smithy was actually acquire using feast
   int foundSmithy = 0;
-	int i;
+  int i;
   for (i = 0; i < 10; i++) {
     if (testState.hand[0][i] == smithy) {
       foundSmithy = 1;

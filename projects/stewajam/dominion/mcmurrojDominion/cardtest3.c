@@ -1,230 +1,135 @@
+/***************************************
+* Name: James Stewart
+* Date: 1/31/2017
+* File: cardtest1.c
+* Description: Tests the Feast card
+***************************************/
+
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "dominion.h"
 #include "dominion_helpers.h"
+#include "rngs.h"
+#include "unittest.h"
 
+int main() {
+    int testResult = FAIL;
+    int observed;
+    int expected;
+    int seed = 5;
+    int numPlayers = 2;
+    int currentPlayer = 0;
+    int choice1 = 0, choice2 = 0, choice3 = 0;
+    struct gameState G, testG;
+    int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+            sea_hag, tribute, smithy, council_room};
+    int testCard = feast;
+    char *testCardName = "Feast";
+    int card1, card2, card3, card4, card5;
+    int i = 0;
 
-// Unit test for villageAction found in dominion.c
-// Funciton call: int villageAction(int currentPlayer, int handPos, struct gameState *state)
-// Note: villageAction function currently starts line 1323 from dominion.c
+    // initialize a game state and player cards
+    initializeGame(numPlayers, k, seed, &G);
 
-void testvillageAction() {
-  printf("----TEST villageAction Function-----\n");
+    printf("\n\n----------------- TESTING %s CARD -----------------\n\n", testCardName);
 
-  int k[10] = {adventurer, gardens, feast, village, minion, mine, steward,
-        sea_hag, tribute, smithy};
-  int seed = 44;
-  int playerZero = 0;
+    printf("TEST 1: Play %s card.\n\n", testCardName);
+    currentPlayer = 0;
+    choice1 = mine;
+    card1 = testCard;
+    card2 = silver;
+    card3 = gold;
+    card4 = adventurer;
+    card5 = council_room;
+    G.hand[currentPlayer][0] = card1;
+    G.hand[currentPlayer][1] = card2;
+    G.hand[currentPlayer][2] = card3;
+    G.hand[currentPlayer][3] = card4;
+    G.hand[currentPlayer][4] = card5;
+    G.handCount[currentPlayer] = 5;
 
-//---GS1 TEST---- Test that we Draw 1 cards from draw, and discard 1, so hand will have 5 cards.
-  struct gameState *GS1 = newGame();
-  initializeGame(2,k,seed,GS1);
-  GS1->handCount[playerZero] = 5;
-  GS1->hand[playerZero][0] = village;  
-  GS1->hand[playerZero][1] = adventurer;  
-  GS1->hand[playerZero][2] = smithy;  
-  GS1->hand[playerZero][3] = tribute;  
-  GS1->hand[playerZero][4] = gardens; 
-  GS1->deckCount[playerZero] = 5;
-  GS1->deck[playerZero][0] = estate;  
-  GS1->deck[playerZero][1] = silver;  
-  GS1->deck[playerZero][2] = great_hall;  
-  GS1->deck[playerZero][3] = copper;  
-  GS1->deck[playerZero][4] = duchy;  
-  GS1->discardCount[playerZero] = 1;
-  GS1->discard[playerZero][0] = feast;
-
-//---GS2 TEST---- Verify the number of actions increases by 2.
-  struct gameState *GS2 = newGame();
-  initializeGame(2,k,seed,GS2);
-  GS2->numActions = 2;   //Number of current actions set to 2
-  GS2->handCount[playerZero] = 5;
-  GS2->hand[playerZero][0] = village;  
-  GS2->hand[playerZero][1] = adventurer;  
-  GS2->hand[playerZero][2] = smithy;  
-  GS2->hand[playerZero][3] = tribute;  
-  GS2->hand[playerZero][4] = gardens; 
-  GS2->deckCount[playerZero] = 5;
-  GS2->deck[playerZero][0] = estate;  
-  GS2->deck[playerZero][1] = silver;  
-  GS2->deck[playerZero][2] = great_hall;  
-  GS2->deck[playerZero][3] = copper;  
-  GS2->deck[playerZero][4] = duchy;  
-  GS2->discardCount[playerZero] = 1;
-  GS2->discard[playerZero][0] = feast;
-
-//---GS3 TEST---- Verify village card is in the discard pile
-  struct gameState *GS3 = newGame();
-  initializeGame(2,k,seed,GS3);
-  GS3->numActions = 2;   //Number of current actions set to 2
-  GS3->handCount[playerZero] = 5;
-  GS3->hand[playerZero][0] = village;  
-  GS3->hand[playerZero][1] = adventurer;  
-  GS3->hand[playerZero][2] = smithy;  
-  GS3->hand[playerZero][3] = tribute;  
-  GS3->hand[playerZero][4] = gardens; 
-  GS3->deckCount[playerZero] = 5;
-  GS3->deck[playerZero][0] = estate;  
-  GS3->deck[playerZero][1] = silver;  
-  GS3->deck[playerZero][2] = great_hall;  
-  GS3->deck[playerZero][3] = copper;  
-  GS3->deck[playerZero][4] = duchy;  
-  GS3->discardCount[playerZero] = 1;
-  GS3->discard[playerZero][0] = feast;
-
-//---GS4 TEST---- Verify village card is in the discard pile
-  struct gameState *GS4 = newGame();
-  initializeGame(2,k,seed,GS4);
-  GS4->handCount[playerZero] = 5;
-  GS4->hand[playerZero][0] = village;  
-  GS4->hand[playerZero][1] = adventurer;  
-  GS4->hand[playerZero][2] = smithy;  
-  GS4->hand[playerZero][3] = tribute;  
-  GS4->hand[playerZero][4] = gardens; 
-  GS4->deckCount[playerZero] = 5;
-  GS4->deck[playerZero][0] = estate;  
-  GS4->deck[playerZero][1] = silver;  
-  GS4->deck[playerZero][2] = great_hall;  
-  GS4->deck[playerZero][3] = copper;  
-  GS4->deck[playerZero][4] = duchy;  
-  GS4->discardCount[playerZero] = 1;
-  GS4->discard[playerZero][0] = feast;
-
-//---GS5 TEST---- Verify playCards increments by one (trash flag not set)
-  struct gameState *GS5 = newGame();
-  initializeGame(2,k,seed,GS5);
-  GS5->playedCardCount = 0;   //Number of played card count set to 0
-  GS5->handCount[playerZero] = 5;
-  GS5->hand[playerZero][0] = village;  
-  GS5->hand[playerZero][1] = adventurer;  
-  GS5->hand[playerZero][2] = smithy;  
-  GS5->hand[playerZero][3] = tribute;  
-  GS5->hand[playerZero][4] = gardens; 
-  GS5->deckCount[playerZero] = 5;
-  GS5->deck[playerZero][0] = estate;  
-  GS5->deck[playerZero][1] = silver;  
-  GS5->deck[playerZero][2] = great_hall;  
-  GS5->deck[playerZero][3] = copper;  
-  GS5->deck[playerZero][4] = duchy;  
-  GS5->discardCount[playerZero] = 1;
-  GS5->discard[playerZero][0] = feast;
-
-
-  int j;
-  villageAction(playerZero,0,GS1);
-  int expectedCardsInHandGS1 = 5;  //Gain 1 and discard 1 (5+1-1=1)
-  if(expectedCardsInHandGS1 == GS1->handCount[playerZero]){
-        printf("PASS for success on drawing 1 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
-    }
-  else
-    {
-        printf("FAIL for success on drawing 1 cards.  Cards Expected:%i  Cards Returned:%i \n", expectedCardsInHandGS1, GS1->handCount[playerZero]);
+    G.deckCount[currentPlayer] = 10;
+    for(i = 0; i < G.deckCount[currentPlayer]; i++){
+        G.deck[currentPlayer][i] = adventurer;
     }
 
-  villageAction(playerZero,0,GS2);
-  int expectedNumOfActionsGS2 = 4;  //Start with 2 and add 2 (2+2=4)
-  if(expectedNumOfActionsGS2 == GS2->numActions){
-        printf("PASS for success on incrementing number of actions by 2.  Actions Expected:%i  Actions Returned:%i \n", expectedNumOfActionsGS2, GS2->numActions);
-    }
-  else
-    {
-        printf("FAIL for success on incrementing number of actions by 2.  Actions Expected:%i  Actions Returned:%i \n", expectedNumOfActionsGS2, GS2->numActions);
-    }
+    printf("SETUP\n");
+    printf("Current player deck count: %d\n", G.deckCount[currentPlayer]);
+    printDeck(&G);
 
-  villageAction(playerZero,0,GS3);
-  int isVillageInDiscard = 0;
-  for(j=0; j < GS3->discardCount[playerZero]; j++)
-  {
-    if(GS3->discard[playerZero][j] == village)
-    {
-      isVillageInDiscard =1;
-    }
-  }
+    // copy the game state to a test case
+    memcpy(&testG, &G, sizeof(struct gameState));
 
-  if(isVillageInDiscard == 1){
-        printf("PASS for success on discarding Village Card.  Success Flag:%i  isVillageInDiscard:%i \n", 1, isVillageInDiscard);
-    }
-    else
-    {
-        printf("FAIL for success on discarding Village Card.  Success Flag:%i  isVillageInDiscard:%i \n", 1, isVillageInDiscard);
-    }
+    printHand(&G);
+    printExpHand(card1, card2, card3, card4, card5);
+    printf("\n");
+    playCard(0, choice1, choice2, choice3, &testG);
+    printf("Player's hand after test card is played\n");
+    printHand(&testG);
+    printf("\n");
+    observed = testG.deckCount[currentPlayer];
+    expected = G.deckCount[currentPlayer];
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Deck Count", observed, expected);
 
+    observed = testG.handCount[currentPlayer];
+    expected = G.handCount[currentPlayer];
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Hand Count", observed, expected);
 
+    observed = testG.discardCount[currentPlayer];
+    expected = G.discardCount[currentPlayer] + 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Discard Count", observed, expected);
 
-/*      //Used to show cards in hand/deck/discard b4 and after adventure action call
-  int i;
-   
- for(i=0; i < GS4->handCount[playerZero]; i++)
-  {
-    printf("B4 Card %i in hand is: %i: \n", i, GS4->hand[playerZero][i]);
-  }
-  for(i=0; i < GS4->deckCount[playerZero]; i++)
-  {
-    printf("B4 Card %i in deck is: %i: \n", i, GS4->deck[playerZero][i]);
-  }
-  for(i=0; i < GS4->discardCount[playerZero]; i++)
-  {
-    printf("B4 Card %i in discard is: %i: \n", i, GS4->discard[playerZero][i]);
-  }
+    observed = testG.playedCardCount;
+    expected = G.playedCardCount;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Played Card Count", observed, expected);
 
-  adventurerAction(playerZero,GS4,temphand);
+    observed = testG.coins;
+    expected = G.coins;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Coins", observed, expected);
 
-  for(i=0; i < GS4->handCount[playerZero]; i++)
-  {
-    printf("Card %i in hand is: %i: \n", i, GS4->hand[playerZero][i]);
-  }
-  for(i=0; i < GS4->deckCount[playerZero]; i++)
-  {
-    printf("Card %i in deck is: %i: \n", i, GS4->deck[playerZero][i]);
-  }
-  for(i=0; i < GS4->discardCount[playerZero]; i++)
-  {
-    printf("Card %i in discard is: %i: \n", i, GS4->discard[playerZero][i]);
-  }
- */
+    observed = testG.deckCount[currentPlayer + 1];
+    expected = G.deckCount[currentPlayer + 1];
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Other Player's Deck Count", observed, expected);
 
+    observed = testG.handCount[currentPlayer + 1];
+    expected = G.handCount[currentPlayer + 1];
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Other Player's Hand Count", observed, expected);
 
-  villageAction(playerZero,0,GS4);
-  int isVillageInHand = 1;
-  for(j=0; j < GS4->handCount[playerZero]; j++)
-  {
-    if(GS4->hand[playerZero][j] == village)
-    {
-      isVillageInHand =0;
-    }
-  }
+    observed = testG.numBuys;
+    expected = G.numBuys;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Number of Buys", observed, expected);
 
-  if(isVillageInHand == 1){
-        printf("PASS for success on removing Village from Hand.  Success Flag:%i  isVillageInHand:%i \n", 1, isVillageInHand);
-    }
-    else
-    {
-        printf("FAIL for success on removing Village from Hand.  Success Flag:%i  isVillageInHand:%i \n", 1, isVillageInHand);
-    }
+    observed = testG.supplyCount[choice1];
+    expected = G.supplyCount[choice1] - 1;
+    if(observed == expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Supply Count of Choice", observed, expected);
 
+    observed = getCost(choice1);
+    expected = 5;
+    if(observed <= expected){testResult = PASS;}
+    else{testResult = FAIL;}
+    assertTrue(testResult, "Cost of Choice (observed <= expected)", observed, expected);
 
-  villageAction(playerZero,0,GS5);
-  int expectedPlayedCardCountGS5 = 1;  //Gain 1 and discard 1 (5+1-1=1)
-  if(expectedPlayedCardCountGS5 == GS5->playedCardCount){
-        printf("PASS for incrementing played cards (trash flag not set).  PlayedCards Expected:%i  PlayedCards Returned:%i \n", expectedPlayedCardCountGS5, GS5->playedCardCount);
-    }
-  else
-    {
-        printf("FAIL for incrementing played cards (trash flag not set).  PlayedCards Expected:%i  PlayedCards Returned:%i \n", expectedPlayedCardCountGS5, GS5->playedCardCount);
-    }
+    printf("\n\nEND OF %s CARD TEST\n\n", testCardName);
 
-
-
-    return;
-}
-
-  
-
-
-
-int main(int argc, char *argv[])
-{
-    testvillageAction();
     return 0;
 }

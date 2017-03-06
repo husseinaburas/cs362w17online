@@ -1,0 +1,11 @@
+called: gcc
+	/nfs/stak/students/p/perrenc/.netbeans/remote/os-class.engr.oregonstate.edu/wrocinbeast-Windows-x86_64/C/Users/Corwin Perren/Documents/GitHub/cs362w17online/projects/perrenc/dominion
+	gcc
+	-c
+	rngs.c
+	-g
+	-Wall
+	-fpic
+	-coverage
+	-lm
+

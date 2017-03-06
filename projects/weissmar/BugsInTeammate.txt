@@ -1,0 +1,38 @@
+Rachel Weissman-Hohler
+CS 362-400
+03/05/2017
+Assignment 5
+
+Bugs in TeamMate Code
+
+gainCard(), drawCard(), isGameOver()
+Summary: My tests didn't reveal any bugs in these functions.
+
+scoreFor()
+Summary: My test (unittest4.c) found that scoreFor() didn't find the correct score for any of the tested combinations of cards. This is the same bug that I found in my own code. Namely, it uses the discardCount instead of the deckCount to loop through the deck, and therefore doesn't correctly score cards in the player's deck. 
+
+playAdventurer()
+Summary: When I ran my cardtest1.c, I found that my teammate's playAdventurer() draws an extra Treasure card, when possible. Looking at the code, the while loop condition is drawnTreasure < 3, instead of drawnTreasure < 2. This causes the function to draw three Treasure cards instead of the correct two. When I ran my randomtestadventurer.c, I found the same infinite loop in my teammate's playAdventurer as I found in my own version. This infinite loop prevents the test from completing its execution. In order to allow the test to complete, I added a loop counter to the while loop in my teammate's playAdventurer. When the test completed, it confirmed the bug that I found using cardtest1.c. 
+Bug Report:
+Title: playAdventurer() draws an extra Treasure card
+Description: Anytime playAdventurer() is called with at least three Treasure cards in the combined deck and discard, three Treasure cards are drawn and kept in the hand instead of two. 
+Steps to reproduce: Call playAdventurer() with a state object that has a combined total of at least three Treasure cards in the deck and discard.
+Expected results: Two Treasure cards are drawn and kept in the player's hand.
+Actual results: Three Treasure cards are drawn and kept in the player's hand.
+Possible cause: In playAdventurer(), the while loop condition is drawnTreasure < 3, which causes the function to loop until three Treasure cards are drawn.
+
+playSmithy()
+Summary: When I ran my cardtest2.c, I found that my teammate's playSmithy() draws an extra card. Looking at the code, the for loop loops from i = 0, to i < 4. This causes the function to draw four cards instead of the correct three. 
+Bug Report:
+Title: playSmithy() draws an extra card.
+Description: Anytime playSmithy() is called with at least four cards in the combined deck and discard, four cards are drawn into the player's hand instead of three.
+Steps to reproduce: Call playSmithy() with a state object that has a combined total of at least four cards in the deck and discard.
+Expected results: Three cards are drawn into the player's hand.
+Actual results: Four cards are drawn into the player's hand.
+Possible cause: In playSmithy(), the for loop loops four times, calling drawCard() four times.
+
+cardEffect() with baron as first argument
+Summary: When I ran my cardtest3.c and randomtestcard1.c, I found that cardEffect() in my teammate's code doesn't discard the played copy of Baron. Additionally, I found that it decrements the Estate supply count by more than one each time the player gains an Estate. Both of these bugs were also present in my playBaron().
+
+cardEffect() with remodel as first argument
+Summary: When I ran my cardtest4.c and randomtestcard2.c, I found that cardEffect() in my teammate's code has the same bugs that I found in my playRemodel(). Namely, it doesn't correctly check the relative costs of the card to trash and the card to gain, which results in unpredictable and incorrect results. 
