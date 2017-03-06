@@ -1,7 +1,7 @@
 #ifndef _DOMINION_H
 #define _DOMINION_H
 
-// Code from various sources, baseline from Kristen Bartosz
+// Code from various sources, baseline from Kristen Bartosz 
 
 #define MAX_HAND 500
 #define MAX_DECK 500
