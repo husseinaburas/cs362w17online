@@ -8,6 +8,8 @@
 #include <time.h>
 
 int main() {
+	
+	//added more ints
     struct gameState G;
     int seed = 1000;
     int numPlayers = 2;
@@ -76,6 +78,8 @@ int main() {
                 coinCountBefore++;
             }
         }
+		
+		//section added for individual testing
         //printf("Coin Count before: %d\n", coinCount);
         //printf("discard count before: %d\n", G.discardCount[curPlayer]);
         //printf("deckSize: %d, deck: %d, and hand: %d\n", deckSize, G.deckCount[0], G.handCount[0]); 
