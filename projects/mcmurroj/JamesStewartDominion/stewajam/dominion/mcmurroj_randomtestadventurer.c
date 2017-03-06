@@ -6,9 +6,9 @@
 #include "dominion_helpers.h"
 
 
-// Random testing for adventurerAction function from dominion.c
-// Funciton call: int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
-// Note: adventurerAction function currently starts line 1282 from dominion.c
+// Random testing for play_adventurer_card function from dominion.c
+// New Funciton call: int play_adventurer_card(struct gameState *state, int currentPlayer, int drawntreasure, int cardDrawn, int temphand[], int z)
+// PREVIOUS Funciton call: int adventurerAction(int currentPlayer, struct gameState *state, int *temphand)
 
 void testRandAdventurerAction() {
   
@@ -40,6 +40,11 @@ void testRandAdventurerAction() {
   int postDeckSize, postHandSize, postDiscardSize;
   int i, j;
 
+
+  int  drawntreasure=0;
+  int  cardDrawn=0;
+  int  z=0;
+
   for(i=0; i < numberOfCycles; i++)
   {
     //Setup Initial Conditions.
@@ -56,6 +61,10 @@ void testRandAdventurerAction() {
     postDeckSize= 0;
     postHandSize=0;
     postDiscardSize=0;
+
+    drawntreasure=0;
+    cardDrawn=0;
+    z=0;
 
     //----Assign to Random Variables----
     numPlayers = (rand() % MAX_PLAYERS) +1;
@@ -111,7 +120,8 @@ void testRandAdventurerAction() {
     // (i.e if there are 100 treasure cards in deck/discard, 2+ extra expected)
     expectedTreasure = treasureInHandPre + treasureInDeckAndDiscard;  
     //----Call Tested Function----
-    adventurerAction(randPlayer, randGameState, temphand);
+    play_adventurer_card(randGameState,randPlayer, drawntreasure, cardDrawn, temphand, z);
+    //adventurerAction(randPlayer, randGameState, temphand);
 
     //----Gather Post Execution Data----
     postDeckSize= randGameState->deckCount[randPlayer];

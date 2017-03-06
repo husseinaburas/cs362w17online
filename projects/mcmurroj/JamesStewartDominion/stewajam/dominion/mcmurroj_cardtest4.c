@@ -6,8 +6,8 @@
 
 
 // Unit test for sea_hagAction found in dominion.c
-// Funciton call: int sea_hagAction(int currentPlayer, struct gameState *state)
-// Note: sea_hagAction function currently starts line 1334 from dominion.c
+// NEW Funciton call: cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
+// PREVIOUS Funciton call: int sea_hagAction(int currentPlayer, struct gameState *state)
 
 void testsea_hagAction() {
   printf("----TEST sea_hagAction Function-----\n");
@@ -36,6 +36,7 @@ void testsea_hagAction() {
   GS1->deck[playerZero][4] = duchy;  
   GS1->discardCount[playerZero] = 1;
   GS1->discard[playerZero][0] = minion;
+  GS1->whoseTurn = playerZero; 
 
   GS1->deckCount[playerOne] = 10;
   GS1->deck[playerOne][0] = estate;  
@@ -55,7 +56,8 @@ void testsea_hagAction() {
 
   int j;
 
-  sea_hagAction(playerZero,GS1);
+  cardEffect(sea_hag, 0,0,0, GS1,3,0);
+  //sea_hagAction(playerZero,GS1);
   int isCurseInOpponentDeck = 0;
   for(j=0; j < GS1->deckCount[playerOne]; j++)
   {
