@@ -1,0 +1,19 @@
+Assignment 5
+BugsInTeammate
+
+=============================================================================================
+Bug 1: Adventurer Test
+
+Errors Identified: 
+1. Two treasure cards are not added to the current player's hand.
+2. Adventurer card is not properly discarded.
+
+Root Cause: 
+1. While loop is set to iterate only while drawntreasure is greater than two. the drawntreasure parameter is not incremented as the nested if/else statement will only count cardDrawn if the card is copper, silver, and gold simultaneously (which is not possible).
+2. Since the while loop is never executed, the temp hand counter is never incremented, meaning the second while loop to proper discard the Adventurer card is not executed as wel.
+=============================================================================================
+Bug 2: Village Test
+
+Error Identified: discardCount does not work properly for player 1 or 2. 
+Root Cause: village card is not properly discarded after it is played, leading to potentially unlimied moves for the current player.
+=============================================================================================
