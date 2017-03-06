@@ -12,6 +12,7 @@
 
 #define TESTCARD "Smithy"
 #define PRINT_ALL 0 
+#define TEST_LENGTH 1000
 
 
 
@@ -365,7 +366,7 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
+	int test_length = TEST_LENGTH;
 	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
@@ -402,7 +403,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -451,7 +453,6 @@ int main (int argc, char** argv){
 		}
 		
 
-		
 	}
 	printf("Testing phase must be 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
 	printf("TEST SET 2\nTesting pre-condition: Number of actions must be greater than 0\n");
@@ -470,7 +471,7 @@ int main (int argc, char** argv){
 		cardPlacement = rand()%G.handCount[currentPlayer];
 		testLocation = cardPlacement;
 		testPhase = 0;
-		testActions = rand()%5;
+		testActions = (rand()%10)-5;
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = smithy; 
 		// setting phase and actions
@@ -486,7 +487,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -570,7 +572,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playSmithy(&testG, currentPlayer, testLocation);
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -622,6 +625,94 @@ int main (int argc, char** argv){
 		
 	}
 	printf("Testing name of card must be smithy...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	
+	printf("TEST SET 4\nTesting pre-condition: Played card must be in hand\n");
+	testPassCount = 0;
+	testFailCount=0;
+	totalTestCount=0;
+	invalidCount=0;
+	validCount=0;
+	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
+		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
+		// initialize a game state and player cards
+		initializeGame(numPlayers, k, seed, &G);
+
+		currentPlayer = whoseTurn(&G);
+		cardPlacement = rand()%(G.handCount[currentPlayer]*3)-G.handCount[currentPlayer]; //setting smithy in random place
+		testLocation = cardPlacement; //card to play from hand
+		testPhase = 0;
+		testActions = 1;
+		// placing the card in the players hand if possible
+		if (cardPlacement >= 0){
+			G.hand[currentPlayer][cardPlacement] = smithy; 
+		}
+		// setting phase and actions
+		G.phase = testPhase;
+		G.numActions = testActions;
+		updateCoins(currentPlayer, &G, 0);
+		// copy the game state to a test case
+		memcpy(&testG, &G, sizeof(struct gameState));
+		
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
+			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
+		}
+		//result = playSmithy(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
+		if (result == 0){
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
+			totalSuccess = verifyDifferentState(&G, &testG);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
+		}
+		else{
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
+
+			totalSuccess = verifySameState(&G, &testG);
+
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
+		}
+		
+
+		
+	}
+	printf("Testing played card must be in hand...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
 	
 	return 0;
 }
