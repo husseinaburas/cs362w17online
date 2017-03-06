@@ -1,0 +1,142 @@
+==================================================================
+======== Basic descriptions ======================================
+==================================================================
+
+randomtestcard1 -- Passed tests: 1 		Failed tests: 99
+
+	player should gain 3 cards after playing the smithy card; player gains 4 instead.
+
+
+
+randomtestcard2 -- Passed tests: 99 		Failed tests: 51
+
+	player should gain 2 actions after playing the village card; player gains (*2) instead.
+
+
+
+randomtestAdventurer -- Passed tests: 457 		Failed tests: 43
+
+	counter for player's non-treaure cards should only increase by one after drawing a non-treasure card; counter gains 2 instead. 
+
+
+==================================================================
+====== Formal reports ============================================
+==================================================================
+	
+======BUG 1===================================
+Title: smithy adds 4 cards
+
+Class:
+Serious bug
+
+Date:		3/4/2017
+Reported By:   	Corey Savage
+
+Is it reproducible: Yes
+
+Description
+===========
+After calling the smithy card, the player gains 4 cards to their hand, instead of 3.
+
+
+Steps to Produce/Reproduce
+--------------------------
+1. create a new game state called G;
+2. add smithy card to hand, position 0;
+3. call cardEffect(smithy, 0, 0, 0, &G, 0, 0);
+4. check G->handCount[0]
+
+
+Expected Results
+----------------
+handCount should be (1+3-1) = 3; +3 for the Smithy effect and -1 to discard the Smithy
+after playing it
+
+
+Actual Results
+--------------
+handCount is 4 after playing the Smithy card
+
+
+Workarounds
+-----------
+N/A; this is a game-critical bug
+
+
+======BUG 2===================================
+Title: village card doubles the number of player actions.
+
+Class:
+Serious bug
+
+Date:		3/4/2017
+Reported By:   	Corey Savage
+
+Is it reproducible: Yes
+
+Description
+===========
+After calling the village card, the player's actions doubles, instead the number of actions should increase by 2.
+
+
+Steps to Produce/Reproduce
+--------------------------
+1. create a new game state called G;
+2. add village card to hand, position 0;
+3. change numActions by G->numActions = 4
+3. call cardEffect(village, 0, 0, 0, &G, 0, 0);
+4. check G->numActions
+
+
+Expected Results
+----------------
+numActions should be (4+2-1) = 5; +2 for the village effect and -1 to from playing the village card.
+
+
+Actual Results
+--------------
+numActions is 6 after playing the village card
+
+
+Workarounds
+-----------
+N/A; this is a game-critical bug
+
+======BUG 3===================================
+Title: adventurer card adds incorrect number to non-treasure card counter
+
+Class:
+Serious bug
+
+Date:		3/4/2017
+Reported By:   	Corey Savage
+
+Is it reproducible: Yes
+
+Description
+===========
+After calling the adventurer card, when the player draws a card that is not a treasure card the counter variable increases by 2, instead of 1.
+
+
+Steps to Produce/Reproduce
+--------------------------
+1. create a new game state called G;
+2. add adventurer card to hand, position 0;
+3. add 5 cards to deck[]- {estate, gold, province, silver, estate}
+3. call cardEffect(smithy, 0, 0, 0, &G, 0, 0);
+4. check z
+
+
+Expected Results
+----------------
+z should be (1+1) = 2; +1 for each non-treasure card drawn.
+
+
+Actual Results
+--------------
+z is 4 after playing the adventurer card
+
+
+Workarounds
+-----------
+N/A; this is a game-critical bug
