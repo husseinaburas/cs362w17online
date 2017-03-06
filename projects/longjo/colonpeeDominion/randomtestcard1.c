@@ -24,7 +24,7 @@
 #include <stdlib.h>
 
 
-#define TEST_COUNT 200
+#define TEST_COUNT 2000000
 
 //Added this function to help me with my testing....
 //outputs "press any key to continue"...
