@@ -1205,7 +1205,7 @@ int steward_func(int currentPlayer, struct gameState* state, int choice1, int ch
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
 	}
-      else if (choice1 = 2)
+      else if (choice1 == 2)
 	{
 	  //+2 coins
 	  state->coins = state->coins + 2;
