@@ -68,21 +68,22 @@ int assertTrue(int actual, int expected, int isEqual)
 
 }
 
-int main()
+int main(int argc, char* argv)
 {
 
 	printf("-------------------------------------------Testing Card: Adventurer-------------------------------------------------------------------------\n");
 	// Initialize variables for pre-conditions 
+	int seed = argv[0];
 	struct gameState G;
 	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
 		sea_hag, tribute, smithy };
-	int numPlayers = 2;
-	int seed = 1234;
+	int numPlayers = rand() % 3 + 2; //random - 2 to 4 players allowed
+	
 
 	int initCheck = initializeGame(numPlayers, k, seed, &G);
 	assert(initCheck == 0);
 
-	int player = 0;
+	int	player = rand() % numPlayers; // random - player index starts at 0 up to numPlayers - 1
 	int adventureCheck;
 	int initHand[MAX_HAND];
 	int initHandCount;
@@ -121,7 +122,7 @@ int main()
 		G.deck[player][i] = copperDeck[i];
 
 	printf("-------------------------------------------Test 1.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	printf("-------------------------------------------Test 1.1: Current Player should have two new coppers from a full copper deck ----------------------------------------------\n");
@@ -144,7 +145,7 @@ int main()
 		G.deck[player][i] = silverDeck[i];
 
 	printf("-------------------------------------------Test 2.0: Game state set to full silver deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 
@@ -171,7 +172,7 @@ int main()
 		G.deck[player][i] = goldDeck[i];
 
 	printf("-------------------------------------------Test 3.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	
@@ -197,7 +198,7 @@ int main()
 		G.deck[player][i] = noneDeck[i];
 
 	printf("-------------------------------------------Test 4.0: Game state set to no treasure deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	
@@ -222,7 +223,7 @@ int main()
 		G.deck[player][i] = emptyDeck[i];
 
 	printf("-------------------------------------------Test 5.0: Game state set to empty deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 

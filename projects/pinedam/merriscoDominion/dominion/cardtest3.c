@@ -105,7 +105,7 @@ int main()
 
 	printf("-------------------------------------------Test 1.0: Current player should receive exact 1 card. ----------------------------------------------\n");
 	// test that the player recieved exactly 1 cards
-	villageCheck = cardEffect(village, 0, 0, 0, &G, 1, 0);
+	villageCheck = playVillage(&G, player, 1);
 	assertTrue(villageCheck, 0, 1);//check that smithy ran ok
 	assertTrue(G.handCount[player], initDeckCount, 1);//check the player recieved the 1 new cards and discarded the village
 

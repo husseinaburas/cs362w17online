@@ -108,7 +108,7 @@ int main(int argc, char* argv)
 		smithyHand[i] = smithy;
 	printf("-------------------------------------------Test 1.0: Current player should receive exact 3 cards. ----------------------------------------------\n");
 	// test that the player recieved exactly 3 cards
-	smithyCheck = smithyCard(&G, 0, player);
+	smithyCheck = playSmithy(&G, 0, player);
 	assertTrue(smithyCheck, 0, 1);//check that smithy ran ok
 	assertTrue(G.handCount[player], initDeckCount + 2, 1);//check the player recieved the 3 new cards and discarded the smithy
 

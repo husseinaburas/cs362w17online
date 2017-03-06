@@ -117,7 +117,7 @@ int main()
 		councilRoomHand[i] = council_room;
 	printf("-------------------------------------------Test 1.0: Current player should receive exact 4 card. ----------------------------------------------\n");
 	// test that the player recieved exactly 1 cards
-	councilRoomCheck = cardEffect(council_room, 0, 0, 0, &G, 1, 0);
+	councilRoomCheck = playCouncil_Room(&G, player, 1);
 	assertTrue(councilRoomCheck, 0, 1);//check that smithy ran ok
 	assertTrue(G.handCount[player], initDeckCount +3, 1);//check the player recieved the 3 new cards and discarded the council room
 

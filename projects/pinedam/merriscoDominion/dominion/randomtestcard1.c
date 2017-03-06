@@ -54,18 +54,20 @@ int assertTrue(int actual, int expected, int isEqual)
 
 }
 
-int main()
+int main(int argc, char* argv)
 {
 	// Initialize variables for pre-conditions 
 	printf("-------------------------------------------Testing Card: Village-----------------------------------------\n");
+	int seed = argv[0];
 	struct gameState G;
-	int k[10] = { adventurer, gardens, embargo, village, minion, mine, cutpurse,
-		sea_hag, tribute, smithy };
-	int numPlayers = 2;
-	int seed = 1234;
+	int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+		sea_hag, tribute, smithy};
+	srand(seed);
+	int numPlayers = rand() % 3 + 2; //random - 2 to 4 players allowed
+	
 	int initCheck = initializeGame(numPlayers, k, seed, &G);
 	assert(initCheck == 0);
-	int	player = 0;
+	int	player = rand() % numPlayers; // random - player index starts at 0 up to numPlayers - 1
 	int initHandCount = G.handCount[player];
 	int initDeckCount = G.deckCount[player];
 	int villageCheck;
@@ -105,9 +107,9 @@ int main()
 
 	printf("-------------------------------------------Test 1.0: Current player should receive exact 1 card. ----------------------------------------------\n");
 	// test that the player recieved exactly 1 cards
-	villageCheck = cardEffect(village, 0, 0, 0, &G, 1, 0);
-	assertTrue(villageCheck, 0, 1);//check that smithy ran ok
-	assertTrue(G.handCount[player], initDeckCount, 1);//check the player recieved the 1 new cards and discarded the village
+	villageCheck = playVillage(&G, player, 1);
+	assertTrue(villageCheck, 0, 1);//check that village ran ok
+	assertTrue(G.handCount[player], initHandCount, 1);//check the player recieved the 1 new cards and discarded the village
 
 	printf("-------------------------------------------Test 1.1: 1 card should come from the playerws own pile. ------------------------------------------\n");
 

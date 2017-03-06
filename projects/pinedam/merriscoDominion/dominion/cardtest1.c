@@ -121,7 +121,7 @@ int main()
 		G.deck[player][i] = copperDeck[i];
 
 	printf("-------------------------------------------Test 1.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	printf("-------------------------------------------Test 1.1: Current Player should have two new coppers from a full copper deck ----------------------------------------------\n");
@@ -144,7 +144,7 @@ int main()
 		G.deck[player][i] = silverDeck[i];
 
 	printf("-------------------------------------------Test 2.0: Game state set to full silver deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 
@@ -171,7 +171,7 @@ int main()
 		G.deck[player][i] = goldDeck[i];
 
 	printf("-------------------------------------------Test 3.0: Game state set to full copper deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	
@@ -197,7 +197,7 @@ int main()
 		G.deck[player][i] = noneDeck[i];
 
 	printf("-------------------------------------------Test 4.0: Game state set to no treasure deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 	
@@ -222,7 +222,7 @@ int main()
 		G.deck[player][i] = emptyDeck[i];
 
 	printf("-------------------------------------------Test 5.0: Game state set to empty deck for player 0 ----------------------------------------------\n");
-	adventureCheck = adventurerCard(&G, player);
+	adventureCheck = playAdventurer(&G, player);
 	assertTrue(adventureCheck, 0, 1);
 	// Check post-conditions
 
