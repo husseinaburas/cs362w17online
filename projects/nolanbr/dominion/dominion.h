@@ -1,7 +1,7 @@
 #ifndef _DOMINION_H
 #define _DOMINION_H
 
-// Code from various sources, baseline from Kristen Bartosz 
+// Code from various sources, baseline from Kristen Bartosz
 
 #define MAX_HAND 500
 #define MAX_DECK 500
@@ -130,7 +130,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state);
 /* Set array position of each player who won (remember ties!) to
    1, others to 0 */
 
-int playAdventurer(int drawntreasure, struct gameState *state, int currentPlayer, int cardDrawn, int *temphand, int z);
+int playAdventurer(struct gameState *state, int currentPlayer);
 int playSmithy(struct gameState *state, int currentPlayer, int handPos);
 int playVillage(struct gameState *state, int currentPlayer, int handPos);
 int playFeast(struct gameState *state, int choice1);
