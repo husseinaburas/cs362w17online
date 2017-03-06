@@ -69,23 +69,13 @@ unittestresults.out: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2
 	gcov -b dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
-randomtestadventurer.out: randomtestadventurer.c dominion.o rngs.o
-	gcc -o randomtestadventurer -g  randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
-	./randomtestadventurer 234 &> randomtestadventurer.out
-	gcov -b dominion.c >> randomtestadventurer.out
-	cat dominion.c.gcov >> randomtestadventurer.out
+randomtestresults.out: randomtestcard1 randomtestcard2 randomtestadventurer
+	./randomtestcard1 129 &> randomtestresults.out
+	./randomtestcard2 240 >> randomtestresults.out
+	./randomtestadventurer 122 >> randomtestresults.out
 
-randomtestcard1.out: randomtestcard1.c dominion.o rngs.o
-	gcc -o randomtestcard1 -g  randomtestcard1.c dominion.o rngs.o $(CFLAGS)
-	./randomtestcard1 334 &> randomtestcard1.out
-	gcov -b dominion.c >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out
-	
-randomtestcard2.out: randomtestcard2.c dominion.o rngs.o
-	gcc -o randomtestcard2 -g  randomtestcard2.c dominion.o rngs.o $(CFLAGS)
-	./randomtestcard2 224 &> randomtestcard2.out
-	gcov -b dominion.c >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out
 
 runtests: testDrawCard
 	./testDrawCard &> unittestresult.out
