@@ -45,11 +45,11 @@ int main()
             playedCard = G.hand[p][i];
             printf("Test a. handPos = %d, trashFlag = 0\n", i);
             discardCard(i, p, &G, 0);
-            printf("played count = %d, expected = %d\n", G.playedCardCount, 1);
-            printf("played card enum = %d, expected = %d\n", G.playedCards[0], playedCard);
+            printf("played count = %d, expected = %d\n", G.discardCount[p], 1);
+            printf("played card enum = %d, expected = %d\n", G.discard[p][0], playedCard);
             printf("hand count = %d, expected = %d\n", G.handCount[p], currentHandCount - 1);
-            assert(G.playedCardCount == 1);
-            assert(G.playedCards[0] == playedCard);
+            assert(G.discardCount[p] == 1);
+            assert(G.discard[p][0] == playedCard);
             assert(G.handCount[p] == currentHandCount - 1);
 
             // Test b. trashFlag = 1
@@ -57,9 +57,9 @@ int main()
             currentHandCount = G.handCount[p];
             printf("Test b. handPos = %d, trashFlag = 1\n", i);
             discardCard(i, p, &G, 1);
-            printf("played count = %d, expected: %d\n", G.playedCardCount, 0);
+            printf("played count = %d, expected: %d\n", G.discardCount[p], 0);
             printf("hand count = %d, expected = %d\n", G.handCount[p], currentHandCount - 1);
-            assert(G.playedCardCount == 0);
+            assert(G.discardCount[p] == 0);
             assert(G.handCount[p] == currentHandCount - 1);
         }
     }
@@ -77,6 +77,6 @@ int initTest(struct gameState *G, int p)
     G->hand[p][2] = adventurer;
     G->hand[p][3] = smithy;
     G->hand[p][4] = copper;
-    G->playedCardCount = 0;
+    G->discardCount[p] = 0;
     return 0;
 }

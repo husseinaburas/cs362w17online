@@ -1166,10 +1166,10 @@ int playVillage(struct gameState *state, int handPos)
   int currentPlayer = whoseTurn(state);
   //+1 Card
   drawCard(currentPlayer, state);
-  //drawCard(currentPlayer, state);
+  drawCard(currentPlayer, state);
 
   //+2 Actions
-  state->numActions = state->numActions + 2;
+  state->numActions = state->numActions + 1;
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);

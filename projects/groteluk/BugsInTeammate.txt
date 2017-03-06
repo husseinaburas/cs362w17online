@@ -1,0 +1,22 @@
+Adventurer card bugs found:
+   1. playedCardCount does not increase
+      a. the while loop at line 1308 does not modify the playedCardCount and playedCards[] game states
+   2. deckCount decrease is not equal to increase in the discardCount plus the increase in handCount
+      a. while loop at line 1308 runs an extra iteration
+
+Smithy card bugs found:
+   1. handCount increases but not by 2 cards and deckCount decreases but not by 3 cards
+      a.  for loop at line 1281 iterates 4 times causing an extra card to be drawn
+   2. discardCount does not increase
+      a.  no modification to the discardCount state is made in either the playSmithy() (line 1277) or discardCard() functions (line 1171)
+
+Village card bugs found:
+   1. numActions increases but does not increase by 2
+      a.  line 1322 mofifies the game state of numActions to equal 2 instead of adding 2 to current value of numActions
+   2. discardCount does not increase
+      a. no modification to the discardCount state is made in either the playVillage() (line 1316) or discardCard() functions (line 1171)
+
+Council Room card bugs found:
+   1. discardCount does not increase
+      a. no modification to the discardCount state is made in either the council_room case (line 672) or discardCard() functions (line 1171)
+

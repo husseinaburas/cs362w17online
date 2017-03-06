@@ -104,32 +104,31 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
 
   //set number of Kingdom cards
   for (i = adventurer; i <= treasure_map; i++)       	//loop all cards
-    {
-      for (j = 0; j < 10; j++)           		//loop chosen cards
-	{
-	  if (kingdomCards[j] == i)
+  {
+    for (j = 0; j < 10; j++)           		//loop chosen cards
+	  {
+	    if (kingdomCards[j] == i)
 	    {
 	      //check if card is a 'Victory' Kingdom card
 	      if (kingdomCards[j] == great_hall || kingdomCards[j] == gardens)
-		{
-		  if (numPlayers == 2){ 
-		    state->supplyCount[i] = 8; 
-		  }
-		  else{ state->supplyCount[i] = 12; }
-		}
+		    {
+		      if (numPlayers == 2){ 
+		        state->supplyCount[i] = 8; 
+		      }
+		      else{ state->supplyCount[i] = 12; }
+		    }
 	      else
-		{
-		  state->supplyCount[i] = 10;
-		}
+		    {
+		      state->supplyCount[i] = 10;
+		    }
 	      break;
 	    }
-	  else    //card is not in the set choosen for the game
+	    else    //card is not in the set choosen for the game
 	    {
 	      state->supplyCount[i] = -1;
 	    }
-	}
-
-    }
+	  }
+  }
 
   ////////////////////////
   //supply intilization complete
@@ -1186,8 +1185,10 @@ void playAdventurer(int currentPlayer, struct gameState *state){
   int z = 0;
   int cardDrawn;
   int temphand[MAX_HAND];
+  int count = 0;
 
-  while(drawntreasure<2){
+  while((drawntreasure<2) && (count < 500)){
+    count++;
     if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(currentPlayer, state);
     }
@@ -1217,7 +1218,7 @@ void playSmithy(int currentPlayer, struct gameState *state, int handPos){
   }
   
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 1);
+  discardCard(handPos, currentPlayer, state, 0);
 }
 
 void playFeast(int currentPlayer, struct gameState *state, int choice1){

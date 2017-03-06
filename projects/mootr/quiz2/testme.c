@@ -12,8 +12,8 @@ char inputChar()
 char *inputString()
 {
     char* randomString = (char *)malloc(sizeof(char) * 6);
-
-    for (int i = 0; i < 6; i++){
+		int i;
+    for (i = 0; i < 6; i++){
       randomString[i] = (rand() % 26) + 97;
     }
     randomString[5] = '\0';

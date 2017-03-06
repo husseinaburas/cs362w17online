@@ -41,6 +41,8 @@ int main() {
     int pre = g1.handCount[player] + (drawnCards - discarded);
     int post = g2.handCount[player];
 
+
+
     assertTrue((pre == post), 1);
 
     // 2 - Test the difference in pre and post action (should be 1)
@@ -49,6 +51,9 @@ int main() {
         returnValue = 1;
 
     assertTrue(returnValue, 2);
+
+    //3 - Test that numOfActions increased by two
+    assertTrue((g1.numActions == g2.numActions + 2), 3);
 
     return 0;
 

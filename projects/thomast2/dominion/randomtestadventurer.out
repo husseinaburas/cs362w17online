@@ -1,0 +1,117 @@
+File 'randomtestadventurer.c'
+Lines executed:78.26% of 46
+Creating 'randomtestadventurer.c.gcov'
+
+        -:    0:Source:randomtestadventurer.c
+        -:    0:Graph:randomtestadventurer.gcno
+        -:    0:Data:randomtestadventurer.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://adventurer random test
+        -:    2:#include "dominion.h"
+        -:    3:#include "rngs.h"
+        -:    4:#include <stdio.h>
+        -:    5:#include <math.h>
+        -:    6:#include <stdlib.h>
+        -:    7:#include <assert.h>
+        -:    8:
+        -:    9:#define MAX_TESTS 12
+        -:   10:
+        1:   11:int main() {
+        -:   12:
+        1:   13:	  int k[10] = {adventurer, gardens, embargo, village, minion, mine, cutpurse,
+        -:   14:	       sea_hag, tribute, smithy};
+        -:   15:
+        -:   16:	  int i, j, n, players, player, handCount, deckCount, seed, address;
+        -:   17:	  //struct gameState state;
+        -:   18:	  struct gameState state1;
+        -:   19:	  struct gameState state2;
+        -:   20:	  struct gameState state3;
+        -:   21:
+        1:   22:	  printf("Running Random Adventurer Test\n");
+        -:   23:
+        1:   24:		players = 0;
+       13:   25:	  for (i = 0; i < MAX_TESTS; i++) {
+        -:   26:
+       12:   27:	   players = rand() % 4;
+       12:   28:	   seed = rand();
+        -:   29:
+       12:   30:	   initializeGame(players, k, seed, &state1);	//initialize Gamestate
+        -:   31:
+        -:   32:	   //Initiate valid state variables
+        -:   33:	   //generate random hand sizes etc...
+      532:   34:		 for(int player = 0; j < players; player++){
+      520:   35:			  state1.deckCount[player] = rand() % MAX_DECK; 
+      520:   36:			  state1.discardCount[player] = rand() % MAX_DECK;
+      520:   37:			  state1.handCount[player] = rand() % MAX_HAND;
+        -:   38:
+      520:   39:			  handCount = state1.handCount[player];
+      520:   40:			  deckCount = state1.deckCount[player];
+        -:   41:		}
+        -:   42:		  //1 in 3 chance of empty deck
+       12:   43:		  if (seed % 3 == 0){
+        4:   44:			state1.deckCount[player] = 0;
+        -:   45:		  }
+        -:   46:			//use the card
+       12:   47:		  playCard(0, 1, 1, 1, &state1);
+       12:   48:			printf("first loop\n");
+        -:   49:	  }
+        -:   50:
+       13:   51:	   for (i = 0; i < MAX_TESTS; i++){
+        -:   52:		//random seed and players
+       12:   53:  		  players = rand() % 4;
+       12:   54:		  seed = rand();
+        -:   55:
+       12:   56:		  initializeGame(players, k, seed, &state2);
+        -:   57:
+        -:   58:		  //Initiate valid state variables
+       12:   59:			for(int player = 0; j < players; player++){
+    #####:   60:			  state2.deckCount[player] = rand() % MAX_DECK;
+    #####:   61:			  state2.discardCount[player] = rand() % MAX_DECK;
+    #####:   62:			  state2.handCount[player] = rand() % MAX_HAND;
+        -:   63:
+        -:   64:
+        -:   65:			  //Copy state variables
+    #####:   66:			  handCount = state2.handCount[player];
+    #####:   67:			  deckCount = state2.deckCount[player];
+        -:   68:		}
+        -:   69:
+        -:   70:		  //1 in 3 chance of making empty deck for coverage
+       12:   71:		  if (seed % 3 == 0) {
+        -:   72:
+        4:   73:			state2.deckCount[player] = 0;
+        -:   74:		  }
+        -:   75:
+       12:   76:		  playCard(adventurer, 1, 1, 1, &state2);
+        -:   77:	  }
+        -:   78:
+       13:   79:	   for (i = 0; i < MAX_TESTS; i++) {
+        -:   80:
+       12:   81:  		players = rand() % 4;
+       12:   82:		  seed = rand();
+        -:   83:
+       12:   84:		  initializeGame(players, k, seed, &state3);
+        -:   85:
+        -:   86:		  //Initiate valid state variables
+       12:   87:			for(int player = 0; j < players; player++){
+    #####:   88:			  state3.deckCount[player] = rand() % MAX_DECK; 
+    #####:   89:			  state3.discardCount[player] = rand() % MAX_DECK;
+    #####:   90:			  state3.handCount[player] = rand() % MAX_HAND;
+        -:   91:
+        -:   92:			  //Copy state variables
+    #####:   93:			  handCount = state3.handCount[player];
+    #####:   94:			  deckCount = state3.deckCount[player];
+        -:   95:			}
+        -:   96:
+        -:   97:		  //1 in 3 chance of making empty deck for coverage
+       12:   98:		  if (seed % 3 == 0) {
+        -:   99:
+        3:  100:			state3.deckCount[player] = 0;
+        -:  101:		  }
+       12:  102:		  playCard(adventurer, 1, 1, 1, &state3);
+        -:  103:	   }
+        -:  104:
+        1:  105:	  printf("Tests Complete\n");
+        -:  106:
+        1:  107:	  return 0;
+        -:  108:}

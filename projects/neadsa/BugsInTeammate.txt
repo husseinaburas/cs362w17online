@@ -1,0 +1,13 @@
+1) Smithy Card
+	Instead of giving the current player three cards, it gives
+	the cards to other players in the game instead. This fault
+	is within the for loop, line 685 in the dominion.c file.
+	This was found both with unit tests and random tests for
+	the smithy function.
+2) Adventurer Card
+	The bug introduced is that it shuffles the deck only once
+	and only if the deck is empty before we've drawn any cards
+	to check if they're treasures. This flaw is the logic
+	statement from lines 652-654 in dominion.c file. This was
+	found both with unit tests and random tests for the
+	adventurer function.

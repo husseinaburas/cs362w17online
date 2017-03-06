@@ -55,9 +55,9 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile randomtests</buildCommand>
+          <buildCommand>${MAKE} -f Makefile buggytests</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>cardtest2</executablePath>
           <cTool>
             <incDir>
               <pElem></pElem>

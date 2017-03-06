@@ -14,6 +14,7 @@
 
 #define TESTCARD "Adventurer" 
 #define PRINT_ALL 0
+#define TEST_LENGTH 1000
 
 
 //Own assert function
@@ -210,8 +211,8 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG){
 		totalSuccess++;
 	}
 
-	for (i = 0; i < G->handCount[currentPlayer]; i++){
-		tester = G->hand[currentPlayer][i];
+	for (i = 0; i < G->deckCount[currentPlayer]; i++){
+		tester = G->deck[currentPlayer][i];
 		if (tester == copper || tester == silver || tester == gold ){
 			treasure++;
 		}
@@ -296,7 +297,7 @@ int verifyDifferentState(struct gameState * G, struct gameState * testG){
 				tester += 3;
 			}
 		}
-		if (tester > G->coins){
+		if (tester == G->coins){
 			asserttrue(1, 6);
 		}
 		else{
@@ -422,8 +423,8 @@ int main (int argc, char** argv){
 	srand(atoi(argv[1]));
 	int seed = rand()%1000;
 	struct gameState G, testG;
-	int test_length = 1000;
-	// TO DO: RANDOMIZE ASSIGNING OF K CARDS
+	int test_length = TEST_LENGTH;
+	
 	int k[10] = {adventurer, embargo, village, minion, salvager, cutpurse,
 			sea_hag, tribute, smithy, council_room}; 
 	printf("----------------- Card: %s ----------------\n", TESTCARD);
@@ -459,7 +460,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -510,9 +512,8 @@ int main (int argc, char** argv){
 
 		
 	}
-
-	printf("Testing phase must be 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
 	
+	printf("Testing phase must be 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
 	printf("TEST SET 2\nTesting pre-condition: Number of actions must be greater than 0\n");
 	testPassCount = 0;
 	testFailCount = 0;
@@ -529,7 +530,7 @@ int main (int argc, char** argv){
 		cardPlacement = rand()%G.handCount[currentPlayer];
 		testLocation = cardPlacement;
 		testPhase = 0;
-		testActions = rand()%5;
+		testActions = (rand()%10)-5;
 		// placing the card in the players hand
 		G.hand[currentPlayer][cardPlacement] = adventurer; 
 		// setting phase and actions
@@ -546,7 +547,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -597,7 +599,6 @@ int main (int argc, char** argv){
 		
 	}
 	printf("Testing number of actions must be greater than 0...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
-
 	totalTestCount = 0;
 	testFailCount = 0;
 	testPassCount = 0;
@@ -631,7 +632,8 @@ int main (int argc, char** argv){
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)
@@ -680,12 +682,101 @@ int main (int argc, char** argv){
 		}
 	}
 	printf("Testing name of card must be adventurer...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+	printf("TEST SET 4\nTesting pre-condition: Played card must be in hand\n");
+	testPassCount = 0;
+	testFailCount=0;
+	totalTestCount=0;
+	invalidCount=0;
+	validCount=0;
+	for (j = 1; j <= test_length; j++){
+		totalTestCount++;
+		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
+		// initialize a game state and player cards
+		initializeGame(numPlayers, k, seed, &G);
+
+		currentPlayer = whoseTurn(&G);
+		cardPlacement = rand()%(G.handCount[currentPlayer]*3)-G.handCount[currentPlayer]; //setting smithy in random place
+		testLocation = cardPlacement; //card to play from hand
+		testPhase = 0;
+		testActions = 1;
+		// placing the card in the players hand if possible
+		if (cardPlacement >= 0){
+			G.hand[currentPlayer][cardPlacement] = adventurer; 
+		}
+		// setting phase and actions
+		G.phase = testPhase;
+		G.numActions = testActions;
+		updateCoins(currentPlayer, &G, 0);
+		// copy the game state to a test case
+		memcpy(&testG, &G, sizeof(struct gameState));
+		
+		if (PRINT_ALL){
+			printf("=========================== INPUT %d =========================\n", j);
+			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
+			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
+			printf("Smithy Location: %d  Tested Card Location: %d\n\n", cardPlacement, testLocation);
+		}
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
+		if (result == 0){
+			validCount++;
+			if (PRINT_ALL)
+				printf("%s received valid input\n\n", TESTCARD);
+			totalSuccess = verifyDifferentState(&G, &testG);
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Valid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("===============================================================\n\n");
+		}
+		else{
+			invalidCount++;
+			if (PRINT_ALL)
+				printf("%s received invalid input\n\n", TESTCARD);
+
+			totalSuccess = verifySameState(&G, &testG);
+
+			if (PRINT_ALL)
+				printf("\n----------------- Results for Invalid Input %d -----------------\n", j);
+			
+			if (totalSuccess == 0){
+				if (PRINT_ALL)
+					printf("ALL TESTS PASSED\n");
+				testPassCount++;
+				
+			}
+			else{
+				if (PRINT_ALL)
+					printf("%d TEST(S) FAILED\n", totalSuccess);
+				testFailCount++;
+			}
+			if (PRINT_ALL)
+				printf("==================================================================\n\n");
+		}
+		
+
+		
+	}
+	printf("Testing played card must be in hand...\nValid input tests: %d   Invalid input tests: %d\nTotal tests passed: %d   Total tests failed: %d   Total tests completed: %d\n\n\n", validCount, invalidCount, testPassCount,testFailCount, totalTestCount);
+
+
 	totalTestCount=0;
 	testPassCount=0;
 	testFailCount=0;
 	validCount = 0;
 	invalidCount = 0;
-	printf("TEST SET 4\nTesting varying deck sizes and compositions\n");
+	printf("TEST SET 5\nTesting varying deck sizes and compositions\n");
 	for (j = 1; j <= test_length; j++){
 		totalTestCount++;
 		numPlayers = rand()%(MAX_PLAYERS-1) + 2;
@@ -698,15 +789,24 @@ int main (int argc, char** argv){
 		testPhase = 0;
 		testActions = 1;
 		testDeckSize = (rand()%(MAX_DECK-G.handCount[currentPlayer] + 1)); //getting random size of deck
-		testTreasureCount = rand()%10;
+		testTreasureCount = rand()%10-5;
 		// filling deck of a random size with random cards
 		if (testDeckSize >= 0){
-			for (i = 0; i < testTreasureCount; i++){
-				G.deck[currentPlayer][i] = rand()%3 + 1; //adding varying number of treasure cards
+			if (testTreasureCount > 0){
+				for (i = 0; i < testTreasureCount; i++){
+					G.deck[currentPlayer][i] = rand()%3 + 4; //adding varying number of treasure cards
+				}	
+			
+				for (i = testTreasureCount; i < testDeckSize; i++){
+					G.deck[currentPlayer][i] = k[rand()%10];
+				}
 			}
-			for (i = testTreasureCount; i < testDeckSize; i++){
-				G.deck[currentPlayer][i] = k[rand()%10];
+			else{
+				for (i = 0; i < testDeckSize; i++){
+					G.deck[currentPlayer][i] = k[rand()%10];
+				}
 			}
+			
 		}
 		
 
@@ -727,8 +827,10 @@ int main (int argc, char** argv){
 			printf("Players: %d  Current Player: %d\n", G.numPlayers, currentPlayer);
 			printf("Actions: %d  Phase: %d\n", G.numActions, G.phase);
 			printf("Adventurer Location: %d  Tested Card Location: %d  Deck Size: %d\n\n", cardPlacement, testLocation, testDeckSize);
+			printf("Number of treasure cards: %d\n", testTreasureCount);
 		}
-		result = playAdventurer(&testG, currentPlayer, testLocation);
+		//result = playAdventurer(&testG, currentPlayer, testLocation);
+		result = playCard(testLocation, 0, 0, 0, &testG);
 		if (result == 0){
 			validCount++;
 			if (PRINT_ALL)

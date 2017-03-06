@@ -1,0 +1,65 @@
+isGameOver Test 1 passed
+isGameOver Test 2 passed
+isGameOver Test 3 passed
+isGameOver TEST SUCCESSFULLY COMPLETED
+Test 1 success 
+Test 2 success 
+Test 3 success 
+Test 3 failed 
+buyCard TEST FAILED
+Expected value: 0
+ Returned value: 0
+Expected value: 2
+ Returned value: 2
+Expected value: 5
+ Returned value: 5
+Expected value: 8
+ Returned value: 8
+Expected value: 0
+ Returned value: 0
+Expected value: 3
+ Returned value: 3
+Expected value: 6
+ Returned value: 6
+Expected value: 6
+ Returned value: 6
+Expected value: 5
+ Returned value: 5
+Expected value: 4
+ Returned value: 4
+Expected value: 4
+ Returned value: 4
+Expected value: 5
+ Returned value: 5
+Expected value: 4
+ Returned value: 4
+Expected value: 4
+ Returned value: 4
+Expected value: 3
+ Returned value: 3
+Expected value: 4
+ Returned value: 4
+Expected value: 3
+ Returned value: 3
+Expected value: 5
+ Returned value: 5
+Expected value: 3
+ Returned value: 3
+Expected value: 5
+ Returned value: 5
+Expected value: 3
+ Returned value: 3
+Expected value: 4
+ Returned value: 4
+Expected value: 2
+ Returned value: 2
+Expected value: 5
+ Returned value: 5
+Expected value: 4
+ Returned value: 4
+Expected value: 4
+ Returned value: 4
+Expected value: 4
+ Returned value: 4
+TEST PASSED
+Adventurer test passed

@@ -3,4 +3,7 @@
 
 int assertTrue(int a);
 
+int assertEquals(int a, int b);
+
+
 #endif

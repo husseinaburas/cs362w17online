@@ -525,60 +525,60 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
 
 int drawCard(int player, struct gameState *state)
 {	int count;
-  int deckCounter;
-  if (state->deckCount[player] <= 0){//Deck is empty
-    
-    //Step 1 Shuffle the discard pile back into a deck
-    int i;
-    //Move discard to deck
-    for (i = 0; i < state->discardCount[player];i++){
-      state->deck[player][i] = state->discard[player][i];
-      state->discard[player][i] = -1;
-    }
-
-    state->deckCount[player] = state->discardCount[player];
-    state->discardCount[player] = 0;//Reset discard
-
-    //Shufffle the deck
-    shuffle(player, state);//Shuffle the deck up and make it so that we can draw
-   
-    if (DEBUG){//Debug statements
-      printf("Deck count now: %d\n", state->deckCount[player]);
-    }
-    
-    state->discardCount[player] = 0;
-
-    //Step 2 Draw Card
-    count = state->handCount[player];//Get current player's hand count
-    
-    if (DEBUG){//Debug statements
-      printf("Current hand count: %d\n", count);
-    }
-    
-    deckCounter = state->deckCount[player];//Create a holder for the deck count
-
-    if (deckCounter == 0)
-      return -1;
-
-    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
-    state->deckCount[player]--;
-    state->handCount[player]++;//Increment hand count
-  }
-
-  else{
-    int count = state->handCount[player];//Get current hand count for player
     int deckCounter;
-    if (DEBUG){//Debug statements
-      printf("Current hand count: %d\n", count);
+    if (state->deckCount[player] <= 0){//Deck is empty
+
+        //Step 1 Shuffle the discard pile back into a deck
+        int i;
+        //Move discard to deck
+        for (i = 0; i < state->discardCount[player];i++){
+            state->deck[player][i] = state->discard[player][i];
+            state->discard[player][i] = -1;
+        }
+
+        state->deckCount[player] = state->discardCount[player];
+        state->discardCount[player] = 0;//Reset discard
+
+        //Shufffle the deck
+        shuffle(player, state);//Shuffle the deck up and make it so that we can draw
+
+        if (DEBUG){//Debug statements
+            printf("Deck count now: %d\n", state->deckCount[player]);
+        }
+
+        state->discardCount[player] = 0;
+
+        //Step 2 Draw Card
+        count = state->handCount[player];//Get current player's hand count
+
+        if (DEBUG){//Debug statements
+            printf("Current hand count: %d\n", count);
+        }
+
+        deckCounter = state->deckCount[player];//Create a holder for the deck count
+
+        if (deckCounter == 0)
+            return -1;
+
+        state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
+        state->deckCount[player]--;
+        state->handCount[player]++;//Increment hand count
     }
 
-    deckCounter = state->deckCount[player];//Create holder for the deck count
-    state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
-    state->deckCount[player]--;
-    state->handCount[player]++;//Increment hand count
-  }
+    else{
+        int count = state->handCount[player];//Get current hand count for player
+        int deckCounter;
+        if (DEBUG){//Debug statements
+            printf("Current hand count: %d\n", count);
+        }
 
-  return 0;
+        deckCounter = state->deckCount[player];//Create holder for the deck count
+        state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to the hand
+        state->deckCount[player]--;
+        state->handCount[player]++;//Increment hand count
+    }
+
+    return 0;
 }
 
 int getCost(int cardNumber)
@@ -1278,31 +1278,33 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 // refactored code to implement adventurer card
 void playAdventurer(struct gameState *state, int currentPlayer, int *temphand) {
-  int drawntreasure = 0;
-  int z = 0;
-  int cardDrawn;
+    int drawntreasure = 3;
+    int cardDrawn;
+    int z = 0;
 
-  // **BUG *** supposed to increment by 2, but chagned to 3 to create bug in game
-  while (drawntreasure < 3)  {
-    if (state->deckCount[currentPlayer] < 1) { // If the deck is empty we need to shuffle discard and add to deck.
-      shuffle(currentPlayer, state);
+    while(drawntreasure<1){
+        if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
+            shuffle(currentPlayer, state);
+        }
+
+        drawCard(currentPlayer, state);
+        cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
+
+        if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
+            drawntreasure++;
+        else{
+            temphand[z]=cardDrawn;
+            state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
+            z++;
+        }
     }
-    drawCard(currentPlayer, state);
-    cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer] - 1]; // Top card of hand is most recently drawn card.
-    cardDrawn++;
-    if (cardDrawn == copper-1|| cardDrawn == silver || cardDrawn == gold)
-      drawntreasure++;
-    else {
-      if (cardDrawn > treasure_map) cardDrawn--;
-      temphand[z] = cardDrawn;
-      state->handCount[currentPlayer]--; // This should just remove the top card (the most recently drawn one).
-      z++;
+
+    while(z-1>=0){
+        state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+        z=z-1;
     }
-  }
-  while (z - 1 >= 0) {
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[z - 1]; // Discard all cards in play that have been drawn.
-    z = z - 1;
-  }
+
+    return 0;
 }
 
 //refactored code to implement function call for smithy case in cardeffect
@@ -1310,7 +1312,7 @@ void playSmithy(struct gameState *state, int currentPlayer, int handPos){
   int i;
 
   //+3 cards
-  for (i = 0; i < 2; i ++){ //**BUG ** only go up twice, even though youre supposed to draw 3 new cards
+  for (i = 0; i < 3; i ++){ //**BUG ** only go up twice, even though youre supposed to draw 3 new cards
     drawCard(currentPlayer, state);
   }
 
@@ -1323,8 +1325,8 @@ void playVillage(struct gameState *state, int handPos) {
   drawCard(currentPlayer, state);
 
   //+2 Actions
-  //	state->numActions = state->numActions + 2; //commented out because this is *CORRECT* adding only 1 is a bug
-  state->numActions = state->numActions + 1; //*** ADDED BUG ****
+  //	state->numActions = state->numActions + 2;
+  state->numActions = state->numActions + 1;
 
   //discard played card from hand
   discardCard(handPos, currentPlayer, state, 0);

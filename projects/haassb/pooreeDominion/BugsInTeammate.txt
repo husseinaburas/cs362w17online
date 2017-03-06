@@ -1,0 +1,90 @@
+****************************************************************************************
+Bug Name: playMine(): Trashed Card is Discarded Rather than Trashed
+
+What is the bug: 
+When calling the playMine() function with a valid card request, this bug causes the Mine card 
+to not properly be executed. The Mine card allows the player to select a card and trash that 
+card in exchange for another card. This bug prevents the card from being trashed; it is instead
+discarded. Accordingly, it will continue to be recirculated into the player’s deck. In the 
+following code, we can see that the last parameter of the discard function is set to ‘0’. The 
+last parameter determines whether the card is to be discarded or trashed and should have a 
+value of ‘1’ for this function call.
+
+  for (i = 0; i < state->handCount[currentPlayer]; i++) {
+    if (state->hand[currentPlayer][i] == j) {
+      // Shouldn't this be getting trashed i.e. trashFlag = 1??
+      discardCard(i, currentPlayer, state, 0);      
+      break;
+    }
+	
+I found this bug after my test failed that checks the player's cards to ensure that the card is not
+present. Once this failed, I visually inspected the code where the card is dispositioned and saw 
+that it was being discarded rather than trashed.
+
+How do you make the bug happen?
+Launch a test or gameplay scenario that calls the playMine() function with any valid inputs 
+for the card to be trashed and the card to be upgraded and an initiated gamestate struct. 
+The function will accept any inputs and then determine the validity, so you must call the 
+function using valid (according to game logic) Mine inputs. If the function is called with 
+a card that can’t be upgraded or is too expensive to be upgraded, etc., the branch containing 
+the bug will not execute. Exit the program, the bug will have been triggered. 
+
+What version of the software was this detected on?
+This bug was detected using the version of the software in ONID pooree’s Assignment 4 github 
+folder.
+
+What is the estimated severity of the bug?
+This is a low to moderate severity bug. When it occurs, the Mine card is not executed properly. 
+While game play can continue uninterrupted after an occurrence of the bug, it will affect the 
+outcome of the game and be a detriment to the player. The majority of users will not be aware 
+of the bug when it occurs, and in many cases it might not be noticed at all.
+
+What is the estimated priority of the bug?
+This is a moderate to high priority bug. While it will not crash the program or cause any 
+catastrophic events, it prohibits accurate game play, and for a discerning player, will cause 
+great frustration and affect the outcome of the game. 
+
+
+*****************************************************************************************
+Bug Name: playAdventurer(): Any cards besides gold are counted as a treasure
+
+What is the bug: 
+When calling the playAdventurer() function, the logic is designed to draw cards until 2 treasure 
+cards have been uncovered. The algorithm loops through the draw function, and testing after each 
+draw if the card drawn is equal to copper, silver or gold, and if it is, the treasure counter is 
+incremented. However, as a result of what appears to be a “fat finger” bug, the equality operator 
+for the gold card is entered as “!=” rather than “==”, as seen in the code below.
+
+    if (cardDrawn == copper || cardDrawn == silver || cardDrawn != gold) {
+      drawntreasure++;
+    }
+
+The result of this is that any card besides a gold card is treated as a treasure and increments the 
+treasure counter. As a result, the loop will quickly execute and terminate after the first few cards 
+without the player being able to receive the deserved number of treasure cards warranted by the 
+Adventurer card. 
+
+I found this bug after a test failed that counted the number of treasure cards in the player's hand. 
+When this test failed, I visually inspected the code that ensures the proper number of treasure cards
+are drawn and saw the error.
+
+How do you make the bug happen?
+Launch a test or gameplay scenario that calls the playAdventurer function with the proper arguments, 
+including whoseTurn and a properly initiated gamestate struct. The bug will likely occur by chance 
+after 1-3 attempts (in the event that 2 silver or copper cards are the first 2 cards drawn, no bug 
+will occur). In order to ensure the bug happens immediately, you can pre-seed the deck with 
+non-treasure cards, which will immediately be counted as treasure cards in the first iteration.
+
+What version of the software was this detected on?
+This bug was detected using the version of the software in ONID pooree’s Assignment 4 github folder.
+
+What is the estimated severity of the bug?
+This is a moderate severity bug. When it occurs, the Adventurer card is not executed properly. 
+While game play can continue uninterrupted after an occurrence of the bug, it will affect the outcome 
+of the game and be a detriment to the player. The bug will be immediately apparent to the player of 
+the card, and he/she will be shorted their rightful treasure.
+
+What is the estimated priority of the bug?
+This is a moderate to high priority bug. While it will not crash the program or cause any catastrophic 
+events, it prohibits accurate game play, and for a discerning player, will cause great frustration and 
+affect the outcome of the game. 

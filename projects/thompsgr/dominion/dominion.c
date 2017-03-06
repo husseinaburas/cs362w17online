@@ -644,13 +644,13 @@ int getCost(int cardNumber)
 }
 
 //adventurer function
-int playAdventurer(struct gameState *state) {
+int playAdventurer(struct gameState *state, int handPos) {
   //get current player
   int currentPlayer = whoseTurn(state);
   int drawntreasure=0;
   int z = 0;
   int temphand[MAX_HAND];
-  while(drawntreasure <= 2) {
+  while(drawntreasure < 2) {
     //if deck is empty, shuffle discard pile and add to deck
     if(state->deckCount[currentPlayer] < 1) {
       shuffle(currentPlayer, state);
@@ -664,7 +664,7 @@ int playAdventurer(struct gameState *state) {
     } else {
       //drawn card is not treasure, add to temp hand to discard at end of turn.
       temphand[z]=cardDrawn;
-      state->handCount[currentPlayer]++;
+      state->handCount[currentPlayer]--;
       z++;
     }
   }
@@ -673,6 +673,8 @@ int playAdventurer(struct gameState *state) {
     state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1];
     z = z-1;
   }
+  //discard Adventurer card now that it has been used.
+  discardCard(handPos, currentPlayer, state, 0);
   return 0;
 }
 
@@ -806,7 +808,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card )
     {
     case adventurer:
-      playAdventurer(state);
+      playAdventurer(state, handPos);
       return 0;
 
     case council_room:

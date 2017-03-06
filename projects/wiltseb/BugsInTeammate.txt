@@ -1,0 +1,38 @@
+Bug #1 - Smithy
+The first bug I found was in Smithy with my unit test. I noticed that my test was reporting errors in the number of cards in the player’s hand after playing Smithy. It turns out that Joseph’s code has the following lines: 
+
+for (j = 0; j < 4; j++)
+  {
+    drawCard(currentPlayer, state);
+  }
+
+This calls drawCard 4 times. The rules of the Smithy card state to draw only 3 cards.
+
+Bug #2 - Adventurer
+This one was trickier because my unit tests had already exposed faults in the original Dominion code. For example, Adventurer does not get placed in the played card pile, or even removed from the player’s hand after the card is played. Thus a lot of my tests were already going off and I had to discriminate between what was a “known bug” versus any new ones. 
+
+However, when I ran my randomtestadventurer code, I noticed the current players number of treasure cards was off frequently by varying amounts. This led me to review the specific part of Joseph’s adventurer code in which the logic for drawing treasure cards versus non-treasure cards was implemented. 
+
+Once I looked, the bug was immediately apparent due in large part to how familiar I’ve gotten with the rules of the Adventurer card. Joseph has:
+
+if (cardDrawn == copper || cardDrawn == silver && cardDrawn == gold)
+      drawntreasure++;
+
+Thus Joseph’s bug in Adventurer was changing cardDrawn == silver || cardDrawn == gold to cardDrawn == silver && cardDrawn == gold
+
+Bug #3 - Steward
+I noticed upon running my unit test for steward (cardtest3) that Joseph’s code was generating incorrect values for multiple tests that occurred when testing choice2 of the steward card. The number of cards in the player’s hand was wrong, and the number of coins the player had was wrong. I checked the logic in Joseph’s dominion code and found:
+
+  if (choice1 == 1)
+  {
+    //+2 cards
+    drawCard(currentPlayer, state);
+    drawCard(currentPlayer, state);
+  }
+  else if (choice1 != 2)    //ERROR IN LOGIC
+  {
+    //+2 coins
+    state->coins = state->coins + 2;
+  }
+
+It turns out that Joseph’s code does not behave correctly when choice 1 is 2 or choice 1 is 3 is chosen because of the incorrect equality check.

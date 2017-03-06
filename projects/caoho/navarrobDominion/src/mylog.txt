@@ -1,0 +1,90 @@
+The program is not being run.
+No symbol table is loaded.  Use the "file" command.
+Note: breakpoint 1 also set at pc 0x4010a1.
+Breakpoint 2 at 0x4010a1
+Starting program: /home/charles/Workspace/navarrobDominion/src/unittest1 
+
+Breakpoint 1, 0x00000000004010a1 in main ()
+Single stepping until exit from function main,
+which has no line number information.
+_IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	ioputs.c: No such file or directory.
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+#0  _IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:34
+34	in ioputs.c
+36	in ioputs.c
+strlen () at ../sysdeps/x86_64/strlen.S:66
+66	../sysdeps/x86_64/strlen.S: No such file or directory.
+67	in ../sysdeps/x86_64/strlen.S
+68	in ../sysdeps/x86_64/strlen.S
+69	in ../sysdeps/x86_64/strlen.S
+70	in ../sysdeps/x86_64/strlen.S
+71	in ../sysdeps/x86_64/strlen.S
+117	in ../sysdeps/x86_64/strlen.S
+863	fileops.c: No such file or directory.
+873	in fileops.c
+874	in fileops.c
+875	in fileops.c
+879	in fileops.c
+880	in fileops.c
+__GI__IO_default_xsputn (f=f@entry=0x7ffff7ace400 <_IO_2_1_stdout_>, data=data@entry=0x4090a8, n=n@entry=95) at genops.c:482
+482	genops.c: No such file or directory.
+480	in genops.c
+455	in genops.c
+480	in genops.c
+482	in genops.c
+Undefined command: "nn".  Try "help".
+480	in genops.c
+455	in genops.c
+480	in genops.c
+482	in genops.c
+480	in genops.c
+455	in genops.c
+484	in genops.c
+485	in genops.c
+_IO_new_file_xsputn (f=0x7ffff7ace400 <_IO_2_1_stdout_>, data=<optimized out>, n=95) at fileops.c:1355
+1355	fileops.c: No such file or directory.
+1356	in fileops.c
+_IO_puts (str=0x4090a8 "****** Testing Method <int fullDeckCount(int player, int card, struct gameState *state);>******") at ioputs.c:42
+42	ioputs.c: No such file or directory.
+43	in ioputs.c
+37	in ioputs.c
+47	in ioputs.c
+0x00000000004010c4 in main ()
+Single stepping until exit from function main,
+which has no line number information.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000401218 in main ()
+Error detected on fd 0
+error detected on stdin
+A debugging session is active.
+
+	Inferior 1 [process 11230] will be killed.
+
+Quit anyway? (y or n) EOF [assumed Y]

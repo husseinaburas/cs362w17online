@@ -1,7 +1,7 @@
 /**
  * Miles Bright
  * CS 362-400 Assignment 4
- * randomtestcardadventurer.c
+ * randomtestcardadventurer.c - test file for adventurer card
  * 2/19/2017
  */
 
