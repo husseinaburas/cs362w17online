@@ -18,7 +18,7 @@
  #include "rngs.h"
 
  // set PRINT_TEST to 0 to remove print statements from output, 1 to show
- #define PRINT_TEST 1
+ #define PRINT_TEST 0
 
  /* Adventurer testing check:
  *
